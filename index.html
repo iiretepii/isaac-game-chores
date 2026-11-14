@@ -51,7 +51,10 @@ document.querySelectorAll('#touch button').forEach(b=>{
   b.addEventListener('pointerdown',e=>{e.preventDefault();initAudio();if(k==='jump'){jumpPressed=true;anyPress=true;}keys[k]=true;});
   const up=e=>{keys[k]=false;};b.addEventListener('pointerup',up);b.addEventListener('pointercancel',up);b.addEventListener('pointerleave',up);
 });
-cv.addEventListener('pointerdown',()=>{initAudio();anyPress=true;});
+document.addEventListener('pointerdown',e=>{if(e.target.closest&&e.target.closest('#touch'))return;initAudio();anyPress=true;});
+// Browsers keep audio muted until the player interacts, so the title screen asks for one click/key first
+const soundReady=()=>AC&&AC.state==='running';
+let soundGate=true;
 
 // ================= AUDIO =================
 let AC=null,master=null,musicGain=null,sfxGain=null,muted=false,noiseBuf=null;
@@ -868,7 +871,8 @@ function drawTitle(t){
   drawKid(W/2-5,150+Math.abs(Math.sin(t*5))*-14,1,t*40,Math.sin(t*5)>0.3,0);
   drawItem("sock",W/2-60,154+Math.sin(t*4)*3);drawItem("dish",W/2+50,154+Math.cos(t*4)*3);
   drawItem("toy",W/2-100,160+Math.cos(t*3)*3);drawItem("leaf",W/2+90,160+Math.sin(t*3)*3);
-  if(Math.floor(t*2)%2)text("PRESS ENTER / TAP TO START",W/2,200,8,"#76ff03","center");
+  if(soundGate)text("CLICK OR PRESS ANY KEY FOR SOUND",W/2,200,8,Math.floor(t*2)%2?"#ffeb3b":"#fff","center");
+  else if(Math.floor(t*2)%2)text("PRESS ENTER / TAP TO START",W/2,200,8,"#76ff03","center");
   text("ARROWS/WASD MOVE  SPACE JUMP  M MUTE  P PAUSE",W/2,226,6,"#aaa","center",false);
   text("STOMP CRITTERS. DODGE LEGOS. DON'T FALL.",W/2,240,6,"#aaa","center",false);
   text("MADE BY ISAAC HELTON & PETE O'CONNELL",W/2,256,6,"#ffeb3b","center");
@@ -930,7 +934,7 @@ function frame(now){
   while(acc>=STEP){
     acc-=STEP;clock+=STEP;stateT+=STEP;if(msgT>0)msgT-=STEP;
     const pressed=anyPress;anyPress=false;
-    if(state==='title'){if(pressed){score=0;startLevel(0);}}
+    if(state==='title'){if(pressed){if(soundGate){soundGate=false;initAudio();}else{score=0;startLevel(0);}}else if(soundGate&&soundReady())soundGate=false;}
     else if(state==='intro'){if(pressed&&stateT>0.5){state='play';jumpPressed=false;startMusic(lvl.L.music);}}
     else if(state==='play'){updatePlay(STEP);updateParts(STEP);}
     else if(state==='clear'){updateParts(STEP);if(pressed&&stateT>1){if(levelIdx<LEVELS.length-1)startLevel(levelIdx+1);else{state='end';stateT=0;startMusic('mix');}}}
