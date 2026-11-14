@@ -45,8 +45,8 @@ The bar at the top of the screen shows the parents' car driving toward the house
 
 Your siblings help you with chores for the **entire game**, on every level:
 
-- **Little Sis** rolls in on her skateboard right after the level starts ("I'll help all day! (for cookies)").
-- **Big Bro** zooms in a few seconds later on his **neon light-bike**: a sleek black futuristic bike with glowing red edges and disc wheels that leaves a glowing light trail behind it ("Vrrrm! Neon light-bike, baby!").
+- **Annie** (little sister) rolls in on her skateboard right after the level starts ("I'll help all day! (for cookies)").
+- **Isaac** (big brother) zooms in a few seconds later on his **neon light-bike**: a sleek black futuristic bike with glowing red edges and disc wheels that leaves a glowing light trail behind it ("Vrrrm! Neon light-bike, baby!").
 
 They fly to the nearest items and collect them for you, taking a short victory break after each one, so you still need to do your share. Only you can carry everything to the drop-off spot.
 
