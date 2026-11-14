@@ -65,9 +65,9 @@ Each level is longer, with more items, critters and gaps than the one before. La
 | # | Level | Chore | Items | Time | Critters | Music |
 |---|---|---|---|---|---|---|
 | 1 | **Isaac's Room** | Toy dragons → toy chest | 6 | 70s | Dust bunnies | Rock |
-| 2 | **Annie's Room** | Dolls → doll house | 7 | 72s | Dust bunnies, cats | Fairy-tale princess waltz |
+| 2 | **Annie's Room** | Dolls → castle doll house | 7 | 72s | Dust bunnies, cats | Fairy-tale princess waltz |
 | 3 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 8 | 75s | Dust bunnies, cockroaches | Swing jazz |
-| 4 | **Living Room Lego-Land** | Toys → toy box | 10 | 80s | Robot vacuums, cats | Bubblegum pop |
+| 4 | **Living Room Lego-Land** | Toys → plastic toy tote | 10 | 80s | Robot vacuums, cats | Bubblegum pop |
 | 5 | **Backyard Bonanza** | Leaves → leaf bag | 12 | 85s | Dogs, bees | Boom-bap hip hop |
 | 6 | **Garage of Doom** | Trash → trash can | 14 | 90s | Rats, robot vacuums, bees | Funky techno |
 | 7 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 15 | 92s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
@@ -104,7 +104,7 @@ All the music is generated live in the browser with the Web Audio API. There are
 | Arts & Crafts | *Les Petits Peintres* | Faster French impressionist piece: rippling piano, flute, sliding chords, whole-tone harp sweeps |
 | Tech Room | *Beep Boop Banana Boogie* | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |
 | Basement | *Nocturne in the Basement* | Romantic piano with rolling left hand and rubato |
-| Attic | *Attic Organ Fugue* | Baroque pipe organ in D minor with pedal bass |
+| Attic | *Little Fugue in the Attic* | A real three-voice pipe-organ fugue in D minor: subject, tonal answer with countersubject, bass entry, episode, final entry and a Picardy-third ending |
 | Whole House | Medley | Switches style every four bars with a record scratch |
 | Ending | Medley | — |
 
