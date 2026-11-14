@@ -326,6 +326,73 @@ const STYLES={
    if(s===6||s===14||(s===3&&bar===3))[64,67,71,74].forEach(m=>pluck(m+tr,d*0.7,t,0.022,0.3,2600));
    if(li===0&&i>0)crash(t);
  }},
+ // MUSIC ROOM: a kid practicing piano — scales with mistakes, Für Elise, Twinkle, Mountain King (Halloween), jazz licks,
+ // Jingle Bells, Bach's C-major Prelude, a spooky toccata, a pop tune, Chopsticks and Ode to Joy, with page-turn pauses.
+ practice:(()=>{
+  const ev=[],sp=[];let pos=0;
+  const N=(st,m,du,v)=>{(ev[pos+st]=ev[pos+st]||[]).push([m,du,v]);};
+  const seq=(list,v=0.1,legato=1.15,off=0)=>{let st=off;for(const [n,du] of list){if(n!==null&&n!==undefined)N(st,n,du*legato,v);st+=du;}return st;};
+  const piece=(len,speed,fn)=>{fn();for(let k=0;k<len;k++)sp[pos+k]=typeof speed==='function'?speed(k/len):speed;pos+=len;};
+  const rest=n=>piece(n,1.3,()=>{});
+  const each=(arr,du)=>arr.map(n=>[n,du]);
+  // 1. C-major scale with a metronome: wrong note, grumpy cluster, restart properly
+  piece(70,1,()=>{let st=seq(each([60,62,64,65,66],2));N(st,[47,48,49,50],4,0.06);st+=10;
+    const D=[60,62,64,65,67,69,71,72,74,76,77,79,81,83,84];const ud=[...D,...D.slice(0,-1).reverse()];
+    st=seq(each(ud,1),0.09,1.3,st);N(st,[48,60,64,67],8,0.1);for(let k=0;k<st;k+=4)N(k,'tick',1,0);});
+  rest(8);
+  // 2. Für Elise (Beethoven) — stumbles on the repeat, then tries again
+  piece(0,1,()=>{});
+  {const A=[[76],[75],[76],[75],[76],[71],[74],[72],[69,45],52,57,60,64,69,[71,40],52,56,64,68,71,[72,45],52,57,64,76,75];
+   const B1=[76,75,76,71,77],B=[76,75,76,71,74,72,[69,45],52,57,60,64,69,[71,40],52,56,64,72,71,[69,45],52,57];
+   const len=(A.length+B1.length+B.length)*2+8+8;
+   piece(len,1.25,()=>{let st=seq(each(A,2),0.1,1.6);st=seq(each(B1,2),0.1,1.4,st);st+=8;st=seq(each(B,2),0.1,1.6,st);N(st,[45,57,69],8,0.08);});}
+  rest(10);
+  // 3. Twinkle Twinkle Little Star
+  piece(64,0.95,()=>{seq([[60,4],[60,4],[67,4],[67,4],[69,4],[69,4],[67,8],[65,4],[65,4],[64,4],[64,4],[62,4],[62,4],[60,8]],0.1);
+    [48,48,53,48,53,48,43,48].forEach((r,k)=>N(k*8,[r,r+12],8,0.06));});
+  rest(8);
+  // 4. In the Hall of the Mountain King (Halloween!) — speeds up like crazy
+  {const ph=[[59,2],[61,2],[62,2],[64,2],[66,2],[62,2],[66,4],[65,2],[61,2],[65,4],[64,2],[60,2],[64,4],[59,2],[61,2],[62,2],[64,2],[66,2],[62,2],[66,2],[71,2],[69,2],[66,2],[62,2],[66,2],[69,8]];
+   const L=ph.reduce((a,b)=>a+b[1],0);
+   piece(L*3+12,f=>1.35-0.8*f,()=>{let st=0;for(let r=0;r<3;r++){for(const [m,du] of ph){N(st,[m,m-12],du*0.6,0.09);st+=du;}}N(st,[35,47,59,71],12,0.14);});}
+  rest(10);
+  // 5. Jazz: swung ii-V-I licks, then "shave and a haircut, two bits"
+  piece(80,1,()=>{const sw=[3,1,3,1,3,1,3,1];
+    let st=0;[[62,65,69,72,71,67,65,62],[71,74,77,81,79,77,74,71]].forEach((run,b)=>{N(st,b?[43,53,55,59]:[50,53,57,60],12,0.06);run.forEach((m,k)=>{N(st,m,sw[k]*1.4,0.09);st+=sw[k];});});
+    N(st,[48,52,55,59],16,0.06);[64,67,71,76].forEach((m,k)=>N(st+k,m,14,0.08));st+=16;
+    st=seq([[72,4],[67,2],[67,2],[69,4],[67,4],[null,4],[71,4],[72,4]],0.11,1,st);N(st-4,[48,55,64],6,0.08);});
+  rest(8);
+  // 6. Jingle Bells (oom-pah left hand)
+  piece(128,0.85,()=>{seq([[64,4],[64,4],[64,8],[64,4],[64,4],[64,8],[64,4],[67,4],[60,6],[62,2],[64,16],[65,4],[65,4],[65,6],[65,2],[65,4],[64,4],[64,4],[64,2],[64,2],[64,4],[62,4],[62,4],[64,4],[62,8],[67,8]],0.11);
+    const R=[48,48,48,48,53,48,43,43],C={48:[52,55,60],53:[53,57,60],43:[50,53,59]};R.forEach((r,b)=>{for(let q=0;q<4;q++)N(b*16+q*4,q%2?C[r]:r,3,q%2?0.04:0.07);});});
+  rest(10);
+  // 7. Bach — Prelude in C major (WTC I), first four bars
+  piece(64,1.05,()=>{[[60,64,67,72,76],[60,62,69,74,77],[59,62,67,74,77],[60,64,67,72,76]].forEach((c,b)=>{for(let h=0;h<2;h++){const o=b*16+h*8;
+    N(o,c[0],16,0.07);N(o+1,c[1],15,0.06);[c[2],c[3],c[4],c[2],c[3],c[4]].forEach((m,k)=>N(o+2+k,m,2,0.07));}});});
+  rest(8);
+  // 8. Spooky toccata (Halloween organ-style, on piano)
+  piece(56,1.3,()=>{let st=seq([[[81,69],1],[[79,67],1],[[81,69],10]],0.12,1);st+=4;st=seq([[[79,67],1],[[77,65],1],[[76,64],1],[[74,62],1],[[73,61],4],[[74,62],12]],0.12,1,st);
+    N(st,[26,38,50,53,57,61],16,0.13);});
+  rest(10);
+  // 9. A little pop tune (I-V-vi-IV)
+  piece(64,0.9,()=>{const ch=[[48,[60,64,67]],[43,[59,62,67]],[45,[60,64,69]],[41,[60,65,69]]];
+    ch.forEach(([r,c],b)=>{for(let e=0;e<8;e++)N(b*16+e*2,e%2?r:r-12,2,0.06);[0,3,6,10,12].forEach(s=>N(b*16+s,c,2,0.035));});
+    seq([[76,4],[74,2],[72,2],[74,4],[76,4],[79,6],[76,2],[74,8],[72,4],[74,2],[76,2],[79,4],[81,4],[79,4],[77,4],[76,4],[74,4]],0.1);});
+  rest(8);
+  // 10. Chopsticks
+  piece(48,0.9,()=>{seq([...each(Array(6).fill([65,67]),2),...each(Array(6).fill([64,67]),2),...each(Array(6).fill([62,71]),2),...each(Array(4).fill([60,72]),2),[[48,60,64,67,72],4]],0.08,0.7);});
+  rest(8);
+  // 11. Ode to Joy (Beethoven)
+  piece(64,1,()=>{seq([[64,4],[64,4],[65,4],[67,4],[67,4],[65,4],[64,4],[62,4],[60,4],[60,4],[62,4],[64,4],[64,6],[62,2],[62,8]],0.1);
+    [48,48,43,43,48,48,43,43].forEach((r,k)=>N(k*8,[r,r+7],8,0.05));});
+  rest(16);
+  while(pos%16)rest(1);
+  return {name:"PIANO PRACTICE (MOM IS LISTENING)",bpm:100,spb:4,bar:16,bars:pos/16,
+   rub(i){return sp[i%pos]||1;},
+   play(i,t,d){const e=ev[i%pos];if(!e)return;for(const [m,du,v] of e){
+     if(m==='tick'){tone(2100,0.025,'square',0.025,null,t,musicGain);continue;}
+     (Array.isArray(m)?m:[m]).forEach(x=>piano(x,du*d,t,v,0.3));}}};
+ })(),
  // OFFICE: deliberately BAD elevator muzak — stiff bossa drum machine, wobbly tape pan flute, sour wrong notes, cheesy vibes, elevator ding
  muzak:{name:"MUZAK FOR MEETINGS (VOL. 3)",bpm:104,spb:2,bar:8,bars:8,
   ch:[[41,[57,60,64]],[38,[57,60,65]],[43,[58,62,65]],[36,[58,64,67]],[41,[57,60,64]],[38,[57,60,65]],[43,[58,62,65]],[36,[58,64,67]]],
@@ -421,7 +488,7 @@ const STYLES={
    if(bar===15&&b===2)[62,66,69,73,78,81].forEach((m,k)=>piano(m+12,d*2,t+k*0.07,0.025,0.8)); // little harp-like ripple
  }},
 };
-const MIX=['rock','jazz','pop','hiphop','techno','polka','crooner','muzak','romantic','baroque'];
+const MIX=['rock','jazz','pop','hiphop','techno','polka','crooner','muzak','practice','romantic','baroque'];
 let music={on:false,style:'pop',step:0,next:0,seg:0,segStep:0,cycle:0};
 function startMusic(style){music.style=style;music.step=0;music.seg=0;music.segStep=0;music.cycle=0;music.on=true;if(AC)music.next=AC.currentTime+0.05;}
 function scheduler(){
@@ -459,11 +526,13 @@ const LEVELS=[
   text:"DAD: The dog had an 'accident' in the bathroom. Flush it ALL. Good luck."},
  {name:"HOME OFFICE HAVOC",chore:"Feed the old work papers to the shredder",drop:"shredder",item:"paper",count:17,time:98,len:185,gap:3,enemies:["ant","spider","hamster"],density:.68,lego:.3,movers:1,theme:"office",music:"muzak",
   text:"MOM: My OLD WORK PAPERS are all over the office. And the class hamster escaped. Again."},
- {name:"THE SPOOKY BASEMENT",chore:"Move the wet shirts to the dryer",drop:"dryer",item:"shirt",count:18,time:102,len:175,gap:3,enemies:["spider","rat","dust"],density:.66,lego:.3,movers:1,theme:"basement",music:"romantic",
+ {name:"MUSIC ROOM MAYHEM",chore:"Put the old piano scores back on the bookshelf",drop:"bookshelf",item:"score",count:18,time:100,len:192,gap:3,enemies:["cat","spider","roach"],density:.7,lego:.3,movers:1,theme:"musicroom",music:"practice",
+  text:"MOM: Your old piano music is ALL over the floor. Shelve it! ...And did you practice?"},
+ {name:"THE SPOOKY BASEMENT",chore:"Move the wet shirts to the dryer",drop:"dryer",item:"shirt",count:19,time:104,len:175,gap:3,enemies:["spider","rat","dust"],density:.66,lego:.3,movers:1,theme:"basement",music:"romantic",
   text:"DAD: The washer is in the basement. Don't mind the spiders. Mostly."},
- {name:"ATTIC OF ANTIQUES",chore:"Pack the ornaments in the old trunk",drop:"trunk",item:"ornament",count:19,time:108,len:185,gap:3,enemies:["bat","spider","rat"],density:.7,lego:.35,movers:1,theme:"attic",music:"baroque",
+ {name:"ATTIC OF ANTIQUES",chore:"Pack the ornaments in the old trunk",drop:"trunk",item:"ornament",count:20,time:110,len:185,gap:3,enemies:["bat","spider","rat"],density:.7,lego:.35,movers:1,theme:"attic",music:"baroque",
   text:"MOM: Holiday ornaments go back in the attic trunk. Watch out for bats!"},
- {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",count:22,time:122,len:220,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
+ {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",count:24,time:128,len:230,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
   text:"BOTH: We're turning onto our street RIGHT NOW."},
 ];
 const THEMES={
@@ -475,11 +544,12 @@ const THEMES={
  laundry:{sky:"#9ad7d0",wall2:"#8ccac3",ground:"#cfd8dc",top:"#80cbc4",plat:"#90a4ae",ptop:"#eceff1"},
  bathroom:{sky:"#b3e5fc",wall2:"#a1d9f5",ground:"#fafafa",top:"#4fc3f7",plat:"#f8bbd0",ptop:"#fce4ec",tiles:1},
  office:{sky:"#d7ccc8",wall2:"#cdbfb9",ground:"#78909c",top:"#90a4ae",plat:"#8d6e63",ptop:"#bcaaa4"},
+ musicroom:{sky:"#7b1f3a",wall2:"#6d1a33",ground:"#8d5a2b",top:"#c08a4b",plat:"#fafafa",ptop:"#ffffff",keys:1},
  basement:{sky:"#3b3a4a",wall2:"#33323f",ground:"#4e4e5a",top:"#80808f",plat:"#6d4c41",ptop:"#a1887f",dark:1},
  attic:{sky:"#7a5233",wall2:"#6b4628",ground:"#795548",top:"#bcaaa4",plat:"#5d4037",ptop:"#8d6e63"},
  house:{sky:"#2b2d6e",wall2:"#25275e",ground:"#5d3a8a",top:"#b388ff",plat:"#00897b",ptop:"#4db6ac"},
 };
-const ITEM_NAMES={sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",ornament:"ornaments",mix:"things"};
+const ITEM_NAMES={sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
@@ -533,8 +603,8 @@ function buildLevel(idx){
   const items=[],n=Math.min(L.count,cand.length);
   const used=new Set();
   for(let i=0;i<n;i++){let k=Math.round(i*(cand.length-1)/Math.max(1,n-1));while(used.has(k))k++;used.add(k);const s=cand[k];
-    const kinds=["sock","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper"];
-    items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%10]:L.item,got:false,bob:rng()*6});}
+    const kinds=["sock","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score"];
+    items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%11]:L.item,got:false,bob:rng()*6});}
   const enemies=[];
   eSpots.filter(s=>s.x>14&&s.x<cols-10).forEach(s=>{
     const type=L.enemies[ri(0,L.enemies.length-1)];
@@ -796,6 +866,10 @@ function drawItemRaw(k,x,y){
   else if(k==='ornament'){ // shiny holiday bauble
     R(x+6,y,4,3,"#ffd54f");R(x+7,y-2,2,2,"#bdbdbd");R(x+3,y+3,10,1,"#e53935");R(x+2,y+4,12,8,"#e53935");R(x+3,y+12,10,2,"#e53935");R(x+5,y+14,6,1,"#b71c1c");
     R(x+2,y+7,12,2,"#ffd54f");R(x+4,y+5,3,2,"#ff8a80");R(x+4,y+5,1,1,"#fff");R(x+11,y+10,2,3,"#b71c1c");R(x+5,y+10,1,1,"#ffd54f");R(x+9,y+11,1,1,"#ffd54f");}
+  else if(k==='score'){ // old yellowed sheet music with a dog-ear
+    R(x+2,y,12,16,"#fff8e1");R(x+11,y,3,3,"#ffe0b2");R(x+2,y+15,12,1,"#d7ccc8");
+    for(let l=0;l<2;l++)for(let s2=0;s2<5;s2++)R(x+3,y+3+l*7+s2,10,1,s2%2?"#fff8e1":"#8d6e63");
+    R(x+3,y+2,1,6,"#3e2723");R(x+5,y+4,2,2,"#000");R(x+6,y,1,4,"#000");R(x+8,y+5,2,2,"#000");R(x+9,y+1,1,4,"#000");R(x+6,y+11,2,2,"#000");R(x+7,y+8,1,4,"#000");R(x+10,y+10,2,2,"#000");R(x+11,y+7,1,4,"#000");R(x+11,y+7,2,1,"#000");}
   else if(k==='paper'){ // messy stack of old work papers with a coffee ring and a sticky note
     R(x+2,y+3,12,12,"#e0e0e0");R(x+1,y+2,12,12,"#f5f5f5");R(x+3,y+1,11,12,"#ffffff");
     for(let l=0;l<5;l++)R(x+5,y+3+l*2,l===0?6:7-(l%2)*2,1,"#90a4ae");R(x+5,y+3,6,1,"#1e88e5");
@@ -830,6 +904,8 @@ function drawDropRaw(k,x,y){
   else if(k==='bag'){R(x+4,y+2,20,22,"#2e7d32");R(x+6,y,16,3,"#1b5e20");R(x+8,y+8,4,4,"#ff7043");R(x+14,y+14,4,4,"#ffa726");}
   else if(k==='can'){R(x+3,y+4,22,20,"#607d8b");R(x+1,y+2,26,4,"#78909c");R(x+11,y-1,6,3,"#78909c");for(let i=6;i<24;i+=5)R(x+3+i,y+8,1,14,"#455a64");}
   else if(k==='washer'){R(x+1,y,26,24,"#eceff1");R(x+1,y,26,6,"#b0bec5");R(x+4,y+2,4,2,"#ff5252");R(x+10,y+2,4,2,"#69f0ae");R(x+8,y+8,12,12,"#78909c");R(x+10,y+10,8,8,"#4fc3f7");R(x+11,y+11,3,2,"#e1f5fe");R(x+1,y+23,26,1,"#90a4ae");}
+  else if(k==='bookshelf'){R(x-2,y-14,32,38,"#5d4037");R(x,y-12,28,34,"#3e2723");for(let sh=0;sh<3;sh++){R(x,y-2+sh*11,28,2,"#6d4c41");
+    for(let bk=0;bk<6;bk++){const bc=["#c62828","#1565c0","#2e7d32","#f9a825","#6a1b9a","#ef6c00"][(bk+sh)%6];R(x+2+bk*4,y-11+sh*11+(bk%3===1?1:0),3,9-(bk%3===1?1:0),bc);R(x+2+bk*4,y-9+sh*11,3,1,"#fff8");}}}
   else if(k==='shredder'){R(x+3,y+10,22,14,"#455a64");R(x+3,y+10,22,2,"#607d8b");R(x+1,y+4,26,7,"#263238");R(x+4,y+6,20,2,"#000");R(x+22,y+5,3,2,"#76ff03");
     for(let k2=0;k2<5;k2++)R(x+6+k2*4,y+14+((k2*3)%4),2,8,"#fafafa");R(x+8,y-2,12,7,"#fff");R(x+10,y,8,1,"#90a4ae");R(x+10,y+2,6,1,"#90a4ae");}
   else if(k==='toilet'){R(x+14,y-6,14,14,"#fafafa");R(x+14,y-6,14,2,"#e0e0e0");R(x+24,y-3,3,2,"#b0bec5");R(x+2,y+8,24,6,"#fafafa");R(x+2,y+8,24,2,"#e0e0e0");R(x+5,y+10,16,3,"#4fc3f7");
@@ -914,6 +990,14 @@ function drawBackground(th,t){
       if(k%2===0){R(dx,60,140,4,"#8d6e63");R(dx,100,140,4,"#8d6e63");R(dx+10,44,20,16,"#e53935");R(dx+40,48,16,12,"#1e88e5");R(dx+80,84,30,16,"#ffb300");}
       if(k===1){R(dx+20,110,110,40,"#455a64");R(dx+40,90,60,24,"#546e7a");R(dx+30,146,18,18,"#212121");R(dx+100,146,18,18,"#212121");}
       if(k===3){for(let j=0;j<4;j++)R(dx+20+j*16,40,4,30,"#9e9e9e");}
+    }else if(thn==='musicroom'){
+      if(k===0){g.fillStyle='#1b1b1b';g.beginPath();g.moveTo(dx+10,120);g.lineTo(dx+110,120);g.quadraticCurveTo(dx+140,120,dx+130,150);g.lineTo(dx+10,150);g.fill();R(dx+10,150,120,8,"#1b1b1b");
+        for(let kk=0;kk<14;kk++){R(dx+12+kk*7,150,6,8,"#fafafa");if(kk%7!==2&&kk%7!==6)R(dx+17+kk*7,150,3,5,"#000");}R(dx+16,158,4,20,"#1b1b1b");R(dx+120,158,4,20,"#1b1b1b");
+        g.save();g.translate(dx+20,120);g.rotate(-0.5);R(0,-50,90,4,"#1b1b1b");g.restore();}
+      if(k===1){R(dx+40,50,40,50,"#ffd54f");R(dx+43,53,34,44,"#4e342e");g.fillStyle='#d7ccc8';g.beginPath();g.arc(dx+60,70,9,0,7);g.fill();R(dx+52,80,16,14,"#d7ccc8");text("LVB",dx+48,98,6,"#ffd54f","left",false);}
+      if(k===2){R(dx+50,110,3,60,"#424242");R(dx+40,100,24,16,"#424242");R(dx+42,102,20,12,"#fff8e1");}
+      if(k===3){g.fillStyle='#a1592b';g.beginPath();g.ellipse(dx+60,70,12,16,0,0,7);g.fill();g.beginPath();g.ellipse(dx+60,92,15,18,0,0,7);g.fill();R(dx+58,30,4,40,"#3e2723");R(dx+56,84,8,2,"#3e2723");}
+      for(let nn=0;nn<5;nn++){const nx=dx+((nn*41+clock*12)%160),ny=40+((nn*37)%100)+Math.sin(clock*2+nn)*6;R(nx,ny,4,3,"#ffd54f");R(nx+3,ny-7,1,8,"#ffd54f");}
     }else if(thn==='office'){
       if(k===0){R(dx+10,90,40,80,"#90a4ae");for(let d2=0;d2<3;d2++){R(dx+12,94+d2*25,36,22,"#b0bec5");R(dx+24,103+d2*25,12,3,"#455a64");}}
       if(k===1){R(dx+20,40,70,50,"#3949ab");text("HANG",dx+30,50,8,"#fff","left",false);text("IN",dx+40,62,8,"#fff","left",false);text("THERE",dx+26,74,8,"#ffeb3b","left",false);R(dx+60,58,10,14,"#ff8a65");R(dx+64,52,2,6,"#5d4037");}
@@ -962,6 +1046,8 @@ function drawTiles(th,t){
       const depth=r-(ROWS-lvl.ground[c]);if(depth>0){g.globalAlpha=Math.min(0.5,depth*0.12);R(x,y,T,T,'#000');g.globalAlpha=1;}
       if(top&&tileAt(c-1,r)!=='#')R(x,y,1,T,shade(th.top,40));
       if(top&&tileAt(c+1,r)!=='#')R(x+15,y,1,T,'#0006');
+    }else if(tl==='='&&th.keys){
+      R(x,y,T,8,"#fafafa");R(x+15,y,1,8,"#9e9e9e");R(x+10,y,4,5,"#111");R(x,y+7,T,1,"#bdbdbd");g.globalAlpha=0.25;R(x,y+8,T,3,'#000');g.globalAlpha=1;
     }else if(tl==='='){
       R(x,y,T,7,th.plat);R(x,y,T,2,th.ptop);R(x,y+6,T,1,shade(th.plat,-40));R(x+((c*5)%11),y+3,4,1,shade(th.plat,-20));
       if(tileAt(c-1,r)!=='=')R(x,y,1,7,th.ptop);if(tileAt(c+1,r)!=='=')R(x+15,y,1,7,shade(th.plat,-40));
