@@ -2,7 +2,7 @@
 
 **Beat the parents home!** A 90s-style side-scrolling platformer where you race through the house finishing chores before Mom and Uncle Pete pull into the driveway.
 
-*Made by Isaac Helton & Pete O'Connell.*
+*A Belvoir Studios game. Made by Isaac Helton & Pete O'Connell.*
 
 ### ▶ [Play Chore Rush!](https://claude.ai/artifact/7bgXsM4dhpEVavZJgvo6ZJ)
 

@@ -662,7 +662,7 @@ function buildLevel(idx){
 }
 
 // ================= GAME STATE =================
-let sibs=[],state='title',lvl=null,levelIdx=0,score=0,timeLeft=0,cam=0,msg=null,msgT=0,stateT=0,parts=[],honked=false,levelScore=0,lastSafe={x:32,y:0};
+let sibs=[],state='splash',lvl=null,levelIdx=0,score=0,timeLeft=0,cam=0,msg=null,msgT=0,stateT=0,parts=[],honked=false,levelScore=0,lastSafe={x:32,y:0};
 const P={x:0,y:0,w:10,h:14,vx:0,vy:0,on:false,face:1,coyote:0,buf:0,inv:0,ride:null,anim:0,carry:0};
 
 function startLevel(i){
@@ -1213,12 +1213,36 @@ function panel(){g.globalAlpha=0.5;R(0,0,W,H,'#000');g.globalAlpha=0.92;const pg
   R(30,30,W-60,3,"#ffeb3b");R(30,H-33,W-60,3,"#ffeb3b");R(30,30,3,H-60,"#ffeb3b");R(W-33,30,3,H-60,"#ffeb3b");R(33,33,W-66,1,"#fff5");
   for(const [cx,cy] of [[30,30],[W-36,30],[30,H-36],[W-36,H-36]])R(cx,cy,6,6,"#e53935");}
 
+// ---- BELVOIR STUDIOS splash + penguin logo ----
+function penguinRaw(x,y,fr=0,blink=false){ // 12x16 penguin
+  R(x+2,y+2,8,12,"#212121");R(x+3,y,6,3,"#212121");R(x+1,y+5,2,7,"#212121");R(x+9,y+5,2,7,"#212121");
+  R(x+4,y+5,4,9,"#fafafa");R(x+3,y+7,6,6,"#fafafa");R(x+4,y+1,1,2,blink?"#212121":"#fafafa");R(x+7,y+1,1,2,blink?"#212121":"#fafafa");
+  if(!blink){R(x+4,y+2,1,1,"#000");R(x+7,y+2,1,1,"#000");}R(x+5,y+3,2,2,"#ff9800");
+  R(x+(fr?1:0),y+5,1,6,"#37474f");R(x+(fr?10:11),y+5,1,6,"#37474f");
+  R(x+3+(fr?1:0),y+14,3,2,"#ff9800");R(x+7-(fr?1:0),y+14,3,2,"#ff9800");}
+function drawPenguin(x,y,sc,fr,blink){g.save();g.translate(Math.round(x),Math.round(y));g.scale(sc,sc);outlined(0,0,(ox,oy)=>penguinRaw(ox,oy,fr,blink),1,1,'#0d1b2a');g.restore();}
+function belvoirBadge(x,y,col="#b3e5fc"){drawPenguin(x-26,y-4,1,Math.floor(clock*4)%2,false);text("A BELVOIR STUDIOS GAME",x-10,y,6,col,"left");}
+function drawSplash(t){
+  R(0,0,W,H,"#0d1b2a");const fade=Math.min(1,t/0.6,Math.max(0,(4-t)/0.6));
+  for(let i=0;i<50;i++){const sx=(i*73+Math.sin(t+i)*10)%W,sy=(i*41+t*(20+i%5*8))%H;R(sx,sy,i%3?1:2,i%3?1:2,"#cfe8ff");}
+  g.globalAlpha=fade;
+  g.fillStyle='#e3f2fd';g.beginPath();g.ellipse(W/2,182,120,14,0,0,7);g.fill();R(W/2-120,182,240,10,"#90caf9");g.fillStyle='#bbdefb';g.beginPath();g.ellipse(W/2,180,110,9,0,0,7);g.fill();
+  // three penguins waddle/slide onto the ice
+  const land=Math.min(1,t/1.4),wad=Math.floor(t*6)%2,blink=Math.floor(t*10)%25===0;
+  drawPenguin(W/2-18+(1-land)*-260,126-Math.abs(Math.sin(t*6))*2*land,3,wad,blink);
+  drawPenguin(W/2-70-(1-land)*200,148,2,1-wad,false);
+  drawPenguin(W/2+46+(1-land)*220,148,2,wad,blink);
+  if(t>1.2){const a=Math.min(1,(t-1.2)/0.5);g.globalAlpha=fade*a;
+    text("BELVOIR",W/2,46,24,"#ffffff","center");text("S T U D I O S",W/2,84,10,"#81d4fa","center");R(W/2-90,100,180,2,"#81d4fa");}
+  g.globalAlpha=1;g.drawImage(fx,0,0);
+}
 function drawTitle(t){
   // starry retro bg
   R(0,0,W,H,"#1a1040");
   for(let i=0;i<60;i++){const x=(i*97+t*20*(1+i%3))%W,y=(i*53)%H;R(x,y,2,2,i%5?"#5c4db1":"#fff");}
   for(let y=170;y<H;y+=8)R(0,y,W,1,"#e5393566");
   const wob=Math.sin(t*3)*3;
+  belvoirBadge(W/2-60,14);
   text("CHORE",W/2,40+wob,32,"#ffeb3b","center");
   text("RUSH!",W/2,78-wob,32,"#e53935","center");
   text("BEAT THE PARENTS HOME",W/2,124,8,"#fff","center");
@@ -1272,6 +1296,7 @@ function drawLose(t){
 function drawEnd(t){
   R(0,0,W,H,"#1a1040");
   for(let i=0;i<40;i++){const x=(i*61+t*60)%W,y=(i*37+t*(30+i))%H;R(x,y,3,3,["#ffeb3b","#e53935","#76ff03","#40c4ff"][i%4]);}
+  belvoirBadge(W/2-60,14);
   text("YOU DID IT!!",W/2,40,20,"#ffeb3b","center");
   wrap("Every chore done before the parents got home. They are so confused they are taking you out for pizza AND ice cream.",W/2,80,W-80,8,"#fff");
   text("FINAL SCORE: "+score,W/2,160,10,"#76ff03","center");
@@ -1288,7 +1313,8 @@ function frame(now){
   while(acc>=STEP){
     acc-=STEP;clock+=STEP;stateT+=STEP;if(msgT>0)msgT-=STEP;
     const pressed=anyPress;anyPress=false;
-    if(state==='title'){if(pressed){if(soundGate){soundGate=false;initAudio();}else{score=0;startLevel(0);}}else if(soundGate&&soundReady())soundGate=false;}
+    if(state==='splash'){if(stateT>4||(pressed&&stateT>0.3)){state='title';stateT=0;}else if(stateT>1.4&&stateT<1.42&&AC)[84,88,91].forEach((n,k)=>tone(mtof(n),0.15,'triangle',0.08,null,AC.currentTime+k*0.08));}
+    else if(state==='title'){if(pressed){if(soundGate){soundGate=false;initAudio();}else{score=0;startLevel(0);}}else if(soundGate&&soundReady())soundGate=false;}
     else if(state==='intro'){if(pressed&&stateT>0.5){state='play';jumpPressed=false;startMusic(lvl.L.music);}}
     else if(state==='play'){updatePlay(STEP);updateParts(STEP);}
     else if(state==='clear'){updateParts(STEP);if(pressed&&stateT>1){if(levelIdx<LEVELS.length-1)startLevel(levelIdx+1);else{state='end';stateT=0;startMusic('mix');}}}
@@ -1296,7 +1322,8 @@ function frame(now){
     else if(state==='end'){if(pressed&&stateT>1.5){state='title';stateT=0;startMusic('french');}}
     jumpPressed=false;
   }
-  if(state==='title'){drawTitle(clock);if(AC&&!music.on)startMusic('french');}
+  if(state==='splash')drawSplash(stateT);
+  else if(state==='title'){drawTitle(clock);if(AC&&!music.on)startMusic('french');}
   else if(state==='intro')drawIntro(clock);
   else if(state==='play')drawPlay(clock);
   else if(state==='pause'){drawPlay(clock);panel();text("PAUSED",W/2,110,16,"#ffeb3b","center");text("P TO RESUME",W/2,140,8,"#fff","center");}
