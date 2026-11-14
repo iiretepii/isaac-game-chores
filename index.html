@@ -55,6 +55,10 @@ document.addEventListener('pointerdown',e=>{if(e.target.closest&&e.target.closes
 // Browsers keep audio muted until the player interacts, so the title screen asks for one click/key first
 const soundReady=()=>AC&&AC.state==='running';
 let soundGate=true;
+// Try to start the title music the moment the page opens. Browsers only allow this if the player has
+// already interacted with the site (or allowed autoplay); otherwise it starts on the very first click/tap/key.
+addEventListener('load',()=>{try{initAudio();}catch(e){}});
+['mousedown','touchend','click','keyup'].forEach(ev=>addEventListener(ev,()=>initAudio(),{passive:true}));
 
 // ================= AUDIO =================
 let AC=null,master=null,musicGain=null,sfxGain=null,muted=false,noiseBuf=null;
