@@ -86,52 +86,31 @@ The basement is dark, with a pool of light that follows you around. In the music
 
 ## The music
 
-All the music is generated live in the browser with the Web Audio API. There are no audio files. Every song is original except the public-domain classics in the piano practice track.
+🎧 **Click any song name below to listen to it!** Each one opens an MP3 recording from the [`music/`](music/) folder that you can play or download.
+
+Inside the game itself, all the music is generated live in the browser with the Web Audio API (the game needs no audio files; the MP3s are recordings for listening). Every song is original except the public-domain classics in the piano practice track.
 
 | Where | Song | What you hear |
 |---|---|---|
-| Title screen | *Petite Valse du Matin* | Peaceful French-style waltz on piano, then flute |
-| Isaac's Room | *Radical Rock* | Distorted power chords, lead guitar, bass, big rock drums with fills |
-| Annie's Room | *Once Upon a Tidy Room* | Harp, strings, flute and celesta in a princess waltz |
-| Kitchen | *Cool Kitchen Jazz* | Swing beat, walking bass, ride cymbal, electric piano, saxophone |
-| Living Room | *Poptastic Pop* | Four-on-the-floor beat, claps, synth bass, catchy synth hook |
-| Backyard | *Backyard Boom-Bap* | Deep kicks, crunchy snare, lo-fi keys, record scratches, vinyl crackle |
-| Garage | *Garage Funk-Techno* | Dance beat, squelchy acid bass, cowbell, chord stabs |
-| Laundry Room | *Oompah Undies Polka* | Tuba, accordion, two trumpets, wah-wah trombone, slide whistle |
-| Bathroom | *Bathroom Amore* | Bouncy, cheesy crooner waltz: crooning "ohhh" voice, mandolin, accordion oom-pah-pah, tambourine, castanets, a corny key change and a "ba-da-BING!" |
-| Home Office | *Muzak for Meetings (Vol. 3)* | Wobbly pan flute, sour notes, late vibraphone, elevator ding |
-| Music Room | *Piano Practice (Mom Is Listening)* | Scales with mistakes, Für Elise, Twinkle, Mountain King, jazz, Jingle Bells, Bach, a spooky toccata, pop, Chopsticks, Ode to Joy |
-| Arts & Crafts | *Les Petits Peintres* | Faster French impressionist piece: rippling piano, flute, sliding chords, whole-tone harp sweeps |
-| Tech Room | *Beep Boop Banana Boogie* | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |
-| Basement | *Nocturne in the Basement* | Romantic piano with rolling left hand and rubato |
-| Attic | *Little Fugue in the Attic* | A four-voice pipe-organ fugue in D minor (about a minute): entries in alto, soprano, tenor and bass, three episodes, a middle entry, a low bass entry, a trill over a dominant pedal and a Picardy-third ending |
-| Whole House | Medley | Switches style every four bars with a record scratch |
-| Ending | Medley | — |
+| Title screen | [*Petite Valse du Matin*](music/00-title.mp3) | Peaceful French-style waltz on piano, then flute |
+| Isaac's Room | [*Radical Rock*](music/01-isaacs-room.mp3) | Distorted power chords, lead guitar, bass, big rock drums with fills |
+| Annie's Room | [*Once Upon a Tidy Room*](music/02-annies-room.mp3) | Harp, strings, flute and celesta in a princess waltz |
+| Kitchen | [*Cool Kitchen Jazz*](music/03-kitchen.mp3) | Swing beat, walking bass, ride cymbal, electric piano, saxophone |
+| Living Room | [*Poptastic Pop*](music/04-living-room.mp3) | Four-on-the-floor beat, claps, synth bass, catchy synth hook |
+| Backyard | [*Backyard Boom-Bap*](music/05-backyard.mp3) | Deep kicks, crunchy snare, lo-fi keys, record scratches, vinyl crackle |
+| Garage | [*Garage Funk-Techno*](music/06-garage.mp3) | Dance beat, squelchy acid bass, cowbell, chord stabs |
+| Laundry Room | [*Oompah Undies Polka*](music/07-laundry-room.mp3) | Tuba, accordion, two trumpets, wah-wah trombone, slide whistle |
+| Bathroom | [*Bathroom Amore*](music/08-bathroom.mp3) | Bouncy, cheesy crooner waltz: crooning "ohhh" voice, mandolin, accordion oom-pah-pah, tambourine, castanets, a corny key change and a "ba-da-BING!" |
+| Home Office | [*Muzak for Meetings (Vol. 3)*](music/09-home-office.mp3) | Wobbly pan flute, sour notes, late vibraphone, elevator ding |
+| Music Room | [*Piano Practice (Mom Is Listening)*](music/10-music-room.mp3) | Scales with mistakes, Für Elise, Twinkle, Mountain King, jazz, Jingle Bells, Bach, a spooky toccata, pop, Chopsticks, Ode to Joy |
+| Arts & Crafts | [*Les Petits Peintres*](music/11-arts-and-crafts.mp3) | Faster French impressionist piece: rippling piano, flute, sliding chords, whole-tone harp sweeps |
+| Tech Room | [*Beep Boop Banana Boogie*](music/12-tech-room.mp3) | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |
+| Basement | [*Nocturne in the Basement*](music/13-basement.mp3) | Romantic piano with rolling left hand and rubato |
+| Attic | [*Little Fugue in the Attic*](music/14-attic.mp3) | A four-voice pipe-organ fugue in D minor (about a minute): entries in alto, soprano, tenor and bass, three episodes, a middle entry, a low bass entry, a trill over a dominant pedal and a Picardy-third ending |
+| Whole House | [*Medley of every style*](music/15-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
+| Ending | [*Medley of every style*](music/15-whole-house-medley.mp3) | Same medley as the Whole House |
 
 Sound effects include a slide whistle when you jump, a "boing" when you stomp, a car horn as the parents get close, a kazoo fanfare when you finish a level and a sad trombone when you get caught.
-
-### Listen to the soundtrack
-
-Every song is also saved as an MP3 in the [`music/`](music/) folder (recorded straight from the game's own music code). Click a song to play it on GitHub.
-
-| Level | Song |
-|---|---|
-| Title screen | [Petite Valse du Matin](music/00-title.mp3) |
-| Isaac's Room | [Radical Rock](music/01-isaacs-room.mp3) |
-| Annie's Room | [Once Upon a Tidy Room](music/02-annies-room.mp3) |
-| Kitchen | [Cool Kitchen Jazz](music/03-kitchen.mp3) |
-| Living Room | [Poptastic Pop](music/04-living-room.mp3) |
-| Backyard | [Backyard Boom-Bap](music/05-backyard.mp3) |
-| Garage | [Garage Funk-Techno](music/06-garage.mp3) |
-| Laundry Room | [Oompah Undies Polka](music/07-laundry-room.mp3) |
-| Bathroom | [Bathroom Amore](music/08-bathroom.mp3) |
-| Home Office | [Muzak for Meetings (Vol. 3)](music/09-home-office.mp3) |
-| Music Room | [Piano Practice (Mom Is Listening)](music/10-music-room.mp3) |
-| Arts & Crafts | [Les Petits Peintres](music/11-arts-and-crafts.mp3) |
-| Tech Room | [Beep Boop Banana Boogie](music/12-tech-room.mp3) |
-| Basement | [Nocturne in the Basement](music/13-basement.mp3) |
-| Attic | [Little Fugue in the Attic](music/14-attic.mp3) |
-| Whole House | [Medley of every style](music/15-whole-house-medley.mp3) |
 
 ---
 
