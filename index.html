@@ -136,7 +136,7 @@ function makeAmp(drive,tone,vol){ // waveshaper "amp" + cabinet filtering
   inp.connect(ws);ws.connect(hp);hp.connect(mid);mid.connect(lp);lp.connect(out);out.connect(musicGain);return inp;
 }
 function gtrNote(freqs,dur,t,vol,mute){ // power chord: detuned saws into the amp
-  if(!gtrBus)gtrBus=makeAmp(60,3200,0.16);
+  if(!gtrBus)gtrBus=makeAmp(60,3200,0.12);
   const ga=AC.createGain(),f=AC.createBiquadFilter();f.type='lowpass';f.frequency.value=mute?700:2600;
   ga.gain.setValueAtTime(vol,t);ga.gain.exponentialRampToValueAtTime(vol*(mute?0.05:0.5),t+dur);ga.gain.linearRampToValueAtTime(0,t+dur+0.03);
   freqs.forEach(fr=>{[0,-7].forEach(det=>{const o=AC.createOscillator();o.type='sawtooth';o.frequency.value=fr;o.detune.value=det;o.connect(f);o.start(t);o.stop(t+dur+0.05);});});
@@ -207,6 +207,11 @@ const clap=(t,v=0.16)=>{for(let k=0;k<3;k++)nz(0.03,v,'bandpass',1300,t+k*0.011,
 const ride=(t,v=0.035)=>{nz(0.45,v,'highpass',6500,t);tone(2900,0.35,'square',0.006,null,t,musicGain);};
 const brush=(t,v=0.05)=>nz(0.12,v,'bandpass',3500,t,0.7);
 const crash=t=>nz(1.4,0.1,'highpass',4500,t);
+const rKick=t=>{tone(190,0.28,'sine',0.95,42,t,musicGain);tone(90,0.2,'triangle',0.4,40,t,musicGain);nz(0.02,0.3,'highpass',3000,t);};
+const rSnare=(t,v=0.42)=>{const f=nz(0.22,v,'bandpass',1900,t,0.8);nz(0.25,v*0.5,'highpass',5000,t);tone(200,0.12,'triangle',v*0.9,160,t,musicGain);
+  const s=AC.createGain();s.gain.value=0.4;f.connect(s);s.connect(reverb());};
+const rCrash=t=>{nz(1.8,0.18,'highpass',4000,t);nz(0.6,0.08,'bandpass',6500,t,0.5);};
+const rTom=(t,f)=>{tone(f,0.3,'sine',0.6,f*0.5,t,musicGain);nz(0.03,0.1,'bandpass',f*4,t);};
 const tom=(t,f)=>tone(f,0.25,'sine',0.4,f*0.55,t,musicGain);
 const cowbell=(t)=>{tone(540,0.12,'square',0.025,null,t,musicGain);tone(810,0.12,'square',0.025,null,t,musicGain);};
 function scratch(t){const f=nz(0.32,0.25,'bandpass',600,t,4);f.frequency.setValueAtTime(500,t);f.frequency.exponentialRampToValueAtTime(3500,t+0.12);f.frequency.exponentialRampToValueAtTime(400,t+0.3);}
@@ -219,9 +224,16 @@ const STYLES={
    if(n!==null&&loop%3!==2){let k=1;while(k<4&&s.lead[(li+k)%len]===null)k++;leadGtr(mtof(n-12),d*k*0.95,t);}
    const pc=[mtof(root-12),mtof(root-5),mtof(root)],acc=(b===0||b===3||b===6);
    if(!(lastBar&&b>=4)){gtrNote(pc,acc?d*(b===6?2:1.4):d*0.5,t,acc?0.5:0.35,!acc);bassNote(mtof(root-24),d*0.85,t);}
-   if(li%32===0)crash(t);
-   if(lastBar&&b>=4){tom(t,[220,180,140,110][b-4]);if(b===7)kick(t);}
-   else{if(b===0||b===4||b===5)kick(t);if(b===2||b===6)snare(t);hat(t,b===7);}
+   // big rock drum kit: punchy kick, cracking backbeat snare, driving hats, ride on the bridge, crashes and tom fills
+   const bridge=bar>=4&&bar<6;
+   if(li%16===0)rCrash(t);
+   if(lastBar&&b>=4){rTom(t,[240,200,160,120][b-4]);rTom(t+d/2,[220,180,140,110][b-4]);if(b===7){rKick(t);rCrash(t+d);}}
+   else{
+     if(b===0||b===4||(b===5&&bar%2)||(b===7&&bar===6))rKick(t);
+     if(b===2||b===6)rSnare(t);
+     if(b===7&&bar%2===0)rSnare(t+d/2,0.12); // ghost note
+     if(bridge)ride(t,0.06);else hat(t,b===7,b%2?0.06:0.1);
+   }
  }},
  // KITCHEN: swing jazz — walking bass, ride cymbal, Rhodes comping, sax melody over ii-V-I in F
  jazz:{name:"COOL KITCHEN JAZZ",bpm:150,spb:2,bar:8,bars:8,
@@ -433,7 +445,7 @@ function buildLevel(idx){
 
 // ================= GAME STATE =================
 let sibs=[],state='title',lvl=null,levelIdx=0,score=0,timeLeft=0,cam=0,msg=null,msgT=0,stateT=0,parts=[],honked=false,levelScore=0,lastSafe={x:32,y:0};
-const P={x:0,y:0,w:10,h:14,vx:0,vy:0,on:false,face:1,coyote:0,buf:0,inv:0,ride:null,anim:0,carry:0};
+const P={x:0,y:0,w:20,h:28,vx:0,vy:0,on:false,face:1,coyote:0,buf:0,inv:0,ride:null,anim:0,carry:0};
 
 function startLevel(i){
   levelIdx=i;lvl=buildLevel(i);timeLeft=lvl.L.time;cam=0;parts=[];honked=false;levelScore=0;sibs=[];
@@ -466,7 +478,7 @@ function updatePlayer(dt){
   P.coyote-=dt;P.buf-=dt;if(jumpPressed)P.buf=0.12;
   if(P.on)P.coyote=0.1;
   P.sq=Math.max(0,(P.sq||0)-dt*5);
-  if(P.buf>0&&P.coyote>0){P.vy=-430;P.on=false;P.coyote=0;P.buf=0;P.ride=null;SFX.jump();puff(P.x+5,P.y+14,"#fff",4,40);}
+  if(P.buf>0&&P.coyote>0){P.vy=-430;P.on=false;P.coyote=0;P.buf=0;P.ride=null;SFX.jump();puff(P.x+P.w/2,P.y+P.h,"#fff",4,40);}
   if(!keys.jump&&P.vy<-160)P.vy=-160;
   P.vy=Math.min(P.vy+1300*dt,600);
   // X
@@ -484,11 +496,11 @@ function updatePlayer(dt){
   }else{
     const r=Math.floor(P.y/T);for(let c=c0;c<=c1;c++)if(solid(c,r)){P.y=(r+1)*T;P.vy=0;break;}
   }
-  if(P.on&&!P.wasOn&&P.lastVy>250){P.sq=Math.min(1,P.lastVy/600);puff(P.x+5,P.y+P.h,'#ffffffaa',6,50);}
-  if(P.on&&Math.abs(P.vx)>110&&Math.random()<0.25)parts.push({x:P.x+5-P.face*4,y:P.y+P.h-2,vx:-P.face*20,vy:-20,life:0.35,col:'#ffffff88'});
+  if(P.on&&!P.wasOn&&P.lastVy>250){P.sq=Math.min(1,P.lastVy/600);puff(P.x+P.w/2,P.y+P.h,'#ffffffaa',6,50);}
+  if(P.on&&Math.abs(P.vx)>110&&Math.random()<0.25)parts.push({x:P.x+P.w/2-P.face*4,y:P.y+P.h-2,vx:-P.face*20,vy:-20,life:0.35,col:'#ffffff88'});
   P.wasOn=P.on;P.lastVy=P.vy||P.lastVy;if(P.on)P.lastVy=0;
   if(!P.on)P.ride=null;
-  if(P.on&&!P.ride){const cc=Math.floor((P.x+5)/T);if(lvl.ground[cc]&&lvl.ground[cc-1]&&lvl.ground[cc+1])lastSafe={x:P.x,y:P.y};}
+  if(P.on&&!P.ride){const cc=Math.floor((P.x+P.w/2)/T);if(lvl.ground[cc]&&lvl.ground[cc-1]&&lvl.ground[cc+1])lastSafe={x:P.x,y:P.y};}
   // hazards (lego)
   const hr0=Math.floor((P.y+4)/T),hr1=Math.floor((P.y+P.h-1)/T);
   for(let r=hr0;r<=hr1;r++)for(let c=c0;c<=c1;c++)if(tileAt(c,r)==='x'){const lx=c*T,ly=r*T+8;if(P.y+P.h>ly&&P.x+P.w>lx+2&&P.x<lx+14)hurt(lx+8);}
@@ -610,9 +622,12 @@ function wrap(t,x,y,maxW,size,col,align='center'){
   if(line)text(line,x,yy,size,col,align);return yy+size+6;
 }
 
+const KS=2; // player sprite scale
 function drawKid(x,y,face,frame,air,flash,sx=1,sy=1){
   if(flash&&Math.floor(flash*15)%2)return;
-  outlined(x,y,(ox,oy)=>drawKidRaw(ox,oy,face,frame,air),sx,sy);
+  // drawn at 2x: hitbox is 20x28, sprite art is 10x15 so offset up 2px for the cap
+  g.save();g.translate(Math.round(x),Math.round(y)-2);g.scale(KS,KS);
+  outlined(0,0,(ox,oy)=>drawKidRaw(ox,oy,face,frame,air),sx,sy);g.restore();
 }
 const PAL_ME={shirt:"#e53935",shirtD:"#b71c1c",pants:"#1e3a8a",cap:"#ffd600",capH:"#fff59d",hair:"#6d4c41",logo:"#ffeb3b"};
 const SIBS=[
@@ -839,9 +854,10 @@ function drawPlay(t){
   for(const it of lvl.items)if(!it.got&&Math.abs(it.x-cam-W/2)<W)drawItem(it.kind,it.x,it.y+Math.sin(t*4+it.bob)*2,t);
   for(const e of lvl.enemies)if(Math.abs(e.x-cam-W/2)<W)drawEnemy(e,t);
   for(const s of sibs){const by=s.y+Math.sin(s.hop)*2;
-    outlined(s.x,by,(ox,oy)=>{drawKidRaw(ox,oy,s.face,s.anim/2,true,s.d.pal);R(ox-2,oy+15,15,2,s.k?"#1e88e5":"#ab47bc");R(ox,oy+17,2,2,"#212121");R(ox+9,oy+17,2,2,"#212121");});
-    text(s.d.name,s.x+5,by-12,6,s.k?"#69f0ae":"#f48fb1","center");}
-  const kg=groundBelow(P.x+5,P.y+P.h-2);if(kg!==null)shadow(P.x+5,kg,6*Math.max(0.4,1-(kg-P.y-P.h)/120),0.35);
+    g.save();g.translate(Math.round(s.x),Math.round(by));g.scale(1.6,1.6);
+    outlined(0,0,(ox,oy)=>{drawKidRaw(ox,oy,s.face,s.anim/2,true,s.d.pal);R(ox-2,oy+15,15,2,s.k?"#1e88e5":"#ab47bc");R(ox,oy+17,2,2,"#212121");R(ox+9,oy+17,2,2,"#212121");});g.restore();
+    text(s.d.name,s.x+8,by-14,6,s.k?"#69f0ae":"#f48fb1","center");}
+  const kg=groundBelow(P.x+P.w/2,P.y+P.h-2);if(kg!==null)shadow(P.x+P.w/2,kg,6*Math.max(0.4,1-(kg-P.y-P.h)/120),0.35);
   const st=P.sq||0,sx=1+st*0.35,sy=1-st*0.3+(!P.on&&P.vy<-100?0.12:0);
   drawKid(P.x,P.y,P.face,P.anim/2,!P.on,P.inv>0?P.inv:0,sx,sy);
   for(const p of parts){g.globalAlpha=Math.min(1,p.life*2);if(p.txt)text(p.txt,p.x,p.y,8,p.col);else{const z=p.life>0.5?3:2;R(p.x,p.y,z,z,p.col);}}
@@ -868,7 +884,7 @@ function drawTitle(t){
   text("CHORE",W/2,40+wob,32,"#ffeb3b","center");
   text("RUSH!",W/2,78-wob,32,"#e53935","center");
   text("BEAT THE PARENTS HOME",W/2,124,8,"#fff","center");
-  drawKid(W/2-5,150+Math.abs(Math.sin(t*5))*-14,1,t*40,Math.sin(t*5)>0.3,0);
+  drawKid(W/2-10,152+Math.abs(Math.sin(t*5))*-14,1,t*40,Math.sin(t*5)>0.3,0);
   drawItem("sock",W/2-60,154+Math.sin(t*4)*3);drawItem("dish",W/2+50,154+Math.cos(t*4)*3);
   drawItem("toy",W/2-100,160+Math.cos(t*3)*3);drawItem("leaf",W/2+90,160+Math.sin(t*3)*3);
   if(soundGate)text("CLICK OR PRESS ANY KEY FOR SOUND",W/2,200,8,Math.floor(t*2)%2?"#ffeb3b":"#fff","center");
@@ -901,7 +917,7 @@ function drawClear(t){
   text("TIME BONUS: "+Math.ceil(timeLeft)+" x 10",W/2,124,8,"#ffeb3b","center");
   text("LEVEL SCORE: "+levelScore,W/2,142,8,"#ffeb3b","center");
   text("TOTAL: "+score,W/2,160,8,"#fff","center");
-  drawKid(W/2-5,190-Math.abs(Math.sin(t*6))*12,1,0,true,0);
+  drawKid(W/2-10,180-Math.abs(Math.sin(t*6))*12,1,0,true,0);
   if(stateT>1&&Math.floor(t*2)%2)text(levelIdx<LEVELS.length-1?"ENTER / TAP: NEXT CHORE":"ENTER / TAP: ...",W/2,214,8,"#fff","center");
 }
 function drawLose(t){
@@ -921,7 +937,7 @@ function drawEnd(t){
   text("YOU DID IT!!",W/2,40,20,"#ffeb3b","center");
   wrap("Every chore done before the parents got home. They are so confused they are taking you out for pizza AND ice cream.",W/2,80,W-80,8,"#fff");
   text("FINAL SCORE: "+score,W/2,160,10,"#76ff03","center");
-  drawKid(W/2-5,190-Math.abs(Math.sin(t*6))*16,Math.sin(t*2)>0?1:-1,t*40,true,0);
+  drawKid(W/2-10,180-Math.abs(Math.sin(t*6))*16,Math.sin(t*2)>0?1:-1,t*40,true,0);
   if(stateT>1.5&&Math.floor(t*2)%2)text("ENTER / TAP: PLAY AGAIN",W/2,226,8,"#fff","center");
   text("MADE BY ISAAC HELTON & PETE O'CONNELL",W/2,250,8,"#ffeb3b","center");
 }
