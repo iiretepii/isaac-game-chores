@@ -238,6 +238,18 @@ function harp(m,dur,t,vol=0.05){const f=mtof(m),ga=out(1,0.5);decayEnv(ga,t,vol,
   const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.setValueAtTime(f*6,t);lp.frequency.exponentialRampToValueAtTime(f*1.5,t+1);lp.connect(ga);
   O('triangle',f,t,t+dur+1.2,lp);O('sine',f*2,t,t+dur+1.2,lp,0.3);}
 function celesta(m,dur,t,vol=0.045){const f=mtof(m),ga=out(1,0.6);decayEnv(ga,t,vol,1.2,0.002);O('sine',f,t,t+1.3,ga);O('sine',f*4,t,t+0.25,ga,0.25);O('sine',f*2,t,t+0.6,ga,0.2);}
+function boingBass(m,dur,t,vol=0.3){const f=mtof(m),ga=out(1,0);holdEnv(ga,t,vol,dur,0.005,0.05);const o=O('sine',f*2.2,t,t+dur+0.05,ga);o.frequency.exponentialRampToValueAtTime(f,t+0.09);
+  const o2=O('triangle',f*2.2,t,t+dur+0.05,ga,0.4);o2.frequency.exponentialRampToValueAtTime(f,t+0.09);}
+function robotBeep(m,dur,t,vol=0.035){const f=mtof(m),ga=out(1,0.15);holdEnv(ga,t,vol,dur,0.005,0.02);const bp=AC.createBiquadFilter();bp.type='bandpass';bp.frequency.value=f*2;bp.Q.value=2;bp.connect(ga);
+  const o=O('square',f,t,t+dur+0.05,bp);o.frequency.setValueAtTime(f*1.5,t+dur*0.5);O('square',f*1.01,t,t+dur+0.05,ga,0.3);}
+const squeak=(t,f=1800)=>{tone(f,0.07,'sine',0.07,f*1.7,t,musicGain);tone(f*1.3,0.06,'sine',0.05,f*0.8,t+0.07,musicGain);};
+const clownHorn=t=>{tone(330,0.13,'sawtooth',0.07,300,t,musicGain);tone(415,0.13,'square',0.04,380,t,musicGain);};
+const cuckoo=t=>{tone(784,0.18,'sine',0.08,null,t,musicGain);tone(622,0.25,'sine',0.08,null,t+0.2,musicGain);};
+const slideUp=(t,d)=>tone(400,d,'sine',0.08,1800,t,musicGain);
+const slideDown=(t,d)=>tone(1800,d,'sine',0.08,300,t,musicGain);
+const bonk=t=>{tone(220,0.2,'sine',0.25,70,t,musicGain);nz(0.03,0.1,'bandpass',800,t,3);};
+const burp=t=>{const ga=out(0.2,0);ga.gain.setValueAtTime(0.18,t);ga.gain.linearRampToValueAtTime(0,t+0.45);const o=O('sawtooth',85,t,t+0.5,ga);o.frequency.linearRampToValueAtTime(60,t+0.45);
+  const l=AC.createOscillator(),lg=AC.createGain();l.frequency.value=24;lg.gain.value=0.15;l.connect(lg);lg.connect(ga.gain);l.start(t);l.stop(t+0.5);};
 function walkBass(m,dur,t,vol=0.3){const f=mtof(m),ga=out(1,0.05);decayEnv(ga,t,vol,dur+0.15,0.01);const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=700;lp.connect(ga);O('triangle',f,t,t+dur+0.2,lp);O('sine',f*2,t,t+dur+0.2,lp,0.2);}
 // --- drums ---
 function nz(dur,vol,type,freq,t,q=1){const s=AC.createBufferSource();s.buffer=noiseBuf;const f=AC.createBiquadFilter();f.type=type;f.frequency.value=freq;f.Q.value=q;const ga=AC.createGain();ga.gain.setValueAtTime(vol,t);ga.gain.exponentialRampToValueAtTime(0.001,t+dur);s.connect(f);f.connect(ga);ga.connect(musicGain);s.start(t,Math.random()*0.5);s.stop(t+dur+0.02);return f;}
@@ -363,6 +375,29 @@ const STYLES={
    const n=this.mel[li];
    if(n!==null){let k=1;while(k<8&&this.mel[(li+k)%128]===null)k++;
      if(loop%2===0)flute(n,d*k*0.95,t,0.06);else{piano(n,d*k,t,0.09,0.5);celesta(n+12,d*k,t,0.025);}}
+ }},
+ // TECH ROOM: the silliest song possible — kazoo + robot beeps over a boingy circus bass, rubber-duck squeaks, clown horns,
+ // a cuckoo clock, slide whistles, sad trombone, chipmunk-speed robot solo and the occasional burp
+ silly:{name:"BEEP BOOP BANANA BOOGIE",bpm:150,spb:2,bar:8,bars:8,
+  ch:[[48,[64,67,72]],[43,[65,71,74]],[48,[64,67,72]],[41,[65,69,72]],[48,[64,67,72]],[43,[65,71,74]],[48,[64,67,72]],[43,[65,71,74]]],
+  mel:[67,68,69,_,72,_,67,_, 71,_,74,_,77,76,74,_, 72,_,76,_,79,_,84,_, 81,80,79,78,77,_,_,_,
+       67,_,67,_,69,_,67,_, 74,73,74,_,79,_,71,_, 72,_,_,_,_,_,_,_, _,_,_,_,_,_,_,_],
+  play(i,t,d){const li=i%64,loop=Math.floor(i/64),bar=Math.floor(li/8),b=li%8,[r,c]=this.ch[bar];
+   if(bar===7){ // GAG BAR
+     if(b===0)slideUp(t,d*1.8);if(b===2||b===3)clownHorn(t);if(b===4)squeak(t,1600);if(b===5)squeak(t,2100);
+     if(b===6){if(loop%3===2)burp(t);else cuckoo(t);}if(b===7){bonk(t);tom(t+d/2,180);}return;}
+   if(b===0||b===4)boingBass(r-12+(b?7:0),d*1.5,t);
+   if(b===2||b===6){c.forEach(m=>pluck(m,d*0.5,t,0.022,0.1,3500));snare(t,0.15);}
+   if(b===0||b===4)kick(t,0.4);hat(t,false,0.03);
+   if(bar===1&&b===7&&loop%2)cowbell(t);
+   if(bar===2&&b===7)squeak(t,2400);
+   if(bar===3&&b===5)trombone(55,49,d*3,t,0.07); // wah-waaah under the chromatic slide
+   if(li===0)crash(t);
+   const n=this.mel[li];if(n===null)return;let k=1;while(k<4&&this.mel[(li+k)%64]===null)k++;
+   if(loop%3===0)kazoo(mtof(n),d*k*0.9,t,0.11);
+   else if(loop%3===1)robotBeep(n+12,d*k*0.7,t);                     // chipmunk robot solo
+   else{kazoo(mtof(n),d*k*0.9,t,0.09);robotBeep(n+7,d*k*0.6,t,0.025);} // kazoo + robot "harmony" (a fifth up, sort of)
+   if(bar===6&&b===0)slideDown(t+d*2,d*4);
  }},
  // MUSIC ROOM: a kid practicing piano — scales with mistakes, Für Elise, Twinkle, Mountain King (Halloween), jazz licks,
  // Jingle Bells, Bach's C-major Prelude, a spooky toccata, a pop tune, Chopsticks and Ode to Joy, with page-turn pauses.
@@ -526,7 +561,7 @@ const STYLES={
    if(bar===15&&b===2)[62,66,69,73,78,81].forEach((m,k)=>piano(m+12,d*2,t+k*0.07,0.025,0.8)); // little harp-like ripple
  }},
 };
-const MIX=['rock','princess','jazz','pop','hiphop','techno','polka','crooner','muzak','practice','french2','romantic','baroque'];
+const MIX=['rock','princess','jazz','pop','hiphop','techno','polka','crooner','muzak','practice','french2','silly','romantic','baroque'];
 let music={on:false,style:'pop',step:0,next:0,seg:0,segStep:0,cycle:0};
 function startMusic(style){music.style=style;music.step=0;music.seg=0;music.segStep=0;music.cycle=0;music.on=true;if(AC)music.next=AC.currentTime+0.05;}
 function scheduler(){
@@ -570,11 +605,13 @@ const LEVELS=[
   text:"MOM: Your old piano music is ALL over the floor. Shelve it! ...And did you practice?"},
  {name:"ARTS & CRAFTS CHAOS",chore:"Put the paint buckets back on the shelves",drop:"paintshelf",item:"paint",count:19,time:104,len:196,gap:3,enemies:["ant","cat","bubble"],density:.7,lego:.35,movers:1,theme:"arts",music:"french2",
   text:"MOM: Who painted a mustache on the cat?! Paint buckets back on the shelves. Lids ON."},
- {name:"THE SPOOKY BASEMENT",chore:"Move the wet shirts to the dryer",drop:"dryer",item:"shirt",count:20,time:108,len:175,gap:3,enemies:["spider","rat","dust"],density:.66,lego:.3,movers:1,theme:"basement",music:"romantic",
+ {name:"TECH ROOM TROUBLE",chore:"Bring the robot parts to the robot workbench",drop:"workbench",item:"robot",count:20,time:108,len:200,gap:3,enemies:["zap"],density:.75,lego:.35,movers:1,theme:"tech",music:"silly",
+  text:"UNCLE PETE: Isaac took the robot apart AGAIN. Put it back together before Mom sees the sparks!"},
+ {name:"THE SPOOKY BASEMENT",chore:"Move the wet shirts to the dryer",drop:"dryer",item:"shirt",count:21,time:112,len:175,gap:3,enemies:["spider","rat","dust"],density:.66,lego:.3,movers:1,theme:"basement",music:"romantic",
   text:"UNCLE PETE: The washer is in the basement. Don't mind the spiders. Mostly."},
- {name:"ATTIC OF ANTIQUES",chore:"Pack the ornaments in the old trunk",drop:"trunk",item:"ornament",count:21,time:114,len:185,gap:3,enemies:["bat","spider","rat"],density:.7,lego:.35,movers:1,theme:"attic",music:"baroque",
+ {name:"ATTIC OF ANTIQUES",chore:"Pack the ornaments in the old trunk",drop:"trunk",item:"ornament",count:22,time:118,len:185,gap:3,enemies:["bat","spider","rat"],density:.7,lego:.35,movers:1,theme:"attic",music:"baroque",
   text:"MOM: Holiday ornaments go back in the attic trunk. Watch out for bats!"},
- {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",count:26,time:134,len:240,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
+ {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",count:28,time:140,len:250,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
   text:"BOTH: We're turning onto our street RIGHT NOW."},
 ];
 const THEMES={
@@ -589,11 +626,12 @@ const THEMES={
  office:{sky:"#d7ccc8",wall2:"#cdbfb9",ground:"#78909c",top:"#90a4ae",plat:"#8d6e63",ptop:"#bcaaa4"},
  musicroom:{sky:"#7b1f3a",wall2:"#6d1a33",ground:"#8d5a2b",top:"#c08a4b",plat:"#fafafa",ptop:"#ffffff",keys:1},
  arts:{sky:"#fff8e1",wall2:"#fff3cd",ground:"#d7a86e",top:"#ef5350",plat:"#42a5f5",ptop:"#90caf9",splat:1},
+ tech:{sky:"#1a237e",wall2:"#151d6b",ground:"#455a64",top:"#00e5ff",plat:"#263238",ptop:"#00e5ff"},
  basement:{sky:"#3b3a4a",wall2:"#33323f",ground:"#4e4e5a",top:"#80808f",plat:"#6d4c41",ptop:"#a1887f",dark:1},
  attic:{sky:"#7a5233",wall2:"#6b4628",ground:"#795548",top:"#bcaaa4",plat:"#5d4037",ptop:"#8d6e63"},
  house:{sky:"#2b2d6e",wall2:"#25275e",ground:"#5d3a8a",top:"#b388ff",plat:"#00897b",ptop:"#4db6ac"},
 };
-const ITEM_NAMES={paint:"paint buckets",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
+const ITEM_NAMES={paint:"paint buckets",robot:"robot parts",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
@@ -647,13 +685,13 @@ function buildLevel(idx){
   const items=[],n=Math.min(L.count,cand.length);
   const used=new Set();
   for(let i=0;i<n;i++){let k=Math.round(i*(cand.length-1)/Math.max(1,n-1));while(used.has(k))k++;used.add(k);const s=cand[k];
-    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint"];
-    items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%13]:L.item,got:false,bob:rng()*6});}
+    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot"];
+    items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%14]:L.item,got:false,bob:rng()*6});}
   const enemies=[];
   eSpots.filter(s=>s.x>14&&s.x<cols-10).forEach(s=>{
     const type=L.enemies[ri(0,L.enemies.length-1)];
     const e={type,x:s.x*T,y:s.row*T+4,w:14,h:12,vx:-1,vy:0,alive:true,t:rng()*6,dead:0};
-    if(type==='bee'||type==='bat'||type==='bubble'){e.y=(s.row-2)*T;e.by=e.y;e.vx=-1;}
+    if(type==='bee'||type==='bat'||type==='bubble'||type==='zap'){e.y=(s.row-2)*T;e.by=e.y;e.vx=-1;}
     enemies.push(e);
   });
   const dh=ground[cols-6];
@@ -734,8 +772,8 @@ function updateEnemies(dt){
     if(!e.alive){e.dead-=dt;continue;}
     if(Math.abs(e.x-P.x)>W)continue;
     e.t+=dt;
-    const sp={dust:30,roach:55,roomba:75,cat:50,dog:90,rat:65,bee:40,spider:60,bat:55,bubble:35,ant:70,hamster:85}[e.type]*(1+levelIdx*0.06);
-    if((e.type==='bee'||e.type==='bat'||e.type==='bubble')){e.x+=e.vx*sp*dt;e.y=e.by+Math.sin(e.t*3)*22;if(Math.abs(e.x-e.ox)>60||e.ox===undefined){if(e.ox===undefined)e.ox=e.x;else{e.vx*=-1;e.x+=e.vx*2;}}}
+    const sp={dust:30,roach:55,roomba:75,cat:50,dog:90,rat:65,bee:40,spider:60,bat:55,bubble:35,zap:65,ant:70,hamster:85}[e.type]*(1+levelIdx*0.06);
+    if((e.type==='bee'||e.type==='bat'||e.type==='bubble'||e.type==='zap')){e.x+=e.vx*sp*dt;e.y=e.by+Math.sin(e.t*3)*22+(e.type==='zap'?Math.sin(e.t*37)*2:0);if(Math.abs(e.x-e.ox)>60||e.ox===undefined){if(e.ox===undefined)e.ox=e.x;else{e.vx*=-1;e.x+=e.vx*2;}}}
     else{
       if(e.type==='cat'&&Math.sin(e.t*1.3)>0.6){/* cat sits and licks paw */}
       else e.x+=e.vx*sp*dt;
@@ -913,6 +951,11 @@ function drawItemRaw(k,x,y){
   else if(k==='ornament'){ // shiny holiday bauble
     R(x+6,y,4,3,"#ffd54f");R(x+7,y-2,2,2,"#bdbdbd");R(x+3,y+3,10,1,"#e53935");R(x+2,y+4,12,8,"#e53935");R(x+3,y+12,10,2,"#e53935");R(x+5,y+14,6,1,"#b71c1c");
     R(x+2,y+7,12,2,"#ffd54f");R(x+4,y+5,3,2,"#ff8a80");R(x+4,y+5,1,1,"#fff");R(x+11,y+10,2,3,"#b71c1c");R(x+5,y+10,1,1,"#ffd54f");R(x+9,y+11,1,1,"#ffd54f");}
+  else if(k==='robot'){const v=Math.abs(Math.round(itemSeed/16))%4;
+    if(v===0){R(x+5,y+1,6,14,"#90a4ae");R(x+1,y+5,14,6,"#90a4ae");R(x+3,y+3,10,10,"#b0bec5");R(x+6,y+6,4,4,"#455a64");R(x+4,y+4,3,1,"#eceff1");} // gear
+    else if(v===1){R(x+2,y+4,12,10,"#b0bec5");R(x+2,y+4,12,1,"#eceff1");R(x+4,y+7,3,3,"#00e5ff");R(x+9,y+7,3,3,"#00e5ff");R(x+5,y+11,6,1,"#455a64");R(x+7,y,2,4,"#78909c");R(x+6,y-1,4,2,"#ff1744");} // robot head
+    else if(v===2){R(x+1,y+9,9,4,"#78909c");R(x+1,y+9,9,1,"#b0bec5");R(x+9,y+5,3,8,"#90a4ae");R(x+11,y+3,4,3,"#90a4ae");R(x+11,y+11,4,3,"#90a4ae");R(x,y+10,2,2,"#455a64");} // claw arm
+    else{R(x+3,y+3,10,12,"#43a047");R(x+3,y+3,10,2,"#66bb6a");R(x+6,y+1,4,2,"#b0bec5");R(x+7,y+6,2,6,"#ffeb3b");R(x+5,y+8,6,2,"#ffeb3b");R(x+3,y+14,10,1,"#1b5e20");}} // battery
   else if(k==='paint'){ // paint bucket with a wire handle and drips; color depends on where it is in the level
     const mc=["#e53935","#1e88e5","#43a047","#fdd835","#8e24aa","#fb8c00"][Math.abs(Math.round(itemSeed/16))%6],dk=shade(mc,-55);
     R(x+3,y,10,1,"#90a4ae");R(x+2,y+1,1,4,"#90a4ae");R(x+13,y+1,1,4,"#90a4ae");
@@ -966,6 +1009,9 @@ function drawDropRaw(k,x,y){
   else if(k==='bag'){R(x+4,y+2,20,22,"#2e7d32");R(x+6,y,16,3,"#1b5e20");R(x+8,y+8,4,4,"#ff7043");R(x+14,y+14,4,4,"#ffa726");}
   else if(k==='can'){R(x+3,y+4,22,20,"#607d8b");R(x+1,y+2,26,4,"#78909c");R(x+11,y-1,6,3,"#78909c");for(let i=6;i<24;i+=5)R(x+3+i,y+8,1,14,"#455a64");}
   else if(k==='washer'){R(x+1,y,26,24,"#eceff1");R(x+1,y,26,6,"#b0bec5");R(x+4,y+2,4,2,"#ff5252");R(x+10,y+2,4,2,"#69f0ae");R(x+8,y+8,12,12,"#78909c");R(x+10,y+10,8,8,"#4fc3f7");R(x+11,y+11,3,2,"#e1f5fe");R(x+1,y+23,26,1,"#90a4ae");}
+  else if(k==='workbench'){R(x-2,y+10,32,4,"#6d4c41");R(x-2,y+10,32,1,"#a1887f");R(x,y+14,3,10,"#4e342e");R(x+25,y+14,3,10,"#4e342e");
+    R(x+8,y-4,12,14,"#90a4ae");R(x+10,y-12,8,8,"#b0bec5");R(x+11,y-10,2,2,"#00e5ff");R(x+15,y-10,2,2,"#00e5ff");R(x+12,y-6,4,1,"#455a64");R(x+13,y-15,2,3,"#78909c");
+    R(x+11,y,6,4,"#263238");R(x+12,y+1,1,1,"#76ff03");R(x+15,y+1,1,1,Math.floor(clock*4)%2?"#ff1744":"#263238");R(x+3,y+2,5,3,"#78909c");R(x+21,y+4,5,2,"#78909c");R(x+2,y+8,3,2,"#ffeb3b");}
   else if(k==='paintshelf'){R(x-2,y-14,32,38,"#8d6e63");R(x,y-12,28,34,"#5d4037");for(let sh=0;sh<3;sh++){R(x,y-2+sh*11,28,2,"#a1887f");
     ["#e53935","#1e88e5","#43a047","#fdd835","#8e24aa","#fb8c00"].forEach((c,j)=>{if((j+sh)%2)return;const bx=x+2+j*4;R(bx,y-9+sh*11,5,7,"#cfd8dc");R(bx,y-7+sh*11,5,3,c);R(bx,y-10+sh*11,5,1,"#90a4ae");});}}
   else if(k==='dishwasher'){R(x,y,28,24,"#cfd8dc");R(x,y,28,6,"#90a4ae");R(x+2,y+2,10,2,"#263238");R(x+14,y+2,2,2,"#76ff03");R(x+18,y+2,2,2,"#455a64");R(x+22,y+2,2,2,"#455a64");
@@ -999,7 +1045,7 @@ function drawDropRaw(k,x,y){
 
 function drawEnemy(e,t){
   if(!e.alive){if(e.dead>0){g.globalAlpha=e.dead*2;R(Math.round(e.x),Math.round(e.y)+8,14,4,"#999");g.globalAlpha=1;}return;}
-  const gy=groundBelow(e.x+7,e.y+e.h-2);if(gy!==null)shadow(e.x+7,gy,7,((e.type==='bee'||e.type==='bat'||e.type==='bubble'))?0.18:0.3);
+  const gy=groundBelow(e.x+7,e.y+e.h-2);if(gy!==null)shadow(e.x+7,gy,7,((e.type==='bee'||e.type==='bat'||e.type==='bubble'||e.type==='zap'))?0.18:0.3);
   const sq=1+Math.sin(e.t*12)*0.06;
   outlined(e.x,e.y,(ox,oy)=>drawEnemyRaw(e,t,ox,oy),2-sq,sq);
 }
@@ -1014,6 +1060,10 @@ function drawEnemyRaw(e,t,x,y){
     case'cat':R(x+1,y+5,11,6,"#ff9800");R(x+(f?9:0),y+1,6,6,"#ff9800");R(x+(f?9:0),y,2,2,"#ff9800");R(x+(f?13:4),y,2,2,"#ff9800");R(x+(f?0:12),y+2+bob,2,5,"#e65100");R(x+2,y+11,2,1,"#e65100");R(x+9,y+11,2,1,"#e65100");R(x+(f?11:2),y+3,1,1,"#000");R(x+(f?13:0),y+3,1,1,"#000");break;
     case'dog':R(x,y+4,14,6,"#8d6e63");R(x+(f?10:-2),y,7,6,"#8d6e63");R(x+(f?10:3),y,2,4,"#5d4037");R(x+(f?14:-1),y+4,2,3+bob,"#f06292");R(x+(f?14:-2),y+2,1,1,"#000");R(x+1,y+10,2,2,"#5d4037");R(x+11,y+10,2,2,"#5d4037");R(x+(f?-2:14),y+3-bob,2,2,"#8d6e63");break;
     case'bee':R(x+2,y+4,10,7,"#ffd600");R(x+5,y+4,2,7,"#212121");R(x+9,y+4,1,7,"#212121");R(x+3,y-1+bob,4,4,"#e3f2fd");R(x+7,y-1-bob+1,4,4,"#e3f2fd");R(x+(f?12:0),y+6,2,2,"#000");R(x+(f?-1:13),y+7,2,1,"#212121");break;
+    case'zap':{const j=Math.floor(t*20)%2; // little lightning bolt with a grin, crackling
+      R(x+6,y,6,2,"#ffeb3b");R(x+4,y+2,6,2,"#ffeb3b");R(x+2,y+4,10,2,"#ffeb3b");R(x+6,y+6,6,2,"#ffeb3b");R(x+4,y+8,6,2,"#ffeb3b");R(x+2,y+10,6,2,"#ffeb3b");R(x+2,y+12,3,2,"#ffeb3b");
+      R(x+7,y,4,1,"#fffde7");R(x+3,y+4,8,1,"#fffde7");R(x+5,y+3,1,1,"#000");R(x+8,y+3,1,1,"#000");R(x+4,y+5,5,1,"#f57f17");
+      if(j){R(x-2,y+3,2,1,"#80d8ff");R(x+13,y+7,2,1,"#80d8ff");R(x+9,y+12,1,2,"#80d8ff");}else{R(x-1,y+8,1,2,"#80d8ff");R(x+12,y+1,2,1,"#80d8ff");}break;}
     case'ant':R(x+1,y+7,4,4,"#6d1b1b");R(x+5,y+8,3,3,"#8b2323");R(x+8,y+6,5,5,"#6d1b1b");R(x+(f?12:8),y+7,1,1,"#fff");
       for(let k=0;k<3;k++){R(x+3+k*3,y+11,1,1+((k+bob)%2),"#3e0f0f");}R(x+(f?12:7),y+3,1,3,"#3e0f0f");R(x+(f?13:6),y+2,1,1,"#3e0f0f");break;
     case'hamster':R(x+1,y+4,13,8,"#ffb74d");R(x+3,y+3,9,1,"#ffb74d");R(x+4,y+8,7,4,"#fff3e0");R(x+(f?10:1),y+2,3,3,"#ffb74d");R(x+(f?11:2),y+2,1,1,"#f48fb1");
@@ -1078,6 +1128,13 @@ function drawBackground(th,t){
       if(k%2===0){R(dx,60,140,4,"#8d6e63");R(dx,100,140,4,"#8d6e63");R(dx+10,44,20,16,"#e53935");R(dx+40,48,16,12,"#1e88e5");R(dx+80,84,30,16,"#ffb300");}
       if(k===1){R(dx+20,110,110,40,"#455a64");R(dx+40,90,60,24,"#546e7a");R(dx+30,146,18,18,"#212121");R(dx+100,146,18,18,"#212121");}
       if(k===3){for(let j=0;j<4;j++)R(dx+20+j*16,40,4,30,"#9e9e9e");}
+    }else if(thn==='tech'){
+      g.globalAlpha=0.35;for(let cl=0;cl<5;cl++){const yy=20+cl*30;R(dx,yy,60+cl*10,1,"#00e5ff");R(dx+60+cl*10,yy,1,20,"#00e5ff");R(dx+58+cl*10,yy+19,5,3,"#00e5ff");}g.globalAlpha=1;
+      if(k===0){R(dx+20,60,40,110,"#263238");for(let sr=0;sr<8;sr++){R(dx+24,64+sr*13,32,10,"#37474f");R(dx+26+((sr*5)%20),68+sr*13,2,2,(Math.floor(clock*6+sr)%3)?"#76ff03":"#ff1744");R(dx+46,67+sr*13,6,3,"#00e5ff");}}
+      if(k===1){R(dx+30,70,60,48,"#cfd8dc");R(dx+34,74,52,36,"#000");text("BEEP",dx+40,82,8,"#76ff03","left",false);if(Math.floor(clock*2)%2)R(dx+76,82,6,8,"#76ff03");R(dx+50,118,20,8,"#90a4ae");}
+      if(k===2){R(dx+60,110,8,60,"#78909c");g.fillStyle='#b0bec5';g.beginPath();g.arc(dx+64,104,12,0,7);g.fill();
+        if(Math.floor(clock*8)%3){g.strokeStyle='#80d8ff';g.lineWidth=2;g.beginPath();g.moveTo(dx+64,92);for(let z=0;z<5;z++)g.lineTo(dx+64+(z%2?12:-12)+Math.sin(clock*30+z)*6,92-z*10);g.stroke();}}
+      if(k===3){R(dx+30,40,50,60,"#ffeb3b");R(dx+42,52,26,24,"#90a4ae");R(dx+46,58,6,6,"#00e5ff");R(dx+58,58,6,6,"#00e5ff");R(dx+48,70,14,2,"#455a64");text("ROBOTS",dx+34,84,6,"#1a237e","left",false);text("RULE",dx+40,92,6,"#1a237e","left",false);}
     }else if(thn==='arts'){
       const k6=((i%6)+6)%6,fr=(fx2,fy,fw,fh)=>{R(dx+fx2-2,fy-2,fw+4,fh+4,"#795548");R(dx+fx2,fy,fw,fh,"#fffde7");R(dx+fx2+fw/2-1,fy-6,2,4,"#e53935");};
       if(k6===0){fr(20,30,70,56); // "MY FAMILY": giant heads, tiny bodies, Uncle Pete's huge mustache
