@@ -4,6 +4,8 @@
 
 *Made by Isaac Helton & Pete O'Connell.*
 
+### ▶ [Play Chore Rush!](https://claude.ai/artifact/7bgXsM4dhpEVavZJgvo6ZJ)
+
 ---
 
 ## How to play
