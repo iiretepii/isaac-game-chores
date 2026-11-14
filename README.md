@@ -69,19 +69,20 @@ Each level is longer, with more items, critters and gaps than the one before. La
 | 3 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 12 | 87s | Dust bunnies, cockroaches | Swing jazz |
 | 4 | **Living Room Lego-Land** | Toys → plastic toy tote | 13 | 89s | Robot vacuums, cats | Bubblegum pop |
 | 5 | **Backyard Bonanza** | Leaves → leaf bag | 14 | 91s | Dogs, bees | Boom-bap hip hop |
-| 6 | **Garage of Doom** | Trash → trash can | 15 | 93s | Rats, robot vacuums, bees | Funky techno |
-| 7 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 16 | 95s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
-| 8 | **Bathroom Blunder** | Runaway poops → toilet | 17 | 99s | Soap bubbles, cockroaches, spiders | Italian crooner waltz |
-| 9 | **Home Office Havoc** | Old work papers → recycle bin | 18 | 101s | Ants, spiders, hamsters | Terrible elevator music |
-| 10 | **Music Room Mayhem** | Old piano scores → bookshelf | 19 | 103s | Cats, spiders, cockroaches | Kid practicing piano |
-| 11 | **Arts & Crafts Chaos** | Paint buckets → shelves | 20 | 107s | Ants, cats, soap bubbles | Lively French impressionist |
-| 12 | **Tech Room Trouble** | Robot parts → robot workbench | 21 | 111s | Little lightning bolts | The silliest song ever |
-| 13 | **Workout Room Workout** | Weights → weight rack | 22 | 114s | Rats, cats, dogs, dust mites | High-octane workout anthem |
-| 14 | **The Spooky Basement** | Wet shirts → dryer | 23 | 118s | Spiders, rats, dust bunnies | Romantic movie-theme piano |
-| 15 | **Attic of Antiques** | Holiday ornaments → old trunk | 24 | 124s | Bats, spiders, rats | Bach-style pipe organ |
-| 16 | **The Whole House!!** | Everything → dive on the couch | 25 | 143s | All of them | Medley of every style |
+| 6 | **Pool Party Panic** | Soggy towels → towel basket | 15 | 93s | Ducks, geese, swans, squirrels | Silly splashy calypso |
+| 7 | **Garage of Doom** | Trash → trash can | 16 | 96s | Rats, robot vacuums, bees | Funky techno |
+| 8 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 17 | 98s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
+| 9 | **Bathroom Blunder** | Runaway poops → toilet | 18 | 102s | Soap bubbles, cockroaches, spiders | Italian crooner waltz |
+| 10 | **Home Office Havoc** | Old work papers → recycle bin | 19 | 104s | Ants, spiders, hamsters | Terrible elevator music |
+| 11 | **Music Room Mayhem** | Old piano scores → bookshelf | 20 | 106s | Cats, spiders, cockroaches | Kid practicing piano |
+| 12 | **Arts & Crafts Chaos** | Paint buckets → shelves | 21 | 110s | Ants, cats, soap bubbles | Lively French impressionist |
+| 13 | **Tech Room Trouble** | Robot parts → robot workbench | 22 | 114s | Little lightning bolts | The silliest song ever |
+| 14 | **Workout Room Workout** | Weights → weight rack | 23 | 117s | Rats, cats, dogs, dust mites | High-octane workout anthem |
+| 15 | **The Spooky Basement** | Wet shirts → dryer | 24 | 121s | Spiders, rats, dust bunnies | Romantic movie-theme piano |
+| 16 | **Attic of Antiques** | Holiday ornaments → old trunk | 25 | 127s | Bats, spiders, rats | Bach-style pipe organ |
+| 17 | **The Whole House!!** | Everything → dive on the couch | 26 | 146s | All of them | Medley of every style |
 
-The basement is dark, with a pool of light that follows you around. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
+The basement is dark, with a pool of light that follows you around. At the pool, the floating platforms are striped lounge chairs and the gaps are the pool itself. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
 
 ---
 
@@ -99,18 +100,19 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Kitchen | [*Cool Kitchen Jazz*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/03-kitchen.mp3) | Swing beat, walking bass, ride cymbal, electric piano, saxophone |
 | Living Room | [*Poptastic Pop*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/04-living-room.mp3) | Four-on-the-floor beat, claps, synth bass, catchy synth hook |
 | Backyard | [*Backyard Boom-Bap*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/05-backyard.mp3) | Deep kicks, crunchy snare, lo-fi keys, record scratches, vinyl crackle |
-| Garage | [*Garage Funk-Techno*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/06-garage.mp3) | Dance beat, squelchy acid bass, cowbell, chord stabs |
-| Laundry Room | [*Oompah Undies Polka*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/07-laundry-room.mp3) | Tuba, accordion, two trumpets, wah-wah trombone, slide whistle |
-| Bathroom | [*Bathroom Amore*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/08-bathroom.mp3) | Bouncy, cheesy crooner waltz: crooning "ohhh" voice, mandolin, accordion oom-pah-pah, tambourine, castanets, a corny key change and a "ba-da-BING!" |
-| Home Office | [*Muzak for Meetings (Vol. 3)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/09-home-office.mp3) | Wobbly pan flute, sour notes, late vibraphone, elevator ding |
-| Music Room | [*Piano Practice (Mom Is Listening)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/10-music-room.mp3) | Scales with mistakes, Für Elise, Twinkle, Mountain King, jazz, Jingle Bells, Bach, a spooky toccata, pop, Chopsticks, Ode to Joy |
-| Arts & Crafts | [*Les Petits Peintres*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/11-arts-and-crafts.mp3) | Faster French impressionist piece: rippling piano, flute, sliding chords, whole-tone harp sweeps |
-| Tech Room | [*Beep Boop Banana Boogie*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/12-tech-room.mp3) | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |
-| Workout Room | [*Maximum Reps!!!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/13-workout-room.mp3) | Pounding four-on-the-floor beat, rolling bass, supersaw synth riff, coach's whistle, "HEY!" shouts and a snare-roll build-up into a big drop |
-| Basement | [*Nocturne in the Basement*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/14-basement.mp3) | Romantic film-score piano in the style of classic Italian movie themes: a simple, singing melody with long notes and big expressive leaps over flowing arpeggios, warm strings, and on the repeat the strings take the melody while the piano floats above |
-| Attic | [*Little Fugue in the Attic*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/15-attic.mp3) | A four-voice pipe-organ fugue in D minor (about a minute): entries in alto, soprano, tenor and bass, three episodes, a middle entry, a low bass entry, a trill over a dominant pedal and a Picardy-third ending |
-| Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/16-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
-| Ending | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/16-whole-house-medley.mp3) | Same medley as the Whole House |
+| Pool | [*Cannonball Calypso*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/06-pool.mp3) | Super-silly splashy pool party: steel drums, bubbly boing bass, ukulele strums, congas, shaker, bubble pops, a rubber-duck squeak, slide whistle and a big CANNONBALL splash |
+| Garage | [*Garage Funk-Techno*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/07-garage.mp3) | Dance beat, squelchy acid bass, cowbell, chord stabs |
+| Laundry Room | [*Oompah Undies Polka*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/08-laundry-room.mp3) | Tuba, accordion, two trumpets, wah-wah trombone, slide whistle |
+| Bathroom | [*Bathroom Amore*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/09-bathroom.mp3) | Bouncy, cheesy crooner waltz: crooning "ohhh" voice, mandolin, accordion oom-pah-pah, tambourine, castanets, a corny key change and a "ba-da-BING!" |
+| Home Office | [*Muzak for Meetings (Vol. 3)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/10-home-office.mp3) | Wobbly pan flute, sour notes, late vibraphone, elevator ding |
+| Music Room | [*Piano Practice (Mom Is Listening)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/11-music-room.mp3) | Scales with mistakes, Für Elise, Twinkle, Mountain King, jazz, Jingle Bells, Bach, a spooky toccata, pop, Chopsticks, Ode to Joy |
+| Arts & Crafts | [*Les Petits Peintres*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/12-arts-and-crafts.mp3) | Faster French impressionist piece: rippling piano, flute, sliding chords, whole-tone harp sweeps |
+| Tech Room | [*Beep Boop Banana Boogie*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/13-tech-room.mp3) | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |
+| Workout Room | [*Maximum Reps!!!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/14-workout-room.mp3) | Pounding four-on-the-floor beat, rolling bass, supersaw synth riff, coach's whistle, "HEY!" shouts and a snare-roll build-up into a big drop |
+| Basement | [*Nocturne in the Basement*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/15-basement.mp3) | Romantic film-score piano in the style of classic Italian movie themes: a simple, singing melody with long notes and big expressive leaps over flowing arpeggios, warm strings, and on the repeat the strings take the melody while the piano floats above |
+| Attic | [*Little Fugue in the Attic*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/16-attic.mp3) | A four-voice pipe-organ fugue in D minor (about a minute): entries in alto, soprano, tenor and bass, three episodes, a middle entry, a low bass entry, a trill over a dominant pedal and a Picardy-third ending |
+| Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/17-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
+| Ending | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/17-whole-house-medley.mp3) | Same medley as the Whole House |
 
 Sound effects include a slide whistle when you jump, a "boing" when you stomp, a car horn as the parents get close, a kazoo fanfare when you finish a level and a sad trombone when you get caught.
 
