@@ -87,30 +87,30 @@ The basement is dark, with a pool of light that follows you around. In the music
 
 ## The music
 
-🎧 **Click any song name below to listen to it!** Each one opens an MP3 recording from the [`music/`](music/) folder that you can play or download.
+🎧 **Click any song name below to listen to it!** Each one opens and plays an MP3 recording right in your browser (the files live in the [`music/`](music/) folder).
 
 Inside the game itself, all the music is generated live in the browser with the Web Audio API (the game needs no audio files; the MP3s are recordings for listening). Every song is original except the public-domain classics in the piano practice track.
 
 | Where | Song | What you hear |
 |---|---|---|
-| Title screen | [*Petite Valse du Matin*](music/00-title.mp3) | Peaceful French-style waltz on piano, then flute |
-| Isaac's Room | [*Radical Rock*](music/01-isaacs-room.mp3) | Distorted power chords, lead guitar, bass, big rock drums with fills |
-| Annie's Room | [*Once Upon a Tidy Room*](music/02-annies-room.mp3) | Harp, strings, flute and celesta in a princess waltz |
-| Kitchen | [*Cool Kitchen Jazz*](music/03-kitchen.mp3) | Swing beat, walking bass, ride cymbal, electric piano, saxophone |
-| Living Room | [*Poptastic Pop*](music/04-living-room.mp3) | Four-on-the-floor beat, claps, synth bass, catchy synth hook |
-| Backyard | [*Backyard Boom-Bap*](music/05-backyard.mp3) | Deep kicks, crunchy snare, lo-fi keys, record scratches, vinyl crackle |
-| Garage | [*Garage Funk-Techno*](music/06-garage.mp3) | Dance beat, squelchy acid bass, cowbell, chord stabs |
-| Laundry Room | [*Oompah Undies Polka*](music/07-laundry-room.mp3) | Tuba, accordion, two trumpets, wah-wah trombone, slide whistle |
-| Bathroom | [*Bathroom Amore*](music/08-bathroom.mp3) | Bouncy, cheesy crooner waltz: crooning "ohhh" voice, mandolin, accordion oom-pah-pah, tambourine, castanets, a corny key change and a "ba-da-BING!" |
-| Home Office | [*Muzak for Meetings (Vol. 3)*](music/09-home-office.mp3) | Wobbly pan flute, sour notes, late vibraphone, elevator ding |
-| Music Room | [*Piano Practice (Mom Is Listening)*](music/10-music-room.mp3) | Scales with mistakes, Für Elise, Twinkle, Mountain King, jazz, Jingle Bells, Bach, a spooky toccata, pop, Chopsticks, Ode to Joy |
-| Arts & Crafts | [*Les Petits Peintres*](music/11-arts-and-crafts.mp3) | Faster French impressionist piece: rippling piano, flute, sliding chords, whole-tone harp sweeps |
-| Tech Room | [*Beep Boop Banana Boogie*](music/12-tech-room.mp3) | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |
-| Workout Room | [*Maximum Reps!!!*](music/13-workout-room.mp3) | Pounding four-on-the-floor beat, rolling bass, supersaw synth riff, coach's whistle, "HEY!" shouts and a snare-roll build-up into a big drop |
-| Basement | [*Nocturne in the Basement*](music/14-basement.mp3) | Romantic piano with rolling left hand and rubato |
-| Attic | [*Little Fugue in the Attic*](music/15-attic.mp3) | A four-voice pipe-organ fugue in D minor (about a minute): entries in alto, soprano, tenor and bass, three episodes, a middle entry, a low bass entry, a trill over a dominant pedal and a Picardy-third ending |
-| Whole House | [*Medley of every style*](music/16-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
-| Ending | [*Medley of every style*](music/16-whole-house-medley.mp3) | Same medley as the Whole House |
+| Title screen | [*Petite Valse du Matin*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/00-title.mp3) | Peaceful French-style waltz on piano, then flute |
+| Isaac's Room | [*Radical Rock*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/01-isaacs-room.mp3) | Distorted power chords, lead guitar, bass, big rock drums with fills |
+| Annie's Room | [*Once Upon a Tidy Room*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/02-annies-room.mp3) | Harp, strings, flute and celesta in a princess waltz |
+| Kitchen | [*Cool Kitchen Jazz*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/03-kitchen.mp3) | Swing beat, walking bass, ride cymbal, electric piano, saxophone |
+| Living Room | [*Poptastic Pop*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/04-living-room.mp3) | Four-on-the-floor beat, claps, synth bass, catchy synth hook |
+| Backyard | [*Backyard Boom-Bap*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/05-backyard.mp3) | Deep kicks, crunchy snare, lo-fi keys, record scratches, vinyl crackle |
+| Garage | [*Garage Funk-Techno*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/06-garage.mp3) | Dance beat, squelchy acid bass, cowbell, chord stabs |
+| Laundry Room | [*Oompah Undies Polka*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/07-laundry-room.mp3) | Tuba, accordion, two trumpets, wah-wah trombone, slide whistle |
+| Bathroom | [*Bathroom Amore*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/08-bathroom.mp3) | Bouncy, cheesy crooner waltz: crooning "ohhh" voice, mandolin, accordion oom-pah-pah, tambourine, castanets, a corny key change and a "ba-da-BING!" |
+| Home Office | [*Muzak for Meetings (Vol. 3)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/09-home-office.mp3) | Wobbly pan flute, sour notes, late vibraphone, elevator ding |
+| Music Room | [*Piano Practice (Mom Is Listening)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/10-music-room.mp3) | Scales with mistakes, Für Elise, Twinkle, Mountain King, jazz, Jingle Bells, Bach, a spooky toccata, pop, Chopsticks, Ode to Joy |
+| Arts & Crafts | [*Les Petits Peintres*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/11-arts-and-crafts.mp3) | Faster French impressionist piece: rippling piano, flute, sliding chords, whole-tone harp sweeps |
+| Tech Room | [*Beep Boop Banana Boogie*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/12-tech-room.mp3) | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |
+| Workout Room | [*Maximum Reps!!!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/13-workout-room.mp3) | Pounding four-on-the-floor beat, rolling bass, supersaw synth riff, coach's whistle, "HEY!" shouts and a snare-roll build-up into a big drop |
+| Basement | [*Nocturne in the Basement*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/14-basement.mp3) | Romantic piano with rolling left hand and rubato |
+| Attic | [*Little Fugue in the Attic*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/15-attic.mp3) | A four-voice pipe-organ fugue in D minor (about a minute): entries in alto, soprano, tenor and bass, three episodes, a middle entry, a low bass entry, a trill over a dominant pedal and a Picardy-third ending |
+| Whole House | [*Medley of every style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/16-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
+| Ending | [*Medley of every style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/16-whole-house-medley.mp3) | Same medley as the Whole House |
 
 Sound effects include a slide whistle when you jump, a "boing" when you stomp, a car horn as the parents get close, a kazoo fanfare when you finish a level and a sad trombone when you get caught.
 
