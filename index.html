@@ -538,36 +538,14 @@ const STYLES={
    if(bar===7&&s===0)piano(r+12+q,d*12,t,0.06,0.5);
  }},
  // ATTIC: baroque pipe organ — Bach-style 16th-note figuration over a pedal bass, in D minor
- // ATTIC: a real three-voice organ fugue in D minor — subject (alto), tonal answer (soprano) against a countersubject,
- // subject in the bass, a sequential episode through the circle of fifths, a final soprano entry, and a Picardy-third cadence.
- baroque:(()=>{const ev=[];
-  const put=(start,list,vol)=>{let e=start;for(const [m,len] of list){if(m!==null)(ev[Math.round(e*2)]=ev[Math.round(e*2)]||[]).push([m,len*2,vol]);e+=len;}return e;};
-  const T=(l,k)=>l.map(([m,d])=>[m+k,d]);
-  const S=[[62,2],[69,2],[65,1],[64,1],[62,1],[61,1],[62,1],[64,1],[65,1],[67,1],[69,1],[67,1],[65,1],[64,1]]; // subject
-  const A=[[69,2],[74,2],[72,1],[71,1],[69,1],[68,1],[69,1],[71,1],[72,1],[74,1],[76,1],[74,1],[72,1],[71,1]]; // tonal answer (A minor)
-  // bars 1-2: subject alone in the alto
-  put(0,S,0.034);
-  // bars 3-4: answer in the soprano, countersubject in the alto
-  put(16,A,0.032);
-  put(16,[[65,1],[62,1],[65,1],[67,1],[64,1],[62,1],[60,1],[59,1],[64,2],[69,1],[65,1],[67,1],[65,1],[64,1],[62,1]],0.03);
-  // bars 5-6: subject in the bass; soprano + alto in free counterpoint
-  put(32,T(S,-12),0.04);
-  put(32,[[77,2],[76,1],[73,1],[74,1],[73,1],[74,1],[76,1],[77,1],[76,1],[74,2],[73,2],[74,1],[73,1]],0.03);
-  put(32,[[69,2],[69,1],[64,1],[69,1],[67,1],[65,1],[69,1],[69,1],[67,1],[69,1],[70,1],[69,1],[64,1],[69,1],[67,1]],0.027);
-  // bars 7-8: episode — falling sequence Dm Gm C F Bb E7 A A7, soprano in 16ths, alto in 8ths, bass in quarters
-  {const sop=[[77,74,69,74],[79,74,70,74],[76,72,67,72],[77,72,69,72],[74,70,65,70],[76,71,68,71],[73,69,64,69],[79,76,73,69]];
-   const alt=[[62,65],[62,67],[64,60],[60,65],[62,65],[62,64],[61,64],[61,64]],bas=[50,43,48,41,46,40,45,45];
-   put(48,sop.flat().map(m=>[m,0.5]),0.03);put(48,alt.flat().map(m=>[m,1]),0.027);put(48,bas.map(m=>[m,2]),0.04);}
-  // bars 9-10: final subject entry in the soprano, with alto and bass counterpoint
-  put(64,T(S,12),0.034);
-  put(64,[[65,2],[64,2],[69,1],[67,1],[65,1],[64,1],[67,2],[69,1],[70,1],[73,2],[69,2]],0.027);
-  put(64,[[50,1],[53,1],[45,1],[49,1],[50,1],[49,1],[50,1],[45,1],[43,2],[41,1],[46,1],[45,2],[50,1],[49,1]],0.04);
-  // bars 11-12: trill on the dominant, resolve to D MAJOR (Picardy third) with a low pedal D
-  put(80,[[76,.5],[77,.5],[76,.5],[77,.5],[76,.5],[77,.5],[76,.5],[73,.5],[74,12]],0.032);
-  put(80,[[69,2],[67,2],[66,12]],0.028);put(80,[[45,4],[50,12]],0.04);put(84,[[38,12]],0.05);
-  return {name:"LITTLE FUGUE IN THE ATTIC",bpm:84,spb:4,bar:16,bars:12,
-   rub(i){const k=i%192;return k>=152?1+(k-152)/40*0.7:1;},
-   play(i,t,d){const e=ev[i%192];if(e)for(const [m,len,v] of e)organ(m,len*d*1.03,t,v,0.6);}};
+ // ATTIC: a four-voice organ fugue in D minor (soprano, alto, tenor, bass). Exposition: alto subject, soprano answer +
+ // countersubject, tenor subject, bass answer; episode; soprano middle entry; episode; low bass entry; episode;
+ // dominant-pedal cadence with a trill, ending on a D-major (Picardy) chord. Voice-led to avoid parallel fifths/octaves.
+ baroque:(()=>{const F=[[0,62,2,0.027],[2,69,2,0.027],[4,65,1,0.027],[5,64,1,0.027],[6,62,1,0.027],[7,61,1,0.027],[8,62,1,0.027],[9,64,1,0.027],[10,65,1,0.027],[11,67,1,0.027],[12,69,1,0.027],[13,67,1,0.027],[14,65,1,0.027],[15,64,1,0.027],[16,65,1,0.027],[16,69,2,0.03],[17,62,1,0.027],[18,65,1,0.027],[18,74,2,0.03],[19,67,1,0.027],[20,64,1,0.027],[20,72,1,0.03],[21,62,1,0.027],[21,71,1,0.03],[22,60,1,0.027],[22,69,1,0.03],[23,59,1,0.027],[23,68,1,0.03],[24,64,2,0.027],[24,69,1,0.03],[25,71,1,0.03],[26,69,1,0.027],[26,72,1,0.03],[27,65,1,0.027],[27,74,1,0.03],[28,67,1,0.027],[28,76,1,0.03],[29,65,1,0.027],[29,74,1,0.03],[30,64,1,0.027],[30,72,1,0.03],[31,62,1,0.027],[31,71,1,0.03],[32,50,2,0.027],[32,69,3,0.027],[32,77,2,0.03],[34,57,2,0.027],[34,76,1,0.03],[35,64,1,0.027],[35,73,1,0.03],[36,53,1,0.027],[36,69,1,0.027],[36,74,1,0.03],[37,52,1,0.027],[37,67,1,0.027],[37,73,1,0.03],[38,50,1,0.027],[38,65,1,0.027],[38,74,1,0.03],[39,49,1,0.027],[39,69,1,0.027],[39,76,1,0.03],[40,50,1,0.027],[40,69,1,0.027],[40,77,1,0.03],[41,52,1,0.027],[41,67,1,0.027],[41,76,1,0.03],[42,53,1,0.027],[42,69,1,0.027],[42,74,2,0.03],[43,55,1,0.027],[43,70,1,0.027],[44,57,1,0.027],[44,69,1,0.027],[44,73,2,0.03],[45,55,1,0.027],[45,64,1,0.027],[46,53,1,0.027],[46,69,1,0.027],[46,74,1,0.03],[47,52,1,0.027],[47,67,1,0.027],[47,73,1,0.03],[48,45,2,0.038],[48,52,2,0.027],[48,64,2,0.027],[48,72,2,0.03],[50,50,2,0.038],[50,53,2,0.027],[50,62,2,0.027],[50,74,2,0.03],[52,48,1,0.038],[52,52,4,0.027],[52,64,2,0.027],[52,69,1,0.03],[53,47,1,0.038],[53,68,1,0.03],[54,45,1,0.038],[54,60,1,0.027],[54,69,1,0.03],[55,44,1,0.038],[55,59,1,0.027],[55,71,1,0.03],[56,45,1,0.038],[56,52,3,0.027],[56,60,1,0.027],[56,69,1,0.03],[57,47,1,0.038],[57,59,1,0.027],[57,68,1,0.03],[58,48,1,0.038],[58,57,2,0.027],[58,69,2,0.03],[59,50,1,0.038],[59,53,1,0.027],[60,52,1,0.038],[60,59,2,0.027],[60,64,4,0.027],[60,68,2,0.03],[61,50,1,0.038],[62,48,1,0.038],[62,60,1,0.027],[62,69,1,0.03],[63,47,1,0.038],[63,56,1,0.027],[63,71,1,0.03],[64,50,2,0.038],[64,57,2,0.027],[64,62,1,0.027],[64.0,77,0.5,0.03],[64.5,74,0.5,0.03],[65,65,1,0.027],[65.0,69,0.5,0.03],[65.5,74,0.5,0.03],[66,43,2,0.038],[66,58,2,0.027],[66,62,1,0.027],[66.0,79,0.5,0.03],[66.5,74,0.5,0.03],[67,67,1,0.027],[67.0,70,0.5,0.03],[67.5,74,0.5,0.03],[68,48,2,0.038],[68,60,1,0.027],[68,64,1,0.027],[68.0,76,0.5,0.03],[68.5,72,0.5,0.03],[69,52,1,0.027],[69,60,2,0.027],[69.0,67,0.5,0.03],[69.5,72,0.5,0.03],[70,41,2,0.038],[70,57,2,0.027],[70.0,77,0.5,0.03],[70.5,72,0.5,0.03],[71,65,1,0.027],[71.0,69,0.5,0.03],[71.5,72,0.5,0.03],[72,46,2,0.038],[72,58,1,0.027],[72,62,1,0.027],[72.0,74,0.5,0.03],[72.5,70,0.5,0.03],[73,62,1,0.027],[73.0,65,0.5,0.03],[73,65,1,0.027],[73.5,70,0.5,0.03],[74,40,2,0.038],[74,56,1,0.027],[74,62,1,0.027],[74.0,76,0.5,0.03],[74.5,71,0.5,0.03],[75,59,1,0.027],[75,64,1,0.027],[75.0,68,0.5,0.03],[75.5,71,0.5,0.03],[76,45,4,0.038],[76,57,1,0.027],[76,61,1,0.027],[76.0,73,0.5,0.03],[76.5,69,0.5,0.03],[77,61,1,0.027],[77.0,64,0.5,0.03],[77,64,1,0.027],[77.5,69,0.5,0.03],[78,57,2,0.027],[78,61,1,0.027],[78.0,79,0.5,0.03],[78.5,76,0.5,0.03],[79,64,1,0.027],[79.0,73,0.5,0.03],[79.5,69,0.5,0.03],[80,50,1,0.038],[80,57,2,0.027],[80,65,2,0.027],[80,74,2,0.03],[81,53,1,0.038],[82,45,1,0.038],[82,61,1,0.027],[82,64,2,0.027],[82,81,2,0.03],[83,49,1,0.038],[83,57,5,0.027],[84,50,1,0.038],[84,69,1,0.027],[84,77,1,0.03],[85,49,1,0.038],[85,67,1,0.027],[85,76,1,0.03],[86,50,1,0.038],[86,65,1,0.027],[86,74,1,0.03],[87,45,1,0.038],[87,64,1,0.027],[87,73,1,0.03],[88,43,2,0.038],[88,58,1,0.027],[88,67,2,0.027],[88,74,1,0.03],[89,60,1,0.027],[89,76,1,0.03],[90,41,1,0.038],[90,57,1,0.027],[90,69,1,0.027],[90,77,1,0.03],[91,46,1,0.038],[91,62,1,0.027],[91,70,1,0.027],[91,79,1,0.03],[92,45,2,0.038],[92,64,2,0.027],[92,73,2,0.027],[92,81,1,0.03],[93,79,1,0.03],[94,50,1,0.038],[94,65,1,0.027],[94,69,2,0.027],[94,77,1,0.03],[95,49,1,0.038],[95,57,1,0.027],[95,76,1,0.03],[96,43,2,0.038],[96,58,2,0.027],[96,67,4,0.027],[96,79,0.5,0.03],[96.5,74,0.5,0.028],[97,79,0.5,0.03],[97.5,74,0.5,0.028],[98,48,2,0.038],[98,60,4,0.027],[98,76,0.5,0.03],[98.5,72,0.5,0.028],[99,76,0.5,0.03],[99.5,72,0.5,0.028],[100,53,2,0.038],[100,69,2,0.027],[100,77,0.5,0.03],[100.5,72,0.5,0.028],[101,77,0.5,0.03],[101.5,72,0.5,0.028],[102,46,2,0.038],[102,62,2,0.027],[102,70,2,0.027],[102,77,0.5,0.03],[102.5,74,0.5,0.028],[103,77,0.5,0.03],[103.5,74,0.5,0.028],[104,43,2,0.038],[104,62,2,0.027],[104,70,2,0.027],[104,79,0.5,0.03],[104.5,74,0.5,0.028],[105,79,0.5,0.03],[105.5,74,0.5,0.028],[106,45,2,0.038],[106,61,2,0.027],[106,69,4,0.027],[106,76,0.5,0.03],[106.5,73,0.5,0.028],[107,76,0.5,0.03],[107.5,73,0.5,0.028],[108,50,2,0.038],[108,62,2,0.027],[108,77,0.5,0.03],[108.5,74,0.5,0.028],[109,77,0.5,0.03],[109.5,74,0.5,0.028],[110,45,2,0.038],[110,61,2,0.027],[110,67,2,0.027],[110,76,0.5,0.03],[110.5,73,0.5,0.028],[111,76,0.5,0.03],[111.5,73,0.5,0.028],[112,38,2,0.038],[112,62,2,0.027],[112,65,2,0.027],[112,77,2,0.03],[114,45,2,0.038],[114,61,2,0.027],[114,69,6,0.027],[114,76,2,0.03],[116,41,1,0.038],[116,62,1,0.027],[116,77,1,0.03],[117,40,1,0.038],[117,61,1,0.027],[117,79,1,0.03],[118,38,1,0.038],[118,62,1,0.027],[118,77,1,0.03],[119,37,1,0.038],[119,64,1,0.027],[119,76,1,0.03],[120,38,1,0.038],[120,65,1,0.027],[120,69,3,0.027],[120,74,1,0.03],[121,40,1,0.038],[121,64,1,0.027],[121,73,1,0.03],[122,41,1,0.038],[122,62,2,0.027],[122,74,2,0.03],[123,43,1,0.038],[123,70,1,0.027],[124,45,1,0.038],[124,57,4,0.027],[124,69,4,0.027],[124,73,2,0.03],[125,43,1,0.038],[126,41,1,0.038],[126,74,1,0.03],[127,40,1,0.038],[127,73,1,0.03],[128,38,2,0.038],[128,57,2,0.027],[128,66,2,0.027],[128,72,0.5,0.03],[128.5,69,0.5,0.028],[129,72,0.5,0.03],[129.5,69,0.5,0.028],[130,43,2,0.038],[130,58,4,0.027],[130,67,2,0.027],[130,70,0.5,0.03],[130.5,67,0.5,0.028],[131,70,0.5,0.03],[131.5,67,0.5,0.028],[132,48,2,0.038],[132,64,2,0.027],[132,70,0.5,0.03],[132.5,67,0.5,0.028],[133,70,0.5,0.03],[133.5,67,0.5,0.028],[134,53,2,0.038],[134,60,2,0.027],[134,65,2,0.027],[134,69,0.5,0.03],[134.5,65,0.5,0.028],[135,69,0.5,0.03],[135.5,65,0.5,0.028],[136,46,2,0.038],[136,62,6,0.027],[136,65,2,0.027],[136,70,0.5,0.03],[136.5,65,0.5,0.028],[137,70,0.5,0.03],[137.5,65,0.5,0.028],[138,43,2,0.038],[138,67,2,0.027],[138,70,0.5,0.03],[138.5,67,0.5,0.028],[139,70,0.5,0.03],[139.5,67,0.5,0.028],[140,40,2,0.038],[140,68,2,0.027],[140,71,0.5,0.03],[140.5,68,0.5,0.028],[141,71,0.5,0.03],[141.5,68,0.5,0.028],[142,45,2,0.038],[142,64,2,0.027],[142,69,2,0.027],[142,73,0.5,0.03],[142.5,69,0.5,0.028],[143,73,0.5,0.03],[143.5,69,0.5,0.028],[144,45,8,0.038],[144,62,2,0.027],[144,69,2,0.027],[144,77,2,0.03],[146,61,6,0.027],[146,67,6,0.027],[146,76,6,0.03],[148.0,76,0.5,0.03],[148.5,77,0.5,0.03],[149.0,76,0.5,0.03],[149.5,77,0.5,0.03],[150.0,76,0.5,0.03],[150.5,77,0.5,0.03],[151.0,76,0.5,0.03],[151.5,73,0.5,0.03],[152,38,8,0.05],[152,50,8,0.038],[152,66,8,0.027],[152,69,8,0.027],[152,74,8,0.03]],ev=[];
+  for(const [e,m,len,v] of F)(ev[Math.round(e*2)]=ev[Math.round(e*2)]||[]).push([m,len*2,v]);
+  return {name:"LITTLE FUGUE IN THE ATTIC",bpm:84,spb:4,bar:16,bars:20,
+   rub(i){const k=i%320;return k>=288?1+(k-288)/32*0.7:1;},
+   play(i,t,d){const e=ev[i%320];if(e)for(const [m,len,v] of e)organ(m,len*d*1.03,t,v,0.6);}};
  })(),
  // TITLE SCREEN: peaceful French impressionist piano (Satie/Debussy flavour) — slow 3/4, drifting maj7 chords, a flute takes the melody on the repeat
  french:{name:"PETITE VALSE DU MATIN",bpm:66,spb:1,bar:3,bars:16,
@@ -607,35 +585,35 @@ function scheduler(){
 
 // ================= LEVEL DATA =================
 const LEVELS=[
- {name:"ISAAC'S ROOM",chore:"Put the toy dragons back in the toy chest",drop:"toychest",item:"dragon",count:6,time:70,len:85,gap:1,enemies:["bzombie","bskel","bspider","hisser"],density:.4,lego:0,movers:0,theme:"bedroom",music:"rock",
+ {name:"ISAAC'S ROOM",chore:"Put the toy dragons back in the toy chest",drop:"toychest",item:"dragon",count:10,time:82,len:100,gap:1,enemies:["bzombie","bskel","bspider","hisser"],density:.4,lego:0,movers:0,theme:"bedroom",music:"rock",
   text:"UNCLE PETE: Isaac, your dragons escaped AGAIN. Back in the toy chest before Mom sees!"},
- {name:"ANNIE'S ROOM",chore:"Put the dolls back in the doll house",drop:"dollhouse",item:"doll",count:7,time:72,len:92,gap:1,enemies:["tabby","husky","pom"],density:.45,lego:0,movers:0,theme:"annie",music:"princess",
+ {name:"ANNIE'S ROOM",chore:"Put the dolls back in the doll house",drop:"dollhouse",item:"doll",count:11,time:84,len:92,gap:1,enemies:["tabby","husky","pom"],density:.45,lego:0,movers:0,theme:"annie",music:"princess",
   text:"MOM: Annie, your dolls are having a party ALL over the floor. Doll house, now!"},
- {name:"KITCHEN CATASTROPHE",chore:"Load the dirty dishes into the dishwasher",drop:"dishwasher",item:"dish",count:8,time:75,len:105,gap:2,enemies:["dust","roach"],density:.45,lego:0,movers:0,theme:"kitchen",music:"jazz",
+ {name:"KITCHEN CATASTROPHE",chore:"Load the dirty dishes into the dishwasher",drop:"dishwasher",item:"dish",count:12,time:87,len:105,gap:2,enemies:["dust","roach"],density:.45,lego:0,movers:0,theme:"kitchen",music:"jazz",
   text:"UNCLE PETE: Why is there a pancake on the ceiling? Fix it."},
- {name:"LIVING ROOM LEGO-LAND",chore:"Put the toys in the toy box",drop:"toybox",item:"toy",count:10,time:80,len:125,gap:2,enemies:["roomba","cat"],density:.5,lego:.4,movers:0,theme:"living",music:"pop",
+ {name:"LIVING ROOM LEGO-LAND",chore:"Put the toys in the toy box",drop:"toybox",item:"toy",count:13,time:89,len:125,gap:2,enemies:["roomba","cat"],density:.5,lego:.4,movers:0,theme:"living",music:"pop",
   text:"MOM: Watch out for LEGOs. Trust me. Toys away!"},
- {name:"BACKYARD BONANZA",chore:"Rake leaves into the bag",drop:"bag",item:"leaf",count:12,time:85,len:145,gap:3,enemies:["dog","bee"],density:.55,lego:.2,movers:1,theme:"yard",music:"hiphop",
+ {name:"BACKYARD BONANZA",chore:"Rake leaves into the bag",drop:"bag",item:"leaf",count:14,time:91,len:145,gap:3,enemies:["dog","bee"],density:.55,lego:.2,movers:1,theme:"yard",music:"hiphop",
   text:"UNCLE PETE: The dog ate the rake. Use your hands. Go!"},
- {name:"GARAGE OF DOOM",chore:"Take out ALL the trash",drop:"can",item:"trash",count:14,time:90,len:165,gap:3,enemies:["rat","roomba","bee"],density:.62,lego:.45,movers:1,theme:"garage",music:"techno",
+ {name:"GARAGE OF DOOM",chore:"Take out ALL the trash",drop:"can",item:"trash",count:15,time:93,len:165,gap:3,enemies:["rat","roomba","bee"],density:.62,lego:.45,movers:1,theme:"garage",music:"techno",
   text:"MOM: Something in the garage is ALIVE. Trash day!"},
- {name:"LAUNDRY ROOM PEE-YEW!",chore:"Get the stinky undies in the washer",drop:"washer",item:"undies",count:15,time:92,len:170,gap:3,enemies:["bubble","dust","roach"],density:.64,lego:.3,movers:1,theme:"laundry",music:"polka",
+ {name:"LAUNDRY ROOM PEE-YEW!",chore:"Get the stinky undies in the washer",drop:"washer",item:"undies",count:16,time:95,len:170,gap:3,enemies:["bubble","dust","roach"],density:.64,lego:.3,movers:1,theme:"laundry",music:"polka",
   text:"MOM: Who left STINKY UNDIES all over the laundry room?! P.U.!!"},
- {name:"BATHROOM BLUNDER",chore:"Flush the runaway poops down the toilet",drop:"toilet",item:"poop",count:16,time:96,len:178,gap:3,enemies:["bubble","roach","spider"],density:.66,lego:.3,movers:1,theme:"bathroom",music:"crooner",
+ {name:"BATHROOM BLUNDER",chore:"Flush the runaway poops down the toilet",drop:"toilet",item:"poop",count:17,time:99,len:178,gap:3,enemies:["bubble","roach","spider"],density:.66,lego:.3,movers:1,theme:"bathroom",music:"crooner",
   text:"UNCLE PETE: The dog had an 'accident' in the bathroom. Flush it ALL. Good luck."},
- {name:"HOME OFFICE HAVOC",chore:"Put the old work papers in the recycle bin",drop:"recycle",item:"paper",count:17,time:98,len:185,gap:3,enemies:["ant","spider","hamster"],density:.68,lego:.3,movers:1,theme:"office",music:"muzak",
+ {name:"HOME OFFICE HAVOC",chore:"Put the old work papers in the recycle bin",drop:"recycle",item:"paper",count:18,time:101,len:185,gap:3,enemies:["ant","spider","hamster"],density:.68,lego:.3,movers:1,theme:"office",music:"muzak",
   text:"MOM: My OLD WORK PAPERS are all over the office. And the class hamster escaped. Again."},
- {name:"MUSIC ROOM MAYHEM",chore:"Put the old piano scores back on the bookshelf",drop:"bookshelf",item:"score",count:18,time:100,len:192,gap:3,enemies:["cat","spider","roach"],density:.7,lego:.3,movers:1,theme:"musicroom",music:"practice",
+ {name:"MUSIC ROOM MAYHEM",chore:"Put the old piano scores back on the bookshelf",drop:"bookshelf",item:"score",count:19,time:103,len:192,gap:3,enemies:["cat","spider","roach"],density:.7,lego:.3,movers:1,theme:"musicroom",music:"practice",
   text:"MOM: Your old piano music is ALL over the floor. Shelve it! ...And did you practice?"},
- {name:"ARTS & CRAFTS CHAOS",chore:"Put the paint buckets back on the shelves",drop:"paintshelf",item:"paint",count:19,time:104,len:196,gap:3,enemies:["ant","cat","bubble"],density:.7,lego:.35,movers:1,theme:"arts",music:"french2",
+ {name:"ARTS & CRAFTS CHAOS",chore:"Put the paint buckets back on the shelves",drop:"paintshelf",item:"paint",count:20,time:107,len:196,gap:3,enemies:["ant","cat","bubble"],density:.7,lego:.35,movers:1,theme:"arts",music:"french2",
   text:"MOM: Who painted a mustache on the cat?! Paint buckets back on the shelves. Lids ON."},
- {name:"TECH ROOM TROUBLE",chore:"Bring the robot parts to the robot workbench",drop:"workbench",item:"robot",count:20,time:108,len:200,gap:3,enemies:["zap"],density:.75,lego:.35,movers:1,theme:"tech",music:"silly",
+ {name:"TECH ROOM TROUBLE",chore:"Bring the robot parts to the robot workbench",drop:"workbench",item:"robot",count:21,time:111,len:200,gap:3,enemies:["zap"],density:.75,lego:.35,movers:1,theme:"tech",music:"silly",
   text:"UNCLE PETE: Isaac took the robot apart AGAIN. Put it back together before Mom sees the sparks!"},
- {name:"THE SPOOKY BASEMENT",chore:"Move the wet shirts to the dryer",drop:"dryer",item:"shirt",count:21,time:112,len:175,gap:3,enemies:["spider","rat","dust"],density:.66,lego:.3,movers:1,theme:"basement",music:"romantic",
+ {name:"THE SPOOKY BASEMENT",chore:"Move the wet shirts to the dryer",drop:"dryer",item:"shirt",count:22,time:115,len:175,gap:3,enemies:["spider","rat","dust"],density:.66,lego:.3,movers:1,theme:"basement",music:"romantic",
   text:"UNCLE PETE: The washer is in the basement. Don't mind the spiders. Mostly."},
- {name:"ATTIC OF ANTIQUES",chore:"Pack the ornaments in the old trunk",drop:"trunk",item:"ornament",count:22,time:118,len:185,gap:3,enemies:["bat","spider","rat"],density:.7,lego:.35,movers:1,theme:"attic",music:"baroque",
+ {name:"ATTIC OF ANTIQUES",chore:"Pack the ornaments in the old trunk",drop:"trunk",item:"ornament",count:23,time:121,len:198,gap:3,enemies:["bat","spider","rat"],density:.7,lego:.35,movers:1,theme:"attic",music:"baroque",
   text:"MOM: Holiday ornaments go back in the attic trunk. Watch out for bats!"},
- {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",count:28,time:140,len:250,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
+ {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",count:24,time:140,len:250,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
   text:"BOTH: We're turning onto our street RIGHT NOW."},
 ];
 const THEMES={

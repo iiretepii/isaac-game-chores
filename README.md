@@ -64,21 +64,21 @@ Each level is longer, with more items, critters and gaps than the one before. La
 
 | # | Level | Chore | Items | Time | Critters | Music |
 |---|---|---|---|---|---|---|
-| 1 | **Isaac's Room** | Blocky toy dragons → toy chest | 6 | 70s | Blocky zombies, skeletons, spiders and hissing bush-blocks | Rock |
-| 2 | **Annie's Room** | Dolls → castle doll house | 7 | 72s | A tabby cat, a husky and a Pomeranian | Fairy-tale princess waltz |
-| 3 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 8 | 75s | Dust bunnies, cockroaches | Swing jazz |
-| 4 | **Living Room Lego-Land** | Toys → plastic toy tote | 10 | 80s | Robot vacuums, cats | Bubblegum pop |
-| 5 | **Backyard Bonanza** | Leaves → leaf bag | 12 | 85s | Dogs, bees | Boom-bap hip hop |
-| 6 | **Garage of Doom** | Trash → trash can | 14 | 90s | Rats, robot vacuums, bees | Funky techno |
-| 7 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 15 | 92s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
-| 8 | **Bathroom Blunder** | Runaway poops → toilet | 16 | 96s | Soap bubbles, cockroaches, spiders | Italian crooner waltz |
-| 9 | **Home Office Havoc** | Old work papers → recycle bin | 17 | 98s | Ants, spiders, hamsters | Terrible elevator music |
-| 10 | **Music Room Mayhem** | Old piano scores → bookshelf | 18 | 100s | Cats, spiders, cockroaches | Kid practicing piano |
-| 11 | **Arts & Crafts Chaos** | Paint buckets → shelves | 19 | 104s | Ants, cats, soap bubbles | Lively French impressionist |
-| 12 | **Tech Room Trouble** | Robot parts → robot workbench | 20 | 108s | Little lightning bolts | The silliest song ever |
-| 13 | **The Spooky Basement** | Wet shirts → dryer | 21 | 112s | Spiders, rats, dust bunnies | Chopin-style piano nocturne |
-| 14 | **Attic of Antiques** | Holiday ornaments → old trunk | 22 | 118s | Bats, spiders, rats | Bach-style pipe organ |
-| 15 | **The Whole House!!** | Everything → dive on the couch | 28 | 140s | All of them | Medley of every style |
+| 1 | **Isaac's Room** | Blocky toy dragons → toy chest | 10 | 82s | Blocky zombies, skeletons, spiders and hissing bush-blocks | Rock |
+| 2 | **Annie's Room** | Dolls → castle doll house | 11 | 84s | A tabby cat, a husky and a Pomeranian | Fairy-tale princess waltz |
+| 3 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 12 | 87s | Dust bunnies, cockroaches | Swing jazz |
+| 4 | **Living Room Lego-Land** | Toys → plastic toy tote | 13 | 89s | Robot vacuums, cats | Bubblegum pop |
+| 5 | **Backyard Bonanza** | Leaves → leaf bag | 14 | 91s | Dogs, bees | Boom-bap hip hop |
+| 6 | **Garage of Doom** | Trash → trash can | 15 | 93s | Rats, robot vacuums, bees | Funky techno |
+| 7 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 16 | 95s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
+| 8 | **Bathroom Blunder** | Runaway poops → toilet | 17 | 99s | Soap bubbles, cockroaches, spiders | Italian crooner waltz |
+| 9 | **Home Office Havoc** | Old work papers → recycle bin | 18 | 101s | Ants, spiders, hamsters | Terrible elevator music |
+| 10 | **Music Room Mayhem** | Old piano scores → bookshelf | 19 | 103s | Cats, spiders, cockroaches | Kid practicing piano |
+| 11 | **Arts & Crafts Chaos** | Paint buckets → shelves | 20 | 107s | Ants, cats, soap bubbles | Lively French impressionist |
+| 12 | **Tech Room Trouble** | Robot parts → robot workbench | 21 | 111s | Little lightning bolts | The silliest song ever |
+| 13 | **The Spooky Basement** | Wet shirts → dryer | 22 | 115s | Spiders, rats, dust bunnies | Chopin-style piano nocturne |
+| 14 | **Attic of Antiques** | Holiday ornaments → old trunk | 23 | 121s | Bats, spiders, rats | Bach-style pipe organ |
+| 15 | **The Whole House!!** | Everything → dive on the couch | 24 | 140s | All of them | Medley of every style |
 
 The basement is dark, with a pool of light that follows you around. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
 
@@ -104,7 +104,7 @@ All the music is generated live in the browser with the Web Audio API. There are
 | Arts & Crafts | *Les Petits Peintres* | Faster French impressionist piece: rippling piano, flute, sliding chords, whole-tone harp sweeps |
 | Tech Room | *Beep Boop Banana Boogie* | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |
 | Basement | *Nocturne in the Basement* | Romantic piano with rolling left hand and rubato |
-| Attic | *Little Fugue in the Attic* | A real three-voice pipe-organ fugue in D minor: subject, tonal answer with countersubject, bass entry, episode, final entry and a Picardy-third ending |
+| Attic | *Little Fugue in the Attic* | A four-voice pipe-organ fugue in D minor (about a minute): entries in alto, soprano, tenor and bass, three episodes, a middle entry, a low bass entry, a trill over a dominant pedal and a Picardy-third ending |
 | Whole House | Medley | Switches style every four bars with a record scratch |
 | Ending | Medley | — |
 
