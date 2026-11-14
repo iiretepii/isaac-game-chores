@@ -212,6 +212,15 @@ function trombone(m1,m2,dur,t,vol=0.09){const ga=out(1,0.3);holdEnv(ga,t,vol,dur
   const o=O('sawtooth',mtof(m1),t,t+dur+0.05,lp);o.frequency.setValueAtTime(mtof(m1),t+dur*0.15);o.frequency.exponentialRampToValueAtTime(mtof(m2),t+dur);}
 function tuba(m,dur,t,vol=0.3){const f=mtof(m),ga=out(1,0.05);holdEnv(ga,t,vol,dur,0.015,0.05);const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=420;lp.Q.value=1.5;lp.connect(ga);
   O('sawtooth',f,t,t+dur+0.05,lp);O('sine',f,t,t+dur+0.05,ga,0.5);}
+function panFlute(m,dur,t,vol=0.05){const f=mtof(m),ga=out(1,0.5);holdEnv(ga,t,vol,dur,0.06,0.1);
+  const o=O('sine',f,t,t+dur+0.05,ga);O('triangle',f,t,t+dur+0.05,ga,0.25);nz(Math.min(dur,0.3),0.012,'bandpass',f*1.5,t,3);
+  const l=AC.createOscillator(),lg=AC.createGain();l.frequency.value=0.7;lg.gain.value=25;l.connect(lg);lg.connect(o.detune);l.start(t);l.stop(t+dur+0.05);} // tape warble
+function vibes(m,dur,t,vol=0.05){const f=mtof(m),ga=out(1,0.5);decayEnv(ga,t,vol,1.6,0.003);const tr=AC.createGain();tr.connect(ga);
+  const l=AC.createOscillator(),lg=AC.createGain();l.frequency.value=5;lg.gain.value=0.4;l.connect(lg);lg.connect(tr.gain);l.start(t);l.stop(t+1.7);
+  O('sine',f,t,t+1.7,tr);O('sine',f*4,t,t+0.3,tr,0.12);}
+const rimshot=(t,v=0.06)=>{tone(1700,0.03,'square',v,null,t,musicGain);nz(0.03,v,'bandpass',2500,t,2);};
+const shaker=(t,v=0.025)=>nz(0.05,v,'bandpass',6000,t,0.8);
+const elevatorDing=t=>{tone(1318,1.2,'sine',0.06,null,t,musicGain);tone(1046,1.4,'sine',0.06,null,t+0.35,musicGain);};
 let voiceLast=0;
 function croonVoice(m,dur,t,vol=0.075){ // a warm crooning 'ohhh' voice: formant filters, slide into each note, heavy vibrato
   const f=mtof(m),ga=out(1,0.55);holdEnv(ga,t,vol,dur,0.07,0.18);
@@ -317,6 +326,25 @@ const STYLES={
    if(s===6||s===14||(s===3&&bar===3))[64,67,71,74].forEach(m=>pluck(m+tr,d*0.7,t,0.022,0.3,2600));
    if(li===0&&i>0)crash(t);
  }},
+ // OFFICE: deliberately BAD elevator muzak — stiff bossa drum machine, wobbly tape pan flute, sour wrong notes, cheesy vibes, elevator ding
+ muzak:{name:"MUZAK FOR MEETINGS (VOL. 3)",bpm:104,spb:2,bar:8,bars:8,
+  ch:[[41,[57,60,64]],[38,[57,60,65]],[43,[58,62,65]],[36,[58,64,67]],[41,[57,60,64]],[38,[57,60,65]],[43,[58,62,65]],[36,[58,64,67]]],
+  mel:[72,_,_,69,_,_,72,_, 74,_,72,_,69,_,_,_, 70,_,_,74,_,_,77,_, 76,_,_,_,72,_,_,_,
+       69,_,72,_,76,_,77,_, 76,_,74,_,72,_,_,_, 70,_,72,_,74,_,70,_, 72,_,_,_,_,_,_,_],
+  play(i,t,d){const li=i%64,loop=Math.floor(i/64),bar=Math.floor(li/8),b=li%8,c=this.ch[bar];
+   if(li===0)elevatorDing(t);
+   const sloppy=t+(Math.sin(i*1.7)*0.02); // the drum machine can't keep time
+   if(b===0||b===4)kick(t,0.18);
+   if([0,3,6].includes(li%16)||[10,12].includes(li%16))rimshot(sloppy);
+   shaker(t);
+   {const bn=[c[0],_,_,c[0]+7,c[0]+7,_,_,c[0]][b];if(bn!==null)walkBass(bn,d*1.5,t,0.2);}
+   if(b===0||b===3)c[1].forEach(m=>epiano(m,d*1.4,t,0.022));
+   const n=this.mel[li];
+   if(n!==null){let k=1;while(k<6&&this.mel[(li+k)%64]===null)k++;
+     const sour=((li*13+loop*5)%17===0)?1:((li*7+loop)%23===0?-1:0); // oops, wrong note
+     if(loop%2===0)panFlute(n+sour,d*k*0.95,t);
+     else vibes(n+sour-12*(bar%2),d*k,t+d*0.18);} // vibes come in late
+ }},
  // BATHROOM: Italian crooner waltz — a dreamy singer, mandolin tremolo, accordion oom-pah-pah, lush strings, brushes
  crooner:{name:"BATHROOM AMORE",bpm:150,spb:2,bar:6,bars:16,
   ch:[[36,[60,64,67]],[36,[60,64,67]],[43,[59,62,65]],[43,[59,62,65]],[43,[59,62,65]],[43,[59,62,65]],[36,[60,64,67]],[36,[60,64,67]],
@@ -393,7 +421,7 @@ const STYLES={
    if(bar===15&&b===2)[62,66,69,73,78,81].forEach((m,k)=>piano(m+12,d*2,t+k*0.07,0.025,0.8)); // little harp-like ripple
  }},
 };
-const MIX=['rock','jazz','pop','hiphop','techno','polka','crooner','romantic','baroque'];
+const MIX=['rock','jazz','pop','hiphop','techno','polka','crooner','muzak','romantic','baroque'];
 let music={on:false,style:'pop',step:0,next:0,seg:0,segStep:0,cycle:0};
 function startMusic(style){music.style=style;music.step=0;music.seg=0;music.segStep=0;music.cycle=0;music.on=true;if(AC)music.next=AC.currentTime+0.05;}
 function scheduler(){
@@ -429,11 +457,13 @@ const LEVELS=[
   text:"MOM: Who left STINKY UNDIES all over the laundry room?! P.U.!!"},
  {name:"BATHROOM BLUNDER",chore:"Flush the runaway poops down the toilet",drop:"toilet",item:"poop",count:16,time:96,len:178,gap:3,enemies:["bubble","roach","spider"],density:.66,lego:.3,movers:1,theme:"bathroom",music:"crooner",
   text:"DAD: The dog had an 'accident' in the bathroom. Flush it ALL. Good luck."},
- {name:"THE SPOOKY BASEMENT",chore:"Move the wet shirts to the dryer",drop:"dryer",item:"shirt",count:17,time:100,len:175,gap:3,enemies:["spider","rat","dust"],density:.66,lego:.3,movers:1,theme:"basement",music:"romantic",
+ {name:"HOME OFFICE HAVOC",chore:"Feed the old work papers to the shredder",drop:"shredder",item:"paper",count:17,time:98,len:185,gap:3,enemies:["ant","spider","hamster"],density:.68,lego:.3,movers:1,theme:"office",music:"muzak",
+  text:"MOM: My OLD WORK PAPERS are all over the office. And the class hamster escaped. Again."},
+ {name:"THE SPOOKY BASEMENT",chore:"Move the wet shirts to the dryer",drop:"dryer",item:"shirt",count:18,time:102,len:175,gap:3,enemies:["spider","rat","dust"],density:.66,lego:.3,movers:1,theme:"basement",music:"romantic",
   text:"DAD: The washer is in the basement. Don't mind the spiders. Mostly."},
- {name:"ATTIC OF ANTIQUES",chore:"Pack the ornaments in the old trunk",drop:"trunk",item:"ornament",count:18,time:106,len:185,gap:3,enemies:["bat","spider","rat"],density:.7,lego:.35,movers:1,theme:"attic",music:"baroque",
+ {name:"ATTIC OF ANTIQUES",chore:"Pack the ornaments in the old trunk",drop:"trunk",item:"ornament",count:19,time:108,len:185,gap:3,enemies:["bat","spider","rat"],density:.7,lego:.35,movers:1,theme:"attic",music:"baroque",
   text:"MOM: Holiday ornaments go back in the attic trunk. Watch out for bats!"},
- {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",count:20,time:116,len:210,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
+ {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",count:22,time:122,len:220,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
   text:"BOTH: We're turning onto our street RIGHT NOW."},
 ];
 const THEMES={
@@ -444,11 +474,12 @@ const THEMES={
  garage:{sky:"#5b6770",wall2:"#4f5a62",ground:"#6e6e6e",top:"#9e9e9e",plat:"#c62828",ptop:"#ef5350"},
  laundry:{sky:"#9ad7d0",wall2:"#8ccac3",ground:"#cfd8dc",top:"#80cbc4",plat:"#90a4ae",ptop:"#eceff1"},
  bathroom:{sky:"#b3e5fc",wall2:"#a1d9f5",ground:"#fafafa",top:"#4fc3f7",plat:"#f8bbd0",ptop:"#fce4ec",tiles:1},
+ office:{sky:"#d7ccc8",wall2:"#cdbfb9",ground:"#78909c",top:"#90a4ae",plat:"#8d6e63",ptop:"#bcaaa4"},
  basement:{sky:"#3b3a4a",wall2:"#33323f",ground:"#4e4e5a",top:"#80808f",plat:"#6d4c41",ptop:"#a1887f",dark:1},
  attic:{sky:"#7a5233",wall2:"#6b4628",ground:"#795548",top:"#bcaaa4",plat:"#5d4037",ptop:"#8d6e63"},
  house:{sky:"#2b2d6e",wall2:"#25275e",ground:"#5d3a8a",top:"#b388ff",plat:"#00897b",ptop:"#4db6ac"},
 };
-const ITEM_NAMES={sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",ornament:"ornaments",mix:"things"};
+const ITEM_NAMES={sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",ornament:"ornaments",mix:"things"};
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
@@ -502,8 +533,8 @@ function buildLevel(idx){
   const items=[],n=Math.min(L.count,cand.length);
   const used=new Set();
   for(let i=0;i<n;i++){let k=Math.round(i*(cand.length-1)/Math.max(1,n-1));while(used.has(k))k++;used.add(k);const s=cand[k];
-    const kinds=["sock","dish","toy","leaf","trash","shirt","ornament","undies","poop"];
-    items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%9]:L.item,got:false,bob:rng()*6});}
+    const kinds=["sock","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper"];
+    items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%10]:L.item,got:false,bob:rng()*6});}
   const enemies=[];
   eSpots.filter(s=>s.x>14&&s.x<cols-10).forEach(s=>{
     const type=L.enemies[ri(0,L.enemies.length-1)];
@@ -588,12 +619,12 @@ function updateEnemies(dt){
     if(!e.alive){e.dead-=dt;continue;}
     if(Math.abs(e.x-P.x)>W)continue;
     e.t+=dt;
-    const sp={dust:30,roach:55,roomba:75,cat:50,dog:90,rat:65,bee:40,spider:60,bat:55,bubble:35}[e.type]*(1+levelIdx*0.06);
+    const sp={dust:30,roach:55,roomba:75,cat:50,dog:90,rat:65,bee:40,spider:60,bat:55,bubble:35,ant:70,hamster:85}[e.type]*(1+levelIdx*0.06);
     if((e.type==='bee'||e.type==='bat'||e.type==='bubble')){e.x+=e.vx*sp*dt;e.y=e.by+Math.sin(e.t*3)*22;if(Math.abs(e.x-e.ox)>60||e.ox===undefined){if(e.ox===undefined)e.ox=e.x;else{e.vx*=-1;e.x+=e.vx*2;}}}
     else{
       if(e.type==='cat'&&Math.sin(e.t*1.3)>0.6){/* cat sits and licks paw */}
       else e.x+=e.vx*sp*dt;
-      if(e.type==='dog'&&e.vy===0&&Math.random()<dt*0.8)e.vy=-300;
+      if((e.type==='dog'||e.type==='hamster')&&e.vy===0&&Math.random()<dt*0.8)e.vy=-300;
       e.vy+=1300*dt;e.y+=e.vy*dt;
       const r=Math.floor((e.y+e.h)/T),cA=Math.floor((e.x+2)/T),cB=Math.floor((e.x+e.w-2)/T);
       if(solid(cA,r)||solid(cB,r)){e.y=r*T-e.h;e.vy=0;}
@@ -765,6 +796,11 @@ function drawItemRaw(k,x,y){
   else if(k==='ornament'){ // shiny holiday bauble
     R(x+6,y,4,3,"#ffd54f");R(x+7,y-2,2,2,"#bdbdbd");R(x+3,y+3,10,1,"#e53935");R(x+2,y+4,12,8,"#e53935");R(x+3,y+12,10,2,"#e53935");R(x+5,y+14,6,1,"#b71c1c");
     R(x+2,y+7,12,2,"#ffd54f");R(x+4,y+5,3,2,"#ff8a80");R(x+4,y+5,1,1,"#fff");R(x+11,y+10,2,3,"#b71c1c");R(x+5,y+10,1,1,"#ffd54f");R(x+9,y+11,1,1,"#ffd54f");}
+  else if(k==='paper'){ // messy stack of old work papers with a coffee ring and a sticky note
+    R(x+2,y+3,12,12,"#e0e0e0");R(x+1,y+2,12,12,"#f5f5f5");R(x+3,y+1,11,12,"#ffffff");
+    for(let l=0;l<5;l++)R(x+5,y+3+l*2,l===0?6:7-(l%2)*2,1,"#90a4ae");R(x+5,y+3,6,1,"#1e88e5");
+    R(x+8,y+8,5,1,"#a1887f");R(x+7,y+9,1,3,"#a1887f");R(x+13,y+9,1,3,"#a1887f");R(x+8,y+12,5,1,"#a1887f");
+    R(x,y+10,5,5,"#ffee58");R(x+1,y+11,3,1,"#f9a825");R(x+1,y+13,2,1,"#f9a825");R(x+12,y,3,2,"#bdbdbd");}
   else if(k==='poop'){ // cartoon poop swirl with a goofy face and buzzing flies
     R(x+1,y+11,14,4,"#795548");R(x+3,y+7,10,4,"#8d6e63");R(x+5,y+3,6,4,"#795548");R(x+7,y,3,3,"#8d6e63");R(x+9,y-1,2,1,"#8d6e63");
     R(x+2,y+11,12,1,"#a1887f");R(x+4,y+7,8,1,"#a1887f");R(x+6,y+3,4,1,"#a1887f");R(x+1,y+14,14,1,"#4e342e");
@@ -794,6 +830,8 @@ function drawDropRaw(k,x,y){
   else if(k==='bag'){R(x+4,y+2,20,22,"#2e7d32");R(x+6,y,16,3,"#1b5e20");R(x+8,y+8,4,4,"#ff7043");R(x+14,y+14,4,4,"#ffa726");}
   else if(k==='can'){R(x+3,y+4,22,20,"#607d8b");R(x+1,y+2,26,4,"#78909c");R(x+11,y-1,6,3,"#78909c");for(let i=6;i<24;i+=5)R(x+3+i,y+8,1,14,"#455a64");}
   else if(k==='washer'){R(x+1,y,26,24,"#eceff1");R(x+1,y,26,6,"#b0bec5");R(x+4,y+2,4,2,"#ff5252");R(x+10,y+2,4,2,"#69f0ae");R(x+8,y+8,12,12,"#78909c");R(x+10,y+10,8,8,"#4fc3f7");R(x+11,y+11,3,2,"#e1f5fe");R(x+1,y+23,26,1,"#90a4ae");}
+  else if(k==='shredder'){R(x+3,y+10,22,14,"#455a64");R(x+3,y+10,22,2,"#607d8b");R(x+1,y+4,26,7,"#263238");R(x+4,y+6,20,2,"#000");R(x+22,y+5,3,2,"#76ff03");
+    for(let k2=0;k2<5;k2++)R(x+6+k2*4,y+14+((k2*3)%4),2,8,"#fafafa");R(x+8,y-2,12,7,"#fff");R(x+10,y,8,1,"#90a4ae");R(x+10,y+2,6,1,"#90a4ae");}
   else if(k==='toilet'){R(x+14,y-6,14,14,"#fafafa");R(x+14,y-6,14,2,"#e0e0e0");R(x+24,y-3,3,2,"#b0bec5");R(x+2,y+8,24,6,"#fafafa");R(x+2,y+8,24,2,"#e0e0e0");R(x+5,y+10,16,3,"#4fc3f7");
     R(x+6,y+14,16,6,"#fafafa");R(x+9,y+20,10,4,"#eeeeee");R(x+6,y+14,2,6,"#e0e0e0");}
   else if(k==='dryer'){R(x+1,y,26,24,"#ffccbc");R(x+1,y,26,6,"#ff8a65");R(x+4,y+2,8,2,"#fff");R(x+20,y+2,3,2,"#d84315");R(x+7,y+8,14,14,"#8d6e63");R(x+9,y+10,10,10,"#ffab91");R(x+11,y+12,3,3,"#fff3e0");R(x+1,y+23,26,1,"#bf360c");}
@@ -818,6 +856,11 @@ function drawEnemyRaw(e,t,x,y){
     case'cat':R(x+1,y+5,11,6,"#ff9800");R(x+(f?9:0),y+1,6,6,"#ff9800");R(x+(f?9:0),y,2,2,"#ff9800");R(x+(f?13:4),y,2,2,"#ff9800");R(x+(f?0:12),y+2+bob,2,5,"#e65100");R(x+2,y+11,2,1,"#e65100");R(x+9,y+11,2,1,"#e65100");R(x+(f?11:2),y+3,1,1,"#000");R(x+(f?13:0),y+3,1,1,"#000");break;
     case'dog':R(x,y+4,14,6,"#8d6e63");R(x+(f?10:-2),y,7,6,"#8d6e63");R(x+(f?10:3),y,2,4,"#5d4037");R(x+(f?14:-1),y+4,2,3+bob,"#f06292");R(x+(f?14:-2),y+2,1,1,"#000");R(x+1,y+10,2,2,"#5d4037");R(x+11,y+10,2,2,"#5d4037");R(x+(f?-2:14),y+3-bob,2,2,"#8d6e63");break;
     case'bee':R(x+2,y+4,10,7,"#ffd600");R(x+5,y+4,2,7,"#212121");R(x+9,y+4,1,7,"#212121");R(x+3,y-1+bob,4,4,"#e3f2fd");R(x+7,y-1-bob+1,4,4,"#e3f2fd");R(x+(f?12:0),y+6,2,2,"#000");R(x+(f?-1:13),y+7,2,1,"#212121");break;
+    case'ant':R(x+1,y+7,4,4,"#6d1b1b");R(x+5,y+8,3,3,"#8b2323");R(x+8,y+6,5,5,"#6d1b1b");R(x+(f?12:8),y+7,1,1,"#fff");
+      for(let k=0;k<3;k++){R(x+3+k*3,y+11,1,1+((k+bob)%2),"#3e0f0f");}R(x+(f?12:7),y+3,1,3,"#3e0f0f");R(x+(f?13:6),y+2,1,1,"#3e0f0f");break;
+    case'hamster':R(x+1,y+4,13,8,"#ffb74d");R(x+3,y+3,9,1,"#ffb74d");R(x+4,y+8,7,4,"#fff3e0");R(x+(f?10:1),y+2,3,3,"#ffb74d");R(x+(f?11:2),y+2,1,1,"#f48fb1");
+      R(x+(f?11:2),y+6,2,2,"#000");R(x+(f?12:3),y+6,1,1,"#fff");R(x+(f?13:0),y+8,2,1,"#f48fb1");R(x+(f?12:1),y+9,2,2,"#ffcc80");
+      R(x+3,y+12,2,1+bob,"#f8bbd0");R(x+10,y+12,2,2-bob,"#f8bbd0");break;
     case'bubble':{R(x+3,y,8,1,"#b3e5fc");R(x+1,y+1,12,1,"#b3e5fc");R(x,y+2,14,9,"#e1f5fe");R(x+1,y+11,12,1,"#b3e5fc");R(x+3,y+12,8,1,"#b3e5fc");
       R(x+2,y+3,3,2,"#fff");R(x+9,y+4,2,2,"#f48fb1");R(x+4,y+6,2,2,"#000");R(x+8,y+6,2,2,"#000");R(x+5,y+9,4,1,"#000");R(x+11,y+8+bob,2,2,"#ce93d8");break;}
     case'spider':R(x+3,y+4,9,7,"#212121");R(x+4,y+5,4,2,"#424242");for(let k=0;k<4;k++){R(x+k*4-1,y+8+((k+bob)%2),2,1,"#212121");R(x+k*4-1,y+9+((k+bob)%2),1,3,"#212121");}R(x+(f?9:3),y+6,2,2,"#ff1744");R(x+(f?12:1),y+6,1,1,"#ff1744");R(x+7,y-8,1,12,"#ffffff55");break;
@@ -871,6 +914,12 @@ function drawBackground(th,t){
       if(k%2===0){R(dx,60,140,4,"#8d6e63");R(dx,100,140,4,"#8d6e63");R(dx+10,44,20,16,"#e53935");R(dx+40,48,16,12,"#1e88e5");R(dx+80,84,30,16,"#ffb300");}
       if(k===1){R(dx+20,110,110,40,"#455a64");R(dx+40,90,60,24,"#546e7a");R(dx+30,146,18,18,"#212121");R(dx+100,146,18,18,"#212121");}
       if(k===3){for(let j=0;j<4;j++)R(dx+20+j*16,40,4,30,"#9e9e9e");}
+    }else if(thn==='office'){
+      if(k===0){R(dx+10,90,40,80,"#90a4ae");for(let d2=0;d2<3;d2++){R(dx+12,94+d2*25,36,22,"#b0bec5");R(dx+24,103+d2*25,12,3,"#455a64");}}
+      if(k===1){R(dx+20,40,70,50,"#3949ab");text("HANG",dx+30,50,8,"#fff","left",false);text("IN",dx+40,62,8,"#fff","left",false);text("THERE",dx+26,74,8,"#ffeb3b","left",false);R(dx+60,58,10,14,"#ff8a65");R(dx+64,52,2,6,"#5d4037");}
+      if(k===2){R(dx+30,110,60,6,"#8d6e63");R(dx+44,80,32,26,"#eeeeee");R(dx+47,83,26,18,"#00897b");text(":(",dx+52,88,8,"#fff","left",false);R(dx+56,106,8,4,"#bdbdbd");R(dx+34,116,4,54,"#6d4c41");R(dx+82,116,4,54,"#6d4c41");}
+      if(k===3){R(dx+40,30,26,26,"#fff");R(dx+42,32,22,22,"#eceff1");R(dx+52,34,2,10,"#000");R(dx+52,43,8,2,"#000");R(dx+100,110,20,40,"#e3f2fd");R(dx+96,150,28,20,"#90a4ae");R(dx+102,100,16,14,"#4fc3f7");}
+      g.globalAlpha=0.15;for(let tx=-(p%80);tx<W;tx+=80)R(tx,0,2,170,"#000");g.globalAlpha=1;
     }else if(thn==='bathroom'){
       g.globalAlpha=0.25;for(let tx=-(p%16);tx<W;tx+=16)R(dx>-1?tx:tx,0,1,170,"#ffffff");for(let ty=0;ty<170;ty+=16)R(0,ty,W,1,"#ffffff");g.globalAlpha=1;
       if(k===0){R(dx+20,40,50,60,"#bdbdbd");R(dx+23,43,44,54,"#e3f2fd");R(dx+28,48,8,20,"#ffffff");R(dx+30,105,30,6,"#fafafa");}
