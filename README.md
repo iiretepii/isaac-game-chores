@@ -66,15 +66,15 @@ Each level is longer, with more items, critters and gaps than the one before. La
 |---|---|---|---|---|---|---|
 | 1 | **Isaac's Room** | Toy dragons → toy chest | 6 | 70s | Dust bunnies | Rock |
 | 2 | **Annie's Room** | Dolls → doll house | 7 | 72s | Dust bunnies, cats | Fairy-tale princess waltz |
-| 3 | **Kitchen Catastrophe** | Dirty dishes → sink | 8 | 75s | Dust bunnies, cockroaches | Swing jazz |
+| 3 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 8 | 75s | Dust bunnies, cockroaches | Swing jazz |
 | 4 | **Living Room Lego-Land** | Toys → toy box | 10 | 80s | Robot vacuums, cats | Bubblegum pop |
 | 5 | **Backyard Bonanza** | Leaves → leaf bag | 12 | 85s | Dogs, bees | Boom-bap hip hop |
 | 6 | **Garage of Doom** | Trash → trash can | 14 | 90s | Rats, robot vacuums, bees | Funky techno |
 | 7 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 15 | 92s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
 | 8 | **Bathroom Blunder** | Runaway poops → toilet | 16 | 96s | Soap bubbles, cockroaches, spiders | Italian crooner waltz |
-| 9 | **Home Office Havoc** | Old work papers → shredder | 17 | 98s | Ants, spiders, hamsters | Terrible elevator music |
+| 9 | **Home Office Havoc** | Old work papers → recycle bin | 17 | 98s | Ants, spiders, hamsters | Terrible elevator music |
 | 10 | **Music Room Mayhem** | Old piano scores → bookshelf | 18 | 100s | Cats, spiders, cockroaches | Kid practicing piano |
-| 11 | **Arts & Crafts Chaos** | Markers → marker cup | 19 | 104s | Ants, cats, soap bubbles | Lively French impressionist |
+| 11 | **Arts & Crafts Chaos** | Paint buckets → shelves | 19 | 104s | Ants, cats, soap bubbles | Lively French impressionist |
 | 12 | **The Spooky Basement** | Wet shirts → dryer | 20 | 108s | Spiders, rats, dust bunnies | Chopin-style piano nocturne |
 | 13 | **Attic of Antiques** | Holiday ornaments → old trunk | 21 | 114s | Bats, spiders, rats | Bach-style pipe organ |
 | 14 | **The Whole House!!** | Everything → dive on the couch | 26 | 134s | All of them | Medley of every style |

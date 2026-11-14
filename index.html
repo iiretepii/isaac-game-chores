@@ -552,7 +552,7 @@ const LEVELS=[
   text:"UNCLE PETE: Isaac, your dragons escaped AGAIN. Back in the toy chest before Mom sees!"},
  {name:"ANNIE'S ROOM",chore:"Put the dolls back in the doll house",drop:"dollhouse",item:"doll",count:7,time:72,len:92,gap:1,enemies:["dust","cat"],density:.4,lego:0,movers:0,theme:"annie",music:"princess",
   text:"MOM: Annie, your dolls are having a party ALL over the floor. Doll house, now!"},
- {name:"KITCHEN CATASTROPHE",chore:"Get the dirty dishes to the sink",drop:"sink",item:"dish",count:8,time:75,len:105,gap:2,enemies:["dust","roach"],density:.45,lego:0,movers:0,theme:"kitchen",music:"jazz",
+ {name:"KITCHEN CATASTROPHE",chore:"Load the dirty dishes into the dishwasher",drop:"dishwasher",item:"dish",count:8,time:75,len:105,gap:2,enemies:["dust","roach"],density:.45,lego:0,movers:0,theme:"kitchen",music:"jazz",
   text:"UNCLE PETE: Why is there a pancake on the ceiling? Fix it."},
  {name:"LIVING ROOM LEGO-LAND",chore:"Put the toys in the toy box",drop:"toybox",item:"toy",count:10,time:80,len:125,gap:2,enemies:["roomba","cat"],density:.5,lego:.4,movers:0,theme:"living",music:"pop",
   text:"MOM: Watch out for LEGOs. Trust me. Toys away!"},
@@ -564,12 +564,12 @@ const LEVELS=[
   text:"MOM: Who left STINKY UNDIES all over the laundry room?! P.U.!!"},
  {name:"BATHROOM BLUNDER",chore:"Flush the runaway poops down the toilet",drop:"toilet",item:"poop",count:16,time:96,len:178,gap:3,enemies:["bubble","roach","spider"],density:.66,lego:.3,movers:1,theme:"bathroom",music:"crooner",
   text:"UNCLE PETE: The dog had an 'accident' in the bathroom. Flush it ALL. Good luck."},
- {name:"HOME OFFICE HAVOC",chore:"Feed the old work papers to the shredder",drop:"shredder",item:"paper",count:17,time:98,len:185,gap:3,enemies:["ant","spider","hamster"],density:.68,lego:.3,movers:1,theme:"office",music:"muzak",
+ {name:"HOME OFFICE HAVOC",chore:"Put the old work papers in the recycle bin",drop:"recycle",item:"paper",count:17,time:98,len:185,gap:3,enemies:["ant","spider","hamster"],density:.68,lego:.3,movers:1,theme:"office",music:"muzak",
   text:"MOM: My OLD WORK PAPERS are all over the office. And the class hamster escaped. Again."},
  {name:"MUSIC ROOM MAYHEM",chore:"Put the old piano scores back on the bookshelf",drop:"bookshelf",item:"score",count:18,time:100,len:192,gap:3,enemies:["cat","spider","roach"],density:.7,lego:.3,movers:1,theme:"musicroom",music:"practice",
   text:"MOM: Your old piano music is ALL over the floor. Shelve it! ...And did you practice?"},
- {name:"ARTS & CRAFTS CHAOS",chore:"Put the markers back in the marker cup",drop:"markercup",item:"marker",count:19,time:104,len:196,gap:3,enemies:["ant","cat","bubble"],density:.7,lego:.35,movers:1,theme:"arts",music:"french2",
-  text:"MOM: Who drew a mustache on the cat?! Markers back in the cup. ALL of them. Caps ON."},
+ {name:"ARTS & CRAFTS CHAOS",chore:"Put the paint buckets back on the shelves",drop:"paintshelf",item:"paint",count:19,time:104,len:196,gap:3,enemies:["ant","cat","bubble"],density:.7,lego:.35,movers:1,theme:"arts",music:"french2",
+  text:"MOM: Who painted a mustache on the cat?! Paint buckets back on the shelves. Lids ON."},
  {name:"THE SPOOKY BASEMENT",chore:"Move the wet shirts to the dryer",drop:"dryer",item:"shirt",count:20,time:108,len:175,gap:3,enemies:["spider","rat","dust"],density:.66,lego:.3,movers:1,theme:"basement",music:"romantic",
   text:"UNCLE PETE: The washer is in the basement. Don't mind the spiders. Mostly."},
  {name:"ATTIC OF ANTIQUES",chore:"Pack the ornaments in the old trunk",drop:"trunk",item:"ornament",count:21,time:114,len:185,gap:3,enemies:["bat","spider","rat"],density:.7,lego:.35,movers:1,theme:"attic",music:"baroque",
@@ -593,7 +593,7 @@ const THEMES={
  attic:{sky:"#7a5233",wall2:"#6b4628",ground:"#795548",top:"#bcaaa4",plat:"#5d4037",ptop:"#8d6e63"},
  house:{sky:"#2b2d6e",wall2:"#25275e",ground:"#5d3a8a",top:"#b388ff",plat:"#00897b",ptop:"#4db6ac"},
 };
-const ITEM_NAMES={marker:"markers",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
+const ITEM_NAMES={paint:"paint buckets",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
@@ -647,7 +647,7 @@ function buildLevel(idx){
   const items=[],n=Math.min(L.count,cand.length);
   const used=new Set();
   for(let i=0;i<n;i++){let k=Math.round(i*(cand.length-1)/Math.max(1,n-1));while(used.has(k))k++;used.add(k);const s=cand[k];
-    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","marker"];
+    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint"];
     items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%13]:L.item,got:false,bob:rng()*6});}
   const enemies=[];
   eSpots.filter(s=>s.x>14&&s.x<cols-10).forEach(s=>{
@@ -657,7 +657,8 @@ function buildLevel(idx){
     enemies.push(e);
   });
   const dh=ground[cols-6];
-  const drop={x:(cols-6)*T-4,y:(ROWS-dh)*T-24,w:28,h:24,kind:L.drop};
+  const wide=L.drop==='couch';
+  const drop={x:(cols-(wide?7:6))*T-4,y:(ROWS-dh)*T-24,w:wide?56:28,h:24,kind:L.drop};
   return {L,idx,cols,map,ground,items,enemies,movers,drop,theme:THEMES[L.theme],total:items.length};
 }
 
@@ -912,12 +913,12 @@ function drawItemRaw(k,x,y){
   else if(k==='ornament'){ // shiny holiday bauble
     R(x+6,y,4,3,"#ffd54f");R(x+7,y-2,2,2,"#bdbdbd");R(x+3,y+3,10,1,"#e53935");R(x+2,y+4,12,8,"#e53935");R(x+3,y+12,10,2,"#e53935");R(x+5,y+14,6,1,"#b71c1c");
     R(x+2,y+7,12,2,"#ffd54f");R(x+4,y+5,3,2,"#ff8a80");R(x+4,y+5,1,1,"#fff");R(x+11,y+10,2,3,"#b71c1c");R(x+5,y+10,1,1,"#ffd54f");R(x+9,y+11,1,1,"#ffd54f");}
-  else if(k==='marker'){ // chunky felt-tip marker with cap and label; color depends on where it is in the level
+  else if(k==='paint'){ // paint bucket with a wire handle and drips; color depends on where it is in the level
     const mc=["#e53935","#1e88e5","#43a047","#fdd835","#8e24aa","#fb8c00"][Math.abs(Math.round(itemSeed/16))%6],dk=shade(mc,-55);
-    R(x+1,y+6,11,7,mc);R(x+1,y+6,11,1,shade(mc,40));R(x+1,y+12,11,1,dk);R(x,y+7,1,5,dk);
-    R(x+4,y+8,5,3,"#fafafa");R(x+5,y+9,3,1,mc);
-    R(x+12,y+5,4,9,dk);R(x+12,y+5,4,1,shade(dk,30));R(x+13,y+3,1,3,"#cfd8dc");R(x+13,y+3,3,1,"#cfd8dc");
-    R(x+2,y+14,3,1,mc);R(x+6,y+15,2,1,mc);} // little scribble of ink
+    R(x+3,y,10,1,"#90a4ae");R(x+2,y+1,1,4,"#90a4ae");R(x+13,y+1,1,4,"#90a4ae");
+    R(x+2,y+4,12,11,"#cfd8dc");R(x+2,y+4,12,2,"#eceff1");R(x+3,y+5,10,1,mc);R(x+2,y+14,12,1,"#90a4ae");R(x+12,y+6,2,9,"#b0bec5");
+    R(x+4,y+8,7,5,mc);R(x+5,y+9,2,1,shade(mc,50));R(x+4,y+12,7,1,dk);
+    R(x+3,y+6,2,4,mc);R(x+3,y+10,1,2,mc);R(x+10,y+6,1,3,mc);}
   else if(k==='dragon'){ // little green toy dragon with wings and a puff of fire
     R(x+3,y+7,9,6,"#43a047");R(x+9,y+3,5,5,"#43a047");R(x+13,y+5,2,2,"#43a047");R(x+1,y+10,3,2,"#43a047");R(x,y+8,2,2,"#2e7d32");
     R(x+4,y+11,6,2,"#c5e1a5");R(x+4,y+13,2,2,"#2e7d32");R(x+9,y+13,2,2,"#2e7d32");R(x+11,y+4,1,1,"#000");R(x+10,y+1,1,2,"#fff59d");R(x+12,y+1,1,2,"#fff59d");
@@ -954,9 +955,9 @@ function drawItemRaw(k,x,y){
 function drawDrop(d,ready,t){
   const x=Math.round(d.x),y=Math.round(d.y),k=d.kind;
   if(ready){g.save();g.globalAlpha=0.35+0.2*Math.sin(t*8);const rg=g.createRadialGradient(x+14,y+12,2,x+14,y+12,34);rg.addColorStop(0,'#fff59d');rg.addColorStop(1,'rgba(255,235,59,0)');g.fillStyle=rg;g.fillRect(x-24,y-24,76,72);g.restore();}
-  shadow(x+14,y+24,18,0.35);
+  shadow(x+d.w/2,y+24,d.w*0.65,0.35);
   outlined(x,y,(ox,oy)=>drawDropRaw(k,ox,oy));
-  if(ready)text("HERE!",x+14,y-14-Math.abs(Math.sin(t*5))*4,8,"#ffeb3b","center");
+  if(ready)text("HERE!",x+d.w/2,y-14-Math.abs(Math.sin(t*5))*4,8,"#ffeb3b","center");
 }
 function drawDropRaw(k,x,y){
   if(k==='hamper'){R(x+2,y+4,24,20,"#c8a165");for(let i=0;i<24;i+=4)R(x+2+i,y+4,2,20,"#a0783d");R(x,y+2,28,4,"#8d6e3f");R(x+6,y,6,4,"#fff");}
@@ -965,6 +966,14 @@ function drawDropRaw(k,x,y){
   else if(k==='bag'){R(x+4,y+2,20,22,"#2e7d32");R(x+6,y,16,3,"#1b5e20");R(x+8,y+8,4,4,"#ff7043");R(x+14,y+14,4,4,"#ffa726");}
   else if(k==='can'){R(x+3,y+4,22,20,"#607d8b");R(x+1,y+2,26,4,"#78909c");R(x+11,y-1,6,3,"#78909c");for(let i=6;i<24;i+=5)R(x+3+i,y+8,1,14,"#455a64");}
   else if(k==='washer'){R(x+1,y,26,24,"#eceff1");R(x+1,y,26,6,"#b0bec5");R(x+4,y+2,4,2,"#ff5252");R(x+10,y+2,4,2,"#69f0ae");R(x+8,y+8,12,12,"#78909c");R(x+10,y+10,8,8,"#4fc3f7");R(x+11,y+11,3,2,"#e1f5fe");R(x+1,y+23,26,1,"#90a4ae");}
+  else if(k==='paintshelf'){R(x-2,y-14,32,38,"#8d6e63");R(x,y-12,28,34,"#5d4037");for(let sh=0;sh<3;sh++){R(x,y-2+sh*11,28,2,"#a1887f");
+    ["#e53935","#1e88e5","#43a047","#fdd835","#8e24aa","#fb8c00"].forEach((c,j)=>{if((j+sh)%2)return;const bx=x+2+j*4;R(bx,y-9+sh*11,5,7,"#cfd8dc");R(bx,y-7+sh*11,5,3,c);R(bx,y-10+sh*11,5,1,"#90a4ae");});}}
+  else if(k==='dishwasher'){R(x,y,28,24,"#cfd8dc");R(x,y,28,6,"#90a4ae");R(x+2,y+2,10,2,"#263238");R(x+14,y+2,2,2,"#76ff03");R(x+18,y+2,2,2,"#455a64");R(x+22,y+2,2,2,"#455a64");
+    R(x+4,y+8,20,2,"#eceff1");R(x+2,y+11,24,11,"#b0bec5");R(x+3,y+12,22,1,"#eceff1");R(x,y+23,28,1,"#78909c");
+    for(let bb=0;bb<3;bb++){g.globalAlpha=0.6;R(x+6+bb*7,y-3-((clock*12+bb*4)%8),3,3,"#e1f5fe");g.globalAlpha=1;}}
+  else if(k==='recycle'){R(x+3,y+4,22,20,"#1e88e5");R(x+1,y+2,26,4,"#1565c0");R(x+3,y+22,22,2,"#0d47a1");
+    R(x+10,y+9,8,1,"#fff");R(x+9,y+10,2,3,"#fff");R(x+17,y+10,2,3,"#fff");R(x+9,y+16,10,1,"#fff");R(x+8,y+13,2,3,"#fff");R(x+18,y+13,2,3,"#fff");R(x+12,y+8,2,2,"#fff");R(x+11,y+17,2,2,"#fff");
+    R(x+6,y-3,9,6,"#fafafa");R(x+14,y-1,8,5,"#fff8e1");R(x+8,y-1,5,1,"#90a4ae");}
   else if(k==='markercup'){R(x+4,y+6,20,18,"#ff7043");R(x+4,y+6,20,2,"#ffab91");R(x+4,y+22,20,2,"#d84315");R(x+8,y+12,12,6,"#fff");R(x+10,y+14,2,2,"#42a5f5");R(x+16,y+14,2,2,"#66bb6a");
     ["#e53935","#1e88e5","#43a047","#fdd835","#8e24aa","#fb8c00"].forEach((c,j)=>{R(x+5+j*3,y-2-(j%2)*3,3,9,c);R(x+5+j*3,y-3-(j%2)*3,3,1,"#212121");});}
   else if(k==='toychest'){R(x,y+8,28,16,"#8d6e63");R(x,y+2,28,7,"#a1887f");R(x,y+8,28,2,"#4e342e");R(x+2,y+3,24,1,"#bcaaa4");
@@ -980,7 +989,12 @@ function drawDropRaw(k,x,y){
     R(x+6,y+14,16,6,"#fafafa");R(x+9,y+20,10,4,"#eeeeee");R(x+6,y+14,2,6,"#e0e0e0");}
   else if(k==='dryer'){R(x+1,y,26,24,"#ffccbc");R(x+1,y,26,6,"#ff8a65");R(x+4,y+2,8,2,"#fff");R(x+20,y+2,3,2,"#d84315");R(x+7,y+8,14,14,"#8d6e63");R(x+9,y+10,10,10,"#ffab91");R(x+11,y+12,3,3,"#fff3e0");R(x+1,y+23,26,1,"#bf360c");}
   else if(k==='trunk'){R(x,y+8,28,16,"#6d4c41");R(x,y+4,28,6,"#8d6e63");R(x,y+8,28,2,"#3e2723");R(x+3,y+4,2,20,"#ffb300");R(x+23,y+4,2,20,"#ffb300");R(x+12,y+9,4,5,"#ffd54f");R(x+13,y+11,2,2,"#3e2723");}
-  else if(k==='couch'){R(x-4,y+8,36,12,"#8e24aa");R(x-4,y+4,6,16,"#6a1b9a");R(x+26,y+4,6,16,"#6a1b9a");R(x+2,y+2,24,8,"#ab47bc");R(x-2,y+20,3,4,"#3e2723");R(x+27,y+20,3,4,"#3e2723");}
+  else if(k==='couch'){ // big comfy 3-seat sofa
+    R(x+2,y-2,52,12,"#8e24aa");R(x+2,y-2,52,2,"#ba68c8");R(x+19,y,1,9,"#6a1b9a");R(x+36,y,1,9,"#6a1b9a");
+    R(x-4,y+2,8,18,"#6a1b9a");R(x-4,y+2,8,2,"#9c4dcc");R(x+52,y+2,8,18,"#6a1b9a");R(x+52,y+2,8,2,"#9c4dcc");
+    R(x+4,y+9,48,7,"#ab47bc");R(x+4,y+9,48,2,"#ce93d8");R(x+20,y+9,1,7,"#7b1fa2");R(x+36,y+9,1,7,"#7b1fa2");
+    R(x-4,y+16,64,5,"#7b1fa2");R(x-2,y+21,3,3,"#3e2723");R(x+53,y+21,3,3,"#3e2723");R(x+26,y+21,3,3,"#3e2723");
+    R(x+8,y+3,9,6,"#ffd54f");R(x+9,y+4,7,1,"#ffecb3");R(x+40,y+3,9,6,"#4fc3f7");R(x+41,y+4,7,1,"#b3e5fc");}
 }
 
 function drawEnemy(e,t){
