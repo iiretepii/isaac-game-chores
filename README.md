@@ -1,6 +1,6 @@
 # Chore Rush!
 
-**Beat the parents home!** A 90s-style side-scrolling platformer where you race through the house finishing chores before Mom and Dad pull into the driveway.
+**Beat the parents home!** A 90s-style side-scrolling platformer where you race through the house finishing chores before Mom and Uncle Pete pull into the driveway.
 
 *Made by Isaac Helton & Pete O'Connell.*
 
@@ -26,7 +26,7 @@ Browsers don't allow sound until you interact with the page, so the title screen
 
 ### Goal of each level
 
-1. Read the text message from Mom or Dad telling you the chore.
+1. Read the text message from Mom or Uncle Pete telling you the chore.
 2. Collect every chore item scattered around the level. The counter in the top-left shows how many you have.
 3. Bring them to the drop-off spot at the end of the level (it glows and says **HERE!** once you have everything).
 4. Do it before the timer runs out.

@@ -531,27 +531,27 @@ function scheduler(){
 // ================= LEVEL DATA =================
 const LEVELS=[
  {name:"ISAAC'S ROOM",chore:"Put the toy dragons back in the toy chest",drop:"toychest",item:"dragon",count:6,time:70,len:85,gap:1,enemies:["dust"],density:.35,lego:0,movers:0,theme:"bedroom",music:"rock",
-  text:"DAD: Isaac, your dragons escaped AGAIN. Back in the toy chest before Mom sees!"},
+  text:"UNCLE PETE: Isaac, your dragons escaped AGAIN. Back in the toy chest before Mom sees!"},
  {name:"ANNIE'S ROOM",chore:"Put the dolls back in the doll house",drop:"dollhouse",item:"doll",count:7,time:72,len:92,gap:1,enemies:["dust","cat"],density:.4,lego:0,movers:0,theme:"annie",music:"princess",
   text:"MOM: Annie, your dolls are having a party ALL over the floor. Doll house, now!"},
  {name:"KITCHEN CATASTROPHE",chore:"Get the dirty dishes to the sink",drop:"sink",item:"dish",count:8,time:75,len:105,gap:2,enemies:["dust","roach"],density:.45,lego:0,movers:0,theme:"kitchen",music:"jazz",
-  text:"DAD: Why is there a pancake on the ceiling? Fix it."},
+  text:"UNCLE PETE: Why is there a pancake on the ceiling? Fix it."},
  {name:"LIVING ROOM LEGO-LAND",chore:"Put the toys in the toy box",drop:"toybox",item:"toy",count:10,time:80,len:125,gap:2,enemies:["roomba","cat"],density:.5,lego:.4,movers:0,theme:"living",music:"pop",
   text:"MOM: Watch out for LEGOs. Trust me. Toys away!"},
  {name:"BACKYARD BONANZA",chore:"Rake leaves into the bag",drop:"bag",item:"leaf",count:12,time:85,len:145,gap:3,enemies:["dog","bee"],density:.55,lego:.2,movers:1,theme:"yard",music:"hiphop",
-  text:"DAD: The dog ate the rake. Use your hands. Go!"},
+  text:"UNCLE PETE: The dog ate the rake. Use your hands. Go!"},
  {name:"GARAGE OF DOOM",chore:"Take out ALL the trash",drop:"can",item:"trash",count:14,time:90,len:165,gap:3,enemies:["rat","roomba","bee"],density:.62,lego:.45,movers:1,theme:"garage",music:"techno",
   text:"MOM: Something in the garage is ALIVE. Trash day!"},
  {name:"LAUNDRY ROOM PEE-YEW!",chore:"Get the stinky undies in the washer",drop:"washer",item:"undies",count:15,time:92,len:170,gap:3,enemies:["bubble","dust","roach"],density:.64,lego:.3,movers:1,theme:"laundry",music:"polka",
   text:"MOM: Who left STINKY UNDIES all over the laundry room?! P.U.!!"},
  {name:"BATHROOM BLUNDER",chore:"Flush the runaway poops down the toilet",drop:"toilet",item:"poop",count:16,time:96,len:178,gap:3,enemies:["bubble","roach","spider"],density:.66,lego:.3,movers:1,theme:"bathroom",music:"crooner",
-  text:"DAD: The dog had an 'accident' in the bathroom. Flush it ALL. Good luck."},
+  text:"UNCLE PETE: The dog had an 'accident' in the bathroom. Flush it ALL. Good luck."},
  {name:"HOME OFFICE HAVOC",chore:"Feed the old work papers to the shredder",drop:"shredder",item:"paper",count:17,time:98,len:185,gap:3,enemies:["ant","spider","hamster"],density:.68,lego:.3,movers:1,theme:"office",music:"muzak",
   text:"MOM: My OLD WORK PAPERS are all over the office. And the class hamster escaped. Again."},
  {name:"MUSIC ROOM MAYHEM",chore:"Put the old piano scores back on the bookshelf",drop:"bookshelf",item:"score",count:18,time:100,len:192,gap:3,enemies:["cat","spider","roach"],density:.7,lego:.3,movers:1,theme:"musicroom",music:"practice",
   text:"MOM: Your old piano music is ALL over the floor. Shelve it! ...And did you practice?"},
  {name:"THE SPOOKY BASEMENT",chore:"Move the wet shirts to the dryer",drop:"dryer",item:"shirt",count:19,time:104,len:175,gap:3,enemies:["spider","rat","dust"],density:.66,lego:.3,movers:1,theme:"basement",music:"romantic",
-  text:"DAD: The washer is in the basement. Don't mind the spiders. Mostly."},
+  text:"UNCLE PETE: The washer is in the basement. Don't mind the spiders. Mostly."},
  {name:"ATTIC OF ANTIQUES",chore:"Pack the ornaments in the old trunk",drop:"trunk",item:"ornament",count:20,time:110,len:185,gap:3,enemies:["bat","spider","rat"],density:.7,lego:.35,movers:1,theme:"attic",music:"baroque",
   text:"MOM: Holiday ornaments go back in the attic trunk. Watch out for bats!"},
  {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",count:24,time:128,len:230,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
@@ -1185,8 +1185,8 @@ function drawIntro(t){
   text("NOW PLAYING: "+(L.music==='mix'?"ALL OF IT AT ONCE!":STYLES[L.music].name),W/2,196,6,"#ff80ab","center");
   if(stateT>0.8&&Math.floor(t*2)%2)text("PRESS ENTER / TAP!",W/2,212,8,"#fff","center");
 }
-const WIN_LINES=["Mom: Wow. Did a robot do this?","Dad: I'm suspicious... but proud.","Mom: Is this even our house?!","Dad: Who are you and what did you do with our kid?"];
-const LOSE_LINES=["MOM: WHY IS THERE A SOCK IN THE FRIDGE?!","DAD: YOU'RE GROUNDED UNTIL YOU'RE 40!","MOM: NO VIDEO GAMES FOR A MILLION YEARS!","DAD: IS THAT... A PANCAKE ON THE CAT?"];
+const WIN_LINES=["Mom: Wow. Did a robot do this?","Uncle Pete: I'm suspicious... but proud.","Mom: Is this even our house?!","Uncle Pete: Who are you and what did you do with our kid?"];
+const LOSE_LINES=["MOM: WHY IS THERE A SOCK IN THE FRIDGE?!","UNCLE PETE: YOU'RE GROUNDED UNTIL YOU'RE 40!","MOM: NO VIDEO GAMES FOR A MILLION YEARS!","UNCLE PETE: IS THAT... A PANCAKE ON THE CAT?"];
 function drawClear(t){
   drawPlay(t);panel();
   text("CHORE COMPLETE!",W/2,48,14,"#76ff03","center");
