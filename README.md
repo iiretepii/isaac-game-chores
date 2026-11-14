@@ -64,22 +64,22 @@ Each level is longer, with more items, critters and gaps than the one before. La
 
 | # | Level | Chore | Items | Time | Critters | Music |
 |---|---|---|---|---|---|---|
-| 1 | **Isaac's Room** | Blocky toy dragons → toy chest | 10 | 82s | Blocky zombies, skeletons, spiders and hissing bush-blocks | Rock |
-| 2 | **Annie's Room** | Dolls → castle doll house | 11 | 84s | A tabby cat, a husky and a Pomeranian | Fairy-tale princess waltz |
-| 3 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 12 | 87s | Dust bunnies, cockroaches | Swing jazz |
-| 4 | **Living Room Lego-Land** | Toys → plastic toy tote | 13 | 89s | Robot vacuums, cats | Bubblegum pop |
-| 5 | **Backyard Bonanza** | Leaves → leaf bag | 14 | 91s | Dogs, bees | Boom-bap hip hop |
-| 6 | **Pool Party Panic** | Soggy towels → towel basket | 15 | 93s | Ducks, geese, swans, squirrels | Silly splashy calypso |
-| 7 | **Garage of Doom** | Trash → trash can | 16 | 96s | Rats, robot vacuums, bees | Funky techno |
-| 8 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 17 | 98s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
-| 9 | **Bathroom Blunder** | Runaway poops → toilet | 18 | 102s | Soap bubbles, cockroaches, spiders | Italian crooner waltz |
-| 10 | **Home Office Havoc** | Old work papers → recycle bin | 19 | 104s | Ants, spiders, hamsters | Terrible elevator music |
-| 11 | **Music Room Mayhem** | Old piano scores → bookshelf | 20 | 106s | Cats, spiders, cockroaches | Kid practicing piano |
-| 12 | **Arts & Crafts Chaos** | Paint buckets → shelves | 21 | 110s | Ants, cats, soap bubbles | Lively French impressionist |
-| 13 | **Tech Room Trouble** | Robot parts → robot workbench | 22 | 114s | Little lightning bolts | The silliest song ever |
-| 14 | **Workout Room Workout** | Weights → weight rack | 23 | 117s | Rats, cats, dogs, dust mites | High-octane workout anthem |
-| 15 | **The Spooky Basement** | Wet shirts → dryer | 24 | 121s | Spiders, rats, dust bunnies | Romantic movie-theme piano |
-| 16 | **Attic of Antiques** | Holiday ornaments → old trunk | 25 | 127s | Bats, spiders, rats | Bach-style pipe organ |
+| 1 | **Isaac's Room** | Blocky toy dragons → toy chest | 10 | 94s | Blocky zombies, skeletons, spiders and hissing bush-blocks | Rock |
+| 2 | **Annie's Room** | Dolls → castle doll house | 11 | 98s | A tabby cat, a husky and a Pomeranian | Fairy-tale princess waltz |
+| 3 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 12 | 100s | Dust bunnies, cockroaches | Swing jazz |
+| 4 | **Living Room Lego-Land** | Toys → plastic toy tote | 13 | 102s | Robot vacuums, cats | Bubblegum pop |
+| 5 | **Backyard Bonanza** | Leaves → leaf bag | 14 | 104s | Dogs, bees | Boom-bap hip hop |
+| 6 | **Pool Party Panic** | Soggy towels → towel basket | 15 | 106s | Ducks, geese, swans, squirrels | Silly splashy calypso |
+| 7 | **Garage of Doom** | Trash → trash can | 16 | 108s | Rats, robot vacuums, bees | Funky techno |
+| 8 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 17 | 110s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
+| 9 | **Bathroom Blunder** | Runaway poops → toilet | 18 | 112s | Soap bubbles, cockroaches, spiders | Italian crooner waltz |
+| 10 | **Home Office Havoc** | Old work papers → recycle bin | 19 | 114s | Ants, spiders, hamsters | Terrible elevator music |
+| 11 | **Music Room Mayhem** | Old piano scores → bookshelf | 20 | 116s | Cats, spiders, cockroaches | Kid practicing piano |
+| 12 | **Arts & Crafts Chaos** | Paint buckets → shelves | 21 | 118s | Ants, cats, soap bubbles | Lively French impressionist |
+| 13 | **Tech Room Trouble** | Robot parts → robot workbench | 22 | 120s | Little lightning bolts | The silliest song ever |
+| 14 | **Workout Room Workout** | Weights → weight rack | 23 | 122s | Rats, cats, dogs, dust mites | High-octane workout anthem |
+| 15 | **The Spooky Basement** | Wet shirts → dryer | 24 | 124s | Spiders, rats, dust bunnies | Romantic movie-theme piano |
+| 16 | **Attic of Antiques** | Holiday ornaments → old trunk | 25 | 129s | Bats, spiders, rats | Bach-style pipe organ |
 | 17 | **The Whole House!!** | Everything → dive on the couch | 26 | 146s | All of them | Medley of every style |
 
 The basement is dark, with a pool of light that follows you around. At the pool, the floating platforms are striped lounge chairs and the gaps are the pool itself. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
