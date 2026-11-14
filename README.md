@@ -110,6 +110,29 @@ All the music is generated live in the browser with the Web Audio API. There are
 
 Sound effects include a slide whistle when you jump, a "boing" when you stomp, a car horn as the parents get close, a kazoo fanfare when you finish a level and a sad trombone when you get caught.
 
+### Listen to the soundtrack
+
+Every song is also saved as an MP3 in the [`music/`](music/) folder (recorded straight from the game's own music code). Click a song to play it on GitHub.
+
+| Level | Song |
+|---|---|
+| Title screen | [Petite Valse du Matin](music/00-title.mp3) |
+| Isaac's Room | [Radical Rock](music/01-isaacs-room.mp3) |
+| Annie's Room | [Once Upon a Tidy Room](music/02-annies-room.mp3) |
+| Kitchen | [Cool Kitchen Jazz](music/03-kitchen.mp3) |
+| Living Room | [Poptastic Pop](music/04-living-room.mp3) |
+| Backyard | [Backyard Boom-Bap](music/05-backyard.mp3) |
+| Garage | [Garage Funk-Techno](music/06-garage.mp3) |
+| Laundry Room | [Oompah Undies Polka](music/07-laundry-room.mp3) |
+| Bathroom | [Bathroom Amore](music/08-bathroom.mp3) |
+| Home Office | [Muzak for Meetings (Vol. 3)](music/09-home-office.mp3) |
+| Music Room | [Piano Practice (Mom Is Listening)](music/10-music-room.mp3) |
+| Arts & Crafts | [Les Petits Peintres](music/11-arts-and-crafts.mp3) |
+| Tech Room | [Beep Boop Banana Boogie](music/12-tech-room.mp3) |
+| Basement | [Nocturne in the Basement](music/13-basement.mp3) |
+| Attic | [Little Fugue in the Attic](music/14-attic.mp3) |
+| Whole House | [Medley of every style](music/15-whole-house-medley.mp3) |
+
 ---
 
 ## How it's built
