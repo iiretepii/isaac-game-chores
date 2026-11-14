@@ -234,6 +234,10 @@ function croonVoice(m,dur,t,vol=0.075){ // a warm crooning 'ohhh' voice: formant
 function mandolin(m,dur,t,vol=0.03){for(let k=0;k*0.07<dur;k++)pluck(m,0.07,t+k*0.07,vol*(k%2?0.7:1),0.3,4500);} // tremolo picking
 function strings(ms,dur,t,vol=0.018){const ga=out(1,0.6);holdEnv(ga,t,vol,dur,0.35,0.4);const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=1800;lp.connect(ga);
   ms.forEach(m=>[-8,8].forEach(c=>{O('sawtooth',mtof(m),t,t+dur+0.05,lp).detune.value=c;}));}
+function harp(m,dur,t,vol=0.05){const f=mtof(m),ga=out(1,0.5);decayEnv(ga,t,vol,Math.max(1,dur+0.6),0.003);
+  const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.setValueAtTime(f*6,t);lp.frequency.exponentialRampToValueAtTime(f*1.5,t+1);lp.connect(ga);
+  O('triangle',f,t,t+dur+1.2,lp);O('sine',f*2,t,t+dur+1.2,lp,0.3);}
+function celesta(m,dur,t,vol=0.045){const f=mtof(m),ga=out(1,0.6);decayEnv(ga,t,vol,1.2,0.002);O('sine',f,t,t+1.3,ga);O('sine',f*4,t,t+0.25,ga,0.25);O('sine',f*2,t,t+0.6,ga,0.2);}
 function walkBass(m,dur,t,vol=0.3){const f=mtof(m),ga=out(1,0.05);decayEnv(ga,t,vol,dur+0.15,0.01);const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=700;lp.connect(ga);O('triangle',f,t,t+dur+0.2,lp);O('sine',f*2,t,t+dur+0.2,lp,0.2);}
 // --- drums ---
 function nz(dur,vol,type,freq,t,q=1){const s=AC.createBufferSource();s.buffer=noiseBuf;const f=AC.createBiquadFilter();f.type=type;f.frequency.value=freq;f.Q.value=q;const ga=AC.createGain();ga.gain.setValueAtTime(vol,t);ga.gain.exponentialRampToValueAtTime(0.001,t+dur);s.connect(f);f.connect(ga);ga.connect(musicGain);s.start(t,Math.random()*0.5);s.stop(t+dur+0.02);return f;}
@@ -325,6 +329,22 @@ const STYLES={
    const n=this.seq[s];if(n!==null)acid(40+tr+n,d*0.9,t,cut);
    if(s===6||s===14||(s===3&&bar===3))[64,67,71,74].forEach(m=>pluck(m+tr,d*0.7,t,0.022,0.3,2600));
    if(li===0&&i>0)crash(t);
+ }},
+ // ANNIE'S ROOM: fairy-tale princess waltz — harp arpeggios, lush strings, a dreamy flute melody, sparkly celesta, harp glissando
+ princess:{name:"ONCE UPON A TIDY ROOM",bpm:150,spb:2,bar:6,bars:16,
+  ch:[[38,[62,66,69]],[35,[59,62,66]],[43,[59,62,67]],[33,[61,64,69]],[38,[62,66,69]],[42,[61,66,69]],[43,[59,62,67]],[33,[61,64,69]],
+      [35,[59,62,66]],[43,[59,62,67]],[38,[62,66,69]],[33,[61,64,69]],[40,[59,64,67]],[33,[61,64,69]],[38,[62,66,69]],[38,[62,66,69]]],
+  mel:[66,_,_,_,69,_, 74,_,_,_,73,71, 71,_,_,_,67,_, 69,_,_,_,_,_, 66,_,_,_,69,_, 78,_,_,_,76,73, 74,_,76,_,71,_, 73,_,_,_,_,_,
+       71,_,74,_,78,_, 79,_,_,_,78,76, 78,_,_,_,74,_, 76,_,_,_,73,_, 71,_,74,_,79,_, 78,_,76,_,73,_, 74,_,_,_,_,_, _,_,_,_,_,_],
+  play(i,t,d){const li=i%96,loop=Math.floor(i/96),bar=Math.floor(li/6),b=li%6,[r,c]=this.ch[bar];
+   if(b===0){walkBass(r,d*2.5,t,0.18);strings(c,d*6,t,0.016);}
+   const arp=[r+12,c[0],c[1],c[2],c[0]+12,c[1]+12];
+   if(bar<15)harp(arp[b],d*2,t,b===0?0.05:0.035);
+   else if(b===0){const sc=[62,64,66,67,69,71,73,74,76,78,79,81,83,86];sc.forEach((m,k)=>harp(m,0.4,t+k*0.045,0.035));} // sparkly glissando
+   const n=this.mel[li];
+   if(n!==null){let k=1;while(k<8&&this.mel[(li+k)%96]===null)k++;
+     if(loop%2===0)flute(n,d*k*0.98,t,0.065);else{celesta(n+12,d*k,t);flute(n,d*k*0.98,t,0.04);}}
+   if(b===3&&bar%4===3)celesta(c[2]+24,d,t,0.025);
  }},
  // MUSIC ROOM: a kid practicing piano — scales with mistakes, Für Elise, Twinkle, Mountain King (Halloween), jazz licks,
  // Jingle Bells, Bach's C-major Prelude, a spooky toccata, a pop tune, Chopsticks and Ode to Joy, with page-turn pauses.
@@ -488,7 +508,7 @@ const STYLES={
    if(bar===15&&b===2)[62,66,69,73,78,81].forEach((m,k)=>piano(m+12,d*2,t+k*0.07,0.025,0.8)); // little harp-like ripple
  }},
 };
-const MIX=['rock','jazz','pop','hiphop','techno','polka','crooner','muzak','practice','romantic','baroque'];
+const MIX=['rock','princess','jazz','pop','hiphop','techno','polka','crooner','muzak','practice','romantic','baroque'];
 let music={on:false,style:'pop',step:0,next:0,seg:0,segStep:0,cycle:0};
 function startMusic(style){music.style=style;music.step=0;music.seg=0;music.segStep=0;music.cycle=0;music.on=true;if(AC)music.next=AC.currentTime+0.05;}
 function scheduler(){
@@ -510,8 +530,10 @@ function scheduler(){
 
 // ================= LEVEL DATA =================
 const LEVELS=[
- {name:"THE MESSY BEDROOM",chore:"Pick up the stinky socks",drop:"hamper",item:"sock",count:6,time:70,len:85,gap:1,enemies:["dust"],density:.35,lego:0,movers:0,theme:"bedroom",music:"rock",
-  text:"MOM: Home in 70 sec. Your room smells like a goat. CLEAN IT."},
+ {name:"ISAAC'S ROOM",chore:"Put the toy dragons back in the toy chest",drop:"toychest",item:"dragon",count:6,time:70,len:85,gap:1,enemies:["dust"],density:.35,lego:0,movers:0,theme:"bedroom",music:"rock",
+  text:"DAD: Isaac, your dragons escaped AGAIN. Back in the toy chest before Mom sees!"},
+ {name:"ANNIE'S ROOM",chore:"Put the dolls back in the doll house",drop:"dollhouse",item:"doll",count:7,time:72,len:92,gap:1,enemies:["dust","cat"],density:.4,lego:0,movers:0,theme:"annie",music:"princess",
+  text:"MOM: Annie, your dolls are having a party ALL over the floor. Doll house, now!"},
  {name:"KITCHEN CATASTROPHE",chore:"Get the dirty dishes to the sink",drop:"sink",item:"dish",count:8,time:75,len:105,gap:2,enemies:["dust","roach"],density:.45,lego:0,movers:0,theme:"kitchen",music:"jazz",
   text:"DAD: Why is there a pancake on the ceiling? Fix it."},
  {name:"LIVING ROOM LEGO-LAND",chore:"Put the toys in the toy box",drop:"toybox",item:"toy",count:10,time:80,len:125,gap:2,enemies:["roomba","cat"],density:.5,lego:.4,movers:0,theme:"living",music:"pop",
@@ -537,6 +559,7 @@ const LEVELS=[
 ];
 const THEMES={
  bedroom:{sky:"#6d5acf",wall2:"#5d4abf",ground:"#3a8f5c",top:"#5fd18a",plat:"#a0522d",ptop:"#d2884f"},
+ annie:{sky:"#f8bbd0",wall2:"#f48fb1",ground:"#ce93d8",top:"#f3e5f5",plat:"#ffffff",ptop:"#fce4ec"},
  kitchen:{sky:"#f7e08a",wall2:"#efd06a",ground:"#ffffff",top:"#222222",plat:"#7a8c99",ptop:"#c9d6df",checker:1},
  living:{sky:"#e07a5f",wall2:"#d06a4f",ground:"#8b5a2b",top:"#c68642",plat:"#3d5a80",ptop:"#98c1d9"},
  yard:{sky:"#7ec8ff",wall2:"#7ec8ff",ground:"#7a4a22",top:"#4caf50",plat:"#8d6e63",ptop:"#bcaaa4",outdoor:1},
@@ -549,7 +572,7 @@ const THEMES={
  attic:{sky:"#7a5233",wall2:"#6b4628",ground:"#795548",top:"#bcaaa4",plat:"#5d4037",ptop:"#8d6e63"},
  house:{sky:"#2b2d6e",wall2:"#25275e",ground:"#5d3a8a",top:"#b388ff",plat:"#00897b",ptop:"#4db6ac"},
 };
-const ITEM_NAMES={sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
+const ITEM_NAMES={dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
@@ -603,8 +626,8 @@ function buildLevel(idx){
   const items=[],n=Math.min(L.count,cand.length);
   const used=new Set();
   for(let i=0;i<n;i++){let k=Math.round(i*(cand.length-1)/Math.max(1,n-1));while(used.has(k))k++;used.add(k);const s=cand[k];
-    const kinds=["sock","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score"];
-    items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%11]:L.item,got:false,bob:rng()*6});}
+    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score"];
+    items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%12]:L.item,got:false,bob:rng()*6});}
   const enemies=[];
   eSpots.filter(s=>s.x>14&&s.x<cols-10).forEach(s=>{
     const type=L.enemies[ri(0,L.enemies.length-1)];
@@ -866,6 +889,15 @@ function drawItemRaw(k,x,y){
   else if(k==='ornament'){ // shiny holiday bauble
     R(x+6,y,4,3,"#ffd54f");R(x+7,y-2,2,2,"#bdbdbd");R(x+3,y+3,10,1,"#e53935");R(x+2,y+4,12,8,"#e53935");R(x+3,y+12,10,2,"#e53935");R(x+5,y+14,6,1,"#b71c1c");
     R(x+2,y+7,12,2,"#ffd54f");R(x+4,y+5,3,2,"#ff8a80");R(x+4,y+5,1,1,"#fff");R(x+11,y+10,2,3,"#b71c1c");R(x+5,y+10,1,1,"#ffd54f");R(x+9,y+11,1,1,"#ffd54f");}
+  else if(k==='dragon'){ // little green toy dragon with wings and a puff of fire
+    R(x+3,y+7,9,6,"#43a047");R(x+9,y+3,5,5,"#43a047");R(x+13,y+5,2,2,"#43a047");R(x+1,y+10,3,2,"#43a047");R(x,y+8,2,2,"#2e7d32");
+    R(x+4,y+11,6,2,"#c5e1a5");R(x+4,y+13,2,2,"#2e7d32");R(x+9,y+13,2,2,"#2e7d32");R(x+11,y+4,1,1,"#000");R(x+10,y+1,1,2,"#fff59d");R(x+12,y+1,1,2,"#fff59d");
+    R(x+4,y+3,4,4,"#81c784");R(x+3,y+2,2,2,"#81c784");R(x+5,y+4,1,3,"#2e7d32");R(x+6,y+8,1,1,"#2e7d32");R(x+8,y+8,1,1,"#2e7d32");
+    if(Math.floor(performance.now()/300)%3===0){R(x+15,y+5,2,2,"#ff7043");R(x+16,y+4,1,1,"#ffeb3b");}}
+  else if(k==='doll'){ // fashion doll: long blonde hair, pink dress
+    R(x+5,y,6,2,"#ffd54f");R(x+4,y+1,8,9,"#ffd54f");R(x+6,y+2,4,4,"#ffccbc");R(x+6,y+3,1,1,"#1e88e5");R(x+9,y+3,1,1,"#1e88e5");R(x+7,y+5,2,1,"#e91e63");
+    R(x+7,y+6,2,1,"#ffccbc");R(x+5,y+7,6,3,"#ec407a");R(x+3,y+7,2,4,"#ffccbc");R(x+11,y+7,2,4,"#ffccbc");R(x+4,y+10,8,3,"#f06292");R(x+3,y+12,10,1,"#f8bbd0");
+    R(x+6,y+13,1,3,"#ffccbc");R(x+9,y+13,1,3,"#ffccbc");R(x+6,y+15,2,1,"#ec407a");R(x+9,y+15,2,1,"#ec407a");R(x+7,y+8,2,1,"#fff");}
   else if(k==='score'){ // old yellowed sheet music with a dog-ear
     R(x+2,y,12,16,"#fff8e1");R(x+11,y,3,3,"#ffe0b2");R(x+2,y+15,12,1,"#d7ccc8");
     for(let l=0;l<2;l++)for(let s2=0;s2<5;s2++)R(x+3,y+3+l*7+s2,10,1,s2%2?"#fff8e1":"#8d6e63");
@@ -904,6 +936,11 @@ function drawDropRaw(k,x,y){
   else if(k==='bag'){R(x+4,y+2,20,22,"#2e7d32");R(x+6,y,16,3,"#1b5e20");R(x+8,y+8,4,4,"#ff7043");R(x+14,y+14,4,4,"#ffa726");}
   else if(k==='can'){R(x+3,y+4,22,20,"#607d8b");R(x+1,y+2,26,4,"#78909c");R(x+11,y-1,6,3,"#78909c");for(let i=6;i<24;i+=5)R(x+3+i,y+8,1,14,"#455a64");}
   else if(k==='washer'){R(x+1,y,26,24,"#eceff1");R(x+1,y,26,6,"#b0bec5");R(x+4,y+2,4,2,"#ff5252");R(x+10,y+2,4,2,"#69f0ae");R(x+8,y+8,12,12,"#78909c");R(x+10,y+10,8,8,"#4fc3f7");R(x+11,y+11,3,2,"#e1f5fe");R(x+1,y+23,26,1,"#90a4ae");}
+  else if(k==='toychest'){R(x,y+8,28,16,"#8d6e63");R(x,y+2,28,7,"#a1887f");R(x,y+8,28,2,"#4e342e");R(x+2,y+3,24,1,"#bcaaa4");
+    R(x+11,y+12,6,6,"#43a047");R(x+12,y+11,4,1,"#43a047");R(x+13,y+13,1,1,"#ffeb3b");R(x+12,y+9,4,3,"#ffd54f");R(x+2,y+2,2,22,"#5d4037");R(x+24,y+2,2,22,"#5d4037");}
+  else if(k==='dollhouse'){R(x+2,y-2,24,26,"#f8bbd0");R(x,y-4,28,3,"#ec407a");R(x+4,y-8,20,4,"#ec407a");R(x+8,y-11,12,3,"#ec407a");
+    R(x+5,y+2,6,6,"#b3e5fc");R(x+17,y+2,6,6,"#b3e5fc");R(x+7,y+2,1,6,"#fff");R(x+19,y+2,1,6,"#fff");R(x+11,y+13,6,11,"#ad1457");R(x+15,y+18,1,1,"#ffd54f");
+    R(x+4,y+11,4,2,"#fff");R(x+20,y+11,4,2,"#fff");R(x+13,y-7,2,2,"#fff59d");}
   else if(k==='bookshelf'){R(x-2,y-14,32,38,"#5d4037");R(x,y-12,28,34,"#3e2723");for(let sh=0;sh<3;sh++){R(x,y-2+sh*11,28,2,"#6d4c41");
     for(let bk=0;bk<6;bk++){const bc=["#c62828","#1565c0","#2e7d32","#f9a825","#6a1b9a","#ef6c00"][(bk+sh)%6];R(x+2+bk*4,y-11+sh*11+(bk%3===1?1:0),3,9-(bk%3===1?1:0),bc);R(x+2+bk*4,y-9+sh*11,3,1,"#fff8");}}}
   else if(k==='shredder'){R(x+3,y+10,22,14,"#455a64");R(x+3,y+10,22,2,"#607d8b");R(x+1,y+4,26,7,"#263238");R(x+4,y+6,20,2,"#000");R(x+22,y+5,3,2,"#76ff03");
@@ -976,7 +1013,13 @@ function drawBackground(th,t){
       if(k===0){R(dx+20,40,60,50,"#fff");R(dx+24,44,52,42,"#90caf9");R(dx+49,44,2,42,"#fff");R(dx+24,64,52,2,"#fff");}
       if(k===1){R(dx+20,50,40,54,"#ffeb3b");text("ROCK",dx+24,60,8,"#e53935","left",false);text("ON!",dx+28,76,8,"#1e88e5","left",false);}
       if(k===2){R(dx+10,130,90,40,"#1565c0");R(dx+10,120,24,18,"#fff");R(dx+10,166,4,30,"#5d4037");R(dx+96,166,4,30,"#5d4037");}
-      if(k===3){R(dx+40,60,30,30,"#ff8a65");R(dx+48,68,4,4,"#000");R(dx+60,68,4,4,"#000");R(dx+48,80,16,3,"#000");}
+      if(k===3){R(dx+30,46,56,44,"#263238");R(dx+46,60,22,14,"#43a047");R(dx+62,54,10,10,"#43a047");R(dx+36,54,12,10,"#81c784");R(dx+72,58,8,4,"#ff7043");R(dx+78,57,4,6,"#ffeb3b");text("DRAGONS",dx+33,78,6,"#ffd54f","left",false);}
+    }else if(thn==='annie'){
+      if(k===0){R(dx+10,90,100,80,"#fff");R(dx+6,84,108,8,"#f06292");g.fillStyle='#fce4ec';g.beginPath();g.moveTo(dx+10,90);g.quadraticCurveTo(dx+60,20,dx+110,90);g.fill();R(dx+20,130,80,30,"#e1bee7");R(dx+20,124,26,12,"#fff");}
+      if(k===1){R(dx+30,40,50,56,"#fff");R(dx+34,44,42,48,"#b39ddb");R(dx+46,60,18,26,"#f8bbd0");R(dx+42,56,26,6,"#f8bbd0");R(dx+46,52,4,6,"#f8bbd0");R(dx+60,52,4,6,"#f8bbd0");R(dx+53,48,4,8,"#f8bbd0");text("CASTLE",dx+38,84,6,"#4a148c","left",false);}
+      if(k===2){const rc=["#ef5350","#ffa726","#ffee58","#66bb6a","#42a5f5","#ab47bc"];rc.forEach((c,j)=>{g.strokeStyle=c;g.lineWidth=4;g.beginPath();g.arc(dx+80,110,50-j*5,Math.PI,0);g.stroke();});}
+      if(k===3){g.fillStyle='#fff';g.beginPath();g.arc(dx+52,64,10,0,7);g.arc(dx+68,64,10,0,7);g.fill();g.beginPath();g.moveTo(dx+42,68);g.lineTo(dx+60,92);g.lineTo(dx+78,68);g.fill();g.fillStyle='#81d4fa';g.fillRect(dx+50,62,20,14);}
+      for(let st=0;st<5;st++){const sx=dx+((st*47)%160),sy=30+((st*53)%120);if(Math.sin(clock*3+st)>0.3)sparkle(sx,sy,2,"#fff");}
     }else if(thn==='kitchen'){
       if(k%2===0){R(dx,30,120,40,"#a1887f");R(dx+58,30,4,40,"#6d4c41");R(dx+50,46,4,8,"#ffd54f");R(dx+66,46,4,8,"#ffd54f");}
       if(k===1){R(dx+30,60,50,140,"#e0e0e0");R(dx+30,110,50,2,"#9e9e9e");R(dx+72,80,3,20,"#9e9e9e");R(dx+40,70,10,10,"#ff7043");}
