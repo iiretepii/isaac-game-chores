@@ -77,7 +77,7 @@ Each level is longer, with more items, critters and gaps than the one before. La
 | 11 | **Arts & Crafts Chaos** | Paint buckets → shelves | 20 | 107s | Ants, cats, soap bubbles | Lively French impressionist |
 | 12 | **Tech Room Trouble** | Robot parts → robot workbench | 21 | 111s | Little lightning bolts | The silliest song ever |
 | 13 | **Workout Room Workout** | Weights → weight rack | 22 | 114s | Rats, cats, dogs, dust mites | High-octane workout anthem |
-| 14 | **The Spooky Basement** | Wet shirts → dryer | 23 | 118s | Spiders, rats, dust bunnies | Chopin-style piano nocturne |
+| 14 | **The Spooky Basement** | Wet shirts → dryer | 23 | 118s | Spiders, rats, dust bunnies | Romantic movie-theme piano |
 | 15 | **Attic of Antiques** | Holiday ornaments → old trunk | 24 | 124s | Bats, spiders, rats | Bach-style pipe organ |
 | 16 | **The Whole House!!** | Everything → dive on the couch | 25 | 143s | All of them | Medley of every style |
 
@@ -107,7 +107,7 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Arts & Crafts | [*Les Petits Peintres*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/11-arts-and-crafts.mp3) | Faster French impressionist piece: rippling piano, flute, sliding chords, whole-tone harp sweeps |
 | Tech Room | [*Beep Boop Banana Boogie*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/12-tech-room.mp3) | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |
 | Workout Room | [*Maximum Reps!!!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/13-workout-room.mp3) | Pounding four-on-the-floor beat, rolling bass, supersaw synth riff, coach's whistle, "HEY!" shouts and a snare-roll build-up into a big drop |
-| Basement | [*Nocturne in the Basement*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/14-basement.mp3) | Romantic Chopin-style piano: a flowing, melismatic right hand (long held notes, turns, quick ornamental runs, dotted figures) over a rolling left hand, with rubato and rich harmony: ninth chords, a descending bass line, a German augmented sixth, a turn to the relative major, the Neapolitan chord and a diminished seventh before the final cadence |
+| Basement | [*Nocturne in the Basement*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/14-basement.mp3) | Romantic film-score piano in the style of classic Italian movie themes: a simple, singing melody with long notes and big expressive leaps over flowing arpeggios, warm strings, and on the repeat the strings take the melody while the piano floats above |
 | Attic | [*Little Fugue in the Attic*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/15-attic.mp3) | A four-voice pipe-organ fugue in D minor (about a minute): entries in alto, soprano, tenor and bass, three episodes, a middle entry, a low bass entry, a trill over a dominant pedal and a Picardy-third ending |
 | Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/16-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
 | Ending | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/16-whole-house-medley.mp3) | Same medley as the Whole House |

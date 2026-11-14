@@ -551,34 +551,25 @@ const STYLES={
    if(li===63&&loop%2)tone(500,d*1.5,'sine',0.08,1500,t,musicGain); // slide whistle
  }},
  // BASEMENT: romantic piano nocturne — rolling left-hand arpeggios, singing melody, rubato, lots of pedal
- romantic:{name:"NOCTURNE IN THE BASEMENT",bpm:70,spb:6,bar:24,bars:16, // Chopin-style nocturne: rich chromatic harmony (9ths, descending bass,
-  // half-diminished, German augmented sixth, relative major, secondary dominant, Neapolitan, diminished 7th, cadential 6-4) with a
-  // free, melismatic right hand: long held notes, turns, quick ornamental runs and dotted figures over a rolling left hand
-  ch:[[36,43,51,55,62],[32,39,48,55,60],[29,36,44,48,55],[31,38,47,53,56],[34,43,51,55,60],[33,39,48,55,60],[32,39,48,54,60],[31,38,47,53,55],
-      [39,46,50,55,62],[36,43,46,52,61],[29,36,44,51,55],[37,44,48,53,60],[35,41,47,50,56],[31,39,48,55,63],[31,38,47,53,56],[36,43,51,55,62]],
-  rh:[[[79,9],[77,1],[79,1],[80,1],[79,3],[77,3],[75,3],[74,3]],
-      [[72,6],[75,2],[79,2],[84,2],[82,4],[79,2],[75,6]],
-      [[80,6],[79,1],[77,1],[75,1],[74,1],[72,1],[71,1],[72,6],[75,3],[77,3]],
-      [[74,3],[71,3],[74,2],[77,2],[80,2],[79,8],[77,2],[75,2]],
-      [[79,12],[84,4],[82,2],[79,2],[77,2],[79,2]],
-      [[84,3],[81,1],[79,1],[78,1],[79,3],[75,3],[72,6],[75,3],[79,3]],
-      [[80,8],[79,1],[78,1],[80,2],[78,6],[75,6]],
-      [[74,2],[75,2],[77,2],[79,2],[80,2],[83,2],[86,6],[83,3],[79,3]],
-      [[79,6],[82,3],[86,3],[84,1],[86,1],[87,1],[86,1],[84,1],[82,1],[79,6]],
-      [[82,4],[79,2],[76,3],[79,1],[76,1],[73,1],[72,6],[70,3],[72,3]],
-      [[80,9],[79,1],[77,1],[75,1],[77,3],[80,3],[84,6]],
-      [[85,6],[84,2],[80,2],[77,2],[80,6],[77,3],[73,3]],
-      [[83,2],[80,2],[77,2],[74,2],[71,2],[74,2],[77,3],[80,3],[83,6]],
-      [[84,6],[83,1],[84,1],[86,1],[84,1],[83,1],[82,1],[79,6],[75,6]],
-      [[77,3],[75,1],[74,1],[73,1],[74,3],[71,3],[80,2],[79,2],[77,2],[75,2],[74,2],[71,2]],
-      [[72,24]]],
-  pat:[0,1,2,3,4,3,2,1,2,3,4,3],
-  init(){if(this.ev)return;this.ev=[];this.rh.forEach((bar,b)=>{let o=0;for(const [m,len] of bar){(this.ev[b*24+o]=this.ev[b*24+o]||[]).push([m,len]);o+=len;}});},
-  rub(i){const s=i%6,k=i%384;return 1+0.1*Math.sin((s/6)*Math.PI*2-0.5)+(k>=360?0.5:0)+(k>=180&&k<192?0.25:0);},
-  play(i,t,d){this.init();const li=i%384,bar=Math.floor(li/24),s=li%24,c=this.ch[bar];
-   if(s%2===0){if(bar===15&&s>=12){if(s===12)c.forEach((m,k)=>piano(m,d*16,t+k*0.03,0.04,0.5));}
-     else piano(c[this.pat[s/2]],d*8,t,s===0?0.08:0.042,0.4);}
-   const e=this.ev[li];if(e)for(const [m,len] of e)piano(m,d*len*(len<=1?1.6:1),t,len<=1?0.1:0.13,0.45);
+ romantic:{name:"NOCTURNE IN THE BASEMENT",bpm:66,spb:4,bar:16,bars:32, // romantic film-score piano (classic Italian movie-theme feel):
+  // a simple, singing melody with long notes and expressive leaps over gently flowing 8th-note arpeggios in F major, warm string pads,
+  // and on the repeat the strings take the melody while the piano floats an octave above
+  ch:[[[41,48,53,57,60]],[[40,47,52,57,60]],[[38,45,50,53,57]],[[34,41,46,50,53]],[[43,50,53,55,58]],[[36,43,48,53,55],[36,43,46,52,55]],[[45,48,53,57,60]],[[34,41,46,50,53]],
+      [[38,45,50,53,57]],[[34,41,45,50,53]],[[36,41,45,48,53]],[[43,50,53,55,58],[36,43,46,52,55]],[[41,48,53,57,60]],[[38,45,48,53,57]],[[43,50,53,55,58],[36,43,46,52,55]],[[41,48,53,57,60]]],
+  rh:[[[72,4],[77,8],[76,2],[74,2]],[[76,12],[72,4]],[[74,4],[81,8],[79,2],[77,2]],[[77,12],[74,4]],
+      [[70,4],[74,4],[77,4],[79,4]],[[79,6],[77,2],[76,8]],[[77,4],[81,4],[84,8]],[[82,6],[81,2],[79,8]],
+      [[81,8],[77,4],[74,4]],[[81,6],[79,2],[77,8]],[[76,4],[77,4],[79,4],[81,4]],[[82,8],[79,4],[76,4]],
+      [[77,12],[72,4]],[[74,4],[77,4],[81,8]],[[79,8],[76,4],[74,2],[76,2]],[[77,16]]],
+  pat:[0,1,2,3,4,3,2,1],
+  init(){if(this.ev)return;this.ev=[];this.rh.forEach((bar,b)=>{let o=0;for(const [m,len] of bar){(this.ev[b*16+o]=this.ev[b*16+o]||[]).push([m,len]);o+=len;}});},
+  rub(i){const k=i%512,s=i%16;return 1+0.05*Math.sin(s/16*Math.PI*2)+((k%256)>=240?0.45*((k%256)-240)/16:0);},
+  play(i,t,d){this.init();const li=i%512,loop=Math.floor(li/256),l=li%256,bar=Math.floor(l/16),s=l%16,chs=this.ch[bar],c=chs[s>=8&&chs[1]?1:0];
+   if(s%2===0){if(bar===15&&s>=8){if(s===8)c.forEach((m,k)=>piano(m+(k?0:-12),d*10,t+k*0.05,0.045,0.6));}
+     else piano(c[this.pat[s/2]],d*4,t,s===0?0.07:0.04,0.5);}
+   if(s===0||(s===8&&chs[1]))strings(c.slice(2).map(m=>m+12),d*(chs[1]?8:16),t,loop?0.013:0.008);
+   const e=this.ev[l];if(e)for(const [m,len] of e){
+     if(loop===0)piano(m,d*len,t,0.12,0.55);
+     else{strings([m],d*len,t,0.02);strings([m-12],d*len,t,0.012);piano(m+12,d*len,t,0.06,0.65);}}
  }},
  // ATTIC: baroque pipe organ — Bach-style 16th-note figuration over a pedal bass, in D minor
  // ATTIC: a four-voice organ fugue in D minor (soprano, alto, tenor, bass). Exposition: alto subject, soprano answer +
