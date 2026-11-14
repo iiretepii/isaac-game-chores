@@ -189,6 +189,10 @@ function subBass(m,dur,t,vol=0.32){const f=mtof(m),ga=out(1,0);holdEnv(ga,t,vol,
 function synthBass(m,dur,t,vol=0.16){const f=mtof(m),ga=out(1,0);holdEnv(ga,t,vol,dur,0.004,0.03);const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.setValueAtTime(1400,t);lp.frequency.exponentialRampToValueAtTime(300,t+dur);lp.connect(ga);O('sawtooth',f,t,t+dur+0.05,lp);O('square',f/2,t,t+dur+0.05,lp,0.5);}
 function acid(m,dur,t,cut,vol=0.1){const f=mtof(m),ga=out(1,0.08);holdEnv(ga,t,vol,dur,0.003,0.02);const lp=AC.createBiquadFilter();lp.type='lowpass';lp.Q.value=13;
   lp.frequency.setValueAtTime(cut*3,t);lp.frequency.exponentialRampToValueAtTime(Math.max(120,cut*0.6),t+dur);lp.connect(ga);O('sawtooth',f,t,t+dur+0.05,lp);}
+function flute(m,dur,t,vol=0.06){const f=mtof(m),ga=out(1,0.6);holdEnv(ga,t,vol,dur,0.09,0.15);
+  const o=O('sine',f,t,t+dur+0.05,ga);O('triangle',f*2,t,t+dur+0.05,ga,0.08);
+  const l=AC.createOscillator(),lg=AC.createGain();l.frequency.value=4.8;lg.gain.setValueAtTime(0,t);lg.gain.linearRampToValueAtTime(f*0.006,t+Math.min(dur,0.5));l.connect(lg);lg.connect(o.frequency);l.start(t);l.stop(t+dur+0.05);
+  nz(Math.min(dur,0.25),0.008,'bandpass',f*2,t,2);}
 function walkBass(m,dur,t,vol=0.3){const f=mtof(m),ga=out(1,0.05);decayEnv(ga,t,vol,dur+0.15,0.01);const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=700;lp.connect(ga);O('triangle',f,t,t+dur+0.2,lp);O('sine',f*2,t,t+dur+0.2,lp,0.2);}
 // --- drums ---
 function nz(dur,vol,type,freq,t,q=1){const s=AC.createBufferSource();s.buffer=noiseBuf;const f=AC.createBiquadFilter();f.type=type;f.frequency.value=freq;f.Q.value=q;const ga=AC.createGain();ga.gain.setValueAtTime(vol,t);ga.gain.exponentialRampToValueAtTime(0.001,t+dur);s.connect(f);f.connect(ga);ga.connect(musicGain);s.start(t,Math.random()*0.5);s.stop(t+dur+0.02);return f;}
@@ -290,6 +294,21 @@ const STYLES={
    if(s%2===0)organ(tones[[0,1,2,1,3,2,1,0][s/2]]-12,d*2.05,t,0.026);
    if(s===0)organ(c[0],d*16,t,0.05);
    if(s===8&&bar%2)organ(c[0]+7,d*8,t,0.03);
+ }},
+ // TITLE SCREEN: peaceful French impressionist piano (Satie/Debussy flavour) — slow 3/4, drifting maj7 chords, a flute takes the melody on the repeat
+ french:{name:"PETITE VALSE DU MATIN",bpm:66,spb:1,bar:3,bars:16,
+  ch:[[43,[59,62,66]],[38,[54,57,61]],[43,[59,62,66]],[38,[54,57,61]],[40,[59,62,66]],[35,[57,62,66]],[36,[59,64,67]],[33,[55,62,64]],
+      [43,[59,62,66]],[42,[57,61,64]],[40,[55,59,62]],[38,[54,57,61]],[36,[59,64,67]],[35,[57,62,66]],[40,[59,62,66]],[38,[54,57,61]]],
+  mel:[_,78,81, 79,_,_, _,78,76, 73,_,_, _,74,76, 78,_,74, 76,_,_, 74,_,_,
+       _,83,81, 81,_,_, _,79,78, 76,_,78, 79,_,76, 74,_,_, _,71,73, 74,_,_],
+  rub(i){return 1+0.08*Math.sin((i%3)/3*Math.PI*2)+((i%48)===47?0.6:0);},
+  play(i,t,d){const li=i%48,loop=Math.floor(i/48),bar=Math.floor(li/3),b=li%3,c=this.ch[bar];
+   if(b===0)piano(c[0],d*3,t,0.075,0.55);
+   if(b===1)c[1].forEach((m,k)=>piano(m,d*2,t+k*0.012,0.032,0.55));
+   const n=this.mel[li];
+   if(n!==null){let k=1;while(k<3&&this.mel[(li+k)%48]===null)k++;
+     if(loop%2===0)piano(n,d*k,t,0.085,0.6);else{flute(n,d*k*0.98,t);piano(n+12,d,t,0.02,0.7);}}
+   if(bar===15&&b===2)[62,66,69,73,78,81].forEach((m,k)=>piano(m+12,d*2,t+k*0.07,0.025,0.8)); // little harp-like ripple
  }},
 };
 const MIX=['rock','jazz','pop','hiphop','techno','romantic','baroque'];
@@ -916,10 +935,10 @@ function frame(now){
     else if(state==='play'){updatePlay(STEP);updateParts(STEP);}
     else if(state==='clear'){updateParts(STEP);if(pressed&&stateT>1){if(levelIdx<LEVELS.length-1)startLevel(levelIdx+1);else{state='end';stateT=0;startMusic('mix');}}}
     else if(state==='lose'){if(pressed&&stateT>1.2){score=Math.max(0,score-levelScore);startLevel(levelIdx);}}
-    else if(state==='end'){if(pressed&&stateT>1.5){state='title';stateT=0;startMusic('pop');}}
+    else if(state==='end'){if(pressed&&stateT>1.5){state='title';stateT=0;startMusic('french');}}
     jumpPressed=false;
   }
-  if(state==='title'){drawTitle(clock);if(AC&&!music.on)startMusic('pop');}
+  if(state==='title'){drawTitle(clock);if(AC&&!music.on)startMusic('french');}
   else if(state==='intro')drawIntro(clock);
   else if(state==='play')drawPlay(clock);
   else if(state==='pause'){drawPlay(clock);panel();text("PAUSED",W/2,110,16,"#ffeb3b","center");text("P TO RESUME",W/2,140,8,"#fff","center");}
