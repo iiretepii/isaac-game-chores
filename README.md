@@ -74,11 +74,12 @@ Each level is longer, with more items, critters and gaps than the one before. La
 | 8 | **Bathroom Blunder** | Runaway poops → toilet | 16 | 96s | Soap bubbles, cockroaches, spiders | Italian crooner waltz |
 | 9 | **Home Office Havoc** | Old work papers → shredder | 17 | 98s | Ants, spiders, hamsters | Terrible elevator music |
 | 10 | **Music Room Mayhem** | Old piano scores → bookshelf | 18 | 100s | Cats, spiders, cockroaches | Kid practicing piano |
-| 11 | **The Spooky Basement** | Wet shirts → dryer | 19 | 104s | Spiders, rats, dust bunnies | Chopin-style piano nocturne |
-| 12 | **Attic of Antiques** | Holiday ornaments → old trunk | 20 | 110s | Bats, spiders, rats | Bach-style pipe organ |
-| 13 | **The Whole House!!** | Everything → dive on the couch | 24 | 128s | All of them | Medley of every style |
+| 11 | **Arts & Crafts Chaos** | Markers → marker cup | 19 | 104s | Ants, cats, soap bubbles | Lively French impressionist |
+| 12 | **The Spooky Basement** | Wet shirts → dryer | 20 | 108s | Spiders, rats, dust bunnies | Chopin-style piano nocturne |
+| 13 | **Attic of Antiques** | Holiday ornaments → old trunk | 21 | 114s | Bats, spiders, rats | Bach-style pipe organ |
+| 14 | **The Whole House!!** | Everything → dive on the couch | 26 | 134s | All of them | Medley of every style |
 
-The basement is dark, with a pool of light that follows you around. In the music room, the floating platforms are piano keys.
+The basement is dark, with a pool of light that follows you around. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
 
 ---
 
@@ -99,6 +100,7 @@ All the music is generated live in the browser with the Web Audio API. There are
 | Bathroom | *Bathroom Amore* | Crooning "ohhh" voice, mandolin, accordion, strings, brushed drums |
 | Home Office | *Muzak for Meetings (Vol. 3)* | Wobbly pan flute, sour notes, late vibraphone, elevator ding |
 | Music Room | *Piano Practice (Mom Is Listening)* | Scales with mistakes, Für Elise, Twinkle, Mountain King, jazz, Jingle Bells, Bach, a spooky toccata, pop, Chopsticks, Ode to Joy |
+| Arts & Crafts | *Les Petits Peintres* | Faster French impressionist piece: rippling piano, flute, sliding chords, whole-tone harp sweeps |
 | Basement | *Nocturne in the Basement* | Romantic piano with rolling left hand and rubato |
 | Attic | *Attic Organ Fugue* | Baroque pipe organ in D minor with pedal bass |
 | Whole House | Medley | Switches style every four bars with a record scratch |
