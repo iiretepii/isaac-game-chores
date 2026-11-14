@@ -120,8 +120,56 @@ Sound effects include a slide whistle when you jump, a "boing" when you stomp, a
 
 ## How It's Built
 
-Everything (code, graphics and music) lives in `index.html`:
+The whole game (code, graphics, levels and music) lives in a single file, [`index.html`](index.html). There are no image files, no sound files, no game engine and no build step: open the file in a browser and it runs. The only thing loaded from the internet is the "Press Start 2P" pixel font, and the game falls back to a plain font without it.
 
-- **Graphics** are drawn pixel by pixel on a 480×272 canvas, scaled up to fit the screen. Sprites get an automatic dark outline. The screen has a light old-TV look (scan lines and darker corners).
-- **Levels** are generated from a fixed seed, so each level is the same every time you play. The generator keeps every gap and ledge within jumping distance.
-- **Music** is a small sequencer with a different set of synthesized instruments for each style.
+### The Game Loop
+
+- The game runs at a fixed **60 updates per second**. Each frame, the browser tells the game how much time has passed, and the game catches up in fixed 1/60-second steps. That keeps the physics the same on fast and slow computers.
+- The game is always in one **state**: splash screen, title, level intro, playing, paused, level complete, caught by the parents, or the ending. Each state has its own update and drawing code.
+- **Input** comes from the keyboard (arrows/WASD, Space, Enter, P, M) and, on phones and tablets, from on-screen touch buttons.
+
+### Graphics
+
+- Everything is drawn on a small **480×272-pixel canvas**, which is scaled up to fill the window with sharp, blocky pixels (no blurring), like an old game console.
+- Every sprite (the player, siblings, critters, chore items, drop-off spots) is **drawn in code** out of tiny colored rectangles. Nothing is loaded from image files.
+- To give sprites a crisp **dark outline**, each one is first drawn onto a hidden scratch canvas. A solid dark copy of its shape is then stamped one pixel up, down, left and right, and the sprite is drawn on top.
+- **Floor tiles** for each room get a texture (speckles, grass, carpet fringe, checkerboard, paint splatters) that is generated once and reused.
+- **Backgrounds** scroll slower than the foreground (parallax) to create a sense of depth. Each room has its own decorations: posters, furniture, a bubbling pool, a Tesla coil and more.
+- **Effects** include shadows under characters, squash and stretch when landing, dust puffs, sparkles on items, a flashlight in the dark basement, and a light "old TV" filter with scan lines and darker corners.
+
+### Physics and Controls
+
+- The level is a grid of **16×16-pixel tiles**: solid ground, one-way platforms you can jump up through, and LEGO bricks.
+- The player has gravity, acceleration and friction. A few tricks make jumping feel good:
+  - **Variable jump height:** let go of jump early for a small hop.
+  - **Coyote time:** you can still jump for a split second after running off a ledge.
+  - **Jump buffering:** pressing jump just before landing still counts.
+- **Moving platforms** carry you along when you stand on them.
+- Falling into a gap puts you back on the last safe ground and costs 5 seconds.
+
+### Level Generation
+
+- Levels aren't drawn by hand. A **level generator** builds each one from a list of building blocks: gaps, steps up and down, floating shelves, flat runs with critters or LEGO bricks, and gaps with moving platforms.
+- The generator only uses gaps and height changes that are **always jumpable**, so every level can be finished.
+- It uses a **seeded random number generator**: the same number always produces the same "random" choices, so each level comes out identical every time you play.
+- Chore items are spread **evenly** along the level, and the last stretch is always flat ground for the drop-off spot. Each level's settings (length, number of items, time limit, critter types and how many, gap size, LEGO bricks, moving platforms, theme and music) live in one list, which makes adding a new level quick.
+
+### Critters and Siblings
+
+- **Walking critters** patrol back and forth and turn around at walls, gaps and LEGO bricks. Dogs, huskies, Pomeranians, hamsters and squirrels also hop now and then.
+- **Flying critters** (bees, bats, soap bubbles, lightning bolts) bob up and down along a short path.
+- If you land on a critter from above, you stomp it. Any other touch knocks you back and costs 5 seconds.
+- **Isaac and Annie** use a simple helper AI. Each one picks the nearest item that the other isn't already going for, flies straight to it, grabs it, takes a short victory break, then picks the next one.
+
+### Music and Sound
+
+- **All music and sound effects are synthesized live** in the browser with the Web Audio API. Every instrument (rock guitar, organ, piano, steel drums, kazoo, accordion, the crooner's "ohhh" voice and so on) is built from basic sound waves shaped by filters and volume envelopes.
+- The rock guitars get their crunch from a **distortion** effect, and the echo on the piano, organ and strings comes from a **reverb** built from generated noise.
+- A small **music sequencer** plans notes a fraction of a second ahead, so the timing stays steady even when the game is busy. Each song is a "style" with its own tempo, chords, melody and instruments. Some songs speed up and slow down slightly for a more human feel.
+- The **Whole House medley** switches to the next style every four bars, with a record scratch in between.
+- The **attic fugue** was planned with a small helper script that picked chord notes for the inner voices and checked that no two voices move in parallel fifths or octaves. The finished notes are stored in the game as data.
+- Browsers don't allow sound until the player interacts with the page, so the first click, tap or key press turns the sound on.
+
+### The MP3 Recordings
+
+- The MP3s in the [`music/`](music/) folder were made by running the game's own music code in a hidden browser. The browser renders each song into an audio file faster than real time, without playing it out loud, and the files were then converted to MP3. That's why the recordings sound exactly like the game.
