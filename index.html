@@ -862,9 +862,10 @@ function updateEnemies(dt){
 }
 
 function updateSibs(dt){
+  if(P.speechT>0)P.speechT-=dt;
   const played=lvl.L.time-timeLeft; // siblings help for the WHOLE level: Sis rolls in first, Bro zooms in on his e-motorcycle
   SIBS.forEach((d,k)=>{if(played>=d.delay&&!sibs.some(s=>s.k===k)&&P.carry<lvl.total){
-    sibs.push({k,d,x:cam+(k?W+10:-20),y:40,face:1,anim:0,target:null,hop:0});say(d.line,2.5);
+    sibs.push({k,d,x:cam+(k?W+10:-20),y:40,face:1,anim:0,target:null,hop:0});say(d.line,2.5);P.speech="HEY PAL!";P.speechT=2.2;
     if(AC){const t0=AC.currentTime;if(k){tone(90,0.9,'sawtooth',0.06,600,t0,sfxGain);tone(180,0.9,'square',0.03,1200,t0,sfxGain);} // electric VRRRRM
       else [72,76,79,84].forEach((n,i)=>tone(mtof(n),0.12,'square',0.1,null,t0+i*0.07));}
     for(let i=0;i<14;i++)parts.push({x:P.x,y:P.y-10,vx:(Math.random()-.5)*200,vy:-Math.random()*150,life:1,col:k?"#43a047":"#ec407a"});}});
@@ -1442,6 +1443,9 @@ function drawPlay(t){
   const kg=groundBelow(P.x+P.w/2,P.y+P.h-2);if(kg!==null)shadow(P.x+P.w/2,kg,6*Math.max(0.4,1-(kg-P.y-P.h)/120),0.35);
   const st=P.sq||0,sx=1+st*0.35,sy=1-st*0.3+(!P.on&&P.vy<-100?0.12:0);
   drawKid(P.x,P.y,P.face,P.anim/2,!P.on,P.inv>0?P.inv:0,sx,sy);
+  if(P.speechT>0){g.font='8px '+FONT;const tw=Math.ceil(g.measureText(P.speech).width)+8,bx=Math.round(Math.max(cam+3,Math.min(cam+W-tw-3,P.x+P.w/2-tw/2))),byy=Math.round(P.y-24-Math.max(0,P.speechT-2)*20);
+    R(bx-1,byy-1,tw+2,16,"#000");R(bx,byy,tw,14,"#fff");{const px=Math.round(P.x+P.w/2);R(px-3,byy+14,6,2,"#fff");R(px-2,byy+16,4,2,"#fff");R(px-1,byy+18,2,1,"#000");}
+    text(P.speech,bx+tw/2,byy+3,8,"#e53935","center",false);}
   for(const p of parts){g.globalAlpha=Math.min(1,p.life*2);if(p.txt)text(p.txt,p.x,p.y,8,p.col);else{const z=p.life>0.5?3:2;R(p.x,p.y,z,z,p.col);}}
   g.globalAlpha=1;g.restore();
   if(timeLeft<15){g.globalAlpha=0.12+0.1*Math.sin(t*10);R(0,0,W,H,"#ff1744");g.globalAlpha=1;}

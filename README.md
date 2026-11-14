@@ -48,7 +48,7 @@ Your siblings help you with chores for the **entire game**, on every level:
 - **Annie** (little sister) rolls in on her skateboard right after the level starts ("I'll help all day! (for cookies)").
 - **Isaac** (big brother) zooms in a few seconds later on his **neon light-bike**: a sleek black futuristic bike with glowing red edges and disc wheels that leaves a glowing light trail behind it ("Vrrrm! Neon light-bike, baby!").
 
-They fly to the nearest items and collect them for you, taking a short victory break after each one, so you still need to do your share. Only you can carry everything to the drop-off spot.
+Whenever one of them shows up, you greet them with a "HEY PAL!" speech bubble. They fly to the nearest items and collect them for you, taking a short victory break after each one, so you still need to do your share. Only you can carry everything to the drop-off spot.
 
 ### Scoring
 
