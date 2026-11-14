@@ -43,12 +43,12 @@ The bar at the top of the screen shows the parents' car driving toward the house
 
 ### Sibling Helpers
 
-When you're running out of time, your siblings show up to help:
+Your siblings help you with chores for the **entire game**, on every level:
 
-- **Little Sis** arrives on a skateboard when **20%** of the time is left ("I'll help! (for a cookie)").
-- **Big Bro** joins at **10%** ("Ugh, fine. Move over.").
+- **Little Sis** rolls in on her skateboard right after the level starts ("I'll help all day! (for cookies)").
+- **Big Bro** zooms in a few seconds later on his **electric motorcycle**, with a VRRRM, glowing wheels and sparks ("Vrrrm! Electric motorcycle, baby!").
 
-They fly to the nearest items and collect them for you. You still have to reach the drop-off spot yourself.
+They fly to the nearest items and collect them for you, taking a short victory break after each one, so you still need to do your share. Only you can carry everything to the drop-off spot.
 
 ### Scoring
 

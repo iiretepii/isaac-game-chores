@@ -862,20 +862,22 @@ function updateEnemies(dt){
 }
 
 function updateSibs(dt){
-  const frac=timeLeft/lvl.L.time;
-  SIBS.forEach((d,k)=>{if(frac<=d.at&&!sibs.some(s=>s.k===k)&&P.carry<lvl.total){
+  const played=lvl.L.time-timeLeft; // siblings help for the WHOLE level: Sis rolls in first, Bro zooms in on his e-motorcycle
+  SIBS.forEach((d,k)=>{if(played>=d.delay&&!sibs.some(s=>s.k===k)&&P.carry<lvl.total){
     sibs.push({k,d,x:cam+(k?W+10:-20),y:40,face:1,anim:0,target:null,hop:0});say(d.line,2.5);
-    if(AC){const t0=AC.currentTime;[72,76,79,84].forEach((n,i)=>tone(mtof(n+k*2),0.12,'square',0.1,null,t0+i*0.07));}
+    if(AC){const t0=AC.currentTime;if(k){tone(90,0.9,'sawtooth',0.06,600,t0,sfxGain);tone(180,0.9,'square',0.03,1200,t0,sfxGain);} // electric VRRRRM
+      else [72,76,79,84].forEach((n,i)=>tone(mtof(n),0.12,'square',0.1,null,t0+i*0.07));}
     for(let i=0;i<14;i++)parts.push({x:P.x,y:P.y-10,vx:(Math.random()-.5)*200,vy:-Math.random()*150,life:1,col:k?"#43a047":"#ec407a"});}});
   for(const s of sibs){
+    if(s.rest>0){s.rest-=dt;s.hop+=dt*10;continue;} // short victory pause after each pickup
     if(!s.target||s.target.got){s.target=null;let best=1e9;for(const it of lvl.items){if(it.got||sibs.some(o=>o!==s&&o.target===it))continue;const dd=Math.abs(it.x-s.x)+Math.abs(it.y-s.y);if(dd<best){best=dd;s.target=it;}}}
     const tx=s.target?s.target.x:P.x-20*s.face,ty=s.target?s.target.y-4:P.y-10;
     const dx=tx-s.x,dy=ty-s.y,dist=Math.hypot(dx,dy)||1,sp=s.d.speed*(s.target?1:0.8);
     if(dist>3){s.x+=dx/dist*Math.min(sp*dt,dist);s.y+=dy/dist*Math.min(sp*dt,dist);s.face=dx>0?1:-1;}
     s.anim+=sp*dt;s.hop+=dt*10;
-    if(Math.random()<0.3)parts.push({x:s.x+5,y:s.y+15,vx:0,vy:20,life:0.3,col:"#fff9"});
+    if(Math.random()<0.3)parts.push({x:s.x+5-(s.k?s.face*9:0),y:s.y+(s.k?18:15),vx:-s.face*(s.k?40:0),vy:s.k?0:20,life:0.3,col:s.k?"#00e5ffaa":"#fff9"});
     if(s.target&&!s.target.got&&Math.abs(s.target.x+8-(s.x+5))<12&&Math.abs(s.target.y+8-(s.y+7))<14){
-      const it=s.target;it.got=true;P.carry++;score+=25;levelScore+=25;SFX.collect();puff(it.x+8,it.y+8,s.k?"#69f0ae":"#f48fb1",8);
+      const it=s.target;it.got=true;s.rest=2.5;P.carry++;score+=25;levelScore+=25;SFX.collect();puff(it.x+8,it.y+8,s.k?"#69f0ae":"#f48fb1",8);
       const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?s.d.name+"! "+left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);}
   }
 }
@@ -956,8 +958,8 @@ function drawKid(x,y,face,frame,air,flash,sx=1,sy=1){
 }
 const PAL_ME={shirt:"#e53935",shirtD:"#b71c1c",pants:"#1e3a8a",cap:"#ffd600",capH:"#fff59d",hair:"#6d4c41",logo:"#ffeb3b"};
 const SIBS=[
- {name:"LITTLE SIS",at:0.2,speed:95,pal:{shirt:"#ec407a",shirtD:"#ad1457",pants:"#ec407a",cap:null,hair:"#ff8f00",logo:"#fff",pig:1},line:"LITTLE SIS: I'LL HELP! (FOR A COOKIE)"},
- {name:"BIG BRO",at:0.1,speed:125,pal:{shirt:"#43a047",shirtD:"#1b5e20",pants:"#424242",cap:"#212121",capH:"#616161",hair:"#3e2723",logo:"#fff"},line:"BIG BRO: UGH, FINE. MOVE OVER."},
+ {name:"LITTLE SIS",delay:1.0,speed:36,pal:{shirt:"#ec407a",shirtD:"#ad1457",pants:"#ec407a",cap:null,hair:"#ff8f00",logo:"#fff",pig:1},line:"LITTLE SIS: I'LL HELP ALL DAY! (FOR COOKIES)"},
+ {name:"BIG BRO",delay:3.5,speed:44,pal:{shirt:"#43a047",shirtD:"#1b5e20",pants:"#424242",cap:"#212121",capH:"#616161",hair:"#3e2723",logo:"#fff"},line:"BIG BRO: VRRRM! ELECTRIC MOTORCYCLE, BABY!"},
 ];
 function drawKidRaw(x,y,face,frame,air,pal=PAL_ME){
   const f=face<0;const X=(dx,w)=>f?x+10-dx-w:x+dx;
@@ -1423,7 +1425,16 @@ function drawPlay(t){
   for(const e of lvl.enemies)if(Math.abs(e.x-cam-W/2)<W)drawEnemy(e,t);
   for(const s of sibs){const by=s.y+Math.sin(s.hop)*2;
     g.save();g.translate(Math.round(s.x),Math.round(by));g.scale(1,1);
-    outlined(0,0,(ox,oy)=>{drawKidRaw(ox,oy,s.face,s.anim/2,true,s.d.pal);R(ox-2,oy+15,15,2,s.k?"#1e88e5":"#ab47bc");R(ox,oy+17,2,2,"#212121");R(ox+9,oy+17,2,2,"#212121");});g.restore();
+    outlined(0,0,(ox,oy)=>{
+      if(s.k){ // Big Bro on an electric motorcycle
+        const f=s.face>0,F=(dx,w)=>f?ox+dx:ox+10-dx-w,sp=Math.floor(clock*12)%2;
+        drawKidRaw(ox,oy-3,s.face,0,false,s.d.pal);
+        R(F(-4,19),oy+11,19,4,"#263238");R(F(-3,17),oy+11,17,1,"#455a64");R(F(1,9),oy+12,9,2,"#00e5ff");R(F(4,3),oy+12,2,2,"#ffeb3b");R(F(6,2),oy+13,2,1,"#ffeb3b"); // body + lightning stripe
+        R(F(11,2),oy+6,2,6,"#90a4ae");R(F(10,4),oy+5,4,1,"#90a4ae");R(F(14,2),oy+11,2,2,"#fff59d");                                                 // handlebars + headlight
+        for(const wx of [-5,10]){R(F(wx,6),oy+14,6,6,"#212121");R(F(wx+1,4),oy+15,4,4,"#424242");R(F(wx+2,2),oy+16,2,2,sp?"#00e5ff":"#b0bec5");}
+        if(sp){R(F(-8,3),oy+16,3,1,"#00e5ff");R(F(-7,2),oy+18,2,1,"#80d8ff");}                                                                 // electric sparks
+      }else{drawKidRaw(ox,oy,s.face,s.anim/2,true,s.d.pal);R(ox-2,oy+15,15,2,"#ab47bc");R(ox,oy+17,2,2,"#212121");R(ox+9,oy+17,2,2,"#212121");}
+    });g.restore();
     text(s.d.name,s.x+5,by-12,6,s.k?"#69f0ae":"#f48fb1","center");}
   const kg=groundBelow(P.x+P.w/2,P.y+P.h-2);if(kg!==null)shadow(P.x+P.w/2,kg,6*Math.max(0.4,1-(kg-P.y-P.h)/120),0.35);
   const st=P.sq||0,sx=1+st*0.35,sy=1-st*0.3+(!P.on&&P.vy<-100?0.12:0);
