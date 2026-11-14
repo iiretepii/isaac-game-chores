@@ -865,7 +865,7 @@ function updateSibs(dt){
   if(P.speechT>0)P.speechT-=dt;
   const played=lvl.L.time-timeLeft; // siblings help for the WHOLE level: Sis rolls in first, Bro zooms in on his e-motorcycle
   SIBS.forEach((d,k)=>{if(played>=d.delay&&!sibs.some(s=>s.k===k)&&P.carry<lvl.total){
-    sibs.push({k,d,x:cam+(k?W+10:-20),y:40,face:1,anim:0,target:null,hop:0});say(d.line,2.5);P.speech="HEY PAL!";P.speechT=2.2;
+    sibs.push({k,d,x:cam+(k?W+10:-20),y:40,face:1,anim:0,target:null,hop:0});say(d.line,2.5);P.speech=GREETINGS[Math.random()*GREETINGS.length|0];P.speechT=2.2;
     if(AC){const t0=AC.currentTime;if(k){tone(90,0.9,'sawtooth',0.06,600,t0,sfxGain);tone(180,0.9,'square',0.03,1200,t0,sfxGain);} // electric VRRRRM
       else [72,76,79,84].forEach((n,i)=>tone(mtof(n),0.12,'square',0.1,null,t0+i*0.07));}
     for(let i=0;i<14;i++)parts.push({x:P.x,y:P.y-10,vx:(Math.random()-.5)*200,vy:-Math.random()*150,life:1,col:k?"#43a047":"#ec407a"});}});
@@ -958,6 +958,9 @@ function drawKid(x,y,face,frame,air,flash,sx=1,sy=1){
   outlined(0,0,(ox,oy)=>drawKidRaw(ox,oy,face,frame,air),sx,sy);g.restore();
 }
 const PAL_ME={shirt:"#e53935",shirtD:"#b71c1c",pants:"#1e3a8a",cap:"#ffd600",capH:"#fff59d",hair:"#6d4c41",logo:"#ffeb3b"};
+// goofy kid greetings for when Isaac or Annie shows up (with a sprinkle of Gen Alpha slang)
+const GREETINGS=["HEY PAL!","YOOO!","WASSUP!","HIYA!","SUP, NOODLE?","LET HIM COOK!","NO CAP, HI!","W SIBLING!","SKIBIDI HI!","ITS GIVING HELP!",
+ "HOWDY, PARTNER!","AYOOO!","BIG W!","YOU'RE GOATED!","SLAY!","BET!","OK, RIZZ!","FR FR, HI!","BRO-TATO CHIP!","HEY BESTIE!"];
 const SIBS=[
  {name:"ANNIE",delay:1.0,speed:36,pal:{shirt:"#ec407a",shirtD:"#ad1457",pants:"#ec407a",cap:null,hair:"#ff8f00",logo:"#fff",pig:1},line:"ANNIE: I'LL HELP ALL DAY! (FOR COOKIES)"},
  {name:"ISAAC",delay:3.5,speed:44,pal:{shirt:"#43a047",shirtD:"#1b5e20",pants:"#424242",cap:"#212121",capH:"#616161",hair:"#3e2723",logo:"#fff"},line:"ISAAC: VRRRM! NEON LIGHT-BIKE, BABY!"},
