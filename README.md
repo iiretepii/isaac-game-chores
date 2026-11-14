@@ -64,8 +64,8 @@ Each level is longer, with more items, critters and gaps than the one before. La
 
 | # | Level | Chore | Items | Time | Critters | Music |
 |---|---|---|---|---|---|---|
-| 1 | **Isaac's Room** | Toy dragons → toy chest | 6 | 70s | Dust bunnies | Rock |
-| 2 | **Annie's Room** | Dolls → castle doll house | 7 | 72s | Dust bunnies, cats | Fairy-tale princess waltz |
+| 1 | **Isaac's Room** | Blocky toy dragons → toy chest | 6 | 70s | Blocky zombies, skeletons, spiders and hissing bush-blocks | Rock |
+| 2 | **Annie's Room** | Dolls → castle doll house | 7 | 72s | A tabby cat, a husky and a Pomeranian | Fairy-tale princess waltz |
 | 3 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 8 | 75s | Dust bunnies, cockroaches | Swing jazz |
 | 4 | **Living Room Lego-Land** | Toys → plastic toy tote | 10 | 80s | Robot vacuums, cats | Bubblegum pop |
 | 5 | **Backyard Bonanza** | Leaves → leaf bag | 12 | 85s | Dogs, bees | Boom-bap hip hop |

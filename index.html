@@ -607,9 +607,9 @@ function scheduler(){
 
 // ================= LEVEL DATA =================
 const LEVELS=[
- {name:"ISAAC'S ROOM",chore:"Put the toy dragons back in the toy chest",drop:"toychest",item:"dragon",count:6,time:70,len:85,gap:1,enemies:["dust"],density:.35,lego:0,movers:0,theme:"bedroom",music:"rock",
+ {name:"ISAAC'S ROOM",chore:"Put the toy dragons back in the toy chest",drop:"toychest",item:"dragon",count:6,time:70,len:85,gap:1,enemies:["bzombie","bskel","bspider","hisser"],density:.4,lego:0,movers:0,theme:"bedroom",music:"rock",
   text:"UNCLE PETE: Isaac, your dragons escaped AGAIN. Back in the toy chest before Mom sees!"},
- {name:"ANNIE'S ROOM",chore:"Put the dolls back in the doll house",drop:"dollhouse",item:"doll",count:7,time:72,len:92,gap:1,enemies:["dust","cat"],density:.4,lego:0,movers:0,theme:"annie",music:"princess",
+ {name:"ANNIE'S ROOM",chore:"Put the dolls back in the doll house",drop:"dollhouse",item:"doll",count:7,time:72,len:92,gap:1,enemies:["tabby","husky","pom"],density:.45,lego:0,movers:0,theme:"annie",music:"princess",
   text:"MOM: Annie, your dolls are having a party ALL over the floor. Doll house, now!"},
  {name:"KITCHEN CATASTROPHE",chore:"Load the dirty dishes into the dishwasher",drop:"dishwasher",item:"dish",count:8,time:75,len:105,gap:2,enemies:["dust","roach"],density:.45,lego:0,movers:0,theme:"kitchen",music:"jazz",
   text:"UNCLE PETE: Why is there a pancake on the ceiling? Fix it."},
@@ -635,7 +635,7 @@ const LEVELS=[
   text:"UNCLE PETE: The washer is in the basement. Don't mind the spiders. Mostly."},
  {name:"ATTIC OF ANTIQUES",chore:"Pack the ornaments in the old trunk",drop:"trunk",item:"ornament",count:22,time:118,len:185,gap:3,enemies:["bat","spider","rat"],density:.7,lego:.35,movers:1,theme:"attic",music:"baroque",
   text:"MOM: Holiday ornaments go back in the attic trunk. Watch out for bats!"},
- {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",count:28,time:140,len:250,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
+ {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",count:28,time:140,len:250,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
   text:"BOTH: We're turning onto our street RIGHT NOW."},
 ];
 const THEMES={
@@ -796,12 +796,12 @@ function updateEnemies(dt){
     if(!e.alive){e.dead-=dt;continue;}
     if(Math.abs(e.x-P.x)>W)continue;
     e.t+=dt;
-    const sp={dust:30,roach:55,roomba:75,cat:50,dog:90,rat:65,bee:40,spider:60,bat:55,bubble:35,zap:65,ant:70,hamster:85}[e.type]*(1+levelIdx*0.06);
+    const sp={dust:30,roach:55,roomba:75,cat:50,dog:90,rat:65,bee:40,spider:60,bat:55,bubble:35,zap:65,bzombie:32,bskel:42,bspider:62,hisser:38,tabby:50,husky:72,pom:80,ant:70,hamster:85}[e.type]*(1+levelIdx*0.06);
     if((e.type==='bee'||e.type==='bat'||e.type==='bubble'||e.type==='zap')){e.x+=e.vx*sp*dt;e.y=e.by+Math.sin(e.t*3)*22+(e.type==='zap'?Math.sin(e.t*37)*2:0);if(Math.abs(e.x-e.ox)>60||e.ox===undefined){if(e.ox===undefined)e.ox=e.x;else{e.vx*=-1;e.x+=e.vx*2;}}}
     else{
       if(e.type==='cat'&&Math.sin(e.t*1.3)>0.6){/* cat sits and licks paw */}
       else e.x+=e.vx*sp*dt;
-      if((e.type==='dog'||e.type==='hamster')&&e.vy===0&&Math.random()<dt*0.8)e.vy=-300;
+      if((e.type==='dog'||e.type==='hamster'||e.type==='husky'||e.type==='pom')&&e.vy===0&&Math.random()<dt*0.8)e.vy=-300;
       e.vy+=1300*dt;e.y+=e.vy*dt;
       const r=Math.floor((e.y+e.h)/T),cA=Math.floor((e.x+2)/T),cB=Math.floor((e.x+e.w-2)/T);
       if(solid(cA,r)||solid(cB,r)){e.y=r*T-e.h;e.vy=0;}
@@ -986,11 +986,15 @@ function drawItemRaw(k,x,y){
     R(x+2,y+4,12,11,"#cfd8dc");R(x+2,y+4,12,2,"#eceff1");R(x+3,y+5,10,1,mc);R(x+2,y+14,12,1,"#90a4ae");R(x+12,y+6,2,9,"#b0bec5");
     R(x+4,y+8,7,5,mc);R(x+5,y+9,2,1,shade(mc,50));R(x+4,y+12,7,1,dk);
     R(x+3,y+6,2,4,mc);R(x+3,y+10,1,2,mc);R(x+10,y+6,1,3,mc);}
-  else if(k==='dragon'){ // little green toy dragon with wings and a puff of fire
-    R(x+3,y+7,9,6,"#43a047");R(x+9,y+3,5,5,"#43a047");R(x+13,y+5,2,2,"#43a047");R(x+1,y+10,3,2,"#43a047");R(x,y+8,2,2,"#2e7d32");
-    R(x+4,y+11,6,2,"#c5e1a5");R(x+4,y+13,2,2,"#2e7d32");R(x+9,y+13,2,2,"#2e7d32");R(x+11,y+4,1,1,"#000");R(x+10,y+1,1,2,"#fff59d");R(x+12,y+1,1,2,"#fff59d");
-    R(x+4,y+3,4,4,"#81c784");R(x+3,y+2,2,2,"#81c784");R(x+5,y+4,1,3,"#2e7d32");R(x+6,y+8,1,1,"#2e7d32");R(x+8,y+8,1,1,"#2e7d32");
-    if(Math.floor(performance.now()/300)%3===0){R(x+15,y+5,2,2,"#ff7043");R(x+16,y+4,1,1,"#ffeb3b");}}
+  else if(k==='dragon'){ // blocky voxel-style toy dragon: cube head, square wings, pixel eyes
+    const G="#4caf50",L2="#81c784",Dk="#2e7d32",W="#7e57c2";
+    R(x+2,y+7,8,6,G);R(x+2,y+7,8,2,L2);R(x+2,y+11,8,2,Dk);           // cube body (light top, dark bottom)
+    R(x+9,y+3,6,6,G);R(x+9,y+3,6,2,L2);R(x+13,y+5,2,2,"#ffffff");R(x+14,y+6,1,1,"#000");R(x+10,y+7,5,2,Dk); // cube head
+    R(x+14,y+8,2,1,"#ffccbc");R(x+10,y+1,2,2,"#fff59d");R(x+13,y+1,2,2,"#fff59d");  // snout + horns
+    R(x+3,y+3,4,4,W);R(x+3,y+3,4,1,"#b39ddb");R(x+1,y+1,3,3,W);       // square wing
+    R(x,y+9,2,2,G);R(x-2,y+10,2,2,Dk);                                 // blocky tail
+    R(x+3,y+13,2,2,Dk);R(x+8,y+13,2,2,Dk);
+    if(Math.floor(performance.now()/300)%3===0){R(x+16,y+7,2,2,"#ff7043");R(x+18,y+6,2,2,"#ffeb3b");}}
   else if(k==='doll'){ // fashion doll: long blonde hair, pink dress
     R(x+5,y,6,2,"#ffd54f");R(x+4,y+1,8,9,"#ffd54f");R(x+6,y+2,4,4,"#ffccbc");R(x+6,y+3,1,1,"#1e88e5");R(x+9,y+3,1,1,"#1e88e5");R(x+7,y+5,2,1,"#e91e63");
     R(x+7,y+6,2,1,"#ffccbc");R(x+5,y+7,6,3,"#ec407a");R(x+3,y+7,2,4,"#ffccbc");R(x+11,y+7,2,4,"#ffccbc");R(x+4,y+10,8,3,"#f06292");R(x+3,y+12,10,1,"#f8bbd0");
@@ -1098,6 +1102,27 @@ function drawEnemyRaw(e,t,x,y){
     case'cat':R(x+1,y+5,11,6,"#ff9800");R(x+(f?9:0),y+1,6,6,"#ff9800");R(x+(f?9:0),y,2,2,"#ff9800");R(x+(f?13:4),y,2,2,"#ff9800");R(x+(f?0:12),y+2+bob,2,5,"#e65100");R(x+2,y+11,2,1,"#e65100");R(x+9,y+11,2,1,"#e65100");R(x+(f?11:2),y+3,1,1,"#000");R(x+(f?13:0),y+3,1,1,"#000");break;
     case'dog':R(x,y+4,14,6,"#8d6e63");R(x+(f?10:-2),y,7,6,"#8d6e63");R(x+(f?10:3),y,2,4,"#5d4037");R(x+(f?14:-1),y+4,2,3+bob,"#f06292");R(x+(f?14:-2),y+2,1,1,"#000");R(x+1,y+10,2,2,"#5d4037");R(x+11,y+10,2,2,"#5d4037");R(x+(f?-2:14),y+3-bob,2,2,"#8d6e63");break;
     case'bee':R(x+2,y+4,10,7,"#ffd600");R(x+5,y+4,2,7,"#212121");R(x+9,y+4,1,7,"#212121");R(x+3,y-1+bob,4,4,"#e3f2fd");R(x+7,y-1-bob+1,4,4,"#e3f2fd");R(x+(f?12:0),y+6,2,2,"#000");R(x+(f?-1:13),y+7,2,1,"#212121");break;
+    case'bzombie':{const a=bob;R(x+3,y-6,8,8,"#558b2f");R(x+3,y-6,8,2,"#33691e");R(x+4,y-3,2,2,"#1b1b1b");R(x+8,y-3,2,2,"#1b1b1b");R(x+5,y,4,1,"#33691e");
+      R(x+3,y+2,8,6,"#00897b");R(x+(f?11:-3),y+2+a,6,2,"#558b2f");R(x+(f?11:-3),y+4-a,6,2,"#00897b");R(x+3,y+8,8,4,"#283593");R(x+3,y+12,3,1,"#424242");R(x+8,y+12,3,1,"#424242");break;}
+    case'bskel':{R(x+3,y-6,8,8,"#e0e0e0");R(x+3,y-6,8,1,"#fafafa");R(x+4,y-3,2,2,"#212121");R(x+8,y-3,2,2,"#212121");R(x+5,y,4,1,"#757575");
+      R(x+5,y+2,4,6,"#bdbdbd");R(x+4,y+3,6,1,"#e0e0e0");R(x+4,y+5,6,1,"#e0e0e0");R(x+(f?10:1),y+3,1,5,"#e0e0e0");R(x+5,y+8,1,4+bob,"#e0e0e0");R(x+8,y+8,1,5-bob,"#e0e0e0");
+      R(x+(f?12:0),y+1,1,8,"#6d4c41");R(x+(f?13:-1),y+2,1,6,"#9e9e9e");break;}
+    case'bspider':{R(x+1,y+3,12,6,"#37474f");R(x+1,y+3,12,1,"#546e7a");R(x+(f?9:1),y+4,4,4,"#263238");R(x+(f?10:2),y+5,1,1,"#ff1744");R(x+(f?12:4),y+5,1,1,"#ff1744");R(x+(f?11:3),y+6,1,1,"#ff1744");
+      for(let k2=0;k2<4;k2++){R(x+1+k2*3,y+9,2,1,"#263238");R(x+k2*3+((k2+bob)%2),y+10,1,2,"#263238");R(x+1+k2*3,y+2,2,1,"#263238");R(x+k2*3+((k2+bob)%2),y,1,2,"#263238");}break;}
+    case'hisser':{const near=Math.abs(e.x-P.x)<50&&Math.floor(t*10)%2; // original leafy block-bush that hisses and flashes when you get close
+      const c1=near?"#ffffff":"#43a047",c2=near?"#e0e0e0":"#2e7d32";R(x+2,y-8,10,20,c1);for(let k2=0;k2<10;k2++)R(x+2+((k2*7)%9),y-7+((k2*5)%18),2,2,c2);
+      R(x+3,y-5,3,1,"#000");R(x+8,y-5,3,1,"#000");R(x+4,y-4,2,2,"#ffeb3b");R(x+8,y-4,2,2,"#ffeb3b");R(x+4,y,6,1,"#000");R(x+5,y+1,1,1,"#000");R(x+8,y+1,1,1,"#000");
+      R(x+2,y+12,3,1+bob,"#1b5e20");R(x+9,y+12,3,2-bob,"#1b5e20");break;}
+    case'tabby':{const O1="#fb8c00",S1="#e65100";R(x+1,y+5,11,6,O1);for(let k2=0;k2<4;k2++)R(x+2+k2*3,y+5,1,4,S1);R(x+3,y+8,6,3,"#fff3e0");
+      R(x+(f?9:0),y,6,6,O1);R(x+(f?9:0),y-2,2,2,O1);R(x+(f?13:4),y-2,2,2,O1);R(x+(f?10:1),y-1,1,1,"#f8bbd0");R(x+(f?13:4),y-1,1,1,"#f8bbd0");R(x+(f?11:2),y,2,1,S1);
+      R(x+(f?10:1),y+2,1,2,"#43a047");R(x+(f?13:4),y+2,1,2,"#43a047");R(x+(f?12:3),y+4,1,1,"#f06292");R(x+(f?14:0),y+4,1,1,"#fff");R(x+(f?8:5),y+4,1,1,"#fff");
+      R(x+(f?-1:12),y+1+bob,2,6,O1);R(x+(f?-1:12),y+1+bob,2,1,S1);R(x+2,y+11,2,1,"#fff3e0");R(x+9,y+11,2,1,"#fff3e0");break;}
+    case'husky':{const Gy="#78909c";R(x,y+4,13,6,Gy);R(x+2,y+7,9,3,"#fafafa");R(x+(f?8:-1),y-1,7,7,Gy);R(x+(f?9:0),y+2,5,4,"#fafafa");R(x+(f?8:-1),y-3,2,3,Gy);R(x+(f?13:4),y-3,2,3,Gy);
+      R(x+(f?9:0),y+1,1,1,"#29b6f6");R(x+(f?12:3),y+1,1,1,"#29b6f6");R(x+(f?14:-2),y+3,2,2,"#212121");R(x+(f?12:1),y+5,2,1+bob,"#f06292");
+      R(x+(f?-3:12),y+1-bob,3,3,Gy);R(x+(f?-3:13),y+1-bob,2,1,"#fafafa");R(x+1,y+10,2,2,"#fafafa");R(x+10,y+10,2,2,"#fafafa");break;}
+    case'pom':{const P1="#ffb74d",P2="#ffe0b2";R(x+1,y+3,12,8,P1);R(x,y+5,14,4,P1);R(x+2,y+2,10,1,P2);R(x+3,y+4,8,2,P2);
+      R(x+(f?8:2),y+4,1,1,"#000");R(x+(f?11:5),y+4,1,1,"#000");R(x+(f?9:3),y+6,2,1,"#000");R(x+(f?10:4),y+7,1,1+bob,"#f06292");
+      R(x+(f?8:2),y+1,2,2,P1);R(x+(f?11:5),y+1,2,2,P1);R(x+(f?-2:12),y+2+bob,4,4,P2);R(x+3,y+11,2,1,P1);R(x+9,y+11,2,1,P1);break;}
     case'zap':{const j=Math.floor(t*20)%2; // little lightning bolt with a grin, crackling
       R(x+6,y,6,2,"#ffeb3b");R(x+4,y+2,6,2,"#ffeb3b");R(x+2,y+4,10,2,"#ffeb3b");R(x+6,y+6,6,2,"#ffeb3b");R(x+4,y+8,6,2,"#ffeb3b");R(x+2,y+10,6,2,"#ffeb3b");R(x+2,y+12,3,2,"#ffeb3b");
       R(x+7,y,4,1,"#fffde7");R(x+3,y+4,8,1,"#fffde7");R(x+5,y+3,1,1,"#000");R(x+8,y+3,1,1,"#000");R(x+4,y+5,5,1,"#f57f17");
@@ -1142,11 +1167,15 @@ function drawBackground(th,t){
   for(let i=start-1;i<start+5;i++){
     const dx=i*160-p,k=((i%4)+4)%4;
     const thn=lvl.L.theme;
-    if(thn==='bedroom'){
-      if(k===0){R(dx+20,40,60,50,"#fff");R(dx+24,44,52,42,"#90caf9");R(dx+49,44,2,42,"#fff");R(dx+24,64,52,2,"#fff");}
-      if(k===1){R(dx+20,50,40,54,"#ffeb3b");text("ROCK",dx+24,60,8,"#e53935","left",false);text("ON!",dx+28,76,8,"#1e88e5","left",false);}
-      if(k===2){R(dx+10,130,90,40,"#1565c0");R(dx+10,120,24,18,"#fff");R(dx+10,166,4,30,"#5d4037");R(dx+96,166,4,30,"#5d4037");}
-      if(k===3){R(dx+30,46,56,44,"#263238");R(dx+46,60,22,14,"#43a047");R(dx+62,54,10,10,"#43a047");R(dx+36,54,12,10,"#81c784");R(dx+72,58,8,4,"#ff7043");R(dx+78,57,4,6,"#ffeb3b");text("DRAGONS",dx+33,78,6,"#ffd54f","left",false);}
+    if(thn==='bedroom'){ // blocky voxel-world decorations
+      const blk=(bx,by,top,side,spk)=>{R(bx,by,16,16,side);R(bx,by,16,4,top);for(let q=0;q<4;q++)R(bx+((q*5+3)%13),by+5+((q*7)%9),2,2,spk);R(bx,by+15,16,1,"#0003");};
+      if(k===0){for(let r2=0;r2<3;r2++)for(let c2=0;c2<4;c2++)blk(dx+10+c2*16,122+r2*16,r2===0?"#66bb6a":"#8d6e63",r2===0?"#8d6e63":"#795548",r2===0?"#a1887f":"#5d4037");
+        blk(dx+42,106,"#66bb6a","#8d6e63","#a1887f");R(dx+80,90,6,6,"#ffcc80");R(dx+81,96,4,26,"#6d4c41");} // grass & dirt blocks + a torch
+      if(k===1){R(dx+20,40,56,56,"#5d4037");R(dx+23,43,50,50,"#90a4ae");for(let q=0;q<5;q++){R(dx+28+q*8,72-q*8,6,6,"#4dd0e1");}R(dx+38,52,24,6,"#4dd0e1");R(dx+28,80,6,6,"#6d4c41");text("MINE!",dx+30,46,6,"#fff","left",false);} // pickaxe poster
+      if(k===2){R(dx+10,130,90,40,"#c62828");R(dx+10,130,90,6,"#ef5350");R(dx+10,120,24,18,"#fafafa");R(dx+10,166,4,30,"#5d4037");R(dx+96,166,4,30,"#5d4037");} // blocky red bed
+      if(k===3){for(let r2=0;r2<2;r2++)for(let c2=0;c2<2;c2++){const ox=dx+40+c2*16,oy=50+r2*16;R(ox,oy,16,16,"#9e9e9e");R(ox,oy,16,1,"#bdbdbd");
+          [[3,4],[9,9],[5,11],[11,3]].forEach(([a,b2])=>R(ox+a,oy+b2,3,3,(r2+c2)%2?"#26c6da":"#ffd54f"));}
+        R(dx+92,60,6,6,"#ffcc80");R(dx+93,66,4,22,"#6d4c41");g.globalAlpha=0.2;g.fillStyle='#ffcc80';g.beginPath();g.arc(dx+95,63,16,0,7);g.fill();g.globalAlpha=1;} // ore blocks + torch
     }else if(thn==='annie'){
       if(k===0){R(dx+10,90,100,80,"#fff");R(dx+6,84,108,8,"#f06292");g.fillStyle='#fce4ec';g.beginPath();g.moveTo(dx+10,90);g.quadraticCurveTo(dx+60,20,dx+110,90);g.fill();R(dx+20,130,80,30,"#e1bee7");R(dx+20,124,26,12,"#fff");}
       if(k===1){R(dx+30,40,50,56,"#fff");R(dx+34,44,42,48,"#b39ddb");R(dx+46,60,18,26,"#f8bbd0");R(dx+42,56,26,6,"#f8bbd0");R(dx+46,52,4,6,"#f8bbd0");R(dx+60,52,4,6,"#f8bbd0");R(dx+53,48,4,8,"#f8bbd0");text("CASTLE",dx+38,84,6,"#4a148c","left",false);}
