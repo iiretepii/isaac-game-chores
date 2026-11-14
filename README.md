@@ -76,9 +76,10 @@ Each level is longer, with more items, critters and gaps than the one before. La
 | 10 | **Music Room Mayhem** | Old piano scores → bookshelf | 19 | 103s | Cats, spiders, cockroaches | Kid practicing piano |
 | 11 | **Arts & Crafts Chaos** | Paint buckets → shelves | 20 | 107s | Ants, cats, soap bubbles | Lively French impressionist |
 | 12 | **Tech Room Trouble** | Robot parts → robot workbench | 21 | 111s | Little lightning bolts | The silliest song ever |
-| 13 | **The Spooky Basement** | Wet shirts → dryer | 22 | 115s | Spiders, rats, dust bunnies | Chopin-style piano nocturne |
-| 14 | **Attic of Antiques** | Holiday ornaments → old trunk | 23 | 121s | Bats, spiders, rats | Bach-style pipe organ |
-| 15 | **The Whole House!!** | Everything → dive on the couch | 24 | 140s | All of them | Medley of every style |
+| 13 | **Workout Room Workout** | Weights → weight rack | 22 | 114s | Rats, cats, dogs, dust mites | High-octane workout anthem |
+| 14 | **The Spooky Basement** | Wet shirts → dryer | 23 | 118s | Spiders, rats, dust bunnies | Chopin-style piano nocturne |
+| 15 | **Attic of Antiques** | Holiday ornaments → old trunk | 24 | 124s | Bats, spiders, rats | Bach-style pipe organ |
+| 16 | **The Whole House!!** | Everything → dive on the couch | 25 | 143s | All of them | Medley of every style |
 
 The basement is dark, with a pool of light that follows you around. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
 
@@ -105,10 +106,11 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Music Room | [*Piano Practice (Mom Is Listening)*](music/10-music-room.mp3) | Scales with mistakes, Für Elise, Twinkle, Mountain King, jazz, Jingle Bells, Bach, a spooky toccata, pop, Chopsticks, Ode to Joy |
 | Arts & Crafts | [*Les Petits Peintres*](music/11-arts-and-crafts.mp3) | Faster French impressionist piece: rippling piano, flute, sliding chords, whole-tone harp sweeps |
 | Tech Room | [*Beep Boop Banana Boogie*](music/12-tech-room.mp3) | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |
-| Basement | [*Nocturne in the Basement*](music/13-basement.mp3) | Romantic piano with rolling left hand and rubato |
-| Attic | [*Little Fugue in the Attic*](music/14-attic.mp3) | A four-voice pipe-organ fugue in D minor (about a minute): entries in alto, soprano, tenor and bass, three episodes, a middle entry, a low bass entry, a trill over a dominant pedal and a Picardy-third ending |
-| Whole House | [*Medley of every style*](music/15-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
-| Ending | [*Medley of every style*](music/15-whole-house-medley.mp3) | Same medley as the Whole House |
+| Workout Room | [*Maximum Reps!!!*](music/13-workout-room.mp3) | Pounding four-on-the-floor beat, rolling bass, supersaw synth riff, coach's whistle, "HEY!" shouts and a snare-roll build-up into a big drop |
+| Basement | [*Nocturne in the Basement*](music/14-basement.mp3) | Romantic piano with rolling left hand and rubato |
+| Attic | [*Little Fugue in the Attic*](music/15-attic.mp3) | A four-voice pipe-organ fugue in D minor (about a minute): entries in alto, soprano, tenor and bass, three episodes, a middle entry, a low bass entry, a trill over a dominant pedal and a Picardy-third ending |
+| Whole House | [*Medley of every style*](music/16-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
+| Ending | [*Medley of every style*](music/16-whole-house-medley.mp3) | Same medley as the Whole House |
 
 Sound effects include a slide whistle when you jump, a "boing" when you stomp, a car horn as the parents get close, a kazoo fanfare when you finish a level and a sad trombone when you get caught.
 
