@@ -8,7 +8,7 @@
 
 ---
 
-## How to play
+## How to Play
 
 The whole game is a single file, `index.html`. Open it in any modern web browser (Chrome, Edge, Firefox, Safari) on a computer, tablet or phone. No install or internet connection is needed, except to load the pixel font (it falls back to a plain font offline).
 
@@ -24,14 +24,14 @@ The whole game is a single file, `index.html`. Open it in any modern web browser
 
 Browsers don't allow sound until you interact with the page, so the title screen asks you to **click or press any key for sound** first. After that, press Enter (or tap) to start.
 
-### Goal of each level
+### Goal of Each Level
 
 1. Read the text message from Mom or Uncle Pete telling you the chore.
 2. Collect every chore item scattered around the level. The counter in the top-left shows how many you have.
 3. Bring them to the drop-off spot at the end of the level (it glows and says **HERE!** once you have everything).
 4. Do it before the timer runs out.
 
-### The parents' car
+### The Parents' Car
 
 The bar at the top of the screen shows the parents' car driving toward the house. When the timer reaches 0 the car arrives, the parents yell (for example "YOU'RE GROUNDED UNTIL YOU'RE 40!") and you retry the level. In the last 15 seconds the screen flashes red and the music speeds up, and with 10 seconds left you hear a **HONK HONK!**
 
@@ -41,7 +41,7 @@ The bar at the top of the screen shows the parents' car driving toward the house
 - **LEGO bricks** on the floor cost 5 seconds if you step on them.
 - **Falling into a gap** costs 5 seconds and puts you back on the last safe ground.
 
-### Sibling helpers
+### Sibling Helpers
 
 When you're running out of time, your siblings show up to help:
 
@@ -58,7 +58,7 @@ They fly to the nearest items and collect them for you. You still have to reach 
 
 ---
 
-## The levels
+## The Levels
 
 Each level is longer, with more items, critters and gaps than the one before. Later levels add LEGO bricks and moving platforms. Every level has its own room, chore and music style.
 
@@ -85,7 +85,7 @@ The basement is dark, with a pool of light that follows you around. In the music
 
 ---
 
-## The music
+## The Music
 
 🎧 **Click any song name below to listen to it!** Each one opens and plays an MP3 recording right in your browser (the files live in the [`music/`](music/) folder).
 
@@ -109,14 +109,14 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Workout Room | [*Maximum Reps!!!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/13-workout-room.mp3) | Pounding four-on-the-floor beat, rolling bass, supersaw synth riff, coach's whistle, "HEY!" shouts and a snare-roll build-up into a big drop |
 | Basement | [*Nocturne in the Basement*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/14-basement.mp3) | Romantic piano with rolling left hand and rubato |
 | Attic | [*Little Fugue in the Attic*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/15-attic.mp3) | A four-voice pipe-organ fugue in D minor (about a minute): entries in alto, soprano, tenor and bass, three episodes, a middle entry, a low bass entry, a trill over a dominant pedal and a Picardy-third ending |
-| Whole House | [*Medley of every style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/16-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
-| Ending | [*Medley of every style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/16-whole-house-medley.mp3) | Same medley as the Whole House |
+| Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/16-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
+| Ending | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/16-whole-house-medley.mp3) | Same medley as the Whole House |
 
 Sound effects include a slide whistle when you jump, a "boing" when you stomp, a car horn as the parents get close, a kazoo fanfare when you finish a level and a sad trombone when you get caught.
 
 ---
 
-## How it's built
+## How It's Built
 
 Everything (code, graphics and music) lives in `index.html`:
 
