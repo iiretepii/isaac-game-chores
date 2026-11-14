@@ -852,7 +852,7 @@ function drawTitle(t){
   if(Math.floor(t*2)%2)text("PRESS ENTER / TAP TO START",W/2,200,8,"#76ff03","center");
   text("ARROWS/WASD MOVE  SPACE JUMP  M MUTE  P PAUSE",W/2,226,6,"#aaa","center",false);
   text("STOMP CRITTERS. DODGE LEGOS. DON'T FALL.",W/2,240,6,"#aaa","center",false);
-  text("(C)1996 CHORE-SOFT ... JUST KIDDING",W/2,258,6,"#666","center",false);
+  text("MADE BY ISAAC HELTON & PETE O'CONNELL",W/2,256,6,"#ffeb3b","center");
   g.drawImage(fx,0,0);
 }
 
@@ -900,6 +900,7 @@ function drawEnd(t){
   text("FINAL SCORE: "+score,W/2,160,10,"#76ff03","center");
   drawKid(W/2-5,190-Math.abs(Math.sin(t*6))*16,Math.sin(t*2)>0?1:-1,t*40,true,0);
   if(stateT>1.5&&Math.floor(t*2)%2)text("ENTER / TAP: PLAY AGAIN",W/2,226,8,"#fff","center");
+  text("MADE BY ISAAC HELTON & PETE O'CONNELL",W/2,250,8,"#ffeb3b","center");
 }
 
 // ================= MAIN LOOP =================
