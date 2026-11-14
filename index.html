@@ -449,7 +449,7 @@ function buildLevel(idx){
 
 // ================= GAME STATE =================
 let sibs=[],state='title',lvl=null,levelIdx=0,score=0,timeLeft=0,cam=0,msg=null,msgT=0,stateT=0,parts=[],honked=false,levelScore=0,lastSafe={x:32,y:0};
-const P={x:0,y:0,w:20,h:28,vx:0,vy:0,on:false,face:1,coyote:0,buf:0,inv:0,ride:null,anim:0,carry:0};
+const P={x:0,y:0,w:10,h:14,vx:0,vy:0,on:false,face:1,coyote:0,buf:0,inv:0,ride:null,anim:0,carry:0};
 
 function startLevel(i){
   levelIdx=i;lvl=buildLevel(i);timeLeft=lvl.L.time;cam=0;parts=[];honked=false;levelScore=0;sibs=[];
@@ -626,11 +626,11 @@ function wrap(t,x,y,maxW,size,col,align='center'){
   if(line)text(line,x,yy,size,col,align);return yy+size+6;
 }
 
-const KS=2; // player sprite scale
+const KS=1; // player sprite scale
 function drawKid(x,y,face,frame,air,flash,sx=1,sy=1){
   if(flash&&Math.floor(flash*15)%2)return;
   // drawn at 2x: hitbox is 20x28, sprite art is 10x15 so offset up 2px for the cap
-  g.save();g.translate(Math.round(x),Math.round(y)-2);g.scale(KS,KS);
+  g.save();g.translate(Math.round(x),Math.round(y));g.scale(KS,KS);
   outlined(0,0,(ox,oy)=>drawKidRaw(ox,oy,face,frame,air),sx,sy);g.restore();
 }
 const PAL_ME={shirt:"#e53935",shirtD:"#b71c1c",pants:"#1e3a8a",cap:"#ffd600",capH:"#fff59d",hair:"#6d4c41",logo:"#ffeb3b"};
@@ -858,9 +858,9 @@ function drawPlay(t){
   for(const it of lvl.items)if(!it.got&&Math.abs(it.x-cam-W/2)<W)drawItem(it.kind,it.x,it.y+Math.sin(t*4+it.bob)*2,t);
   for(const e of lvl.enemies)if(Math.abs(e.x-cam-W/2)<W)drawEnemy(e,t);
   for(const s of sibs){const by=s.y+Math.sin(s.hop)*2;
-    g.save();g.translate(Math.round(s.x),Math.round(by));g.scale(1.6,1.6);
+    g.save();g.translate(Math.round(s.x),Math.round(by));g.scale(1,1);
     outlined(0,0,(ox,oy)=>{drawKidRaw(ox,oy,s.face,s.anim/2,true,s.d.pal);R(ox-2,oy+15,15,2,s.k?"#1e88e5":"#ab47bc");R(ox,oy+17,2,2,"#212121");R(ox+9,oy+17,2,2,"#212121");});g.restore();
-    text(s.d.name,s.x+8,by-14,6,s.k?"#69f0ae":"#f48fb1","center");}
+    text(s.d.name,s.x+5,by-12,6,s.k?"#69f0ae":"#f48fb1","center");}
   const kg=groundBelow(P.x+P.w/2,P.y+P.h-2);if(kg!==null)shadow(P.x+P.w/2,kg,6*Math.max(0.4,1-(kg-P.y-P.h)/120),0.35);
   const st=P.sq||0,sx=1+st*0.35,sy=1-st*0.3+(!P.on&&P.vy<-100?0.12:0);
   drawKid(P.x,P.y,P.face,P.anim/2,!P.on,P.inv>0?P.inv:0,sx,sy);
@@ -888,7 +888,7 @@ function drawTitle(t){
   text("CHORE",W/2,40+wob,32,"#ffeb3b","center");
   text("RUSH!",W/2,78-wob,32,"#e53935","center");
   text("BEAT THE PARENTS HOME",W/2,124,8,"#fff","center");
-  drawKid(W/2-10,152+Math.abs(Math.sin(t*5))*-14,1,t*40,Math.sin(t*5)>0.3,0);
+  drawKid(W/2-5,150+Math.abs(Math.sin(t*5))*-14,1,t*40,Math.sin(t*5)>0.3,0);
   drawItem("sock",W/2-60,154+Math.sin(t*4)*3);drawItem("dish",W/2+50,154+Math.cos(t*4)*3);
   drawItem("toy",W/2-100,160+Math.cos(t*3)*3);drawItem("leaf",W/2+90,160+Math.sin(t*3)*3);
   if(soundGate)text("CLICK OR PRESS ANY KEY FOR SOUND",W/2,200,8,Math.floor(t*2)%2?"#ffeb3b":"#fff","center");
@@ -921,7 +921,7 @@ function drawClear(t){
   text("TIME BONUS: "+Math.ceil(timeLeft)+" x 10",W/2,124,8,"#ffeb3b","center");
   text("LEVEL SCORE: "+levelScore,W/2,142,8,"#ffeb3b","center");
   text("TOTAL: "+score,W/2,160,8,"#fff","center");
-  drawKid(W/2-10,180-Math.abs(Math.sin(t*6))*12,1,0,true,0);
+  drawKid(W/2-5,190-Math.abs(Math.sin(t*6))*12,1,0,true,0);
   if(stateT>1&&Math.floor(t*2)%2)text(levelIdx<LEVELS.length-1?"ENTER / TAP: NEXT CHORE":"ENTER / TAP: ...",W/2,214,8,"#fff","center");
 }
 function drawLose(t){
@@ -941,7 +941,7 @@ function drawEnd(t){
   text("YOU DID IT!!",W/2,40,20,"#ffeb3b","center");
   wrap("Every chore done before the parents got home. They are so confused they are taking you out for pizza AND ice cream.",W/2,80,W-80,8,"#fff");
   text("FINAL SCORE: "+score,W/2,160,10,"#76ff03","center");
-  drawKid(W/2-10,180-Math.abs(Math.sin(t*6))*16,Math.sin(t*2)>0?1:-1,t*40,true,0);
+  drawKid(W/2-5,190-Math.abs(Math.sin(t*6))*16,Math.sin(t*2)>0?1:-1,t*40,true,0);
   if(stateT>1.5&&Math.floor(t*2)%2)text("ENTER / TAP: PLAY AGAIN",W/2,226,8,"#fff","center");
   text("MADE BY ISAAC HELTON & PETE O'CONNELL",W/2,250,8,"#ffeb3b","center");
 }
