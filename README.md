@@ -98,7 +98,7 @@ All the music is generated live in the browser with the Web Audio API. There are
 | Backyard | *Backyard Boom-Bap* | Deep kicks, crunchy snare, lo-fi keys, record scratches, vinyl crackle |
 | Garage | *Garage Funk-Techno* | Dance beat, squelchy acid bass, cowbell, chord stabs |
 | Laundry Room | *Oompah Undies Polka* | Tuba, accordion, two trumpets, wah-wah trombone, slide whistle |
-| Bathroom | *Bathroom Amore* | Crooning "ohhh" voice, mandolin, accordion, strings, brushed drums |
+| Bathroom | *Bathroom Amore* | Bouncy, cheesy crooner waltz: crooning "ohhh" voice, mandolin, accordion oom-pah-pah, tambourine, castanets, a corny key change and a "ba-da-BING!" |
 | Home Office | *Muzak for Meetings (Vol. 3)* | Wobbly pan flute, sour notes, late vibraphone, elevator ding |
 | Music Room | *Piano Practice (Mom Is Listening)* | Scales with mistakes, Für Elise, Twinkle, Mountain King, jazz, Jingle Bells, Bach, a spooky toccata, pop, Chopsticks, Ode to Joy |
 | Arts & Crafts | *Les Petits Peintres* | Faster French impressionist piece: rippling piano, flute, sliding chords, whole-tone harp sweeps |

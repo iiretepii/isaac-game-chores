@@ -486,20 +486,23 @@ const STYLES={
      else vibes(n+sour-12*(bar%2),d*k,t+d*0.18);} // vibes come in late
  }},
  // BATHROOM: Italian crooner waltz — a dreamy singer, mandolin tremolo, accordion oom-pah-pah, lush strings, brushes
- crooner:{name:"BATHROOM AMORE",bpm:150,spb:2,bar:6,bars:16,
+ crooner:{name:"BATHROOM AMORE",bpm:228,spb:2,bar:6,bars:16, // cheesy, bouncy Italian crooner waltz with a corny key change
   ch:[[36,[60,64,67]],[36,[60,64,67]],[43,[59,62,65]],[43,[59,62,65]],[43,[59,62,65]],[43,[59,62,65]],[36,[60,64,67]],[36,[60,64,67]],
       [36,[58,64,67]],[41,[60,65,69]],[41,[60,65,69]],[36,[60,64,67]],[38,[57,60,66]],[43,[59,62,65]],[36,[60,64,67]],[36,[60,64,67]]],
   mel:[67,_,_,_,72,_, 76,_,_,_,74,72, 74,_,_,_,_,_, 71,_,72,_,74,_, 77,_,_,_,76,74, 72,_,_,_,71,_, 72,_,_,_,_,_, _,_,64,_,67,_,
        70,_,_,_,72,_, 77,_,_,_,_,76, 74,_,72,_,69,_, 76,_,_,_,72,_, 74,_,_,_,72,_, 71,_,74,_,77,_, 76,_,_,_,74,_, 72,_,_,_,_,_],
-  play(i,t,d){const li=i%96,loop=Math.floor(i/96),bar=Math.floor(li/6),b=li%6,c=this.ch[bar];
-   if(b===0){walkBass(c[0]+(bar%2&&loop%2?7:0),d*1.8,t,0.32);strings(c[1],d*6,t);}
-   if(b===2||b===4){c[1].forEach(m=>accordion(m,d*0.9,t,0.014));brush(t,0.04);}
-   if(b===5)brush(t+d*0.3,0.025);
+  play(i,t,d){const li=i%96,loop=Math.floor(i/96),bar=Math.floor(li/6),b=li%6,c=this.ch[bar],tr=(loop%4>=2)?1:0; // every other repeat goes up a half step. so cheesy.
+   if(b===0){walkBass(c[0]+tr+(bar%2?7:0),d*1.6,t,0.32);strings(c[1].map(m=>m+tr),d*6,t,0.014);kick(t,0.3);}
+   if(b===2||b===4){c[1].forEach(m=>accordion(m+tr,d*0.8,t,0.016));nz(0.06,0.05,'bandpass',7000,t,1.5);}  // oom-PAH-PAH + tambourine
+   if(b===1||b===3||b===5)nz(0.03,0.025,'bandpass',8000,t,1.5);
+   if(b===3&&bar%2)nz(0.05,0.06,'bandpass',2500,t,6); // castanet click
    const n=this.mel[li];
-   if(n!==null){let k=1;while(k<12&&this.mel[(li+k)%96]===null)k++;
-     if(loop%2===0)croonVoice(n,d*k*0.97,t);
-     else{croonVoice(n,d*k*0.97,t,0.06);mandolin(n-(n>70?5:4),d*k*0.9,t,0.02);}}
-   if(li===90)mandolin(84,d*5,t,0.025); // sparkly mandolin flourish on the final note
+   if(n!==null){let k=1;while(k<12&&this.mel[(li+k)%96]===null)k++;const m=n+tr;
+     croonVoice(m,d*k*0.97,t,loop%2?0.06:0.075);
+     mandolin(m-(m>70?5:4),d*k*0.9,t,loop%2?0.024:0.012);}
+   if(bar===7&&b===2)[60,62,64,65,67].forEach((m,k)=>accordion(m+tr+12,d*0.5,t+k*d*0.5,0.022)); // cheesy accordion run
+   if(bar===15&&b===2){crash(t);tone(1568+tr*90,0.5,'sine',0.06,null,t,musicGain);} // ba-da-BING!
+   if(li===90)mandolin(84+tr,d*5,t,0.025);
  }},
  // LAUNDRY ROOM: silly German oom-pah polka — tuba OOM, accordion PAH, trumpets on the tune, comedy trombone slides
  polka:{name:"OOMPAH UNDIES POLKA",bpm:132,spb:2,bar:4,bars:16,
