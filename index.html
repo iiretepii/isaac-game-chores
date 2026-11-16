@@ -1023,8 +1023,8 @@ function updateSibs(dt){
   for(const s of sibs){
     const resting=s.rest>0;if(resting)s.rest=Math.max(0,s.rest-dt); // only pause briefly after taking damage
     // Siblings tag along behind you all level. When time gets low they sprint ahead to grab items:
-    // Annie at 20% of the time left, Isaac at 10%. If the clock gets refilled, they fall back in line.
-    const rush=frac<=(s.k?0.1:0.2);
+    // Annie at 33% of the time left, Isaac at 20%. If the clock gets refilled, they fall back in line.
+    const rush=frac<=(s.k?0.2:0.33);
     if(rush&&!s.rushing){say(s.k?"ISAAC: TURBO MODE! I GOT THIS!":"ANNIE: TIME'S RUNNING OUT! I'LL GRAB SOME!",2);popText(s.x-10,s.y-12,"GO GO GO!",s.k?"#69f0ae":"#f48fb1");}
     s.rushing=rush;
     let tx,moving;

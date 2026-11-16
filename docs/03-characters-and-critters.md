@@ -14,7 +14,7 @@
 | Ride | Purple skateboard | Original **neon light-bike**: black body, red neon edges, glowing disc wheels, red light trail |
 | Speed | 144 px/s | 176 px/s |
 | Follows at | 24 px behind the player | 62 px behind the player |
-| Starts collecting at | **20%** of the time limit left | **10%** of the time limit left |
+| Starts collecting at | **33%** of the time limit left | **20%** of the time limit left |
 | Arrival line | "I'll help all day! (for cookies)" | "Vrrrm! Neon light-bike, baby!" |
 | Rush line | "Time's running out! I'll grab some!" | "Turbo mode! I got this!" |
 

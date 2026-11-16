@@ -9,6 +9,7 @@ Grouped by milestone. See `git log` for every commit.
 - **Fixed seeds:** each level has its own layout seed.
 - **Cleanup:** unused sprites removed.
 - **Level select:** new screen on the title (press L or tap LEVEL SELECT).
+- **Sibling timing:** Annie now starts collecting at 33% of the time left (was 20%), and Isaac at 20% (was 10%).
 
 ## 2026-11-16 (Earlier)
 - **New levels:** Garden Glow-Up and Science Lab Scramble (Codex, PR #1), then Library Book Roundup with very quiet music (Codex, PR #2).
