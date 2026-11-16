@@ -659,6 +659,10 @@ const STYLES={
    if(bar===15&&b===2)[62,66,69,73,78,81].forEach((m,k)=>piano(m+12,d*2,t+k*0.07,0.025,0.8)); // little harp-like ripple
  }},
 };
+// Per-song volume trim so every song plays at a similar loudness (measured RMS; quieter targets for the gentle title, basement, attic, music-room and library pieces).
+const STYLE_GAIN={"garden":1.841,"library":15.849,"science":1.23,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065};
+for(const k in STYLE_GAIN)if(STYLES[k])STYLES[k].gain=STYLE_GAIN[k];
+const MUSIC_BASE=0.38;
 const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','french2','silly','science','workout','romantic','baroque'];
 let music={on:false,style:'pop',step:0,next:0,seg:0,segStep:0,cycle:0};
 function startMusic(style){music.style=style;music.step=0;music.seg=0;music.segStep=0;music.cycle=0;music.on=true;if(AC)music.next=AC.currentTime+0.05;}
@@ -673,6 +677,7 @@ function scheduler(){
     }else{S=STYLES[music.style];i=music.step;}
     let bpm=S.bpm;if(state==='play'&&timeLeft<15)bpm*=1.08;
     let d=60/bpm/S.spb;if(S.rub)d*=S.rub(i);
+    if(music.curGain!==S.gain){music.curGain=S.gain;musicGain.gain.setTargetAtTime(MUSIC_BASE*(S.gain||1),Math.max(AC.currentTime,music.next-0.02),0.03);} // per-song volume
     S.play(i,music.next,d);
     music.next+=d;music.step++;
     if(music.style==='mix'){music.segStep++;if(music.segStep>=S.bar*4){music.segStep=0;music.seg++;if(music.seg>=MIX.length){music.seg=0;music.cycle++;}}}
