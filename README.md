@@ -143,6 +143,10 @@ Sound effects include a slide whistle when you jump, a "boing" when you stomp, a
 
 ---
 
+## Design Documents
+
+For developers, the [`docs/`](docs/) folder holds the project's design documents: game design, level specs, characters and critters, audio, technical architecture, development workflow, backlog and changelog.
+
 ## How It's Built
 
 The whole game (code, graphics, levels and music) lives in a single file, [`index.html`](index.html). There are no image files, no sound files, no game engine and no build step: open the file in a browser and it runs. The only thing loaded from the internet is the "Press Start 2P" pixel font, and the game falls back to a plain font without it.

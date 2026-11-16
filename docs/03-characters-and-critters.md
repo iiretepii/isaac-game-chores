@@ -1,0 +1,91 @@
+# 03 – Characters and Critters
+
+## The Player
+
+- **Look:** a kid in a backwards yellow cap and red shirt, riding a turquoise **bicycle** with spinning spokes and moving pedals.
+- **Hitbox:** 10 × 14 px standing, 10 × 8 px ducking. You can only stand back up when there's headroom.
+- **Moves:** run, variable-height jump, one double jump, duck.
+- **Greeting:** when the siblings appear, the player says a random greeting in a speech bubble (21 options in `GREETINGS`, such as "HEY PAL!", "NO CAP, HI!" and "Sup Bro!").
+
+## Siblings: Isaac and Annie
+
+| | Annie (little sister) | Isaac (big brother) |
+|---|---|---|
+| Ride | Purple skateboard | Original **neon light-bike**: black body, red neon edges, glowing disc wheels, red light trail |
+| Speed | 144 px/s | 176 px/s |
+| Follows at | 24 px behind the player | 62 px behind the player |
+| Starts collecting at | **20%** of the time limit left | **10%** of the time limit left |
+| Arrival line | "I'll help all day! (for cookies)" | "Vrrrm! Neon light-bike, baby!" |
+| Rush line | "Time's running out! I'll grab some!" | "Turbo mode! I got this!" |
+
+**Behavior spec:**
+- **Arrival:** both appear next to the player as soon as the level starts.
+- **Normal mode:** they follow a spot behind the player and stop and face the same way when the player stops.
+- **Rush mode:** when the time left is at or below their threshold, they pick items (avoiding ones near critters, splitting work between them, giving up on an item after 2 s without progress and retrying it 4 s later) and drive to them.
+- **Back to following:** because pickups double the clock, a pickup usually pushes the time back above the threshold, and the sibling returns to following.
+- **Physics:** the same as the player (gravity, walls, one-way and moving platforms). The AI decides when to jump (walls, gaps, critters, LEGO), double jump (over pits, up to high items) and duck (low ceilings).
+- **Damage:** they stomp critters (+100). Critter or LEGO hits and falls cost 5 seconds from the shared clock.
+- **Delivery:** siblings never deliver; only the player can finish the level.
+
+## Critters
+
+Speeds are in pixels per second; levels run about 6% faster per level index. "Fly" critters bob on a sine wave along a short path. "Walk" critters patrol and turn at walls, gaps and LEGO bricks. Any critter can be stomped from above.
+
+| Key | Critter | Movement | Speed | Levels |
+|---|---|---|---|---|
+| `dust` | Dust bunny | walk | 30 | 3, 9, 12, 18 |
+| `roach` | Cockroach | walk | 55 | 3, 9, 10, 13 |
+| `roomba` | Robot vacuum | walk | 75 | 4, 8 |
+| `cat` | Cat | walk | 50 | 4, 13, 14, 17 |
+| `dog` | Dog | walk + hop | 90 | 5, 17 |
+| `rat` | Rat | walk | 65 | 8, 17, 18, 19 |
+| `bee` | Bee | fly | 40 | 5, 8 |
+| `spider` | Spider | walk | 60 | 10, 11, 12, 13, 18, 19 |
+| `bat` | Bat | fly | 55 | 19 |
+| `bubble` | Soap bubble | fly | 35 | 9, 10, 14, 16 |
+| `zap` | Lightning bolt | fly (jittery) | 65 | 15, 16 |
+| `ant` | Ant | walk | 70 | 11, 14 |
+| `hamster` | Hamster | walk + hop | 85 | 11, 12 |
+| `mite` | Dust mite | walk | 45 | 17 |
+| `bzombie` | Blocky zombie | walk | 32 | 1 |
+| `bskel` | Blocky skeleton | walk | 42 | 1 |
+| `bspider` | Blocky spider | walk | 62 | 1 |
+| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1 (not yet in Whole House) |
+| `tabby` | Orange tabby cat | walk | 50 | 2 |
+| `husky` | Husky | walk + hop | 72 | 2 |
+| `pom` | Pomeranian | walk + hop | 80 | 2 |
+| `duck` | Duck | walk | 40 | 7 |
+| `goose` | Goose (flashes HONK) | walk | 60 | 7 |
+| `swan` | Swan | walk | 35 | 7 (not yet in Whole House) |
+| `squirrel` | Squirrel | walk + hop | 85 | 7 |
+| `weed` | Walking weed | walk | 38 | 6 (not yet in Whole House) |
+| `slime` | Slime | walk | 42 | 16 (not yet in Whole House) |
+
+## Chore Items and Drop-offs
+
+| Level | Item (sprite key) | Drop-off (sprite key) |
+|---|---|---|
+| Isaac's Room | `dragon` | `toychest` |
+| Annie's Room | `doll` | `dollhouse` |
+| Kitchen Catastrophe | `dish` | `dishwasher` |
+| Living Room Lego-Land | `toy` | `toybox` |
+| Backyard Bonanza | `leaf` | `bag` |
+| Garden Glow-Up | `oldflower` | `compost` |
+| Pool Party Panic | `towel` | `towelbasket` |
+| Garage of Doom | `trash` | `can` |
+| Laundry Room Pee-Yew! | `undies` | `washer` |
+| Bathroom Blunder | `poop` | `toilet` |
+| Home Office Havoc | `paper` | `recycle` |
+| Library Book Roundup | `book` | `libraryshelf` |
+| Music Room Mayhem | `score` | `bookshelf` |
+| Arts & Crafts Chaos | `paint` | `paintshelf` |
+| Tech Room Trouble | `robot` | `workbench` |
+| Science Lab Scramble | `testtube` | `labrack` |
+| Workout Room Workout | `weight` | `weightrack` |
+| The Spooky Basement | `shirt` | `dryer` |
+| Attic of Antiques | `ornament` | `trunk` |
+| The Whole House!! | `mix` | `couch` |
+
+Some sprites change by position (`itemSeed`): markers and paint-bucket colors, robot-part shapes (gear, head, claw, battery), weight types (dumbbell, kettlebell, plate) and towel colors.
+
+Unused legacy sprites still in the code: `sock`, `hamper`, `markercup`, `shredder`, `sink`.
