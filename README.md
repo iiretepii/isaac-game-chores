@@ -18,9 +18,13 @@ The whole game is a single file, `index.html`. Open it in any modern web browser
 |---|---|---|
 | Move | Arrow keys or A / D | ◀ ▶ buttons |
 | Jump | Space, Up, W or Z (hold for a higher jump) | JUMP button |
+| Double jump | Press jump again in mid-air | JUMP again |
+| Duck | Down arrow or S | DUCK button |
 | Start / continue | Enter or Space, or click | Tap the screen |
 | Pause | P or Esc | — |
 | Mute | M | — |
+
+You ride a **bicycle** through every level, with spinning wheels and pedals. Duck to squeeze under low spots, and use the double jump to clear wide gaps or reach high shelves.
 
 Browsers don't allow sound until you interact with the page, so the title screen asks you to **click or press any key for sound** first. After that, press Enter (or tap) to start.
 
@@ -30,6 +34,8 @@ Browsers don't allow sound until you interact with the page, so the title screen
 2. Collect every chore item scattered around the level. The counter in the top-left shows how many you have.
 3. Bring them to the drop-off spot at the end of the level (it glows and says **HERE!** once you have everything).
 4. Do it before the timer runs out.
+
+**Bonus: every item you or your siblings pick up doubles the time left on the clock** ("TIME x2!"). Grab items quickly and the clock can grow huge, so the timer switches to K (thousands), M (millions) and B (billions) of seconds.
 
 ### The Parents' Car
 
@@ -43,18 +49,25 @@ The bar at the top of the screen shows the parents' car driving toward the house
 
 ### Sibling Helpers
 
-Your siblings help you with chores for the **entire game**, on every level:
+Your siblings help you with chores for the **entire game**, on every level. Both of them start right next to you as soon as the level begins:
 
-- **Annie** (little sister) rolls in on her skateboard right after the level starts ("I'll help all day! (for cookies)").
-- **Isaac** (big brother) zooms in a few seconds later on his **neon light-bike**: a sleek black futuristic bike with glowing red edges and disc wheels that leaves a glowing light trail behind it ("Vrrrm! Neon light-bike, baby!").
+- **Annie** (little sister) rides her skateboard ("I'll help all day! (for cookies)").
+- **Isaac** (big brother) rides his **neon light-bike**: a sleek black futuristic bike with glowing red edges and disc wheels that leaves a glowing light trail behind it ("Vrrrm! Neon light-bike, baby!").
 
-Whenever one of them shows up, you greet them with a goofy speech bubble picked at random, like "HEY PAL!", "YOOO!", "LET HIM COOK!", "NO CAP, HI!" or "BRO-TATO CHIP!". They fly to the nearest items and collect them for you, taking a short victory break after each one, so you still need to do your share. Only you can carry everything to the drop-off spot.
+When they show up, you greet them with a goofy speech bubble picked at random, like "HEY PAL!", "YOOO!", "LET HIM COOK!", "NO CAP, HI!", "BRO-TATO CHIP!" or "Sup Bro!".
+
+Isaac and Annie play by the same rules as you:
+
+- They ride along the ground, jump (and double jump) over gaps, walls, critters and LEGO bricks, and duck under low spots.
+- They can **stomp critters** (+100 points), but if a critter or LEGO brick hits them, or they fall into a gap, it costs **5 seconds**.
+- They split up the work, skip items guarded by critters, and if they get stuck going for an item, they try a different one and come back later.
+- They're fast and don't take breaks, but only you can carry everything to the drop-off spot.
 
 ### Scoring
 
 - Chore item: +50 (+25 if a sibling grabs it)
 - Stomping a critter: +100
-- Finishing a level: +10 for every second left on the clock
+- Finishing a level: +10 for every second left on the clock (with the time-doubling pickups, this can get very big!)
 
 ---
 
@@ -69,18 +82,20 @@ Each level is longer, with more items, critters and gaps than the one before. La
 | 3 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 12 | 100s | Dust bunnies, cockroaches | Swing jazz |
 | 4 | **Living Room Lego-Land** | Toys → plastic toy tote | 13 | 102s | Robot vacuums, cats | Bubblegum pop |
 | 5 | **Backyard Bonanza** | Leaves → leaf bag | 14 | 104s | Dogs, bees | Boom-bap hip hop |
-| 6 | **Pool Party Panic** | Soggy towels → towel basket | 15 | 106s | Ducks, geese, swans, squirrels | Silly splashy calypso |
-| 7 | **Garage of Doom** | Trash → trash can | 16 | 108s | Rats, robot vacuums, bees | Funky techno |
-| 8 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 17 | 110s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
-| 9 | **Bathroom Blunder** | Runaway poops → toilet | 18 | 112s | Soap bubbles, cockroaches, spiders | Italian crooner waltz |
-| 10 | **Home Office Havoc** | Old work papers → recycle bin | 19 | 114s | Ants, spiders, hamsters | Terrible elevator music |
-| 11 | **Music Room Mayhem** | Old piano scores → bookshelf | 20 | 116s | Cats, spiders, cockroaches | Kid practicing piano |
-| 12 | **Arts & Crafts Chaos** | Paint buckets → shelves | 21 | 118s | Ants, cats, soap bubbles | Lively French impressionist |
-| 13 | **Tech Room Trouble** | Robot parts → robot workbench | 22 | 120s | Little lightning bolts | The silliest song ever |
-| 14 | **Workout Room Workout** | Weights → weight rack | 23 | 122s | Rats, cats, dogs, dust mites | High-octane workout anthem |
-| 15 | **The Spooky Basement** | Wet shirts → dryer | 24 | 124s | Spiders, rats, dust bunnies | Romantic movie-theme piano |
-| 16 | **Attic of Antiques** | Holiday ornaments → old trunk | 25 | 129s | Bats, spiders, rats | Bach-style pipe organ |
-| 17 | **The Whole House!!** | Everything → dive on the couch | 26 | 146s | All of them | Medley of every style |
+| 6 | **Garden Glow-Up** | Old flowers → compost bin | 15 | 108s | Walking weeds | Bright trumpet duet |
+| 7 | **Pool Party Panic** | Soggy towels → towel basket | 15 | 106s | Ducks, geese, swans, squirrels | Silly splashy calypso |
+| 8 | **Garage of Doom** | Trash → trash can | 16 | 108s | Rats, robot vacuums, bees | Funky techno |
+| 9 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 17 | 110s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
+| 10 | **Bathroom Blunder** | Runaway poops → toilet | 18 | 112s | Soap bubbles, cockroaches, spiders | Italian crooner waltz |
+| 11 | **Home Office Havoc** | Old work papers → recycle bin | 19 | 114s | Ants, spiders, hamsters | Terrible elevator music |
+| 12 | **Music Room Mayhem** | Old piano scores → bookshelf | 20 | 116s | Cats, spiders, cockroaches | Kid practicing piano |
+| 13 | **Arts & Crafts Chaos** | Paint buckets → shelves | 21 | 118s | Ants, cats, soap bubbles | Lively French impressionist |
+| 14 | **Tech Room Trouble** | Robot parts → robot workbench | 22 | 120s | Little lightning bolts | The silliest song ever |
+| 15 | **Science Lab Scramble** | Test tubes → lab rack | 23 | 124s | Slime, soap bubbles, lightning bolts | Spacey electronic arpeggios |
+| 16 | **Workout Room Workout** | Weights → weight rack | 23 | 122s | Rats, cats, dogs, dust mites | High-octane workout anthem |
+| 17 | **The Spooky Basement** | Wet shirts → dryer | 24 | 124s | Spiders, rats, dust bunnies | Romantic movie-theme piano |
+| 18 | **Attic of Antiques** | Holiday ornaments → old trunk | 25 | 129s | Bats, spiders, rats | Bach-style pipe organ |
+| 19 | **The Whole House!!** | Everything → dive on the couch | 26 | 146s | All of them | Medley of every style |
 
 The basement is dark, with a pool of light that follows you around. At the pool, the floating platforms are striped lounge chairs and the gaps are the pool itself. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
 
@@ -100,19 +115,21 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Kitchen | [*Cool Kitchen Jazz*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/03-kitchen.mp3) | Swing beat, walking bass, ride cymbal, electric piano, saxophone |
 | Living Room | [*Poptastic Pop*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/04-living-room.mp3) | Four-on-the-floor beat, claps, synth bass, catchy synth hook |
 | Backyard | [*Backyard Boom-Bap*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/05-backyard.mp3) | Deep kicks, crunchy snare, lo-fi keys, record scratches, vinyl crackle |
-| Pool | [*Cannonball Calypso*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/06-pool.mp3) | Super-silly splashy pool party: steel drums, bubbly boing bass, ukulele strums, congas, shaker, bubble pops, a rubber-duck squeak, slide whistle and a big CANNONBALL splash |
-| Garage | [*Garage Funk-Techno*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/07-garage.mp3) | Dance beat, squelchy acid bass, cowbell, chord stabs |
-| Laundry Room | [*Oompah Undies Polka*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/08-laundry-room.mp3) | Tuba, accordion, two trumpets, wah-wah trombone, slide whistle |
-| Bathroom | [*Bathroom Amore*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/09-bathroom.mp3) | Bouncy, cheesy crooner waltz: crooning "ohhh" voice, mandolin, accordion oom-pah-pah, tambourine, castanets, a corny key change and a "ba-da-BING!" |
-| Home Office | [*Muzak for Meetings (Vol. 3)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/10-home-office.mp3) | Wobbly pan flute, sour notes, late vibraphone, elevator ding |
-| Music Room | [*Piano Practice (Mom Is Listening)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/11-music-room.mp3) | Scales with mistakes, Für Elise, Twinkle, Mountain King, jazz, Jingle Bells, Bach, a spooky toccata, pop, Chopsticks, Ode to Joy |
-| Arts & Crafts | [*Les Petits Peintres*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/12-arts-and-crafts.mp3) | Faster French impressionist piece: rippling piano, flute, sliding chords, whole-tone harp sweeps |
-| Tech Room | [*Beep Boop Banana Boogie*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/13-tech-room.mp3) | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |
-| Workout Room | [*Maximum Reps!!!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/14-workout-room.mp3) | Pounding four-on-the-floor beat, rolling bass, supersaw synth riff, coach's whistle, "HEY!" shouts and a snare-roll build-up into a big drop |
-| Basement | [*Nocturne in the Basement*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/15-basement.mp3) | Romantic film-score piano in the style of classic Italian movie themes: a simple, singing melody with long notes and big expressive leaps over flowing arpeggios, warm strings, and on the repeat the strings take the melody while the piano floats above |
-| Attic | [*Little Fugue in the Attic*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/16-attic.mp3) | A four-voice pipe-organ fugue in D minor (about a minute): entries in alto, soprano, tenor and bass, three episodes, a middle entry, a low bass entry, a trill over a dominant pedal and a Picardy-third ending |
-| Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/17-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
-| Ending | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/17-whole-house-medley.mp3) | Same medley as the Whole House |
+| Garden | [*Blooming Brass*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/06-garden.mp3) | A bright, bouncy trumpet duet over a tuba bass and light marching drums |
+| Pool | [*Cannonball Calypso*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/07-pool.mp3) | Super-silly splashy pool party: steel drums, bubbly boing bass, ukulele strums, congas, shaker, bubble pops, a rubber-duck squeak, slide whistle and a big CANNONBALL splash |
+| Garage | [*Garage Funk-Techno*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/08-garage.mp3) | Dance beat, squelchy acid bass, cowbell, chord stabs |
+| Laundry Room | [*Oompah Undies Polka*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/09-laundry-room.mp3) | Tuba, accordion, two trumpets, wah-wah trombone, slide whistle |
+| Bathroom | [*Bathroom Amore*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/10-bathroom.mp3) | Bouncy, cheesy crooner waltz: crooning "ohhh" voice, mandolin, accordion oom-pah-pah, tambourine, castanets, a corny key change and a "ba-da-BING!" |
+| Home Office | [*Muzak for Meetings (Vol. 3)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/11-home-office.mp3) | Wobbly pan flute, sour notes, late vibraphone, elevator ding |
+| Music Room | [*Piano Practice (Mom Is Listening)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/12-music-room.mp3) | Scales with mistakes, Für Elise, Twinkle, Mountain King, jazz, Jingle Bells, Bach, a spooky toccata, pop, Chopsticks, Ode to Joy |
+| Arts & Crafts | [*Les Petits Peintres*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/13-arts-and-crafts.mp3) | Faster French impressionist piece: rippling piano, flute, sliding chords, whole-tone harp sweeps |
+| Tech Room | [*Beep Boop Banana Boogie*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/14-tech-room.mp3) | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |
+| Science Lab | [*Bubbling Brainwaves*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/15-science-lab.mp3) | Spacey electronic arpeggios, soft synth chords, deep sub bass, bubbling beakers and computer bleeps |
+| Workout Room | [*Maximum Reps!!!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/16-workout-room.mp3) | Pounding four-on-the-floor beat, rolling bass, supersaw synth riff, coach's whistle, "HEY!" shouts and a snare-roll build-up into a big drop |
+| Basement | [*Nocturne in the Basement*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/17-basement.mp3) | Romantic film-score piano in the style of classic Italian movie themes: a simple, singing melody with long notes and big expressive leaps over flowing arpeggios, warm strings, and on the repeat the strings take the melody while the piano floats above |
+| Attic | [*Little Fugue in the Attic*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/18-attic.mp3) | A four-voice pipe-organ fugue in D minor (about a minute): entries in alto, soprano, tenor and bass, three episodes, a middle entry, a low bass entry, a trill over a dominant pedal and a Picardy-third ending |
+| Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/19-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
+| Ending | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/19-whole-house-medley.mp3) | Same medley as the Whole House |
 
 Sound effects include a slide whistle when you jump, a "boing" when you stomp, a car horn as the parents get close, a kazoo fanfare when you finish a level and a sad trombone when you get caught.
 
@@ -140,10 +157,12 @@ The whole game (code, graphics, levels and music) lives in a single file, [`inde
 ### Physics and Controls
 
 - The level is a grid of **16×16-pixel tiles**: solid ground, one-way platforms you can jump up through, and LEGO bricks.
-- The player has gravity, acceleration and friction. A few tricks make jumping feel good:
+- The player rides a bicycle drawn in code: the wheels' spokes spin and the pedals go around as you move. The player has gravity, acceleration and friction. A few tricks make jumping feel good:
   - **Variable jump height:** let go of jump early for a small hop.
   - **Coyote time:** you can still jump for a split second after running off a ledge.
   - **Jump buffering:** pressing jump just before landing still counts.
+  - **Double jump:** one extra jump in mid-air.
+  - **Ducking:** shrinks the player's hitbox to fit under low spots, and only stands back up when there's headroom.
 - **Moving platforms** carry you along when you stand on them.
 - Falling into a gap puts you back on the last safe ground and costs 5 seconds.
 
@@ -159,7 +178,7 @@ The whole game (code, graphics, levels and music) lives in a single file, [`inde
 - **Walking critters** patrol back and forth and turn around at walls, gaps and LEGO bricks. Dogs, huskies, Pomeranians, hamsters and squirrels also hop now and then.
 - **Flying critters** (bees, bats, soap bubbles, lightning bolts) bob up and down along a short path.
 - If you land on a critter from above, you stomp it. Any other touch knocks you back and costs 5 seconds.
-- **Isaac and Annie** use a simple helper AI. Each one picks the nearest item that the other isn't already going for, flies straight to it, grabs it, takes a short victory break, then picks the next one.
+- **Isaac and Annie** use the same physics as the player: gravity, solid walls, one-way platforms and moving platforms. A helper AI chooses each sibling's next item, splitting the work and steering clear of items guarded by critters. While riding, it looks ahead and decides when to jump (walls, gaps, critters, LEGO bricks), when to double jump (over a pit or up to a high item) and when to duck (low ceilings). If a sibling stops getting closer to its item, it gives up on that one for a few seconds and picks another.
 
 ### Music and Sound
 
