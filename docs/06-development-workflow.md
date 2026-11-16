@@ -2,7 +2,7 @@
 
 ## Contributors and Branches
 
-- **Contributors:** Pete O'Connell (owner), Claude (Claude Code) and Codex. AI changes arrive either as direct commits on a working branch or as pull requests.
+- **Contributors:** Pete (owner), Claude (Claude Code) and Codex. AI changes arrive either as direct commits on a working branch or as pull requests.
 - **Branches:** `main` is the published version; the README song links point at `main`. Claude works on `claude/adoring-cray-7vaqhn` and fast-forward merges to `main` when asked. Codex uses `codex/*` branches merged through pull requests.
 - **Before starting work:** pull `main` so you build on the other contributors' latest changes.
 

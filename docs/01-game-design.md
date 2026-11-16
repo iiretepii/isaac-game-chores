@@ -4,7 +4,7 @@
 
 *Chore Rush!* is a 90s-style side-scrolling platformer for kids and families. You race through the rooms of a house (and the yard) doing chores before Mom and Uncle Pete get home. It should feel like a goofy Saturday-morning cartoon: bright, fast, silly and never mean.
 
-*A Belvoir Studios game, made by Isaac Helton & Pete O'Connell.*
+*A Belvoir Studios game, made by Isaac & Pete.*
 
 ## Design Pillars
 

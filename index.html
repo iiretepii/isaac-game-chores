@@ -1748,7 +1748,7 @@ function drawTitle(t){
   if(!soundGate){const b=SELECT_BTN;R(b.x-1,b.y-1,b.w+2,b.h+2,"#ffeb3b");R(b.x,b.y,b.w,b.h,"#3d2a8a");text("LEVEL SELECT (L)",W/2,b.y+3,6,"#ffeb3b","center",false);}
   text("A/D MOVE  SPACE x2 JUMP  DOWN/S DUCK  M MUTE  P PAUSE",W/2,226,6,"#aaa","center",false);
   text("STOMP CRITTERS. DODGE LEGOS. DON'T FALL.",W/2,240,6,"#aaa","center",false);
-  text("MADE BY ISAAC HELTON & PETE O'CONNELL",W/2,256,6,"#ffeb3b","center");
+  text("MADE BY ISAAC & PETE",W/2,256,6,"#ffeb3b","center");
   g.drawImage(fx,0,0);
 }
 
@@ -1799,7 +1799,7 @@ function drawEnd(t){
   drawKid(W/2-5,190-Math.abs(Math.sin(t*6))*16,Math.sin(t*2)>0?1:-1,t*40,true,0);
   drawMenuSiblings(t,184);
   if(stateT>1.5&&Math.floor(t*2)%2)text("ENTER / TAP: PLAY AGAIN",W/2,226,8,"#fff","center");
-  text("MADE BY ISAAC HELTON & PETE O'CONNELL",W/2,250,8,"#ffeb3b","center");
+  text("MADE BY ISAAC & PETE",W/2,250,8,"#ffeb3b","center");
 }
 
 // ================= LEVEL SELECT =================
