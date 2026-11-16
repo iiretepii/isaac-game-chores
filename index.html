@@ -1007,11 +1007,18 @@ function updateSibs(dt){
     if(AC){const t0=AC.currentTime;if(k){tone(90,0.9,'sawtooth',0.06,600,t0,sfxGain);tone(180,0.9,'square',0.03,1200,t0,sfxGain);} // electric VRRRRM
       else [72,76,79,84].forEach((n,i)=>tone(mtof(n),0.12,'square',0.1,null,t0+i*0.07));}
     for(let i=0;i<14;i++)parts.push({x:P.x,y:P.y-10,vx:(Math.random()-.5)*200,vy:-Math.random()*150,life:1,col:k?"#43a047":"#ec407a"});}});
+  const frac=timeLeft/lvl.L.time;
   for(const s of sibs){
     const resting=s.rest>0;if(resting)s.rest=Math.max(0,s.rest-dt); // only pause briefly after taking damage
-    chooseSiblingTarget(s,dt);
-    const tx=s.target?s.target.x:P.x-20*s.face;
-    moveSibling(s,dt,tx,!resting);
+    // Siblings tag along behind you all level. When time gets low they sprint ahead to grab items:
+    // Annie at 20% of the time left, Isaac at 10%. If the clock gets refilled, they fall back in line.
+    const rush=frac<=(s.k?0.1:0.2);
+    if(rush&&!s.rushing){say(s.k?"ISAAC: TURBO MODE! I GOT THIS!":"ANNIE: TIME'S RUNNING OUT! I'LL GRAB SOME!",2);popText(s.x-10,s.y-12,"GO GO GO!",s.k?"#69f0ae":"#f48fb1");}
+    s.rushing=rush;
+    let tx,moving;
+    if(rush){chooseSiblingTarget(s,dt);tx=s.target?s.target.x:P.x;moving=!resting;}
+    else{s.target=null;tx=P.x-(s.k?62:24)*P.face;moving=!resting&&Math.abs(tx-s.x)>6;if(!moving)s.face=P.face;}
+    moveSibling(s,dt,tx,moving);
     if(s.target&&!s.target.got&&Math.abs(s.target.x+8-(s.x+5))<12&&Math.abs(s.target.y+8-(s.y+7))<14){
       const it=s.target;it.got=true;doublePickupTime(it);s.rest=0;P.carry++;score+=25;levelScore+=25;SFX.collect();puff(it.x+8,it.y+8,s.k?"#69f0ae":"#f48fb1",8);
       const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?s.d.name+"! "+left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);}

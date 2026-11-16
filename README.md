@@ -56,12 +56,18 @@ Your siblings help you with chores for the **entire game**, on every level. Both
 
 When they show up, you greet them with a goofy speech bubble picked at random, like "HEY PAL!", "YOOO!", "LET HIM COOK!", "NO CAP, HI!", "BRO-TATO CHIP!" or "Sup Bro!".
 
-Isaac and Annie play by the same rules as you:
+**How they help:** Isaac and Annie ride along right behind you for the whole level, keeping you company. When the clock gets low, they sprint ahead to collect items:
+
+- **Annie** starts grabbing items when there's **20% of the time** left ("Time's running out! I'll grab some!").
+- **Isaac** joins in at **10%** ("Turbo mode! I got this!").
+- Every item doubles the clock, so once a pickup pushes the time back above their limit, they fall back in line behind you.
+
+They play by the same rules as you:
 
 - They ride along the ground, jump (and double jump) over gaps, walls, critters and LEGO bricks, and duck under low spots.
 - They can **stomp critters** (+100 points), but if a critter or LEGO brick hits them, or they fall into a gap, it costs **5 seconds**.
-- They split up the work, skip items guarded by critters, and if they get stuck going for an item, they try a different one and come back later.
-- They're fast and don't take breaks, but only you can carry everything to the drop-off spot.
+- When they're collecting, they split up the work, skip items guarded by critters, and switch targets if they get stuck.
+- Only you can carry everything to the drop-off spot.
 
 ### Scoring
 
@@ -178,7 +184,7 @@ The whole game (code, graphics, levels and music) lives in a single file, [`inde
 - **Walking critters** patrol back and forth and turn around at walls, gaps and LEGO bricks. Dogs, huskies, Pomeranians, hamsters and squirrels also hop now and then.
 - **Flying critters** (bees, bats, soap bubbles, lightning bolts) bob up and down along a short path.
 - If you land on a critter from above, you stomp it. Any other touch knocks you back and costs 5 seconds.
-- **Isaac and Annie** use the same physics as the player: gravity, solid walls, one-way platforms and moving platforms. A helper AI chooses each sibling's next item, splitting the work and steering clear of items guarded by critters. While riding, it looks ahead and decides when to jump (walls, gaps, critters, LEGO bricks), when to double jump (over a pit or up to a high item) and when to duck (low ceilings). If a sibling stops getting closer to its item, it gives up on that one for a few seconds and picks another.
+- **Isaac and Annie** use the same physics as the player: gravity, solid walls, one-way platforms and moving platforms. Normally they follow a spot just behind the player. When the time left drops below 20% (Annie) or 10% (Isaac), a helper AI chooses each sibling's next item, splitting the work and steering clear of items guarded by critters. While riding, it looks ahead and decides when to jump (walls, gaps, critters, LEGO bricks), when to double jump (over a pit or up to a high item) and when to duck (low ceilings). If a sibling stops getting closer to its item, it gives up on that one for a few seconds and picks another.
 
 ### Music and Sound
 
