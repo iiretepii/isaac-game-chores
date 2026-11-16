@@ -296,6 +296,16 @@ const STYLES={
    const n=this.mel[li];if(n!==null){const dur=d*(this.mel[(li+1)%64]===null?1.7:0.8);
     trumpet(n,dur,t,0.065);if(bar>=4)trumpet(n-4,dur,t,0.025);}
   }},
+ // SCIENCE LAB: spacey electronic arpeggios, bubbling beakers and computer bleeps.
+ science:{name:"BUBBLING BRAINWAVES",bpm:120,spb:4,bar:16,bars:8,
+  play(i,t,d){const li=i%128,bar=Math.floor(li/16),b=li%16,root=[48,53,57,55,48,53,50,55][bar];
+   const n=root+[0,7,12,16,19,16,12,7][b%8];
+   pluck(n,d*1.5,t,0.04,0.4,2600);
+   if(b%4===0){softLead(mtof(root+24+[0,4,7,12][Math.floor(b/4)]),d*3,t,0.035);subBass(root-12,d*3,t,0.12);}
+   if(b===0||b===8)kick(t,0.2);if(b===4||b===12)snare(t,0.065);if(b%2)hat(t,false,0.018);
+   if(b===3||b===11)bubble(t,220+bar*35);
+   if(b===15)tone(mtof(root+31),d*0.6,'sine',0.025,mtof(root+36),t,musicGain);
+  }},
  // BEDROOM: MIDI rock — distorted power chords, lead guitar, bass, rock kit
  rock:{name:"RADICAL ROCK",bpm:144,spb:2,bar:8,bars:8,play(i,t,d){
    const s=SONG,len=64,li=i%len,loop=Math.floor(i/len),bar=Math.floor(li/8),root=s.roots[bar],b=li%8,lastBar=bar===7;
@@ -636,7 +646,7 @@ const STYLES={
    if(bar===15&&b===2)[62,66,69,73,78,81].forEach((m,k)=>piano(m+12,d*2,t+k*0.07,0.025,0.8)); // little harp-like ripple
  }},
 };
-const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','practice','french2','silly','workout','romantic','baroque'];
+const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','practice','french2','silly','science','workout','romantic','baroque'];
 let music={on:false,style:'pop',step:0,next:0,seg:0,segStep:0,cycle:0};
 function startMusic(style){music.style=style;music.step=0;music.seg=0;music.segStep=0;music.cycle=0;music.on=true;if(AC)music.next=AC.currentTime+0.05;}
 function scheduler(){
@@ -686,6 +696,8 @@ const LEVELS=[
   text:"MOM: Who painted a mustache on the cat?! Paint buckets back on the shelves. Lids ON."},
  {name:"TECH ROOM TROUBLE",chore:"Bring the robot parts to the robot workbench",drop:"workbench",item:"robot",count:22,time:120,len:202,gap:3,enemies:["zap"],density:.75,lego:.35,movers:1,theme:"tech",music:"silly",
   text:"UNCLE PETE: Isaac took the robot apart AGAIN. Put it back together before Mom sees the sparks!"},
+ {name:"SCIENCE LAB SCRAMBLE",chore:"Collect the test tubes and return them to the lab rack",drop:"labrack",item:"testtube",count:23,time:124,len:204,gap:3,enemies:["slime","bubble","zap"],density:.7,lego:.2,movers:1,theme:"science",music:"science",
+  text:"UNCLE PETE: The experiment went BOING! You, Isaac and Annie: test tubes back in the rack. Watch out for runaway slime!"},
  {name:"WORKOUT ROOM WORKOUT",chore:"Put the weights back on the weight rack",drop:"weightrack",item:"weight",count:23,time:122,len:205,gap:3,enemies:["rat","cat","dog","mite"],density:.76,lego:.35,movers:1,theme:"gym",music:"workout",
   text:"UNCLE PETE: I left my weights ALL over the workout room. Rack 'em up! Feel the burn!"},
  {name:"THE SPOOKY BASEMENT",chore:"Move the wet shirts to the dryer",drop:"dryer",item:"shirt",count:24,time:124,len:207,gap:3,enemies:["spider","rat","dust"],density:.66,lego:.3,movers:1,theme:"basement",music:"romantic",
@@ -709,13 +721,14 @@ const THEMES={
  musicroom:{sky:"#7b1f3a",wall2:"#6d1a33",ground:"#8d5a2b",top:"#c08a4b",plat:"#fafafa",ptop:"#ffffff",keys:1},
  arts:{sky:"#fff8e1",wall2:"#fff3cd",ground:"#d7a86e",top:"#ef5350",plat:"#42a5f5",ptop:"#90caf9",splat:1},
  tech:{sky:"#1a237e",wall2:"#151d6b",ground:"#455a64",top:"#00e5ff",plat:"#263238",ptop:"#00e5ff"},
+ science:{sky:"#183e52",wall2:"#143548",ground:"#d0e3e8",top:"#80deea",plat:"#546e7a",ptop:"#b2ebf2",tiles:1},
  gym:{sky:"#37474f",wall2:"#323f46",ground:"#212121",top:"#ff3d00",plat:"#d32f2f",ptop:"#ff8a65",speck:1},
  pool:{sky:"#4fc3f7",wall2:"#4fc3f7",ground:"#eceff1",top:"#80deea",plat:"#fafafa",ptop:"#ffffff",lounger:1},
  basement:{sky:"#3b3a4a",wall2:"#33323f",ground:"#4e4e5a",top:"#80808f",plat:"#6d4c41",ptop:"#a1887f",dark:1},
  attic:{sky:"#7a5233",wall2:"#6b4628",ground:"#795548",top:"#bcaaa4",plat:"#5d4037",ptop:"#8d6e63"},
  house:{sky:"#2b2d6e",wall2:"#25275e",ground:"#5d3a8a",top:"#b388ff",plat:"#00897b",ptop:"#4db6ac"},
 };
-const ITEM_NAMES={oldflower:"old flowers",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
+const ITEM_NAMES={testtube:"test tubes",oldflower:"old flowers",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
@@ -867,7 +880,7 @@ function updateEnemies(dt){
     if(!e.alive){e.dead-=dt;continue;}
     if(Math.abs(e.x-P.x)>W)continue;
     e.t+=dt;
-    const sp={weed:38,dust:30,roach:55,roomba:75,cat:50,dog:90,rat:65,duck:40,goose:60,swan:35,squirrel:85,mite:45,bee:40,spider:60,bat:55,bubble:35,zap:65,bzombie:32,bskel:42,bspider:62,hisser:38,tabby:50,husky:72,pom:80,ant:70,hamster:85}[e.type]*(1+levelIdx*0.06);
+    const sp={slime:42,weed:38,dust:30,roach:55,roomba:75,cat:50,dog:90,rat:65,duck:40,goose:60,swan:35,squirrel:85,mite:45,bee:40,spider:60,bat:55,bubble:35,zap:65,bzombie:32,bskel:42,bspider:62,hisser:38,tabby:50,husky:72,pom:80,ant:70,hamster:85}[e.type]*(1+levelIdx*0.06);
     if((e.type==='bee'||e.type==='bat'||e.type==='bubble'||e.type==='zap')){e.x+=e.vx*sp*dt;e.y=e.by+Math.sin(e.t*3)*22+(e.type==='zap'?Math.sin(e.t*37)*2:0);if(Math.abs(e.x-e.ox)>60||e.ox===undefined){if(e.ox===undefined)e.ox=e.x;else{e.vx*=-1;e.x+=e.vx*2;}}}
     else{
       if(e.type==='cat'&&Math.sin(e.t*1.3)>0.6){/* cat sits and licks paw */}
@@ -925,7 +938,9 @@ function moveSibling(s,dt,tx,moving){
     const gap=tileAt(front,foot)==='.'&&tileAt(front,foot+1)==='.';
     const above=s.target&&s.target.y+16<s.y&&Math.abs(dx)<64;
     const critter=lvl.enemies.some(e=>e.alive&&(e.x+e.w/2-(s.x+w/2))*dir>0&&Math.abs(e.x-s.x)<44&&Math.abs(e.y-(s.y+h))<24);
-    const first=s.on&&((dir&&(wall||gap||critter))||above);
+    const legoCol=Math.floor((s.x+w/2+dir*(sp*0.14+8))/T);
+    const lego=dir&&(tileAt(legoCol,foot-1)==='x'||tileAt(legoCol,foot-2)==='x');
+    const first=s.on&&((dir&&(wall||gap||critter||lego))||above);
     const overPit=groundBelow(s.x+w/2,s.y+h)===null;
     const second=!s.on&&s.jumps<2&&s.vy>=-60&&(above||(dir&&overPit));
     if(moving&&!s.duck&&s.inv<=0&&(first||second)){
@@ -961,21 +976,44 @@ function moveSibling(s,dt,tx,moving){
     }
   }
 }
+// Divide the work, favor nearby reachable items, and retry stalled routes later.
+function chooseSiblingTarget(s,dt){
+  s.retryIn=Math.max(0,(s.retryIn||0)-dt);
+  if(s.target&&!s.target.got){
+    const distance=Math.abs(s.target.x-s.x)+Math.abs(s.target.y-s.y);
+    if(s.bestDistance===undefined||distance<s.bestDistance-2){s.bestDistance=distance;s.stalled=0;}
+    else s.stalled=(s.stalled||0)+dt;
+    if(s.stalled<2)return;
+    s.skipped=s.target;s.retryIn=4;
+  }
+  s.target=null;s.bestDistance=undefined;s.stalled=0;
+  let best=Infinity;
+  for(const it of lvl.items){
+    if(it.got||(it===s.skipped&&s.retryIn>0)||sibs.some(o=>o!==s&&o.target===it&&!it.got))continue;
+    const risk=lvl.enemies.filter(e=>e.alive&&Math.abs(e.x-it.x)<48&&Math.abs(e.y-it.y)<40).length*40;
+    const cost=Math.abs(it.x-s.x)+Math.abs(it.y-s.y)*2+risk;
+    if(cost<best){best=cost;s.target=it;}
+  }
+}
+function doublePickupTime(it){
+  timeLeft*=2;
+  popText(it.x,it.y-22,"TIME x2!","#80deea");
+}
 function updateSibs(dt){
   if(P.speechT>0)P.speechT-=dt;
-  const played=lvl.L.time-timeLeft; // siblings help for the WHOLE level: Sis rolls in first, Bro zooms in on his e-motorcycle
+  const played=lvl.L.time-timeLeft; // both siblings pitch in immediately and keep collecting
   SIBS.forEach((d,k)=>{if(played>=d.delay&&!sibs.some(s=>s.k===k)&&P.carry<lvl.total){
     sibs.push({k,d,x:P.x,y:P.y+P.h-20,h:20,duck:false,jumps:0,vy:0,on:false,ride:null,face:1,anim:0,target:null,hop:0});say(d.line,2.5);P.speech=GREETINGS[Math.random()*GREETINGS.length|0];P.speechT=2.2;
     if(AC){const t0=AC.currentTime;if(k){tone(90,0.9,'sawtooth',0.06,600,t0,sfxGain);tone(180,0.9,'square',0.03,1200,t0,sfxGain);} // electric VRRRRM
       else [72,76,79,84].forEach((n,i)=>tone(mtof(n),0.12,'square',0.1,null,t0+i*0.07));}
     for(let i=0;i<14;i++)parts.push({x:P.x,y:P.y-10,vx:(Math.random()-.5)*200,vy:-Math.random()*150,life:1,col:k?"#43a047":"#ec407a"});}});
   for(const s of sibs){
-    const resting=s.rest>0;if(resting)s.rest=Math.max(0,s.rest-dt); // gravity continues during victory pauses
-    if(!s.target||s.target.got){s.target=null;let best=1e9;for(const it of lvl.items){if(it.got||sibs.some(o=>o!==s&&o.target===it))continue;const dd=Math.abs(it.x-s.x)+Math.abs(it.y-s.y);if(dd<best){best=dd;s.target=it;}}}
+    const resting=s.rest>0;if(resting)s.rest=Math.max(0,s.rest-dt); // only pause briefly after taking damage
+    chooseSiblingTarget(s,dt);
     const tx=s.target?s.target.x:P.x-20*s.face;
     moveSibling(s,dt,tx,!resting);
     if(s.target&&!s.target.got&&Math.abs(s.target.x+8-(s.x+5))<12&&Math.abs(s.target.y+8-(s.y+7))<14){
-      const it=s.target;it.got=true;s.rest=2.5;P.carry++;score+=25;levelScore+=25;SFX.collect();puff(it.x+8,it.y+8,s.k?"#69f0ae":"#f48fb1",8);
+      const it=s.target;it.got=true;doublePickupTime(it);s.rest=0;P.carry++;score+=25;levelScore+=25;SFX.collect();puff(it.x+8,it.y+8,s.k?"#69f0ae":"#f48fb1",8);
       const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?s.d.name+"! "+left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);}
   }
 }
@@ -983,7 +1021,7 @@ function updatePlay(dt){
   timeLeft-=dt;updateSibs(dt);
   if(timeLeft<=10&&!honked){honked=true;SFX.honk();say("HONK HONK! THEY'RE CLOSE!",2);}
   updatePlayer(dt);updateEnemies(dt);
-  for(const it of lvl.items){if(!it.got&&overlap(P,it)){it.got=true;P.carry++;score+=50;levelScore+=50;SFX.collect();puff(it.x+8,it.y+8,"#ffeb3b",8);
+  for(const it of lvl.items){if(!it.got&&overlap(P,it)){it.got=true;doublePickupTime(it);P.carry++;score+=50;levelScore+=50;SFX.collect();puff(it.x+8,it.y+8,"#ffeb3b",8);
     const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);}}
   if(overlap(P,lvl.drop)){
     if(P.carry>=lvl.total){
@@ -1084,8 +1122,8 @@ const PAL_ME={shirt:"#e53935",shirtD:"#b71c1c",pants:"#1e3a8a",cap:"#ffd600",cap
 const GREETINGS=["HEY PAL!","YOOO!","WASSUP!","HIYA!","SUP, NOODLE?","LET HIM COOK!","NO CAP, HI!","W SIBLING!","SKIBIDI HI!","ITS GIVING HELP!",
  "HOWDY, PARTNER!","AYOOO!","BIG W!","YOU'RE GOATED!","SLAY!","BET!","OK, RIZZ!","FR FR, HI!","BRO-TATO CHIP!","HEY BESTIE!","Sup Bro!"];
 const SIBS=[
- {name:"ANNIE",delay:1.0,speed:144,pal:{shirt:"#ec407a",shirtD:"#ad1457",pants:"#ec407a",cap:null,hair:"#ff8f00",logo:"#fff",pig:1},line:"ANNIE: I'LL HELP ALL DAY! (FOR COOKIES)"},
- {name:"ISAAC",delay:3.5,speed:176,pal:{shirt:"#43a047",shirtD:"#1b5e20",pants:"#424242",cap:"#212121",capH:"#616161",hair:"#3e2723",logo:"#fff"},line:"ISAAC: VRRRM! NEON LIGHT-BIKE, BABY!"},
+ {name:"ANNIE",delay:0,speed:144,pal:{shirt:"#ec407a",shirtD:"#ad1457",pants:"#ec407a",cap:null,hair:"#ff8f00",logo:"#fff",pig:1},line:"ANNIE: I'LL HELP ALL DAY! (FOR COOKIES)"},
+ {name:"ISAAC",delay:0,speed:176,pal:{shirt:"#43a047",shirtD:"#1b5e20",pants:"#424242",cap:"#212121",capH:"#616161",hair:"#3e2723",logo:"#fff"},line:"ISAAC: VRRRM! NEON LIGHT-BIKE, BABY!"},
 ];
 function drawKidRaw(x,y,face,frame,air,pal=PAL_ME){
   const f=face<0;const X=(dx,w)=>f?x+10-dx-w:x+dx;
@@ -1137,6 +1175,11 @@ function drawItemRaw(k,x,y){
     R(x+8,y+1,6,6,"#ffd600");R(x+13,y+4,3,2,"#ff6d00");R(x+13,y+5,3,1,"#e65100");
     R(x+11,y+3,2,2,"#fff");R(x+12,y+3,1,2,"#000");R(x+9,y+2,2,1,"#fff59d");
     R(x+4,y+8,5,3,"#fbc02d");R(x+4,y+8,4,1,"#fff59d");}
+  else if(k==='testtube'){ // capped science sample with a bright liquid and a label
+    const liquid=["#76ff03","#e040fb","#00e5ff"][Math.abs(Math.round(itemSeed/16))%3];
+    R(x+5,y,7,3,"#ffb74d");R(x+5,y+3,7,10,"#b2ebf2");R(x+6,y+13,5,2,"#80deea");
+    R(x+6,y+7,5,6,liquid);R(x+7,y+13,3,1,liquid);R(x+5,y+3,1,8,"#fff");
+    R(x+7,y+4,3,2,"#fff");R(x+8,y+4,1,1,"#455a64");R(x+8,y+9,1,1,"#fff");}
   else if(k==='oldflower'){ // bent stem, faded drooping petals and fallen petals
     R(x+7,y+7,2,8,"#82733f");R(x+5,y+5,3,3,"#82733f");R(x+3,y+6,2,3,"#82733f");
     R(x+2,y+8,6,3,"#b38b96");R(x+1,y+10,3,2,"#99717e");R(x+6,y+10,3,2,"#c5a1a8");R(x+4,y+8,2,2,"#a38442");
@@ -1226,6 +1269,10 @@ function drawDropRaw(k,x,y){
     R(x+2,y+4,44,2,"#e1f5fe");R(x,y+4,48,2,"#e3f2fd");R(x+2,y+22,44,2,"#81d4fa");
     for(let rr=0;rr<4;rr++)R(x+5+rr*11,y+7,1,14,"#e1f5fe");R(x+3,y+6,1,16,"#ffffff");
     R(x-2,y+9,3,5,"#81d4fa");R(x+47,y+9,3,5,"#81d4fa");}
+  else if(k==='labrack'){ // two-tier rack, ready for the collected samples
+    R(x+1,y+3,3,21,"#78909c");R(x+24,y+3,3,21,"#78909c");
+    for(let i=0;i<3;i++){const bx=x+6+i*6;R(bx,y,4,3,"#ffb74d");R(bx,y+3,4,16,"#b2ebf2");R(bx+1,y+10,2,8,["#76ff03","#e040fb","#00e5ff"][i]);R(bx,y+4,1,8,"#fff");}
+    R(x,y+6,28,3,"#eceff1");R(x,y+19,28,4,"#90a4ae");R(x+2,y+23,24,1,"#455a64");}
   else if(k==='compost'){ // slatted garden compost bin with a leaf emblem
     R(x+1,y+2,26,22,"#6d4c41");R(x,y,28,4,"#a1887f");
     for(let row=0;row<4;row++)R(x+2,y+5+row*5,24,3,"#a8794e");
@@ -1289,6 +1336,7 @@ function drawEnemyRaw(e,t,x,y){
   const eye=(ex,ey)=>{R(x+ex,y+ey,3,3,"#fff");R(x+ex+(f?2:0),y+ey+1,1,2,"#000");};
   const bob=Math.floor(t*8)%2;
   switch(e.type){
+    case'slime':R(x,y+5+bob,14,7-bob,"#64dd17");R(x+2,y+2+bob,10,5,"#76ff03");R(x+4,y+1+bob,6,2,"#b2ff59");R(x+1,y+11,12,1,"#33691e");eye(3,5+bob);eye(8,5+bob);R(x+6,y+9,3,1,"#1b5e20");break;
     case'weed': // leafy troublemaker, root feet and an angry face
       R(x+6,y+1,2,10,"#388e3c");R(x+2,y+2+bob,5,3,"#66bb6a");R(x+8,y+bob,5,4,"#81c784");
       R(x,y+6-bob,6,3,"#43a047");R(x+8,y+5+bob,6,3,"#4caf50");
@@ -1432,6 +1480,19 @@ function drawBackground(th,t){
       if(k===2){R(dx+30,46,50,36,"#1565c0");text("NO PAIN",dx+33,52,6,"#fff","left",false);text("NO",dx+46,62,6,"#fff","left",false);text("GAIN!",dx+38,72,6,"#ffea00","left",false);
         R(dx+100,150,12,10,"#424242");R(dx+102,146,8,4,"#424242");R(dx+120,152,10,8,"#ff3d00");R(dx+122,149,6,3,"#ff3d00");}
       if(k===3){R(dx+40,30,4,30,"#9e9e9e");R(dx+20,58,44,4,"#757575");R(dx+14,52,8,16,"#212121");R(dx+62,52,8,16,"#212121");text("MAX REPS",dx+18,74,6,"#ff3d00","left",false);}
+    }else if(thn==='science'){
+      R(dx+8,142,126,8,"#b0bec5");R(dx+12,150,6,32,"#546e7a");R(dx+122,150,6,32,"#546e7a");
+      if(k===0){ // bubbling flasks on a lab bench
+        for(let b=0;b<3;b++){const bx=dx+22+b*32,lc=["#76ff03","#e040fb","#00e5ff"][b];
+          R(bx+7,104,8,18,"#b2ebf2");R(bx+2,122,18,18,"#b2ebf2");R(bx+4,128,14,10,lc);R(bx+7,103,8,2,"#fff");
+          R(bx+8,99-(Math.floor(t*10+b*3)%12),3,3,lc);}}
+      if(k===1){ // microscope and an atom diagram
+        R(dx+42,133,42,8,"#eceff1");R(dx+50,108,7,26,"#90a4ae");R(dx+54,101,26,7,"#eceff1");R(dx+74,88,7,20,"#78909c");R(dx+71,86,13,4,"#263238");R(dx+61,122,20,3,"#263238");
+        g.strokeStyle='#80deea';g.lineWidth=1;for(let a=0;a<3;a++){g.beginPath();g.ellipse(dx+64,58,25,10,a*Math.PI/3,0,Math.PI*2);g.stroke();}R(dx+61,55,6,6,"#ffca28");}
+      if(k===2){R(dx+24,36,88,60,"#eceff1");text("SCIENCE",dx+32,44,8,"#006064","left",false);
+        for(let r=0;r<3;r++)for(let c=0;c<7;c++)R(dx+30+c*11,60+r*10,8,7,["#80cbc4","#ce93d8","#fff59d"][(r+c)%3]);}
+      if(k===3){R(dx+34,82,60,46,"#455a64");R(dx+38,86,52,34,"#092f38");text("LAB OK",dx+42,92,6,"#76ff03","left",false);
+        for(let n=0;n<9;n++)R(dx+42+n*5,108+Math.round(Math.sin(t*3+n)*4),3,1,"#00e5ff");R(dx+58,128,12,9,"#78909c");R(dx+46,137,36,4,"#cfd8dc");}
     }else if(thn==='tech'){
       g.globalAlpha=0.35;for(let cl=0;cl<5;cl++){const yy=20+cl*30;R(dx,yy,60+cl*10,1,"#00e5ff");R(dx+60+cl*10,yy,1,20,"#00e5ff");R(dx+58+cl*10,yy+19,5,3,"#00e5ff");}g.globalAlpha=1;
       if(k===0){R(dx+20,60,40,110,"#263238");for(let sr=0;sr<8;sr++){R(dx+24,64+sr*13,32,10,"#37474f");R(dx+26+((sr*5)%20),68+sr*13,2,2,(Math.floor(clock*6+sr)%3)?"#76ff03":"#ff1744");R(dx+46,67+sr*13,6,3,"#00e5ff");}}
@@ -1544,7 +1605,7 @@ function drawHUD(t){
   text(P.carry+"/"+lvl.total,24,10,8,P.carry>=lvl.total?"#76ff03":"#fff");
   text("SCORE "+score,70,10,8,"#ffeb3b");
   // parent car meter
-  const mx=220,mw=180,frac=1-timeLeft/L.time;
+  const mx=220,mw=180,frac=Math.max(0,Math.min(1,1-timeLeft/L.time));
   R(mx,14,mw,3,"#555");for(let i=0;i<mw;i+=12)R(mx+i,15,6,1,"#ffeb3b");
   // house
   R(mx+mw+4,8,16,12,"#e53935");R(mx+mw+2,4,20,5,"#b71c1c");R(mx+mw+10,13,4,7,"#3e2723");
@@ -1559,7 +1620,7 @@ function drawHUD(t){
     R(x+2,y+8,6,4,"#212121");R(x+14,y+8,6,4,"#212121");R(x+3,y+9,4,2,"#9e9e9e");R(x+15,y+9,4,2,"#9e9e9e");R(x+4,y+9,2,2,"#e0e0e0");R(x+16,y+9,2,2,"#e0e0e0");
   });
   const urgent=timeLeft<15;
-  const secs=Math.ceil(timeLeft);text(secs+"s",mx-6,10,8,urgent&&Math.floor(t*6)%2?"#ff1744":"#fff","right");
+  const secs=Math.ceil(timeLeft),timer=secs>=1e9?(secs/1e9).toFixed(1)+"Bs":secs>=1e6?(secs/1e6).toFixed(1)+"Ms":secs>=1e3?(secs/1e3).toFixed(1)+"Ks":secs+"s";text(timer,mx-6,10,8,urgent&&Math.floor(t*6)%2?"#ff1744":"#fff","right");
   text("LV"+(levelIdx+1),W-4,22,6,"#aaa","right",false);
 }
 
