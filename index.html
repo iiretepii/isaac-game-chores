@@ -43,6 +43,8 @@ addEventListener('keydown',e=>{
   if(k){if(k==='jump'&&!keys.jump)jumpPressed=true;keys[k]=true;e.preventDefault();}
   if(e.code==='Enter'||e.code==='Space')anyPress=true;
   if(e.code==='KeyM')toggleMute();
+  if(state==='title'&&!soundGate&&e.code==='KeyL'){openSelect();return;}
+  if(state==='select'){selectKey(e.code);e.preventDefault();return;}
   if(e.code==='KeyP'||e.code==='Escape'){if(state==='play')state='pause';else if(state==='pause')state='play';}
 });
 addEventListener('keyup',e=>{const k=KM[e.code];if(k)keys[k]=false;});
@@ -51,7 +53,11 @@ document.querySelectorAll('#touch button').forEach(b=>{
   b.addEventListener('pointerdown',e=>{e.preventDefault();initAudio();if(k==='jump'){jumpPressed=true;anyPress=true;}keys[k]=true;});
   const up=e=>{keys[k]=false;};b.addEventListener('pointerup',up);b.addEventListener('pointercancel',up);b.addEventListener('pointerleave',up);
 });
-document.addEventListener('pointerdown',e=>{if(e.target.closest&&e.target.closest('#touch'))return;initAudio();anyPress=true;});
+document.addEventListener('pointerdown',e=>{if(e.target.closest&&e.target.closest('#touch'))return;initAudio();
+  const r=cv.getBoundingClientRect(),cx=(e.clientX-r.left)*W/r.width,cy=(e.clientY-r.top)*H/r.height;
+  if(state==='title'&&!soundGate&&inBox(cx,cy,SELECT_BTN)){openSelect();return;}
+  if(state==='select'){selectTap(cx,cy);return;}
+  anyPress=true;});
 // Browsers keep audio muted until the player interacts, so the title screen asks for one click/key first
 const soundReady=()=>AC&&AC.state==='running';
 let soundGate=true;
@@ -675,45 +681,45 @@ function scheduler(){
 
 // ================= LEVEL DATA =================
 const LEVELS=[
- {name:"ISAAC'S ROOM",chore:"Put the toy dragons back in the toy chest",drop:"toychest",item:"dragon",count:10,time:94,len:170,gap:1,enemies:["bzombie","bskel","bspider","hisser"],density:.4,lego:0,movers:0,theme:"bedroom",music:"rock",
+ {name:"ISAAC'S ROOM",chore:"Put the toy dragons back in the toy chest",drop:"toychest",item:"dragon",seed:777,count:10,time:94,len:170,gap:1,enemies:["bzombie","bskel","bspider","hisser"],density:.4,lego:0,movers:0,theme:"bedroom",music:"rock",
   text:"UNCLE PETE: Isaac, your dragons escaped AGAIN. Back in the toy chest before Mom sees!"},
- {name:"ANNIE'S ROOM",chore:"Put the dolls back in the doll house",drop:"dollhouse",item:"doll",count:11,time:98,len:173,gap:1,enemies:["tabby","husky","pom"],density:.45,lego:0,movers:0,theme:"annie",music:"princess",
+ {name:"ANNIE'S ROOM",chore:"Put the dolls back in the doll house",drop:"dollhouse",item:"doll",seed:1790,count:11,time:98,len:173,gap:1,enemies:["tabby","husky","pom"],density:.45,lego:0,movers:0,theme:"annie",music:"princess",
   text:"MOM: Annie, your dolls are having a party ALL over the floor. Doll house, now!"},
- {name:"KITCHEN CATASTROPHE",chore:"Load the dirty dishes into the dishwasher",drop:"dishwasher",item:"dish",count:12,time:100,len:175,gap:2,enemies:["dust","roach"],density:.45,lego:0,movers:0,theme:"kitchen",music:"jazz",
+ {name:"KITCHEN CATASTROPHE",chore:"Load the dirty dishes into the dishwasher",drop:"dishwasher",item:"dish",seed:2803,count:12,time:101,len:175,gap:2,enemies:["dust","roach"],density:.45,lego:0,movers:0,theme:"kitchen",music:"jazz",
   text:"UNCLE PETE: Why is there a pancake on the ceiling? Fix it."},
- {name:"LIVING ROOM LEGO-LAND",chore:"Put the toys in the toy box",drop:"toybox",item:"toy",count:13,time:102,len:178,gap:2,enemies:["roomba","cat"],density:.5,lego:.4,movers:0,theme:"living",music:"pop",
+ {name:"LIVING ROOM LEGO-LAND",chore:"Put the toys in the toy box",drop:"toybox",item:"toy",seed:3816,count:13,time:104,len:178,gap:2,enemies:["roomba","cat"],density:.5,lego:.4,movers:0,theme:"living",music:"pop",
   text:"MOM: Watch out for LEGOs. Trust me. Toys away!"},
- {name:"BACKYARD BONANZA",chore:"Rake leaves into the bag",drop:"bag",item:"leaf",count:14,time:104,len:181,gap:3,enemies:["dog","bee"],density:.55,lego:.2,movers:1,theme:"yard",music:"hiphop",
+ {name:"BACKYARD BONANZA",chore:"Rake leaves into the bag",drop:"bag",item:"leaf",seed:4829,count:14,time:107,len:181,gap:3,enemies:["dog","bee"],density:.55,lego:.2,movers:1,theme:"yard",music:"hiphop",
   text:"UNCLE PETE: The dog ate the rake. Use your hands. Go!"},
- {name:"GARDEN GLOW-UP",chore:"Pick up the old flowers and put them in the compost bin",drop:"compost",item:"oldflower",count:15,time:108,len:183,gap:3,enemies:["weed"],density:.62,lego:0,movers:1,theme:"garden",music:"garden",
+ {name:"GARDEN GLOW-UP",chore:"Pick up the old flowers and put them in the compost bin",drop:"compost",item:"oldflower",seed:5842,count:15,time:110,len:183,gap:3,enemies:["weed"],density:.62,lego:0,movers:1,theme:"garden",music:"garden",
   text:"MOM: Those old flowers need composting! Watch out: the WEEDS have learned to walk!"},
- {name:"POOL PARTY PANIC",chore:"Put the wet towels back in the towel basket",drop:"towelbasket",item:"towel",count:15,time:106,len:183,gap:3,enemies:["duck","goose","swan","squirrel"],density:.58,lego:0,movers:1,theme:"pool",music:"pool",
+ {name:"POOL PARTY PANIC",chore:"Put the wet towels back in the towel basket",drop:"towelbasket",item:"towel",seed:6855,count:16,time:113,len:183,gap:3,enemies:["duck","goose","swan","squirrel"],density:.58,lego:0,movers:1,theme:"pool",music:"pool",
   text:"MOM: Who left 15 SOGGY towels around the pool?! Basket. Now. And shoo those geese!"},
- {name:"GARAGE OF DOOM",chore:"Take out ALL the trash",drop:"can",item:"trash",count:16,time:108,len:186,gap:3,enemies:["rat","roomba","bee"],density:.62,lego:.45,movers:1,theme:"garage",music:"techno",
+ {name:"GARAGE OF DOOM",chore:"Take out ALL the trash",drop:"can",item:"trash",seed:7868,count:17,time:116,len:186,gap:3,enemies:["rat","roomba","bee"],density:.62,lego:.45,movers:1,theme:"garage",music:"techno",
   text:"MOM: Something in the garage is ALIVE. Trash day!"},
- {name:"LAUNDRY ROOM PEE-YEW!",chore:"Get the stinky undies in the washer",drop:"washer",item:"undies",count:17,time:110,len:189,gap:3,enemies:["bubble","dust","roach"],density:.64,lego:.3,movers:1,theme:"laundry",music:"polka",
+ {name:"LAUNDRY ROOM PEE-YEW!",chore:"Get the stinky undies in the washer",drop:"washer",item:"undies",seed:8881,count:18,time:119,len:189,gap:3,enemies:["bubble","dust","roach"],density:.64,lego:.3,movers:1,theme:"laundry",music:"polka",
   text:"MOM: Who left STINKY UNDIES all over the laundry room?! P.U.!!"},
- {name:"BATHROOM BLUNDER",chore:"Flush the runaway poops down the toilet",drop:"toilet",item:"poop",count:18,time:112,len:191,gap:3,enemies:["bubble","roach","spider"],density:.66,lego:.3,movers:1,theme:"bathroom",music:"crooner",
+ {name:"BATHROOM BLUNDER",chore:"Flush the runaway poops down the toilet",drop:"toilet",item:"poop",seed:9894,count:19,time:122,len:191,gap:3,enemies:["bubble","roach","spider"],density:.66,lego:.3,movers:1,theme:"bathroom",music:"crooner",
   text:"UNCLE PETE: The dog had an 'accident' in the bathroom. Flush it ALL. Good luck."},
- {name:"HOME OFFICE HAVOC",chore:"Put the old work papers in the recycle bin",drop:"recycle",item:"paper",count:19,time:114,len:194,gap:3,enemies:["ant","spider","hamster"],density:.68,lego:.3,movers:1,theme:"office",music:"muzak",
+ {name:"HOME OFFICE HAVOC",chore:"Put the old work papers in the recycle bin",drop:"recycle",item:"paper",seed:10907,count:20,time:125,len:194,gap:3,enemies:["ant","spider","hamster"],density:.68,lego:.3,movers:1,theme:"office",music:"muzak",
   text:"MOM: My OLD WORK PAPERS are all over the office. And the class hamster escaped. Again."},
- {name:"LIBRARY BOOK ROUNDUP",chore:"Pick up the books and put them back on the shelves",drop:"libraryshelf",item:"book",count:20,time:118,len:197,gap:2,enemies:["dust","spider","hamster"],density:.45,lego:0,movers:1,theme:"library",music:"library",
+ {name:"LIBRARY BOOK ROUNDUP",chore:"Pick up the books and put them back on the shelves",drop:"libraryshelf",item:"book",seed:11920,count:21,time:128,len:197,gap:2,enemies:["dust","spider","hamster"],density:.45,lego:0,movers:1,theme:"library",music:"library",
   text:"MOM: Shhh! You, Isaac and Annie: return every book to the shelves. Even the hamster's bedtime story!"},
- {name:"MUSIC ROOM MAYHEM",chore:"Put the old piano scores back on the bookshelf",drop:"bookshelf",item:"score",count:20,time:116,len:197,gap:3,enemies:["cat","spider","roach"],density:.7,lego:.3,movers:1,theme:"musicroom",music:"practice",
+ {name:"MUSIC ROOM MAYHEM",chore:"Put the old piano scores back on the bookshelf",drop:"bookshelf",item:"score",seed:12933,count:22,time:131,len:197,gap:3,enemies:["cat","spider","roach"],density:.7,lego:.3,movers:1,theme:"musicroom",music:"practice",
   text:"MOM: Your old piano music is ALL over the floor. Shelve it! ...And did you practice?"},
- {name:"ARTS & CRAFTS CHAOS",chore:"Put the paint buckets back on the shelves",drop:"paintshelf",item:"paint",count:21,time:118,len:199,gap:3,enemies:["ant","cat","bubble"],density:.7,lego:.35,movers:1,theme:"arts",music:"french2",
+ {name:"ARTS & CRAFTS CHAOS",chore:"Put the paint buckets back on the shelves",drop:"paintshelf",item:"paint",seed:13946,count:23,time:134,len:199,gap:3,enemies:["ant","cat","bubble"],density:.7,lego:.35,movers:1,theme:"arts",music:"french2",
   text:"MOM: Who painted a mustache on the cat?! Paint buckets back on the shelves. Lids ON."},
- {name:"TECH ROOM TROUBLE",chore:"Bring the robot parts to the robot workbench",drop:"workbench",item:"robot",count:22,time:120,len:202,gap:3,enemies:["zap"],density:.75,lego:.35,movers:1,theme:"tech",music:"silly",
+ {name:"TECH ROOM TROUBLE",chore:"Bring the robot parts to the robot workbench",drop:"workbench",item:"robot",seed:14959,count:24,time:137,len:202,gap:3,enemies:["zap"],density:.75,lego:.35,movers:1,theme:"tech",music:"silly",
   text:"UNCLE PETE: Isaac took the robot apart AGAIN. Put it back together before Mom sees the sparks!"},
- {name:"SCIENCE LAB SCRAMBLE",chore:"Collect the test tubes and return them to the lab rack",drop:"labrack",item:"testtube",count:23,time:124,len:204,gap:3,enemies:["slime","bubble","zap"],density:.7,lego:.2,movers:1,theme:"science",music:"science",
+ {name:"SCIENCE LAB SCRAMBLE",chore:"Collect the test tubes and return them to the lab rack",drop:"labrack",item:"testtube",seed:15972,count:25,time:140,len:204,gap:3,enemies:["slime","bubble","zap"],density:.7,lego:.2,movers:1,theme:"science",music:"science",
   text:"UNCLE PETE: The experiment went BOING! You, Isaac and Annie: test tubes back in the rack. Watch out for runaway slime!"},
- {name:"WORKOUT ROOM WORKOUT",chore:"Put the weights back on the weight rack",drop:"weightrack",item:"weight",count:23,time:122,len:205,gap:3,enemies:["rat","cat","dog","mite"],density:.76,lego:.35,movers:1,theme:"gym",music:"workout",
+ {name:"WORKOUT ROOM WORKOUT",chore:"Put the weights back on the weight rack",drop:"weightrack",item:"weight",seed:16985,count:26,time:143,len:205,gap:3,enemies:["rat","cat","dog","mite"],density:.76,lego:.35,movers:1,theme:"gym",music:"workout",
   text:"UNCLE PETE: I left my weights ALL over the workout room. Rack 'em up! Feel the burn!"},
- {name:"THE SPOOKY BASEMENT",chore:"Move the wet shirts to the dryer",drop:"dryer",item:"shirt",count:24,time:124,len:207,gap:3,enemies:["spider","rat","dust"],density:.66,lego:.3,movers:1,theme:"basement",music:"romantic",
+ {name:"THE SPOOKY BASEMENT",chore:"Move the wet shirts to the dryer",drop:"dryer",item:"shirt",seed:17998,count:27,time:146,len:207,gap:3,enemies:["spider","rat","dust"],density:.66,lego:.3,movers:1,theme:"basement",music:"romantic",
   text:"UNCLE PETE: The washer is in the basement. Don't mind the spiders. Mostly."},
- {name:"ATTIC OF ANTIQUES",chore:"Pack the ornaments in the old trunk",drop:"trunk",item:"ornament",count:25,time:129,len:210,gap:3,enemies:["bat","spider","rat"],density:.7,lego:.35,movers:1,theme:"attic",music:"baroque",
+ {name:"ATTIC OF ANTIQUES",chore:"Pack the ornaments in the old trunk",drop:"trunk",item:"ornament",seed:19011,count:28,time:149,len:210,gap:3,enemies:["bat","spider","rat"],density:.7,lego:.35,movers:1,theme:"attic",music:"baroque",
   text:"MOM: Holiday ornaments go back in the attic trunk. Watch out for bats!"},
- {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",count:26,time:146,len:250,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
+ {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",seed:20024,count:29,time:155,len:250,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
   text:"BOTH: We're turning onto our street RIGHT NOW."},
 ];
 const THEMES={
@@ -743,7 +749,7 @@ const ITEM_NAMES={book:"books",testtube:"test tubes",oldflower:"old flowers",pai
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
 function buildLevel(idx){
-  const L=LEVELS[idx],rng=rngf(777+idx*1013),cols=L.len;
+  const L=LEVELS[idx],rng=rngf(L.seed??(777+idx*1013)),cols=L.len;
   const ri=(a,b)=>a+Math.floor(rng()*(b-a+1));
   const map=[];for(let r=0;r<ROWS;r++)map.push(new Array(cols).fill('.'));
   const ground=new Array(cols).fill(0),plats=[],spots=[],eSpots=[],movers=[],legos=[];
@@ -792,8 +798,8 @@ function buildLevel(idx){
   const items=[],n=Math.min(L.count,cand.length);
   const used=new Set();
   for(let i=0;i<n;i++){let k=Math.round(i*(cand.length-1)/Math.max(1,n-1));while(used.has(k))k++;used.add(k);const s=cand[k];
-    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel"];
-    items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%16]:L.item,got:false,bob:rng()*6});}
+    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel","oldflower","testtube","book"];
+    items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%kinds.length]:L.item,got:false,bob:rng()*6});}
   const enemies=[];
   eSpots.filter(s=>s.x>14&&s.x<cols-10).forEach(s=>{
     const type=L.enemies[ri(0,L.enemies.length-1)];
@@ -1005,10 +1011,6 @@ function chooseSiblingTarget(s,dt){
     if(cost<best){best=cost;s.target=it;}
   }
 }
-function doublePickupTime(it){
-  timeLeft*=2;
-  popText(it.x,it.y-22,"TIME x2!","#80deea");
-}
 function updateSibs(dt){
   if(P.speechT>0)P.speechT-=dt;
   const played=lvl.L.time-timeLeft; // both siblings pitch in immediately and keep collecting
@@ -1030,7 +1032,7 @@ function updateSibs(dt){
     else{s.target=null;tx=P.x-(s.k?62:24)*P.face;moving=!resting&&Math.abs(tx-s.x)>6;if(!moving)s.face=P.face;}
     moveSibling(s,dt,tx,moving);
     if(s.target&&!s.target.got&&Math.abs(s.target.x+8-(s.x+5))<12&&Math.abs(s.target.y+8-(s.y+7))<14){
-      const it=s.target;it.got=true;doublePickupTime(it);s.rest=0;P.carry++;score+=25;levelScore+=25;SFX.collect();puff(it.x+8,it.y+8,s.k?"#69f0ae":"#f48fb1",8);
+      const it=s.target;it.got=true;s.rest=0;P.carry++;score+=25;levelScore+=25;SFX.collect();puff(it.x+8,it.y+8,s.k?"#69f0ae":"#f48fb1",8);
       const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?s.d.name+"! "+left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);}
   }
 }
@@ -1038,7 +1040,7 @@ function updatePlay(dt){
   timeLeft-=dt;updateSibs(dt);
   if(timeLeft<=10&&!honked){honked=true;SFX.honk();say("HONK HONK! THEY'RE CLOSE!",2);}
   updatePlayer(dt);updateEnemies(dt);
-  for(const it of lvl.items){if(!it.got&&overlap(P,it)){it.got=true;doublePickupTime(it);P.carry++;score+=50;levelScore+=50;SFX.collect();puff(it.x+8,it.y+8,"#ffeb3b",8);
+  for(const it of lvl.items){if(!it.got&&overlap(P,it)){it.got=true;P.carry++;score+=50;levelScore+=50;SFX.collect();puff(it.x+8,it.y+8,"#ffeb3b",8);
     const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);}}
   if(overlap(P,lvl.drop)){
     if(P.carry>=lvl.total){
@@ -1177,12 +1179,7 @@ function drawItem(k,x,y,t=0,glow=true){
 }
 function drawItemRaw(k,x,y){
   x=Math.round(x);y=Math.round(y);
-  if(k==='sock'){ // striped tube sock with stink lines
-    R(x+3,y+1,6,10,"#fafafa");R(x+3,y+1,6,2,"#e0e0e0");R(x+3,y+4,6,2,"#e53935");R(x+3,y+7,6,1,"#1e88e5");
-    R(x+3,y+10,11,5,"#fafafa");R(x+12,y+11,3,3,"#fafafa");R(x+3,y+14,11,1,"#bdbdbd");R(x+3,y+10,2,5,"#9e9e9e");R(x+12,y+12,3,3,"#c8b29a");
-    R(x+8,y+1,1,10,"#d6d6d6");
-    R(x+11,y-3,1,2,"#9ccc65");R(x+12,y-5,1,2,"#9ccc65");R(x+14,y-2,1,2,"#9ccc65");R(x+15,y-4,1,2,"#9ccc65");}
-  else if(k==='dish'){ // plate with leftover spaghetti
+  if(k==='dish'){ // plate with leftover spaghetti
     R(x+3,y+3,10,1,"#fff");R(x+1,y+4,14,8,"#fff");R(x+3,y+12,10,1,"#fff");R(x+2,y+11,12,2,"#cfd8dc");
     R(x+3,y+5,10,6,"#64b5f6");R(x+4,y+6,8,4,"#e3f2fd");
     R(x+5,y+6,5,3,"#ffca28");R(x+6,y+7,2,1,"#e53935");R(x+9,y+6,1,1,"#e53935");R(x+5,y+9,2,1,"#ffca28");
@@ -1280,9 +1277,7 @@ function drawDrop(d,ready,t){
   if(ready)text("HERE!",x+d.w/2,y-14-({dollhouse:26,bookshelf:12,paintshelf:12,libraryshelf:16}[k]||0)-Math.abs(Math.sin(t*5))*4,8,"#ffeb3b","center");
 }
 function drawDropRaw(k,x,y){
-  if(k==='hamper'){R(x+2,y+4,24,20,"#c8a165");for(let i=0;i<24;i+=4)R(x+2+i,y+4,2,20,"#a0783d");R(x,y+2,28,4,"#8d6e3f");R(x+6,y,6,4,"#fff");}
-  else if(k==='sink'){R(x,y+8,28,16,"#90a4ae");R(x+2,y+8,24,4,"#cfd8dc");R(x+12,y,4,8,"#b0bec5");R(x+12,y,10,3,"#b0bec5");R(x+20,y+3,2,3,"#4fc3f7");}
-  else if(k==='toybox'){ // big clear plastic storage tote with a blue snap lid propped behind it, toys inside
+  if(k==='toybox'){ // big clear plastic storage tote with a blue snap lid propped behind it, toys inside
     R(x+3,y-5,42,4,"#1565c0");R(x+3,y-5,42,1,"#42a5f5");R(x+5,y-2,2,3,"#0d47a1");R(x+41,y-2,2,3,"#0d47a1");
     R(x+8,y+1,7,7,"#fdd835");R(x+13,y-1,4,4,"#fdd835");R(x+17,y,3,2,"#ff6d00");R(x+15,y,1,1,"#000");      // rubber duck
     R(x+22,y+1,8,8,"#e53935");R(x+24,y+2,3,2,"#ff8a80");                                                // ball
@@ -1325,8 +1320,6 @@ function drawDropRaw(k,x,y){
   else if(k==='recycle'){R(x+3,y+4,22,20,"#1e88e5");R(x+1,y+2,26,4,"#1565c0");R(x+3,y+22,22,2,"#0d47a1");
     R(x+10,y+9,8,1,"#fff");R(x+9,y+10,2,3,"#fff");R(x+17,y+10,2,3,"#fff");R(x+9,y+16,10,1,"#fff");R(x+8,y+13,2,3,"#fff");R(x+18,y+13,2,3,"#fff");R(x+12,y+8,2,2,"#fff");R(x+11,y+17,2,2,"#fff");
     R(x+6,y-3,9,6,"#fafafa");R(x+14,y-1,8,5,"#fff8e1");R(x+8,y-1,5,1,"#90a4ae");}
-  else if(k==='markercup'){R(x+4,y+6,20,18,"#ff7043");R(x+4,y+6,20,2,"#ffab91");R(x+4,y+22,20,2,"#d84315");R(x+8,y+12,12,6,"#fff");R(x+10,y+14,2,2,"#42a5f5");R(x+16,y+14,2,2,"#66bb6a");
-    ["#e53935","#1e88e5","#43a047","#fdd835","#8e24aa","#fb8c00"].forEach((c,j)=>{R(x+5+j*3,y-2-(j%2)*3,3,9,c);R(x+5+j*3,y-3-(j%2)*3,3,1,"#212121");});}
   else if(k==='toychest'){R(x,y+8,28,16,"#8d6e63");R(x,y+2,28,7,"#a1887f");R(x,y+8,28,2,"#4e342e");R(x+2,y+3,24,1,"#bcaaa4");
     R(x+11,y+12,6,6,"#43a047");R(x+12,y+11,4,1,"#43a047");R(x+13,y+13,1,1,"#ffeb3b");R(x+12,y+9,4,3,"#ffd54f");R(x+2,y+2,2,22,"#5d4037");R(x+24,y+2,2,22,"#5d4037");}
   else if(k==='dollhouse'){ // pink princess castle doll house
@@ -1340,8 +1333,6 @@ function drawDropRaw(k,x,y){
     if(Math.floor(clock*3)%2)R(x+19,y-26,1,1,"#fff");R(x+3,y+1,1,1,"#fff");}
   else if(k==='bookshelf'){R(x-2,y-14,32,38,"#5d4037");R(x,y-12,28,34,"#3e2723");for(let sh=0;sh<3;sh++){R(x,y-2+sh*11,28,2,"#6d4c41");
     for(let bk=0;bk<6;bk++){const bc=["#c62828","#1565c0","#2e7d32","#f9a825","#6a1b9a","#ef6c00"][(bk+sh)%6];R(x+2+bk*4,y-11+sh*11+(bk%3===1?1:0),3,9-(bk%3===1?1:0),bc);R(x+2+bk*4,y-9+sh*11,3,1,"#fff8");}}}
-  else if(k==='shredder'){R(x+3,y+10,22,14,"#455a64");R(x+3,y+10,22,2,"#607d8b");R(x+1,y+4,26,7,"#263238");R(x+4,y+6,20,2,"#000");R(x+22,y+5,3,2,"#76ff03");
-    for(let k2=0;k2<5;k2++)R(x+6+k2*4,y+14+((k2*3)%4),2,8,"#fafafa");R(x+8,y-2,12,7,"#fff");R(x+10,y,8,1,"#90a4ae");R(x+10,y+2,6,1,"#90a4ae");}
   else if(k==='toilet'){R(x+14,y-6,14,14,"#fafafa");R(x+14,y-6,14,2,"#e0e0e0");R(x+24,y-3,3,2,"#b0bec5");R(x+2,y+8,24,6,"#fafafa");R(x+2,y+8,24,2,"#e0e0e0");R(x+5,y+10,16,3,"#4fc3f7");
     R(x+6,y+14,16,6,"#fafafa");R(x+9,y+20,10,4,"#eeeeee");R(x+6,y+14,2,6,"#e0e0e0");}
   else if(k==='dryer'){R(x+1,y,26,24,"#ffccbc");R(x+1,y,26,6,"#ff8a65");R(x+4,y+2,8,2,"#fff");R(x+20,y+2,3,2,"#d84315");R(x+7,y+8,14,14,"#8d6e63");R(x+9,y+10,10,10,"#ffab91");R(x+11,y+12,3,3,"#fff3e0");R(x+1,y+23,26,1,"#bf360c");}
@@ -1754,6 +1745,7 @@ function drawTitle(t){
   drawItem("toy",W/2-100,160+Math.cos(t*3)*3);drawItem("leaf",W/2+90,160+Math.sin(t*3)*3);
   if(soundGate)text("CLICK OR PRESS ANY KEY FOR SOUND",W/2,200,8,Math.floor(t*2)%2?"#ffeb3b":"#fff","center");
   else if(Math.floor(t*2)%2)text("PRESS ENTER / TAP TO START",W/2,200,8,"#76ff03","center");
+  if(!soundGate){const b=SELECT_BTN;R(b.x-1,b.y-1,b.w+2,b.h+2,"#ffeb3b");R(b.x,b.y,b.w,b.h,"#3d2a8a");text("LEVEL SELECT (L)",W/2,b.y+3,6,"#ffeb3b","center",false);}
   text("A/D MOVE  SPACE x2 JUMP  DOWN/S DUCK  M MUTE  P PAUSE",W/2,226,6,"#aaa","center",false);
   text("STOMP CRITTERS. DODGE LEGOS. DON'T FALL.",W/2,240,6,"#aaa","center",false);
   text("MADE BY ISAAC HELTON & PETE O'CONNELL",W/2,256,6,"#ffeb3b","center");
@@ -1810,6 +1802,43 @@ function drawEnd(t){
   text("MADE BY ISAAC HELTON & PETE O'CONNELL",W/2,250,8,"#ffeb3b","center");
 }
 
+// ================= LEVEL SELECT =================
+// Pick any level from the title screen: press L or tap the LEVEL SELECT button. Arrows + Enter, or tap a level.
+const SELECT_BTN={x:W/2-62,y:209,w:124,h:13},SEL_COLS=5,SEL_W=86,SEL_H=46,SEL_X=(W-SEL_COLS*SEL_W)/2+2,SEL_Y=40;
+let selIdx=0;
+const inBox=(x,y,b)=>x>=b.x&&x<=b.x+b.w&&y>=b.y&&y<=b.y+b.h;
+const selRect=i=>({x:SEL_X+(i%SEL_COLS)*SEL_W,y:SEL_Y+Math.floor(i/SEL_COLS)*SEL_H,w:SEL_W-6,h:SEL_H-6});
+function openSelect(){state='select';stateT=0;selIdx=Math.min(selIdx,LEVELS.length-1);if(AC)SFX.collect();}
+function playFromSelect(i){score=0;startLevel(i);}
+function selectKey(code){
+  const n=LEVELS.length;
+  if(code==='ArrowLeft'||code==='KeyA')selIdx=(selIdx+n-1)%n;
+  else if(code==='ArrowRight'||code==='KeyD')selIdx=(selIdx+1)%n;
+  else if(code==='ArrowUp'||code==='KeyW')selIdx=Math.max(0,selIdx-SEL_COLS);
+  else if(code==='ArrowDown'||code==='KeyS')selIdx=Math.min(n-1,selIdx+SEL_COLS);
+  else if(code==='Enter'||code==='Space'){playFromSelect(selIdx);return;}
+  else if(code==='Escape'||code==='Backspace'){state='title';stateT=0;return;}
+  else return;
+  if(AC)tone(660,0.05,'square',0.05);
+}
+function selectTap(x,y){
+  for(let i=0;i<LEVELS.length;i++)if(inBox(x,y,selRect(i))){if(selIdx===i||stateT>0.2)playFromSelect(i);return;}
+  if(y>H-24){state='title';stateT=0;}
+}
+function drawSelect(t){
+  R(0,0,W,H,"#1a1040");for(let i=0;i<40;i++){const x=(i*97+t*15)%W,y=(i*53)%H;R(x,y,1,1,"#5c4db1");}
+  text("LEVEL SELECT",W/2,12,12,"#ffeb3b","center");
+  LEVELS.forEach((L,i)=>{const b=selRect(i),on=i===selIdx;
+    R(b.x-1,b.y-1,b.w+2,b.h+2,on?"#ffeb3b":"#000");R(b.x,b.y,b.w,b.h,on?"#3d2a8a":"#261a5c");
+    text(String(i+1),b.x+4,b.y+4,8,on?"#ffeb3b":"#fff","left",false);
+    drawItem(L.item==='mix'?'trash':L.item,b.x+b.w-20,b.y+3,t,false);
+    g.font='6px '+FONT;const words=L.name.split(' ');let line='',yy=b.y+21;
+    for(const w of words){const test=line?line+' '+w:w;if(g.measureText(test).width>b.w-6&&line){text(line,b.x+3,yy,6,"#cfd8dc","left",false);line=w;yy+=8;}else line=test;}
+    if(line&&yy<b.y+b.h-4)text(line,b.x+3,yy,6,"#cfd8dc","left",false);});
+  text("ARROWS + ENTER TO PLAY   ESC OR TAP HERE: BACK",W/2,H-14,6,"#aaa","center",false);
+  g.drawImage(fx,0,0);
+}
+
 // ================= MAIN LOOP =================
 let last=performance.now(),acc=0,clock=0;
 function frame(now){
@@ -1828,6 +1857,7 @@ function frame(now){
     jumpPressed=false;
   }
   if(state==='splash')drawSplash(stateT);
+  else if(state==='select')drawSelect(clock);
   else if(state==='title'){drawTitle(clock);if(AC&&!music.on)startMusic('french');}
   else if(state==='intro')drawIntro(clock);
   else if(state==='play')drawPlay(clock);

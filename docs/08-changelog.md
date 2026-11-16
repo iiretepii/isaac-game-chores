@@ -2,7 +2,15 @@
 
 Grouped by milestone. See `git log` for every commit.
 
-## 2026-11-16
+## 2026-11-16 (Later)
+- **Time doubling removed:** picking up items no longer adds time.
+- **Item counts and time limits:** item counts now climb 10 → 29, and time limits rise steadily.
+- **Whole House:** now includes every item and critter.
+- **Fixed seeds:** each level has its own layout seed.
+- **Cleanup:** unused sprites removed.
+- **Level select:** new screen on the title (press L or tap LEVEL SELECT).
+
+## 2026-11-16 (Earlier)
 - **New levels:** Garden Glow-Up and Science Lab Scramble (Codex, PR #1), then Library Book Roundup with very quiet music (Codex, PR #2).
 - **Player:** rides a bicycle, gains a double jump and ducking (Codex).
 - **Time doubling:** every pickup doubles the time left; the timer shows K/M/B (Codex).

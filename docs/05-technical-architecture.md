@@ -26,7 +26,7 @@ There's no build step and there are no libraries. The only external resource is 
 
 ## Game States
 
-`splash → title → intro → play ⇄ pause`, then:
+`splash → title → intro → play ⇄ pause` (or `title → select → intro`), then:
 - `play → clear → intro` (next level), or `clear → end → title` after the last level.
 - `play → lose → intro` (retry the same level).
 
@@ -62,7 +62,7 @@ Collision is tile-based: `#` is solid, `=` is a one-way platform (land from abov
 
 ## Level Generation
 
-`buildLevel(idx)` uses `rngf(777 + idx × 1013)` to fill a `ground[]` height array and a `map[row][col]` tile grid:
+`buildLevel(idx)` uses `rngf(L.seed)` (each level's fixed seed) to fill a `ground[]` height array and a `map[row][col]` tile grid:
 - **Contents:** platforms, item spots, critter spots, moving platforms and LEGO bricks.
 - **Items:** chosen evenly from the candidate spots.
 - **Critters:** placed on spots past column 14, with types picked at random from the level's list.

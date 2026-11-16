@@ -8,24 +8,24 @@ Generated from the `LEVELS` array in `index.html`.
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | Isaac's Room | `bedroom` | dragon → toychest | 10 | 94s | 170 | 1 | 0.4 | 0 | no | bzombie, bskel, bspider, hisser | `rock` |
 | 2 | Annie's Room | `annie` | doll → dollhouse | 11 | 98s | 173 | 1 | 0.45 | 0 | no | tabby, husky, pom | `princess` |
-| 3 | Kitchen Catastrophe | `kitchen` | dish → dishwasher | 12 | 100s | 175 | 2 | 0.45 | 0 | no | dust, roach | `jazz` |
-| 4 | Living Room Lego-Land | `living` | toy → toybox | 13 | 102s | 178 | 2 | 0.5 | 0.4 | no | roomba, cat | `pop` |
-| 5 | Backyard Bonanza | `yard` | leaf → bag | 14 | 104s | 181 | 3 | 0.55 | 0.2 | yes | dog, bee | `hiphop` |
-| 6 | Garden Glow-Up | `garden` | oldflower → compost | 15 | 108s | 183 | 3 | 0.62 | 0 | yes | weed | `garden` |
-| 7 | Pool Party Panic | `pool` | towel → towelbasket | 15 | 106s | 183 | 3 | 0.58 | 0 | yes | duck, goose, swan, squirrel | `pool` |
-| 8 | Garage of Doom | `garage` | trash → can | 16 | 108s | 186 | 3 | 0.62 | 0.45 | yes | rat, roomba, bee | `techno` |
-| 9 | Laundry Room Pee-Yew! | `laundry` | undies → washer | 17 | 110s | 189 | 3 | 0.64 | 0.3 | yes | bubble, dust, roach | `polka` |
-| 10 | Bathroom Blunder | `bathroom` | poop → toilet | 18 | 112s | 191 | 3 | 0.66 | 0.3 | yes | bubble, roach, spider | `crooner` |
-| 11 | Home Office Havoc | `office` | paper → recycle | 19 | 114s | 194 | 3 | 0.68 | 0.3 | yes | ant, spider, hamster | `muzak` |
-| 12 | Library Book Roundup | `library` | book → libraryshelf | 20 | 118s | 197 | 2 | 0.45 | 0 | yes | dust, spider, hamster | `library` |
-| 13 | Music Room Mayhem | `musicroom` | score → bookshelf | 20 | 116s | 197 | 3 | 0.7 | 0.3 | yes | cat, spider, roach | `practice` |
-| 14 | Arts & Crafts Chaos | `arts` | paint → paintshelf | 21 | 118s | 199 | 3 | 0.7 | 0.35 | yes | ant, cat, bubble | `french2` |
-| 15 | Tech Room Trouble | `tech` | robot → workbench | 22 | 120s | 202 | 3 | 0.75 | 0.35 | yes | zap | `silly` |
-| 16 | Science Lab Scramble | `science` | testtube → labrack | 23 | 124s | 204 | 3 | 0.7 | 0.2 | yes | slime, bubble, zap | `science` |
-| 17 | Workout Room Workout | `gym` | weight → weightrack | 23 | 122s | 205 | 3 | 0.76 | 0.35 | yes | rat, cat, dog, mite | `workout` |
-| 18 | The Spooky Basement | `basement` | shirt → dryer | 24 | 124s | 207 | 3 | 0.66 | 0.3 | yes | spider, rat, dust | `romantic` |
-| 19 | Attic of Antiques | `attic` | ornament → trunk | 25 | 129s | 210 | 3 | 0.7 | 0.35 | yes | bat, spider, rat | `baroque` |
-| 20 | The Whole House!! | `house` | mix → couch | 26 | 146s | 250 | 3 | 0.75 | 0.5 | yes | all critters | `mix` |
+| 3 | Kitchen Catastrophe | `kitchen` | dish → dishwasher | 12 | 101s | 175 | 2 | 0.45 | 0 | no | dust, roach | `jazz` |
+| 4 | Living Room Lego-Land | `living` | toy → toybox | 13 | 104s | 178 | 2 | 0.5 | 0.4 | no | roomba, cat | `pop` |
+| 5 | Backyard Bonanza | `yard` | leaf → bag | 14 | 107s | 181 | 3 | 0.55 | 0.2 | yes | dog, bee | `hiphop` |
+| 6 | Garden Glow-Up | `garden` | oldflower → compost | 15 | 110s | 183 | 3 | 0.62 | 0 | yes | weed | `garden` |
+| 7 | Pool Party Panic | `pool` | towel → towelbasket | 16 | 113s | 183 | 3 | 0.58 | 0 | yes | duck, goose, swan, squirrel | `pool` |
+| 8 | Garage of Doom | `garage` | trash → can | 17 | 116s | 186 | 3 | 0.62 | 0.45 | yes | rat, roomba, bee | `techno` |
+| 9 | Laundry Room Pee-Yew! | `laundry` | undies → washer | 18 | 119s | 189 | 3 | 0.64 | 0.3 | yes | bubble, dust, roach | `polka` |
+| 10 | Bathroom Blunder | `bathroom` | poop → toilet | 19 | 122s | 191 | 3 | 0.66 | 0.3 | yes | bubble, roach, spider | `crooner` |
+| 11 | Home Office Havoc | `office` | paper → recycle | 20 | 125s | 194 | 3 | 0.68 | 0.3 | yes | ant, spider, hamster | `muzak` |
+| 12 | Library Book Roundup | `library` | book → libraryshelf | 21 | 128s | 197 | 2 | 0.45 | 0 | yes | dust, spider, hamster | `library` |
+| 13 | Music Room Mayhem | `musicroom` | score → bookshelf | 22 | 131s | 197 | 3 | 0.7 | 0.3 | yes | cat, spider, roach | `practice` |
+| 14 | Arts & Crafts Chaos | `arts` | paint → paintshelf | 23 | 134s | 199 | 3 | 0.7 | 0.35 | yes | ant, cat, bubble | `french2` |
+| 15 | Tech Room Trouble | `tech` | robot → workbench | 24 | 137s | 202 | 3 | 0.75 | 0.35 | yes | zap | `silly` |
+| 16 | Science Lab Scramble | `science` | testtube → labrack | 25 | 140s | 204 | 3 | 0.7 | 0.2 | yes | slime, bubble, zap | `science` |
+| 17 | Workout Room Workout | `gym` | weight → weightrack | 26 | 143s | 205 | 3 | 0.76 | 0.35 | yes | rat, cat, dog, mite | `workout` |
+| 18 | The Spooky Basement | `basement` | shirt → dryer | 27 | 146s | 207 | 3 | 0.66 | 0.3 | yes | spider, rat, dust | `romantic` |
+| 19 | Attic of Antiques | `attic` | ornament → trunk | 28 | 149s | 210 | 3 | 0.7 | 0.35 | yes | bat, spider, rat | `baroque` |
+| 20 | The Whole House!! | `house` | mix → couch | 29 | 155s | 250 | 3 | 0.75 | 0.5 | yes | all critters | `mix` |
 
 ## Level Data Format
 
@@ -34,6 +34,7 @@ Each level is one object in the `LEVELS` array:
 | Field | Meaning |
 |---|---|
 | `name` | Title shown on the intro card (ALL CAPS) |
+| `seed` | Fixed random seed for the layout (stays the same if levels are inserted or reordered) |
 | `chore` | One-line chore description |
 | `drop` | Drop-off sprite key (drawn in `drawDropRaw`) |
 | `item` | Item sprite key (drawn in `drawItemRaw`); `"mix"` uses all item kinds |
@@ -64,7 +65,7 @@ Each level is one object in the `LEVELS` array:
 
 ## Level Generation Rules
 
-- **Fixed seed:** the seed is `777 + index × 1013`. Changing a level's index (inserting a level before it) **changes its layout**.
+- **Fixed seed:** each level has its own `seed` field, so inserting or reordering levels never changes another level's layout. New levels should get a new, unused seed (for example `777 + n × 1013` for the next unused `n`).
 - **Start and end:** the first 10 columns and last 16 columns are flat. The drop-off sits near the end; extra-wide drop-offs (couch, tote, castle) shift left.
 - **Building blocks:** pits (sometimes with moving platforms), steps (−2 to +3 tiles), shelves (one-way platforms, sometimes stacked) and flat runs with a critter or LEGO brick.
 - **Jumpable:** every generated gap and step is within the player's jump.
@@ -72,7 +73,7 @@ Each level is one object in the `LEVELS` array:
 
 ## Checklist: Adding a Level
 
-1. **Level entry:** add an entry to `LEVELS` at the right position (item count about +1 from the previous level, time ≥ previous).
+1. **Level entry:** add an entry to `LEVELS` at the right position with a new `seed`, keeping item counts climbing by one and each time limit at least 3 s above the previous level (renumber later levels' counts and times).
 2. **Theme:** add a `THEMES` entry and a `drawBackground` branch for the decorations.
 3. **Item:** add the item sprite in `drawItemRaw` and a plural name in `ITEM_NAMES`. Add it to the `kinds` list used by the Whole House.
 4. **Drop-off:** add the sprite in `drawDropRaw`. If it's wider than 28 px, add its width to the drop-width table in `buildLevel`.

@@ -21,10 +21,13 @@ The whole game is a single file, `index.html`. Open it in any modern web browser
 | Double jump | Press jump again in mid-air | JUMP again |
 | Duck | Down arrow or S | DUCK button |
 | Start / continue | Enter or Space, or click | Tap the screen |
+| Level select (title screen) | L, then arrows + Enter | Tap LEVEL SELECT, then tap a level |
 | Pause | P or Esc | — |
 | Mute | M | — |
 
 You ride a **bicycle** through every level, with spinning wheels and pedals. Duck to squeeze under low spots, and use the double jump to clear wide gaps or reach high shelves.
+
+On the title screen you can also open **Level Select** to jump straight to any of the 20 levels.
 
 Browsers don't allow sound until you interact with the page, so the title screen asks you to **click or press any key for sound** first. After that, press Enter (or tap) to start.
 
@@ -35,7 +38,6 @@ Browsers don't allow sound until you interact with the page, so the title screen
 3. Bring them to the drop-off spot at the end of the level (it glows and says **HERE!** once you have everything).
 4. Do it before the timer runs out.
 
-**Bonus: every item you or your siblings pick up doubles the time left on the clock** ("TIME x2!"). Grab items quickly and the clock can grow huge, so the timer switches to K (thousands), M (millions) and B (billions) of seconds.
 
 ### The Parents' Car
 
@@ -60,7 +62,6 @@ When they show up, you greet them with a goofy speech bubble picked at random, l
 
 - **Annie** starts grabbing items when there's **20% of the time** left ("Time's running out! I'll grab some!").
 - **Isaac** joins in at **10%** ("Turbo mode! I got this!").
-- Every item doubles the clock, so once a pickup pushes the time back above their limit, they fall back in line behind you.
 
 They play by the same rules as you:
 
@@ -73,7 +74,7 @@ They play by the same rules as you:
 
 - Chore item: +50 (+25 if a sibling grabs it)
 - Stomping a critter: +100
-- Finishing a level: +10 for every second left on the clock (with the time-doubling pickups, this can get very big!)
+- Finishing a level: +10 for every second left on the clock
 
 ---
 
@@ -85,24 +86,24 @@ Each level is longer, with more items, critters and gaps than the one before. La
 |---|---|---|---|---|---|---|
 | 1 | **Isaac's Room** | Blocky toy dragons → toy chest | 10 | 94s | Blocky zombies, skeletons, spiders and hissing bush-blocks | Rock |
 | 2 | **Annie's Room** | Dolls → castle doll house | 11 | 98s | A tabby cat, a husky and a Pomeranian | Fairy-tale princess waltz |
-| 3 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 12 | 100s | Dust bunnies, cockroaches | Swing jazz |
-| 4 | **Living Room Lego-Land** | Toys → plastic toy tote | 13 | 102s | Robot vacuums, cats | Bubblegum pop |
-| 5 | **Backyard Bonanza** | Leaves → leaf bag | 14 | 104s | Dogs, bees | Boom-bap hip hop |
-| 6 | **Garden Glow-Up** | Old flowers → compost bin | 15 | 108s | Walking weeds | Bright trumpet duet |
-| 7 | **Pool Party Panic** | Soggy towels → towel basket | 15 | 106s | Ducks, geese, swans, squirrels | Silly splashy calypso |
-| 8 | **Garage of Doom** | Trash → trash can | 16 | 108s | Rats, robot vacuums, bees | Funky techno |
-| 9 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 17 | 110s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
-| 10 | **Bathroom Blunder** | Runaway poops → toilet | 18 | 112s | Soap bubbles, cockroaches, spiders | Italian crooner waltz |
-| 11 | **Home Office Havoc** | Old work papers → recycle bin | 19 | 114s | Ants, spiders, hamsters | Terrible elevator music |
-| 12 | **Library Book Roundup** | Books → library shelf | 20 | 118s | Dust bunnies, spiders, hamsters | Very quiet library piano |
-| 13 | **Music Room Mayhem** | Old piano scores → bookshelf | 20 | 116s | Cats, spiders, cockroaches | Kid practicing piano |
-| 14 | **Arts & Crafts Chaos** | Paint buckets → shelves | 21 | 118s | Ants, cats, soap bubbles | Lively French impressionist |
-| 15 | **Tech Room Trouble** | Robot parts → robot workbench | 22 | 120s | Little lightning bolts | The silliest song ever |
-| 16 | **Science Lab Scramble** | Test tubes → lab rack | 23 | 124s | Slime, soap bubbles, lightning bolts | Spacey electronic arpeggios |
-| 17 | **Workout Room Workout** | Weights → weight rack | 23 | 122s | Rats, cats, dogs, dust mites | High-octane workout anthem |
-| 18 | **The Spooky Basement** | Wet shirts → dryer | 24 | 124s | Spiders, rats, dust bunnies | Romantic movie-theme piano |
-| 19 | **Attic of Antiques** | Holiday ornaments → old trunk | 25 | 129s | Bats, spiders, rats | Bach-style pipe organ |
-| 20 | **The Whole House!!** | Everything → dive on the couch | 26 | 146s | All of them | Medley of every style |
+| 3 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 12 | 101s | Dust bunnies, cockroaches | Swing jazz |
+| 4 | **Living Room Lego-Land** | Toys → plastic toy tote | 13 | 104s | Robot vacuums, cats | Bubblegum pop |
+| 5 | **Backyard Bonanza** | Leaves → leaf bag | 14 | 107s | Dogs, bees | Boom-bap hip hop |
+| 6 | **Garden Glow-Up** | Old flowers → compost bin | 15 | 110s | Walking weeds | Bright trumpet duet |
+| 7 | **Pool Party Panic** | Soggy towels → towel basket | 16 | 113s | Ducks, geese, swans, squirrels | Silly splashy calypso |
+| 8 | **Garage of Doom** | Trash → trash can | 17 | 116s | Rats, robot vacuums, bees | Funky techno |
+| 9 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 18 | 119s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
+| 10 | **Bathroom Blunder** | Runaway poops → toilet | 19 | 122s | Soap bubbles, cockroaches, spiders | Italian crooner waltz |
+| 11 | **Home Office Havoc** | Old work papers → recycle bin | 20 | 125s | Ants, spiders, hamsters | Terrible elevator music |
+| 12 | **Library Book Roundup** | Books → library shelf | 21 | 128s | Dust bunnies, spiders, hamsters | Very quiet library piano |
+| 13 | **Music Room Mayhem** | Old piano scores → bookshelf | 22 | 131s | Cats, spiders, cockroaches | Kid practicing piano |
+| 14 | **Arts & Crafts Chaos** | Paint buckets → shelves | 23 | 134s | Ants, cats, soap bubbles | Lively French impressionist |
+| 15 | **Tech Room Trouble** | Robot parts → robot workbench | 24 | 137s | Little lightning bolts | The silliest song ever |
+| 16 | **Science Lab Scramble** | Test tubes → lab rack | 25 | 140s | Slime, soap bubbles, lightning bolts | Spacey electronic arpeggios |
+| 17 | **Workout Room Workout** | Weights → weight rack | 26 | 143s | Rats, cats, dogs, dust mites | High-octane workout anthem |
+| 18 | **The Spooky Basement** | Wet shirts → dryer | 27 | 146s | Spiders, rats, dust bunnies | Romantic movie-theme piano |
+| 19 | **Attic of Antiques** | Holiday ornaments → old trunk | 28 | 149s | Bats, spiders, rats | Bach-style pipe organ |
+| 20 | **The Whole House!!** | Everything → dive on the couch | 29 | 155s | All of them | Medley of every style |
 
 The basement is dark, with a pool of light that follows you around. At the pool, the floating platforms are striped lounge chairs and the gaps are the pool itself. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
 

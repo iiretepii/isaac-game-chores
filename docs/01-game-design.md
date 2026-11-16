@@ -19,20 +19,19 @@
 1. **Intro card:** a text message from Mom or Uncle Pete explains the chore and the "now playing" song.
 2. **Collect:** ride through the level picking up every chore item, while avoiding critters, LEGO bricks and gaps.
 3. **Deliver:** when everything is collected, the drop-off spot glows and shows **HERE!** Ride into it to finish.
-4. **Result:** finish to get a time bonus and a funny parent reaction. If time runs out, the parents arrive ("YOU'RE GROUNDED UNTIL YOU'RE 40!") and you retry the level.
+4. **Level select:** from the title screen, any level can be started directly.
+5. **Result:** finish to get a time bonus and a funny parent reaction. If time runs out, the parents arrive ("YOU'RE GROUNDED UNTIL YOU'RE 40!") and you retry the level.
 
 ## Rules
 
 | Rule | Value |
 |---|---|
 | Time limit | Set per level (see [02 – Levels](02-levels.md)) |
-| Picking up an item | **Doubles the time left** ("TIME x2!") |
 | Hit by a critter or LEGO brick | −5 seconds, knock-back, 1.5 s of invincibility |
 | Falling into a gap | −5 seconds, respawn on the last safe ground |
 | Siblings get hurt | Same −5 second penalty, applied to the shared clock |
 | Last 15 seconds | Screen flashes red, music speeds up 8% |
 | 10 seconds left | "HONK HONK!" warning |
-| Timer display | Switches to K / M / B (thousands / millions / billions of seconds) for huge values |
 
 ## Controls
 
@@ -43,6 +42,7 @@
 | Double jump | Jump again in mid-air | JUMP again |
 | Duck | Down or S | DUCK |
 | Start / continue | Enter, Space, click or tap | Tap |
+| Level select (title) | L, arrows, Enter, Esc | Tap LEVEL SELECT, tap a level |
 | Pause | P or Esc | — |
 | Mute | M | — |
 
@@ -59,8 +59,8 @@ Browsers block sound until the player interacts, so the title screen first asks 
 
 ## Difficulty Curve Guidelines
 
-- **Item count:** starts at 10 and rises by about one per level (Whole House: 26).
-- **Time limit:** rises with item count. Each level should allow at least as much time as the one before.
+- **Item count:** starts at 10 and rises by exactly one per level (Whole House: 29).
+- **Time limit:** rises with item count; each level allows at least 3 seconds more than the one before. Picking up items does **not** add time.
 - **Length:** stays fairly even, from 170 tiles at the start to about 210 near the end. The finale is 250.
 - **Rising challenge:** gap size, critter density, LEGO bricks and moving platforms increase over the game.
 - **The finale:** *The Whole House!!* mixes items and critters from every room.

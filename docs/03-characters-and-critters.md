@@ -22,7 +22,6 @@
 - **Arrival:** both appear next to the player as soon as the level starts.
 - **Normal mode:** they follow a spot behind the player and stop and face the same way when the player stops.
 - **Rush mode:** when the time left is at or below their threshold, they pick items (avoiding ones near critters, splitting work between them, giving up on an item after 2 s without progress and retrying it 4 s later) and drive to them.
-- **Back to following:** because pickups double the clock, a pickup usually pushes the time back above the threshold, and the sibling returns to following.
 - **Physics:** the same as the player (gravity, walls, one-way and moving platforms). The AI decides when to jump (walls, gaps, critters, LEGO), double jump (over pits, up to high items) and duck (low ceilings).
 - **Damage:** they stomp critters (+100). Critter or LEGO hits and falls cost 5 seconds from the shared clock.
 - **Delivery:** siblings never deliver; only the player can finish the level.
@@ -50,16 +49,16 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | `bzombie` | Blocky zombie | walk | 32 | 1 |
 | `bskel` | Blocky skeleton | walk | 42 | 1 |
 | `bspider` | Blocky spider | walk | 62 | 1 |
-| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1 (not yet in Whole House) |
+| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1 |
 | `tabby` | Orange tabby cat | walk | 50 | 2 |
 | `husky` | Husky | walk + hop | 72 | 2 |
 | `pom` | Pomeranian | walk + hop | 80 | 2 |
 | `duck` | Duck | walk | 40 | 7 |
 | `goose` | Goose (flashes HONK) | walk | 60 | 7 |
-| `swan` | Swan | walk | 35 | 7 (not yet in Whole House) |
+| `swan` | Swan | walk | 35 | 7 |
 | `squirrel` | Squirrel | walk + hop | 85 | 7 |
-| `weed` | Walking weed | walk | 38 | 6 (not yet in Whole House) |
-| `slime` | Slime | walk | 42 | 16 (not yet in Whole House) |
+| `weed` | Walking weed | walk | 38 | 6 |
+| `slime` | Slime | walk | 42 | 16 |
 
 ## Chore Items and Drop-offs
 
@@ -88,4 +87,4 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 
 Some sprites change by position (`itemSeed`): markers and paint-bucket colors, robot-part shapes (gear, head, claw, battery), weight types (dumbbell, kettlebell, plate) and towel colors.
 
-Unused legacy sprites still in the code: `sock`, `hamper`, `markercup`, `shredder`, `sink`.
+
