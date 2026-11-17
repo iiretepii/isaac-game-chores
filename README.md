@@ -151,6 +151,7 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Game Room | [*Press Start to Clean!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/22-game-room.mp3) | The most video-game video-game music possible: NES-style pulse-wave lead with vibrato and echo, lightning-fast chord arpeggios, a bouncing triangle bass, noise drums, coin blings, a power-up sweep and a 1-UP jingle |
 | Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/23-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
 | Ending | [*Jubilee for a Job Well Done*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/24-ending-jubilee.mp3) | An upbeat, triumphant celebration of a job well done: big horn fanfare calls with tuba and bells, a marching jubilee tune on strings and horns with handclaps, tambourine and bell runs, a crowd cheer as the key lifts, and a huge final chord with one more cheer |
+| Fail screen | [*Grounded Until Forever*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/25-fail-screen.mp3) | A slow, sad piano lament in A minor that plays when the parents beat you home: a lonely melody that keeps sighing downward, soft strings and a few celesta "teardrops" |
 
 Sound effects include a slide whistle when you jump, a "boing" when you stomp, a car horn as the parents get close, a kazoo fanfare when you finish a level and a sad trombone when you get caught.
 

@@ -866,6 +866,19 @@ STYLES.punkska={name:"PAINT THE TOWN (TIE-DYE)!",bpm:184,spb:2,bar:8,bars:16,
    shaker(t,b%2?0.03:0.02);if(b%4===2)nz(0.08,0.035,'highpass',7000,t);       // hippie tambourine jangle
    if(li===0)rCrash(t);}};
 
+// FAIL SCREEN: "Grounded Until Forever", a slow, sad piano lament in A minor for when the parents beat you home:
+//  a lonely piano melody that keeps sighing downward, soft strings, a slow bass and a few celesta "teardrops".
+const SAD_CH=[[57,60,64],[53,57,60],[48,52,55],[52,56,59],[57,60,64],[50,53,57],[52,56,59],[57,60,64]];
+const SAD_MEL=[[76,-1,-1,74,72,-1,71,-1],[72,-1,-1,-1,69,-1,-1,-1],[67,-1,72,-1,71,-1,69,-1],[68,-1,-1,-1,-1,-1,0,0],
+ [72,-1,71,-1,69,-1,72,-1],[77,-1,-1,76,74,-1,-1,-1],[71,-1,74,-1,68,-1,71,-1],[69,-1,-1,-1,-1,-1,0,0]];
+STYLES.sad={name:"GROUNDED UNTIL FOREVER",bpm:66,spb:2,bar:8,bars:8,
+  play(i,t,d){const li=i%64,b=li%8,bar=li>>3,ch=SAD_CH[bar];
+   const m=SAD_MEL[bar][b];if(m>0){let n=1;while(b+n<8&&SAD_MEL[bar][b+n]===-1)n++;piano(m,d*n*1.05,t,0.11,0.5);}
+   if(b===0){strings(ch.map(x=>x+12),d*8,t,0.014);piano(ch[0]-12,d*4,t,0.08,0.4);}
+   if(b===4)piano(ch[0]-12+(bar===3||bar===6?-1:7),d*4,t,0.06,0.4);
+   if(b===2||b===6)ch.forEach(x=>piano(x,d*1.5,t,0.03,0.4));
+   if((bar===3||bar===7)&&b===6){celesta(88,d*2,t,0.025);celesta(84,d*2,t+d,0.02);}}};
+
 // RACE TRACK: "Radical Race Rock" is Isaac's Room rock song played very fast.
 // Four 8-bar sections (about a minute at 240 BPM): the riff, the riff a whole step up, a breakdown that
 //  builds like engines revving on the grid, then the final lap a fourth up with crashes on every bar.
@@ -936,7 +949,7 @@ STYLES.finale={name:"JUBILEE FOR A JOB WELL DONE",bpm:148,spb:2,bar:8,bars:24,
     }
   }};
 // Per-song volume trim so every song plays at a similar loudness (measured RMS; quieter targets for the gentle title, basement, attic, music-room and library pieces).
-const STYLE_GAIN={"punkska":0.39,"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
+const STYLE_GAIN={"sad":1.62,"punkska":0.39,"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
 for(const k in STYLE_GAIN)if(STYLES[k])STYLES[k].gain=STYLE_GAIN[k];
 const MUSIC_BASE=0.38;
 const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','punkska','silly','science','workout','romantic','baroque','pets','chiptune'];
@@ -1340,7 +1353,7 @@ function updatePlay(dt){
       const bonus=Math.ceil(timeLeft)*10;score+=bonus;levelScore+=bonus;state='clear';stateT=0;stopMusic();SFX.win();puff(lvl.drop.x+14,lvl.drop.y,"#ffeb3b",30,150);
     }else if(msgT<=0){SFX.nope();say("STILL "+(lvl.total-P.carry)+" "+ITEM_NAMES[lvl.L.item].toUpperCase()+" LEFT!",1.5);}
   }
-  if(timeLeft<=0){timeLeft=0;state='lose';stateT=0;stopMusic();SFX.honk();setTimeout(()=>SFX.lose(),500);}
+  if(timeLeft<=0){timeLeft=0;state='lose';stateT=0;stopMusic();SFX.honk();setTimeout(()=>SFX.lose(),500);setTimeout(()=>{if(state==='lose')startMusic('sad');},3300);}
   cam+=((P.x-W*0.4)-cam)*Math.min(1,dt*8);cam=Math.max(0,Math.min(cam,lvl.cols*T-W));
 }
 

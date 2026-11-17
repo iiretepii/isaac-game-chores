@@ -140,3 +140,6 @@ Grouped by milestone. See `git log` for every commit.
 ### New Arts & Crafts song: ska-punk
 - Arts & Crafts Chaos now plays *Paint the Town (Tie-Dye)!* (`punkska`, 184 BPM), a ska-punk song for rebels and hippies. The verse is bouncy ska with off-beat guitar skanks, a bubbling organ and a trumpet-and-sax horn section. The chorus is full punk, with distorted power chords on every eighth and pounding drums, plus a tambourine throughout and a big stop at the end.
 - It replaces *Les Petits Peintres* in the level and in the Whole House medley. The old song is still in the code but unused. The arts & crafts MP3 and the medley were re-recorded.
+
+### Sad music on the fail screen
+- The "Parents are home!" screen now plays *Grounded Until Forever* (`sad`), a slow, sad piano lament in A minor with soft strings and celesta "teardrops". It starts after the car honk and the lose jingle, and stops when you try again. Recorded as `music/25-fail-screen.mp3`.
