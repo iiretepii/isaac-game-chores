@@ -1299,7 +1299,7 @@ const PAL_ME={shirt:"#e53935",shirtD:"#b71c1c",pants:"#1e3a8a",cap:"#ffd600",cap
 const GREETINGS=["HEY PAL!","YOOO!","WASSUP!","HIYA!","SUP, NOODLE?","LET HIM COOK!","NO CAP, HI!","W SIBLING!","SKIBIDI HI!","ITS GIVING HELP!",
  "HOWDY, PARTNER!","AYOOO!","BIG W!","YOU'RE GOATED!","SLAY!","BET!","OK, RIZZ!","FR FR, HI!","BRO-TATO CHIP!","HEY BESTIE!","Sup Bro!"];
 const SIBS=[
- {name:"ANNIE",ace:1,balloon:1,delay:0,speed:176,pal:{shirt:"#ec407a",shirtD:"#ad1457",pants:"#ec407a",cap:null,hair:"#ff8f00",logo:"#fff",pig:1},line:"ANNIE: I'LL HELP ALL DAY! (FOR COOKIES)"},
+ {name:"ANNIE",ace:1,balloon:1,delay:0,speed:176,pal:{dress:1,shirt:"#ec407a",shirtD:"#ad1457",pants:"#ec407a",cap:null,hair:"#ff8f00",logo:"#fff",pig:1},line:"ANNIE: I'LL HELP ALL DAY! (FOR COOKIES)"},
  {name:"ISAAC",ace:1,delay:0,speed:176,pal:{shirt:"#43a047",shirtD:"#1b5e20",pants:"#424242",cap:"#212121",capH:"#616161",hair:"#3e2723",logo:"#fff"},line:"ISAAC: VRRRM! NEON LIGHT-BIKE, BABY!"},
 ];
 function drawKidRaw(x,y,face,frame,air,pal=PAL_ME){
@@ -1325,6 +1325,12 @@ function drawKidRaw(x,y,face,frame,air,pal=PAL_ME){
   R(X(2,1),y+4,1,2,"#d99a66");R(X(7,1),y+3,1,1,"#ff8a80");   // cheek blush + face shade
   R(X(4,3),y+7,3,2,pal.logo);                              // shirt star logo
   if(pal.cap)R(X(1,9),y-1,9,1,pal.capH);                              // cap highlight
+  if(pal.dress){ // pretty pink dress: puff sleeves, bow at the waist, flared skirt with a ruffle hem, bare legs below
+    R(X(2,3),y+11,3,2,"#f5c08a");R(X(5,3),y+11,3,2,"#f5c08a");
+    R(X(1,8),y+6,8,4,"#f48fb1");R(X(2,6),y+6,6,1,"#f8bbd0");R(X(0,2),y+6,2,2,"#f8bbd0");R(X(8,2),y+6,2,2,"#f8bbd0");
+    R(X(1,8),y+9,8,1,"#ec407a");R(X(4,3),y+8,3,3,"#ec407a");R(X(5,1),y+9,1,1,"#fce4ec");
+    R(X(0,10),y+10,10,2,"#f48fb1");R(X(-1,12),y+11,12,1,"#f06292");R(X(-1,12),y+12,12,1,"#fce4ec");
+    R(X(1,1),y+10,1,2,"#f8bbd0");R(X(8,1),y+10,1,2,"#ec407a");}
   if(Math.floor(performance.now()/2200)%7===0&&performance.now()%2200<120){R(X(6,1),y+2,1,2,"#f5c08a");R(X(8,1),y+2,1,2,"#f5c08a");R(X(6,3),y+3,3,1,"#000");}
 }
 

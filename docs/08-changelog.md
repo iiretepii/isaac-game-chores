@@ -72,3 +72,6 @@ Grouped by milestone. See `git log` for every commit.
 
 ### Annie's balloon
 - Annie now carries a pink balloon that bobs above her. It gives her a small float: lighter gravity and a slower fall after the peak of each jump.
+
+### Annie's pink dress
+- Annie now wears a pretty pink dress (puff sleeves, waist bow, ruffled skirt) instead of a shirt and pants.

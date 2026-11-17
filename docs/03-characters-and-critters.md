@@ -22,6 +22,7 @@
 - They look further ahead for walls, gaps and critters (12 px versus 4 px; critters 70 px versus 44 px). Whenever a live critter is within 280 px of the player, they ride to it, ahead of following or collecting. Their rides defeat any critter they touch from any side ("ZAP! +100"), with a slightly bigger zap area than their bodies.
 - Neither sibling fumbles obstacles or trips.
 - **Annie's balloon** (`balloon:1` in `SIBS`): she carries a pink balloon on a string. When she is in the air and no longer rising fast (`vy > -60`), gravity drops from 1300 to 680 px/s² and her fall speed is capped at 230 px/s (normally 600), giving a short float at the top of each jump and a gentle descent. Her name label sits above the balloon.
+- **Annie's outfit** (`dress:1` in her palette): a pink dress with puff sleeves, a bow at the waist and a flared, ruffled skirt, drawn over the usual kid sprite in `drawKidRaw`.
 
 **Behavior spec:**
 - **Arrival:** both appear next to the player as soon as the level starts.
