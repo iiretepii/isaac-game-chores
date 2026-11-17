@@ -59,7 +59,7 @@ Browsers block sound until the player interacts, so the title screen first asks 
 
 ## Difficulty Curve Guidelines
 
-- **Item count:** starts at 10 and rises by exactly one per level (Whole House: 30).
+- **Item count:** starts at 10 and rises by exactly one per level (Whole House: 31).
 - **Time limit:** rises with item count; each level allows at least 3 seconds more than the one before. Picking up items does **not** add time.
 - **Length:** stays fairly even, from 170 tiles at the start to about 210 near the end. The finale is 250.
 - **Rising challenge:** gap size, critter density, LEGO bricks and moving platforms increase over the game.

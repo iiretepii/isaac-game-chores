@@ -26,7 +26,8 @@ Generated from the `LEVELS` array in `index.html`.
 | 18 | The Spooky Basement | `basement` | shirt → dryer | 27 | 146s | 207 | 3 | 0.66 | 0.3 | yes | spider, rat, dust | `romantic` |
 | 19 | Attic of Antiques | `attic` | ornament → trunk | 28 | 149s | 210 | 3 | 0.7 | 0.35 | yes | bat, spider, rat | `baroque` |
 | 20 | Pet Room Pandemonium | `pets` | chewtoy → petbasket | 29 | 152s | 212 | 3 | 0.66 | 0.3 | yes | hamster, tabby, pom | `pets` |
-| 21 | The Whole House!! | `house` | mix → couch | 30 | 155s | 250 | 3 | 0.75 | 0.5 | yes | all critters | `mix` |
+| 21 | Race Track Rumble | `race` | tire → tirerack | 30 | 154s | 214 | 3 | 0.7 | 0.3 | yes | roomba, squirrel, goose | `racerock` |
+| 22 | The Whole House!! | `house` | mix → couch | 31 | 155s | 250 | 3 | 0.75 | 0.5 | yes | all critters | `mix` |
 
 ## Level Data Format
 
