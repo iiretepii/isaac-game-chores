@@ -75,3 +75,9 @@ Grouped by milestone. See `git log` for every commit.
 
 ### Annie's pink dress
 - Annie now wears a pretty pink dress (puff sleeves, waist bow, ruffled skirt) instead of a shirt and pants.
+
+### New level: Pet Room Pandemonium
+- Level 20 is a new pet room: gather squeaky pet toys (bones, balls and rubber mice) into a wicker toy basket with a napping puppy, while escaped hamsters, a tabby and a Pomeranian run around. The room has a fish tank, a bird cage, a cat tree and a BEST PETS portrait.
+- New song *Kibble & Cuddles* (`pets`): a warm pet-care tune with ukulele, flute, celesta, brushes, a squeaky toy and a purr. It is also in the Whole House medley.
+- The Whole House is now level 21 (30 items). Its MP3 is now `21-whole-house-medley.mp3`, and the ending is `22-ending-jubilee.mp3`. The medley was re-recorded.
+- Level select now shows six levels per row so all 21 fit.

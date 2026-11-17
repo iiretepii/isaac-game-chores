@@ -89,6 +89,7 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | Workout Room Workout | `weight` | `weightrack` |
 | The Spooky Basement | `shirt` | `dryer` (washer, dryer and hamper) |
 | Attic of Antiques | `ornament` | `trunk` |
+| Pet Room Pandemonium | `chewtoy` (squeaky bone, ball or rubber mouse) | `petbasket` (wicker toy basket with a napping puppy) |
 | The Whole House!! | `mix` | `couch` |
 
 Some sprites change by position (`itemSeed`): markers and paint-bucket colors, robot-part shapes (gear, head, claw, battery), weight types (dumbbell, kettlebell, plate) and towel colors.

@@ -32,16 +32,17 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `romantic` | *Nocturne In The Basement* | 66 | 4 | 16 | 32 | The Spooky Basement | `music/18-basement.mp3` |
 | `baroque` | *Little Fugue in the Attic* | 84 | 4 | 16 | 20 | Attic of Antiques | `music/19-attic.mp3` |
 | `french` | *Petite Valse Du Matin* | 66 | 1 | 3 | 16 | Title screen | `music/00-title.mp3` |
-| `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/21-ending-jubilee.mp3` |
-| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/20-whole-house-medley.mp3` |
+| `pets` | *Kibble & Cuddles* | 100 | 2 | 8 | 16 | Pet Room Pandemonium | `music/20-pet-room.mp3` |
+| `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/22-ending-jubilee.mp3` |
+| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/21-whole-house-medley.mp3` |
 
 ## Volume Leveling
 
-Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays at about −35 dB RMS. The gentle pieces are set a little quieter: title and basement −38, music room and attic −37, library −37. The ending fanfare is set a little louder (about −31) so the victory song stands out. The scheduler sets the music volume to `MUSIC_BASE × gain` whenever the style changes, including between medley segments. After writing or changing a song, re-measure its loudness and update its trim.
+Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays at about −35 dB RMS. The gentle pieces are set a little quieter: title and basement −38, music room and attic −37, library and pet room −37. The ending fanfare is set a little louder (about −31) so the victory song stands out. The scheduler sets the music volume to `MUSIC_BASE × gain` whenever the style changes, including between medley segments. After writing or changing a song, re-measure its loudness and update its trim.
 
 ## The Medley
 
-`MIX` lists the styles in order: rock, princess, jazz, pop, hiphop, garden, pool, techno, polka, crooner, muzak, library, practice, french2, silly, science, workout, romantic, baroque. The medley plays 4 bars of each, with a record scratch and crash between them, then loops.
+`MIX` lists the styles in order: rock, princess, jazz, pop, hiphop, garden, pool, techno, polka, crooner, muzak, library, practice, french2, silly, science, workout, romantic, baroque, pets. The medley plays 4 bars of each, with a record scratch and crash between them, then loops.
 
 **Rule:** every new level song must be added to `MIX`.
 
