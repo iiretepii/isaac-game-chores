@@ -64,3 +64,4 @@ Grouped by milestone. See `git log` for every commit.
 
 ### Wider princess castle
 - Annie's Room castle is back to normal size and redrawn 70 px wide: four towers with flags, a central keep with a heart window, battlements and an arched gate.
+- Castle towers restored to the original slender style with tall pointed spires, now in a Neuschwanstein-like cluster with a tall main tower and a gabled palace hall.
