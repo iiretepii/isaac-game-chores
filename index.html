@@ -772,7 +772,8 @@ function horn(m,dur,t,vol=0.04){const f=mtof(m),ga=out(1,0.45),end=t+dur+0.12;ho
   const lp=AC.createBiquadFilter();lp.type='lowpass';lp.Q.value=0.7;lp.frequency.setValueAtTime(f*1.4,t);lp.frequency.linearRampToValueAtTime(Math.min(2600,f*4),t+0.09);lp.connect(ga);
   const a=O('sawtooth',f,t,end,lp,0.55),b=O('triangle',f,t,end,lp,0.8);b.detune.value=-5;
   const vg=AC.createGain();vg.gain.setValueAtTime(0,t);vg.gain.linearRampToValueAtTime(5,t+Math.min(0.5,dur*0.7));O('sine',5,t,end,vg);vg.connect(a.detune);vg.connect(b.detune);}
-STYLES.finale={name:"JUBILEE FOR A JOB WELL DONE",bpm:132,spb:2,bar:8,bars:24,
+const FIN_CHEER=(t,len)=>{for(let k=0;k<6;k++){const f=nz(len,0.02+0.006*k,'bandpass',900+k*450,t+k*0.03,1.2);}nz(len*0.6,0.03,'highpass',3000,t);}; // a crowd "hooray!"
+STYLES.finale={name:"JUBILEE FOR A JOB WELL DONE",bpm:148,spb:2,bar:8,bars:24,
   // chord per bar: [bass root, horn voicing]
   ch:[[38,[57,62,66]],[43,[59,62,67]],[38,[57,62,66]],[33,[57,61,64,67]],
       [38,[57,62,66]],[43,[59,62,67]],[38,[57,62,66]],[33,[57,61,64]],[35,[59,62,66]],[43,[59,62,67]],[33,[57,61,64,67]],[38,[57,62,66]],
@@ -784,11 +785,11 @@ STYLES.finale={name:"JUBILEE FOR A JOB WELL DONE",bpm:132,spb:2,bar:8,bars:24,
   init(){if(this.ev)return;this.ev=[];
     const put=(bar,list,tr)=>{let o=0;for(const [m,l] of list){this.ev[bar*8+o]=[m+tr,l];o+=l;}};
     this.theme.forEach((b,k)=>put(4+k,b,0));this.theme.forEach((b,k)=>put(12+k,b,1));},
-  rub(i){const k=i%192;return k>=160?1.18+(k>=176?(k-175)*0.04:0):1;},   // maestoso: the fanfare return broadens, then a final ritardando
+  rub(i){const k=i%192;return k>=160?1.06+(k>=180?(k-179)*0.03:0):1;},   // the fanfare return broadens slightly, then a short final ritardando
   play(i,t,d){this.init();const k=i%192,bar=Math.floor(k/8),b=k%8,[r,c]=this.ch[bar];
     const fan=bar<4||bar>=20,big=bar>=12;
     if(fan){
-      if(bar===3||bar===23){if(b===0){const L=d*(bar===23?16:7.6);c.forEach(m=>{horn(m,L,t,0.042);horn(m+12,L,t,0.022);});horn(r+12,L,t,0.04);tuba(r,L,t,0.3);lib_warm(r,L,t,0.08,0.4);if(bar===23)strings(c.map(m=>m+24),L,t,0.014);}
+      if(bar===3||bar===23){if(b===0){const L=d*(bar===23?16:7.6);c.forEach(m=>{horn(m,L,t,0.042);horn(m+12,L,t,0.022);});horn(r+12,L,t,0.04);tuba(r,L,t,0.3);lib_warm(r,L,t,0.08,0.4);if(bar===23){strings(c.map(m=>m+24),L,t,0.014);FIN_CHEER(t+0.1,2.5);}}
         if(b===0)[0,1,2,3,4,5,6,7,8,9].forEach(q=>harp(r+24+[0,4,7,12,16,19,24,28,31,36][q]-(bar===23?0:2),0.4,t+q*0.045,0.025));
         if(bar===23&&b===0){crash(t);[0,4,7,12].forEach((q,j)=>celesta(r+36+q,d*6,t+j*0.06,0.03));}}
       else{const hit=this.call.find(([o])=>o===b);
@@ -800,7 +801,10 @@ STYLES.finale={name:"JUBILEE FOR A JOB WELL DONE",bpm:132,spb:2,bar:8,bars:24,
       if(b===2||b===6)c.forEach(m=>horn(m,d*1.5,t,big?0.03:0.026));                     // horn 'pah' chords
       if(b===0)strings(c.map(m=>m+12),d*8,t,big?0.011:0.008);
       if(b%2===1)nz(0.05,0.03,'bandpass',9000,t,1.2);                                     // tambourine
+      if(b===2||b===6)clap(t,0.1);                                                          // celebration handclaps
+      if(b===4&&bar%2===1)[0,4,7,12,16,19].forEach((q,j)=>celesta(c[0]+24+q,d,t+j*d/3,0.016)); // bell runs
       if(b===0&&bar%2===0)celesta(c[2]+24,d*2,t,0.022);
+      if(b===0&&bar===12)FIN_CHEER(t,1.6);
       if(b===0&&(bar===4||bar===12||bar===16)){crash(t);[0,1,2,3,4,5,6,7].forEach(q=>harp(r+24+[0,4,7,12,16,19,24,28][q],0.4,t+q*0.04,0.022));}
       const e=this.ev[k];if(e){lib_warm(e[0],d*e[1]*0.96,t,big?0.08:0.07,0.55);horn(e[0]-12,d*e[1]*0.94,t,big?0.045:0.035);if(big)lib_warm(e[0]+12,d*e[1]*0.96,t,0.035,0.6);} // melody: strings + horns, soaring octave on the lift
     }

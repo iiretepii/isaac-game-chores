@@ -32,7 +32,7 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `romantic` | *Nocturne In The Basement* | 66 | 4 | 16 | 32 | The Spooky Basement | `music/18-basement.mp3` |
 | `baroque` | *Little Fugue in the Attic* | 84 | 4 | 16 | 20 | Attic of Antiques | `music/19-attic.mp3` |
 | `french` | *Petite Valse Du Matin* | 66 | 1 | 3 | 16 | Title screen | `music/00-title.mp3` |
-| `finale` | *Jubilee for a Job Well Done* | 132 | 2 | 8 | 24 | Ending screen | `music/21-ending-jubilee.mp3` |
+| `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/21-ending-jubilee.mp3` |
 | `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/20-whole-house-medley.mp3` |
 
 ## Volume Leveling
