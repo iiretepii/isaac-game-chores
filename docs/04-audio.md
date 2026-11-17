@@ -32,7 +32,8 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `romantic` | *Nocturne In The Basement* | 66 | 4 | 16 | 32 | The Spooky Basement | `music/18-basement.mp3` |
 | `baroque` | *Little Fugue In The Attic* | 84 | 4 | 16 | 20 | Attic of Antiques | `music/19-attic.mp3` |
 | `french` | *Petite Valse Du Matin* | 66 | 1 | 3 | 16 | Title screen | `music/00-title.mp3` |
-| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!!, Ending | `music/20-whole-house-medley.mp3` |
+| `finale` | *Victory Fugue* | 116 | 4 | 32 | 16 | Ending screen | `music/21-ending-victory-fugue.mp3` |
+| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/20-whole-house-medley.mp3` |
 
 ## Volume Leveling
 

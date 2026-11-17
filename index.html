@@ -763,8 +763,31 @@ STYLES.garden={name:"SEASHELL SUNDAY",bpm:104,spb:2,bar:8,bars:16,
    if(bar===7&&b>=2)gdn_gtr([69,71,73,76,73,69][b-2]+12,t,0.05);
    if(bar===15&&(b===2||b===5))gdn_gurgle(t);if(bar===3&&b===6)gdn_gurgle(t);}};
 
+// ENDING: "Victory Fugue", a fanfare written as a four-voice fugue in D major for brass. Fanfare intro (long-short-short-long
+// chords) -> exposition (trumpet subject, horn answer, trombone subject, tuba answer) -> sequential episode -> the subject
+// thunders in the tuba -> dominant build with a cymbal roll -> trumpet flourish and a huge final D-major chord.
+// Inner voices were filled in by a voice-leading script that rejects parallel fifths and octaves.
+const FIN_TIMP=t=>{tone(73.4,0.6,'sine',0.35,70,t,musicGain);nz(0.05,0.08,'lowpass',300,t);};
+const FIN_TIMP_A=t=>{tone(55,0.6,'sine',0.35,53,t,musicGain);nz(0.05,0.08,'lowpass',300,t);};
+STYLES.finale=(()=>{const F=[[0,38,2,3],[0,50,2,2],[0,62,2,1],[0,66,2,0],[2,38,1,3],[2,50,1,2],[2,62,1,1],[2,66,1,0],[3,38,1,3],[3,50,1,2],[3,62,1,1],[3,66,1,0],[4,38,4,3],[4,50,4,2],[4,62,4,1],[4,66,4,0],[8,45,2,3],[8,52,2,2],[8,61,2,1],[8,69,2,0],[10,45,1,3],[10,52,1,2],[10,61,1,1],[10,69,1,0],[11,45,1,3],[11,52,1,2],[11,61,1,1],[11,69,1,0],[12,45,4,3],[12,54,4,2],[12,62,4,1],[12,69,4,0],[16,74,2,0],[18,78,1,0],[19,81,2,0],[21,78,1,0],[22,81,1,0],[23,86,1,0],[24,86,1,0],[25,85,1,0],[26,83,1,0],[27,81,1,0],[28,79,1,0],[29,78,1,0],[30,76,1,0],[31,74,1,0],[32,69,2,1],[32,73,2,0],[34,73,1,1],[34,81,1,0],[35,76,2,1],[35,85,2,0],[37,73,1,1],[37,81,1,0],[38,76,1,1],[38,85,2,0],[39,81,1,1],[40,81,1,1],[40,83,1,0],[41,80,1,1],[41,86,1,0],[42,78,1,1],[42,85,1,0],[43,76,1,1],[43,86,1,0],[44,74,1,1],[44,85,1,0],[45,73,1,1],[45,80,1,0],[46,71,1,1],[46,73,2,0],[47,69,1,1],[48,62,2,2],[48,66,2,1],[48,74,3,0],[50,66,1,2],[50,69,1,1],[51,69,2,2],[51,74,5,1],[51,78,5,0],[53,66,1,2],[54,69,1,2],[55,74,1,2],[56,74,1,2],[56,76,2,1],[56,85,1,0],[57,73,1,2],[57,79,1,0],[58,71,1,2],[58,73,1,1],[58,81,1,0],[59,69,1,2],[59,76,1,1],[59,79,1,0],[60,67,1,2],[60,69,2,1],[60,78,1,0],[61,66,1,2],[61,73,1,0],[62,64,1,2],[62,66,2,1],[62,74,2,0],[63,62,1,2],[64,45,2,3],[64,61,2,2],[64,64,8,1],[64,76,3,0],[66,49,1,3],[66,57,5,2],[67,52,2,3],[67,73,2,0],[69,49,1,3],[69,76,1,0],[70,52,1,3],[70,73,1,0],[71,57,1,3],[71,61,1,2],[71,76,1,0],[72,57,1,3],[72,59,2,2],[72,68,1,1],[72,76,1,0],[73,56,1,3],[73,66,1,1],[73,74,1,0],[74,54,1,3],[74,57,1,2],[74,69,1,1],[74,73,1,0],[75,52,1,3],[75,59,1,2],[75,66,1,1],[75,74,1,0],[76,50,1,3],[76,61,1,2],[76,69,1,1],[76,76,1,0],[77,49,1,3],[77,64,3,2],[77,71,1,1],[77,80,1,0],[78,47,1,3],[78,73,2,1],[78,81,2,0],[79,45,1,3],[80,47,2,3],[80,62,2,2],[80,74,2,1],[80,78,2,0],[82,52,2,3],[82,64,4,2],[82,71,2,1],[82,80,2,0],[84,45,2,3],[84,73,2,1],[84,81,4,0],[86,50,2,3],[86,66,2,2],[86,74,2,1],[88,55,2,3],[88,67,4,2],[88,74,2,1],[88,83,4,0],[90,52,2,3],[90,76,6,1],[92,45,4,3],[92,64,4,2],[92,85,4,0],[96,38,2,3],[96,66,8,2],[96,74,8,1],[96,86,8,0],[98,42,1,3],[99,45,2,3],[101,42,1,3],[102,45,1,3],[103,50,1,3],[104,50,1,3],[104,64,4,2],[104,73,1,1],[104,81,1,0],[105,49,1,3],[105,71,1,1],[105,79,1,0],[106,47,1,3],[106,73,1,1],[106,81,1,0],[107,45,1,3],[107,71,1,1],[107,79,1,0],[108,43,1,3],[108,66,1,2],[108,74,1,1],[108,78,1,0],[109,42,1,3],[109,64,1,2],[109,69,3,1],[109,73,1,0],[110,40,1,3],[110,66,2,2],[110,74,2,0],[111,38,1,3],[112,43,2,3],[112,67,2,2],[112,71,2,1],[112,74,2,0],[114,45,2,3],[114,64,2,2],[114,69,6,1],[114,73,2,0],[116,38,2,3],[116,66,2,2],[116,74,2,0],[118,45,2,3],[118,67,2,2],[118,73,2,0],[118.0,74,0.3,0],[118.286,76,0.3,0],[118.571,78,0.3,0],[118.857,79,0.3,0],[119.143,81,0.3,0],[119.429,83,0.3,0],[119.714,85,0.3,0],[120,38,8,3],[120,50,8,3],[120,62,8,2],[120,69,8,2],[120,78,8,1],[120,86,8,0]],ev=[];
+  for(const [e,m,len,v] of F)(ev[Math.round(e*4)]=ev[Math.round(e*4)]||[]).push([m,len,v]);
+  return {name:"VICTORY FUGUE",bpm:116,spb:4,bar:32,bars:16,
+    rub(i){const k=i%512;return k>=472&&k<480?1.25:1;},
+    play(i,t,d){const k=i%512,e8=k/4,bar=Math.floor(k/32);
+      const e=ev[k];if(e)for(const [m,len,v] of e){const dur=len*4*d*(len<=1?0.82:0.95);
+        if(v===3)tuba(m,dur,t,0.3);else trumpet(m,dur,t,[0.07,0.055,0.05][v]);if(v===2)tuba(m,dur,t,0.06);}
+      if(k%4===0){const e8i=k/4;
+        if(e8i<16&&[0,4,8,12].includes(e8i))(e8i===8?FIN_TIMP_A:FIN_TIMP)(t);
+        if(e8i>=16&&e8i<120&&e8i%8===0)(bar%2?FIN_TIMP_A:FIN_TIMP)(t);
+        if([16,96,120].includes(e8i))crash(t);
+        if(e8i>=16&&e8i<112&&e8i%2===1)snare(t,0.05);}
+      if(k<8||(k>=448&&k<480))snare(t,0.03+0.05*((k%32)/32));                    // snare rolls into the intro and the finale
+      if(k>=464&&k<480&&k%2===0)nz(0.06,0.015+0.004*(k-464),'highpass',5000,t);   // cymbal swell
+      if(k===480){FIN_TIMP(t);FIN_TIMP(t+d*2);FIN_TIMP(t+d*4);}
+    }};
+})();
 // Per-song volume trim so every song plays at a similar loudness (measured RMS; quieter targets for the gentle title, basement, attic, music-room and library pieces).
-const STYLE_GAIN={"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065};
+const STYLE_GAIN={"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.676};
 for(const k in STYLE_GAIN)if(STYLES[k])STYLES[k].gain=STYLE_GAIN[k];
 const MUSIC_BASE=0.38;
 const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','french2','silly','science','workout','romantic','baroque'];
@@ -1960,7 +1983,7 @@ function frame(now){
     else if(state==='title'){if(pressed){if(soundGate){soundGate=false;initAudio();}else{score=0;startLevel(0);}}else if(soundGate&&soundReady())soundGate=false;}
     else if(state==='intro'){if(pressed&&stateT>0.5){state='play';jumpPressed=false;startMusic(lvl.L.music);}}
     else if(state==='play'){updatePlay(STEP);updateParts(STEP);}
-    else if(state==='clear'){updateParts(STEP);if(pressed&&stateT>1){if(levelIdx<LEVELS.length-1)startLevel(levelIdx+1);else{state='end';stateT=0;startMusic('mix');}}}
+    else if(state==='clear'){updateParts(STEP);if(pressed&&stateT>1){if(levelIdx<LEVELS.length-1)startLevel(levelIdx+1);else{state='end';stateT=0;startMusic('finale');}}}
     else if(state==='lose'){if(pressed&&stateT>1.2){score=Math.max(0,score-levelScore);startLevel(levelIdx);}}
     else if(state==='end'){if(pressed&&stateT>1.5){state='title';stateT=0;startMusic('french');}}
     jumpPressed=false;
