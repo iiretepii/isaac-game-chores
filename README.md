@@ -93,7 +93,7 @@ Each level is longer, with more items, critters and gaps than the one before. La
 | 5 | **Backyard Bonanza** | Leaves → leaf bag | 14 | 107s | Dogs, bees | Boom-bap hip hop |
 | 6 | **Garden Glow-Up** | Weeds → compost bin | 15 | 110s | Walking weeds | Beatles-style sing-along |
 | 7 | **Pool Party Panic** | Soggy towels → towel basket | 16 | 113s | Ducks, geese, swans, squirrels | Silly splashy calypso |
-| 8 | **Garage of Doom** | Trash → dumpster | 17 | 116s | Rats, robot vacuums, bees | Funky techno |
+| 8 | **Garage of Doom** | Smelly trash → dumpster | 17 | 116s | Rats, robot vacuums, bees | Funky techno |
 | 9 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 18 | 119s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
 | 10 | **Bathroom Blunder** | Runaway poops → toilet | 19 | 122s | Soap bubbles, cockroaches, spiders | Italian crooner waltz |
 | 11 | **Home Office Havoc** | Old work papers → recycle bin | 20 | 125s | Ants, spiders, hamsters | Terrible elevator music |

@@ -81,3 +81,6 @@ Grouped by milestone. See `git log` for every commit.
 - New song *Kibble & Cuddles* (`pets`): a warm pet-care tune with ukulele, flute, celesta, brushes, a squeaky toy and a purr. It is also in the Whole House medley.
 - The Whole House is now level 21 (30 items). Its MP3 is now `21-whole-house-medley.mp3`, and the ending is `22-ending-jubilee.mp3`. The medley was re-recorded.
 - Level select now shows six levels per row so all 21 fit.
+
+### Garage trash looks like trash
+- The garage pickups now come in three kinds: a tied black trash bag, a crushed soda can with a banana peel, and an apple core with fish bones. Each has wavy green stink lines.

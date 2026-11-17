@@ -77,7 +77,7 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | Backyard Bonanza | `leaf` | `bag` |
 | Garden Glow-Up | `oldflower` (pulled weeds) | `compost` |
 | Pool Party Panic | `towel` | `towelbasket` |
-| Garage of Doom | `trash` | `can` (a big green dumpster) |
+| Garage of Doom | `trash` (tied black trash bag, crushed soda can with a banana peel, or apple core and fish bones, with stink lines) | `can` (a big green dumpster) |
 | Laundry Room Pee-Yew! | `undies` | `washer` (washer, dryer and hamper) |
 | Bathroom Blunder | `poop` | `toilet` |
 | Home Office Havoc | `paper` | `recycle` |

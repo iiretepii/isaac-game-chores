@@ -1461,10 +1461,15 @@ function drawItemRaw(k,x,y){
     R(x+1,y+3,14,3,"#fafafa");R(x+1,y+3,14,1,"#90caf9");R(x+1,y+6,5,6,"#fafafa");R(x+10,y+6,5,6,"#fafafa");R(x+6,y+6,4,8,"#fafafa");R(x+6,y+13,4,1,"#e0e0e0");
     R(x+1,y+11,5,1,"#e0e0e0");R(x+10,y+11,5,1,"#e0e0e0");R(x+3,y+7,2,2,"#f44336");R(x+11,y+8,2,2,"#f44336");R(x+7,y+8,2,2,"#f44336");R(x+12,y+4,2,7,"#e0e0e0");
     R(x+5,y+10,3,2,"#c5e1a5");R(x+2,y-3,1,2,"#9ccc65");R(x+4,y-5,1,3,"#9ccc65");R(x+7,y-3,1,2,"#9ccc65");R(x+10,y-5,1,3,"#9ccc65");R(x+13,y-3,1,2,"#9ccc65");}
-  else if(k==='trash'){ // banana peel + crumpled paper
-    R(x+1,y+6,9,8,"#eeeeee");R(x+2,y+5,6,2,"#eeeeee");R(x+3,y+7,3,2,"#bdbdbd");R(x+6,y+10,3,2,"#bdbdbd");R(x+1,y+13,9,1,"#9e9e9e");
-    R(x+9,y+2,3,8,"#ffeb3b");R(x+12,y+1,3,4,"#fdd835");R(x+7,y+1,3,3,"#fdd835");R(x+9,y+9,3,2,"#f9a825");R(x+10,y+1,1,1,"#6d4c41");
-    R(x+3,y+1,1,2,"#9ccc65");R(x+5,y-1,1,2,"#9ccc65");}
+  else if(k==='trash'){ // garbage: a tied black trash bag, a crushed soda can with a banana peel, or an apple core and fish bones, all with stink lines
+    const v=Math.abs(Math.round(itemSeed/16))%3,wv=Math.floor(clock*4)%2;
+    if(v===0){R(x+2,y+5,12,10,"#263238");R(x+1,y+8,14,6,"#263238");R(x+4,y+3,8,3,"#37474f");R(x+6,y+1,4,3,"#ffca28");R(x+5,y,2,2,"#263238");R(x+9,y,2,2,"#263238");
+      R(x+4,y+7,2,4,"#546e7a");R(x+9,y+10,3,1,"#455a64");R(x+12,y+12,3,3,"#fafafa");R(x+13,y+13,2,1,"#e53935");}
+    else if(v===1){R(x+2,y+7,7,8,"#e53935");R(x+3,y+6,5,2,"#bdbdbd");R(x+2,y+10,7,1,"#b71c1c");R(x+4,y+9,3,1,"#fafafa");R(x+2,y+14,7,1,"#9e9e9e");
+      R(x+9,y+9,3,6,"#ffeb3b");R(x+12,y+11,3,4,"#fdd835");R(x+8,y+12,2,3,"#fdd835");R(x+10,y+13,4,2,"#6d4c41");R(x+10,y+8,1,2,"#6d4c41");}
+    else{R(x+2,y+6,4,9,"#fff59d");R(x+1,y+5,6,2,"#c62828");R(x+1,y+14,6,2,"#c62828");R(x+3,y+3,1,3,"#6d4c41");R(x+3,y+8,2,4,"#e0c870");
+      R(x+8,y+10,7,1,"#eceff1");for(let q=0;q<3;q++)R(x+9+q*2,y+8,1,5,"#eceff1");R(x+14,y+9,2,3,"#eceff1");R(x+7,y+9,2,3,"#eceff1");}
+    for(let q=0;q<3;q++)R(x+3+q*4+(wv&&q%2?1:0),y-3-q%2,1,3,"#8bc34a");}   // stink lines
 }
 
 // Drop-off size: most sprites are drawn at 28 px and scaled up 2x; a few are drawn full-size already.
