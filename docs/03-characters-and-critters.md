@@ -42,7 +42,7 @@ Drawn by `drawMom(x,y,mood)` and `drawPete(x,y,mood)` as 22 × 52 px figures wit
 | | Mom | Uncle Pete |
 |---|---|---|
 | Look | Very pretty: long black hair with side-swept bangs, lashes, blush, gold earrings, purple dress | Very handsome: swooped brown hair, strong jaw, blue button-up shirt with a light collar, belt, dark pants |
-| Lose screen ("Parents are home!") | Very mad (`parentMad`): V eyebrows, squinting eyes, red cheeks, open frown with gritted teeth, anger mark, steam | Same very mad face |
+| Lose screen ("Parents are home!") | Very mad (`parentMad`): V eyebrows, squinting eyes, red cheeks, open frown with gritted teeth, anger mark, steam | Same very mad face. Both are animated yelling: mouths flap open and shut with shout lines, a shaking fist goes up (`madArm`), and they bounce and jitter |
 | Victory screen | Smiling, standing to the left of the kids | Grinning, standing to the right of the kids |
 
 ## Critters

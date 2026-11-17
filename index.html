@@ -2207,7 +2207,8 @@ function drawLose(t){
   text("PARENTS ARE HOME!",W/2+shake,48,14,"#ff1744","center");
   wrap(LOSE_LINES[(levelIdx+Math.floor(score/50))%LOSE_LINES.length],W/2,82,W-110,8,"#fff");
   // parents silhouettes, angry
-  outlined(W/2-48,118,(ox,oy)=>drawMom(ox,oy,1));outlined(W/2+26,118,(ox,oy)=>drawPete(ox,oy,1));
+  {const b1=Math.floor(clock*6)%2,jx=Math.floor(clock*14)%2;
+   outlined(W/2-48+jx,118-b1*2,(ox,oy)=>drawMom(ox,oy,1));outlined(W/2+26-jx,118-(1-b1)*2,(ox,oy)=>drawPete(ox,oy,1));}
   text("!!",W/2+5,110,12,"#ff1744","center");
   text(P.carry+"/"+lvl.total+" "+ITEM_NAMES[lvl.L.item].toUpperCase()+" DONE",W/2,182,8,"#ffeb3b","center");
   if(stateT>1.2&&Math.floor(t*2)%2)text("ENTER / TAP: TRY AGAIN",W/2,210,8,"#fff","center");
@@ -2221,10 +2222,15 @@ function parentMad(x,y,brow){const pulse=Math.floor(clock*6)%2;
   R(x+5,y+8,2,1,brow);R(x+15,y+8,2,1,brow);
   R(x+7,y+12,2,1,"#3e2723");R(x+13,y+12,2,1,"#3e2723");                                         // squinting eyes
   R(x+5,y+13,3,2,"#ef5350");R(x+14,y+13,3,2,"#ef5350");                                         // red angry cheeks
-  R(x+8,y+15,6,3,"#4a0e0e");R(x+9,y+15,4,1,"#fafafa");R(x+7,y+17,1,1,"#4a0e0e");R(x+14,y+17,1,1,"#4a0e0e"); // open frown, gritted teeth
+  const yell=Math.floor(clock*6)%2;                                                                 // mouth flaps open and shut: yelling!
+  if(yell){R(x+8,y+15,6,4,"#4a0e0e");R(x+9,y+15,4,1,"#fafafa");R(x+9,y+18,4,1,"#e57373");
+    for(let q=0;q<3;q++){R(x-3,y+12+q*3,2,1,"#ffeb3b");R(x+23,y+12+q*3,2,1,"#ffeb3b");}}            // shout lines
+  else{R(x+8,y+16,6,1,"#4a0e0e");R(x+7,y+17,1,1,"#4a0e0e");R(x+14,y+17,1,1,"#4a0e0e");}
   const ax=x+17,ay=y+1;R(ax,ay,1,3,"#ff1744");R(ax+3,ay,1,3,"#ff1744");R(ax,ay,3,1,"#ff1744");R(ax+1,ay+3,3,1,"#ff1744"); // anger mark
   if(pulse)R(ax+1,ay+1,2,2,"#ff1744");
   for(let q=0;q<2;q++){const sy=y-4-((clock*14+q*6)%10);R(x+2+q*16,sy,3,3,"#eceff1");R(x+3+q*16,sy-2,2,2,"#cfd8dc");}} // steam puffs
+function madArm(x,y,side,skin,sleeve){if(Math.floor(clock*6)%2===0)return;const ax=side?x+19:x-2,sh=Math.floor(clock*12)%2;
+  R(ax,y+12+sh,3,10,sleeve);R(ax-1+sh,y+8+sh,5,5,skin);R(ax,y+7+sh,3,1,shade(skin,-30));}         // fist shaking in the air
 function drawMom(x,y,mood){
   const skin="#f5c08a",hair="#1b1b1b";
   R(x+3,y+2,16,6,hair);R(x+2,y+5,18,22,hair);R(x+5,y,12,3,hair);                                   // long black hair
@@ -2238,7 +2244,8 @@ function drawMom(x,y,mood){
   R(x+6,y+21,10,12,"#8e24aa");R(x+7,y+21,8,2,"#ab47bc");R(x+6,y+28,10,1,"#6a1b9a");                 // purple dress bodice + waist
   R(x+4,y+33,14,8,"#8e24aa");R(x+2,y+40,18,6,"#8e24aa");R(x+2,y+45,18,1,"#6a1b9a");R(x+8,y+33,2,12,"#ab47bc");
   R(x+3,y+22,3,10,skin);R(x+16,y+22,3,10,skin);R(x+3,y+22,3,3,"#8e24aa");R(x+16,y+22,3,3,"#8e24aa"); // arms + sleeves
-  R(x+7,y+46,3,4,skin);R(x+12,y+46,3,4,skin);R(x+6,y+50,5,2,"#6a1b9a");R(x+11,y+50,5,2,"#6a1b9a");}  // legs + shoes
+  R(x+7,y+46,3,4,skin);R(x+12,y+46,3,4,skin);R(x+6,y+50,5,2,"#6a1b9a");R(x+11,y+50,5,2,"#6a1b9a");  // legs + shoes
+  if(mood)madArm(x,y,0,skin,"#8e24aa");}
 function drawPete(x,y,mood){
   const skin="#f0b98a",hair="#6d4c41";
   R(x+4,y+1,14,6,hair);R(x+5,y,10,2,hair);R(x+14,y-1,4,3,hair);R(x+3,y+4,2,6,hair);R(x+17,y+4,2,5,hair); // brown hair with a swoop
@@ -2251,7 +2258,8 @@ function drawPete(x,y,mood){
   R(x+10,y+24,1,12,"#1565c0");for(let q=0;q<3;q++)R(x+11,y+26+q*4,1,1,"#e3f2fd");R(x+4,y+21,1,16,"#1565c0");
   R(x+1,y+22,4,12,"#1e88e5");R(x+17,y+22,4,12,"#1e88e5");R(x+1,y+33,4,3,skin);R(x+17,y+33,4,3,skin);   // shoulders, sleeves, hands
   R(x+5,y+37,12,2,"#4e342e");R(x+10,y+37,2,2,"#ffca28");                                            // belt
-  R(x+5,y+39,5,11,"#37474f");R(x+12,y+39,5,11,"#37474f");R(x+4,y+50,6,2,"#212121");R(x+12,y+50,6,2,"#212121");}
+  R(x+5,y+39,5,11,"#37474f");R(x+12,y+39,5,11,"#37474f");R(x+4,y+50,6,2,"#212121");R(x+12,y+50,6,2,"#212121");
+  if(mood)madArm(x,y,1,skin,"#1e88e5");}
 function drawEnd(t){
   R(0,0,W,H,"#1a1040");
   for(let i=0;i<40;i++){const x=(i*61+t*60)%W,y=(i*37+t*(30+i))%H;R(x,y,3,3,["#ffeb3b","#e53935","#76ff03","#40c4ff"][i%4]);}
