@@ -18,6 +18,10 @@
 | Arrival line | "I'll help all day! (for cookies)" | "Vrrrm! Neon light-bike, baby!" |
 | Rush line | "Time's running out! I'll grab some!" | "Turbo mode! I got this!" |
 
+**Personalities** (`clumsy` and `ace` flags in `SIBS`):
+- **Annie (`clumsy`):** when she meets an obstacle, she decides once whether to fumble it, with a 45% chance and a 0.7 s window. A fumble means she won't jump or double jump. She also trips about once every 8 s while riding, pausing for 0.6 s ("WHOOPS!").
+- **Isaac (`ace`):** he looks further ahead for walls, gaps and critters (12 px versus 4 px; critters 70 px versus 44 px). Whenever a live critter is within 280 px of the player, he rides to it, ahead of following or collecting. His light-bike defeats any critter it touches from any side ("ZAP! +100"), with a slightly bigger zap area than his body.
+
 **Behavior spec:**
 - **Arrival:** both appear next to the player as soon as the level starts.
 - **Normal mode:** they follow a spot behind the player and stop and face the same way when the player stops.

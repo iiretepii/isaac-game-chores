@@ -63,6 +63,11 @@ When they show up, you greet them with a goofy speech bubble picked at random, l
 - **Annie** starts grabbing items when there's **33% of the time** left ("Time's running out! I'll grab some!").
 - **Isaac** joins in at **20%** ("Turbo mode! I got this!").
 
+**They have different personalities:**
+
+- **Annie is accident prone.** About half the time she doesn't react to an obstacle in time, so she bumps into critters and LEGO bricks or tumbles into gaps, and now and then she trips over her own feet ("WHOOPS!"). It never costs you time.
+- **Isaac is an ace.** He spots obstacles earlier, clears gaps and walls cleanly, goes hunting for bad guys near you, and his light-bike **zaps any critter it touches** ("ZAP! +100").
+
 They play by the same rules as you:
 
 - They ride along the ground, jump (and double jump) over gaps, walls, critters and LEGO bricks, and duck under low spots.

@@ -1074,8 +1074,10 @@ function hurtSibling(s){
   SFX.boing();popText(s.x,s.y-6,"OOPS!","#fff"); // siblings bounce off hazards with no time penalty
 }
 function siblingCritters(s,prevB){
-  const body={x:s.x,y:s.y,w:10,h:s.h||20};
+  const body=s.d.ace?{x:s.x-6,y:s.y-6,w:22,h:(s.h||20)+6}:{x:s.x,y:s.y,w:10,h:s.h||20}; // Isaac's zap reaches a little further
   for(const e of lvl.enemies){if(!e.alive||!overlap(body,e))continue;
+    if(s.d.ace&&!(s.vy>40&&prevB<=e.y+10)){ // Isaac's light-bike zaps critters on contact
+      e.alive=false;e.dead=0.5;SFX.boing();score+=100;levelScore+=100;puff(e.x+7,e.y+6,"#ff1744",12,120);popText(e.x,e.y-4,"ZAP! +100","#ff8a80");continue;}
     if(s.vy>40&&prevB<=e.y+10){
       e.alive=false;e.dead=0.5;s.vy=-300;s.on=false;s.ride=null;
       SFX.boing();score+=100;levelScore+=100;puff(e.x+7,e.y+6,"#ccc",10);popText(e.x,e.y-4,"+100","#ffeb3b");
@@ -1099,16 +1101,20 @@ function moveSibling(s,dt,tx,moving){
     const desiredH=lowAhead||blocked(20,0)?12:20;
     s.h=desiredH;s.y=feet-s.h;s.duck=s.h<20;const h=s.h;
     if(s.on)s.jumps=0;else s.jumps=Math.max(1,s.jumps);
-    const front=Math.floor((s.x+(dir>0?w+4:-4))/T),foot=Math.floor((s.y+h+2)/T);
+    const reach=s.d.ace?12:4,front=Math.floor((s.x+(dir>0?w+reach:-reach))/T),foot=Math.floor((s.y+h+2)/T); // Isaac looks further ahead
     const wall=solid(front,foot-1)||solid(front,foot-2);
     const gap=tileAt(front,foot)==='.'&&tileAt(front,foot+1)==='.';
     const above=s.target&&s.target.y+16<s.y&&Math.abs(dx)<64;
-    const critter=lvl.enemies.some(e=>e.alive&&(e.x+e.w/2-(s.x+w/2))*dir>0&&Math.abs(e.x-s.x)<44&&Math.abs(e.y-(s.y+h))<24);
+    const critter=lvl.enemies.some(e=>e.alive&&(e.x+e.w/2-(s.x+w/2))*dir>0&&Math.abs(e.x-s.x)<(s.d.ace?70:44)&&Math.abs(e.y-(s.y+h))<24);
     const legoCol=Math.floor((s.x+w/2+dir*(sp*0.14+8))/T);
     const lego=dir&&(tileAt(legoCol,foot-1)==='x'||tileAt(legoCol,foot-2)==='x');
-    const first=s.on&&((dir&&(wall||gap||critter||lego))||above);
+    let first=s.on&&((dir&&(wall||gap||critter||lego))||above);
+    if(s.d.clumsy){ // Annie is accident prone: about half the time she doesn't react to an obstacle in time
+      if(first&&!s.decided){s.decided=true;s.fumble=Math.random()<0.45;s.decideT=0.7;}
+      if(s.decided){s.decideT-=step;if(s.decideT<=0)s.decided=false;}
+      if(first&&s.fumble)first=false;}
     const overPit=groundBelow(s.x+w/2,s.y+h)===null;
-    const second=!s.on&&s.jumps<2&&s.vy>=-60&&(above||(dir&&overPit));
+    const second=!s.on&&s.jumps<2&&s.vy>=-60&&(above||(dir&&overPit))&&!(s.d.clumsy&&s.fumble);
     if(moving&&!s.duck&&s.inv<=0&&(first||second)){
       s.jumps=first?1:2;s.vy=-430;s.on=false;s.ride=null;
       puff(s.x+w/2,s.y+h,second?"#80deea":"#fff",second?8:4,55);
@@ -1177,7 +1183,10 @@ function updateSibs(dt){
     if(rush&&!s.rushing){say(s.k?"ISAAC: TURBO MODE! I GOT THIS!":"ANNIE: TIME'S RUNNING OUT! I'LL GRAB SOME!",2);popText(s.x-10,s.y-12,"GO GO GO!",s.k?"#69f0ae":"#f48fb1");}
     s.rushing=rush;
     let tx,moving;
-    if(rush){chooseSiblingTarget(s,dt);tx=s.target?s.target.x:P.x;moving=!resting;}
+    if(s.d.clumsy&&!resting&&s.on&&Math.random()<dt*0.12){s.rest=0.6;popText(s.x-6,s.y-10,"WHOOPS!","#f48fb1");SFX.nope&&SFX.nope();} // Annie trips over her own feet
+    const prey=s.d.ace?lvl.enemies.find(e=>e.alive&&Math.abs(e.x-P.x)<280&&Math.abs(e.x-s.x)<320&&Math.abs(e.y-s.y)<90):null;
+    if(prey&&!resting){tx=prey.x;moving=true;}                                                         // Isaac hunts nearby bad guys
+    else if(rush){chooseSiblingTarget(s,dt);tx=s.target?s.target.x:P.x;moving=!resting;}
     else{s.target=null;tx=P.x-(s.k?62:24)*P.face;moving=!resting&&Math.abs(tx-s.x)>6;if(!moving)s.face=P.face;}
     moveSibling(s,dt,tx,moving);
     if(s.target&&!s.target.got&&Math.abs(s.target.x+8-(s.x+5))<12&&Math.abs(s.target.y+8-(s.y+7))<14){
@@ -1290,8 +1299,8 @@ const PAL_ME={shirt:"#e53935",shirtD:"#b71c1c",pants:"#1e3a8a",cap:"#ffd600",cap
 const GREETINGS=["HEY PAL!","YOOO!","WASSUP!","HIYA!","SUP, NOODLE?","LET HIM COOK!","NO CAP, HI!","W SIBLING!","SKIBIDI HI!","ITS GIVING HELP!",
  "HOWDY, PARTNER!","AYOOO!","BIG W!","YOU'RE GOATED!","SLAY!","BET!","OK, RIZZ!","FR FR, HI!","BRO-TATO CHIP!","HEY BESTIE!","Sup Bro!"];
 const SIBS=[
- {name:"ANNIE",delay:0,speed:144,pal:{shirt:"#ec407a",shirtD:"#ad1457",pants:"#ec407a",cap:null,hair:"#ff8f00",logo:"#fff",pig:1},line:"ANNIE: I'LL HELP ALL DAY! (FOR COOKIES)"},
- {name:"ISAAC",delay:0,speed:176,pal:{shirt:"#43a047",shirtD:"#1b5e20",pants:"#424242",cap:"#212121",capH:"#616161",hair:"#3e2723",logo:"#fff"},line:"ISAAC: VRRRM! NEON LIGHT-BIKE, BABY!"},
+ {name:"ANNIE",clumsy:1,delay:0,speed:144,pal:{shirt:"#ec407a",shirtD:"#ad1457",pants:"#ec407a",cap:null,hair:"#ff8f00",logo:"#fff",pig:1},line:"ANNIE: I'LL HELP ALL DAY! (FOR COOKIES)"},
+ {name:"ISAAC",ace:1,delay:0,speed:176,pal:{shirt:"#43a047",shirtD:"#1b5e20",pants:"#424242",cap:"#212121",capH:"#616161",hair:"#3e2723",logo:"#fff"},line:"ISAAC: VRRRM! NEON LIGHT-BIKE, BABY!"},
 ];
 function drawKidRaw(x,y,face,frame,air,pal=PAL_ME){
   const f=face<0;const X=(dx,w)=>f?x+10-dx-w:x+dx;
