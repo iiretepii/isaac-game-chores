@@ -73,7 +73,7 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | Kitchen Catastrophe | `dish` | `dishwasher` |
 | Living Room Lego-Land | `toy` | `toybox` |
 | Backyard Bonanza | `leaf` | `bag` |
-| Garden Glow-Up | `oldflower` | `compost` |
+| Garden Glow-Up | `oldflower` (pulled weeds) | `compost` |
 | Pool Party Panic | `towel` | `towelbasket` |
 | Garage of Doom | `trash` | `can` |
 | Laundry Room Pee-Yew! | `undies` | `washer` |

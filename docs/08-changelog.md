@@ -50,3 +50,6 @@ Grouped by milestone. See `git log` for every commit.
 - Every level's drop-off is now about as wide as the couch (56 px). The small 28 px sprites are drawn at 2x scale; the dollhouse and library shelf are drawn at 1.4x.
 - The Laundry and Basement levels now show a whole laundry corner: a washer, a dryer and a wicker hamper.
 - In the Tech level, the robot workbench is now a very big robot with blinking chest lights and an antenna.
+
+### Garden pickups are weeds
+- In Garden Glow-Up you now pull up weeds (with roots and dirt) instead of collecting old flowers.

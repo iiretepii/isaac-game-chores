@@ -846,8 +846,8 @@ const LEVELS=[
   text:"MOM: Watch out for LEGOs. Trust me. Toys away!"},
  {name:"BACKYARD BONANZA",chore:"Rake leaves into the bag",drop:"bag",item:"leaf",seed:4829,count:14,time:107,len:181,gap:3,enemies:["dog","bee"],density:.55,lego:.2,movers:1,theme:"yard",music:"hiphop",
   text:"UNCLE PETE: The dog ate the rake. Use your hands. Go!"},
- {name:"GARDEN GLOW-UP",chore:"Pick up the old flowers and put them in the compost bin",drop:"compost",item:"oldflower",seed:5842,count:15,time:110,len:183,gap:3,enemies:["weed"],density:.62,lego:0,movers:1,theme:"garden",music:"garden",
-  text:"MOM: Those old flowers need composting! Watch out: the WEEDS have learned to walk!"},
+ {name:"GARDEN GLOW-UP",chore:"Pull up the weeds and put them in the compost bin",drop:"compost",item:"oldflower",seed:5842,count:15,time:110,len:183,gap:3,enemies:["weed"],density:.62,lego:0,movers:1,theme:"garden",music:"garden",
+  text:"MOM: Those weeds need pulling! Watch out: some of them have learned to walk!"},
  {name:"POOL PARTY PANIC",chore:"Put the wet towels back in the towel basket",drop:"towelbasket",item:"towel",seed:6855,count:16,time:113,len:183,gap:3,enemies:["duck","goose","swan","squirrel"],density:.58,lego:0,movers:1,theme:"pool",music:"pool",
   text:"MOM: Who left 15 SOGGY towels around the pool?! Basket. Now. And shoo those geese!"},
  {name:"GARAGE OF DOOM",chore:"Take out ALL the trash",drop:"can",item:"trash",seed:7868,count:17,time:116,len:186,gap:3,enemies:["rat","roomba","bee"],density:.62,lego:.45,movers:1,theme:"garage",music:"techno",
@@ -899,7 +899,7 @@ const THEMES={
  attic:{sky:"#7a5233",wall2:"#6b4628",ground:"#795548",top:"#bcaaa4",plat:"#5d4037",ptop:"#8d6e63"},
  house:{sky:"#2b2d6e",wall2:"#25275e",ground:"#5d3a8a",top:"#b388ff",plat:"#00897b",ptop:"#4db6ac"},
 };
-const ITEM_NAMES={book:"books",testtube:"test tubes",oldflower:"old flowers",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
+const ITEM_NAMES={book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
@@ -1361,10 +1361,10 @@ function drawItemRaw(k,x,y){
     R(x+5,y,7,3,"#ffb74d");R(x+5,y+3,7,10,"#b2ebf2");R(x+6,y+13,5,2,"#80deea");
     R(x+6,y+7,5,6,liquid);R(x+7,y+13,3,1,liquid);R(x+5,y+3,1,8,"#fff");
     R(x+7,y+4,3,2,"#fff");R(x+8,y+4,1,1,"#455a64");R(x+8,y+9,1,1,"#fff");}
-  else if(k==='oldflower'){ // bent stem, faded drooping petals and fallen petals
-    R(x+7,y+7,2,8,"#82733f");R(x+5,y+5,3,3,"#82733f");R(x+3,y+6,2,3,"#82733f");
-    R(x+2,y+8,6,3,"#b38b96");R(x+1,y+10,3,2,"#99717e");R(x+6,y+10,3,2,"#c5a1a8");R(x+4,y+8,2,2,"#a38442");
-    R(x+9,y+10,4,2,"#9b914e");R(x+10,y+9,3,1,"#b5a65c");R(x+1,y+14,3,1,"#b38b96");R(x+12,y+14,2,1,"#99717e");}
+  else if(k==='oldflower'){ // a pulled-up weed: jagged leaves, seed puff, dangling roots and dirt
+    R(x+7,y+3,2,9,"#558b2f");R(x+2,y+6,5,2,"#689f38");R(x+1,y+4,2,3,"#689f38");R(x+9,y+5,5,2,"#7cb342");R(x+13,y+3,2,3,"#7cb342");
+    R(x+3,y+9,4,2,"#558b2f");R(x+9,y+9,4,2,"#558b2f");R(x+6,y+0,4,3,"#fff59d");R(x+7,y+1,2,1,"#fbc02d");
+    R(x+5,y+12,6,2,"#6d4c41");R(x+7,y+14,1,2,"#d7ccc8");R(x+5,y+14,1,2,"#d7ccc8");R(x+10,y+14,1,2,"#d7ccc8");}
   else if(k==='leaf'){ // big maple leaf
     R(x+6,y+1,4,4,"#ff7043");R(x+2,y+4,12,6,"#ff7043");R(x+1,y+3,3,3,"#ff7043");R(x+12,y+3,3,3,"#ff7043");R(x+4,y+10,8,3,"#ff7043");
     R(x+3,y+5,5,4,"#ffa726");R(x+7,y+2,2,3,"#ffb74d");R(x+10,y+9,3,3,"#e64a19");
