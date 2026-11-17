@@ -94,7 +94,7 @@ Each level is longer, with more items, critters and gaps than the one before. La
 | 3 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 12 | 101s | Dust bunnies, cockroaches | Swing jazz |
 | 4 | **Living Room Lego-Land** | Toys → plastic toy tote | 13 | 104s | Robot vacuums, cats | Bubblegum pop |
 | 5 | **Backyard Bonanza** | Leaves → leaf bag | 14 | 107s | Dogs, bees | Boom-bap hip hop |
-| 6 | **Garden Glow-Up** | Old flowers → compost bin | 15 | 110s | Walking weeds | Beatles-style sing-along |
+| 6 | **Garden Glow-Up** | Weeds → compost bin | 15 | 110s | Walking weeds | Beatles-style sing-along |
 | 7 | **Pool Party Panic** | Soggy towels → towel basket | 16 | 113s | Ducks, geese, swans, squirrels | Silly splashy calypso |
 | 8 | **Garage of Doom** | Trash → trash can | 17 | 116s | Rats, robot vacuums, bees | Funky techno |
 | 9 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 18 | 119s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
