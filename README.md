@@ -103,7 +103,7 @@ Each level is longer, with more items, critters and gaps than the one before. La
 | 12 | **Library Book Roundup** | Books → library shelf | 21 | 128s | Dust bunnies, spiders, hamsters | Inspirational strings and harp |
 | 13 | **Music Room Mayhem** | Old piano scores → bookshelf | 22 | 131s | Cats, spiders, cockroaches | Kid practicing piano |
 | 14 | **Arts & Crafts Chaos** | Paint buckets → shelves | 23 | 134s | Ants, cats, soap bubbles | Lively French impressionist |
-| 15 | **Tech Room Trouble** | Robot parts → robot workbench | 24 | 137s | Little lightning bolts | The silliest song ever |
+| 15 | **Tech Room Trouble** | Robot parts → giant robot | 24 | 137s | Little lightning bolts | The silliest song ever |
 | 16 | **Science Lab Scramble** | Test tubes → lab rack | 25 | 140s | Slime, soap bubbles, lightning bolts | Zany 90s science-TV funk |
 | 17 | **Workout Room Workout** | Weights → weight rack | 26 | 143s | Rats, cats, dogs, dust mites | High-octane workout anthem |
 | 18 | **The Spooky Basement** | Wet shirts → dryer | 27 | 146s | Spiders, rats, dust bunnies | Romantic movie-theme piano |

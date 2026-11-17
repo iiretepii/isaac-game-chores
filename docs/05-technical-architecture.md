@@ -56,7 +56,7 @@ Collision is tile-based: `#` is solid, `=` is a one-way platform (land from abov
 ## Rendering
 
 - **Primitives:** everything is drawn with `fillRect` through `R()`, so pixel art is resolution-independent. The canvas is CSS-scaled with `image-rendering: pixelated`.
-- **Outlines:** `outlined(x, y, fn)` draws a sprite onto an offscreen 128 × 96 canvas (padding `SP=32`), stamps a dark silhouette at four offsets, then draws the sprite on top. Large sprites must fit within that padding.
+- **Outlines:** `outlined(x, y, fn)` draws a sprite onto an offscreen 176 × 144 canvas (padding `SP=48`), stamps a dark silhouette at four offsets, then draws the sprite on top. Large sprites must fit within that padding.
 - **Background:** a vertical gradient, parallax stripes, a wainscot and a theme branch with decorations every 160 px of parallax distance (index `k`).
 - **Overlays:** pre-rendered scan lines and vignette (`fx`), the basement flashlight, the red low-time flash and the HUD.
 

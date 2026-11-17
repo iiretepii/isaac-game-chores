@@ -69,23 +69,23 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | Level | Item (sprite key) | Drop-off (sprite key) |
 |---|---|---|
 | Isaac's Room | `dragon` | `toychest` |
-| Annie's Room | `doll` | `dollhouse` |
-| Kitchen Catastrophe | `dish` | `dishwasher` |
+| Annie's Room | `doll` | `dollhouse` (wide Neuschwanstein-style castle) |
+| Kitchen Catastrophe | `dish` | `dishwasher` (built into a counter) |
 | Living Room Lego-Land | `toy` | `toybox` |
 | Backyard Bonanza | `leaf` | `bag` |
 | Garden Glow-Up | `oldflower` (pulled weeds) | `compost` |
 | Pool Party Panic | `towel` | `towelbasket` |
-| Garage of Doom | `trash` | `can` |
-| Laundry Room Pee-Yew! | `undies` | `washer` |
+| Garage of Doom | `trash` | `can` (a big green dumpster) |
+| Laundry Room Pee-Yew! | `undies` | `washer` (washer, dryer and hamper) |
 | Bathroom Blunder | `poop` | `toilet` |
 | Home Office Havoc | `paper` | `recycle` |
 | Library Book Roundup | `book` | `libraryshelf` |
 | Music Room Mayhem | `score` | `bookshelf` |
 | Arts & Crafts Chaos | `paint` | `paintshelf` |
-| Tech Room Trouble | `robot` | `workbench` |
+| Tech Room Trouble | `robot` | `workbench` (a very big robot) |
 | Science Lab Scramble | `testtube` | `labrack` |
 | Workout Room Workout | `weight` | `weightrack` |
-| The Spooky Basement | `shirt` | `dryer` |
+| The Spooky Basement | `shirt` | `dryer` (washer, dryer and hamper) |
 | Attic of Antiques | `ornament` | `trunk` |
 | The Whole House!! | `mix` | `couch` |
 

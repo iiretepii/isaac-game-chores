@@ -66,7 +66,7 @@ Each level is one object in the `LEVELS` array:
 ## Level Generation Rules
 
 - **Fixed seed:** each level has its own `seed` field, so inserting or reordering levels never changes another level's layout. New levels should get a new, unused seed (for example `777 + n × 1013` for the next unused `n`).
-- **Start and end:** the first 10 columns and last 16 columns are flat. The drop-off sits near the end; extra-wide drop-offs (couch, tote, castle) shift left.
+- **Start and end:** the first 10 columns and last 16 columns are flat. The drop-off sits near the end; wider drop-offs shift left so they stay on the flat ground. Most drop-offs are 70 px wide; the couch, giant robot and toy tote are narrower.
 - **Building blocks:** pits (sometimes with moving platforms), steps (−2 to +3 tiles), shelves (one-way platforms, sometimes stacked) and flat runs with a critter or LEGO brick.
 - **Jumpable:** every generated gap and step is within the player's jump.
 - **Item placement:** item spots are picked evenly along the level. If a level has fewer spots than `count`, it gets fewer items. Always check counts after editing (see [06](06-development-workflow.md)).
@@ -76,7 +76,7 @@ Each level is one object in the `LEVELS` array:
 1. **Level entry:** add an entry to `LEVELS` at the right position with a new `seed`, keeping item counts climbing by one and each time limit at least 3 s above the previous level (renumber later levels' counts and times).
 2. **Theme:** add a `THEMES` entry and a `drawBackground` branch for the decorations.
 3. **Item:** add the item sprite in `drawItemRaw` and a plural name in `ITEM_NAMES`. Add it to the `kinds` list used by the Whole House.
-4. **Drop-off:** add the sprite in `drawDropRaw`. If it's wider than 28 px, add its width to the drop-width table in `buildLevel`.
+4. **Drop-off:** add the sprite in `drawDropRaw`. Then add its size settings next to `drawDrop`: width in `DROP_W` (default 56), draw scale in `DROP_SCALE` (default 2; use 1 for sprites drawn at full size) and the height of the HERE! label in `DROP_TOP`. Keep each key in each table only once, because a repeated key silently overrides the first one.
 5. **Critters:** add any new critters to `drawEnemyRaw`, the speed table `sp`, and the Whole House critter list.
 6. **Music:** add a song to `STYLES` and to `MIX` (see [04](04-audio.md)).
 7. **Test:** check that the item count is correct and that the level is winnable (see [06](06-development-workflow.md)).
