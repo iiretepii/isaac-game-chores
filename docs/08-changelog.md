@@ -61,3 +61,6 @@ Grouped by milestone. See `git log` for every commit.
 ### Drop-offs redrawn at full width
 - The wide drop-offs are no longer stretched; each is redrawn at 70 px wide at normal height (e.g. three leaf bags, a two-bay compost bin, a longer trunk and shelves). The workout weight rack joined them.
 - The kitchen dishwasher now sits built into a counter with cabinets.
+
+### Wider princess castle
+- Annie's Room castle is back to normal size and redrawn 70 px wide: four towers with flags, a central keep with a heart window, battlements and an arched gate.

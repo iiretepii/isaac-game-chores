@@ -1432,11 +1432,11 @@ function drawItemRaw(k,x,y){
 }
 
 // Drop-off size: most sprites are drawn at 28 px and scaled up 2x; a few are drawn full-size already.
-const DROP_SCALE={toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1,dollhouse:1.4};
+const DROP_SCALE={dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1,dollhouse:1.4};
 // Normal height, much wider: these sprites are stretched sideways only.
 const DROP_WIDE={}; // (no longer used: wide drop-offs are drawn at full width)
-const DROP_W={weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56,dollhouse:56};
-const DROP_TOP={weightrack:0,toychest:0,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,dollhouse:30,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
+const DROP_W={dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56,dollhouse:56};
+const DROP_TOP={dollhouse:24,weightrack:0,toychest:0,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,dollhouse:30,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
 function drawDrop(d,ready,t){
   const x=Math.round(d.x),y=Math.round(d.y),k=d.kind;
   if(ready){g.save();g.globalAlpha=0.35+0.2*Math.sin(t*8);const rg=g.createRadialGradient(x+14,y+12,2,x+14,y+12,34);rg.addColorStop(0,'#fff59d');rg.addColorStop(1,'rgba(255,235,59,0)');g.fillStyle=rg;g.fillRect(x-24,y-24,76,72);g.restore();}
@@ -1514,15 +1514,21 @@ function drawDropRaw(k,x,y){
     R(x,y+8,70,16,"#8d6e63");R(x,y+2,70,7,"#a1887f");R(x,y+8,70,2,"#4e342e");R(x+2,y+3,66,1,"#bcaaa4");
     for(let i=12;i<70;i+=16)R(x+i,y+11,1,12,"#6d4c41");R(x+16,y+9,4,5,"#ffd54f");R(x+50,y+9,4,5,"#ffd54f");
     R(x+8,y-2,6,4,"#e53935");R(x+30,y-3,4,5,"#43a047");R(x+56,y-2,7,4,"#1e88e5");R(x+2,y+22,4,2,"#4e342e");R(x+64,y+22,4,2,"#4e342e");}
-  else if(k==='dollhouse'){ // pink princess castle doll house
-    const tower=(tx,tw,th)=>{R(tx,y+24-th,tw,th,"#f8bbd0");R(tx,y+24-th,tw,1,"#fce4ec");R(tx+tw-2,y+24-th,2,th,"#f48fb1");
-      for(let rr=0;rr<12;rr++){const hw=Math.round((tw+4)*(12-rr)/24);R(tx+tw/2-hw,y+24-th-rr-1,hw*2,1,rr%4===0?"#ce93d8":"#ab47bc");}
-      R(tx+tw/2,y+24-th-17,1,6,"#6d4c41");R(tx+tw/2+1,y+24-th-17,4,3,"#ffd54f");R(tx+tw/2-1,y+24-th+6,3,4,"#81d4fa");};
-    R(x+8,y,24,24,"#f8bbd0");for(let cr=0;cr<6;cr++)R(x+8+cr*4,y-3,3,3,"#f8bbd0");R(x+8,y,24,1,"#fce4ec");
-    tower(x,9,34);tower(x+31,9,34);tower(x+16,8,40);
-    R(x+15,y+13,10,11,"#ad1457");R(x+16,y+11,8,2,"#ad1457");R(x+17,y+10,6,1,"#ad1457");R(x+20,y+13,1,11,"#880e4f");R(x+22,y+18,1,1,"#ffd54f");
-    R(x+10,y+5,3,4,"#81d4fa");R(x+27,y+5,3,4,"#81d4fa");R(x+12,y+20,3,2,"#f06292");R(x+26,y+20,3,2,"#f06292");
-    if(Math.floor(clock*3)%2)R(x+19,y-26,1,1,"#fff");R(x+3,y+1,1,1,"#fff");}
+  else if(k==='dollhouse'){ // wide pink princess castle: four towers, keep, gate, flags and a moat bridge
+    const wall="#f8bbd0",shade="#f48fb1",roof="#ab47bc",roofD="#7b1fa2",win="#4fc3f7";
+    R(x+6,y+4,58,20,wall);R(x+6,y+4,58,1,"#fce4ec");for(let i=0;i<58;i+=6)R(x+6+i,y+1,4,3,wall);           // curtain wall + battlements
+    for(let i=8;i<62;i+=9)R(x+i,y+14,1,10,shade);
+    const tower=(tx,tw,th,fl)=>{R(x+tx,y+24-th,tw,th,wall);R(x+tx+tw-1,y+24-th,1,th,shade);
+      for(let r=0;r<tw/2;r++)R(x+tx+r,y+24-th-1-r*2,tw-r*2,2,r%2?roofD:roof);                                // cone roof
+      R(x+tx+tw/2-1,y+24-th-tw-4,1,5,"#795548");R(x+tx+tw/2,y+24-th-tw-4,4,2,fl);                          // flag
+      R(x+tx+tw/2-1,y+24-th+3,2,3,win);R(x+tx+tw/2-1,y+24-th+9,2,3,win);};
+    tower(0,10,22,"#fdd835");tower(60,10,22,"#4fc3f7");tower(17,8,26,"#e040fb");tower(45,8,26,"#76ff03");
+    R(x+27,y-6,16,14,wall);R(x+42,y-6,1,14,shade);for(let i=0;i<16;i+=4)R(x+27+i,y-8,3,2,wall);                  // central keep
+    R(x+31,y-3,8,6,"#fce4ec");R(x+33,y-2,2,2,"#e91e63");R(x+35,y-2,2,2,"#e91e63");R(x+34,y,2,1,"#e91e63");      // heart window
+    R(x+29,y+10,12,14,"#ad1457");R(x+30,y+9,10,1,"#ad1457");R(x+31,y+8,8,1,"#ad1457");                          // arched gate
+    for(let i=0;i<12;i+=3)R(x+29+i,y+10,1,14,"#880e4f");R(x+29,y+15,12,1,"#880e4f");
+    R(x+12,y+8,3,4,win);R(x+22,y+8,3,4,win);R(x+46,y+8,3,4,win);R(x+55,y+8,3,4,win);
+    R(x+26,y+23,18,1,"#8d6e63");R(x+3,y+20,4,4,"#66bb6a");R(x+63,y+20,4,4,"#66bb6a");R(x+4,y+19,1,1,"#ff4081");R(x+65,y+19,1,1,"#ffeb3b");}
   else if(k==='bookshelf'){ // wide music-room shelf: sheet-music binders and a metronome
     R(x-1,y-14,72,38,"#5d4037");R(x+1,y-12,68,34,"#3e2723");for(let sh=0;sh<3;sh++){R(x+1,y-2+sh*11,68,2,"#6d4c41");
       for(let b=0;b<15;b++){if((b+sh*2)%6===0)continue;R(x+3+b*4,y-11+sh*11,3,9,["#ad1457","#283593","#00695c","#f57f17"][(b+sh)%4]);}}
