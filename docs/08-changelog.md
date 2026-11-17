@@ -6,7 +6,7 @@ Grouped by milestone. See `git log` for every commit.
 - **Volume leveling:** every song now plays at a similar volume, using a per-song trim.
 - **New songs:** three songs written by parallel agents. Library: *Marginalia for Four Strings* (Janáček-style string quartet). Science Lab: *Mad Science Slam* (90s science-TV funk). Garden: *Seashell Sunday* (Beatles-style sing-along).
 - **Recordings:** the three new songs are recorded, and the medley is re-recorded.
-- **Ending song:** the ending screen now plays *Victory Fugue*, a fanfare written as a four-voice fugue (no parallel fifths or octaves), first scored for brass, then rescored for clarinets with the timpani removed, then rewritten with wider spacing and no clashing intervals between voices.
+- **Ending song:** the ending screen now plays *Victory Fugue*, a fanfare written as a four-voice fugue (no parallel fifths or octaves), first scored for brass, then rescored for clarinets with the timpani removed, then rewritten with wider spacing and no clashing intervals between voices, then expanded into a full 31-bar fugue (running countersubject, modulations to A major, B minor and G major, augmentation in the bass).
 - **Library song replaced:** the Janáček-style piece sounded too harsh, so it became *Where the Books Open Up*, an inspirational strings-and-harp theme.
 
 ## 2026-11-16 (Later)
