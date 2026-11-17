@@ -2,6 +2,11 @@
 
 Grouped by milestone. See `git log` for every commit.
 
+## 2026-11-17
+- **Volume leveling:** every song now plays at a similar volume, using a per-song trim.
+- **New songs:** three songs written by parallel agents. Library: *Marginalia for Four Strings* (Janáček-style string quartet). Science Lab: *Mad Science Slam* (90s science-TV funk). Garden: *Seashell Sunday* (Beatles-style sing-along).
+- **Recordings:** the three new songs are recorded, and the medley is re-recorded.
+
 ## 2026-11-16 (Later)
 - **Time doubling removed:** picking up items no longer adds time.
 - **Item counts and time limits:** item counts now climb 10 → 29, and time limits rise steadily.
