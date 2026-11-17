@@ -1124,7 +1124,8 @@ function moveSibling(s,dt,tx,moving){
     for(let r=Math.max(0,Math.floor(s.y/T));r<=Math.floor((s.y+h-0.01)/T);r++){
       if(dir&&solid(col,r)){s.x=dir>0?col*T-w:(col+1)*T;break;}}
     s.x=Math.max(0,Math.min(lvl.cols*T-w,s.x));s.anim+=Math.abs(s.x-oldX);
-    const prevB=s.y+h;s.vy=Math.min((s.vy||0)+1300*step,600);s.y+=s.vy*step;s.on=false;
+    const prevB=s.y+h,floaty=s.d.balloon&&!s.on&&(s.vy||0)>-60; // Annie's balloon: a gentle float at the top of a jump and on the way down
+    s.vy=Math.min((s.vy||0)+(floaty?680:1300)*step,floaty?230:600);s.y+=s.vy*step;s.on=false;
     const c0=Math.floor(s.x/T),c1=Math.floor((s.x+w-0.01)/T);
     if(s.vy>=0){
       const r=Math.floor((s.y+h)/T);
@@ -1298,7 +1299,7 @@ const PAL_ME={shirt:"#e53935",shirtD:"#b71c1c",pants:"#1e3a8a",cap:"#ffd600",cap
 const GREETINGS=["HEY PAL!","YOOO!","WASSUP!","HIYA!","SUP, NOODLE?","LET HIM COOK!","NO CAP, HI!","W SIBLING!","SKIBIDI HI!","ITS GIVING HELP!",
  "HOWDY, PARTNER!","AYOOO!","BIG W!","YOU'RE GOATED!","SLAY!","BET!","OK, RIZZ!","FR FR, HI!","BRO-TATO CHIP!","HEY BESTIE!","Sup Bro!"];
 const SIBS=[
- {name:"ANNIE",ace:1,delay:0,speed:176,pal:{shirt:"#ec407a",shirtD:"#ad1457",pants:"#ec407a",cap:null,hair:"#ff8f00",logo:"#fff",pig:1},line:"ANNIE: I'LL HELP ALL DAY! (FOR COOKIES)"},
+ {name:"ANNIE",ace:1,balloon:1,delay:0,speed:176,pal:{shirt:"#ec407a",shirtD:"#ad1457",pants:"#ec407a",cap:null,hair:"#ff8f00",logo:"#fff",pig:1},line:"ANNIE: I'LL HELP ALL DAY! (FOR COOKIES)"},
  {name:"ISAAC",ace:1,delay:0,speed:176,pal:{shirt:"#43a047",shirtD:"#1b5e20",pants:"#424242",cap:"#212121",capH:"#616161",hair:"#3e2723",logo:"#fff"},line:"ISAAC: VRRRM! NEON LIGHT-BIKE, BABY!"},
 ];
 function drawKidRaw(x,y,face,frame,air,pal=PAL_ME){
@@ -1854,6 +1855,12 @@ function drawHUD(t){
 function drawSibling(s,t){
   if(s.inv>0&&Math.floor(s.inv*15)%2)return;
   const by=s.y;
+    if(s.d.balloon){ // red balloon on a string, bobbing above her hand and lagging behind when she moves
+      const hx=Math.round(s.x)+(s.face>0?8:2),hy=Math.round(by)+(s.duck?4:9),bob=Math.sin(t*3+s.x*0.02)*1.5,
+        bx=hx-s.face*4,byy=hy-27+bob+(s.on?0:-2);
+      for(let q=0;q<12;q++){const k=q/12;R(Math.round(hx+(bx-hx)*k+Math.sin(t*4+q)*0.6),Math.round(hy+(byy+9-hy)*k),1,1,"#eeeeee");}
+      R(bx-4,byy,9,9,"#212121");R(bx-5,byy+1,11,7,"#212121");R(bx-1,byy-1,3,11,"#212121");
+      R(bx-3,byy+1,7,7,"#e53935");R(bx-4,byy+2,9,5,"#e53935");R(bx-1,byy,3,9,"#e53935");R(bx-2,byy+2,2,2,"#ffcdd2");R(bx,byy+9,1,1,"#b71c1c");}
     g.save();g.translate(Math.round(s.x),Math.round(by));g.scale(1,s.duck?0.6:1);
     outlined(0,0,(ox,oy)=>{
       if(s.k){ // Big Bro on a sleek neon light-bike: glowing disc wheels, low enclosed body, neon edge lines
@@ -1866,7 +1873,7 @@ function drawSibling(s,t){
           R(F(wx+2,3),oy+14,3,3,gl?N2:N);}                                                                   // glowing disc wheels
             }else{drawKidRaw(ox,oy,s.face,s.anim/2,!s.on,s.d.pal);R(ox-2,oy+15,15,2,"#ab47bc");R(ox,oy+17,2,2,"#212121");R(ox+9,oy+17,2,2,"#212121");}
     });g.restore();
-    text(s.d.name,s.x+5,by-12,6,s.k?"#69f0ae":"#f48fb1","center");}
+    text(s.d.name,s.x+5,by-(s.d.balloon?33:12),6,s.k?"#69f0ae":"#f48fb1","center");}
 
 function drawPlay(t){
   const th=lvl.theme;
