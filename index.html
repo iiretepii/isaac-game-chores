@@ -1855,12 +1855,12 @@ function drawHUD(t){
 function drawSibling(s,t){
   if(s.inv>0&&Math.floor(s.inv*15)%2)return;
   const by=s.y;
-    if(s.d.balloon){ // red balloon on a string, bobbing above her hand and lagging behind when she moves
+    if(s.d.balloon){ // pink balloon on a string, bobbing above her hand and lagging behind when she moves
       const hx=Math.round(s.x)+(s.face>0?8:2),hy=Math.round(by)+(s.duck?4:9),bob=Math.sin(t*3+s.x*0.02)*1.5,
         bx=hx-s.face*4,byy=hy-27+bob+(s.on?0:-2);
       for(let q=0;q<12;q++){const k=q/12;R(Math.round(hx+(bx-hx)*k+Math.sin(t*4+q)*0.6),Math.round(hy+(byy+9-hy)*k),1,1,"#eeeeee");}
       R(bx-4,byy,9,9,"#212121");R(bx-5,byy+1,11,7,"#212121");R(bx-1,byy-1,3,11,"#212121");
-      R(bx-3,byy+1,7,7,"#e53935");R(bx-4,byy+2,9,5,"#e53935");R(bx-1,byy,3,9,"#e53935");R(bx-2,byy+2,2,2,"#ffcdd2");R(bx,byy+9,1,1,"#b71c1c");}
+      R(bx-3,byy+1,7,7,"#f06292");R(bx-4,byy+2,9,5,"#f06292");R(bx-1,byy,3,9,"#f06292");R(bx-2,byy+2,2,2,"#fce4ec");R(bx,byy+9,1,1,"#c2185b");}
     g.save();g.translate(Math.round(s.x),Math.round(by));g.scale(1,s.duck?0.6:1);
     outlined(0,0,(ox,oy)=>{
       if(s.k){ // Big Bro on a sleek neon light-bike: glowing disc wheels, low enclosed body, neon edge lines

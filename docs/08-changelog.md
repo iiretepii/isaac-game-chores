@@ -71,4 +71,4 @@ Grouped by milestone. See `git log` for every commit.
 - Raised the volume of *Jubilee for a Job Well Done* by about 3 dB (gain 0.624 → 0.88) and re-recorded `music/21-ending-jubilee.mp3`.
 
 ### Annie's balloon
-- Annie now carries a red balloon that bobs above her. It gives her a small float: lighter gravity and a slower fall after the peak of each jump.
+- Annie now carries a pink balloon that bobs above her. It gives her a small float: lighter gravity and a slower fall after the peak of each jump.
