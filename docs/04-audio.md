@@ -32,7 +32,7 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `romantic` | *Nocturne In The Basement* | 66 | 4 | 16 | 32 | The Spooky Basement | `music/18-basement.mp3` |
 | `baroque` | *Little Fugue in the Attic* | 84 | 4 | 16 | 20 | Attic of Antiques | `music/19-attic.mp3` |
 | `french` | *Petite Valse Du Matin* | 66 | 1 | 3 | 16 | Title screen | `music/00-title.mp3` |
-| `pets` | *Kibble & Cuddles* | 100 | 2 | 8 | 16 | Pet Room Pandemonium | `music/20-pet-room.mp3` |
+| `pets` | *Wag Wag Woof Woof!* | 168 | 4 | 16 | 16 | Pet Room Pandemonium | `music/20-pet-room.mp3` |
 | `racerock` | *Radical Race Rock* | 240 | 2 | 8 | 32 | Race Track Rumble | `music/21-race-track.mp3` |
 | `chiptune` | *Press Start to Clean!* | 150 | 4 | 16 | 16 | Game Room Glitch | `music/22-game-room.mp3` |
 | `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/24-ending-jubilee.mp3` |
@@ -40,7 +40,7 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 
 ## Volume Leveling
 
-Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays at about −35 dB RMS. The gentle pieces are set a little quieter: title and basement −38, music room and attic −37, library and pet room −37. The ending fanfare is set a little louder (about −31) so the victory song stands out. The scheduler sets the music volume to `MUSIC_BASE × gain` whenever the style changes, including between medley segments. After writing or changing a song, re-measure its loudness and update its trim.
+Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays at about −35 dB RMS. The gentle pieces are set a little quieter: title and basement −38, music room and attic −37, library −37. The ending fanfare is set a little louder (about −31) so the victory song stands out. The scheduler sets the music volume to `MUSIC_BASE × gain` whenever the style changes, including between medley segments. After writing or changing a song, re-measure its loudness and update its trim.
 
 ## The Medley
 

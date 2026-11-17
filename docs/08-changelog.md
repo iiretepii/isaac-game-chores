@@ -124,3 +124,6 @@ Grouped by milestone. See `git log` for every commit.
 
 ### Living room pillows
 - Living Room Lego-Land now has you pick up throw pillows in ten colors and put them on a wide cream couch (as wide as the ending couch, with no pillows on it) instead of toys and a toy tote.
+
+### New pet room song
+- Replaced *Kibble & Cuddles* with *Wag Wag Woof Woof!*: a much sillier, happy and energetic chiptune at 168 BPM. It has a pulse-wave lead (a kazoo joins in the second half), boing bass, oom-pah stabs and 8-bit drums, and the pets answer the tune with pixel woofs, meows, bird tweets, a squeaky toy and a hamster-wheel spin. Its volume is set to the standard level. The pet room MP3 and the medley were re-recorded.
