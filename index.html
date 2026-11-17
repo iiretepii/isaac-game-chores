@@ -790,7 +790,7 @@ STYLES.pets={name:"KIBBLE & CUDDLES",bpm:100,spb:2,bar:8,bars:16,
    if(bar===15&&b===4)[65,69,72,77,81].forEach((m2,k)=>harp(m2,1.2,t+k*0.06,0.04));}};
 
 // RACE TRACK: "Radical Race Rock" is Isaac's Room rock song played very fast.
-STYLES.racerock=Object.assign({},STYLES.rock,{name:"RADICAL RACE ROCK",bpm:1260});
+STYLES.racerock=Object.assign({},STYLES.rock,{name:"RADICAL RACE ROCK",bpm:240});
 
 // ENDING: "Jubilee for a Job Well Done", an original celebratory fanfare and jubilee for when the player wins.
 //  Bars 1-4  fanfare: warm horn-section chord calls with bell sparkles and a harp sweep, ending on the dominant
@@ -839,7 +839,7 @@ STYLES.finale={name:"JUBILEE FOR A JOB WELL DONE",bpm:148,spb:2,bar:8,bars:24,
     }
   }};
 // Per-song volume trim so every song plays at a similar loudness (measured RMS; quieter targets for the gentle title, basement, attic, music-room and library pieces).
-const STYLE_GAIN={"racerock":0.25,"pets":1.26,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
+const STYLE_GAIN={"racerock":0.398,"pets":1.26,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
 for(const k in STYLE_GAIN)if(STYLES[k])STYLES[k].gain=STYLE_GAIN[k];
 const MUSIC_BASE=0.38;
 const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','french2','silly','science','workout','romantic','baroque','pets'];

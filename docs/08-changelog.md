@@ -92,3 +92,6 @@ Grouped by milestone. See `git log` for every commit.
 
 ### Race Track music 6x faster
 - *Radical Race Rock* now plays at 1260 BPM (6x the previous 210). The MP3 was re-recorded.
+
+### Race Track music set to 240 BPM
+- After trying 1260 BPM, *Radical Race Rock* is now 240 BPM, with its volume trim back to 0.398. The MP3 was re-recorded.
