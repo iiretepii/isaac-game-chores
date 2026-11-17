@@ -1327,9 +1327,12 @@ function drawKid(x,y,face,frame,air,flash,sx=1,sy=1,duck=false){
 // Race car used on the race track for the player and both siblings: the kid sits in the cockpit, wheels spin,
 //  with a rear spoiler, racing stripe and number. Wheel bottoms sit at y+14, like the bike.
 const onRaceTrack=()=>lvl&&lvl.L&&lvl.L.theme==='race'&&(state==='play'||state==='clear'||state==='intro');
-function drawRaceCar(x,y,face,frame,body,stripe,num,pal){
+function drawRaceCar(x,y,face,frame,body,stripe,num,pal,helm=body,helm2=stripe){
   const f=face<0,X=(dx,w)=>f?x+10-dx-w:x+dx,dk=shade(body,-60);
   drawKidRaw(x+(f?-1:1),y-9,face,0,false,pal);                                       // driver, waist-deep in the cockpit
+  {const hx=x+(f?-1:1),H=(dx,w)=>f?hx+10-dx-w:hx+dx;                                  // racing helmet with a stripe and dark visor
+   R(H(0,11),y-11,11,7,helm);R(H(1,9),y-12,9,1,helm);R(H(4,2),y-12,2,7,helm2);R(H(0,11),y-5,11,1,shade(helm,-50));
+   R(H(5,6),y-8,6,2,"#263238");R(H(9,1),y-8,1,1,"#90a4ae");R(H(1,2),y-10,2,1,"#ffffff80");}
   R(X(-9,4),y-3,4,2,dk);R(X(-8,2),y-1,2,4,dk);                                       // rear spoiler
   R(X(-8,28),y+3,28,7,body);R(X(-6,22),y+1,22,3,body);R(X(14,8),y+5,8,4,body);R(X(20,3),y+6,3,3,body); // body + pointed nose
   R(X(-8,31),y+8,31,2,dk);R(X(-6,28),y+5,28,1,stripe);                                // underside + racing stripe
@@ -1340,7 +1343,7 @@ function drawRaceCar(x,y,face,frame,body,stripe,num,pal){
     const sp=Math.floor(frame/3)%2;R(X(wx+2,4),y+10,4,3,"#9e9e9e");R(X(wx+3+sp,1),y+10,1,3,"#eeeeee");}}
 // Player bicycle: mirrored pixel frame, rotating spokes, and alternating pedals.
 function drawCyclistRaw(x,y,face,frame,air,duck=false){
-  if(onRaceTrack()){drawRaceCar(x,y,face,frame,"#1e88e5","#fdd835",1,PAL_ME);return;}
+  if(onRaceTrack()){drawRaceCar(x,y,face,frame,"#fb8c00","#fafafa",1,PAL_ME,"#fafafa","#fb8c00");return;}
   const X=dx=>face<0?x+10-dx:x+dx;
   const dot=(px,py,c)=>R(X(px),y+py,1,1,c);
   const line=(ax,ay,bx,by,c)=>{const n=Math.max(Math.abs(bx-ax),Math.abs(by-ay),1);
@@ -1979,7 +1982,7 @@ function drawSibling(s,t){
       R(bx-3,byy+1,7,7,"#f06292");R(bx-4,byy+2,9,5,"#f06292");R(bx-1,byy,3,9,"#f06292");R(bx-2,byy+2,2,2,"#fce4ec");R(bx,byy+9,1,1,"#c2185b");}
     g.save();g.translate(Math.round(s.x),Math.round(by));g.scale(1,s.duck?0.6:1);
     outlined(0,0,(ox,oy)=>{
-      if(onRaceTrack()){const an=s.d.name==='ANNIE';drawRaceCar(ox,oy+5,s.face,s.anim/2,an?"#ec407a":"#43a047",an?"#fce4ec":"#fafafa",an?2:3,s.d.pal);}
+      if(onRaceTrack()){const an=s.d.name==='ANNIE';drawRaceCar(ox,oy+5,s.face,s.anim/2,an?"#ec407a":"#1e88e5",an?"#fce4ec":"#e53935",an?2:3,s.d.pal,an?"#f8bbd0":"#e53935",an?"#ec407a":"#1e88e5");}
       else if(s.k){ // Big Bro on a sleek neon light-bike: glowing disc wheels, low enclosed body, neon edge lines
         const f=s.face>0,F=(dx,w)=>f?ox+dx:ox+10-dx-w,N="#ff1744",N2="#ff8a80",gl=Math.floor(clock*8)%2;
         drawKidRaw(ox,oy-1,s.face,0,false,s.d.pal);
@@ -1990,7 +1993,8 @@ function drawSibling(s,t){
           R(F(wx+2,3),oy+14,3,3,gl?N2:N);}                                                                   // glowing disc wheels
             }else{drawKidRaw(ox,oy,s.face,s.anim/2,!s.on,s.d.pal);R(ox-2,oy+15,15,2,"#ab47bc");R(ox,oy+17,2,2,"#212121");R(ox+9,oy+17,2,2,"#212121");}
     });g.restore();
-    text(s.d.name,s.x+5,by-(s.d.balloon?33:12),6,s.k?"#69f0ae":"#f48fb1","center");}
+    if(s.k){text(s.d.name,s.x+6,by-11,6,"#e53935","center");text(s.d.name,s.x+5,by-12,6,"#42a5f5","center",false);} // Isaac: blue with a red shadow, his favorite colors
+    else text(s.d.name,s.x+5,by-(s.d.balloon?33:12),6,"#f48fb1","center");}
 
 function drawPlay(t){
   const th=lvl.theme;

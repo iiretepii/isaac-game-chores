@@ -101,3 +101,8 @@ Grouped by milestone. See `git log` for every commit.
 
 ### Race cars on the race track
 - On Race Track Rumble, you, Annie and Isaac drive race cars: blue #1, pink #2 and green #3, each with a spoiler, racing stripe and spinning wheels. Hitboxes and physics are unchanged.
+
+### Racing helmets and Isaac's colors
+- Isaac's race car is now blue with a red stripe and a red helmet, his favorite colors. His name label is blue with a red shadow on every level.
+- The player's car is now orange so it stands out from Isaac's.
+- All three drivers wear striped racing helmets with dark visors.

@@ -23,7 +23,8 @@
 - Neither sibling fumbles obstacles or trips.
 - **Annie's balloon** (`balloon:1` in `SIBS`): she carries a pink balloon on a string. When she is in the air and no longer rising fast (`vy > -60`), gravity drops from 1300 to 680 px/s² and her fall speed is capped at 230 px/s (normally 600), giving a short float at the top of each jump and a gentle descent. Her name label sits above the balloon.
 - **Annie's outfit** (`dress:1` in her palette): a pink dress with puff sleeves, a bow at the waist and a flared, ruffled skirt, drawn over the usual kid sprite in `drawKidRaw`.
-- **Race cars** (`drawRaceCar`, used when `onRaceTrack()`): on Race Track Rumble the player (blue car, #1), Annie (pink, #2, still with her balloon) and Isaac (green, #3) drive race cars instead of the bike, skateboard and light-bike. Only the look changes; hitboxes and physics are the same.
+- **Race cars** (`drawRaceCar`, used when `onRaceTrack()`): on Race Track Rumble the player (orange car #1, white helmet), Annie (pink car #2, pink helmet, still with her balloon) and Isaac (blue car #3 with a red stripe and red helmet, his favorite colors) drive race cars instead of the bike, skateboard and light-bike. Everyone wears a striped racing helmet with a dark visor. Only the look changes; hitboxes and physics are the same.
+- **Isaac's name label** is blue with a red shadow (his favorite colors) on every level.
 
 **Behavior spec:**
 - **Arrival:** both appear next to the player as soon as the level starts.
