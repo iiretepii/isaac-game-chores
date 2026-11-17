@@ -70,4 +70,4 @@ Browsers block sound until the player interacts, so the title screen first asks 
 - **Kid-friendly:** potty humor is fine at a cartoon level. Nothing scary beyond "spooky basement" and nothing violent: critters are stomped with a "boing" and puff away.
 - **Original content only:** don't copy characters, art, logos or music from existing games, movies or brands. Use original designs "in the style of" instead. Examples already in the game: a hissing bush-block instead of a Minecraft creeper, an original neon light-bike instead of a Tron bike, an original princess waltz instead of Disney songs, and generic "dolls" instead of the Barbie name.
 - **Public-domain music is fine:** quoting it is allowed (Für Elise, Jingle Bells, Ode to Joy and others in the Music Room).
-- **The family:** the family names are Isaac, Annie, Mom and Uncle Pete.
+- **The family:** the family names are Isaac, Annie, Mom and Uncle Pete. Mom has long black hair and a purple dress; Uncle Pete has brown hair and a blue shirt. They appear on the "Parents are home!" screen (angry) and the victory screen (smiling).

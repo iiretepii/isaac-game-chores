@@ -35,6 +35,16 @@
 - **Damage:** they stomp critters (+100). Critter or LEGO hits just bounce them back ("OOPS!"), and falls respawn them on safe ground ("BACK!"). Neither costs time.
 - **Delivery:** siblings never deliver; only the player can finish the level.
 
+## The Parents: Mom and Uncle Pete
+
+Drawn by `drawMom(x,y,mood)` and `drawPete(x,y,mood)` as 22 × 52 px figures with the usual outline (`mood` 1 = angry, 0 = happy).
+
+| | Mom | Uncle Pete |
+|---|---|---|
+| Look | Very pretty: long black hair with side-swept bangs, lashes, blush, gold earrings, purple dress | Very handsome: swooped brown hair, strong jaw, blue button-up shirt with a light collar, belt, dark pants |
+| Lose screen ("Parents are home!") | Frowning, eyebrows down | Frowning, eyebrows down |
+| Victory screen | Smiling, standing to the left of the kids | Grinning, standing to the right of the kids |
+
 ## Critters
 
 Speeds are in pixels per second; levels run about 6% faster per level index. "Fly" critters bob on a sine wave along a short path. "Walk" critters patrol and turn at walls, gaps and LEGO bricks. Any critter can be stomped from above.

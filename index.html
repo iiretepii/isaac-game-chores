@@ -2207,11 +2207,40 @@ function drawLose(t){
   text("PARENTS ARE HOME!",W/2+shake,48,14,"#ff1744","center");
   wrap(LOSE_LINES[(levelIdx+Math.floor(score/50))%LOSE_LINES.length],W/2,82,W-110,8,"#fff");
   // parents silhouettes, angry
-  for(let i=0;i<2;i++){const px=W/2-40+i*60;R(px,130,20,40,i?"#5e35b1":"#00897b");R(px+3,116,14,14,"#f5c08a");R(px+5,121,3,2,"#000");R(px+12,121,3,2,"#000");R(px+6,126,8,2,"#b71c1c");R(px+4,119,5,1,"#000");R(px+11,119,5,1,"#000");}
+  outlined(W/2-48,118,(ox,oy)=>drawMom(ox,oy,1));outlined(W/2+26,118,(ox,oy)=>drawPete(ox,oy,1));
   text("!!",W/2+5,110,12,"#ff1744","center");
   text(P.carry+"/"+lvl.total+" "+ITEM_NAMES[lvl.L.item].toUpperCase()+" DONE",W/2,182,8,"#ffeb3b","center");
   if(stateT>1.2&&Math.floor(t*2)%2)text("ENTER / TAP: TRY AGAIN",W/2,210,8,"#fff","center");
 }
+// The parents. Mom: very pretty, long black hair, purple dress. Uncle Pete: handsome, brown hair, blue shirt.
+//  mood: 1 = angry (lose screen), 0 = happy (victory screen). (x,y) is the top-left of a 22 x 52 figure.
+function drawMom(x,y,mood){
+  const skin="#f5c08a",hair="#1b1b1b";
+  R(x+3,y+2,16,6,hair);R(x+2,y+5,18,22,hair);R(x+5,y,12,3,hair);                                   // long black hair
+  R(x+5,y+6,12,13,skin);R(x+5,y+6,12,3,hair);R(x+5,y+6,4,5,hair);R(x+14,y+6,3,3,hair);              // face + side-swept bangs
+  R(x+7,y+11,2,2,"#3e2723");R(x+13,y+11,2,2,"#3e2723");R(x+6,y+10,3,1,"#000");R(x+13,y+10,3,1,"#000"); // eyes with lashes
+  R(x+8,y+11,1,1,"#fff");R(x+14,y+11,1,1,"#fff");R(x+6,y+14,2,1,"#f48fb1");R(x+14,y+14,2,1,"#f48fb1"); // sparkle + blush
+  if(mood){R(x+7,y+9,3,1,"#000");R(x+12,y+9,3,1,"#000");R(x+9,y+16,4,1,"#c2185b");R(x+8,y+17,1,1,"#c2185b");R(x+13,y+17,1,1,"#c2185b");}
+  else{R(x+9,y+16,4,1,"#e91e63");R(x+8,y+15,1,1,"#e91e63");R(x+13,y+15,1,1,"#e91e63");}
+  R(x+4,y+13,1,2,"#fdd835");R(x+17,y+13,1,2,"#fdd835");                                             // earrings
+  R(x+9,y+19,4,2,skin);                                                                              // neck
+  R(x+6,y+21,10,12,"#8e24aa");R(x+7,y+21,8,2,"#ab47bc");R(x+6,y+28,10,1,"#6a1b9a");                 // purple dress bodice + waist
+  R(x+4,y+33,14,8,"#8e24aa");R(x+2,y+40,18,6,"#8e24aa");R(x+2,y+45,18,1,"#6a1b9a");R(x+8,y+33,2,12,"#ab47bc");
+  R(x+3,y+22,3,10,skin);R(x+16,y+22,3,10,skin);R(x+3,y+22,3,3,"#8e24aa");R(x+16,y+22,3,3,"#8e24aa"); // arms + sleeves
+  R(x+7,y+46,3,4,skin);R(x+12,y+46,3,4,skin);R(x+6,y+50,5,2,"#6a1b9a");R(x+11,y+50,5,2,"#6a1b9a");}  // legs + shoes
+function drawPete(x,y,mood){
+  const skin="#f0b98a",hair="#6d4c41";
+  R(x+4,y+1,14,6,hair);R(x+5,y,10,2,hair);R(x+14,y-1,4,3,hair);R(x+3,y+4,2,6,hair);R(x+17,y+4,2,5,hair); // brown hair with a swoop
+  R(x+5,y+6,12,13,skin);R(x+5,y+6,12,2,hair);R(x+5,y+17,12,2,"#e0a070");R(x+6,y+19,10,1,"#e0a070");   // face, strong jaw
+  R(x+7,y+11,2,2,"#3e2723");R(x+13,y+11,2,2,"#3e2723");R(x+7,y+11,1,1,"#fff");R(x+13,y+11,1,1,"#fff");
+  if(mood){R(x+6,y+9,4,1,"#4e342e");R(x+12,y+9,4,1,"#4e342e");R(x+9,y+9,1,1,"#4e342e");R(x+12,y+9,1,1,"#4e342e");R(x+8,y+16,6,1,"#8d4a3a");R(x+8,y+15,1,1,"#8d4a3a");R(x+13,y+15,1,1,"#8d4a3a");}
+  else{R(x+6,y+9,4,1,"#4e342e");R(x+12,y+9,4,1,"#4e342e");R(x+8,y+15,6,2,"#fff");R(x+8,y+15,6,1,"#8d4a3a");R(x+7,y+14,1,1,"#8d4a3a");R(x+14,y+14,1,1,"#8d4a3a");}
+  R(x+10,y+13,2,2,"#e0a070");R(x+9,y+19,4,2,skin);                                                  // nose, neck
+  R(x+4,y+21,14,16,"#1e88e5");R(x+4,y+21,14,2,"#42a5f5");R(x+8,y+21,2,3,"#bbdefb");R(x+12,y+21,2,3,"#bbdefb"); // blue shirt + collar
+  R(x+10,y+24,1,12,"#1565c0");for(let q=0;q<3;q++)R(x+11,y+26+q*4,1,1,"#e3f2fd");R(x+4,y+21,1,16,"#1565c0");
+  R(x+1,y+22,4,12,"#1e88e5");R(x+17,y+22,4,12,"#1e88e5");R(x+1,y+33,4,3,skin);R(x+17,y+33,4,3,skin);   // shoulders, sleeves, hands
+  R(x+5,y+37,12,2,"#4e342e");R(x+10,y+37,2,2,"#ffca28");                                            // belt
+  R(x+5,y+39,5,11,"#37474f");R(x+12,y+39,5,11,"#37474f");R(x+4,y+50,6,2,"#212121");R(x+12,y+50,6,2,"#212121");}
 function drawEnd(t){
   R(0,0,W,H,"#1a1040");
   for(let i=0;i<40;i++){const x=(i*61+t*60)%W,y=(i*37+t*(30+i))%H;R(x,y,3,3,["#ffeb3b","#e53935","#76ff03","#40c4ff"][i%4]);}
@@ -2221,6 +2250,7 @@ function drawEnd(t){
   text("FINAL SCORE: "+score,W/2,160,10,"#76ff03","center");
   drawKid(W/2-5,190-Math.abs(Math.sin(t*6))*16,Math.sin(t*2)>0?1:-1,t*40,true,0);
   drawMenuSiblings(t,184);
+  outlined(W/2-150,160,(ox,oy)=>drawMom(ox,oy,0));outlined(W/2+128,160,(ox,oy)=>drawPete(ox,oy,0)); // happy parents
   if(stateT>1.5&&Math.floor(t*2)%2)text("ENTER / TAP: PLAY AGAIN",W/2,226,8,"#fff","center");
   text("MADE BY ISAAC & PETE",W/2,250,8,"#ffeb3b","center");
 }
