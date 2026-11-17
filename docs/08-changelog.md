@@ -132,3 +132,4 @@ Grouped by milestone. See `git log` for every commit.
 ### New look for Mom and Uncle Pete
 - The parents are now real sprites instead of plain boxes. Mom is very pretty, with long black hair and a purple dress. Uncle Pete is very handsome, with brown hair and a blue shirt.
 - They look angry on the "Parents are home!" screen and now also appear, smiling, on the victory screen.
+- Fixed Uncle Pete's angry face on the "Parents are home!" screen: his mouth now turns down in a frown, matching Mom.
