@@ -37,7 +37,7 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 
 ## Volume Leveling
 
-Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays at about −35 dB RMS. The gentle pieces are set a little quieter: title and basement −38, music room and attic −37, library −37. The scheduler sets the music volume to `MUSIC_BASE × gain` whenever the style changes, including between medley segments. After writing or changing a song, re-measure its loudness and update its trim.
+Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays at about −35 dB RMS. The gentle pieces are set a little quieter: title and basement −38, music room and attic −37, library −37. The ending fanfare is set a little louder (about −31) so the victory song stands out. The scheduler sets the music volume to `MUSIC_BASE × gain` whenever the style changes, including between medley segments. After writing or changing a song, re-measure its loudness and update its trim.
 
 ## The Medley
 
