@@ -11,7 +11,8 @@
 
 | | Annie (little sister) | Isaac (big brother) |
 |---|---|---|
-| Ride | Purple skateboard | Original **neon light-bike**: black body, red neon edges, glowing disc wheels, red light trail |
+| Look | Pigtails, pretty pink dress, pink balloon | Red shirt, blue cap, blue-and-red name label |
+| Ride | Purple skateboard (pink race car #2 on the race track) | Original **neon light-bike**: black body, red neon edges, glowing disc wheels, red light trail (blue-and-red race car #3 on the race track) |
 | Speed | 176 px/s | 176 px/s |
 | Follows at | 24 px behind the player | 62 px behind the player |
 | Starts collecting at | **33%** of the time limit left | **20%** of the time limit left |
