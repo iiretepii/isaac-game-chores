@@ -3,6 +3,7 @@
 Grouped by milestone. See `git log` for every commit.
 
 ## 2026-11-17
+- **Ending song more triumphant:** fuller horn fanfare with tuba and low brass, a march bass, the melody doubled by horns throughout, a soaring octave on the key change, and a broader, slowing finale with crashes and a wider final chord.
 - **Sibling personalities:** Annie is accident prone (fumbles obstacles, trips). Isaac is an ace (looks further ahead, hunts critters, his light-bike zaps critters on contact).
 - **Siblings:** no more time penalties for Isaac and Annie when they get bumped or fall.
 - **Volume leveling:** every song now plays at a similar volume, using a per-song trim.

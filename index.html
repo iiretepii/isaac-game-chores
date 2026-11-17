@@ -784,29 +784,29 @@ STYLES.finale={name:"JUBILEE FOR A JOB WELL DONE",bpm:132,spb:2,bar:8,bars:24,
   init(){if(this.ev)return;this.ev=[];
     const put=(bar,list,tr)=>{let o=0;for(const [m,l] of list){this.ev[bar*8+o]=[m+tr,l];o+=l;}};
     this.theme.forEach((b,k)=>put(4+k,b,0));this.theme.forEach((b,k)=>put(12+k,b,1));},
-  rub(i){const k=i%192;return k>=176?1+(k-175)*0.035:1;},
+  rub(i){const k=i%192;return k>=160?1.18+(k>=176?(k-175)*0.04:0):1;},   // maestoso: the fanfare return broadens, then a final ritardando
   play(i,t,d){this.init();const k=i%192,bar=Math.floor(k/8),b=k%8,[r,c]=this.ch[bar];
     const fan=bar<4||bar>=20,big=bar>=12;
     if(fan){
-      if(bar===3||bar===23){if(b===0){c.forEach(m=>horn(m,d*(bar===23?14:7.6),t,0.035));lib_warm(r,d*(bar===23?14:8),t,0.07,0.4);}
+      if(bar===3||bar===23){if(b===0){const L=d*(bar===23?16:7.6);c.forEach(m=>{horn(m,L,t,0.042);horn(m+12,L,t,0.022);});horn(r+12,L,t,0.04);tuba(r,L,t,0.3);lib_warm(r,L,t,0.08,0.4);if(bar===23)strings(c.map(m=>m+24),L,t,0.014);}
         if(b===0)[0,1,2,3,4,5,6,7,8,9].forEach(q=>harp(r+24+[0,4,7,12,16,19,24,28,31,36][q]-(bar===23?0:2),0.4,t+q*0.045,0.025));
         if(bar===23&&b===0){crash(t);[0,4,7,12].forEach((q,j)=>celesta(r+36+q,d*6,t+j*0.06,0.03));}}
       else{const hit=this.call.find(([o])=>o===b);
-        if(hit){c.forEach(m=>horn(m,d*hit[1]*0.92,t,0.034));horn(c[c.length-1]+12,d*hit[1]*0.92,t,0.026);
+        if(hit){c.forEach(m=>horn(m,d*hit[1]*0.92,t,0.04));horn(c[c.length-1]+12,d*hit[1]*0.92,t,0.032);horn(c[0]-12,d*hit[1]*0.92,t,0.035);tuba(r,d*hit[1]*0.9,t,0.25);
           if(b===0||b===4)lib_pizz(r,t,0.05);if(b===4)celesta(c[2]+24,d*3,t,0.025);}
-        if(b===0&&(bar===0||bar===20))crash(t);}
+        if(b===0&&(bar===0||bar>=20))crash(t);}
     }else{
-      if(b===0||b===4)lib_pizz(r+(b?7:0),t,0.06);if(b===2||b===6)lib_pizz(r+12,t,0.035);   // bouncing pizzicato bass
-      if(b===2||b===6)c.forEach(m=>horn(m,d*1.5,t,0.02));                               // horn off-beat chords
+      if(b===0||b===4){tuba(r+(b?7:0),d*1.6,t,big?0.3:0.26);lib_pizz(r+(b?7:0),t,0.05);}   // march bass: tuba + pizzicato on the beat
+      if(b===2||b===6)c.forEach(m=>horn(m,d*1.5,t,big?0.03:0.026));                     // horn 'pah' chords
       if(b===0)strings(c.map(m=>m+12),d*8,t,big?0.011:0.008);
       if(b%2===1)nz(0.05,0.03,'bandpass',9000,t,1.2);                                     // tambourine
       if(b===0&&bar%2===0)celesta(c[2]+24,d*2,t,0.022);
-      if(b===0&&(bar===4||bar===12)){crash(t);[0,1,2,3,4,5,6,7].forEach(q=>harp(r+24+[0,4,7,12,16,19,24,28][q],0.4,t+q*0.04,0.022));}
-      const e=this.ev[k];if(e){lib_warm(e[0],d*e[1]*0.96,t,big?0.075:0.065,0.55);if(big)horn(e[0]-12,d*e[1]*0.94,t,0.03);}
+      if(b===0&&(bar===4||bar===12||bar===16)){crash(t);[0,1,2,3,4,5,6,7].forEach(q=>harp(r+24+[0,4,7,12,16,19,24,28][q],0.4,t+q*0.04,0.022));}
+      const e=this.ev[k];if(e){lib_warm(e[0],d*e[1]*0.96,t,big?0.08:0.07,0.55);horn(e[0]-12,d*e[1]*0.94,t,big?0.045:0.035);if(big)lib_warm(e[0]+12,d*e[1]*0.96,t,0.035,0.6);} // melody: strings + horns, soaring octave on the lift
     }
   }};
 // Per-song volume trim so every song plays at a similar loudness (measured RMS; quieter targets for the gentle title, basement, attic, music-room and library pieces).
-const STYLE_GAIN={"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":2.138};
+const STYLE_GAIN={"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.624};
 for(const k in STYLE_GAIN)if(STYLES[k])STYLES[k].gain=STYLE_GAIN[k];
 const MUSIC_BASE=0.38;
 const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','french2','silly','science','workout','romantic','baroque'];
