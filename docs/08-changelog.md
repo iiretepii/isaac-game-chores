@@ -57,3 +57,7 @@ Grouped by milestone. See `git log` for every commit.
 ### Wide, normal-height drop-offs
 - Twelve drop-offs (toy chest, dishwasher, leaf bag, compost bin, towel basket, recycle bin, library shelf, music-room bookshelf, craft shelves, lab rack and attic trunk) are back to their normal height but stretched to 70 px wide.
 - The garage trash can is now a big green dumpster.
+
+### Drop-offs redrawn at full width
+- The wide drop-offs are no longer stretched; each is redrawn at 70 px wide at normal height (e.g. three leaf bags, a two-bay compost bin, a longer trunk and shelves). The workout weight rack joined them.
+- The kitchen dishwasher now sits built into a counter with cabinets.

@@ -1432,11 +1432,11 @@ function drawItemRaw(k,x,y){
 }
 
 // Drop-off size: most sprites are drawn at 28 px and scaled up 2x; a few are drawn full-size already.
-const DROP_SCALE={couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1,dollhouse:1.4};
+const DROP_SCALE={toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1,dollhouse:1.4};
 // Normal height, much wider: these sprites are stretched sideways only.
-const DROP_WIDE={toychest:2.5,dishwasher:2.5,bag:2.5,compost:2.5,towelbasket:2.5,recycle:2.5,bookshelf:2.5,paintshelf:2.5,labrack:2.5,trunk:2.5,libraryshelf:1.75};
-const DROP_W={toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56,dollhouse:56};
-const DROP_TOP={toychest:0,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,dollhouse:30,bookshelf:12,paintshelf:12,libraryshelf:16,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
+const DROP_WIDE={}; // (no longer used: wide drop-offs are drawn at full width)
+const DROP_W={weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56,dollhouse:56};
+const DROP_TOP={weightrack:0,toychest:0,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,dollhouse:30,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
 function drawDrop(d,ready,t){
   const x=Math.round(d.x),y=Math.round(d.y),k=d.kind;
   if(ready){g.save();g.globalAlpha=0.35+0.2*Math.sin(t*8);const rg=g.createRadialGradient(x+14,y+12,2,x+14,y+12,34);rg.addColorStop(0,'#fff59d');rg.addColorStop(1,'rgba(255,235,59,0)');g.fillStyle=rg;g.fillRect(x-24,y-24,76,72);g.restore();}
@@ -1456,23 +1456,21 @@ function drawDropRaw(k,x,y){
     R(x+2,y+4,44,2,"#e1f5fe");R(x,y+4,48,2,"#e3f2fd");R(x+2,y+22,44,2,"#81d4fa");
     for(let rr=0;rr<4;rr++)R(x+5+rr*11,y+7,1,14,"#e1f5fe");R(x+3,y+6,1,16,"#ffffff");
     R(x-2,y+9,3,5,"#81d4fa");R(x+47,y+9,3,5,"#81d4fa");}
-  else if(k==='libraryshelf'){ // three shelves with space for all the returned books
-    R(x,y-16,40,40,"#4e342e");R(x+3,y-13,34,34,"#30231e");
-    for(let row=0;row<3;row++){
-      for(let b=0;b<6;b++){const bx=x+5+b*5,by=y-11+row*11;
-        R(bx,by+(b%2),4,8-(b%2),["#b04444","#397e86","#7960a7","#b18b42","#54834b","#c56d45"][b]);R(bx+1,by+2+(b%2),2,1,"#fff3d6");}
-      R(x+2,y-2+row*11,36,3,"#a77c4e");}
-    R(x,y-16,40,3,"#d7af76");R(x,y-13,3,37,"#795238");R(x+37,y-13,3,37,"#795238");}
-  else if(k==='labrack'){ // two-tier rack, ready for the collected samples
-    R(x+1,y+3,3,21,"#78909c");R(x+24,y+3,3,21,"#78909c");
-    for(let i=0;i<3;i++){const bx=x+6+i*6;R(bx,y,4,3,"#ffb74d");R(bx,y+3,4,16,"#b2ebf2");R(bx+1,y+10,2,8,["#76ff03","#e040fb","#00e5ff"][i]);R(bx,y+4,1,8,"#fff");}
-    R(x,y+6,28,3,"#eceff1");R(x,y+19,28,4,"#90a4ae");R(x+2,y+23,24,1,"#455a64");}
-  else if(k==='compost'){ // slatted garden compost bin with a leaf emblem
-    R(x+1,y+2,26,22,"#6d4c41");R(x,y,28,4,"#a1887f");
-    for(let row=0;row<4;row++)R(x+2,y+5+row*5,24,3,"#a8794e");
-    R(x+3,y+3,2,21,"#4e342e");R(x+23,y+3,2,21,"#4e342e");
-    R(x+10,y+8,8,10,"#dcedc8");R(x+12,y+10,5,4,"#558b2f");R(x+12,y+13,1,3,"#33691e");}
-  else if(k==='bag'){R(x+4,y+2,20,22,"#2e7d32");R(x+6,y,16,3,"#1b5e20");R(x+8,y+8,4,4,"#ff7043");R(x+14,y+14,4,4,"#ffa726");}
+  else if(k==='libraryshelf'){ // long low library shelf with three shelves and gaps for returned books
+    R(x-1,y-14,72,38,"#5d4037");R(x+1,y-12,68,34,"#3e2723");for(let sh=0;sh<3;sh++){R(x+1,y-2+sh*11,68,2,"#6d4c41");
+      for(let b=0;b<16;b++){if((b*7+sh*3)%5===0)continue;R(x+3+b*4,y-11+sh*11,3,9-(b%3),["#c62828","#1565c0","#2e7d32","#f9a825","#6a1b9a"][(b+sh)%5]);}}
+    R(x+33,y-17,4,3,"#8d6e63");}
+  else if(k==='labrack'){ // long two-tier lab rack with empty slots for samples
+    R(x,y,3,24,"#90a4ae");R(x+67,y,3,24,"#90a4ae");R(x+34,y,2,24,"#90a4ae");R(x,y+6,70,3,"#cfd8dc");R(x,y+16,70,3,"#cfd8dc");R(x-1,y+22,72,2,"#607d8b");
+    for(let i=0;i<10;i++){R(x+4+i*6+(i>4?4:0),y+2,3,5,"#b3e5fc");R(x+4+i*6+(i>4?4:0),y+12,3,5,"#b3e5fc");}
+    R(x+6,y+4,3,3,"#76ff03");R(x+46,y+14,3,3,"#e040fb");R(x+52,y-4,10,4,"#455a64");}
+  else if(k==='compost'){ // long slatted compost bin with two bays and a leaf sign
+    R(x,y+4,70,20,"#6d4c41");for(let i=0;i<70;i+=7)R(x+i,y+4,5,20,"#8d6e63");R(x,y+4,70,2,"#5d4037");R(x,y+13,70,1,"#5d4037");
+    R(x+34,y,3,24,"#4e342e");R(x,y,3,24,"#4e342e");R(x+67,y,3,24,"#4e342e");R(x+5,y+1,26,3,"#3e2723");R(x+40,y+1,24,3,"#3e2723");
+    R(x+10,y-1,5,2,"#7cb342");R(x+48,y-1,6,2,"#9ccc65");R(x+26,y+9,18,9,"#33691e");R(x+31,y+11,8,5,"#8bc34a");R(x+34,y+14,2,3,"#33691e");}
+  else if(k==='bag'){ // row of three stuffed leaf bags
+    for(const [o,c] of [[0,"#2e7d32"],[24,"#388e3c"],[48,"#2e7d32"]]){R(x+o+1,y+3,20,21,c);R(x+o+4,y,14,4,"#1b5e20");R(x+o+9,y-2,4,3,"#1b5e20");}
+    R(x+6,y+8,4,4,"#ff7043");R(x+12,y+15,4,4,"#ffa726");R(x+30,y+10,4,4,"#ffca28");R(x+36,y+16,4,4,"#ff7043");R(x+54,y+9,4,4,"#ffa726");R(x+60,y+15,4,4,"#e64a19");}
   else if(k==='can'){ // big green garage dumpster with lids, wheels and a bit of overflow
     R(x+2,y+4,66,17,"#2e7d32");R(x+2,y+4,66,2,"#43a047");R(x+0,y+1,35,4,"#1b5e20");R(x+35,y+0,35,4,"#1b5e20");
     for(let i=10;i<66;i+=12)R(x+2+i,y+7,2,12,"#1b5e20");R(x+26,y+10,18,6,"#fafafa");R(x+28,y+12,14,2,"#2e7d32");
@@ -1481,10 +1479,14 @@ function drawDropRaw(k,x,y){
     drawDropRaw('washer1',x,y);drawDropRaw('dryer1',x+27,y);
     R(x+56,y+8,13,16,"#c8a165");for(let q=0;q<13;q+=3)R(x+56+q,y+8,1,16,"#a0783d");R(x+55,y+6,15,3,"#8d6e3f");R(x+59,y+3,5,4,"#29b6f6");R(x+63,y+4,3,3,"#fafafa");}
   else if(k==='washer1'){R(x+1,y,26,24,"#eceff1");R(x+1,y,26,6,"#b0bec5");R(x+4,y+2,4,2,"#ff5252");R(x+10,y+2,4,2,"#69f0ae");R(x+8,y+8,12,12,"#78909c");R(x+10,y+10,8,8,"#4fc3f7");R(x+11,y+11,3,2,"#e1f5fe");R(x+1,y+23,26,1,"#90a4ae");}
-  else if(k==='towelbasket'){R(x+2,y+6,24,18,"#a1887f");for(let w2=0;w2<6;w2++)R(x+3+w2*4,y+7,1,16,"#8d6e63");for(let h2=0;h2<4;h2++)R(x+2,y+9+h2*4,24,1,"#bcaaa4");R(x,y+5,28,3,"#6d4c41");
-    [["#e53935",4],["#1e88e5",10],["#fdd835",16],["#43a047",21]].forEach(([c,ox])=>{R(x+ox,y,6,7,c);R(x+ox+1,y+1,4,1,"#fff");R(x+ox+2,y+3,2,2,shade(c,-40));});R(x+4,y+24,20,0,"#000");}
-  else if(k==='weightrack'){R(x,y,3,24,"#616161");R(x+25,y,3,24,"#616161");R(x,y+6,28,2,"#9e9e9e");R(x,y+16,28,2,"#9e9e9e");R(x-2,y+22,32,2,"#424242");
-    for(let w2=0;w2<3;w2++){R(x+4+w2*7,y+2,6,4,"#212121");R(x+4+w2*7,y+3,6,1,"#616161");R(x+5+w2*7,y+12,4,4,"#212121");}R(x+8,y-4,12,5,"#263238");R(x+12,y-3,4,3,"#90a4ae");}
+  else if(k==='towelbasket'){ // long wicker poolside basket with folded towels
+    R(x+2,y+6,66,18,"#a1887f");for(let w2=0;w2<17;w2++)R(x+3+w2*4,y+7,1,16,"#8d6e63");for(let h2=0;h2<4;h2++)R(x+2,y+9+h2*4,66,1,"#bcaaa4");R(x,y+5,70,3,"#6d4c41");
+    R(x+6,y+1,14,5,"#e53935");R(x+6,y+3,14,1,"#ffcdd2");R(x+22,y,14,6,"#29b6f6");R(x+22,y+2,14,1,"#e1f5fe");R(x+38,y+1,14,5,"#fdd835");R(x+52,y+2,12,4,"#66bb6a");R(x+52,y+3,12,1,"#c8e6c9");}
+  else if(k==='weightrack'){ // long gym weight rack with plates and dumbbells
+    R(x,y,3,24,"#616161");R(x+67,y,3,24,"#616161");R(x+34,y,2,24,"#616161");R(x,y+6,70,2,"#9e9e9e");R(x,y+16,70,2,"#9e9e9e");R(x-2,y+22,74,2,"#424242");
+    for(let i=0;i<4;i++){R(x+6+i*7,y+1,5,5,"#263238");R(x+7+i*7,y+2,3,3,"#455a64");}
+    for(let i=0;i<4;i++){R(x+40+i*7,y+10,2,6,"#37474f");R(x+44+i*7,y+10,2,6,"#37474f");R(x+41+i*7,y+12,4,2,"#9e9e9e");}
+    R(x+6,y+10,22,6,"#c62828");R(x+10,y+11,14,4,"#e53935");}
   else if(k==='workbench'){ // a VERY big robot, waiting for its last parts
     const bl=Math.floor(clock*3)%2;
     R(x+12,y+10,10,14,"#78909c");R(x+34,y+10,10,14,"#78909c");R(x+10,y+21,14,3,"#455a64");R(x+32,y+21,14,3,"#455a64");      // legs + feet
@@ -1495,16 +1497,23 @@ function drawDropRaw(k,x,y){
     R(x+14,y-38,28,20,"#cfd8dc");R(x+14,y-38,28,2,"#fafafa");R(x+18,y-32,7,6,"#00e5ff");R(x+31,y-32,7,6,"#00e5ff");          // head + eyes
     R(x+20,y-30,2,2,"#fff");R(x+33,y-30,2,2,"#fff");R(x+20,y-23,16,2,"#455a64");R(x+26,y-44,4,6,"#78909c");R(x+25,y-47,6,3,bl?"#ff1744":"#b71c1c"); // mouth + antenna
     R(x+10,y-36,4,8,"#90a4ae");R(x+42,y-36,4,8,"#90a4ae");}
-  else if(k==='paintshelf'){R(x-2,y-14,32,38,"#8d6e63");R(x,y-12,28,34,"#5d4037");for(let sh=0;sh<3;sh++){R(x,y-2+sh*11,28,2,"#a1887f");
-    ["#e53935","#1e88e5","#43a047","#fdd835","#8e24aa","#fb8c00"].forEach((c,j)=>{if((j+sh)%2)return;const bx=x+2+j*4;R(bx,y-9+sh*11,5,7,"#cfd8dc");R(bx,y-7+sh*11,5,3,c);R(bx,y-10+sh*11,5,1,"#90a4ae");});}}
-  else if(k==='dishwasher'){R(x,y,28,24,"#cfd8dc");R(x,y,28,6,"#90a4ae");R(x+2,y+2,10,2,"#263238");R(x+14,y+2,2,2,"#76ff03");R(x+18,y+2,2,2,"#455a64");R(x+22,y+2,2,2,"#455a64");
-    R(x+4,y+8,20,2,"#eceff1");R(x+2,y+11,24,11,"#b0bec5");R(x+3,y+12,22,1,"#eceff1");R(x,y+23,28,1,"#78909c");
-    for(let bb=0;bb<3;bb++){g.globalAlpha=0.6;R(x+6+bb*7,y-3-((clock*12+bb*4)%8),3,3,"#e1f5fe");g.globalAlpha=1;}}
-  else if(k==='recycle'){R(x+3,y+4,22,20,"#1e88e5");R(x+1,y+2,26,4,"#1565c0");R(x+3,y+22,22,2,"#0d47a1");
-    R(x+10,y+9,8,1,"#fff");R(x+9,y+10,2,3,"#fff");R(x+17,y+10,2,3,"#fff");R(x+9,y+16,10,1,"#fff");R(x+8,y+13,2,3,"#fff");R(x+18,y+13,2,3,"#fff");R(x+12,y+8,2,2,"#fff");R(x+11,y+17,2,2,"#fff");
-    R(x+6,y-3,9,6,"#fafafa");R(x+14,y-1,8,5,"#fff8e1");R(x+8,y-1,5,1,"#90a4ae");}
-  else if(k==='toychest'){R(x,y+8,28,16,"#8d6e63");R(x,y+2,28,7,"#a1887f");R(x,y+8,28,2,"#4e342e");R(x+2,y+3,24,1,"#bcaaa4");
-    R(x+11,y+12,6,6,"#43a047");R(x+12,y+11,4,1,"#43a047");R(x+13,y+13,1,1,"#ffeb3b");R(x+12,y+9,4,3,"#ffd54f");R(x+2,y+2,2,22,"#5d4037");R(x+24,y+2,2,22,"#5d4037");}
+  else if(k==='paintshelf'){ // wide craft shelf with paint pots
+    R(x-1,y-14,72,38,"#8d6e63");R(x+1,y-12,68,34,"#5d4037");for(let sh=0;sh<3;sh++){R(x+1,y-2+sh*11,68,2,"#a1887f");
+      for(let b=0;b<9;b++){if((b+sh)%4===0)continue;const c=["#e53935","#fdd835","#1e88e5","#43a047","#8e24aa","#fb8c00"][(b+sh)%6];R(x+3+b*7,y-9+sh*11,6,7,"#eceff1");R(x+3+b*7,y-9+sh*11,6,3,c);}}
+    R(x+8,y-18,14,4,"#ff7043");R(x+46,y-17,10,3,"#29b6f6");}
+  else if(k==='dishwasher'){ // kitchen counter with the dishwasher built in under it
+    R(x,y+2,70,22,"#a1887f");R(x-1,y,72,3,"#eceff1");R(x-1,y+2,72,1,"#b0bec5");
+    R(x+2,y+5,18,17,"#8d6e63");R(x+18,y+11,1,4,"#ffd54f");R(x+50,y+5,18,17,"#8d6e63");R(x+51,y+11,1,4,"#ffd54f");
+    R(x+22,y+3,26,21,"#cfd8dc");R(x+22,y+3,26,4,"#90a4ae");R(x+24,y+4,8,2,"#263238");R(x+36,y+4,2,2,"#76ff03");R(x+40,y+4,2,2,"#455a64");R(x+44,y+4,2,2,"#455a64");
+    R(x+26,y+9,18,1,"#eceff1");R(x+24,y+22,22,2,"#78909c");R(x+4,y-4,8,4,"#fafafa");R(x+56,y-6,4,6,"#ef5350");}
+  else if(k==='recycle'){ // wide office recycling bin with paper slot
+    R(x+3,y+4,64,20,"#1e88e5");R(x+1,y+1,68,4,"#1565c0");R(x+3,y+22,64,2,"#0d47a1");R(x+20,y+2,30,2,"#0d47a1");
+    for(let i=6;i<66;i+=8)R(x+3+i,y+7,1,13,"#1976d2");R(x+27,y+8,16,11,"#bbdefb");R(x+30,y+10,10,7,"#1e88e5");R(x+33,y+12,4,3,"#bbdefb");
+    R(x+24,y-2,10,3,"#fafafa");R(x+38,y-1,8,2,"#fafafa");}
+  else if(k==='toychest'){ // long wooden toy chest with two latches and toys peeking out
+    R(x,y+8,70,16,"#8d6e63");R(x,y+2,70,7,"#a1887f");R(x,y+8,70,2,"#4e342e");R(x+2,y+3,66,1,"#bcaaa4");
+    for(let i=12;i<70;i+=16)R(x+i,y+11,1,12,"#6d4c41");R(x+16,y+9,4,5,"#ffd54f");R(x+50,y+9,4,5,"#ffd54f");
+    R(x+8,y-2,6,4,"#e53935");R(x+30,y-3,4,5,"#43a047");R(x+56,y-2,7,4,"#1e88e5");R(x+2,y+22,4,2,"#4e342e");R(x+64,y+22,4,2,"#4e342e");}
   else if(k==='dollhouse'){ // pink princess castle doll house
     const tower=(tx,tw,th)=>{R(tx,y+24-th,tw,th,"#f8bbd0");R(tx,y+24-th,tw,1,"#fce4ec");R(tx+tw-2,y+24-th,2,th,"#f48fb1");
       for(let rr=0;rr<12;rr++){const hw=Math.round((tw+4)*(12-rr)/24);R(tx+tw/2-hw,y+24-th-rr-1,hw*2,1,rr%4===0?"#ce93d8":"#ab47bc");}
@@ -1514,12 +1523,17 @@ function drawDropRaw(k,x,y){
     R(x+15,y+13,10,11,"#ad1457");R(x+16,y+11,8,2,"#ad1457");R(x+17,y+10,6,1,"#ad1457");R(x+20,y+13,1,11,"#880e4f");R(x+22,y+18,1,1,"#ffd54f");
     R(x+10,y+5,3,4,"#81d4fa");R(x+27,y+5,3,4,"#81d4fa");R(x+12,y+20,3,2,"#f06292");R(x+26,y+20,3,2,"#f06292");
     if(Math.floor(clock*3)%2)R(x+19,y-26,1,1,"#fff");R(x+3,y+1,1,1,"#fff");}
-  else if(k==='bookshelf'){R(x-2,y-14,32,38,"#5d4037");R(x,y-12,28,34,"#3e2723");for(let sh=0;sh<3;sh++){R(x,y-2+sh*11,28,2,"#6d4c41");
-    for(let bk=0;bk<6;bk++){const bc=["#c62828","#1565c0","#2e7d32","#f9a825","#6a1b9a","#ef6c00"][(bk+sh)%6];R(x+2+bk*4,y-11+sh*11+(bk%3===1?1:0),3,9-(bk%3===1?1:0),bc);R(x+2+bk*4,y-9+sh*11,3,1,"#fff8");}}}
+  else if(k==='bookshelf'){ // wide music-room shelf: sheet-music binders and a metronome
+    R(x-1,y-14,72,38,"#5d4037");R(x+1,y-12,68,34,"#3e2723");for(let sh=0;sh<3;sh++){R(x+1,y-2+sh*11,68,2,"#6d4c41");
+      for(let b=0;b<15;b++){if((b+sh*2)%6===0)continue;R(x+3+b*4,y-11+sh*11,3,9,["#ad1457","#283593","#00695c","#f57f17"][(b+sh)%4]);}}
+    R(x+56,y-20,8,6,"#8d6e63");R(x+59,y-24,2,6,"#212121");}
   else if(k==='toilet'){R(x+14,y-6,14,14,"#fafafa");R(x+14,y-6,14,2,"#e0e0e0");R(x+24,y-3,3,2,"#b0bec5");R(x+2,y+8,24,6,"#fafafa");R(x+2,y+8,24,2,"#e0e0e0");R(x+5,y+10,16,3,"#4fc3f7");
     R(x+6,y+14,16,6,"#fafafa");R(x+9,y+20,10,4,"#eeeeee");R(x+6,y+14,2,6,"#e0e0e0");}
   else if(k==='dryer1'){R(x+1,y,26,24,"#ffccbc");R(x+1,y,26,6,"#ff8a65");R(x+4,y+2,8,2,"#fff");R(x+20,y+2,3,2,"#d84315");R(x+7,y+8,14,14,"#8d6e63");R(x+9,y+10,10,10,"#ffab91");R(x+11,y+12,3,3,"#fff3e0");R(x+1,y+23,26,1,"#bf360c");}
-  else if(k==='trunk'){R(x,y+8,28,16,"#6d4c41");R(x,y+4,28,6,"#8d6e63");R(x,y+8,28,2,"#3e2723");R(x+3,y+4,2,20,"#ffb300");R(x+23,y+4,2,20,"#ffb300");R(x+12,y+9,4,5,"#ffd54f");R(x+13,y+11,2,2,"#3e2723");}
+  else if(k==='trunk'){ // long old steamer trunk with brass corners and three straps
+    R(x,y+8,70,16,"#6d4c41");R(x,y+3,70,7,"#8d6e63");R(x+2,y+1,66,3,"#8d6e63");R(x,y+8,70,2,"#3e2723");
+    for(const o of [6,33,60])R(x+o,y+2,3,22,"#ffb300");R(x,y+3,4,4,"#ffd54f");R(x+66,y+3,4,4,"#ffd54f");R(x,y+20,4,4,"#ffd54f");R(x+66,y+20,4,4,"#ffd54f");
+    R(x+31,y+10,7,6,"#ffd54f");R(x+33,y+12,3,2,"#3e2723");R(x+14,y+13,12,6,"#efebe9");R(x+15,y+15,10,1,"#8d6e63");}
   else if(k==='couch'){ // big comfy 3-seat sofa
     R(x+2,y-2,52,12,"#8e24aa");R(x+2,y-2,52,2,"#ba68c8");R(x+19,y,1,9,"#6a1b9a");R(x+36,y,1,9,"#6a1b9a");
     R(x-4,y+2,8,18,"#6a1b9a");R(x-4,y+2,8,2,"#9c4dcc");R(x+52,y+2,8,18,"#6a1b9a");R(x+52,y+2,8,2,"#9c4dcc");
