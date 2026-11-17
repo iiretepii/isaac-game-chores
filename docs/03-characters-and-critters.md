@@ -79,7 +79,7 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | Isaac's Room | `dragon` | `toychest` |
 | Annie's Room | `doll` | `dollhouse` (wide Neuschwanstein-style castle) |
 | Kitchen Catastrophe | `dish` | `dishwasher` (built into a counter) |
-| Living Room Lego-Land | `toy` | `toybox` |
+| Living Room Lego-Land | `pillow` (fluffy throw pillow in 10 colors) | `creamcouch` (wide cream sofa, 56 px like the ending couch, with no pillows on it) |
 | Backyard Bonanza | `leaf` | `bag` |
 | Garden Glow-Up | `oldflower` (pulled weeds) | `compost` |
 | Pool Party Panic | `towel` | `towelbasket` |

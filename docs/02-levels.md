@@ -9,7 +9,7 @@ Generated from the `LEVELS` array in `index.html`.
 | 1 | Isaac's Room | `bedroom` | dragon → toychest | 10 | 94s | 170 | 1 | 0.4 | 0 | no | bzombie, bskel, bspider, hisser | `rock` |
 | 2 | Annie's Room | `annie` | doll → dollhouse | 11 | 98s | 173 | 1 | 0.45 | 0 | no | tabby, husky, pom | `princess` |
 | 3 | Kitchen Catastrophe | `kitchen` | dish → dishwasher | 12 | 101s | 175 | 2 | 0.45 | 0 | no | dust, roach | `jazz` |
-| 4 | Living Room Lego-Land | `living` | toy → toybox | 13 | 104s | 178 | 2 | 0.5 | 0.4 | no | roomba, cat | `pop` |
+| 4 | Living Room Lego-Land | `living` | pillow → creamcouch | 13 | 104s | 178 | 2 | 0.5 | 0.4 | no | roomba, cat | `pop` |
 | 5 | Backyard Bonanza | `yard` | leaf → bag | 14 | 107s | 181 | 3 | 0.55 | 0.2 | yes | dog, bee | `hiphop` |
 | 6 | Garden Glow-Up | `garden` | oldflower (weeds) → compost | 15 | 110s | 183 | 3 | 0.62 | 0 | yes | weed | `garden` |
 | 7 | Pool Party Panic | `pool` | towel → towelbasket | 16 | 113s | 183 | 3 | 0.58 | 0 | yes | duck, goose, swan, squirrel | `pool` |

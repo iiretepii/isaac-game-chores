@@ -121,3 +121,6 @@ Grouped by milestone. See `git log` for every commit.
 - New song *Press Start to Clean!* (`chiptune`): an original NES-style tune with pulse-wave lead and echo, fast chord arpeggios, a triangle bass, noise drums, coin blings, a power-up sweep and a 1-UP jingle. It is also in the medley, which was re-recorded.
 - The Whole House is now level 23 (32 items, 160 s). MP3s renumbered: `23-whole-house-medley.mp3` and `24-ending-jubilee.mp3`.
 - Changed the Game Room pickups from cartridges and controllers to a variety of game controllers only. The shelf now shows spots for controllers instead of cartridge slots.
+
+### Living room pillows
+- Living Room Lego-Land now has you pick up throw pillows in ten colors and put them on a wide cream couch (as wide as the ending couch, with no pillows on it) instead of toys and a toy tote.

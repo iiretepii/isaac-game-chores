@@ -89,7 +89,7 @@ Each level is longer, with more items, critters and gaps than the one before. La
 | 1 | **Isaac's Room** | Blocky toy dragons → toy chest | 10 | 94s | Blocky zombies, skeletons, spiders and hissing bush-blocks | Rock |
 | 2 | **Annie's Room** | Dolls → castle doll house | 11 | 98s | A tabby cat, a husky and a Pomeranian | Fairy-tale princess waltz |
 | 3 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 12 | 101s | Dust bunnies, cockroaches | Swing jazz |
-| 4 | **Living Room Lego-Land** | Toys → plastic toy tote | 13 | 104s | Robot vacuums, cats | Bubblegum pop |
+| 4 | **Living Room Lego-Land** | Pillows in lots of colors → cream couch | 13 | 104s | Robot vacuums, cats | Bubblegum pop |
 | 5 | **Backyard Bonanza** | Leaves → leaf bag | 14 | 107s | Dogs, bees | Boom-bap hip hop |
 | 6 | **Garden Glow-Up** | Weeds → compost bin | 15 | 110s | Walking weeds | Beatles-style sing-along |
 | 7 | **Pool Party Panic** | Soggy towels → towel basket | 16 | 113s | Ducks, geese, swans, squirrels | Silly splashy calypso |
