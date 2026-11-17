@@ -95,3 +95,6 @@ Grouped by milestone. See `git log` for every commit.
 
 ### Race Track music set to 240 BPM
 - After trying 1260 BPM, *Radical Race Rock* is now 240 BPM, with its volume trim back to 0.398. The MP3 was re-recorded.
+
+### Longer race track song
+- *Radical Race Rock* is now about a minute long (32 bars) instead of a 16-second loop. It has four sections: the riff, the riff a whole step up, a breakdown that builds like revving engines, and a final lap a fourth up with crashes on every bar. The MP3 was re-recorded.

@@ -33,7 +33,7 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `baroque` | *Little Fugue in the Attic* | 84 | 4 | 16 | 20 | Attic of Antiques | `music/19-attic.mp3` |
 | `french` | *Petite Valse Du Matin* | 66 | 1 | 3 | 16 | Title screen | `music/00-title.mp3` |
 | `pets` | *Kibble & Cuddles* | 100 | 2 | 8 | 16 | Pet Room Pandemonium | `music/20-pet-room.mp3` |
-| `racerock` | *Radical Race Rock* | 240 | 2 | 8 | 8 | Race Track Rumble | `music/21-race-track.mp3` |
+| `racerock` | *Radical Race Rock* | 240 | 2 | 8 | 32 | Race Track Rumble | `music/21-race-track.mp3` |
 | `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/23-ending-jubilee.mp3` |
 | `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/22-whole-house-medley.mp3` |
 
