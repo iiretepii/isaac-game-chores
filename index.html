@@ -645,43 +645,29 @@ function lib_pizz(m,t,vol){const f=mtof(m),ga=out(1,0.6);decayEnv(ga,t,vol*2,0.4
  O('triangle',f,t,t+0.5,lp);O('sawtooth',f,t,t+0.5,lp,0.3);}
 function lib_harm(m,dur,t,vol){const ga=out(1,0.8),end=t+dur+0.1;holdEnv(ga,t,vol*2,dur,Math.min(0.6,dur*0.4),Math.min(0.5,dur*0.4));
  const o=O('sine',mtof(m),t,end,ga);O('sine',4.4,t,end,o.detune,6);}
-STYLES.library={name:"MARGINALIA FOR FOUR STRINGS",bpm:60,spb:4,bar:16,bars:14,
- rub(i){const bar=Math.floor(i/16)%14;return bar===4||bar===5?0.8:bar>=12?1.12:1;},
- play(i,t,d){const li=i%(16*14),bar=Math.floor(li/16),b=li%16,B=d*16;
-  // sec A (0-3) & D (10-11): obsessive speech motif over glassy ponticello tremolo
-  const mot=[[0,74,1],[1,73,1],[2,74,3],[6,76,1],[7,74,4]];
-  if(bar<4||bar===10||bar===11){
-   const dr=[[50,57],[50,57],[49,56],[48,55]][bar%4];
-   if(b===0)dr.forEach(m=>lib_bow(m+12,B,t,0.007,{pont:1,trem:11,a:0.6}));
-   if(b===0)lib_bow(dr[0]-12,B*0.9,t,0.011,{a:0.8});
-   const sh=bar>=10?(bar===10?2:5):(bar===3?-1:0);
-   mot.forEach(([s,m,l])=>{if(b===s&&(bar%2===0||s<6))lib_bow(m+sh,d*l*0.95,t,0.012,{a:0.06});});
-   if(bar%2===1&&b===10)lib_bow(80+sh,d*5,t,0.006,{a:0.3});
-   if(b===12||b===14)lib_pizz(dr[0]-(b===14?5:0),t,0.03);
-  }
-  // sec B (4-5): sudden shift, whole-tone pizzicato flurry and harmonics
-  else if(bar<6){const wt=[62,64,66,68,70,72];
-   if(b%2===0)lib_pizz(wt[(b/2+bar*3)%6]+(b%4?12:0),t,0.022);
-   if(b===0)lib_harm(bar===4?88:90,B*0.9,t,0.009);
-   if(b===8)lib_harm(bar===4?94:92,B*0.45,t,0.006);
-   if(b===0)lib_bow(46+bar,B,t,0.008,{pont:1,trem:13});
-  }
-  // sec C (6-9): slow cello song under suspended high harmonics, unresolved
-  else if(bar<10){const cel=[[0,43,8],[8,45,4],[12,46,4]],cel2=[[0,48,6],[6,47,6],[12,45,4]];
-   (bar%2?cel2:cel).forEach(([s,m,l])=>{if(b===s)lib_bow(m+(bar>=8?-2:0),d*l,t,0.016,{a:0.4,vib:4.6});});
-   if(b===0)[bar%2?83:81,bar>=8?90:88].forEach(m=>lib_harm(m,B*1.0,t,0.0055));
-   if(b===0)lib_bow(bar>=8?61:62,B,t,0.006,{a:1.2});
-   if(b===4&&bar===7)[74,73].forEach((m,k)=>lib_bow(m,d*(k?3:1),t+k*d,0.009,{a:0.05}));
-   if(b===10&&bar%2===0)lib_pizz(57,t,0.02);
-  }
-  // sec E (12-13): fragments dissolve, unresolved cluster
-  else{if(b===0&&bar===12)[50,56,61].forEach(m=>lib_bow(m,B*2,t,0.006,{pont:1,trem:9,a:1.2}));
-   if(bar===12&&(b===4||b===5||b===6))lib_bow([74,73,74][b-4],d*(b===6?5:1),t,0.009,{a:0.08});
-   if(bar===13&&b===2)lib_harm(86,B*0.7,t,0.007);
-   if(bar===13&&b===8)lib_pizz(38,t,0.03);
-   if(bar===13&&b===12)lib_pizz(45,t,0.018);
-  }
- }};
+// Warm, singing bowed string (softer than lib_bow): triangle body, a little saw for bite, gentle delayed vibrato.
+function lib_warm(m,dur,t,vol,wet=0.55){const f=mtof(m),ga=out(1,wet),end=t+dur+0.15;holdEnv(ga,t,vol,dur,Math.min(0.3,dur*0.35),Math.min(0.35,dur*0.3));
+  const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=Math.min(2200,f*3);lp.Q.value=0.5;lp.connect(ga);
+  const a=O('triangle',f,t,end,lp),b=O('sawtooth',f,t,end,lp,0.22);b.detune.value=4;
+  const vg=AC.createGain();vg.gain.setValueAtTime(0,t);vg.gain.linearRampToValueAtTime(9,t+Math.min(0.5,dur*0.6));const v=O('sine',5,t,end,vg);vg.connect(a.detune);vg.connect(b.detune);}
+// LIBRARY: inspirational "discovering a new world" theme: running harp arpeggios (you're running between the shelves),
+// a soaring violin melody, warm cello and viola pads, celesta sparkles, and a soft heartbeat drum that lifts the second half.
+STYLES.library={name:"WHERE THE BOOKS OPEN UP",bpm:108,spb:2,bar:8,bars:16,
+  ch:[[38,[62,66,69]],[37,[61,64,69]],[35,[62,66,71]],[31,[62,67,71]],[42,[62,66,69]],[31,[62,67,71]],[40,[62,67,71]],[33,[61,64,69]],
+      [31,[62,67,71]],[33,[61,64,69]],[35,[62,66,71]],[42,[61,66,69]],[31,[62,67,71]],[33,[61,64,69]],[33,[62,64,69]],[38,[62,66,69]]],
+  mel:[[[74,4],[76,2],[78,2]],[[81,6],[78,2]],[[76,4],[74,2],[73,2]],[[74,8]],[[78,4],[81,2],[83,2]],[[86,6],[83,2]],[[81,4],[79,2],[78,2]],[[76,8]],
+       [[79,4],[81,2],[83,2]],[[85,6],[83,2]],[[86,4],[85,2],[83,2]],[[81,8]],[[83,4],[86,2],[90,2]],[[88,6],[86,2]],[[85,4],[83,2],[85,2]],[[86,8]]],
+  init(){if(this.ev)return;this.ev=[];this.mel.forEach((bar,k)=>{let o=0;for(const [m,len] of bar){this.ev[k*8+o]=[m,len];o+=len;}});},
+  rub(i){const k=i%128;return k>=124?1+(k-123)*0.08:1;},
+  play(i,t,d){this.init();const li=i%128,bar=Math.floor(li/8),b=li%8,[r,c]=this.ch[bar],lift=bar>=8;
+    const arp=[c[0],c[1],c[2],c[0]+12,c[1]+12,c[2]+12,c[0]+24,c[2]+12];harp(arp[b],d*2.2,t,lift?0.03:0.026);       // running harp
+    if(b===0){lib_warm(r,d*8,t,0.075,0.4);strings(c,d*8,t,lift?0.009:0.007);}                                         // cello + soft viola pad
+    if(b===0||b===4)lib_pizz(r+12,t,0.03);
+    if(lift&&(b===0||b===4))tone(82,0.5,'sine',b?0.12:0.18,50,t,musicGain);                                       // soft heartbeat drum
+    if(b===0&&bar%2===1)celesta(c[2]+24,d*3,t,0.02);
+    const e=this.ev[li];if(e){lib_warm(e[0],d*e[1]*0.98,t,lift?0.07:0.06,0.6);if(lift)lib_warm(e[0]-12,d*e[1]*0.98,t,0.035,0.6);} // soaring violin (+ second violin an octave below in the lift)
+    if(li===120)[74,78,81,86,90,93].forEach((m,k)=>harp(m,0.5,t+k*0.05,0.025));                                      // sweep back to the start
+  }};
 
 // SCIENCE LAB: 90s kids'-science-show funk: drum machine backbeat, slap bass, synth-brass hits, HEY! shouts, lab SFX
 function sci_brass(ms,dur,t,vol=0.03){const ga=out(1,0.3);holdEnv(ga,t,vol,dur,0.012,0.06);const lp=AC.createBiquadFilter();lp.type='lowpass';lp.Q.value=3;
@@ -778,7 +764,7 @@ STYLES.garden={name:"SEASHELL SUNDAY",bpm:104,spb:2,bar:8,bars:16,
    if(bar===15&&(b===2||b===5))gdn_gurgle(t);if(bar===3&&b===6)gdn_gurgle(t);}};
 
 // Per-song volume trim so every song plays at a similar loudness (measured RMS; quieter targets for the gentle title, basement, attic, music-room and library pieces).
-const STYLE_GAIN={"garden":1.109,"library":3.428,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065};
+const STYLE_GAIN={"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065};
 for(const k in STYLE_GAIN)if(STYLES[k])STYLES[k].gain=STYLE_GAIN[k];
 const MUSIC_BASE=0.38;
 const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','french2','silly','science','workout','romantic','baroque'];

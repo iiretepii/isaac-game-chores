@@ -95,7 +95,7 @@ Each level is longer, with more items, critters and gaps than the one before. La
 | 9 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 18 | 119s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
 | 10 | **Bathroom Blunder** | Runaway poops → toilet | 19 | 122s | Soap bubbles, cockroaches, spiders | Italian crooner waltz |
 | 11 | **Home Office Havoc** | Old work papers → recycle bin | 20 | 125s | Ants, spiders, hamsters | Terrible elevator music |
-| 12 | **Library Book Roundup** | Books → library shelf | 21 | 128s | Dust bunnies, spiders, hamsters | Janáček-style string quartet |
+| 12 | **Library Book Roundup** | Books → library shelf | 21 | 128s | Dust bunnies, spiders, hamsters | Inspirational strings and harp |
 | 13 | **Music Room Mayhem** | Old piano scores → bookshelf | 22 | 131s | Cats, spiders, cockroaches | Kid practicing piano |
 | 14 | **Arts & Crafts Chaos** | Paint buckets → shelves | 23 | 134s | Ants, cats, soap bubbles | Lively French impressionist |
 | 15 | **Tech Room Trouble** | Robot parts → robot workbench | 24 | 137s | Little lightning bolts | The silliest song ever |
@@ -131,7 +131,7 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Laundry Room | [*Oompah Undies Polka*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/09-laundry-room.mp3) | Tuba, accordion, two trumpets, wah-wah trombone, slide whistle |
 | Bathroom | [*Bathroom Amore*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/10-bathroom.mp3) | Bouncy, cheesy crooner waltz: crooning "ohhh" voice, mandolin, accordion oom-pah-pah, tambourine, castanets, a corny key change and a "ba-da-BING!" |
 | Home Office | [*Muzak for Meetings (Vol. 3)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/11-home-office.mp3) | Wobbly pan flute, sour notes, late vibraphone, elevator ding |
-| Library | [*Marginalia for Four Strings*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/12-library.mp3) | Strange, hushed string-quartet music in the spirit of Janáček: glassy tremolo, an obsessive speech-like violin motif, eerie harmonics, pizzicato and unresolved chords, all kept library-quiet |
+| Library | [*Where the Books Open Up*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/12-library.mp3) | An inspirational \"discovering a new world\" theme: running harp arpeggios, a soaring violin melody, warm cello and viola, celesta sparkles and a soft heartbeat drum that lifts the second half |
 | Music Room | [*Piano Practice (Mom Is Listening)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/13-music-room.mp3) | Scales with mistakes, Für Elise, Twinkle, Mountain King, jazz, Jingle Bells, Bach, a spooky toccata, pop, Chopsticks, Ode to Joy |
 | Arts & Crafts | [*Les Petits Peintres*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/14-arts-and-crafts.mp3) | Faster French impressionist piece: rippling piano, flute, sliding chords, whole-tone harp sweeps |
 | Tech Room | [*Beep Boop Banana Boogie*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/15-tech-room.mp3) | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |

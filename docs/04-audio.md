@@ -13,7 +13,7 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | Key | Song | BPM | Steps/beat | Steps/bar | Bars | Used in | Recording |
 |---|---|---|---|---|---|---|---|
 | `garden` | *Seashell Sunday* | 104 | 2 | 8 | 16 | Garden Glow-Up | `music/06-garden.mp3` |
-| `library` | *Marginalia for Four Strings* | 60 | 4 | 16 | 14 | Library Book Roundup | `music/12-library.mp3` |
+| `library` | *Where the Books Open Up* | 108 | 2 | 8 | 16 | Library Book Roundup | `music/12-library.mp3` |
 | `science` | *Mad Science Slam* | 112 | 4 | 16 | 16 | Science Lab Scramble | `music/16-science-lab.mp3` |
 | `rock` | *Radical Rock* | 144 | 2 | 8 | 8 | Isaac's Room | `music/01-isaacs-room.mp3` |
 | `jazz` | *Cool Kitchen Jazz* | 150 | 2 | 8 | 8 | Kitchen Catastrophe | `music/03-kitchen.mp3` |
@@ -36,7 +36,7 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 
 ## Volume Leveling
 
-Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays at about −35 dB RMS. The gentle pieces are set a little quieter: title and basement −38, music room and attic −37, library −40. The scheduler sets the music volume to `MUSIC_BASE × gain` whenever the style changes, including between medley segments. After writing or changing a song, re-measure its loudness and update its trim.
+Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays at about −35 dB RMS. The gentle pieces are set a little quieter: title and basement −38, music room and attic −37, library −37. The scheduler sets the music volume to `MUSIC_BASE × gain` whenever the style changes, including between medley segments. After writing or changing a song, re-measure its loudness and update its trim.
 
 ## The Medley
 
