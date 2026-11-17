@@ -106,3 +106,6 @@ Grouped by milestone. See `git log` for every commit.
 - Isaac's race car is now blue with a red stripe and a red helmet, his favorite colors. His name label is blue with a red shadow on every level.
 - The player's car is now orange so it stands out from Isaac's.
 - All three drivers wear striped racing helmets with dark visors.
+
+### Isaac wears red
+- Isaac's shirt is now red instead of green, to match his favorite colors.
