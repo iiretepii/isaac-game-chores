@@ -66,7 +66,7 @@ When they show up, you greet them with a goofy speech bubble picked at random, l
 They play by the same rules as you:
 
 - They ride along the ground, jump (and double jump) over gaps, walls, critters and LEGO bricks, and duck under low spots.
-- They can **stomp critters** (+100 points), but if a critter or LEGO brick hits them, or they fall into a gap, it costs **5 seconds**.
+- They can **stomp critters** (+100 points). If a critter or LEGO brick bumps them, they just bounce off, and if they fall into a gap they pop right back. **There's no time penalty for the siblings.**
 - When they're collecting, they split up the work, skip items guarded by critters, and switch targets if they get stuck.
 - Only you can carry everything to the drop-off spot.
 

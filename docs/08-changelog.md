@@ -3,6 +3,7 @@
 Grouped by milestone. See `git log` for every commit.
 
 ## 2026-11-17
+- **Siblings:** no more time penalties for Isaac and Annie when they get bumped or fall.
 - **Volume leveling:** every song now plays at a similar volume, using a per-song trim.
 - **New songs:** three songs written by parallel agents. Library: *Marginalia for Four Strings* (Janáček-style string quartet). Science Lab: *Mad Science Slam* (90s science-TV funk). Garden: *Seashell Sunday* (Beatles-style sing-along).
 - **Recordings:** the three new songs are recorded, and the medley is re-recorded.

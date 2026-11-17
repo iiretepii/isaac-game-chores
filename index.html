@@ -1071,8 +1071,7 @@ function updateEnemies(dt){
 function hurtSibling(s){
   if(s.inv>0)return;
   s.inv=1.5;s.vy=-260;s.on=false;s.ride=null;s.rest=0.35;
-  timeLeft=Math.max(0,timeLeft-5);SFX.hurt();popText(s.x,s.y-6,"-5 SEC","#ff5252");
-  say(s.d.name+": OUCH! -5 SEC",1.5);
+  SFX.boing();popText(s.x,s.y-6,"OOPS!","#fff"); // siblings bounce off hazards with no time penalty
 }
 function siblingCritters(s,prevB){
   const body={x:s.x,y:s.y,w:10,h:s.h||20};
@@ -1136,8 +1135,7 @@ function moveSibling(s,dt,tx,moving){
     }
     if(!s.on)s.ride=null;
     if(s.y>H+40){
-      timeLeft=Math.max(0,timeLeft-5);SFX.fall();say(s.d.name+": WHOOPS! -5 SEC",1.5);
-      popText(lastSafe.x,lastSafe.y-12,"-5 SEC","#ff5252");
+      popText(lastSafe.x,lastSafe.y-12,"BACK!","#fff"); // siblings who fall pop back next to the safe ground, no penalty
       s.x=lastSafe.x;s.h=20;s.duck=false;s.jumps=0;s.y=lastSafe.y-6;s.vy=0;s.on=false;s.ride=null;s.inv=1.2;
       break;
     }

@@ -29,7 +29,7 @@
 | Time limit | Set per level (see [02 – Levels](02-levels.md)) |
 | Hit by a critter or LEGO brick | −5 seconds, knock-back, 1.5 s of invincibility |
 | Falling into a gap | −5 seconds, respawn on the last safe ground |
-| Siblings get hurt | Same −5 second penalty, applied to the shared clock |
+| Siblings get hurt or fall | No penalty: they bounce off hazards and pop back after a fall |
 | Last 15 seconds | Screen flashes red, music speeds up 8% |
 | 10 seconds left | "HONK HONK!" warning |
 

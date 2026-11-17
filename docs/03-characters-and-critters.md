@@ -23,7 +23,7 @@
 - **Normal mode:** they follow a spot behind the player and stop and face the same way when the player stops.
 - **Rush mode:** when the time left is at or below their threshold, they pick items (avoiding ones near critters, splitting work between them, giving up on an item after 2 s without progress and retrying it 4 s later) and drive to them.
 - **Physics:** the same as the player (gravity, walls, one-way and moving platforms). The AI decides when to jump (walls, gaps, critters, LEGO), double jump (over pits, up to high items) and duck (low ceilings).
-- **Damage:** they stomp critters (+100). Critter or LEGO hits and falls cost 5 seconds from the shared clock.
+- **Damage:** they stomp critters (+100). Critter or LEGO hits just bounce them back ("OOPS!"), and falls respawn them on safe ground ("BACK!"). Neither costs time.
 - **Delivery:** siblings never deliver; only the player can finish the level.
 
 ## Critters
