@@ -135,3 +135,4 @@ Grouped by milestone. See `git log` for every commit.
 - Fixed Uncle Pete's angry face on the "Parents are home!" screen: his mouth now turns down in a frown, matching Mom.
 - Made both parents look much madder on the "Parents are home!" screen (shared `parentMad` face): steep V eyebrows, squinting eyes, red cheeks, a big open frown with gritted teeth, a throbbing red anger mark and puffs of steam.
 - The parents are now animated yelling on the "Parents are home!" screen. Their mouths flap open and shut with yellow shout lines, they shake a fist in the air (Mom on the left, Pete on the right), and they bounce and jitter in turn.
+- Fixed the yelling animation: when a parent raises a fist, that arm is no longer also drawn hanging at their side, and the raised arm now joins at the shoulder.
