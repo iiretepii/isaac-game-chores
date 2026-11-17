@@ -65,6 +65,9 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | `duck` | Duck | walk | 40 | 7 |
 | `goose` | Goose (flashes HONK) | walk | 60 | 7 |
 | `swan` | Swan | walk | 35 | 7 |
+| `invader` | Pixel space invader (original 8-bit alien, legs flick every frame) | fly | 45 | 22 |
+| `chomper` | Yellow chomper that opens and closes its mouth, munching dots | walk | 72 | 22 |
+| `ghosty` | Cyan arcade ghost with a wavy hem and eyes that look where it goes | walk | 52 | 22 |
 | `squirrel` | Squirrel | walk + hop | 85 | 7 |
 | `weed` | Walking weed | walk | 38 | 6 |
 | `slime` | Slime | walk | 42 | 16 |
@@ -94,6 +97,7 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | Attic of Antiques | `ornament` | `trunk` |
 | Pet Room Pandemonium | `chewtoy` (squeaky bone, ball or rubber mouse) | `petbasket` (wicker toy basket with a napping puppy) |
 | Race Track Rumble | `tire` (racing tire with a silver rim) | `tirerack` (red metal tire shelf) |
+| Game Room Glitch | `videogame` (game cartridge with a colored label, or a game controller) | `gameshelf` (CRT TV showing an alien, a console and cartridge slots) |
 | The Whole House!! | `mix` | `couch` |
 
 Some sprites change by position (`itemSeed`): markers and paint-bucket colors, robot-part shapes (gear, head, claw, battery), weight types (dumbbell, kettlebell, plate) and towel colors.

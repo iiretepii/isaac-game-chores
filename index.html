@@ -791,6 +791,40 @@ STYLES.pets={name:"KIBBLE & CUDDLES",bpm:100,spb:2,bar:8,bars:16,
    if(bar===7&&b===6)petPurr(t);
    if(bar===15&&b===4)[65,69,72,77,81].forEach((m2,k)=>harp(m2,1.2,t+k*0.06,0.04));}};
 
+// GAME ROOM: "Press Start to Clean!", an original NES-style chiptune: two pulse-wave channels (lead with vibrato and
+//  an echo, plus rapid chord arpeggios), a triangle-wave bass, noise drums, coin blings, a power-up sweep and a 1-UP jingle.
+const PULSE_WAVES={};
+function pulseWave(d){if(!PULSE_WAVES[d]){const N=32,re=new Float32Array(N),im=new Float32Array(N);for(let n=1;n<N;n++)re[n]=2/(n*Math.PI)*Math.sin(n*Math.PI*d);PULSE_WAVES[d]=AC.createPeriodicWave(re,im);}return PULSE_WAVES[d];}
+function chipPulse(m,dur,t,vol,duty=0.5,vib=false){const ga=out(1,0.06);holdEnv(ga,t,vol,dur,0.003,0.02);const o=AC.createOscillator();o.setPeriodicWave(pulseWave(duty));
+  o.frequency.setValueAtTime(mtof(m),t);if(vib&&dur>0.18){const lg=AC.createGain();lg.gain.setValueAtTime(0,t);lg.gain.linearRampToValueAtTime(14,t+dur);O('sine',6,t,t+dur+0.05,lg);lg.connect(o.detune);}
+  o.connect(ga);o.start(t);o.stop(t+dur+0.05);}
+function chipTri(m,dur,t,vol=0.22){const ga=out(1,0);holdEnv(ga,t,vol,dur,0.002,0.015);O('triangle',mtof(m),t,t+dur+0.03,ga);}
+function chipKick(t){const ga=out(1,0);decayEnv(ga,t,0.4,0.12,0.002);const o=O('triangle',180,t,t+0.14,ga);o.frequency.exponentialRampToValueAtTime(40,t+0.1);}
+const CH_C=[60,64,67],CH_Am=[57,60,64],CH_F=[53,57,60],CH_G=[55,59,62],CH_Dm=[50,53,57],CH_E=[52,56,59],CH_Em=[52,55,59];
+const NES_CH=[CH_C,CH_Am,CH_F,CH_G,CH_C,CH_Am,CH_F,CH_G,CH_Am,CH_F,CH_Dm,CH_E,CH_F,CH_Em,CH_G,CH_C];
+const NES_MEL=[[72,-1,76,79,84,-1,79,76],[81,-1,79,76,72,-1,76,-1],[77,-1,81,84,89,-1,84,81],[79,-1,-1,-1,74,76,77,79],
+ [84,-1,83,84,88,-1,84,79],[81,-1,84,81,76,-1,72,76],[77,79,81,77,74,-1,77,-1],[79,-1,83,-1,86,-1,91,-1],
+ [81,-1,0,81,84,-1,81,-1],[77,-1,0,77,81,-1,77,-1],[74,77,81,86,81,77,74,77],[76,-1,80,-1,83,-1,88,-1],
+ [89,-1,88,86,84,-1,81,-1],[86,-1,84,83,79,-1,83,86],[84,-1,86,-1,88,-1,91,-1],[96,-1,-1,-1,0,0,0,0]];
+STYLES.chiptune={name:"PRESS START TO CLEAN!",bpm:150,spb:4,bar:16,bars:16,
+  play(i,t,d){const li=i%256,s16=li%16,bar=li>>4,ch=NES_CH[bar],br=bar>=8&&bar<12;
+   // lead pulse (50%) on 8ths with vibrato on long notes, plus the classic NES "echo" a dotted-8th later
+   if(s16%2===0){const e=s16>>1,m=NES_MEL[bar][e];if(m>0){let n=1;while(e+n<8&&NES_MEL[bar][e+n]===-1)n++;const len=d*2*n*0.9;
+     chipPulse(m,len,t,0.05,0.5,true);chipPulse(m,len*0.8,t+d*3,0.016,0.5);}}
+   // arpeggio pulse (12.5%): rapid chord arps; bar 8 is a rising power-up sweep
+   if(bar===7)chipPulse(67+s16*2,d*0.9,t,0.022,0.125);
+   else if(bar!==15||s16<4)chipPulse(ch[s16%3]+12+(br&&s16%6>=3?12:0),d*0.85,t,0.02,0.125);
+   // triangle bass: bouncing octaves, walking in the bridge
+   if(s16%2===0){const r=ch[0]-12;chipTri(br?[r,r+12,r+7,r+12][(s16>>1)%4]:(s16%4===0?r:r+12),d*1.7,t);}
+   // noise drums
+   if(s16===0||s16===8||(br&&s16===6)||(bar===15&&s16<4))chipKick(t);
+   if(s16===4||s16===12)nz(0.1,0.12,'bandpass',2600,t,0.6);
+   if(s16%2===0)nz(0.03,0.04,'highpass',8000,t);
+   if(bar===14&&s16>=12)nz(0.06,0.09,'bandpass',1800+s16*200,t,0.8);       // snare roll into the ending
+   // coin blings and a 1-UP jingle
+   if((bar===3||bar===11)&&s16===14){chipPulse(95,d*0.5,t,0.035,0.25);chipPulse(100,d*2,t+d*0.5,0.035,0.25);}
+   if(bar===15&&s16>=4&&s16<10)chipPulse([76,79,88,84,86,91][s16-4],d*0.9,t,0.035,0.25);}};
+
 // RACE TRACK: "Radical Race Rock" is Isaac's Room rock song played very fast.
 // Four 8-bar sections (about a minute at 240 BPM): the riff, the riff a whole step up, a breakdown that
 //  builds like engines revving on the grid, then the final lap a fourth up with crashes on every bar.
@@ -861,10 +895,10 @@ STYLES.finale={name:"JUBILEE FOR A JOB WELL DONE",bpm:148,spb:2,bar:8,bars:24,
     }
   }};
 // Per-song volume trim so every song plays at a similar loudness (measured RMS; quieter targets for the gentle title, basement, attic, music-room and library pieces).
-const STYLE_GAIN={"racerock":0.35,"pets":1.26,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
+const STYLE_GAIN={"chiptune":0.76,"racerock":0.35,"pets":1.26,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
 for(const k in STYLE_GAIN)if(STYLES[k])STYLES[k].gain=STYLE_GAIN[k];
 const MUSIC_BASE=0.38;
-const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','french2','silly','science','workout','romantic','baroque','pets'];
+const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','french2','silly','science','workout','romantic','baroque','pets','chiptune'];
 let music={on:false,style:'pop',step:0,next:0,seg:0,segStep:0,cycle:0};
 function startMusic(style){music.style=style;music.step=0;music.seg=0;music.segStep=0;music.cycle=0;music.on=true;if(AC)music.next=AC.currentTime+0.05;}
 function scheduler(){
@@ -929,7 +963,9 @@ const LEVELS=[
   text:"MOM: The pets threw a party! Squeaky toys EVERYWHERE. Basket, please. And the hamster got out AGAIN!"},
  {name:"RACE TRACK RUMBLE",chore:"Roll the tires back onto the tire shelf",drop:"tirerack",item:"tire",seed:21030,count:30,time:154,len:214,gap:3,enemies:["roomba","squirrel","goose"],density:.7,lego:.3,movers:1,theme:"race",music:"racerock",
   text:"UNCLE PETE: Pit stop chaos! Tires all over the track. Get them back on the shelf before the next lap!"},
- {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",seed:20024,count:31,time:155,len:250,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
+ {name:"GAME ROOM GLITCH",chore:"Put the video games and controllers back on the game shelf",drop:"gameshelf",item:"videogame",seed:22043,count:31,time:157,len:216,gap:3,enemies:["invader","chomper","ghosty"],density:.72,lego:.3,movers:1,theme:"gameroom",music:"chiptune",
+  text:"UNCLE PETE: I said ONE more game! Now there are games and controllers everywhere... and something just crawled out of the TV!"},
+ {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",seed:20024,count:32,time:160,len:250,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
   text:"BOTH: We're turning onto our street RIGHT NOW."},
 ];
 const THEMES={
@@ -954,9 +990,10 @@ const THEMES={
  attic:{sky:"#7a5233",wall2:"#6b4628",ground:"#795548",top:"#bcaaa4",plat:"#5d4037",ptop:"#8d6e63"},
  pets:{sky:"#ffe0b2",wall2:"#ffd59a",ground:"#8d6e63",top:"#aed581",plat:"#a1887f",ptop:"#ffcc80"},
  race:{sky:"#81d4fa",wall2:"#4fc3f7",ground:"#424242",top:"#e53935",plat:"#616161",ptop:"#fafafa"},
+ gameroom:{sky:"#1a1033",wall2:"#140c29",ground:"#311b92",top:"#00e5ff",plat:"#ff4081",ptop:"#ff80ab"},
  house:{sky:"#2b2d6e",wall2:"#25275e",ground:"#5d3a8a",top:"#b388ff",plat:"#00897b",ptop:"#4db6ac"},
 };
-const ITEM_NAMES={tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
+const ITEM_NAMES={videogame:"games and controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
@@ -1010,13 +1047,13 @@ function buildLevel(idx){
   const items=[],n=Math.min(L.count,cand.length);
   const used=new Set();
   for(let i=0;i<n;i++){let k=Math.round(i*(cand.length-1)/Math.max(1,n-1));while(used.has(k))k++;used.add(k);const s=cand[k];
-    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel","oldflower","testtube","book","chewtoy","tire"];
+    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel","oldflower","testtube","book","chewtoy","tire","videogame"];
     items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%kinds.length]:L.item,got:false,bob:rng()*6});}
   const enemies=[];
   eSpots.filter(s=>s.x>14&&s.x<cols-10).forEach(s=>{
     const type=L.enemies[ri(0,L.enemies.length-1)];
     const e={type,x:s.x*T,y:s.row*T+4,w:14,h:12,vx:-1,vy:0,alive:true,t:rng()*6,dead:0};
-    if(type==='bee'||type==='bat'||type==='bubble'||type==='zap'){e.y=(s.row-2)*T;e.by=e.y;e.vx=-1;}
+    if(type==='bee'||type==='bat'||type==='bubble'||type==='zap'||type==='invader'){e.y=(s.row-2)*T;e.by=e.y;e.vx=-1;}
     enemies.push(e);
   });
   const dh=ground[cols-6];
@@ -1108,8 +1145,8 @@ function updateEnemies(dt){
     if(!e.alive){e.dead-=dt;continue;}
     if(Math.abs(e.x-P.x)>W)continue;
     e.t+=dt;
-    const sp={slime:42,weed:38,dust:30,roach:55,roomba:75,cat:50,dog:90,rat:65,duck:40,goose:60,swan:35,squirrel:85,mite:45,bee:40,spider:60,bat:55,bubble:35,zap:65,bzombie:32,bskel:42,bspider:62,hisser:38,tabby:50,husky:72,pom:80,ant:70,hamster:85}[e.type]*(1+levelIdx*0.06);
-    if((e.type==='bee'||e.type==='bat'||e.type==='bubble'||e.type==='zap')){e.x+=e.vx*sp*dt;e.y=e.by+Math.sin(e.t*3)*22+(e.type==='zap'?Math.sin(e.t*37)*2:0);if(Math.abs(e.x-e.ox)>60||e.ox===undefined){if(e.ox===undefined)e.ox=e.x;else{e.vx*=-1;e.x+=e.vx*2;}}}
+    const sp={invader:45,chomper:72,ghosty:52,slime:42,weed:38,dust:30,roach:55,roomba:75,cat:50,dog:90,rat:65,duck:40,goose:60,swan:35,squirrel:85,mite:45,bee:40,spider:60,bat:55,bubble:35,zap:65,bzombie:32,bskel:42,bspider:62,hisser:38,tabby:50,husky:72,pom:80,ant:70,hamster:85}[e.type]*(1+levelIdx*0.06);
+    if((e.type==='bee'||e.type==='bat'||e.type==='bubble'||e.type==='zap'||e.type==='invader')){e.x+=e.vx*sp*dt;e.y=e.by+Math.sin(e.t*3)*22+(e.type==='zap'?Math.sin(e.t*37)*2:0);if(Math.abs(e.x-e.ox)>60||e.ox===undefined){if(e.ox===undefined)e.ox=e.x;else{e.vx*=-1;e.x+=e.vx*2;}}}
     else{
       if(e.type==='cat'&&Math.sin(e.t*1.3)>0.6){/* cat sits and licks paw */}
       else e.x+=e.vx*sp*dt;
@@ -1442,6 +1479,12 @@ function drawItemRaw(k,x,y){
     R(x+7,y+3,2,9,"#558b2f");R(x+2,y+6,5,2,"#689f38");R(x+1,y+4,2,3,"#689f38");R(x+9,y+5,5,2,"#7cb342");R(x+13,y+3,2,3,"#7cb342");
     R(x+3,y+9,4,2,"#558b2f");R(x+9,y+9,4,2,"#558b2f");R(x+6,y+0,4,3,"#fff59d");R(x+7,y+1,2,1,"#fbc02d");
     R(x+5,y+12,6,2,"#6d4c41");R(x+7,y+14,1,2,"#d7ccc8");R(x+5,y+14,1,2,"#d7ccc8");R(x+10,y+14,1,2,"#d7ccc8");}
+  else if(k==='videogame'){ // a game cartridge with a colorful label, or a game controller
+    const v=Math.abs(Math.round(itemSeed/16))%3,lc=["#e53935","#1e88e5","#43a047"][Math.abs(Math.round(itemSeed/48))%3];
+    if(v<2){R(x+3,y+1,10,14,"#9e9e9e");R(x+3,y+1,10,2,"#757575");for(let q=0;q<4;q++)R(x+4+q*2,y+2,1,1,"#616161");
+      R(x+4,y+5,8,7,lc);R(x+5,y+6,6,3,"#fff59d");R(x+6,y+10,4,1,"#fafafa");R(x+3,y+14,10,1,"#616161");}
+    else{R(x+1,y+5,14,8,"#424242");R(x,y+7,16,5,"#424242");R(x+1,y+5,14,1,"#616161");R(x+3,y+7,1,3,"#bdbdbd");R(x+2,y+8,3,1,"#bdbdbd");
+      R(x+11,y+8,2,2,"#e53935");R(x+13,y+7,2,2,"#e53935");R(x+7,y+9,1,1,"#9e9e9e");R(x+8,y+9,1,1,"#9e9e9e");R(x+7,y+1,1,4,"#212121");R(x+8,y,3,1,"#212121");}}
   else if(k==='tire'){ // racing tire: black rubber, treads and a silver rim
     R(x+3,y+2,10,12,"#212121");R(x+1,y+4,14,8,"#212121");R(x+2,y+3,12,10,"#212121");
     for(let q=0;q<4;q++){R(x+1,y+5+q*2,1,1,"#424242");R(x+14,y+5+q*2,1,1,"#424242");R(x+5+q*2,y+2,1,1,"#424242");}
@@ -1523,11 +1566,11 @@ function drawItemRaw(k,x,y){
 }
 
 // Drop-off size: most sprites are drawn at 28 px and scaled up 2x; a few are drawn full-size already.
-const DROP_SCALE={tirerack:1,petbasket:1,dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1};
+const DROP_SCALE={gameshelf:1,tirerack:1,petbasket:1,dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1};
 // Normal height, much wider: these sprites are stretched sideways only.
 const DROP_WIDE={}; // (no longer used: wide drop-offs are drawn at full width)
-const DROP_W={tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
-const DROP_TOP={tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:0,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
+const DROP_W={gameshelf:70,tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
+const DROP_TOP={gameshelf:22,tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:0,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
 function drawDrop(d,ready,t){
   const x=Math.round(d.x),y=Math.round(d.y),k=d.kind;
   if(ready){g.save();g.globalAlpha=0.35+0.2*Math.sin(t*8);const rg=g.createRadialGradient(x+14,y+12,2,x+14,y+12,34);rg.addColorStop(0,'#fff59d');rg.addColorStop(1,'rgba(255,235,59,0)');g.fillStyle=rg;g.fillRect(x-24,y-24,76,72);g.restore();}
@@ -1625,6 +1668,12 @@ function drawDropRaw(k,x,y){
   else if(k==='toilet'){R(x+14,y-6,14,14,"#fafafa");R(x+14,y-6,14,2,"#e0e0e0");R(x+24,y-3,3,2,"#b0bec5");R(x+2,y+8,24,6,"#fafafa");R(x+2,y+8,24,2,"#e0e0e0");R(x+5,y+10,16,3,"#4fc3f7");
     R(x+6,y+14,16,6,"#fafafa");R(x+9,y+20,10,4,"#eeeeee");R(x+6,y+14,2,6,"#e0e0e0");}
   else if(k==='dryer1'){R(x+1,y,26,24,"#ffccbc");R(x+1,y,26,6,"#ff8a65");R(x+4,y+2,8,2,"#fff");R(x+20,y+2,3,2,"#d84315");R(x+7,y+8,14,14,"#8d6e63");R(x+9,y+10,10,10,"#ffab91");R(x+11,y+12,3,3,"#fff3e0");R(x+1,y+23,26,1,"#bf360c");}
+  else if(k==='gameshelf'){ // low game-room shelf: a CRT TV with an alien on screen, a console and slots of game cartridges
+    R(x,y+6,70,18,"#5d4037");R(x,y+6,70,2,"#8d6e63");R(x+2,y+14,66,1,"#3e2723");R(x+2,y+22,4,2,"#3e2723");R(x+64,y+22,4,2,"#3e2723");
+    R(x+3,y-14,26,20,"#424242");R(x+5,y-12,18,14,"#1a1033");R(x+24,y-11,3,2,"#e53935");R(x+24,y-7,3,2,"#9e9e9e");R(x+12,y-17,1,3,"#9e9e9e");R(x+17,y-17,1,3,"#9e9e9e");
+    const fr=Math.floor(clock*3)%2;R(x+10,y-9,8,4,"#76ff03");R(x+11,y-10,6,1,"#76ff03");R(x+11,y-8,2,1,"#1a1033");R(x+15,y-8,2,1,"#1a1033");R(x+(fr?9:10),y-5,2,2,"#76ff03");R(x+(fr?17:16),y-5,2,2,"#76ff03");
+    R(x+6,y-1,16,1,"#ffeb3b");R(x+33,y-2,18,8,"#bdbdbd");R(x+33,y+3,18,3,"#757575");R(x+36,y,4,2,"#e53935");R(x+44,y,5,1,"#212121");
+    for(let q=0;q<8;q++)R(x+4+q*8,y+16,6,6,["#e53935","#1e88e5","#43a047","#fdd835"][q%4]);R(x+55,y-4,12,10,"#212121");R(x+57,y-2,2,2,"#bdbdbd");R(x+63,y-2,2,2,"#e53935");}
   else if(k==='tirerack'){ // wide metal tire shelf with empty slots
     R(x,y-14,3,38,"#e53935");R(x+67,y-14,3,38,"#e53935");R(x+34,y-14,2,38,"#e53935");R(x-1,y+22,72,2,"#424242");
     R(x,y-14,70,2,"#c62828");R(x,y+4,70,2,"#c62828");R(x,y+20,70,2,"#c62828");
@@ -1651,7 +1700,7 @@ function drawDropRaw(k,x,y){
 
 function drawEnemy(e,t){
   if(!e.alive){if(e.dead>0){g.globalAlpha=e.dead*2;R(Math.round(e.x),Math.round(e.y)+8,14,4,"#999");g.globalAlpha=1;}return;}
-  const gy=groundBelow(e.x+7,e.y+e.h-2);if(gy!==null)shadow(e.x+7,gy,7,((e.type==='bee'||e.type==='bat'||e.type==='bubble'||e.type==='zap'))?0.18:0.3);
+  const gy=groundBelow(e.x+7,e.y+e.h-2);if(gy!==null)shadow(e.x+7,gy,7,((e.type==='bee'||e.type==='bat'||e.type==='bubble'||e.type==='zap'||e.type==='invader'))?0.18:0.3);
   const sq=1+Math.sin(e.t*12)*0.06;
   outlined(e.x,e.y,(ox,oy)=>drawEnemyRaw(e,t,ox,oy),2-sq,sq);
 }
@@ -1671,6 +1720,20 @@ function drawEnemyRaw(e,t,x,y){
     case'roomba':R(x-1,y+6,16,6,"#424242");R(x+1,y+5,12,2,"#616161");R(x+6,y+7,2,2,(Math.floor(t*4)%2)?"#f44336":"#b71c1c");R(x+2,y+11,10,1,"#212121");break;
     case'cat':R(x+1,y+5,11,6,"#ff9800");R(x+(f?9:0),y+1,6,6,"#ff9800");R(x+(f?9:0),y,2,2,"#ff9800");R(x+(f?13:4),y,2,2,"#ff9800");R(x+(f?0:12),y+2+bob,2,5,"#e65100");R(x+2,y+11,2,1,"#e65100");R(x+9,y+11,2,1,"#e65100");R(x+(f?11:2),y+3,1,1,"#000");R(x+(f?13:0),y+3,1,1,"#000");break;
     case'dog':R(x,y+4,14,6,"#8d6e63");R(x+(f?10:-2),y,7,6,"#8d6e63");R(x+(f?10:3),y,2,4,"#5d4037");R(x+(f?14:-1),y+4,2,3+bob,"#f06292");R(x+(f?14:-2),y+2,1,1,"#000");R(x+1,y+10,2,2,"#5d4037");R(x+11,y+10,2,2,"#5d4037");R(x+(f?-2:14),y+3-bob,2,2,"#8d6e63");break;
+    case'invader': // pixel space-alien: antennae, blocky body, legs that switch every frame
+      R(x+3,y,1,2,"#76ff03");R(x+10,y,1,2,"#76ff03");R(x+4,y+2,7,1,"#76ff03");R(x+2,y+3,11,2,"#76ff03");R(x+1,y+5,13,3,"#76ff03");
+      R(x+4,y+4,2,2,"#1a1033");R(x+9,y+4,2,2,"#1a1033");R(x+3,y+8,9,1,"#64dd17");
+      if(bob){R(x+1,y+8,2,2,"#76ff03");R(x+12,y+8,2,2,"#76ff03");R(x+5,y+9,2,1,"#76ff03");R(x+8,y+9,2,1,"#76ff03");}
+      else{R(x,y+6,1,3,"#76ff03");R(x+14,y+6,1,3,"#76ff03");R(x+3,y+9,2,2,"#76ff03");R(x+10,y+9,2,2,"#76ff03");}break;
+    case'chomper':{ // round yellow chomper whose mouth opens and closes, with dots to munch ahead of it
+      const op=Math.floor(t*10)%3,mx=f?x+14:x;
+      R(x+3,y,8,12,"#ffeb3b");R(x+1,y+2,12,8,"#ffeb3b");R(x+2,y+1,10,10,"#ffeb3b");R(x+4,y+1,2,2,"#fff59d");
+      if(op>0){const h=op===1?2:4;R(f?x+8:x,y+6-h,7,h*2,"#1a1033");R(f?x+11:x,y+6-h-1,3,h*2+2,"#1a1033");}
+      R(x+(f?7:5),y+2,2,2,"#212121");for(let q=1;q<3;q++)R(mx+(f?q*5:-q*5)-1,y+5,2,2,"#ffcc80");break;}
+    case'ghosty': // pixel arcade ghost: dome head, wavy hem and eyes that look where it is going
+      R(x+3,y,8,2,"#00e5ff");R(x+1,y+2,12,8,"#00e5ff");R(x+2,y+1,10,1,"#00e5ff");
+      for(let q=0;q<4;q++)R(x+1+q*3+((bob+q)%2),y+10,2,2,"#00e5ff");R(x+2,y+3,1,4,"#84ffff");
+      R(x+3,y+3,3,4,"#fff");R(x+8,y+3,3,4,"#fff");R(x+(f?5:3),y+4,1,2,"#1a237e");R(x+(f?10:8),y+4,1,2,"#1a237e");break;
     case'bee':R(x+2,y+4,10,7,"#ffd600");R(x+5,y+4,2,7,"#212121");R(x+9,y+4,1,7,"#212121");R(x+3,y-1+bob,4,4,"#e3f2fd");R(x+7,y-1-bob+1,4,4,"#e3f2fd");R(x+(f?12:0),y+6,2,2,"#000");R(x+(f?-1:13),y+7,2,1,"#212121");break;
     case'bzombie':{const a=bob;R(x+3,y-6,8,8,"#558b2f");R(x+3,y-6,8,2,"#33691e");R(x+4,y-3,2,2,"#1b1b1b");R(x+8,y-3,2,2,"#1b1b1b");R(x+5,y,4,1,"#33691e");
       R(x+3,y+2,8,6,"#00897b");R(x+(f?11:-3),y+2+a,6,2,"#558b2f");R(x+(f?11:-3),y+4-a,6,2,"#00897b");R(x+3,y+8,8,4,"#283593");R(x+3,y+12,3,1,"#424242");R(x+8,y+12,3,1,"#424242");break;}
@@ -1887,6 +1950,16 @@ function drawBackground(th,t){
       if(k===1||k===3){R(dx,30,160,6,"#607d8b");R(dx+40,30,6,120,"#607d8b");R(dx+38,60,10,4,"#455a64");}
       if(k===2){R(dx+70,20,2,30,"#212121");R(dx+66,50,10,10,"#fff59d");g.save();g.globalAlpha=0.12;g.fillStyle='#fff59d';g.beginPath();g.moveTo(dx+66,56);g.lineTo(dx+76,56);g.lineTo(dx+130,200);g.lineTo(dx+12,200);g.fill();g.restore();}
       for(let b=0;b<6;b++)R(dx+((b*37)%150),40+b*22,22,10,"#ffffff08");
+    }else if(thn==='gameroom'){
+      for(let q=0;q<5;q++)R(dx+((q*37)%150),20+q*28,2,2,["#ff4081","#00e5ff","#76ff03","#ffeb3b","#e040fb"][q]);   // twinkling pixel stars
+      if(k===0){R(dx+20,60,44,110,"#4527a0");R(dx+16,56,52,10,"#7c4dff");R(dx+26,74,32,26,"#000");R(dx+30,80,6,4,"#ff4081");R(dx+44,86,6,4,"#00e5ff"); // arcade cabinet
+        R(dx+24,106,36,10,"#311b92");R(dx+30,108,2,6,"#9e9e9e");R(dx+29,107,4,2,"#e53935");R(dx+44,110,4,4,"#ffeb3b");R(dx+50,110,4,4,"#00e5ff");text("ARCADE",dx+24,58,6,"#fff","left",false);}
+      if(k===1){R(dx+30,70,90,64,"#212121");R(dx+36,76,78,50,"#000");const sh=Math.floor(clock*2)%2;                                    // big CRT TV playing a pixel game
+        for(let a=0;a<4;a++)for(let b=0;b<2;b++)R(dx+44+a*16+sh*4,82+b*12,8,5,b?"#e040fb":"#76ff03");R(dx+70,116,10,4,"#00e5ff");R(dx+74,112,2,4,"#00e5ff");
+        R(dx+60,134,30,6,"#424242");R(dx+50,140,50,4,"#616161");}
+      if(k===2){R(dx+10,40,140,26,"#000");R(dx+10,40,140,2,"#ff4081");R(dx+10,64,140,2,"#ff4081");text("HI-SCORE 999990",dx+22,48,8,Math.floor(clock*3)%2?"#ffeb3b":"#ff9800","left",false);}
+      if(k===3){g.fillStyle='#d81b60';g.beginPath();g.ellipse(dx+60,160,34,16,0,0,7);g.fill();g.fillStyle='#f06292';g.beginPath();g.ellipse(dx+54,154,18,7,0,0,7);g.fill(); // beanbag + controller cable
+        R(dx+100,150,24,12,"#bdbdbd");R(dx+104,154,6,2,"#e53935");g.strokeStyle='#212121';g.lineWidth=1;g.beginPath();g.moveTo(dx+100,156);g.quadraticCurveTo(dx+80,180,dx+66,152);g.stroke();}
     }else if(thn==='race'){
       if(k===0){R(dx,100,160,70,"#90a4ae");for(let r=0;r<4;r++)R(dx,104+r*16,160,3,"#607d8b");for(let c=0;c<30;c++)R(dx+3+c*5+(c%2),110+(c%4)*16,3,4,["#e53935","#fdd835","#1e88e5","#fafafa","#43a047"][(c*3)%5]);} // grandstand with fans
       if(k===1){for(let c=0;c<16;c++)for(let r=0;r<2;r++)R(dx+c*10,40+r*8,10,8,(c+r)%2?"#212121":"#fafafa");R(dx,38,160,2,"#9e9e9e");text("FINISH",dx+56,60,8,"#e53935","left",false);} // checkered banner

@@ -34,8 +34,9 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `french` | *Petite Valse Du Matin* | 66 | 1 | 3 | 16 | Title screen | `music/00-title.mp3` |
 | `pets` | *Kibble & Cuddles* | 100 | 2 | 8 | 16 | Pet Room Pandemonium | `music/20-pet-room.mp3` |
 | `racerock` | *Radical Race Rock* | 240 | 2 | 8 | 32 | Race Track Rumble | `music/21-race-track.mp3` |
-| `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/23-ending-jubilee.mp3` |
-| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/22-whole-house-medley.mp3` |
+| `chiptune` | *Press Start to Clean!* | 150 | 4 | 16 | 16 | Game Room Glitch | `music/22-game-room.mp3` |
+| `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/24-ending-jubilee.mp3` |
+| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/23-whole-house-medley.mp3` |
 
 ## Volume Leveling
 
@@ -43,7 +44,7 @@ Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays a
 
 ## The Medley
 
-`MIX` lists the styles in order: rock, princess, jazz, pop, hiphop, garden, pool, techno, polka, crooner, muzak, library, practice, french2, silly, science, workout, romantic, baroque, pets. The medley plays 4 bars of each, with a record scratch and crash between them, then loops.
+`MIX` lists the styles in order: rock, princess, jazz, pop, hiphop, garden, pool, techno, polka, crooner, muzak, library, practice, french2, silly, science, workout, romantic, baroque, pets, chiptune. The medley plays 4 bars of each, with a record scratch and crash between them, then loops.
 
 **Rule:** every new level song must be added to `MIX`.
 

@@ -33,5 +33,5 @@ There's no test framework. Testing is done by driving the game in headless Chrom
 
 - **New level:** see [02 – Levels](02-levels.md#checklist-adding-a-level).
 - **New song:** see [04 – Audio](04-audio.md#checklist-adding-a-song).
-- **New critter:** sprite in `drawEnemyRaw`, speed in `sp`, add it to levels and the Whole House, flying critters to the bee/bat/bubble/zap checks, hoppers to the hop check, then update [03](03-characters-and-critters.md).
+- **New critter:** sprite in `drawEnemyRaw`, speed in `sp`, add it to levels and the Whole House, flying critters to the bee/bat/bubble/zap/invader checks, hoppers to the hop check, then update [03](03-characters-and-critters.md).
 - **Renaming or reordering levels:** the layout seed depends on the level index, recordings are numbered by level, and README tables are numbered. Update all three.

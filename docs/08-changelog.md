@@ -114,3 +114,9 @@ Grouped by milestone. See `git log` for every commit.
 ### Level select after each level, and intro text fixes
 - The "Chore Complete!" screen now has a LEVEL SELECT button (or press L). The cursor starts on the next level.
 - Long CHORE lines on the level intro now wrap inside the panel, and the lines below move down to make room. The phone text bubble is a little taller so three-line messages stay inside it.
+
+### New level: Game Room Glitch
+- Level 22 is a video game room: put 31 game cartridges and controllers back on a game shelf (a CRT TV with an alien on screen, a console and cartridge slots). The room has an arcade cabinet, a big CRT playing a pixel game, a flashing HI-SCORE sign, a beanbag and twinkling pixel stars.
+- Three new retro-arcade critters: `invader` (a flying pixel space alien), `chomper` (a yellow mouth-chomping ball) and `ghosty` (a cyan arcade ghost). They also appear in the Whole House.
+- New song *Press Start to Clean!* (`chiptune`): an original NES-style tune with pulse-wave lead and echo, fast chord arpeggios, a triangle bass, noise drums, coin blings, a power-up sweep and a 1-UP jingle. It is also in the medley, which was re-recorded.
+- The Whole House is now level 23 (32 items, 160 s). MP3s renumbered: `23-whole-house-medley.mp3` and `24-ending-jubilee.mp3`.
