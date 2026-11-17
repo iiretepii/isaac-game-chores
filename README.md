@@ -106,7 +106,7 @@ Each level is longer, with more items, critters and gaps than the one before. La
 | 18 | **The Spooky Basement** | Wet shirts → dryer | 27 | 146s | Spiders, rats, dust bunnies | Romantic movie-theme piano |
 | 19 | **Attic of Antiques** | Holiday ornaments → old trunk | 28 | 149s | Bats, spiders, rats | Bach-style pipe organ |
 | 20 | **Pet Room Pandemonium** | Squeaky pet toys (bones, balls, rubber mice) → pet toy basket | 29 | 152s | Hamsters, a tabby cat, a Pomeranian | Cozy pet-care song |
-| 21 | **Race Track Rumble** | Racing tires → tire shelf | 30 | 154s | Robot vacuums, squirrels, geese | Isaac's Room rock song, very fast |
+| 21 | **Race Track Rumble** | Racing tires → tire shelf (you, Isaac and Annie drive race cars here) | 30 | 154s | Robot vacuums, squirrels, geese | Isaac's Room rock song, very fast |
 | 22 | **The Whole House!!** | Everything → dive on the couch | 31 | 155s | All of them | Medley of every style |
 
 The basement is dark, with a pool of light that follows you around. At the pool, the floating platforms are striped lounge chairs and the gaps are the pool itself. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.

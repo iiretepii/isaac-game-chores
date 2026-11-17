@@ -98,3 +98,6 @@ Grouped by milestone. See `git log` for every commit.
 
 ### Longer race track song
 - *Radical Race Rock* is now about a minute long (32 bars) instead of a 16-second loop. It has four sections: the riff, the riff a whole step up, a breakdown that builds like revving engines, and a final lap a fourth up with crashes on every bar. The MP3 was re-recorded.
+
+### Race cars on the race track
+- On Race Track Rumble, you, Annie and Isaac drive race cars: blue #1, pink #2 and green #3, each with a spoiler, racing stripe and spinning wheels. Hitboxes and physics are unchanged.
