@@ -2214,13 +2214,24 @@ function drawLose(t){
 }
 // The parents. Mom: very pretty, long black hair, purple dress. Uncle Pete: handsome, brown hair, blue shirt.
 //  mood: 1 = angry (lose screen), 0 = happy (victory screen). (x,y) is the top-left of a 22 x 52 figure.
+// Very mad face: steep V eyebrows, squinty eyes, red cheeks, a big open frown with gritted teeth,
+//  a throbbing anger mark and puffs of steam.
+function parentMad(x,y,brow){const pulse=Math.floor(clock*6)%2;
+  R(x+5,y+9,2,1,brow);R(x+7,y+10,2,1,brow);R(x+9,y+11,1,1,brow);R(x+15,y+9,2,1,brow);R(x+13,y+10,2,1,brow);R(x+12,y+11,1,1,brow); // V brows
+  R(x+5,y+8,2,1,brow);R(x+15,y+8,2,1,brow);
+  R(x+7,y+12,2,1,"#3e2723");R(x+13,y+12,2,1,"#3e2723");                                         // squinting eyes
+  R(x+5,y+13,3,2,"#ef5350");R(x+14,y+13,3,2,"#ef5350");                                         // red angry cheeks
+  R(x+8,y+15,6,3,"#4a0e0e");R(x+9,y+15,4,1,"#fafafa");R(x+7,y+17,1,1,"#4a0e0e");R(x+14,y+17,1,1,"#4a0e0e"); // open frown, gritted teeth
+  const ax=x+17,ay=y+1;R(ax,ay,1,3,"#ff1744");R(ax+3,ay,1,3,"#ff1744");R(ax,ay,3,1,"#ff1744");R(ax+1,ay+3,3,1,"#ff1744"); // anger mark
+  if(pulse)R(ax+1,ay+1,2,2,"#ff1744");
+  for(let q=0;q<2;q++){const sy=y-4-((clock*14+q*6)%10);R(x+2+q*16,sy,3,3,"#eceff1");R(x+3+q*16,sy-2,2,2,"#cfd8dc");}} // steam puffs
 function drawMom(x,y,mood){
   const skin="#f5c08a",hair="#1b1b1b";
   R(x+3,y+2,16,6,hair);R(x+2,y+5,18,22,hair);R(x+5,y,12,3,hair);                                   // long black hair
   R(x+5,y+6,12,13,skin);R(x+5,y+6,12,3,hair);R(x+5,y+6,4,5,hair);R(x+14,y+6,3,3,hair);              // face + side-swept bangs
   R(x+7,y+11,2,2,"#3e2723");R(x+13,y+11,2,2,"#3e2723");R(x+6,y+10,3,1,"#000");R(x+13,y+10,3,1,"#000"); // eyes with lashes
   R(x+8,y+11,1,1,"#fff");R(x+14,y+11,1,1,"#fff");R(x+6,y+14,2,1,"#f48fb1");R(x+14,y+14,2,1,"#f48fb1"); // sparkle + blush
-  if(mood){R(x+7,y+9,3,1,"#000");R(x+12,y+9,3,1,"#000");R(x+9,y+16,4,1,"#c2185b");R(x+8,y+17,1,1,"#c2185b");R(x+13,y+17,1,1,"#c2185b");}
+  if(mood){parentMad(x,y,"#000");}
   else{R(x+9,y+16,4,1,"#e91e63");R(x+8,y+15,1,1,"#e91e63");R(x+13,y+15,1,1,"#e91e63");}
   R(x+4,y+13,1,2,"#fdd835");R(x+17,y+13,1,2,"#fdd835");                                             // earrings
   R(x+9,y+19,4,2,skin);                                                                              // neck
@@ -2233,7 +2244,7 @@ function drawPete(x,y,mood){
   R(x+4,y+1,14,6,hair);R(x+5,y,10,2,hair);R(x+14,y-1,4,3,hair);R(x+3,y+4,2,6,hair);R(x+17,y+4,2,5,hair); // brown hair with a swoop
   R(x+5,y+6,12,13,skin);R(x+5,y+6,12,2,hair);R(x+5,y+17,12,2,"#e0a070");R(x+6,y+19,10,1,"#e0a070");   // face, strong jaw
   R(x+7,y+11,2,2,"#3e2723");R(x+13,y+11,2,2,"#3e2723");R(x+7,y+11,1,1,"#fff");R(x+13,y+11,1,1,"#fff");
-  if(mood){R(x+6,y+9,4,1,"#4e342e");R(x+12,y+9,4,1,"#4e342e");R(x+9,y+9,1,1,"#4e342e");R(x+12,y+9,1,1,"#4e342e");R(x+9,y+15,4,1,"#8d4a3a");R(x+8,y+16,1,1,"#8d4a3a");R(x+13,y+16,1,1,"#8d4a3a");R(x+7,y+17,1,1,"#8d4a3a");R(x+14,y+17,1,1,"#8d4a3a");} // frown: corners turned down
+  if(mood){parentMad(x,y,"#3e2723");}
   else{R(x+6,y+9,4,1,"#4e342e");R(x+12,y+9,4,1,"#4e342e");R(x+8,y+15,6,2,"#fff");R(x+8,y+15,6,1,"#8d4a3a");R(x+7,y+14,1,1,"#8d4a3a");R(x+14,y+14,1,1,"#8d4a3a");}
   R(x+10,y+13,2,2,"#e0a070");R(x+9,y+19,4,2,skin);                                                  // nose, neck
   R(x+4,y+21,14,16,"#1e88e5");R(x+4,y+21,14,2,"#42a5f5");R(x+8,y+21,2,3,"#bbdefb");R(x+12,y+21,2,3,"#bbdefb"); // blue shirt + collar
