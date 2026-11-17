@@ -110,3 +110,7 @@ Grouped by milestone. See `git log` for every commit.
 ### Isaac wears red
 - Isaac's shirt is now red instead of green, to match his favorite colors.
 - His cap is now blue.
+
+### Level select after each level, and intro text fixes
+- The "Chore Complete!" screen now has a LEVEL SELECT button (or press L). The cursor starts on the next level.
+- Long CHORE lines on the level intro now wrap inside the panel, and the lines below move down to make room. The phone text bubble is a little taller so three-line messages stay inside it.

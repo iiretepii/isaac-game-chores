@@ -19,7 +19,7 @@
 1. **Intro card:** a text message from Mom or Uncle Pete explains the chore and the "now playing" song.
 2. **Collect:** ride through the level picking up every chore item, while avoiding critters, LEGO bricks and gaps.
 3. **Deliver:** when everything is collected, the drop-off spot glows and shows **HERE!** Ride into it to finish.
-4. **Level select:** from the title screen, any level can be started directly.
+4. **Level select:** from the title screen, or from the "Chore Complete!" screen after any level, any level can be started directly.
 5. **Result:** finish to get a time bonus and a funny parent reaction. If time runs out, the parents arrive ("YOU'RE GROUNDED UNTIL YOU'RE 40!") and you retry the level.
 
 ## Rules
@@ -42,7 +42,7 @@
 | Double jump | Jump again in mid-air | JUMP again |
 | Duck | Down or S | DUCK |
 | Start / continue | Enter, Space, click or tap | Tap |
-| Level select (title) | L, arrows, Enter, Esc | Tap LEVEL SELECT, tap a level |
+| Level select (title or Chore Complete screen) | L, arrows, Enter, Esc | Tap LEVEL SELECT, tap a level |
 | Pause | P or Esc | — |
 | Mute | M | — |
 

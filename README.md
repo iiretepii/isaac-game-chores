@@ -21,13 +21,13 @@ The whole game is a single file, `index.html`. Open it in any modern web browser
 | Double jump | Press jump again in mid-air | JUMP again |
 | Duck | Down arrow or S | DUCK button |
 | Start / continue | Enter or Space, or click | Tap the screen |
-| Level select (title screen) | L, then arrows + Enter | Tap LEVEL SELECT, then tap a level |
+| Level select (title screen or after finishing a level) | L, then arrows + Enter | Tap LEVEL SELECT, then tap a level |
 | Pause | P or Esc | — |
 | Mute | M | — |
 
 You ride a **bicycle** through every level, with spinning wheels and pedals. Duck to squeeze under low spots, and use the double jump to clear wide gaps or reach high shelves.
 
-On the title screen you can also open **Level Select** to jump straight to any of the 22 levels.
+On the title screen you can also open **Level Select** to jump straight to any of the 22 levels. After you finish a chore, the "Chore Complete!" screen also has a **Level Select** button (or press **L**) so you can jump to any level from there.
 
 Browsers don't allow sound until you interact with the page, so the title screen asks you to **click or press any key for sound** first. After that, press Enter (or tap) to start.
 

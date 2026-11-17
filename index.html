@@ -44,6 +44,7 @@ addEventListener('keydown',e=>{
   if(e.code==='Enter'||e.code==='Space')anyPress=true;
   if(e.code==='KeyM')toggleMute();
   if(state==='title'&&!soundGate&&e.code==='KeyL'){openSelect();return;}
+  if(state==='clear'&&stateT>1&&e.code==='KeyL'){selIdx=Math.min(levelIdx+1,LEVELS.length-1);openSelect();return;}
   if(state==='select'){selectKey(e.code);e.preventDefault();return;}
   if(e.code==='KeyP'||e.code==='Escape'){if(state==='play')state='pause';else if(state==='pause')state='play';}
 });
@@ -56,6 +57,7 @@ document.querySelectorAll('#touch button').forEach(b=>{
 document.addEventListener('pointerdown',e=>{if(e.target.closest&&e.target.closest('#touch'))return;initAudio();
   const r=cv.getBoundingClientRect(),cx=(e.clientX-r.left)*W/r.width,cy=(e.clientY-r.top)*H/r.height;
   if(state==='title'&&!soundGate&&inBox(cx,cy,SELECT_BTN)){openSelect();return;}
+  if(state==='clear'&&stateT>1&&inBox(cx,cy,CLEAR_SEL_BTN)){selIdx=Math.min(levelIdx+1,LEVELS.length-1);openSelect();return;}
   if(state==='select'){selectTap(cx,cy);return;}
   anyPress=true;});
 // Browsers keep audio muted until the player interacts, so the title screen asks for one click/key first
@@ -2082,12 +2084,12 @@ function drawIntro(t){
   text("LEVEL "+(levelIdx+1),W/2,44,8,"#aaa","center");
   text(L.name,W/2,60,12,"#ffeb3b","center");
   // phone text bubble
-  R(70,86,W-140,58,"#e0e0e0");R(70,86,W-140,10,"#43a047");text("NEW TEXT!",78,88,6,"#fff","left",false);
-  g.save();wrap(L.text,W/2,102,W-160,8,"#212121");g.restore();
-  text("CHORE: "+L.chore,W/2,156,8,"#fff","center");
-  drawItem(L.item==='mix'?'trash':L.item,W/2-62,172,clock);text("x"+lvl.total+"  in "+L.time+" SEC",W/2+8,177,8,"#76ff03","center");
-  text("NOW PLAYING: "+(L.music==='mix'?"ALL OF IT AT ONCE!":STYLES[L.music].name),W/2,196,6,"#ff80ab","center");
-  if(stateT>0.8&&Math.floor(t*2)%2)text("PRESS ENTER / TAP!",W/2,212,8,"#fff","center");
+  R(70,86,W-140,62,"#e0e0e0");R(70,86,W-140,10,"#43a047");text("NEW TEXT!",78,88,6,"#fff","left",false);
+  g.save();wrap(L.text,W/2,100,W-160,8,"#212121");g.restore();
+  const cy=wrap("CHORE: "+L.chore,W/2,154,W-120,8,"#fff"),dy=cy-166; // long chores wrap onto a second line inside the panel
+  drawItem(L.item==='mix'?'trash':L.item,W/2-62,168+dy,clock);text("x"+lvl.total+"  in "+L.time+" SEC",W/2+8,173+dy,8,"#76ff03","center");
+  text("NOW PLAYING: "+(L.music==='mix'?"ALL OF IT AT ONCE!":STYLES[L.music].name),W/2,192+dy,6,"#ff80ab","center");
+  if(stateT>0.8&&Math.floor(t*2)%2)text("PRESS ENTER / TAP!",W/2,208+dy,8,"#fff","center");
 }
 const WIN_LINES=["Mom: Wow. Did a robot do this?","Uncle Pete: I'm suspicious... but proud.","Mom: Is this even our house?!","Uncle Pete: Who are you and what did you do with our kid?"];
 const LOSE_LINES=["MOM: WHY IS THERE A SOCK IN THE FRIDGE?!","UNCLE PETE: YOU'RE GROUNDED UNTIL YOU'RE 40!","MOM: NO VIDEO GAMES FOR A MILLION YEARS!","UNCLE PETE: IS THAT... A PANCAKE ON THE CAT?"];
@@ -2101,6 +2103,7 @@ function drawClear(t){
   drawKid(W/2-5,190-Math.abs(Math.sin(t*6))*12,1,0,true,0);
   drawMenuSiblings(t,184);
   if(stateT>1&&Math.floor(t*2)%2)text(levelIdx<LEVELS.length-1?"ENTER / TAP: NEXT CHORE":"ENTER / TAP: ...",W/2,214,8,"#fff","center");
+  if(stateT>1){const b=CLEAR_SEL_BTN;R(b.x-1,b.y-1,b.w+2,b.h+2,"#ffeb3b");R(b.x,b.y,b.w,b.h,"#3d2a8a");text("LEVEL SELECT (L)",W/2,b.y+3,6,"#ffeb3b","center",false);}
 }
 function drawLose(t){
   drawPlay(t);panel();
@@ -2128,7 +2131,7 @@ function drawEnd(t){
 
 // ================= LEVEL SELECT =================
 // Pick any level from the title screen: press L or tap the LEVEL SELECT button. Arrows + Enter, or tap a level.
-const SELECT_BTN={x:W/2-62,y:209,w:124,h:13},SEL_COLS=6,SEL_W=78,SEL_H=46,SEL_X=(W-SEL_COLS*SEL_W)/2+2,SEL_Y=40;
+const SELECT_BTN={x:W/2-62,y:209,w:124,h:13},CLEAR_SEL_BTN={x:W/2-62,y:232,w:124,h:13},SEL_COLS=6,SEL_W=78,SEL_H=46,SEL_X=(W-SEL_COLS*SEL_W)/2+2,SEL_Y=40;
 let selIdx=0;
 const inBox=(x,y,b)=>x>=b.x&&x<=b.x+b.w&&y>=b.y&&y<=b.y+b.h;
 const selRect=i=>({x:SEL_X+(i%SEL_COLS)*SEL_W,y:SEL_Y+Math.floor(i/SEL_COLS)*SEL_H,w:SEL_W-6,h:SEL_H-6});

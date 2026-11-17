@@ -26,7 +26,7 @@ There's no build step and there are no libraries. The only external resource is 
 
 ## Game States
 
-`splash → title → intro → play ⇄ pause` (or `title → select → intro`), then:
+`splash → title → intro → play ⇄ pause` (or `title → select → intro`, and `clear → select → intro` from the Chore Complete screen), then:
 - `play → clear → intro` (next level), or `clear → end → title` after the last level.
 - `play → lose → intro` (retry the same level).
 
