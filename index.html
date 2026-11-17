@@ -963,8 +963,8 @@ const LEVELS=[
   text:"MOM: The pets threw a party! Squeaky toys EVERYWHERE. Basket, please. And the hamster got out AGAIN!"},
  {name:"RACE TRACK RUMBLE",chore:"Roll the tires back onto the tire shelf",drop:"tirerack",item:"tire",seed:21030,count:30,time:154,len:214,gap:3,enemies:["roomba","squirrel","goose"],density:.7,lego:.3,movers:1,theme:"race",music:"racerock",
   text:"UNCLE PETE: Pit stop chaos! Tires all over the track. Get them back on the shelf before the next lap!"},
- {name:"GAME ROOM GLITCH",chore:"Put the video games and controllers back on the game shelf",drop:"gameshelf",item:"videogame",seed:22043,count:31,time:157,len:216,gap:3,enemies:["invader","chomper","ghosty"],density:.72,lego:.3,movers:1,theme:"gameroom",music:"chiptune",
-  text:"UNCLE PETE: I said ONE more game! Now there are games and controllers everywhere... and something just crawled out of the TV!"},
+ {name:"GAME ROOM GLITCH",chore:"Put the game controllers back on the game shelf",drop:"gameshelf",item:"videogame",seed:22043,count:31,time:157,len:216,gap:3,enemies:["invader","chomper","ghosty"],density:.72,lego:.3,movers:1,theme:"gameroom",music:"chiptune",
+  text:"UNCLE PETE: I said ONE more game! Now there are controllers everywhere... and something just crawled out of the TV!"},
  {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",seed:20024,count:32,time:160,len:250,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
   text:"BOTH: We're turning onto our street RIGHT NOW."},
 ];
@@ -993,7 +993,7 @@ const THEMES={
  gameroom:{sky:"#1a1033",wall2:"#140c29",ground:"#311b92",top:"#00e5ff",plat:"#ff4081",ptop:"#ff80ab"},
  house:{sky:"#2b2d6e",wall2:"#25275e",ground:"#5d3a8a",top:"#b388ff",plat:"#00897b",ptop:"#4db6ac"},
 };
-const ITEM_NAMES={videogame:"games and controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
+const ITEM_NAMES={videogame:"game controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
@@ -1479,12 +1479,16 @@ function drawItemRaw(k,x,y){
     R(x+7,y+3,2,9,"#558b2f");R(x+2,y+6,5,2,"#689f38");R(x+1,y+4,2,3,"#689f38");R(x+9,y+5,5,2,"#7cb342");R(x+13,y+3,2,3,"#7cb342");
     R(x+3,y+9,4,2,"#558b2f");R(x+9,y+9,4,2,"#558b2f");R(x+6,y+0,4,3,"#fff59d");R(x+7,y+1,2,1,"#fbc02d");
     R(x+5,y+12,6,2,"#6d4c41");R(x+7,y+14,1,2,"#d7ccc8");R(x+5,y+14,1,2,"#d7ccc8");R(x+10,y+14,1,2,"#d7ccc8");}
-  else if(k==='videogame'){ // a game cartridge with a colorful label, or a game controller
-    const v=Math.abs(Math.round(itemSeed/16))%3,lc=["#e53935","#1e88e5","#43a047"][Math.abs(Math.round(itemSeed/48))%3];
-    if(v<2){R(x+3,y+1,10,14,"#9e9e9e");R(x+3,y+1,10,2,"#757575");for(let q=0;q<4;q++)R(x+4+q*2,y+2,1,1,"#616161");
-      R(x+4,y+5,8,7,lc);R(x+5,y+6,6,3,"#fff59d");R(x+6,y+10,4,1,"#fafafa");R(x+3,y+14,10,1,"#616161");}
-    else{R(x+1,y+5,14,8,"#424242");R(x,y+7,16,5,"#424242");R(x+1,y+5,14,1,"#616161");R(x+3,y+7,1,3,"#bdbdbd");R(x+2,y+8,3,1,"#bdbdbd");
-      R(x+11,y+8,2,2,"#e53935");R(x+13,y+7,2,2,"#e53935");R(x+7,y+9,1,1,"#9e9e9e");R(x+8,y+9,1,1,"#9e9e9e");R(x+7,y+1,1,4,"#212121");R(x+8,y,3,1,"#212121");}}
+  else if(k==='videogame'){ // a variety of game controllers: classic flat pad, rounded pad, joystick and twin-stick pad
+    const v=Math.abs(Math.round(itemSeed/16))%4,cc=["#424242","#7e57c2","#eceff1","#1e88e5"][Math.abs(Math.round(itemSeed/64))%4];
+    if(v===0){R(x+1,y+5,14,8,"#424242");R(x,y+7,16,5,"#424242");R(x+1,y+5,14,1,"#616161");R(x+3,y+7,1,3,"#bdbdbd");R(x+2,y+8,3,1,"#bdbdbd");   // classic flat pad
+      R(x+11,y+8,2,2,"#e53935");R(x+13,y+7,2,2,"#e53935");R(x+7,y+9,1,1,"#9e9e9e");R(x+8,y+9,1,1,"#9e9e9e");R(x+7,y+1,1,4,"#212121");R(x+8,y,3,1,"#212121");}
+    else if(v===1){R(x+3,y+5,10,7,cc);R(x+1,y+6,4,7,cc);R(x+11,y+6,4,7,cc);R(x+3,y+5,10,1,"#ffffff60");                                     // rounded pad with four colored buttons
+      R(x+3,y+8,1,3,"#212121");R(x+2,y+9,3,1,"#212121");R(x+12,y+7,1,1,"#e53935");R(x+13,y+8,1,1,"#43a047");R(x+11,y+8,1,1,"#1e88e5");R(x+12,y+9,1,1,"#fdd835");R(x+7,y+1,1,4,"#212121");}
+    else if(v===2){R(x+2,y+10,12,5,"#212121");R(x+2,y+10,12,1,"#424242");R(x+7,y+3,2,8,"#9e9e9e");R(x+5,y+1,6,4,"#e53935");R(x+6,y+1,2,1,"#ff8a80"); // arcade joystick
+      R(x+11,y+11,2,2,"#fdd835");R(x+3,y+12,2,1,"#1e88e5");}
+    else{R(x+2,y+5,12,6,cc);R(x,y+7,5,7,cc);R(x+11,y+7,5,7,cc);R(x+3,y+4,3,1,"#616161");R(x+10,y+4,3,1,"#616161");                          // twin-stick pad with grips
+      R(x+4,y+9,2,2,"#212121");R(x+9,y+9,2,2,"#212121");R(x+11,y+6,1,1,"#e53935");R(x+13,y+7,1,1,"#43a047");R(x+2,y+6,2,1,"#fafafa");R(x+7,y+6,2,1,"#00e5ff");}}
   else if(k==='tire'){ // racing tire: black rubber, treads and a silver rim
     R(x+3,y+2,10,12,"#212121");R(x+1,y+4,14,8,"#212121");R(x+2,y+3,12,10,"#212121");
     for(let q=0;q<4;q++){R(x+1,y+5+q*2,1,1,"#424242");R(x+14,y+5+q*2,1,1,"#424242");R(x+5+q*2,y+2,1,1,"#424242");}
@@ -1673,7 +1677,7 @@ function drawDropRaw(k,x,y){
     R(x+3,y-14,26,20,"#424242");R(x+5,y-12,18,14,"#1a1033");R(x+24,y-11,3,2,"#e53935");R(x+24,y-7,3,2,"#9e9e9e");R(x+12,y-17,1,3,"#9e9e9e");R(x+17,y-17,1,3,"#9e9e9e");
     const fr=Math.floor(clock*3)%2;R(x+10,y-9,8,4,"#76ff03");R(x+11,y-10,6,1,"#76ff03");R(x+11,y-8,2,1,"#1a1033");R(x+15,y-8,2,1,"#1a1033");R(x+(fr?9:10),y-5,2,2,"#76ff03");R(x+(fr?17:16),y-5,2,2,"#76ff03");
     R(x+6,y-1,16,1,"#ffeb3b");R(x+33,y-2,18,8,"#bdbdbd");R(x+33,y+3,18,3,"#757575");R(x+36,y,4,2,"#e53935");R(x+44,y,5,1,"#212121");
-    for(let q=0;q<8;q++)R(x+4+q*8,y+16,6,6,["#e53935","#1e88e5","#43a047","#fdd835"][q%4]);R(x+55,y-4,12,10,"#212121");R(x+57,y-2,2,2,"#bdbdbd");R(x+63,y-2,2,2,"#e53935");}
+    for(let q=0;q<4;q++){const qx=x+5+q*16;R(qx,y+17,12,5,["#424242","#7e57c2","#eceff1","#1e88e5"][q]);R(qx+2,y+18,1,2,"#212121");R(qx+9,y+18,2,2,"#e53935");}R(x+55,y-4,12,10,"#212121");R(x+57,y-2,2,2,"#bdbdbd");R(x+63,y-2,2,2,"#e53935");}
   else if(k==='tirerack'){ // wide metal tire shelf with empty slots
     R(x,y-14,3,38,"#e53935");R(x+67,y-14,3,38,"#e53935");R(x+34,y-14,2,38,"#e53935");R(x-1,y+22,72,2,"#424242");
     R(x,y-14,70,2,"#c62828");R(x,y+4,70,2,"#c62828");R(x,y+20,70,2,"#c62828");
