@@ -106,7 +106,7 @@ Each level is longer, with more items, critters and gaps than the one before. La
 | 18 | **The Spooky Basement** | Wet shirts → dryer | 27 | 146s | Spiders, rats, dust bunnies | Romantic movie-theme piano |
 | 19 | **Attic of Antiques** | Holiday ornaments → old trunk | 28 | 149s | Bats, spiders, rats | Bach-style pipe organ |
 | 20 | **Pet Room Pandemonium** | Squeaky pet toys (bones, balls, rubber mice) → pet toy basket | 29 | 152s | Hamsters, a tabby cat, a Pomeranian | Cozy pet-care song |
-| 21 | **Race Track Rumble** | Racing tires → tire shelf | 30 | 154s | Robot vacuums, squirrels, geese | Isaac's Room rock song, very fast |
+| 21 | **Race Track Rumble** | Racing tires → tire shelf | 30 | 154s | Robot vacuums, squirrels, geese | Isaac's Room rock song, super-duper fast |
 | 22 | **The Whole House!!** | Everything → dive on the couch | 31 | 155s | All of them | Medley of every style |
 
 The basement is dark, with a pool of light that follows you around. At the pool, the floating platforms are striped lounge chairs and the gaps are the pool itself. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
@@ -144,7 +144,7 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Basement | [*Nocturne in the Basement*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/18-basement.mp3) | Romantic film-score piano in the style of classic Italian movie themes: a simple, singing melody with long notes and big expressive leaps over flowing arpeggios, warm strings, and on the repeat the strings take the melody while the piano floats above |
 | Attic | [*Little Fugue in the Attic*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/19-attic.mp3) | A four-voice pipe-organ fugue in D minor (about a minute): entries in alto, soprano, tenor and bass, three episodes, a middle entry, a low bass entry, a trill over a dominant pedal and a Picardy-third ending |
 | Pet Room | [*Kibble & Cuddles*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/20-pet-room.mp3) | A warm, gentle pet-care song: ukulele strums, flute melody with celesta sparkles, brushed drums and shaker, a squeaky toy and a purr |
-| Race Track | [*Radical Race Rock*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/21-race-track.mp3) | Isaac's Room rock song at full racing speed (210 BPM instead of 144) |
+| Race Track | [*Radical Race Rock*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/21-race-track.mp3) | Isaac's Room rock song at ridiculous racing speed (1260 BPM, almost 9× the original 144) |
 | Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/22-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
 | Ending | [*Jubilee for a Job Well Done*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/23-ending-jubilee.mp3) | An upbeat, triumphant celebration of a job well done: big horn fanfare calls with tuba and bells, a marching jubilee tune on strings and horns with handclaps, tambourine and bell runs, a crowd cheer as the key lifts, and a huge final chord with one more cheer |
 

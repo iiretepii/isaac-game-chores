@@ -89,3 +89,6 @@ Grouped by milestone. See `git log` for every commit.
 - Level 21 is a race track: roll 30 racing tires back onto a red tire shelf, past robot vacuums, squirrels and geese. The background has a grandstand full of fans, a checkered FINISH banner, start lights and a pit wall.
 - Its song *Radical Race Rock* (`racerock`) is the Isaac's Room rock song played very fast (210 BPM). It is not added to the medley, which already has the original.
 - The Whole House is now level 22 (31 items). MP3s renumbered: `22-whole-house-medley.mp3` and `23-ending-jubilee.mp3`.
+
+### Race Track music 6x faster
+- *Radical Race Rock* now plays at 1260 BPM (6x the previous 210). The MP3 was re-recorded.
