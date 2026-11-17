@@ -3,6 +3,7 @@
 Grouped by milestone. See `git log` for every commit.
 
 ## 2026-11-17
+- **Annie as good as Isaac:** Annie now has the `ace` abilities and Isaac's speed (176 px/s). She no longer fumbles obstacles or trips. Rush thresholds are unchanged (Annie 33%, Isaac 20%).
 - **Ending song faster and more celebratory:** tempo up from 132 to 148 BPM, with handclaps, bell runs and synthesized crowd cheers at the key change and the final chord.
 - **Ending song more triumphant:** fuller horn fanfare with tuba and low brass, a march bass, the melody doubled by horns throughout, a soaring octave on the key change, and a broader, slowing finale with crashes and a wider final chord.
 - **Sibling personalities:** Annie is accident prone (fumbles obstacles, trips). Isaac is an ace (looks further ahead, hunts critters, his light-bike zaps critters on contact).
@@ -65,3 +66,6 @@ Grouped by milestone. See `git log` for every commit.
 ### Wider princess castle
 - Annie's Room castle is back to normal size and redrawn 70 px wide: four towers with flags, a central keep with a heart window, battlements and an arched gate.
 - Castle towers restored to the original slender style with tall pointed spires, now in a Neuschwanstein-like cluster with a tall main tower and a gabled palace hall.
+
+### Louder ending fanfare
+- Raised the volume of *Jubilee for a Job Well Done* by about 3 dB (gain 0.624 → 0.88) and re-recorded `music/21-ending-jubilee.mp3`.
