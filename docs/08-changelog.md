@@ -109,3 +109,4 @@ Grouped by milestone. See `git log` for every commit.
 
 ### Isaac wears red
 - Isaac's shirt is now red instead of green, to match his favorite colors.
+- His cap is now blue.

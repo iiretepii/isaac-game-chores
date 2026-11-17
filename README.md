@@ -54,7 +54,7 @@ The bar at the top of the screen shows the parents' car driving toward the house
 Your siblings help you with chores for the **entire game**, on every level. Both of them start right next to you as soon as the level begins:
 
 - **Annie** (little sister) rides her skateboard in a pretty pink dress, holding a pink balloon ("I'll help all day! (for cookies)"). The balloon lets her **float a little** at the top of each jump and drift down more slowly.
-- **Isaac** (big brother) wears a red shirt (red and blue are his favorite colors) and rides his **neon light-bike**: a sleek black futuristic bike with glowing red edges and disc wheels that leaves a glowing light trail behind it ("Vrrrm! Neon light-bike, baby!").
+- **Isaac** (big brother) wears a red shirt and a blue cap (red and blue are his favorite colors) and rides his **neon light-bike**: a sleek black futuristic bike with glowing red edges and disc wheels that leaves a glowing light trail behind it ("Vrrrm! Neon light-bike, baby!").
 
 When they show up, you greet them with a goofy speech bubble picked at random, like "HEY PAL!", "YOOO!", "LET HIM COOK!", "NO CAP, HI!", "BRO-TATO CHIP!" or "Sup Bro!".
 
