@@ -45,3 +45,8 @@ Grouped by milestone. See `git log` for every commit.
 - **New levels:** basement, attic, laundry room, bathroom, home office, music room, arts & crafts, tech room, workout room. The bedroom was split into Isaac's and Annie's rooms.
 - **Presentation:** Belvoir Studios penguin splash screen and credits; French impressionist title music.
 - **Other tweaks:** Dad renamed to Uncle Pete, a white Tesla-style car, a four-voice attic fugue, and many art tweaks (dishwasher, recycle bin, toy tote, castle doll house, blocky Isaac's room).
+
+### Wider drop-off targets
+- Every level's drop-off is now about as wide as the couch (56 px). The small 28 px sprites are drawn at 2x scale; the dollhouse and library shelf are drawn at 1.4x.
+- The Laundry and Basement levels now show a whole laundry corner: a washer, a dryer and a wicker hamper.
+- In the Tech level, the robot workbench is now a very big robot with blinking chest lights and an antenna.
