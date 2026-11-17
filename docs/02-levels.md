@@ -19,7 +19,7 @@ Generated from the `LEVELS` array in `index.html`.
 | 11 | Home Office Havoc | `office` | paper → recycle | 20 | 125s | 194 | 3 | 0.68 | 0.3 | yes | ant, spider, hamster | `muzak` |
 | 12 | Library Book Roundup | `library` | book → libraryshelf | 21 | 128s | 197 | 2 | 0.45 | 0 | yes | dust, spider, hamster | `library` |
 | 13 | Music Room Mayhem | `musicroom` | score → bookshelf | 22 | 131s | 197 | 3 | 0.7 | 0.3 | yes | cat, spider, roach | `practice` |
-| 14 | Arts & Crafts Chaos | `arts` | paint → paintshelf | 23 | 134s | 199 | 3 | 0.7 | 0.35 | yes | ant, cat, bubble | `french2` |
+| 14 | Arts & Crafts Chaos | `arts` | paint → paintshelf | 23 | 134s | 199 | 3 | 0.7 | 0.35 | yes | ant, cat, bubble | `punkska` |
 | 15 | Tech Room Trouble | `tech` | robot → workbench | 24 | 137s | 202 | 3 | 0.75 | 0.35 | yes | zap | `silly` |
 | 16 | Science Lab Scramble | `science` | testtube → labrack | 25 | 140s | 204 | 3 | 0.7 | 0.2 | yes | slime, bubble, zap | `science` |
 | 17 | Workout Room Workout | `gym` | weight → weightrack | 26 | 143s | 205 | 3 | 0.76 | 0.35 | yes | rat, cat, dog, mite | `workout` |

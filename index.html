@@ -835,6 +835,37 @@ STYLES.chiptune={name:"PRESS START TO CLEAN!",bpm:150,spb:4,bar:16,bars:16,
    if((bar===3||bar===11)&&s16===14){chipPulse(95,d*0.5,t,0.035,0.25);chipPulse(100,d*2,t+d*0.5,0.035,0.25);}
    if(bar===15&&s16>=4&&s16<10)chipPulse([76,79,88,84,86,91][s16-4],d*0.9,t,0.035,0.25);}};
 
+// ARTS & CRAFTS: "Paint the Town (Tie-Dye)!", a ska-punk song for rebels and hippies. Verse: bouncy ska with
+//  off-beat guitar skanks, a bubbling organ and a trumpet-and-sax horn section over a running bass. Chorus: full punk,
+//  with distorted power chords on every eighth, a pounding beat, crashes and the horns shouting the hook. A tambourine
+//  jangles all the way through, and the song ends on a big stop.
+const SKA_TR={G:[67,71,74],C:[60,64,67],D:[62,66,69],Em:[64,67,71]},SKA_RT={G:43,C:48,D:50,Em:40};
+const SKA_CH=['G','C','D','C','G','Em','C','D','Em','C','G','D','Em','C','D','D'];
+const SKA_MEL=[[74,0,74,76,74,-1,71,0],[72,-1,71,69,67,0,0,0],[69,0,69,71,74,-1,78,0],[76,-1,74,72,71,0,0,0],
+ [79,0,79,78,76,-1,74,0],[76,-1,74,71,67,0,0,0],[72,0,74,0,76,0,78,0],[79,-1,-1,-1,0,0,0,0],
+ [76,76,0,76,79,-1,76,0],[72,72,0,72,76,-1,72,0],[74,74,0,74,79,-1,74,0],[78,-1,76,-1,74,-1,0,0],
+ [76,76,0,76,79,-1,83,0],[84,-1,83,-1,79,-1,76,0],[78,79,81,-1,83,-1,81,79],[78,-1,-1,-1,0,0,0,0]];
+STYLES.punkska={name:"PAINT THE TOWN (TIE-DYE)!",bpm:184,spb:2,bar:8,bars:16,
+  play(i,t,d){const li=i%128,b=li%8,bar=li>>3,c=SKA_CH[bar],tri=SKA_TR[c],rt=SKA_RT[c],punk=bar>=8,stop=bar===15&&b>=2;
+   // horn section: trumpet lead with a sax a third below
+   const m=SKA_MEL[bar][b];if(m>0){let n=1;while(b+n<8&&SKA_MEL[bar][b+n]===-1)n++;const len=d*n*(n>1?0.92:0.7);
+     trumpet(m,len,t,punk?0.075:0.06);sax(m-(c==='D'||c==='G'?4:3),len,t,punk?0.05:0.04);}
+   if(stop){if(b===2){rKick(t);rCrash(t);gtrNote([mtof(rt),mtof(rt+7),mtof(rt+12)],d*5,t,0.55,false);}return;}
+   if(!punk){
+     // ska: guitar skank + organ bubble on the off-beats, running bass, light drums
+     if(b%2===1){tri.forEach(x=>pluck(x,d*0.35,t,0.035,0.15,4200));tri.forEach(x=>organ(x-12,d*0.4,t,0.012,0.2));}
+     bassNote(mtof(rt+[0,7,12,7,0,4,7,12][b]-(c==='Em'?0:0)),d*0.9,t);
+     if(b===0||b===4)rKick(t);if(b===2||b===6)rSnare(t,0.28);hat(t,b%2===1,b%2?0.07:0.04);
+   }else{
+     // punk: palm-muted power chords on every eighth, open on the accents
+     const acc=b===0||b===3||b===6;gtrNote([mtof(rt),mtof(rt+7),mtof(rt+12)],acc?d*1.2:d*0.5,t,acc?0.55:0.4,!acc);
+     bassNote(mtof(rt),d*0.9,t);rKick(t);if(b===2||b===6)rSnare(t);
+     if(b===0&&bar%2===0)rCrash(t);else hat(t,true,0.06);
+     if(bar===14&&b>=4)rSnare(t+d/2,0.25);                                  // drum fill into the stop
+   }
+   shaker(t,b%2?0.03:0.02);if(b%4===2)nz(0.08,0.035,'highpass',7000,t);       // hippie tambourine jangle
+   if(li===0)rCrash(t);}};
+
 // RACE TRACK: "Radical Race Rock" is Isaac's Room rock song played very fast.
 // Four 8-bar sections (about a minute at 240 BPM): the riff, the riff a whole step up, a breakdown that
 //  builds like engines revving on the grid, then the final lap a fourth up with crashes on every bar.
@@ -905,10 +936,10 @@ STYLES.finale={name:"JUBILEE FOR A JOB WELL DONE",bpm:148,spb:2,bar:8,bars:24,
     }
   }};
 // Per-song volume trim so every song plays at a similar loudness (measured RMS; quieter targets for the gentle title, basement, attic, music-room and library pieces).
-const STYLE_GAIN={"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
+const STYLE_GAIN={"punkska":0.39,"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
 for(const k in STYLE_GAIN)if(STYLES[k])STYLES[k].gain=STYLE_GAIN[k];
 const MUSIC_BASE=0.38;
-const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','french2','silly','science','workout','romantic','baroque','pets','chiptune'];
+const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','punkska','silly','science','workout','romantic','baroque','pets','chiptune'];
 let music={on:false,style:'pop',step:0,next:0,seg:0,segStep:0,cycle:0};
 function startMusic(style){music.style=style;music.step=0;music.seg=0;music.segStep=0;music.cycle=0;music.on=true;if(AC)music.next=AC.currentTime+0.05;}
 function scheduler(){
@@ -957,7 +988,7 @@ const LEVELS=[
   text:"MOM: Shhh! You, Isaac and Annie: return every book to the shelves. Even the hamster's bedtime story!"},
  {name:"MUSIC ROOM MAYHEM",chore:"Put the old piano scores back on the bookshelf",drop:"bookshelf",item:"score",seed:12933,count:22,time:131,len:197,gap:3,enemies:["cat","spider","roach"],density:.7,lego:.3,movers:1,theme:"musicroom",music:"practice",
   text:"MOM: Your old piano music is ALL over the floor. Shelve it! ...And did you practice?"},
- {name:"ARTS & CRAFTS CHAOS",chore:"Put the paint buckets back on the shelves",drop:"paintshelf",item:"paint",seed:13946,count:23,time:134,len:199,gap:3,enemies:["ant","cat","bubble"],density:.7,lego:.35,movers:1,theme:"arts",music:"french2",
+ {name:"ARTS & CRAFTS CHAOS",chore:"Put the paint buckets back on the shelves",drop:"paintshelf",item:"paint",seed:13946,count:23,time:134,len:199,gap:3,enemies:["ant","cat","bubble"],density:.7,lego:.35,movers:1,theme:"arts",music:"punkska",
   text:"MOM: Who painted a mustache on the cat?! Paint buckets back on the shelves. Lids ON."},
  {name:"TECH ROOM TROUBLE",chore:"Bring the robot parts to the robot workbench",drop:"workbench",item:"robot",seed:14959,count:24,time:137,len:202,gap:3,enemies:["zap"],density:.75,lego:.35,movers:1,theme:"tech",music:"silly",
   text:"UNCLE PETE: Isaac took the robot apart AGAIN. Put it back together before Mom sees the sparks!"},

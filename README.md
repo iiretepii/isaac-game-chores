@@ -101,7 +101,7 @@ Each level is longer, with more items, critters and gaps than the one before. La
 | 11 | **Home Office Havoc** | Old work papers → recycle bin | 20 | 125s | Ants, spiders, hamsters | Terrible elevator music |
 | 12 | **Library Book Roundup** | Books → library shelf | 21 | 128s | Dust bunnies, spiders, hamsters | Inspirational strings and harp |
 | 13 | **Music Room Mayhem** | Old piano scores → bookshelf | 22 | 131s | Cats, spiders, cockroaches | Kid practicing piano |
-| 14 | **Arts & Crafts Chaos** | Paint buckets → shelves | 23 | 134s | Ants, cats, soap bubbles | Lively French impressionist |
+| 14 | **Arts & Crafts Chaos** | Paint buckets → shelves | 23 | 134s | Ants, cats, soap bubbles | Ska-punk for rebels and hippies |
 | 15 | **Tech Room Trouble** | Robot parts → giant robot | 24 | 137s | Little lightning bolts | The silliest song ever |
 | 16 | **Science Lab Scramble** | Test tubes → lab rack | 25 | 140s | Slime, soap bubbles, lightning bolts | Zany 90s science-TV funk |
 | 17 | **Workout Room Workout** | Weights → weight rack | 26 | 143s | Rats, cats, dogs, dust mites | High-octane workout anthem |
@@ -140,7 +140,7 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Home Office | [*Muzak for Meetings (Vol. 3)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/11-home-office.mp3) | Wobbly pan flute, sour notes, late vibraphone, elevator ding |
 | Library | [*Where the Books Open Up*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/12-library.mp3) | An inspirational \"discovering a new world\" theme: running harp arpeggios, a soaring violin melody, warm cello and viola, celesta sparkles and a soft heartbeat drum that lifts the second half |
 | Music Room | [*Piano Practice (Mom Is Listening)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/13-music-room.mp3) | Scales with mistakes, Für Elise, Twinkle, Mountain King, jazz, Jingle Bells, Bach, a spooky toccata, pop, Chopsticks, Ode to Joy |
-| Arts & Crafts | [*Les Petits Peintres*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/14-arts-and-crafts.mp3) | Faster French impressionist piece: rippling piano, flute, sliding chords, whole-tone harp sweeps |
+| Arts & Crafts | [*Paint the Town (Tie-Dye)!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/14-arts-and-crafts.mp3) | Ska-punk for rebels and hippies: bouncy off-beat guitar skanks, a bubbling organ and a trumpet-and-sax horn section, then a full-on punk chorus with distorted power chords and pounding drums, a jangling tambourine throughout and a big stop at the end |
 | Tech Room | [*Beep Boop Banana Boogie*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/15-tech-room.mp3) | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |
 | Science Lab | [*Mad Science Slam*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/16-science-lab.mp3) | Zany 90s science-TV-style funk: punchy drum machine, slap bass, synth-brass stabs, a call-and-response hook, "HEY!" shouts, bubbling beakers, zaps and laser sweeps |
 | Workout Room | [*Maximum Reps!!!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/17-workout-room.mp3) | Pounding four-on-the-floor beat, rolling bass, supersaw synth riff, coach's whistle, "HEY!" shouts and a snare-roll build-up into a big drop |

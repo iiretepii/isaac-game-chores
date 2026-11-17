@@ -21,7 +21,8 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `hiphop` | *Backyard Boom-Bap* | 90 | 4 | 16 | 4 | Backyard Bonanza | `music/05-backyard.mp3` |
 | `techno` | *Garage Funk-Techno* | 126 | 4 | 16 | 4 | Garage of Doom | `music/08-garage.mp3` |
 | `princess` | *Once Upon A Tidy Room* | 150 | 2 | 6 | 16 | Annie's Room | `music/02-annies-room.mp3` |
-| `french2` | *Les Petits Peintres* | 112 | 2 | 8 | 16 | Arts & Crafts Chaos | `music/14-arts-and-crafts.mp3` |
+| `punkska` | *Paint the Town (Tie-Dye)!* | 184 | 2 | 8 | 16 | Arts & Crafts Chaos | `music/14-arts-and-crafts.mp3` |
+| `french2` | *Les Petits Peintres* (no longer used by a level) | 112 | 2 | 8 | 16 | — | — |
 | `workout` | *Maximum Reps!!!* | 140 | 4 | 16 | 8 | Workout Room Workout | `music/17-workout-room.mp3` |
 | `pool` | *Cannonball Calypso* | 128 | 4 | 16 | 16 | Pool Party Panic | `music/07-pool.mp3` |
 | `silly` | *Beep Boop Banana Boogie* | 150 | 2 | 8 | 8 | Tech Room Trouble | `music/15-tech-room.mp3` |
@@ -44,7 +45,7 @@ Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays a
 
 ## The Medley
 
-`MIX` lists the styles in order: rock, princess, jazz, pop, hiphop, garden, pool, techno, polka, crooner, muzak, library, practice, french2, silly, science, workout, romantic, baroque, pets, chiptune. The medley plays 4 bars of each, with a record scratch and crash between them, then loops.
+`MIX` lists the styles in order: rock, princess, jazz, pop, hiphop, garden, pool, techno, polka, crooner, muzak, library, practice, punkska, silly, science, workout, romantic, baroque, pets, chiptune. The medley plays 4 bars of each, with a record scratch and crash between them, then loops.
 
 **Rule:** every new level song must be added to `MIX`.
 

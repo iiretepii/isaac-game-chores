@@ -136,3 +136,7 @@ Grouped by milestone. See `git log` for every commit.
 - Made both parents look much madder on the "Parents are home!" screen (shared `parentMad` face): steep V eyebrows, squinting eyes, red cheeks, a big open frown with gritted teeth, a throbbing red anger mark and puffs of steam.
 - The parents are now animated yelling on the "Parents are home!" screen. Their mouths flap open and shut with yellow shout lines, they shake a fist in the air (Mom on the left, Pete on the right), and they bounce and jitter in turn.
 - Fixed the yelling animation: when a parent raises a fist, that arm is no longer also drawn hanging at their side, and the raised arm now joins at the shoulder.
+
+### New Arts & Crafts song: ska-punk
+- Arts & Crafts Chaos now plays *Paint the Town (Tie-Dye)!* (`punkska`, 184 BPM), a ska-punk song for rebels and hippies. The verse is bouncy ska with off-beat guitar skanks, a bubbling organ and a trumpet-and-sax horn section. The chorus is full punk, with distorted power chords on every eighth and pounding drums, plus a tambourine throughout and a big stop at the end.
+- It replaces *Les Petits Peintres* in the level and in the Whole House medley. The old song is still in the code but unused. The arts & crafts MP3 and the medley were re-recorded.
