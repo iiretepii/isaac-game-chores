@@ -13,7 +13,7 @@ Generated from the `LEVELS` array in `index.html`.
 | 5 | Backyard Bonanza | `yard` | leaf → bag | 14 | 107s | 181 | 3 | 0.55 | 0.2 | yes | dog, bee | `hiphop` |
 | 6 | Garden Glow-Up | `garden` | oldflower (weeds) → compost | 15 | 110s | 183 | 3 | 0.62 | 0 | yes | weed | `garden` |
 | 7 | Pool Party Panic | `pool` | towel → towelbasket | 16 | 113s | 183 | 3 | 0.58 | 0 | yes | duck, goose, swan, squirrel | `pool` |
-| 8 | Garage of Doom | `garage` | trash → can | 17 | 116s | 186 | 3 | 0.62 | 0.45 | yes | rat, roomba, bee | `techno` |
+| 8 | Garage of Doom | `garage` | trash → can (dumpster) | 17 | 116s | 186 | 3 | 0.62 | 0.45 | yes | rat, roomba, bee | `techno` |
 | 9 | Laundry Room Pee-Yew! | `laundry` | undies → washer | 18 | 119s | 189 | 3 | 0.64 | 0.3 | yes | bubble, dust, roach | `polka` |
 | 10 | Bathroom Blunder | `bathroom` | poop → toilet | 19 | 122s | 191 | 3 | 0.66 | 0.3 | yes | bubble, roach, spider | `crooner` |
 | 11 | Home Office Havoc | `office` | paper → recycle | 20 | 125s | 194 | 3 | 0.68 | 0.3 | yes | ant, spider, hamster | `muzak` |

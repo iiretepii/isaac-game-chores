@@ -53,3 +53,7 @@ Grouped by milestone. See `git log` for every commit.
 
 ### Garden pickups are weeds
 - In Garden Glow-Up you now pull up weeds (with roots and dirt) instead of collecting old flowers.
+
+### Wide, normal-height drop-offs
+- Twelve drop-offs (toy chest, dishwasher, leaf bag, compost bin, towel basket, recycle bin, library shelf, music-room bookshelf, craft shelves, lab rack and attic trunk) are back to their normal height but stretched to 70 px wide.
+- The garage trash can is now a big green dumpster.

@@ -1432,16 +1432,18 @@ function drawItemRaw(k,x,y){
 }
 
 // Drop-off size: most sprites are drawn at 28 px and scaled up 2x; a few are drawn full-size already.
-const DROP_SCALE={couch:1,toybox:1,washer:1,dryer:1,workbench:1,dollhouse:1.4,libraryshelf:1.4};
-const DROP_W={couch:56,toybox:48,washer:70,dryer:70,workbench:56,dollhouse:56,libraryshelf:56};
-const DROP_TOP={dollhouse:30,bookshelf:44,paintshelf:44,libraryshelf:36,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
+const DROP_SCALE={couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1,dollhouse:1.4};
+// Normal height, much wider: these sprites are stretched sideways only.
+const DROP_WIDE={toychest:2.5,dishwasher:2.5,bag:2.5,compost:2.5,towelbasket:2.5,recycle:2.5,bookshelf:2.5,paintshelf:2.5,labrack:2.5,trunk:2.5,libraryshelf:1.75};
+const DROP_W={toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56,dollhouse:56,libraryshelf:56};
+const DROP_TOP={toychest:0,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,dollhouse:30,bookshelf:12,paintshelf:12,libraryshelf:16,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
 function drawDrop(d,ready,t){
   const x=Math.round(d.x),y=Math.round(d.y),k=d.kind;
   if(ready){g.save();g.globalAlpha=0.35+0.2*Math.sin(t*8);const rg=g.createRadialGradient(x+14,y+12,2,x+14,y+12,34);rg.addColorStop(0,'#fff59d');rg.addColorStop(1,'rgba(255,235,59,0)');g.fillStyle=rg;g.fillRect(x-24,y-24,76,72);g.restore();}
   shadow(x+d.w/2,y+24,d.w*0.65,0.35);
-  const sc=DROP_SCALE[k]||2;
-  if(sc===1)outlined(x,y,(ox,oy)=>drawDropRaw(k,ox,oy));
-  else{g.save();g.translate(x,y+24);g.scale(sc,sc);outlined(0,-24,(ox,oy)=>drawDropRaw(k,ox,oy));g.restore();}
+  const sc=DROP_SCALE[k]||2,sx=DROP_WIDE[k]||sc,sy=DROP_WIDE[k]?1:sc;
+  if(sx===1&&sy===1)outlined(x,y,(ox,oy)=>drawDropRaw(k,ox,oy));
+  else{g.save();g.translate(x,y+24);g.scale(sx,sy);outlined(0,-24,(ox,oy)=>drawDropRaw(k,ox,oy));g.restore();}
   if(ready)text("HERE!",x+d.w/2,y-14-(DROP_TOP[k]??24)-Math.abs(Math.sin(t*5))*4,8,"#ffeb3b","center");
 }
 function drawDropRaw(k,x,y){
@@ -1471,7 +1473,10 @@ function drawDropRaw(k,x,y){
     R(x+3,y+3,2,21,"#4e342e");R(x+23,y+3,2,21,"#4e342e");
     R(x+10,y+8,8,10,"#dcedc8");R(x+12,y+10,5,4,"#558b2f");R(x+12,y+13,1,3,"#33691e");}
   else if(k==='bag'){R(x+4,y+2,20,22,"#2e7d32");R(x+6,y,16,3,"#1b5e20");R(x+8,y+8,4,4,"#ff7043");R(x+14,y+14,4,4,"#ffa726");}
-  else if(k==='can'){R(x+3,y+4,22,20,"#607d8b");R(x+1,y+2,26,4,"#78909c");R(x+11,y-1,6,3,"#78909c");for(let i=6;i<24;i+=5)R(x+3+i,y+8,1,14,"#455a64");}
+  else if(k==='can'){ // big green garage dumpster with lids, wheels and a bit of overflow
+    R(x+2,y+4,66,17,"#2e7d32");R(x+2,y+4,66,2,"#43a047");R(x+0,y+1,35,4,"#1b5e20");R(x+35,y+0,35,4,"#1b5e20");
+    for(let i=10;i<66;i+=12)R(x+2+i,y+7,2,12,"#1b5e20");R(x+26,y+10,18,6,"#fafafa");R(x+28,y+12,14,2,"#2e7d32");
+    R(x+6,y+21,6,3,"#212121");R(x+58,y+21,6,3,"#212121");R(x+40,y-3,6,4,"#8d6e63");R(x+47,y-2,5,3,"#fdd835");R(x+14,y-2,6,3,"#90a4ae");}
   else if(k==='washer'||k==='dryer'){ // laundry corner: washer, dryer and a wicker hamper
     drawDropRaw('washer1',x,y);drawDropRaw('dryer1',x+27,y);
     R(x+56,y+8,13,16,"#c8a165");for(let q=0;q<13;q+=3)R(x+56+q,y+8,1,16,"#a0783d");R(x+55,y+6,15,3,"#8d6e3f");R(x+59,y+3,5,4,"#29b6f6");R(x+63,y+4,3,3,"#fafafa");}
