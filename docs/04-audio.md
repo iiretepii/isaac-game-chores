@@ -30,7 +30,7 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `crooner` | *Bathroom Amore* | 228 | 2 | 6 | 16 | Bathroom Blunder | `music/10-bathroom.mp3` |
 | `polka` | *Oompah Undies Polka* | 132 | 2 | 4 | 16 | Laundry Room Pee-Yew! | `music/09-laundry-room.mp3` |
 | `romantic` | *Nocturne In The Basement* | 66 | 4 | 16 | 32 | The Spooky Basement | `music/18-basement.mp3` |
-| `baroque` | *Little Fugue In The Attic* | 84 | 4 | 16 | 20 | Attic of Antiques | `music/19-attic.mp3` |
+| `baroque` | *Little Fugue in the Attic* | 84 | 4 | 16 | 20 | Attic of Antiques | `music/19-attic.mp3` |
 | `french` | *Petite Valse Du Matin* | 66 | 1 | 3 | 16 | Title screen | `music/00-title.mp3` |
 | `finale` | *Jubilee for a Job Well Done* | 132 | 2 | 8 | 24 | Ending screen | `music/21-ending-jubilee.mp3` |
 | `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/20-whole-house-medley.mp3` |
@@ -76,7 +76,7 @@ Shared reverb comes from a convolver with a generated noise impulse (`reverb()`)
 The recordings are made by running the game's code in headless Chromium:
 1. **Swap the audio context:** replace `AC` with an `OfflineAudioContext`, and reset `revIn`, `gtrBus`, `leadBus`, `noiseBuf`, `master`, `musicGain` and `sfxGain` to nodes on that context.
 2. **Schedule the song:** call each style's `play()` across one loop. Short loops repeat until the file is at least about 40 s long. The medley plays four bars of each style in `MIX`.
-3. **Render:** render to WAV and normalize the peak to 90%. Quiet songs (like the library) therefore sound louder than they do in the game.
+3. **Render:** render to WAV and normalize the peak to 90%. Gentle songs (title, basement, attic, music room, library) therefore sound louder than they do in the game.
 4. **Convert:** encode as a 96 kbps MP3 with `ffmpeg`.
 
 Files are numbered in level order (`00-title`, `01-…` through the medley). Inserting a level means renumbering the later files and updating the README links.

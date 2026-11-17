@@ -197,8 +197,9 @@ The whole game (code, graphics, levels and music) lives in a single file, [`inde
 
 - **Walking critters** patrol back and forth and turn around at walls, gaps and LEGO bricks. Dogs, huskies, Pomeranians, hamsters and squirrels also hop now and then.
 - **Flying critters** (bees, bats, soap bubbles, lightning bolts) bob up and down along a short path.
-- If you land on a critter from above, you stomp it. Any other touch knocks you back and costs 5 seconds.
+- If you land on a critter from above, you stomp it. Any other touch knocks the player back and costs 5 seconds (siblings just bounce off, with no penalty).
 - **Isaac and Annie** use the same physics as the player: gravity, solid walls, one-way platforms and moving platforms. Normally they follow a spot just behind the player. When the time left drops below 33% (Annie) or 20% (Isaac), a helper AI chooses each sibling's next item, splitting the work and steering clear of items guarded by critters. While riding, it looks ahead and decides when to jump (walls, gaps, critters, LEGO bricks), when to double jump (over a pit or up to a high item) and when to duck (low ceilings). If a sibling stops getting closer to its item, it gives up on that one for a few seconds and picks another.
+- **Personalities:** Annie has a 45% chance of fumbling each obstacle and sometimes trips. Isaac looks further ahead, hunts critters near the player, and zaps any critter his light-bike touches. Sibling bumps and falls never cost time.
 
 ### Music and Sound
 

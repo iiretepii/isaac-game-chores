@@ -4,7 +4,7 @@
 
 | Path | Purpose |
 |---|---|
-| `index.html` | The entire game (about 1,850 lines of HTML, CSS and JavaScript) |
+| `index.html` | The entire game (about 2,000 lines of HTML, CSS and JavaScript) |
 | `README.md` | Player-facing overview, level and music tables |
 | `music/*.mp3` | Recordings of every song (generated; see [04](04-audio.md)) |
 | `docs/` | These design documents |

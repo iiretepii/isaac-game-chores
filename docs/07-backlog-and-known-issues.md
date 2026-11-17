@@ -11,7 +11,7 @@
 | 5 | Inserting a level reshuffled later layouts | **Fixed 2026-11-16.** Each level now has its own fixed `seed` (set to its previous layout, so no level changed) |
 | 6 | Unused sprites | **Fixed 2026-11-16.** Removed `sock`, `hamper`, `markercup`, `shredder` and `sink` |
 | 7 | Basement "auto-moving" report | Open. Not reproduced; visibility improved; waiting for feedback |
-| 8 | Library recording volume | Won't fix. The MP3 is normalized for listening and sounds louder than in the game |
+| 8 | Recording volumes differ from the game | Won't fix. Every MP3 is normalized on its own for listening, so the gentle songs sound louder in the recordings than in the game (where volumes are leveled) |
 | 9 | Duplicate legacy music code | Won't fix. `SONG`, `kazoo` and `softLead` are still used by the rock song and win jingle |
 | 10 | Time limits not yet play-tested without doubling | Open. Limits rise steadily, but they haven't been checked by playing every level since time doubling was removed |
 
