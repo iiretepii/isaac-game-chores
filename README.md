@@ -6,6 +6,8 @@
 
 ### ▶ [Play Chore Rush!](https://claude.ai/artifact/7bgXsM4dhpEVavZJgvo6ZJ)
 
+[Owner's Sites play link](https://isaac-game-chores-play.magneticlorikeet2.chatgpt.site) (private). The two hosted copies are published separately; neither updates automatically when GitHub changes.
+
 ---
 
 ## How to Play
@@ -25,7 +27,7 @@ The whole game is a single file, `index.html`. Open it in any modern web browser
 | Pause | P or Esc | — |
 | Mute | M | — |
 
-You ride a **bicycle** through every level, with spinning wheels and pedals. Duck to squeeze under low spots, and use the double jump to clear wide gaps or reach high shelves.
+You ride a **bicycle** with spinning wheels and pedals, except on Race Track Rumble, where all three kids drive race cars. Duck to squeeze under low spots, and use the double jump to clear wide gaps or reach high shelves.
 
 On the title screen you can also open **Level Select** to jump straight to any of the 24 levels. After you finish a chore, the "Chore Complete!" screen also has a **Level Select** button (or press **L**) so you can jump to any level from there.
 
@@ -67,11 +69,11 @@ When they show up, you greet them with a goofy speech bubble picked at random, l
 
 **They're both aces.** Annie and Isaac spot obstacles early, clear gaps and walls cleanly, go hunting for bad guys near you, and **zap any critter they touch** ("ZAP! +100").
 
-They play by the same rules as you:
+Their vehicles follow the terrain, with these helper abilities:
 
 - They ride along the ground, jump (and double jump) over gaps, walls, critters and LEGO bricks, and duck under low spots.
-- They can **stomp critters** (+100 points). If a critter or LEGO brick bumps them, they just bounce off, and if they fall into a gap they pop right back. **There's no time penalty for the siblings.**
-- When they're collecting, they split up the work, skip items guarded by critters, and switch targets if they get stuck.
+- They can **stomp critters** (+100 points), and other critter contact triggers their zap (+100). LEGO hits bounce them back, and falls return them to safe ground. **There's no time penalty for the siblings.**
+- When they're collecting, they split up the work, prefer items with fewer nearby critters, and switch targets if they get stuck.
 - Only you can carry everything to the drop-off spot.
 
 ### Scoring
@@ -84,7 +86,7 @@ They play by the same rules as you:
 
 ## The Levels
 
-Each level is longer, with more items, critters and gaps than the one before. Later levels add LEGO bricks and moving platforms. Every level has its own room, chore and music style.
+Item counts rise by one each level. Lengths, critter density and gap sizes vary by room; later levels generally add more hazards. Most rooms are 170–216 tiles long, Money Room is 260, and the finale is 250. Every level has its own room, chore and music style.
 
 | # | Level | Chore | Items | Time | Critters | Music |
 |---|---|---|---|---|---|---|
@@ -121,7 +123,7 @@ The basement is dark, with a pool of light that follows you around. At the pool,
 
 🎧 **Click any song name below to listen to it!** Each one opens and plays an MP3 recording right in your browser (the files live in the [`music/`](music/) folder).
 
-All songs are leveled to a similar volume (the gentlest pieces play a little softer).
+In-game songs use individual volume trims, with the gentlest pieces playing a little softer. The MP3 recordings are separately peak-normalized for listening, so their relative loudness can differ from the game.
 
 Inside the game itself, all the music is generated live in the browser with the Web Audio API (the game needs no audio files; the MP3s are recordings for listening). Every song is original except the public-domain classics in the piano practice track.
 
@@ -139,7 +141,7 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Laundry Room | [*Oompah Undies Polka*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/09-laundry-room.mp3) | Tuba, accordion, two trumpets, wah-wah trombone, slide whistle |
 | Bathroom | [*Bathroom Amore*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/10-bathroom.mp3) | Bouncy, cheesy crooner waltz: crooning "ohhh" voice, mandolin, accordion oom-pah-pah, tambourine, castanets, a corny key change and a "ba-da-BING!" |
 | Home Office | [*Muzak for Meetings (Vol. 3)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/11-home-office.mp3) | Wobbly pan flute, sour notes, late vibraphone, elevator ding |
-| Library | [*Where the Books Open Up*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/12-library.mp3) | An inspirational \"discovering a new world\" theme: running harp arpeggios, a soaring violin melody, warm cello and viola, celesta sparkles and a soft heartbeat drum that lifts the second half |
+| Library | [*Where the Books Open Up*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/12-library.mp3) | An inspirational "discovering a new world" theme: running harp arpeggios, a soaring violin melody, warm cello and viola, celesta sparkles and a soft heartbeat drum that lifts the second half |
 | Music Room | [*Piano Practice (Mom Is Listening)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/13-music-room.mp3) | Scales with mistakes, Für Elise, Twinkle, Mountain King, jazz, Jingle Bells, Bach, a spooky toccata, pop, Chopsticks, Ode to Joy |
 | Arts & Crafts | [*Paint the Town (Tie-Dye)!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/14-arts-and-crafts.mp3) | Ska-punk for rebels and hippies: bouncy off-beat guitar skanks, a bubbling organ and a trumpet-and-sax horn section, then a full-on punk chorus with distorted power chords and pounding drums, a jangling tambourine throughout and a big stop at the end |
 | Tech Room | [*Beep Boop Banana Boogie*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/15-tech-room.mp3) | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |
@@ -219,4 +221,4 @@ The whole game (code, graphics, levels and music) lives in a single file, [`inde
 
 ### The MP3 Recordings
 
-- The MP3s in the [`music/`](music/) folder were made by running the game's own music code in a hidden browser. The browser renders each song into an audio file faster than real time, without playing it out loud, and the files were then converted to MP3. That's why the recordings sound exactly like the game.
+- The MP3s in the [`music/`](music/) folder were made by running the game's own music code in a hidden browser. The browser renders each song into an audio file faster than real time, without playing it out loud, and the files were then converted to MP3. They capture the game's synthesized arrangements; normalization and the absence of live gameplay effects can make the listening experience differ.
