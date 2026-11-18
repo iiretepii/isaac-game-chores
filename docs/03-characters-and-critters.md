@@ -20,7 +20,7 @@
 | Rush line | "Time's running out! I'll grab some!" | "Turbo mode! I got this!" |
 
 **Abilities** (both have the `ace` flag in `SIBS`; Annie is just as good as Isaac):
-- They look further ahead for walls, gaps and critters (12 px versus 4 px; critters 70 px versus 44 px). Whenever a live critter is within 280 px of the player, they ride to it, ahead of following or collecting. Their rides defeat any critter they touch from any side ("ZAP! +100"), with a slightly bigger zap area than their bodies.
+- They look further ahead for walls, gaps and critters (12 px versus 4 px; critters 70 px versus 44 px). They hunt the first live critter in the enemy list that is within 280 px horizontally of the player, 320 px horizontally of the sibling and 90 px vertically of the sibling, ahead of following or collecting. Their rides defeat any critter they touch from any side ("ZAP! +100"), with a slightly bigger zap area than their bodies.
 - Neither sibling fumbles obstacles or trips.
 - **Annie's balloon** (`balloon:1` in `SIBS`): she carries a pink balloon on a string. When she is in the air and no longer rising fast (`vy > -60`), gravity drops from 1300 to 680 px/s² and her fall speed is capped at 230 px/s (normally 600), giving a short float at the top of each jump and a gentle descent. Her name label sits above the balloon.
 - **Annie's outfit** (`dress:1` in her palette): a pink dress with puff sleeves, a bow at the waist and a flared, ruffled skirt, drawn over the usual kid sprite in `drawKidRaw`.
@@ -30,9 +30,9 @@
 **Behavior spec:**
 - **Arrival:** both appear next to the player as soon as the level starts.
 - **Normal mode:** they follow a spot behind the player and stop and face the same way when the player stops.
-- **Rush mode:** when the time left is at or below their threshold, they pick items (avoiding ones near critters, splitting work between them, giving up on an item after 2 s without progress and retrying it 4 s later) and drive to them.
-- **Physics:** the same as the player (gravity, walls, one-way and moving platforms). The AI decides when to jump (walls, gaps, critters, LEGO), double jump (over pits, up to high items) and duck (low ceilings).
-- **Damage:** they stomp critters (+100). Critter or LEGO hits just bounce them back ("OOPS!"), and falls respawn them on safe ground ("BACK!"). Neither costs time.
+- **Rush mode:** when the time left is at or below their threshold, they pick items (penalizing ones near critters in the target score, splitting work between them, giving up on an item after 2 s without progress and retrying it 4 s later) and drive to them.
+- **Physics:** terrain collisions match the player (walls, one-way and moving platforms); Annie's balloon changes her gravity and fall speed as described above. The AI decides when to jump (walls, gaps, critters, LEGO), double jump (over pits, up to high items) and duck (low ceilings).
+- **Damage:** downward stomps defeat critters (+100) and bounce the sibling upward; other critter contact triggers their ace zap (+100). LEGO hits bounce them back ("OOPS!") and falls respawn them on safe ground ("BACK!"). Neither costs time.
 - **Delivery:** siblings never deliver; only the player can finish the level.
 
 ## The Parents: Mom and Uncle Pete
@@ -51,36 +51,36 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 
 | Key | Critter | Movement | Speed | Levels |
 |---|---|---|---|---|
-| `dust` | Dust bunny | walk | 30 | 3, 9, 12, 18 |
-| `roach` | Cockroach | walk | 55 | 3, 9, 10, 13 |
-| `roomba` | Robot vacuum | walk | 75 | 4, 8 |
-| `cat` | Cat | walk | 50 | 4, 13, 14, 17 |
-| `dog` | Dog | walk + hop | 90 | 5, 17 |
-| `rat` | Rat | walk | 65 | 8, 17, 18, 19 |
-| `bee` | Bee | fly | 40 | 5, 8 |
-| `spider` | Spider | walk | 60 | 10, 11, 12, 13, 18, 19 |
-| `bat` | Bat | fly | 55 | 19 |
-| `bubble` | Soap bubble | fly | 35 | 9, 10, 14, 16 |
-| `zap` | Lightning bolt | fly (jittery) | 65 | 15, 16 |
-| `ant` | Ant | walk | 70 | 11, 14 |
-| `hamster` | Hamster | walk + hop | 85 | 11, 12 |
-| `mite` | Dust mite | walk | 45 | 17 |
-| `bzombie` | Blocky zombie | walk | 32 | 1 |
-| `bskel` | Blocky skeleton | walk | 42 | 1 |
-| `bspider` | Blocky spider | walk | 62 | 1 |
-| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1 |
-| `tabby` | Orange tabby cat | walk | 50 | 2 |
-| `husky` | Husky | walk + hop | 72 | 2 |
-| `pom` | Pomeranian | walk + hop | 80 | 2 |
-| `duck` | Duck | walk | 40 | 7 |
-| `goose` | Goose (flashes HONK) | walk | 60 | 7 |
-| `swan` | Swan | walk | 35 | 7 |
-| `invader` | Pixel space invader (original 8-bit alien, legs flick every frame) | fly | 45 | 22 |
-| `chomper` | Yellow chomper that opens and closes its mouth, munching dots | walk | 72 | 22 |
-| `ghosty` | Cyan arcade ghost with a wavy hem and eyes that look where it goes | walk | 52 | 22 |
-| `squirrel` | Squirrel | walk + hop | 85 | 7 |
-| `weed` | Walking weed | walk | 38 | 6 |
-| `slime` | Slime | walk | 42 | 16 |
+| `dust` | Dust bunny | walk | 30 | 3, 9, 12, 18, 24 |
+| `roach` | Cockroach | walk | 55 | 3, 9, 10, 13, 24 |
+| `roomba` | Robot vacuum | walk | 75 | 4, 8, 21, 23, 24 |
+| `cat` | Cat | walk | 50 | 4, 13, 14, 17, 24 |
+| `dog` | Dog | walk + hop | 90 | 5, 17, 24 |
+| `rat` | Rat | walk | 65 | 8, 17, 18, 19, 24 |
+| `bee` | Bee | fly | 40 | 5, 8, 24 |
+| `spider` | Spider | walk | 60 | 10, 11, 12, 13, 18, 19, 24 |
+| `bat` | Bat | fly | 55 | 19, 24 |
+| `bubble` | Soap bubble | fly | 35 | 9, 10, 14, 16, 24 |
+| `zap` | Lightning bolt | fly (jittery) | 65 | 15, 16, 24 |
+| `ant` | Ant | walk | 70 | 11, 14, 24 |
+| `hamster` | Hamster | walk + hop | 85 | 11, 12, 20, 23, 24 |
+| `mite` | Dust mite | walk | 45 | 17, 24 |
+| `bzombie` | Blocky zombie | walk | 32 | 1, 24 |
+| `bskel` | Blocky skeleton | walk | 42 | 1, 24 |
+| `bspider` | Blocky spider | walk | 62 | 1, 24 |
+| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1, 24 |
+| `tabby` | Orange tabby cat | walk | 50 | 2, 20, 24 |
+| `husky` | Husky | walk + hop | 72 | 2, 24 |
+| `pom` | Pomeranian | walk + hop | 80 | 2, 20, 24 |
+| `duck` | Duck | walk | 40 | 7, 24 |
+| `goose` | Goose (flashes HONK) | walk | 60 | 7, 21, 24 |
+| `swan` | Swan | walk | 35 | 7, 24 |
+| `invader` | Pixel space invader (original 8-bit alien, legs flick every frame) | fly | 45 | 22, 24 |
+| `chomper` | Yellow chomper that opens and closes its mouth, munching dots | walk | 72 | 22, 24 |
+| `ghosty` | Cyan arcade ghost with a wavy hem and eyes that look where it goes | walk | 52 | 22, 24 |
+| `squirrel` | Squirrel | walk + hop | 85 | 7, 21, 24 |
+| `weed` | Walking weed | walk | 38 | 6, 24 |
+| `slime` | Slime | walk | 42 | 16, 23, 24 |
 
 ## Chore Items and Drop-offs
 
@@ -111,6 +111,6 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | Money Room Millions | `coin` (gold coins) | `coinchest` (a wide wooden chest with gold bands) |
 | The Whole House!! | `mix` | `couch` |
 
-Some sprites change by position (`itemSeed`): markers and paint-bucket colors, robot-part shapes (gear, head, claw, battery), weight types (dumbbell, kettlebell, plate) and towel colors.
+Some sprites change by position (`itemSeed`), including paint-bucket colors, robot-part shapes (gear, head, claw, battery), weight types (dumbbell, kettlebell, plate), towel colors, pillows and game controllers.
 
 

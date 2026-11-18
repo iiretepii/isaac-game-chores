@@ -146,3 +146,9 @@ Grouped by milestone. See `git log` for every commit.
 - Added a 32-coin chore for the player, Isaac and Annie with a wide coin chest, vaults and gold-bar scenery.
 - Added the original Roblox-style electronic song Coin Chest Tycoon and included it in the finale medley.
 - Added coins to the Whole House item mix, raised its count to 33 and time to 163 seconds, and kept all existing level seeds unchanged.
+
+## 2026-11-18 — Documentation audit
+
+- Reconciled the README and design docs with all 24 levels, 33 finale items, current vehicle and sibling behavior, and every critter's level locations.
+- Corrected length and timer guidance, noted the existing 2-second Race Track increase, and clarified recording normalization and medley coverage.
+- Documented the current Sites play link and the separate publication workflow. No game behavior changed.

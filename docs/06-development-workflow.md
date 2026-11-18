@@ -26,7 +26,8 @@ There's no test framework. Testing is done by driving the game in headless Chrom
 
 ## Publishing
 
-- **Game link:** the shareable game is a Claude artifact (https://claude.ai/artifact/7bgXsM4dhpEVavZJgvo6ZJ, "anyone with the link"). It's republished from `index.html` after changes.
+- **Current play link:** https://isaac-game-chores-play.magneticlorikeet2.chatgpt.site. Sites publication is separate from the GitHub merge: update the existing Site from the intended source revision and verify deployment.
+- **Alternate artifact:** https://claude.ai/artifact/7bgXsM4dhpEVavZJgvo6ZJ. This is a separate publication; do not assume either hosted copy updates automatically when `main` changes.
 - **Repo:** the GitHub repo is public. The README links each song to its raw MP3 on `main`, so it plays in the browser.
 
 ## Quick Checklists
