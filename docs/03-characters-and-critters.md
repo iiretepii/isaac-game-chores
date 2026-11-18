@@ -108,6 +108,7 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | Pet Room Pandemonium | `chewtoy` (squeaky bone, ball or rubber mouse) | `petbasket` (wicker toy basket with a napping puppy) |
 | Race Track Rumble | `tire` (racing tire with a silver rim) | `tirerack` (red metal tire shelf) |
 | Game Room Glitch | `videogame` (a variety of game controllers: classic flat pad, rounded pad with colored buttons, arcade joystick, twin-stick pad) | `gameshelf` (CRT TV showing an alien, a console and spots for controllers) |
+| Money Room Millions | `coin` (gold coins) | `coinchest` (a wide wooden chest with gold bands) |
 | The Whole House!! | `mix` | `couch` |
 
 Some sprites change by position (`itemSeed`): markers and paint-bucket colors, robot-part shapes (gear, head, claw, battery), weight types (dumbbell, kettlebell, plate) and towel colors.
