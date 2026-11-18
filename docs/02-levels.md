@@ -28,7 +28,8 @@ Generated from the `LEVELS` array in `index.html`.
 | 20 | Pet Room Pandemonium | `pets` | chewtoy → petbasket | 29 | 152s | 212 | 3 | 0.66 | 0.3 | yes | hamster, tabby, pom | `pets` |
 | 21 | Race Track Rumble | `race` | tire → tirerack | 30 | 154s | 214 | 3 | 0.7 | 0.3 | yes | roomba, squirrel, goose | `racerock` |
 | 22 | Game Room Glitch | `gameroom` | videogame → gameshelf | 31 | 157s | 216 | 3 | 0.72 | 0.3 | yes | invader, chomper, ghosty | `chiptune` |
-| 23 | The Whole House!! | `house` | mix → couch | 32 | 160s | 250 | 3 | 0.75 | 0.5 | yes | all critters | `mix` |
+| 23 | Money Room Millions | `money` | coin → coinchest | 32 | 160s | 260 | 3 | 0.7 | 0.25 | yes | hamster, roomba, slime | `money` |
+| 24 | The Whole House!! | `house` | mix → couch | 33 | 163s | 250 | 3 | 0.75 | 0.5 | yes | all critters | `mix` |
 
 ## Level Data Format
 

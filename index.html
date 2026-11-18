@@ -949,10 +949,20 @@ STYLES.finale={name:"JUBILEE FOR A JOB WELL DONE",bpm:148,spb:2,bar:8,bars:24,
     }
   }};
 // Per-song volume trim so every song plays at a similar loudness (measured RMS; quieter targets for the gentle title, basement, attic, music-room and library pieces).
-const STYLE_GAIN={"sad":1.62,"punkska":0.39,"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
+// Original Roblox-style tycoon/obby soundtrack: bright plucks, dance drums and coin-like bells.
+STYLES.money={name:"COIN CHEST TYCOON",bpm:128,spb:4,bar:16,bars:16,play(i,t,d){
+ const bar=Math.floor(i/16)%16,b=i%16,root=[48,55,57,53][bar%4],bridge=bar>=8&&bar<12;
+ if(b%4===0){kick(t,0.32);subBass(root-12+(b===8?7:0),d*3,t,0.12);}
+ if(b===4||b===12)clap(t,0.07);if(b%2)hat(t,b===15,0.025);
+ if(!bridge&&b%4===2)[0,4,7].forEach(n=>supersaw(root+12+n,d*1.4,t,0.012,1800));
+ const riff=[12,16,19,24,19,16,14,19],note=root+riff[Math.floor(b/2)];
+ if(b%2===0)pluck(note+(bar>=12?12:0),d*1.6,t,bridge?0.024:0.038,0.2,3200);
+ if(b===7||b===15){tone(mtof(root+31),d,'sine',0.025,null,t,musicGain);tone(mtof(root+36),d,'sine',0.018,null,t+d,musicGain);}
+}};
+const STYLE_GAIN={"sad":1.62,"money":0.8,"punkska":0.39,"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
 for(const k in STYLE_GAIN)if(STYLES[k])STYLES[k].gain=STYLE_GAIN[k];
 const MUSIC_BASE=0.38;
-const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','punkska','silly','science','workout','romantic','baroque','pets','chiptune'];
+const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','punkska','silly','science','workout','romantic','baroque','pets','chiptune','money'];
 let music={on:false,style:'pop',step:0,next:0,seg:0,segStep:0,cycle:0};
 function startMusic(style){music.style=style;music.step=0;music.seg=0;music.segStep=0;music.cycle=0;music.on=true;if(AC)music.next=AC.currentTime+0.05;}
 function scheduler(){
@@ -1019,7 +1029,9 @@ const LEVELS=[
   text:"UNCLE PETE: Pit stop chaos! Tires all over the track. Get them back on the shelf before the next lap!"},
  {name:"GAME ROOM GLITCH",chore:"Put the game controllers back on the game shelf",drop:"gameshelf",item:"videogame",seed:22043,count:31,time:157,len:216,gap:3,enemies:["invader","chomper","ghosty"],density:.72,lego:.3,movers:1,theme:"gameroom",music:"chiptune",
   text:"UNCLE PETE: I said ONE more game! Now there are controllers everywhere... and something just crawled out of the TV!"},
- {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",seed:20024,count:32,time:160,len:250,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
+ {name:"MONEY ROOM MILLIONS",chore:"Pick up the coins and put them back in the coin chest",drop:"coinchest",item:"coin",seed:25089,count:32,time:160,len:260,gap:3,enemies:["hamster","roomba","slime"],density:.7,lego:.25,movers:1,theme:"money",music:"money",
+  text:"UNCLE PETE: The coin chest tipped over! You, Isaac and Annie: every coin back in the chest. Time to cash in!"},
+ {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",seed:20024,count:33,time:163,len:250,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
   text:"BOTH: We're turning onto our street RIGHT NOW."},
 ];
 const THEMES={
@@ -1044,10 +1056,11 @@ const THEMES={
  attic:{sky:"#7a5233",wall2:"#6b4628",ground:"#795548",top:"#bcaaa4",plat:"#5d4037",ptop:"#8d6e63"},
  pets:{sky:"#ffe0b2",wall2:"#ffd59a",ground:"#8d6e63",top:"#aed581",plat:"#a1887f",ptop:"#ffcc80"},
  race:{sky:"#81d4fa",wall2:"#4fc3f7",ground:"#424242",top:"#e53935",plat:"#616161",ptop:"#fafafa"},
+ money:{sky:"#183e30",wall2:"#123327",ground:"#644422",top:"#ffd54f",plat:"#9a742a",ptop:"#fff59d"},
  gameroom:{sky:"#1a1033",wall2:"#140c29",ground:"#311b92",top:"#00e5ff",plat:"#ff4081",ptop:"#ff80ab"},
  house:{sky:"#2b2d6e",wall2:"#25275e",ground:"#5d3a8a",top:"#b388ff",plat:"#00897b",ptop:"#4db6ac"},
 };
-const ITEM_NAMES={pillow:"pillows",videogame:"game controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
+const ITEM_NAMES={coin:"coins",pillow:"pillows",videogame:"game controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
@@ -1101,7 +1114,7 @@ function buildLevel(idx){
   const items=[],n=Math.min(L.count,cand.length);
   const used=new Set();
   for(let i=0;i<n;i++){let k=Math.round(i*(cand.length-1)/Math.max(1,n-1));while(used.has(k))k++;used.add(k);const s=cand[k];
-    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel","oldflower","testtube","book","chewtoy","tire","videogame","pillow"];
+    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel","oldflower","testtube","book","chewtoy","tire","videogame","pillow","coin"];
     items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%kinds.length]:L.item,got:false,bob:rng()*6});}
   const enemies=[];
   eSpots.filter(s=>s.x>14&&s.x<cols-10).forEach(s=>{
@@ -1519,6 +1532,9 @@ function drawItemRaw(k,x,y){
     R(x+8,y+1,6,6,"#ffd600");R(x+13,y+4,3,2,"#ff6d00");R(x+13,y+5,3,1,"#e65100");
     R(x+11,y+3,2,2,"#fff");R(x+12,y+3,1,2,"#000");R(x+9,y+2,2,1,"#fff59d");
     R(x+4,y+8,5,3,"#fbc02d");R(x+4,y+8,4,1,"#fff59d");}
+  else if(k==='coin'){
+    R(x+4,y+1,8,2,"#ffec8b");R(x+2,y+3,12,10,"#f9a825");R(x+4,y+13,8,2,"#b87913");
+    R(x+3,y+4,9,8,"#ffd54f");R(x+4,y+3,7,1,"#fff59d");R(x+5,y+5,5,1,"#b87913");R(x+5,y+6,2,2,"#b87913");R(x+8,y+8,2,2,"#b87913");R(x+5,y+10,5,1,"#b87913");R(x+7,y+4,1,8,"#b87913");}
   else if(k==='book'){ // a closed hardback with cream pages, a spine and a gold title
     const cover=["#b04444","#397e86","#7960a7","#54834b"][Math.abs(Math.round(itemSeed/16))%4];
     R(x+2,y+1,12,14,cover);R(x+4,y+3,9,10,"#fff3d6");R(x+2,y+1,2,14,shade(cover,-35));
@@ -1628,11 +1644,11 @@ function drawItemRaw(k,x,y){
 }
 
 // Drop-off size: most sprites are drawn at 28 px and scaled up 2x; a few are drawn full-size already.
-const DROP_SCALE={creamcouch:1,gameshelf:1,tirerack:1,petbasket:1,dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1};
+const DROP_SCALE={coinchest:1,creamcouch:1,gameshelf:1,tirerack:1,petbasket:1,dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1};
 // Normal height, much wider: these sprites are stretched sideways only.
 const DROP_WIDE={}; // (no longer used: wide drop-offs are drawn at full width)
-const DROP_W={creamcouch:56,gameshelf:70,tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
-const DROP_TOP={creamcouch:0,gameshelf:22,tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:0,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
+const DROP_W={coinchest:70,creamcouch:56,gameshelf:70,tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
+const DROP_TOP={coinchest:10,creamcouch:0,gameshelf:22,tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:0,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
 function drawDrop(d,ready,t){
   const x=Math.round(d.x),y=Math.round(d.y),k=d.kind;
   if(ready){g.save();g.globalAlpha=0.35+0.2*Math.sin(t*8);const rg=g.createRadialGradient(x+14,y+12,2,x+14,y+12,34);rg.addColorStop(0,'#fff59d');rg.addColorStop(1,'rgba(255,235,59,0)');g.fillStyle=rg;g.fillRect(x-24,y-24,76,72);g.restore();}
@@ -1652,6 +1668,12 @@ function drawDropRaw(k,x,y){
     R(x+2,y+4,44,2,"#e1f5fe");R(x,y+4,48,2,"#e3f2fd");R(x+2,y+22,44,2,"#81d4fa");
     for(let rr=0;rr<4;rr++)R(x+5+rr*11,y+7,1,14,"#e1f5fe");R(x+3,y+6,1,16,"#ffffff");
     R(x-2,y+9,3,5,"#81d4fa");R(x+47,y+9,3,5,"#81d4fa");}
+  else if(k==='coinchest'){
+    R(x,y-8,70,12,"#6d4024");R(x+3,y-11,64,5,"#a57036");R(x+3,y-6,64,8,"#251a13");
+    for(let c=0;c<10;c++){R(x+5+c*6,y-3-(c%3)*2,5,4,"#ffd54f");R(x+6+c*6,y-3-(c%3)*2,3,1,"#fff59d");}
+    R(x,y+4,70,20,"#9a612e");R(x,y+4,70,3,"#d49b4a");R(x,y+21,70,3,"#65401e");
+    for(const bx of [6,58]){R(x+bx,y-8,5,32,"#e5b842");R(x+bx+1,y-7,1,28,"#fff59d");}
+    R(x+30,y+7,10,11,"#ffd54f");R(x+34,y+10,3,5,"#543719");}
   else if(k==='libraryshelf'){ // long low library shelf with three shelves and gaps for returned books
     R(x-1,y-14,72,38,"#5d4037");R(x+1,y-12,68,34,"#3e2723");for(let sh=0;sh<3;sh++){R(x+1,y-2+sh*11,68,2,"#6d4c41");
       for(let b=0;b<16;b++){if((b*7+sh*3)%5===0)continue;R(x+3+b*4,y-11+sh*11,3,9-(b%3),["#c62828","#1565c0","#2e7d32","#f9a825","#6a1b9a"][(b+sh)%5]);}}
@@ -2017,6 +2039,13 @@ function drawBackground(th,t){
       if(k===1||k===3){R(dx,30,160,6,"#607d8b");R(dx+40,30,6,120,"#607d8b");R(dx+38,60,10,4,"#455a64");}
       if(k===2){R(dx+70,20,2,30,"#212121");R(dx+66,50,10,10,"#fff59d");g.save();g.globalAlpha=0.12;g.fillStyle='#fff59d';g.beginPath();g.moveTo(dx+66,56);g.lineTo(dx+76,56);g.lineTo(dx+130,200);g.lineTo(dx+12,200);g.fill();g.restore();}
       for(let b=0;b<6;b++)R(dx+((b*37)%150),40+b*22,22,10,"#ffffff08");
+    }else if(thn==='money'){
+      if(k===0){R(dx+20,38,104,126,"#607d78");R(dx+26,44,92,114,"#314e45");R(dx+32,50,80,102,"#75968a");
+        g.strokeStyle='#d4e0d2';g.lineWidth=4;g.beginPath();g.arc(dx+72,103,24,0,Math.PI*2);g.stroke();R(dx+68,82,8,42,"#b0c8b9");R(dx+51,99,42,8,"#b0c8b9");R(dx+69,100,6,6,"#ffd54f");}
+      if(k===1){for(let row=0;row<5;row++)for(let c=0;c<5-row;c++){const bx=dx+20+c*19+row*9,by=158-row*12;R(bx,by,17,10,"#e5a62a");R(bx+1,by+1,15,3,"#fff176");R(bx+2,by+8,13,2,"#b87913");}}
+      if(k===2){R(dx+16,44,116,42,"#a87925");R(dx+20,48,108,34,"#fff3bd");text("COIN CHEST",dx+23,55,8,"#6b4b1f","left",false);text("TYCOON!",dx+38,70,6,"#6b4b1f","left",false);}
+      if(k===3){R(dx+24,115,100,7,"#b48740");R(dx+30,122,6,45,"#6b4b1f");R(dx+112,122,6,45,"#6b4b1f");
+        for(let c=0;c<4;c++){R(dx+35+c*19,99-(c%2)*8,14,15+(c%2)*8,"#d4ab38");R(dx+36+c*19,99-(c%2)*8,12,2,"#fff59d");}}
     }else if(thn==='gameroom'){
       for(let q=0;q<5;q++)R(dx+((q*37)%150),20+q*28,2,2,["#ff4081","#00e5ff","#76ff03","#ffeb3b","#e040fb"][q]);   // twinkling pixel stars
       if(k===0){R(dx+20,60,44,110,"#4527a0");R(dx+16,56,52,10,"#7c4dff");R(dx+26,74,32,26,"#000");R(dx+30,80,6,4,"#ff4081");R(dx+44,86,6,4,"#00e5ff"); // arcade cabinet

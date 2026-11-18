@@ -26,10 +26,10 @@
 
 | Rule | Value |
 |---|---|
-| Time limit | Set per level (see [02 – Levels](02-levels.md)) |
+| Time limit | Set per level (see [02 – Levels](02-levels.md)); pickups do not add time |
 | Hit by a critter or LEGO brick | −5 seconds, knock-back, 1.5 s of invincibility |
 | Falling into a gap | −5 seconds, respawn on the last safe ground |
-| Siblings get hurt or fall | No penalty: they bounce off hazards and pop back after a fall |
+| Siblings get hurt or fall | No time penalty; their ace vehicles zap critters on contact, LEGO hits bounce them back, and falls respawn them |
 | Last 15 seconds | Screen flashes red, music speeds up 8% |
 | 10 seconds left | "HONK HONK!" warning |
 
@@ -59,9 +59,9 @@ Browsers block sound until the player interacts, so the title screen first asks 
 
 ## Difficulty Curve Guidelines
 
-- **Item count:** starts at 10 and rises by exactly one per level (Whole House: 32).
-- **Time limit:** rises with item count; each level allows at least 3 seconds more than the one before. Picking up items does **not** add time.
-- **Length:** stays fairly even, from 170 tiles at the start to about 210 near the end. The finale is 250.
+- **Item count:** starts at 10 and rises by exactly one per level (24 levels, ending with 33 in the Whole House).
+- **Time limit:** rises with item count; most levels allow 3 seconds more than the one before (the opening increase is 4 seconds; Race Track currently adds 2 seconds). Picking up items does **not** add time.
+- **Length:** is usually 170–216 tiles. Money Room is 260 tiles; the finale is 250. Some adjacent rooms share the same length.
 - **Rising challenge:** gap size, critter density, LEGO bricks and moving platforms increase over the game.
 - **The finale:** *The Whole House!!* mixes items and critters from every room.
 

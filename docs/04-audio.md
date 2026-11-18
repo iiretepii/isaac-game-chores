@@ -36,19 +36,20 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `pets` | *Wag Wag Woof Woof!* | 168 | 4 | 16 | 16 | Pet Room Pandemonium | `music/20-pet-room.mp3` |
 | `racerock` | *Radical Race Rock* | 240 | 2 | 8 | 32 | Race Track Rumble | `music/21-race-track.mp3` |
 | `chiptune` | *Press Start to Clean!* | 150 | 4 | 16 | 16 | Game Room Glitch | `music/22-game-room.mp3` |
-| `sad` | *Grounded Until Forever* | 66 | 2 | 8 | 8 | "Parents are home!" fail screen (starts about 3 s after the honk and the lose jingle) | `music/25-fail-screen.mp3` |
-| `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/24-ending-jubilee.mp3` |
-| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/23-whole-house-medley.mp3` |
+| `money` | *Coin Chest Tycoon* | 128 | 4 | 16 | 16 | Money Room Millions | `music/23-money-room.mp3` |
+| `sad` | *Grounded Until Forever* | 66 | 2 | 8 | 8 | "Parents are home!" fail screen (starts about 3 s after the honk and the lose jingle) | `music/26-fail-screen.mp3` |
+| `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/25-ending-jubilee.mp3` |
+| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/24-whole-house-medley.mp3` |
 
 ## Volume Leveling
 
-Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays at about −35 dB RMS. The gentle pieces are set a little quieter: title and basement −38, music room and attic −37, library −37, fail screen −38. The pet room song (about −32) and the ending fanfare (about −31) are set a little louder so the victory song stands out. The scheduler sets the music volume to `MUSIC_BASE × gain` whenever the style changes, including between medley segments. After writing or changing a song, re-measure its loudness and update its trim.
+Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays at about −35 dB RMS. The gentle pieces are set a little quieter: title and basement −38, music room and attic −37, library −37, fail screen −38. Money Room uses a 0.8 trim (measured near −38 dB RMS). The pet room song (about −32) and the ending fanfare (about −31) are set a little louder so the victory song stands out. The scheduler sets the music volume to `MUSIC_BASE × gain` whenever the style changes, including between medley segments. After writing or changing a song, re-measure its loudness and update its trim.
 
 ## The Medley
 
-`MIX` lists the styles in order: rock, princess, jazz, pop, hiphop, garden, pool, techno, polka, crooner, muzak, library, practice, punkska, silly, science, workout, romantic, baroque, pets, chiptune. The medley plays 4 bars of each, with a record scratch and crash between them, then loops.
+`MIX` lists the styles in order: rock, princess, jazz, pop, hiphop, garden, pool, techno, polka, crooner, muzak, library, practice, punkska, silly, science, workout, romantic, baroque, pets, chiptune, money. The medley plays 4 bars of each, with a record scratch and crash between them, then loops.
 
-**Rule:** every new level song must be added to `MIX`.
+**Rule:** add each new musical style to `MIX`. The current medley omits `racerock`, the race-track arrangement of the existing rock song, and does not include the separate title or ending music.
 
 ## Instruments
 
