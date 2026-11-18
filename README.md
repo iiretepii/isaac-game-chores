@@ -45,7 +45,7 @@ Browsers don't allow sound until you interact with the page, so the title screen
 
 The bar at the top of the screen shows the parents' car driving toward the house. When the timer reaches 0 the car arrives, the parents yell (for example "YOU'RE GROUNDED UNTIL YOU'RE 40!") and you retry the level. In the last 15 seconds the screen flashes red and the music speeds up, and with 10 seconds left you hear a **HONK HONK!**
 
-**Meet the parents:** Mom is very pretty, with long black hair and a purple dress. Uncle Pete is very handsome, with brown hair and a blue shirt. They look pretty grumpy if they beat you home, but they cheer for you on the victory screen.
+**Meet the parents:** Mom is very pretty, with long black hair and a purple dress. Uncle Pete is very handsome, with brown hair and a blue shirt. If they beat you home they stomp, shake their fists and yell while a sad piano song (*Grounded Until Forever*) plays, but they cheer for you on the victory screen.
 
 ### Hazards
 

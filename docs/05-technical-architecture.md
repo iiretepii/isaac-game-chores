@@ -28,7 +28,7 @@ There's no build step and there are no libraries. The only external resource is 
 
 `splash → title → intro → play ⇄ pause` (or `title → select → intro`, and `clear → select → intro` from the Chore Complete screen), then:
 - `play → clear → intro` (next level), or `clear → end → title` after the last level.
-- `play → lose → intro` (retry the same level).
+- `play → lose → intro` (retry the same level). On `lose`, the level music stops, the car honks and the lose jingle plays, then about 3.3 s later the sad `sad` style starts if the player is still on that screen.
 
 ## Main Loop
 
