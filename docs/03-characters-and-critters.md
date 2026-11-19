@@ -91,7 +91,7 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | Kitchen Catastrophe | `dish` | `dishwasher` (built into a counter) |
 | Living Room Lego-Land | `pillow` (fluffy throw pillow in 10 colors) | `creamcouch` (wide cream sofa, 56 px like the ending couch, with no pillows on it) |
 | Backyard Bonanza | `leaf` | `bag` |
-| Garden Glow-Up | `oldflower` (pulled weeds) | `compost` |
+| Garden Glow-Up | `oldflower` (pulled-up dandelion clump: toothed leaves, yellow flowers, a white puffball, dirt and roots) | `compost` |
 | Pool Party Panic | `towel` | `towelbasket` |
 | Garage of Doom | `trash` (tied black trash bag, crushed soda can with a banana peel, or apple core and fish bones, with stink lines) | `can` (a big green dumpster) |
 | Laundry Room Pee-Yew! | `undies` | `washer` (washer, dryer and hamper) |

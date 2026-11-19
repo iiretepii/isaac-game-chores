@@ -155,3 +155,6 @@ Grouped by milestone. See `git log` for every commit.
 
 ### Sad music on the fail screen
 - The "Parents are home!" screen now plays *Grounded Until Forever* (`sad`), a slow, sad piano lament in A minor with soft strings and celesta "teardrops". It starts after the car honk and the lose jingle, and stops when you try again. Recorded as `music/26-fail-screen.mp3`.
+
+### Garden weeds redrawn
+- The Garden Glow-Up pickup is now a pulled-up dandelion clump: a flat rosette of toothed leaves, two yellow dandelions, a white puffball, and a clump of dirt with roots. It replaces the old weed sprite, which did not read clearly. The design was picked from eight previewed options.
