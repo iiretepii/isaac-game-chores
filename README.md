@@ -95,7 +95,7 @@ Item counts rise by one each level. Lengths, critter density and gap sizes vary 
 | 3 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 12 | 101s | Dust bunnies, cockroaches | Swing jazz |
 | 4 | **Living Room Lego-Land** | Pillows in lots of colors → cream couch | 13 | 104s | Robot vacuums, cats | Bubblegum pop |
 | 5 | **Backyard Bonanza** | Leaves → leaf bag | 14 | 107s | Dogs, bees | Boom-bap hip hop |
-| 6 | **Garden Glow-Up** | Weeds → compost bin | 15 | 110s | Walking weeds | Beatles-style sing-along |
+| 6 | **Garden Glow-Up** | Weeds (pulled-up dandelion clumps) → compost bin | 15 | 110s | Walking weeds | Beatles-style sing-along |
 | 7 | **Pool Party Panic** | Soggy towels → towel basket | 16 | 113s | Ducks, geese, swans, squirrels | Silly splashy calypso |
 | 8 | **Garage of Doom** | Smelly trash → dumpster | 17 | 116s | Rats, robot vacuums, bees | Funky techno |
 | 9 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 18 | 119s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
