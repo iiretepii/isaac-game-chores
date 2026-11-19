@@ -158,3 +158,4 @@ Grouped by milestone. See `git log` for every commit.
 
 ### Garden weeds redrawn
 - The Garden Glow-Up pickup is now a pulled-up dandelion clump: a flat rosette of toothed leaves, two yellow dandelions, a white puffball, and a clump of dirt with roots. It replaces the old weed sprite, which did not read clearly. The design was picked from eight previewed options.
+- Fixed a bug introduced by the dandelion change: redrawing the weed accidentally deleted the drawings for pillows, game controllers, tires and pet toys. Those items were invisible in their levels (Living Room, Pet Room, Race Track, Game Room) and on the level select screen. All four are restored.
