@@ -159,3 +159,6 @@ Grouped by milestone. See `git log` for every commit.
 ### Garden weeds redrawn
 - The Garden Glow-Up pickup is now a pulled-up dandelion clump: a flat rosette of toothed leaves, two yellow dandelions, a white puffball, and a clump of dirt with roots. It replaces the old weed sprite, which did not read clearly. The design was picked from eight previewed options.
 - Fixed a bug introduced by the dandelion change: redrawing the weed accidentally deleted the drawings for pillows, game controllers, tires and pet toys. Those items were invisible in their levels (Living Room, Pet Room, Race Track, Game Room) and on the level select screen. All four are restored.
+
+### Money Room: erudite classical music
+- Replaced *Coin Chest Tycoon* with *Sonata for Compound Interest in D major* (`money`, 116 BPM), an original Classical-era chamber piece. It has a singing first violin with a second violin in thirds, harpsichord Alberti bass, a cello line, a trill on the leading tone and a perfect authentic cadence. Volume trim is 2.18 (about −37 dB RMS). The Money Room MP3 and the medley were re-recorded.
