@@ -162,3 +162,6 @@ Grouped by milestone. See `git log` for every commit.
 
 ### Money Room: erudite classical music
 - Replaced *Coin Chest Tycoon* with *Sonata for Compound Interest in D major* (`money`, 116 BPM), an original Classical-era chamber piece. It has a singing first violin with a second violin in thirds, harpsichord Alberti bass, a cello line, a trill on the leading tone and a perfect authentic cadence. Volume trim is 2.18 (about −37 dB RMS). The Money Room MP3 and the medley were re-recorded.
+
+### Money Room: Vivaldi's Winter, 8-bit
+- The Money Room now plays *Winter (8-Bit)*: the first movement of Antonio Vivaldi's "Winter" from *The Four Seasons* (public domain), arranged from memory as NES-style video game music. It has the shivering stacked chords, an icy trill, a storm burst, the repeated-note theme, solo-violin arpeggios, a plunging scale and a final F minor chord. It replaces the short-lived *Sonata for Compound Interest*. Trim 0.82 (about −35 dB RMS). The MP3 and the medley were re-recorded.

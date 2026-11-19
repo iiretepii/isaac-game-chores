@@ -949,35 +949,41 @@ STYLES.finale={name:"JUBILEE FOR A JOB WELL DONE",bpm:148,spb:2,bar:8,bars:24,
     }
   }};
 // Per-song volume trim so every song plays at a similar loudness (measured RMS; quieter targets for the gentle title, basement, attic, music-room and library pieces).
-// MONEY ROOM: "Sonata for Compound Interest in D major", an original, very erudite Classical-era chamber piece
-//  (in the manner of a Viennese string trio with harpsichord): a singing first violin with a second violin in
-//  thirds beneath it, a harpsichord playing Alberti-bass figures, a cello on the bass line, a modulation-flavored
-//  middle phrase, an ornamental trill on the leading tone and a proper perfect authentic cadence.
-function violin(m,dur,t,vol=0.03){const f=mtof(m),ga=out(1,0.35),end=t+dur+0.1;holdEnv(ga,t,vol,dur,0.035,Math.min(0.12,dur*0.3));
-  const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=Math.min(3800,f*5);lp.Q.value=0.8;lp.connect(ga);
-  const o=O('sawtooth',f,t,end,lp,0.6),o2=O('triangle',f*2,t,end,lp,0.15);
-  if(dur>0.2){const vg=AC.createGain();vg.gain.setValueAtTime(0,t);vg.gain.linearRampToValueAtTime(9,t+Math.min(0.35,dur*0.7));O('sine',5.6,t,end,vg);vg.connect(o.detune);vg.connect(o2.detune);}}
-function cello(m,dur,t,vol=0.06){const f=mtof(m),ga=out(1,0.25),end=t+dur+0.1;holdEnv(ga,t,vol,dur,0.05,0.1);
-  const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=900;lp.connect(ga);O('sawtooth',f,t,end,lp,0.6);O('sine',f,t,end,lp,0.5);}
-const CQ={D:[62,66,69],A:[57,61,64,67],G:[55,59,62],Bm:[59,62,66]};
-const CQ_CH=['D','A','D','G','D','A','D','A','Bm','G','A','D','G','D','A','D'];
-const CQ_MEL=[[74,-1,78,-1,81,-1,78,74],[76,-1,73,-1,69,-1,73,76],[78,79,81,83,81,-1,78,-1],[79,-1,83,-1,81,79,78,76],
- [81,-1,86,-1,85,83,81,79],[78,-1,76,-1,73,-1,69,-1],[74,76,78,79,81,83,85,86],[88,-1,85,-1,81,-1,0,0],
- [83,-1,86,-1,83,81,79,78],[79,-1,83,-1,79,78,76,74],[73,74,76,78,79,81,83,85],[86,-1,85,-1,86,-1,81,-1],
- [83,-1,79,-1,76,-1,79,83],[81,-1,78,-1,74,-1,78,81],[79,78,76,74,76,-1,-1,-1],[74,-1,-1,-1,0,0,0,0]];
-STYLES.money={name:"SONATA FOR COMPOUND INTEREST",bpm:116,spb:4,bar:16,bars:16,
-  play(i,t,d){const li=i%256,s16=li%16,bar=li>>4,ch=CQ[CQ_CH[bar]],end=bar===15;
-   // first violin (with a trill on the leading tone before the final cadence) and second violin a chord tone below
-   if(s16%2===0){const e=s16>>1,m=CQ_MEL[bar][e];if(m>0){let n=1;while(e+n<8&&CQ_MEL[bar][e+n]===-1)n++;const len=d*2*n*0.94;
-     if(bar===14&&e===4){for(let k=0;k<10;k++)violin(k%2?m+2:m,d*0.5,t+k*d*0.5,0.028);violin(m,d*1.2,t+d*5,0.03);}
-     else violin(m,len,t,0.03);
-     const pcs=ch.map(x=>x%12);let h=m-1;while(h>m-6&&!pcs.includes(h%12))h--;if(h>m-6)violin(h,len,t,0.018);}}
-   // harpsichord: Alberti bass (low, high, middle, high) in sixteenths; a rolled chord at the end
-   if(!end){const al=[ch[0],ch[2],ch[1],ch[2]];pluck(al[s16%4],d*1.2,t,0.022,0.25,5200);}
-   else if(s16===0)[50,57,62,66,69,74].forEach((x,k)=>pluck(x,d*8,t+k*0.03,0.03,0.4,5200));
-   // cello: half-note bass line, root then fifth
-   if(s16===0)cello(ch[0]-24,d*7.6,t);if(s16===8&&!end)cello(ch[0]-24+7,d*7.6,t,0.05);}};
-const STYLE_GAIN={"sad":1.62,"money":2.18,"punkska":0.39,"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
+// MONEY ROOM: "Winter (8-Bit)", Antonio Vivaldi's "Winter" from The Four Seasons (1725, public domain), first
+//  movement (Allegro non molto, F minor), arranged as NES-style video game music from memory. The shivering
+//  repeated chord builds up one voice at a time into a crunchy dissonance with an icy trill on top, a storm burst on
+//  the dominant, the driving tutti theme of repeated sixteenths stepping down, solo-violin arpeggios, a plunging
+//  scale and a final F minor chord. Pulse-wave "violins", a triangle-wave bass and 8-bit drums.
+const WIN_STACK=[53,60,63,61,67,70];                                     // voices that enter one bar at a time over a low F
+const WIN_THEME=[[77,75],[73,72],[70,73],[72,71]];                       // repeated-note storm theme, 8 sixteenths per note
+const WIN_TH_B=[41,39,46,36];
+const WIN_ARP=[[65,68,72,77,72,68,65,68,72,77,80,77,72,68,72,77],[70,73,77,82,77,73,70,73,77,82,85,82,77,73,77,82],
+ [79,76,72,70,67,64,67,70,72,76,79,82,79,76,72,70]];
+const WIN_RUN=[84,82,80,79,77,75,73,72,70,68,67,65,64,65,67,68];
+STYLES.money={name:"WINTER (8-BIT) – VIVALDI",bpm:116,spb:4,bar:16,bars:16,
+  play(i,t,d){const li=i%256,s16=li%16,bar=li>>4;
+   if(bar<6){                                                             // 1-6: shivering repeated eighths, stacking up
+     if(s16%2===0){chipTri(41,d*1.6,t,0.2);for(let v=0;v<=bar;v++)chipPulse(WIN_STACK[v],d*1.3,t,0.012+(v===bar&&s16<4?0.006:0),0.25);}
+     if(bar===5)chipPulse(s16%2?73:72,d*0.9,t,0.03,0.5);                   // icy trill on top
+     if(bar>=2){if(s16===0||s16===8)chipKick(t);if(s16%4===2)nz(0.03,0.025,'highpass',8000,t);}}
+   else if(bar===6){                                                      // 7: storm burst on the dominant
+     const c7=[48,55,60,64,67,70,72,76,79,82,84,88,91,94,96,100];chipPulse(c7[s16],d*0.9,t,0.035,0.5);chipTri(36,d*0.9,t,0.24);
+     if(s16===0){nz(1.2,0.09,'highpass',5000,t);chipKick(t);}if(s16%4===0)chipKick(t);if(s16===12)nz(0.1,0.12,'bandpass',2400,t,0.6);}
+   else if(bar<11){                                                       // 8-11: the tutti storm theme
+     const k=bar-7,m=WIN_THEME[k][s16>>3];chipPulse(m,d*0.85,t,0.04,0.5);chipPulse(m-12,d*0.85,t,0.016,0.125);
+     if(bar===10&&s16>=8)chipPulse(s16%2?73:72,d*0.9,t,0.03,0.5);
+     if(s16%2===0)chipTri(WIN_TH_B[k]+(s16%4?12:0),d*1.7,t);
+     if(s16===0||s16===8||s16===10)chipKick(t);if(s16===4||s16===12)nz(0.09,0.11,'bandpass',2400,t,0.6);if(s16%2===1)nz(0.025,0.03,'highpass',8000,t);}
+   else if(bar<14){                                                       // 12-14: solo violin arpeggios
+     const k=bar-11;chipPulse(WIN_ARP[k][s16],d*0.9,t,0.036,0.5,false);
+     if(s16%4===0)chipTri([41,46,36][k],d*3.5,t);if(s16%4===0)[[53,56,60],[58,61,65],[55,58,64]][k].forEach(x=>chipPulse(x,d*0.6,t,0.012,0.125));
+     if(s16===0||s16===8)chipKick(t);if(s16===4||s16===12)nz(0.08,0.08,'bandpass',2400,t,0.6);}
+   else if(bar===14){                                                     // 15: plunging scale with a snare roll
+     chipPulse(WIN_RUN[s16],d*0.9,t,0.038,0.5);chipTri(36+(s16>>2),d*0.9,t);nz(0.06,0.04+s16*0.004,'bandpass',2200,t,0.7);}
+   else{                                                                  // 16: final F minor chord, then shiver out
+     if(s16===0){[41,53,60,65,68,72,77].forEach(x=>x<50?chipTri(x,d*7,t,0.24):chipPulse(x,d*7,t,0.022,0.25,true));chipKick(t);nz(1.4,0.08,'highpass',5000,t);}
+     if(s16>=8&&s16%2===0){chipPulse(65,d*0.9,t,0.012,0.25);chipPulse(68,d*0.9,t,0.012,0.25);}}}};
+const STYLE_GAIN={"sad":1.62,"money":0.82,"punkska":0.39,"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
 for(const k in STYLE_GAIN)if(STYLES[k])STYLES[k].gain=STYLE_GAIN[k];
 const MUSIC_BASE=0.38;
 const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','punkska','silly','science','workout','romantic','baroque','pets','chiptune','money'];
