@@ -36,7 +36,7 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `pets` | *Wag Wag Woof Woof!* | 168 | 4 | 16 | 16 | Pet Room Pandemonium | `music/20-pet-room.mp3` |
 | `racerock` | *Radical Race Rock* | 240 | 2 | 8 | 32 | Race Track Rumble | `music/21-race-track.mp3` |
 | `chiptune` | *Press Start to Clean!* | 150 | 4 | 16 | 16 | Game Room Glitch | `music/22-game-room.mp3` |
-| `money` | *Winter (8-Bit)*, after Vivaldi | 116 | 4 | 16 | 16 | Money Room Millions | `music/23-money-room.mp3` |
+| `money` | *Winter (8-Bit) – Vivaldi* | 116 | 4 | 16 | 16 | Money Room Millions | `music/23-money-room.mp3` |
 | `sad` | *Grounded Until Forever* | 66 | 2 | 8 | 8 | "Parents are home!" fail screen (starts about 3 s after the honk and the lose jingle) | `music/26-fail-screen.mp3` |
 | `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/25-ending-jubilee.mp3` |
 | `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/24-whole-house-medley.mp3` |
