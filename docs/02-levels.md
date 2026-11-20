@@ -70,7 +70,7 @@ Each level is one object in the `LEVELS` array:
 ## Level Generation Rules
 
 - **Fixed seed:** each level has its own `seed` field, so inserting or reordering levels never changes another level's layout. New levels should get a new, unused seed (for example `777 + n × 1013` for the next unused `n`).
-- **Start and end:** the first 10 columns and last 16 columns are flat. The drop-off sits near the end; wider drop-offs shift left so they stay on the flat ground. Most drop-offs are 70 px wide; the couch, giant robot and toy tote are narrower.
+- **Start and end:** the first 10 columns and last 16 columns are always flat, solid ground (the end zone is forced flat after generation, and long stepping-stone runs are not started within 60 tiles of the end), so the drop-off always sits on a platform. The drop-off sits near the end; wider drop-offs shift left so they stay on the flat ground. Most drop-offs are 70 px wide; the couch, giant robot and toy tote are narrower.
 - **Difficulty curve:** `D = level index / (levels − 1)` runs from 0 on Level 1 to 1 on the Whole House, and it drives every building block:
   - **Pits** get wider (up to the level's `gap`) and more frequent, and late levels pick the widest sizes more often. Their landings get narrower (4–6 tiles early, 2–3 late) and can be higher or lower than the take-off.
   - **Stepping stones** (from about Level 7): two to four narrow pillars, 1–2 tiles wide, over open pits.
