@@ -64,6 +64,9 @@ Collision is tile-based: `#` is solid, `=` is a one-way platform (land from abov
 
 `buildLevel(idx)` uses `rngf(L.seed)` (each level's fixed seed) to fill a `ground[]` height array and a `map[row][col]` tile grid:
 - **Contents:** platforms, item spots, critter spots, moving platforms and LEGO bricks.
+- **Difficulty:** `D = idx / (LEVELS.length − 1)` scales pit width (up to `L.gap`), pit frequency, landing width, stepping stones, step heights, shelf height and moving-platform pit width. See [02 – Levels](02-levels.md#level-generation-rules).
+- **End zone:** after generation, `ground` is trimmed to `cols` and the last 16 columns are forced flat, so the drop-off always sits on solid ground.
+- **Item spots:** if the long pits leave too few spots, extra spots are added over solid ground until there are at least `count + 4`.
 - **Items:** chosen evenly from the candidate spots.
 - **Critters:** placed on spots past column 14, with types picked at random from the level's list.
 
