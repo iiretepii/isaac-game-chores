@@ -959,10 +959,13 @@ const WIN_THEME=[[77,75],[73,72],[70,73],[72,71]];                       // repe
 const WIN_TH_B=[41,39,46,36];
 const WIN_ARP=[[65,68,72,77,72,68,65,68,72,77,80,77,72,68,72,77],[70,73,77,82,77,73,70,73,77,82,85,82,77,73,77,82],
  [79,76,72,70,67,64,67,70,72,76,79,82,79,76,72,70]];
+// Play order: open on the famous solo-violin arpeggios, then the storm theme, the solo again, the shiver building
+//  into the storm burst, the plunging scale and the final chord.
+const WIN_ORDER=[11,12,13,7,8,9,10,11,12,13,3,4,5,6,14,15];
 const WIN_RUN=[84,82,80,79,77,75,73,72,70,68,67,65,64,65,67,68];
 STYLES.money={name:"WINTER (8-BIT) – VIVALDI",bpm:116,spb:4,bar:16,bars:16,
-  play(i,t,d){const li=i%256,s16=li%16,bar=li>>4;
-   if(bar<6){                                                             // 1-6: shivering repeated eighths, stacking up
+  play(i,t,d){const li=i%256,s16=li%16,bar=WIN_ORDER[li>>4];
+   if(bar<6){                                                             // shivering repeated eighths, stacking up
      if(s16%2===0){chipTri(41,d*1.6,t,0.2);for(let v=0;v<=bar;v++)chipPulse(WIN_STACK[v],d*1.3,t,0.012+(v===bar&&s16<4?0.006:0),0.25);}
      if(bar===5)chipPulse(s16%2?73:72,d*0.9,t,0.03,0.5);                   // icy trill on top
      if(bar>=2){if(s16===0||s16===8)chipKick(t);if(s16%4===2)nz(0.03,0.025,'highpass',8000,t);}}

@@ -165,3 +165,4 @@ Grouped by milestone. See `git log` for every commit.
 
 ### Money Room: Vivaldi's Winter, 8-bit
 - The Money Room now plays *Winter (8-Bit)*: the first movement of Antonio Vivaldi's "Winter" from *The Four Seasons* (public domain), arranged from memory as NES-style video game music. It has the shivering stacked chords, an icy trill, a storm burst, the repeated-note theme, solo-violin arpeggios, a plunging scale and a final F minor chord. It replaces the short-lived *Sonata for Compound Interest*. Trim 0.82 (about −35 dB RMS). The MP3 and the medley were re-recorded.
+- Reordered *Winter (8-Bit)* to open on the solo-violin arpeggios, the most recognizable and most video-game-like part. Order: solo → storm theme → solo → shiver build-up → storm burst → plunging scale → final chord. The MP3 and the medley were re-recorded.
