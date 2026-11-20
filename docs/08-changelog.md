@@ -170,3 +170,4 @@ Grouped by milestone. See `git log` for every commit.
 ### Music room: Liszt and Chopin
 - *Piano Practice (Mom Is Listening)* now runs: scales with a wrong note → Liszt's *La Campanella* (slow at first, with a missed high bell note, then faster) → Chopin's *Nocturne in B-flat minor, Op. 9 No. 1* (wide left-hand arpeggios, singing melody, a sparkling run) → Mountain King → jazz licks → Bach's C-major Prelude → Chopsticks → Ode to Joy, then it loops.
 - Removed Für Elise, Twinkle, Jingle Bells, the spooky toccata and the pop tune to keep it from dragging. Both new pieces are public domain and were written from memory. The MP3 and the medley were re-recorded.
+- Swapped *La Campanella* (it sounded bad) for Mozart's *Rondo alla Turca*: a fumbled false start, then the famous opening with a bouncy oom-pah left hand and a final A minor chord. Order now: scales → Rondo alla Turca → Chopin Nocturne → the rest. The MP3 and the medley were re-recorded.
