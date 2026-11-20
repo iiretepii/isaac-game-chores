@@ -26,7 +26,7 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `workout` | *Maximum Reps!!!* | 140 | 4 | 16 | 8 | Workout Room Workout | `music/17-workout-room.mp3` |
 | `pool` | *Cannonball Calypso* | 128 | 4 | 16 | 16 | Pool Party Panic | `music/07-pool.mp3` |
 | `silly` | *Beep Boop Banana Boogie* | 150 | 2 | 8 | 8 | Tech Room Trouble | `music/15-tech-room.mp3` |
-| `practice` | *Piano Practice (Mom Is Listening)* | 100 | 4 | 16 | 67 | Music Room Mayhem | `music/13-music-room.mp3` |
+| `practice` | *Piano Practice (Mom Is Listening)* | 100 | 4 | 16 | 50 | Music Room Mayhem | `music/13-music-room.mp3` |
 | `muzak` | *Muzak For Meetings (Vol. 3)* | 104 | 2 | 8 | 8 | Home Office Havoc | `music/11-home-office.mp3` |
 | `crooner` | *Bathroom Amore* | 228 | 2 | 6 | 16 | Bathroom Blunder | `music/10-bathroom.mp3` |
 | `polka` | *Oompah Undies Polka* | 132 | 2 | 4 | 16 | Laundry Room Pee-Yew! | `music/09-laundry-room.mp3` |
