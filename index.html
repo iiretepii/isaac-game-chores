@@ -1008,53 +1008,53 @@ function scheduler(){
 
 // ================= LEVEL DATA =================
 const LEVELS=[
- {name:"ISAAC'S ROOM",chore:"Put the toy dragons back in the toy chest",drop:"toychest",item:"dragon",seed:777,count:10,time:94,len:170,gap:1,enemies:["bzombie","bskel","bspider","hisser"],density:.4,lego:0,movers:0,theme:"bedroom",music:"rock",
+ {name:"ISAAC'S ROOM",chore:"Put the toy dragons back in the toy chest",drop:"toychest",item:"dragon",seed:777,count:10,time:94,len:170,gap:3,enemies:["bzombie","bskel","bspider","hisser"],density:.4,lego:0,movers:0,theme:"bedroom",music:"rock",
   text:"UNCLE PETE: Isaac, your dragons escaped AGAIN. Back in the toy chest before Mom sees!"},
- {name:"ANNIE'S ROOM",chore:"Put the dolls back in the doll house",drop:"dollhouse",item:"doll",seed:1790,count:11,time:98,len:173,gap:1,enemies:["tabby","husky","pom"],density:.45,lego:0,movers:0,theme:"annie",music:"princess",
+ {name:"ANNIE'S ROOM",chore:"Put the dolls back in the doll house",drop:"dollhouse",item:"doll",seed:1790,count:11,time:98,len:173,gap:3,enemies:["tabby","husky","pom"],density:.45,lego:0,movers:0,theme:"annie",music:"princess",
   text:"MOM: Annie, your dolls are having a party ALL over the floor. Doll house, now!"},
- {name:"KITCHEN CATASTROPHE",chore:"Load the dirty dishes into the dishwasher",drop:"dishwasher",item:"dish",seed:2803,count:12,time:101,len:175,gap:2,enemies:["dust","roach"],density:.45,lego:0,movers:0,theme:"kitchen",music:"jazz",
+ {name:"KITCHEN CATASTROPHE",chore:"Load the dirty dishes into the dishwasher",drop:"dishwasher",item:"dish",seed:2803,count:12,time:101,len:175,gap:4,enemies:["dust","roach"],density:.45,lego:0,movers:0,theme:"kitchen",music:"jazz",
   text:"UNCLE PETE: Why is there a pancake on the ceiling? Fix it."},
- {name:"LIVING ROOM LEGO-LAND",chore:"Put the pillows back on the couch",drop:"creamcouch",item:"pillow",seed:3816,count:13,time:104,len:178,gap:2,enemies:["roomba","cat"],density:.5,lego:.4,movers:0,theme:"living",music:"pop",
+ {name:"LIVING ROOM LEGO-LAND",chore:"Put the pillows back on the couch",drop:"creamcouch",item:"pillow",seed:3816,count:13,time:104,len:178,gap:4,enemies:["roomba","cat"],density:.5,lego:.4,movers:0,theme:"living",music:"pop",
   text:"MOM: Watch out for LEGOs. Trust me. Toys away!"},
- {name:"BACKYARD BONANZA",chore:"Rake leaves into the bag",drop:"bag",item:"leaf",seed:4829,count:14,time:107,len:181,gap:3,enemies:["dog","bee"],density:.55,lego:.2,movers:1,theme:"yard",music:"hiphop",
+ {name:"BACKYARD BONANZA",chore:"Rake leaves into the bag",drop:"bag",item:"leaf",seed:4829,count:14,time:107,len:181,gap:4,enemies:["dog","bee"],density:.55,lego:.2,movers:1,theme:"yard",music:"hiphop",
   text:"UNCLE PETE: The dog ate the rake. Use your hands. Go!"},
- {name:"GARDEN GLOW-UP",chore:"Pull up the weeds and put them in the compost bin",drop:"compost",item:"oldflower",seed:5842,count:15,time:110,len:183,gap:3,enemies:["weed"],density:.62,lego:0,movers:1,theme:"garden",music:"garden",
+ {name:"GARDEN GLOW-UP",chore:"Pull up the weeds and put them in the compost bin",drop:"compost",item:"oldflower",seed:5842,count:15,time:110,len:183,gap:5,enemies:["weed"],density:.62,lego:0,movers:1,theme:"garden",music:"garden",
   text:"MOM: Those weeds need pulling! Watch out: some of them have learned to walk!"},
- {name:"POOL PARTY PANIC",chore:"Put the wet towels back in the towel basket",drop:"towelbasket",item:"towel",seed:6855,count:16,time:113,len:183,gap:3,enemies:["duck","goose","swan","squirrel"],density:.58,lego:0,movers:1,theme:"pool",music:"pool",
+ {name:"POOL PARTY PANIC",chore:"Put the wet towels back in the towel basket",drop:"towelbasket",item:"towel",seed:6855,count:16,time:113,len:183,gap:5,enemies:["duck","goose","swan","squirrel"],density:.58,lego:0,movers:1,theme:"pool",music:"pool",
   text:"MOM: Who left 15 SOGGY towels around the pool?! Basket. Now. And shoo those geese!"},
- {name:"GARAGE OF DOOM",chore:"Take out ALL the trash",drop:"can",item:"trash",seed:7868,count:17,time:116,len:186,gap:3,enemies:["rat","roomba","bee"],density:.62,lego:.45,movers:1,theme:"garage",music:"techno",
+ {name:"GARAGE OF DOOM",chore:"Take out ALL the trash",drop:"can",item:"trash",seed:7868,count:17,time:116,len:186,gap:5,enemies:["rat","roomba","bee"],density:.62,lego:.45,movers:1,theme:"garage",music:"techno",
   text:"MOM: Something in the garage is ALIVE. Trash day!"},
- {name:"LAUNDRY ROOM PEE-YEW!",chore:"Get the stinky undies in the washer",drop:"washer",item:"undies",seed:8881,count:18,time:119,len:189,gap:3,enemies:["bubble","dust","roach"],density:.64,lego:.3,movers:1,theme:"laundry",music:"polka",
+ {name:"LAUNDRY ROOM PEE-YEW!",chore:"Get the stinky undies in the washer",drop:"washer",item:"undies",seed:8881,count:18,time:119,len:189,gap:5,enemies:["bubble","dust","roach"],density:.64,lego:.3,movers:1,theme:"laundry",music:"polka",
   text:"MOM: Who left STINKY UNDIES all over the laundry room?! P.U.!!"},
- {name:"BATHROOM BLUNDER",chore:"Flush the runaway poops down the toilet",drop:"toilet",item:"poop",seed:9894,count:19,time:122,len:191,gap:3,enemies:["bubble","roach","spider"],density:.66,lego:.3,movers:1,theme:"bathroom",music:"crooner",
+ {name:"BATHROOM BLUNDER",chore:"Flush the runaway poops down the toilet",drop:"toilet",item:"poop",seed:9894,count:19,time:122,len:191,gap:6,enemies:["bubble","roach","spider"],density:.66,lego:.3,movers:1,theme:"bathroom",music:"crooner",
   text:"UNCLE PETE: The dog had an 'accident' in the bathroom. Flush it ALL. Good luck."},
- {name:"HOME OFFICE HAVOC",chore:"Put the old work papers in the recycle bin",drop:"recycle",item:"paper",seed:10907,count:20,time:125,len:194,gap:3,enemies:["ant","spider","hamster"],density:.68,lego:.3,movers:1,theme:"office",music:"muzak",
+ {name:"HOME OFFICE HAVOC",chore:"Put the old work papers in the recycle bin",drop:"recycle",item:"paper",seed:10907,count:20,time:125,len:194,gap:6,enemies:["ant","spider","hamster"],density:.68,lego:.3,movers:1,theme:"office",music:"muzak",
   text:"MOM: My OLD WORK PAPERS are all over the office. And the class hamster escaped. Again."},
- {name:"LIBRARY BOOK ROUNDUP",chore:"Pick up the books and put them back on the shelves",drop:"libraryshelf",item:"book",seed:11920,count:21,time:128,len:197,gap:2,enemies:["dust","spider","hamster"],density:.45,lego:0,movers:1,theme:"library",music:"library",
+ {name:"LIBRARY BOOK ROUNDUP",chore:"Pick up the books and put them back on the shelves",drop:"libraryshelf",item:"book",seed:11920,count:21,time:128,len:197,gap:6,enemies:["dust","spider","hamster"],density:.45,lego:0,movers:1,theme:"library",music:"library",
   text:"MOM: Shhh! You, Isaac and Annie: return every book to the shelves. Even the hamster's bedtime story!"},
- {name:"MUSIC ROOM MAYHEM",chore:"Put the old piano scores back on the bookshelf",drop:"bookshelf",item:"score",seed:12933,count:22,time:131,len:197,gap:3,enemies:["cat","spider","roach"],density:.7,lego:.3,movers:1,theme:"musicroom",music:"practice",
+ {name:"MUSIC ROOM MAYHEM",chore:"Put the old piano scores back on the bookshelf",drop:"bookshelf",item:"score",seed:12933,count:22,time:131,len:197,gap:7,enemies:["cat","spider","roach"],density:.7,lego:.3,movers:1,theme:"musicroom",music:"practice",
   text:"MOM: Your old piano music is ALL over the floor. Shelve it! ...And did you practice?"},
- {name:"ARTS & CRAFTS CHAOS",chore:"Put the paint buckets back on the shelves",drop:"paintshelf",item:"paint",seed:13946,count:23,time:134,len:199,gap:3,enemies:["ant","cat","bubble"],density:.7,lego:.35,movers:1,theme:"arts",music:"punkska",
+ {name:"ARTS & CRAFTS CHAOS",chore:"Put the paint buckets back on the shelves",drop:"paintshelf",item:"paint",seed:13946,count:23,time:134,len:199,gap:7,enemies:["ant","cat","bubble"],density:.7,lego:.35,movers:1,theme:"arts",music:"punkska",
   text:"MOM: Who painted a mustache on the cat?! Paint buckets back on the shelves. Lids ON."},
- {name:"TECH ROOM TROUBLE",chore:"Bring the robot parts to the robot workbench",drop:"workbench",item:"robot",seed:14959,count:24,time:137,len:202,gap:3,enemies:["zap"],density:.75,lego:.35,movers:1,theme:"tech",music:"silly",
+ {name:"TECH ROOM TROUBLE",chore:"Bring the robot parts to the robot workbench",drop:"workbench",item:"robot",seed:14959,count:24,time:137,len:202,gap:7,enemies:["zap"],density:.75,lego:.35,movers:1,theme:"tech",music:"silly",
   text:"UNCLE PETE: Isaac took the robot apart AGAIN. Put it back together before Mom sees the sparks!"},
- {name:"SCIENCE LAB SCRAMBLE",chore:"Collect the test tubes and return them to the lab rack",drop:"labrack",item:"testtube",seed:15972,count:25,time:140,len:204,gap:3,enemies:["slime","bubble","zap"],density:.7,lego:.2,movers:1,theme:"science",music:"science",
+ {name:"SCIENCE LAB SCRAMBLE",chore:"Collect the test tubes and return them to the lab rack",drop:"labrack",item:"testtube",seed:15972,count:25,time:140,len:204,gap:8,enemies:["slime","bubble","zap"],density:.7,lego:.2,movers:1,theme:"science",music:"science",
   text:"UNCLE PETE: The experiment went BOING! You, Isaac and Annie: test tubes back in the rack. Watch out for runaway slime!"},
- {name:"WORKOUT ROOM WORKOUT",chore:"Put the weights back on the weight rack",drop:"weightrack",item:"weight",seed:16985,count:26,time:143,len:205,gap:3,enemies:["rat","cat","dog","mite"],density:.76,lego:.35,movers:1,theme:"gym",music:"workout",
+ {name:"WORKOUT ROOM WORKOUT",chore:"Put the weights back on the weight rack",drop:"weightrack",item:"weight",seed:16985,count:26,time:143,len:205,gap:8,enemies:["rat","cat","dog","mite"],density:.76,lego:.35,movers:1,theme:"gym",music:"workout",
   text:"UNCLE PETE: I left my weights ALL over the workout room. Rack 'em up! Feel the burn!"},
- {name:"THE SPOOKY BASEMENT",chore:"Move the wet shirts to the dryer",drop:"dryer",item:"shirt",seed:17998,count:27,time:146,len:207,gap:3,enemies:["spider","rat","dust"],density:.66,lego:.3,movers:1,theme:"basement",music:"romantic",
+ {name:"THE SPOOKY BASEMENT",chore:"Move the wet shirts to the dryer",drop:"dryer",item:"shirt",seed:17998,count:27,time:146,len:207,gap:8,enemies:["spider","rat","dust"],density:.66,lego:.3,movers:1,theme:"basement",music:"romantic",
   text:"UNCLE PETE: The washer is in the basement. Don't mind the spiders. Mostly."},
- {name:"ATTIC OF ANTIQUES",chore:"Pack the ornaments in the old trunk",drop:"trunk",item:"ornament",seed:19011,count:28,time:149,len:210,gap:3,enemies:["bat","spider","rat"],density:.7,lego:.35,movers:1,theme:"attic",music:"baroque",
+ {name:"ATTIC OF ANTIQUES",chore:"Pack the ornaments in the old trunk",drop:"trunk",item:"ornament",seed:19011,count:28,time:149,len:210,gap:8,enemies:["bat","spider","rat"],density:.7,lego:.35,movers:1,theme:"attic",music:"baroque",
   text:"MOM: Holiday ornaments go back in the attic trunk. Watch out for bats!"},
- {name:"PET ROOM PANDEMONIUM",chore:"Gather the pet toys and put them in the pet toy basket",drop:"petbasket",item:"chewtoy",seed:20017,count:29,time:152,len:212,gap:3,enemies:["hamster","tabby","pom"],density:.66,lego:.3,movers:1,theme:"pets",music:"pets",
+ {name:"PET ROOM PANDEMONIUM",chore:"Gather the pet toys and put them in the pet toy basket",drop:"petbasket",item:"chewtoy",seed:20017,count:29,time:152,len:212,gap:9,enemies:["hamster","tabby","pom"],density:.66,lego:.3,movers:1,theme:"pets",music:"pets",
   text:"MOM: The pets threw a party! Squeaky toys EVERYWHERE. Basket, please. And the hamster got out AGAIN!"},
- {name:"RACE TRACK RUMBLE",chore:"Roll the tires back onto the tire shelf",drop:"tirerack",item:"tire",seed:21030,count:30,time:154,len:214,gap:3,enemies:["roomba","squirrel","goose"],density:.7,lego:.3,movers:1,theme:"race",music:"racerock",
+ {name:"RACE TRACK RUMBLE",chore:"Roll the tires back onto the tire shelf",drop:"tirerack",item:"tire",seed:21030,count:30,time:154,len:214,gap:9,enemies:["roomba","squirrel","goose"],density:.7,lego:.3,movers:1,theme:"race",music:"racerock",
   text:"UNCLE PETE: Pit stop chaos! Tires all over the track. Get them back on the shelf before the next lap!"},
- {name:"GAME ROOM GLITCH",chore:"Put the game controllers back on the game shelf",drop:"gameshelf",item:"videogame",seed:22043,count:31,time:157,len:216,gap:3,enemies:["invader","chomper","ghosty"],density:.72,lego:.3,movers:1,theme:"gameroom",music:"chiptune",
+ {name:"GAME ROOM GLITCH",chore:"Put the game controllers back on the game shelf",drop:"gameshelf",item:"videogame",seed:22043,count:31,time:157,len:216,gap:9,enemies:["invader","chomper","ghosty"],density:.72,lego:.3,movers:1,theme:"gameroom",music:"chiptune",
   text:"UNCLE PETE: I said ONE more game! Now there are controllers everywhere... and something just crawled out of the TV!"},
- {name:"MONEY ROOM MILLIONS",chore:"Pick up the coins and put them back in the coin chest",drop:"coinchest",item:"coin",seed:25089,count:32,time:160,len:260,gap:3,enemies:["hamster","roomba","slime"],density:.7,lego:.25,movers:1,theme:"money",music:"money",
+ {name:"MONEY ROOM MILLIONS",chore:"Pick up the coins and put them back in the coin chest",drop:"coinchest",item:"coin",seed:25089,count:32,time:160,len:260,gap:10,enemies:["hamster","roomba","slime"],density:.7,lego:.25,movers:1,theme:"money",music:"money",
   text:"UNCLE PETE: The coin chest tipped over! You, Isaac and Annie: every coin back in the chest. Time to cash in!"},
- {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",seed:20024,count:33,time:163,len:250,gap:3,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
+ {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",seed:20024,count:33,time:163,len:250,gap:10,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
   text:"BOTH: We're turning onto our street RIGHT NOW."},
 ];
 const THEMES={
@@ -1092,36 +1092,59 @@ function buildLevel(idx){
   const ri=(a,b)=>a+Math.floor(rng()*(b-a+1));
   const map=[];for(let r=0;r<ROWS;r++)map.push(new Array(cols).fill('.'));
   const ground=new Array(cols).fill(0),plats=[],spots=[],eSpots=[],movers=[],legos=[];
+  // DIFFICULTY CURVE: D runs from 0 (first level) to 1 (the Whole House). Later levels get wider pits that need a
+  //  well-timed double jump, bigger height changes, narrower landings, stepping-stone pillars and long pits that can
+  //  only be crossed by riding a (slow, steady) moving platform. Every jump stays inside what the physics can clear:
+  //  a single jump clears 7 tiles on the flat and a perfect double jump about 11, so the widest late pits (8-10 tiles)
+//  need a well-timed double jump; a single jump rises about 4 tiles, so 5-tile climbs need a double jump too.
+  const D=idx/Math.max(1,LEVELS.length-1),maxPit=L.gap,minPit=2+Math.floor(maxPit/3);
   let x=0,h=3;
   for(;x<10;x++)ground[x]=h;
-  while(x<cols-16){
+  const landing=()=>ri(Math.max(2,4-Math.round(2*D)),Math.max(3,6-Math.round(3*D)));   // run after a jump: 4-6 early, 2-3 late
+  const setH=nh=>{h=Math.max(2,Math.min(9,nh));};
+  while(x<cols-18){
     const r=rng();
-    if(r<0.22){ // pit
-      if(L.movers&&rng()<0.5){
-        const gp=ri(6,8),gy=(ROWS-h)*T;
-        movers.push({x:(x+1)*T,y:gy,w:3*T,h:8,a:(x+0.5)*T,b:(x+gp-3.5)*T,sp:40+idx*6,dir:1,dx:0});
+    if(r<0.22+0.14*D){ // pit
+      if(L.movers&&rng()<0.35+0.15*D){
+        // long pit with a moving platform: too wide to jump on later levels, so you have to ride
+        const gp=Math.min(14,ri(6,8)+Math.round(6*D)),gy=(ROWS-h)*T;
+        movers.push({x:(x+1)*T,y:gy,w:3*T,h:8,a:(x+0.5)*T,b:(x+gp-3.5)*T,sp:42+Math.round(18*D),dir:1,dx:0});
         for(let i=0;i<gp;i++)ground[x++]=0;
         spots.push({x:x-gp/2,row:ROWS-h-3});
+        const run=landing();for(let i=0;i<run;i++)ground[x++]=h;
       }else{
-        const gp=ri(2,1+L.gap);
+        // plain pit; the landing can be higher or lower, and a higher landing means a shorter gap so it stays clearable
+        const up=rng()<D*0.6?ri(1,1+Math.round(2*D)):(rng()<0.3?-ri(1,2):0);
+        const lim=up<=0?10:up<=2?9:8;                                                   // keeps at least 1 tile of margin on a perfect double jump
+        let gp=rng()<0.25+D?maxPit-ri(0,1):ri(minPit,maxPit);gp=Math.max(2,Math.min(gp,lim,maxPit-Math.max(0,up-1)));
         for(let i=0;i<gp;i++)ground[x++]=0;
-        spots.push({x:x-gp/2-0.5,row:ROWS-h-3});
+        spots.push({x:x-gp/2-0.5,row:ROWS-h-3-Math.max(0,up)});
+        setH(h+up);const run=landing();for(let i=0;i<run;i++)ground[x++]=h;
       }
-      const run=ri(3,5);for(let i=0;i<run;i++)ground[x++]=h;
-    }else if(r<0.45){ // step
-      let nh=h+[-2,-1,1,2,3][ri(0,4)];nh=Math.max(2,Math.min(8,nh));h=nh;
-      const run=ri(3,6);for(let i=0;i<run;i++)ground[x++]=h;
+    }else if(D>0.25&&r<0.32+0.18*D){ // stepping stones: narrow pillars over a long pit
+      const n=ri(2,2+Math.round(2*D));
+      for(let k=0;k<n;k++){
+        const gp=ri(Math.max(2,minPit-1),Math.max(3,maxPit-2));for(let i=0;i<gp;i++)ground[x++]=0;
+        setH(h+ri(-1,1));const w=rng()<D?1:2;for(let i=0;i<w;i++)ground[x++]=h;
+        spots.push({x:x-w,row:ROWS-h-2});
+      }
+      const gp=ri(minPit,Math.max(minPit,maxPit-2));for(let i=0;i<gp;i++)ground[x++]=0;
+      const run=landing()+1;for(let i=0;i<run;i++)ground[x++]=h;
+    }else if(r<0.45+0.1*D){ // step up or down: bigger climbs later (up to 5 tiles needs a double jump)
+      const ups=D<0.3?[-1,1,2]:D<0.65?[-2,-1,2,3]:[-3,-2,3,4,5];
+      setH(h+ups[ri(0,ups.length-1)]);
+      const run=ri(3,6-Math.round(2*D));for(let i=0;i<run;i++)ground[x++]=h;
       spots.push({x:x-2,row:ROWS-h-1});
       if(run>=5&&rng()<L.density*0.6)eSpots.push({x:x-3,row:ROWS-h-1});
     }else if(r<0.7){ // shelf platform(s)
       const run=ri(8,11);for(let i=0;i<run;i++)ground[x+i]=h;
-      const pl=ri(3,4),px=x+2,prow=ROWS-h-3;
+      const pl=ri(3,4)-(D>0.6?1:0),px=x+2,prow=ROWS-h-3-(D>0.5?1:0);
       plats.push({x:px,row:prow,len:pl});spots.push({x:px+1,row:prow-1});
-      if(idx>=1&&rng()<0.5&&prow-3>=3){const p2=px+pl,pr2=prow-3;plats.push({x:p2,row:pr2,len:3});spots.push({x:p2+1,row:pr2-1});}
+      if(idx>=1&&rng()<0.5+0.3*D&&prow-3>=3){const p2=px+pl+(D>0.5?1:0),pr2=prow-3;plats.push({x:p2,row:pr2,len:3-(D>0.75?1:0)});spots.push({x:p2+1,row:pr2-1});}
       if(rng()<L.density)eSpots.push({x:x+run-2,row:ROWS-h-1});
       x+=run;
     }else{ // flat run with enemy or lego
-      const run=ri(6,10);for(let i=0;i<run;i++)ground[x+i]=h;
+      const run=ri(6,10-Math.round(3*D));for(let i=0;i<run;i++)ground[x+i]=h;
       if(L.lego&&rng()<L.lego){legos.push({x:x+ri(2,run-3),row:ROWS-h-1});spots.push({x:x+1,row:ROWS-h-1});}
       else if(rng()<L.density+0.2)eSpots.push({x:x+Math.floor(run/2),row:ROWS-h-1});
       spots.push({x:x+run-2,row:ROWS-h-2});
@@ -1132,6 +1155,8 @@ function buildLevel(idx){
   for(let c=0;c<cols;c++)for(let r=ROWS-ground[c];r<ROWS;r++)if(ground[c])map[r][c]='#';
   plats.forEach(p=>{for(let i=0;i<p.len;i++)if(p.x+i<cols)map[p.row][p.x+i]='=';});
   legos.forEach(l=>{if(ground[l.x]&&map[l.row][l.x]==='.')map[l.row][l.x]='x';});
+  // enough item spots: if the long pits left too few, add more over solid ground
+  for(let c=8,k=0;spots.filter(q=>q.x>6&&q.x<cols-8).length<L.count+4&&c<cols-8;c+=3)if(ground[c]&&ground[c-1]&&!spots.some(q=>Math.abs(q.x-c)<2))spots.push({x:c,row:ROWS-ground[c]-2});
   // pick items evenly
   const cand=spots.filter(s=>s.x>6&&s.x<cols-8).sort((a,b)=>a.x-b.x);
   const items=[],n=Math.min(L.count,cand.length);

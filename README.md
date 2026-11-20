@@ -86,7 +86,7 @@ Their vehicles follow the terrain, with these helper abilities:
 
 ## The Levels
 
-Item counts rise by one each level. Lengths, critter density and gap sizes vary by room; later levels generally add more hazards. Most rooms are 170–216 tiles long, Money Room is 260, and the finale is 250. Every level has its own room, chore and music style.
+Item counts rise by one each level. The game gets **progressively harder**. The first rooms only have small gaps, but by the end you need well-timed double jumps over wide pits, hops across narrow stepping stones, bigger climbs, and rides on moving platforms over pits too wide to jump. Most rooms are 170–216 tiles long, Money Room is 260, and the finale is 250. Every level has its own room, chore and music style.
 
 | # | Level | Chore | Items | Time | Critters | Music |
 |---|---|---|---|---|---|---|
@@ -199,7 +199,7 @@ The whole game (code, graphics, levels and music) lives in a single file, [`inde
 ### Level Generation
 
 - Levels aren't drawn by hand. A **level generator** builds each one from a list of building blocks: gaps, steps up and down, floating shelves, flat runs with critters or LEGO bricks, and gaps with moving platforms.
-- The generator only uses gaps and height changes that are **always jumpable**, so every level can be finished.
+- A **difficulty curve** grows from the first level to the last: wider and more frequent pits, narrower landings, stepping stones, bigger climbs and long moving-platform pits. Every gap and climb stays within the jump physics (a single jump clears 7 tiles, a perfect double jump about 11), with at least a tile of margin, so every level can still be finished.
 - It uses a **seeded random number generator**: the same number always produces the same "random" choices, so each level comes out identical every time you play.
 - Chore items are spread **evenly** along the level, and the last stretch is always flat ground for the drop-off spot. Each level's settings (length, number of items, time limit, critter types and how many, gap size, LEGO bricks, moving platforms, theme and music) live in one list, which makes adding a new level quick.
 

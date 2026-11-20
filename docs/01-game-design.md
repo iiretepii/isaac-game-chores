@@ -62,7 +62,7 @@ Browsers block sound until the player interacts, so the title screen first asks 
 - **Item count:** starts at 10 and rises by exactly one per level (24 levels, ending with 33 in the Whole House).
 - **Time limit:** rises with item count; most levels allow 3 seconds more than the one before (the opening increase is 4 seconds; Race Track currently adds 2 seconds). Picking up items does **not** add time.
 - **Length:** is usually 170–216 tiles. Money Room is 260 tiles; the finale is 250. Some adjacent rooms share the same length.
-- **Rising challenge:** gap size, critter density, LEGO bricks and moving platforms increase over the game.
+- **Rising challenge:** the game gets steadily harder. Early levels only have small single-jump gaps. Later levels add wider pits that need a well-timed double jump (8–10 tiles), bigger climbs, narrow stepping stones and long pits you can only cross by riding a moving platform. Critter density and LEGO bricks also increase. Moving platforms stay slow and steady instead of getting faster.
 - **The finale:** *The Whole House!!* mixes items and critters from every room.
 
 ## Content and Tone Guidelines

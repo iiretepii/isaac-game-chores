@@ -172,3 +172,9 @@ Grouped by milestone. See `git log` for every commit.
 - Removed Für Elise, Twinkle, Jingle Bells, the spooky toccata and the pop tune to keep it from dragging. Both new pieces are public domain and were written from memory. The MP3 and the medley were re-recorded.
 - Swapped *La Campanella* (it sounded bad) for Mozart's *Rondo alla Turca*: a fumbled false start, then the famous opening with a bouncy oom-pah left hand and a final A minor chord. Order now: scales → Rondo alla Turca → Chopin Nocturne → the rest. The MP3 and the medley were re-recorded.
 - Docs now use the in-game title *Winter (8-Bit) – Vivaldi* exactly.
+
+### Progressive difficulty
+- Rebuilt the level generator around a difficulty curve from Level 1 to the Whole House. The widest pit grows from 3 tiles to 10, and over 7 tiles needs a well-timed double jump. Pits get more frequent with narrower landings and higher or lower landings, stepping-stone pillars appear from about Level 7, climbs grow to 5 tiles, and shelves and flat runs get shorter.
+- Moving platforms no longer speed up with each level (they used to reach about 180 px/s). They now move slowly and steadily (42–60 px/s), but their pits widen to 12–14 tiles late in the game, so you have to ride them.
+- Each level's `gap` value now follows the curve (3 → 10). Layouts changed; seeds are the same.
+- A physics check confirms every pit and climb in all 24 levels can be cleared, with at least a tile of margin on a perfect double jump. Every level still has its full item count. Example from the check: Levels 1–9 need no double jumps; the Science Lab needs 2, the Game Room 8, the Money Room 6 and the Whole House 5.
