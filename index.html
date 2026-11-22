@@ -1013,10 +1013,21 @@ STYLES.obby={name:"CHECKPOINT CHAMPIONS",bpm:132,spb:4,bar:16,bars:16,
   if(b%2===0){const n=this.melody[(bar%2)*8+b/2]+(bar>=12?12:0);pluck(n,d*1.6,t,bridge?0.03:0.055,0.22,3800);}
   if(b===15){robotBeep(root+31,d,t,0.018);tone(mtof(root+36),d*.7,'sine',0.024,null,t+d,musicGain);}
  }};
-const STYLE_GAIN={"obby":0.85,"blockgarden":3.0,"grandprix":0.9,"sad":1.62,"money":0.82,"punkska":0.39,"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
+// Original sunset-city radio groove: synth bass, electric piano and a sax/synth lead.
+STYLES.cityradio={name:"TWO CITIES, ONE SUNSET",bpm:108,spb:4,bar:16,bars:16,
+ melody:[69,76,72,79,74,71,67,72,65,72,69,76,67,74,71,69],
+ play(i,t,d){const bar=Math.floor(i/16)%16,b=i%16,root=[45,53,48,55][bar%4];
+  if(b===0||b===8)kick(t,0.28);if(b===4||b===12)snare(t,0.11);if(b%2)hat(t,b===15,0.025);
+  if([0,3,6,8,11,14].includes(b))synthBass(root-12+(b===6||b===14?7:0),d*1.5,t,0.10);
+  if(b===2||b===10)[0,4,7].forEach(n=>epiano(root+12+n,d*2,t,0.025,0.25));
+  if(b===0)[0,7,12].forEach(n=>softLead(mtof(root+12+n),d*7,t,0.008));
+  if(b%2===0){const n=this.melody[(bar%2)*8+b/2];if(bar>=8)sax(n,d*1.55,t,0.035,0.3);else softLead(mtof(n),d*1.65,t,0.045);}
+  if(b===15&&bar%4===3)pluck(root+31,d,t,0.025,0.3,2600);
+ }};
+const STYLE_GAIN={"cityradio":1.6,"obby":0.85,"blockgarden":3.0,"grandprix":0.9,"sad":1.62,"money":0.82,"punkska":0.39,"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
 for(const k in STYLE_GAIN)if(STYLES[k])STYLES[k].gain=STYLE_GAIN[k];
 const MUSIC_BASE=0.38;
-const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','punkska','silly','science','workout','romantic','baroque','pets','chiptune','money','grandprix','blockgarden','obby'];
+const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','punkska','silly','science','workout','romantic','baroque','pets','chiptune','money','grandprix','blockgarden','obby','cityradio'];
 let music={on:false,style:'pop',step:0,next:0,seg:0,segStep:0,cycle:0};
 function startMusic(style){music.style=style;music.step=0;music.seg=0;music.segStep=0;music.cycle=0;music.on=true;if(AC)music.next=AC.currentTime+0.05;}
 function scheduler(){
@@ -1091,7 +1102,9 @@ const LEVELS=[
   text:"UNCLE PETE: You, Isaac and Annie built a Minecraft world across the room! Toy diamond blocks back in the chest before Mom steps on one!"},
  {name:"ROBLOX AVATAR ROUNDUP",chore:"Put the toy Roblox avatars back on the display shelf",drop:"avatarshelf",item:"avatar",seed:31181,count:35,time:169,len:290,gap:10,enemies:["roomba","invader","ghosty"],density:.7,lego:.2,movers:1,theme:"obbyroom",music:"obby",
   text:"MOM: You, Isaac and Annie left Roblox avatar toys all over the room! Return every little builder to the shelf. Checkpoint: tidy!"},
- {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",seed:20024,count:36,time:172,len:250,gap:10,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
+ {name:"GTA V + VI TOY ROOM",chore:"Put the toy sports cars and bikes back in the city garage",drop:"citygarage",item:"citytoys",seed:33223,count:36,time:172,len:300,gap:10,enemies:["roomba","dog","rat"],density:.7,lego:.2,movers:1,theme:"cityroom",music:"cityradio",
+  text:"UNCLE PETE: You, Isaac and Annie left toy supercars and bikes from your two cities everywhere! Park them in the garage. Sunset tidy-up!"},
+ {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",seed:20024,count:37,time:175,len:250,gap:10,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
   text:"BOTH: We're turning onto our street RIGHT NOW."},
 ];
 const THEMES={
@@ -1116,6 +1129,7 @@ const THEMES={
  attic:{sky:"#7a5233",wall2:"#6b4628",ground:"#795548",top:"#bcaaa4",plat:"#5d4037",ptop:"#8d6e63"},
  pets:{sky:"#ffe0b2",wall2:"#ffd59a",ground:"#8d6e63",top:"#aed581",plat:"#a1887f",ptop:"#ffcc80"},
  race:{sky:"#81d4fa",wall2:"#4fc3f7",ground:"#424242",top:"#e53935",plat:"#616161",ptop:"#fafafa"},
+ cityroom:{sky:"#985577",wall2:"#794266",ground:"#35334d",top:"#55d8dc",plat:"#72506e",ptop:"#f79bc9"},
  obbyroom:{sky:"#75c9ff",wall2:"#61b5ed",ground:"#767a80",top:"#a8adb4",plat:"#f04438",ptop:"#ff9a84",studs:1},
  blockroom:{sky:"#83bde2",wall2:"#75acd0",ground:"#795438",top:"#69ad45",plat:"#785236",ptop:"#bd965d"},
  kartroom:{sky:"#8bcfea",wall2:"#77bed9",ground:"#8271a8",top:"#ffd54f",plat:"#d04444",ptop:"#fff1c1"},
@@ -1123,7 +1137,7 @@ const THEMES={
  gameroom:{sky:"#1a1033",wall2:"#140c29",ground:"#311b92",top:"#00e5ff",plat:"#ff4081",ptop:"#ff80ab"},
  house:{sky:"#2b2d6e",wall2:"#25275e",ground:"#5d3a8a",top:"#b388ff",plat:"#00897b",ptop:"#4db6ac"},
 };
-const ITEM_NAMES={avatar:"toy Roblox avatars",diamondblock:"toy diamond blocks",kartbike:"toy karts and bikes",toykart:"toy karts",toybike:"toy bikes",coin:"coins",pillow:"pillows",videogame:"game controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
+const ITEM_NAMES={citytoys:"toy sports cars and bikes",sportscar:"toy sports cars",cruiserbike:"toy bikes",avatar:"toy Roblox avatars",diamondblock:"toy diamond blocks",kartbike:"toy karts and bikes",toykart:"toy karts",toybike:"toy bikes",coin:"coins",pillow:"pillows",videogame:"game controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
@@ -1204,8 +1218,8 @@ function buildLevel(idx){
   const items=[],n=Math.min(L.count,cand.length);
   const used=new Set();
   for(let i=0;i<n;i++){let k=Math.round(i*(cand.length-1)/Math.max(1,n-1));while(used.has(k))k++;used.add(k);const s=cand[k];
-    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel","oldflower","testtube","book","chewtoy","tire","videogame","pillow","coin","toykart","toybike","diamondblock","avatar"];
-    items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%kinds.length]:L.item==='kartbike'?(i%2?'toybike':'toykart'):L.item,got:false,bob:rng()*6});}
+    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel","oldflower","testtube","book","chewtoy","tire","videogame","pillow","coin","toykart","toybike","diamondblock","avatar","sportscar","cruiserbike"];
+    items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%kinds.length]:L.item==='kartbike'?(i%2?'toybike':'toykart'):L.item==='citytoys'?(i%2?'cruiserbike':'sportscar'):L.item,got:false,bob:rng()*6});}
   const enemies=[];
   eSpots.filter(s=>s.x>14&&s.x<cols-10).forEach(s=>{
     const type=L.enemies[ri(0,L.enemies.length-1)];
@@ -1650,7 +1664,19 @@ function drawToyAvatar(x,y){
  if(variant===2){R(x+3,y-1,10,2,"#ffe44f");R(x+5,y-3,6,2,"#ffcf32");R(x+5,y+5,1,5,"#fff59d");R(x+10,y+5,1,5,"#fff59d");}
  if(variant===3){R(x+4,y-2,8,3,"#493124");R(x+3,y-1,2,4,"#493124");R(x+7,y+6,3,3,"#fff");R(x+8,y+7,1,1,"#e2231a");}
 }
+function drawToyCityVehicle(k,x,y){
+ const color=["#13d2d4","#ef5f9c","#ff9d42","#f6dc58"][Math.abs(Math.round(itemSeed/16))%4];
+ if(k==='cruiserbike'){
+  R(x,y+10,5,5,"#141d29");R(x+11,y+10,5,5,"#141d29");R(x+1,y+11,3,3,"#a9bbc7");R(x+12,y+11,3,3,"#a9bbc7");
+  R(x+3,y+8,10,2,color);R(x+5,y+7,5,5,shade(color,-25));R(x+4,y+5,5,2,"#141d29");R(x+10,y+4,2,7,"#a9bbc7");R(x+10,y+3,4,2,"#141d29");R(x+12,y+6,3,1,"#fff3c4");
+ }else{
+  R(x+1,y+10,4,5,"#141d29");R(x+11,y+10,4,5,"#141d29");R(x+2,y+11,2,2,"#a9bbc7");R(x+12,y+11,2,2,"#a9bbc7");
+  R(x,y+8,16,5,color);R(x+4,y+5,7,4,color);R(x+5,y+6,5,2,"#1c3f58");R(x+5,y+6,2,1,"#c2edf5");
+  R(x,y+7,4,2,"#273d55");R(x+1,y+6,3,1,color);R(x+14,y+9,2,1,"#fff3c4");R(x,y+9,1,2,"#f33348");R(x+5,y+12,7,1,shade(color,-40));
+ }
+}
 function drawItemRaw(k,x,y){
+  if(k==='sportscar'||k==='cruiserbike'||k==='citytoys'){drawToyCityVehicle(k==='citytoys'?'sportscar':k,x,y);return;}
   if(k==='avatar'){drawToyAvatar(x,y);return;}
   if(k==='diamondblock'){drawDiamondBlock(x,y);return;}
   if(k==='toykart'||k==='toybike'||k==='kartbike'){drawToyRacer(k==='kartbike'?'toykart':k,x,y);return;}
@@ -1779,11 +1805,11 @@ function drawItemRaw(k,x,y){
 }
 
 // Drop-off size: most sprites are drawn at 28 px and scaled up 2x; a few are drawn full-size already.
-const DROP_SCALE={avatarshelf:1,blockchest:1,kartgarage:1,coinchest:1,creamcouch:1,gameshelf:1,tirerack:1,petbasket:1,dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1};
+const DROP_SCALE={citygarage:1,avatarshelf:1,blockchest:1,kartgarage:1,coinchest:1,creamcouch:1,gameshelf:1,tirerack:1,petbasket:1,dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1};
 // Normal height, much wider: these sprites are stretched sideways only.
 const DROP_WIDE={}; // (no longer used: wide drop-offs are drawn at full width)
-const DROP_W={avatarshelf:70,blockchest:70,kartgarage:70,coinchest:70,creamcouch:56,gameshelf:70,tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
-const DROP_TOP={avatarshelf:18,blockchest:11,kartgarage:18,coinchest:10,creamcouch:0,gameshelf:22,tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:0,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
+const DROP_W={citygarage:70,avatarshelf:70,blockchest:70,kartgarage:70,coinchest:70,creamcouch:56,gameshelf:70,tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
+const DROP_TOP={citygarage:18,avatarshelf:18,blockchest:11,kartgarage:18,coinchest:10,creamcouch:0,gameshelf:22,tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:0,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
 function drawDrop(d,ready,t){
   const x=Math.round(d.x),y=Math.round(d.y),k=d.kind;
   if(ready){g.save();g.globalAlpha=0.35+0.2*Math.sin(t*8);const rg=g.createRadialGradient(x+14,y+12,2,x+14,y+12,34);rg.addColorStop(0,'#fff59d');rg.addColorStop(1,'rgba(255,235,59,0)');g.fillStyle=rg;g.fillRect(x-24,y-24,76,72);g.restore();}
@@ -1803,6 +1829,11 @@ function drawDropRaw(k,x,y){
     R(x+2,y+4,44,2,"#e1f5fe");R(x,y+4,48,2,"#e3f2fd");R(x+2,y+22,44,2,"#81d4fa");
     for(let rr=0;rr<4;rr++)R(x+5+rr*11,y+7,1,14,"#e1f5fe");R(x+3,y+6,1,16,"#ffffff");
     R(x-2,y+9,3,5,"#81d4fa");R(x+47,y+9,3,5,"#81d4fa");}
+  else if(k==='citygarage'){
+    R(x,y-15,70,39,"#293f57");R(x+3,y-11,64,31,"#121b2b");R(x,y-17,70,3,"#f07cb6");R(x,y-14,70,1,"#ffd2e8");
+    const savedSeed=itemSeed;for(let row=0;row<2;row++){for(let col=0;col<4;col++){
+      itemSeed=col*16;ctx.save();ctx.translate(x+7+col*15,y-10+row*16);ctx.scale(.75,.75);drawToyCityVehicle(col%2?'cruiserbike':'sportscar',0,0);ctx.restore();}
+      R(x+2,y+2+row*16,66,2,"#55d8dc");}itemSeed=savedSeed;R(x,y+21,70,3,"#172b43");}
   else if(k==='avatarshelf'){
     R(x,y-15,70,39,"#52575e");R(x+3,y-11,64,31,"#1c2026");R(x,y-17,70,4,"#e2231a");
     const savedSeed=itemSeed;
@@ -2030,6 +2061,20 @@ function drawEnemyRaw(e,t,x,y){
 function drawBackground(th,t){
   const bgG=g.createLinearGradient(0,0,0,H);bgG.addColorStop(0,shade(th.sky,30));bgG.addColorStop(1,shade(th.sky,-40));g.fillStyle=bgG;g.fillRect(0,0,W,H);
   const p=cam*0.4;
+  if(lvl.L.theme==='cityroom'){
+    const sunset=g.createLinearGradient(0,0,0,170);sunset.addColorStop(0,'#3d366b');sunset.addColorStop(.5,'#e586ad');sunset.addColorStop(1,'#ffc487');g.fillStyle=sunset;g.fillRect(0,0,W,170);
+    g.fillStyle='#ffd59b';g.beginPath();g.arc(W-95,87,33,0,Math.PI*2);g.fill();for(let s=0;s<4;s++)R(W-130,91+s*7,70,2,"#e891a5");
+    for(let i=-1;i<12;i++){const bx=i*54-(cam*.12%54),h=34+((i*17+99)%61);R(bx,150-h,42,h,"#494565");for(let yy=155-h;yy<145;yy+=9)for(let xx=bx+5;xx<bx+39;xx+=10)R(xx,yy,3,4,"#edc69d");}
+    R(0,150,W,20,"#477b9c");for(let s=0;s<4;s++)R(0,151+s*5,W,1,"#72c4cd");R(0,170,W,H-170,"#33324f");
+    const start=Math.floor(p/160);for(let i=start-1;i<start+5;i++){const dx=i*160-p,k=((i%4)+4)%4;
+      // tall coastal palms frame the skyline and the neon toy-room displays
+      R(dx+141,91,5,82,"#343850");for(let j=0;j<5;j++){R(dx+120+j*5,82+j*2,7,4,"#29584f");R(dx+146+j*4,90-j*3,6,4,"#29584f");R(dx+133-j*3,91+j*2,6,4,"#347466");}
+      if(k===0){R(dx+10,38,111,58,"#182033");text("GTA",dx+23,43,22,"#fff","left",false);text("V + VI",dx+28,72,12,"#7ce2d2","left",false);R(dx+10,94,111,3,"#ee7fb7");}
+      if(k===1){R(dx+5,85,127,35,"#244f49");R(dx+5,85,127,2,"#e0f6e4");R(dx+5,118,127,2,"#e0f6e4");text("LOS SANTOS",dx+12,94,10,"#fff","left",false);R(dx+22,120,4,50,"#89999b");R(dx+108,120,4,50,"#89999b");}
+      if(k===2){R(dx+9,62,118,82,"#765277");R(dx+13,66,110,74,"#402b51");text("VICE CITY",dx+16,76,11,"#ff95c9","left",false);text("TOY GARAGE",dx+20,98,8,"#71e5e1","left",false);R(dx+20,120,96,3,"#71e5e1");}
+      if(k===3){R(dx+12,130,116,7,"#628298");R(dx+18,137,5,33,"#293f57");R(dx+118,137,5,33,"#293f57");const savedSeed=itemSeed;for(let c=0;c<3;c++){itemSeed=c*16;ctx.save();ctx.translate(dx+20+c*34,102);ctx.scale(1.8,1.8);drawToyCityVehicle(c%2?'cruiserbike':'sportscar',0,0);ctx.restore();}itemSeed=savedSeed;}
+    }return;
+  }
   if(lvl.L.theme==='pool'){
     const sk=g.createLinearGradient(0,0,0,170);sk.addColorStop(0,'#29b6f6');sk.addColorStop(1,'#e1f5fe');g.fillStyle=sk;g.fillRect(0,0,W,170);
     g.fillStyle='#fff59d';g.beginPath();g.arc(W-70,48,18,0,7);g.fill();R(W-80,38,6,4,"#fffde7");

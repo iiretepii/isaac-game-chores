@@ -199,3 +199,9 @@ Grouped by milestone. See `git log` for every commit.
 - Added toy avatars to the Whole House mix; the finale is now level 27 with 36 items and 172 seconds. Existing terrain layouts remain unchanged.
 
 - Visual follow-up: made the room more recognizably Roblox with classic yellow/blue/green noobs, red-capped Guests, builders, studded gray baseplates, rainbow obby stairs, neon-green checkpoints and tilted-square Roblox toy signs.
+
+## 2026-11-22 — GTA V + VI Toy Room
+
+- Added 36 toy vehicle pickups (18 sports cars, 18 bikes) for the player, Isaac and Annie to return to a neon display garage, with a sunset skyline, palms and Los Santos/Vice City toy-room signs.
+- Added Two Cities, One Sunset, an original synth/funk radio groove (not GTA soundtrack audio), its MP3 and the updated finale medley.
+- Added both toys to the Whole House mix; the finale is now level 28 with 37 items and 175 seconds. Existing terrain layouts remain unchanged.

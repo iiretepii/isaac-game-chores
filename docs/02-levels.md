@@ -32,7 +32,8 @@ Generated from the `LEVELS` array in `index.html`.
 | 24 | MarioKart Toy Room | `kartroom` | alternating toykart / toybike → kartgarage | 33 | 163s | 270 | 10 | 0.7 | 0.25 | yes | roomba, squirrel, ghosty | `grandprix` |
 | 25 | Minecraft Block Room | `blockroom` | diamondblock → blockchest | 34 | 166s | 280 | 10 | 0.7 | 0.2 | yes | bzombie, bskel, bspider, hisser | `blockgarden` |
 | 26 | Roblox Avatar Roundup | `obbyroom` | avatar → avatarshelf | 35 | 169s | 290 | 10 | 0.7 | 0.2 | yes | roomba, invader, ghosty | `obby` |
-| 27 | The Whole House!! | `house` | mix → couch | 36 | 172s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
+| 27 | GTA V + VI Toy Room | `cityroom` | alternating sportscar / cruiserbike → citygarage | 36 | 172s | 300 | 10 | 0.7 | 0.2 | yes | roomba, dog, rat | `cityradio` |
+| 28 | The Whole House!! | `house` | mix → couch | 37 | 175s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
 
 ## Level Data Format
 
@@ -99,3 +100,5 @@ Each level is one object in the `LEVELS` array:
 ### Mixed toy pickups
 
 MarioKart Toy Room uses `item: "kartbike"`; generation alternates `toykart` and `toybike` so both are guaranteed (17 karts and 16 bikes). Both toy types also appear in the Whole House mix.
+
+GTA V + VI Toy Room uses `item: "citytoys"`; generation alternates `sportscar` and `cruiserbike` to guarantee 18 of each. Both toy types are also included in the Whole House mix.
