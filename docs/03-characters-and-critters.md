@@ -15,12 +15,12 @@
 | Ride | Purple skateboard (pink race car #2 on the race track) | Original **neon light-bike**: black body, red neon edges, glowing disc wheels, red light trail (blue-and-red race car #3 on the race track) |
 | Speed | 176 px/s | 176 px/s |
 | Follows at | 24 px behind the player | 62 px behind the player |
-| Starts collecting at | **33%** of the time limit left | **20%** of the time limit left |
+| Starts collecting at | Immediately in the Whole House; **33%** of the time limit left elsewhere | Immediately in the Whole House; **20%** elsewhere |
 | Arrival line | "I'll help all day! (for cookies)" | "Vrrrm! Neon light-bike, baby!" |
 | Rush line | "Time's running out! I'll grab some!" | "Turbo mode! I got this!" |
 
 **Abilities** (both have the `ace` flag in `SIBS`; Annie is just as good as Isaac):
-- They look further ahead for walls, gaps and critters (12 px versus 4 px; critters 70 px versus 44 px). They hunt the first live critter in the enemy list that is within 280 px horizontally of the player, 320 px horizontally of the sibling and 90 px vertically of the sibling, ahead of following or collecting. Their rides defeat any critter they touch from any side ("ZAP! +100"), with a slightly bigger zap area than their bodies.
+- They look further ahead for walls, gaps and critters (12 px versus 4 px; critters 70 px versus 44 px). Outside the Whole House, they hunt the first live critter in the enemy list that is within 280 px horizontally of the player, 320 px horizontally of the sibling and 90 px vertically of the sibling, ahead of following or collecting. Their rides defeat any critter they touch from any side ("ZAP! +100"), with a slightly bigger zap area than their bodies.
 - Neither sibling fumbles obstacles or trips.
 - **Annie's balloon** (`balloon:1` in `SIBS`): she carries a pink balloon on a string. When she is in the air and no longer rising fast (`vy > -60`), gravity drops from 1300 to 680 px/s² and her fall speed is capped at 230 px/s (normally 600), giving a short float at the top of each jump and a gentle descent. Her name label sits above the balloon.
 - **Annie's outfit** (`dress:1` in her palette): a pink dress with puff sleeves, a bow at the waist and a flared, ruffled skirt, drawn over the usual kid sprite in `drawKidRaw`.
@@ -29,8 +29,9 @@
 
 **Behavior spec:**
 - **Arrival:** both appear next to the player as soon as the level starts.
-- **Normal mode:** they follow a spot behind the player and stop and face the same way when the player stops.
-- **Rush mode:** when the time left is at or below their threshold, they pick items (penalizing ones near critters in the target score, splitting work between them, giving up on an item after 2 s without progress and retrying it 4 s later) and drive to them.
+- **Normal mode:** in rooms other than the Whole House, they follow a spot behind the player and stop and face the same way when the player stops.
+- **Whole House:** both enter collection mode immediately and remain in it for the entire level. Chore collection takes priority over hunting nearby critters; contact zaps and stomps still work.
+- **Rush mode:** throughout the Whole House, or when the time left elsewhere is at or below their threshold, they pick items (penalizing ones near critters in the target score, splitting work between them, giving up on an item after 2 s without progress and retrying it 4 s later) and drive to them.
 - **Physics:** terrain collisions match the player (walls, one-way and moving platforms); Annie's balloon changes her gravity and fall speed as described above. The AI decides when to jump (walls, gaps, critters, LEGO), double jump (over pits, up to high items) and duck (low ceilings).
 - **Damage:** downward stomps defeat critters (+100) and bounce the sibling upward; other critter contact triggers their ace zap (+100). LEGO hits bounce them back ("OOPS!") and falls respawn them on safe ground ("BACK!"). Neither costs time.
 - **Delivery:** siblings never deliver; only the player can finish the level.

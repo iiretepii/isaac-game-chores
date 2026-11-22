@@ -63,7 +63,7 @@ Browsers block sound until the player interacts, so the title screen first asks 
 - **Time limit:** rises with item count; most levels allow 3 seconds more than the one before (the opening increase is 4 seconds; Race Track currently adds 2 seconds). Picking up items does **not** add time.
 - **Length:** is usually 170–216 tiles. Money Room is 260 tiles, MarioKart Toy Room is 270, Minecraft Block Room is 280, Roblox Avatar Roundup is 290, GTA V + VI Toy Room is 300, and the finale is 250. Some adjacent rooms share the same length.
 - **Rising challenge:** the game gets steadily harder. Early levels only have small single-jump gaps. Later levels add wider pits that need a well-timed double jump (8–10 tiles), bigger climbs, narrow stepping stones and long pits you can only cross by riding a moving platform. Critter density and LEGO bricks also increase. Moving platforms stay slow and steady instead of getting faster.
-- **The finale:** *The Whole House!!* mixes items and critters from every room.
+- **The finale:** *The Whole House!!* mixes items and critters from every room. Isaac and Annie collect from the start and help throughout, prioritizing chores rather than hunting detours.
 
 ## Content and Tone Guidelines
 

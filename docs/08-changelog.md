@@ -207,3 +207,8 @@ Grouped by milestone. See `git log` for every commit.
 - Added both toys to the Whole House mix; the finale is now level 28 with 37 items and 175 seconds. Existing terrain layouts remain unchanged.
 
 - Visual follow-up: GTA V/VI cover-collage-style toy posters, a Vinewood hillside sign, Los Santos freeway signage, a Vice City Art Deco/Ocean Drive hotel, a pier wheel, larger palm silhouettes and asphalt road markings. Music and gameplay rules are unchanged.
+
+## 2026-11-22 — Full-time Whole House helpers
+
+- Isaac and Annie now enter collection mode from the start of the Whole House and stay in it throughout the level. They prioritize chores over hunting detours, while retaining contact zaps and stomps.
+- Other rooms retain Annie's 33% and Isaac's 20% timer thresholds. Updated arrival lines avoid low-time warnings at the start of the finale.
