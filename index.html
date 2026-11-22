@@ -1129,7 +1129,7 @@ const THEMES={
  attic:{sky:"#7a5233",wall2:"#6b4628",ground:"#795548",top:"#bcaaa4",plat:"#5d4037",ptop:"#8d6e63"},
  pets:{sky:"#ffe0b2",wall2:"#ffd59a",ground:"#8d6e63",top:"#aed581",plat:"#a1887f",ptop:"#ffcc80"},
  race:{sky:"#81d4fa",wall2:"#4fc3f7",ground:"#424242",top:"#e53935",plat:"#616161",ptop:"#fafafa"},
- cityroom:{sky:"#985577",wall2:"#794266",ground:"#35334d",top:"#55d8dc",plat:"#72506e",ptop:"#f79bc9"},
+ cityroom:{sky:"#985577",wall2:"#794266",ground:"#3c4250",top:"#8a8e96",plat:"#5b6071",ptop:"#d1d2dc",road:1},
  obbyroom:{sky:"#75c9ff",wall2:"#61b5ed",ground:"#767a80",top:"#a8adb4",plat:"#f04438",ptop:"#ff9a84",studs:1},
  blockroom:{sky:"#83bde2",wall2:"#75acd0",ground:"#795438",top:"#69ad45",plat:"#785236",ptop:"#bd965d"},
  kartroom:{sky:"#8bcfea",wall2:"#77bed9",ground:"#8271a8",top:"#ffd54f",plat:"#d04444",ptop:"#fff1c1"},
@@ -2058,21 +2058,54 @@ function drawEnemyRaw(e,t,x,y){
   }
 }
 
+// Poster-like GTA toy-room art, with city landmarks rather than combat imagery.
+function drawCityPalm(x,y,h){
+ for(let n=0;n<h;n+=4){R(x+n*.055,y+n,5,5,"#222033");R(x+3+n*.055,y+n,1,4,"#5c4251");}
+ for(const [dx,dy] of [[-37,6],[-28,-10],[-9,-20],[21,-15],[38,0],[29,17],[-23,18]]){
+  for(let n=0;n<9;n++){const f=n/8;R(x+dx*f,y+dy*f-Math.sin(f*Math.PI)*8,5-n*.2,4,"#203a3a");}}
+}
+function drawCityPoster(x,y,edition){
+ R(x,y,124,126,"#080b13");
+ // Original cover-collage panels: skyline, palm sunset, sports car and ocean.
+ R(x+4,y+4,56,50,"#5f8c9b");R(x+64,y+4,56,50,"#ee9aaf");R(x+4,y+58,56,64,"#394f65");R(x+64,y+58,56,64,"#4a8a9a");
+ for(let b=0;b<5;b++)R(x+7+b*10,y+25-(b%3)*6,7,28+(b%3)*6,"#273642");
+ drawCityPalm(x+97,y+16,38);R(x+67,y+89,50,2,"#9addd9");R(x+67,y+100,50,2,"#6cc7ca");
+ const savedSeed=itemSeed;itemSeed=16;ctx.save();ctx.translate(x+6,y+82);ctx.scale(3.3,2.1);drawToyCityVehicle('sportscar',0,0);ctx.restore();itemSeed=savedSeed;
+ for(const [word,py] of [["grand",12],["theft",31],["auto",50]]){
+   g.save();g.translate(x+62,y+py);g.scale(1.3,1);g.font='900 19px "Arial Black",Arial,sans-serif';g.textAlign='center';g.textBaseline='top';g.lineJoin='round';g.lineWidth=4;g.strokeStyle='#080b13';g.fillStyle='#fff';g.strokeText(word,0,0);g.fillText(word,0,0);g.restore();
+ }
+ text(edition===5?"V":"VI",x+62,y+71,30,edition===5?"#67b786":"#ee92cd","center");
+ if(edition===5){R(x+31,y+101,62,10,"#254c37");text("FIVE",x+62,y+103,6,"#fff","center",false);}
+ else{text("VICE CITY",x+62,y+107,7,"#ffe7fa","center");}
+}
 function drawBackground(th,t){
   const bgG=g.createLinearGradient(0,0,0,H);bgG.addColorStop(0,shade(th.sky,30));bgG.addColorStop(1,shade(th.sky,-40));g.fillStyle=bgG;g.fillRect(0,0,W,H);
   const p=cam*0.4;
   if(lvl.L.theme==='cityroom'){
-    const sunset=g.createLinearGradient(0,0,0,170);sunset.addColorStop(0,'#3d366b');sunset.addColorStop(.5,'#e586ad');sunset.addColorStop(1,'#ffc487');g.fillStyle=sunset;g.fillRect(0,0,W,170);
-    g.fillStyle='#ffd59b';g.beginPath();g.arc(W-95,87,33,0,Math.PI*2);g.fill();for(let s=0;s<4;s++)R(W-130,91+s*7,70,2,"#e891a5");
-    for(let i=-1;i<12;i++){const bx=i*54-(cam*.12%54),h=34+((i*17+99)%61);R(bx,150-h,42,h,"#494565");for(let yy=155-h;yy<145;yy+=9)for(let xx=bx+5;xx<bx+39;xx+=10)R(xx,yy,3,4,"#edc69d");}
-    R(0,150,W,20,"#477b9c");for(let s=0;s<4;s++)R(0,151+s*5,W,1,"#72c4cd");R(0,170,W,H-170,"#33324f");
+    const sunset=g.createLinearGradient(0,0,0,170);sunset.addColorStop(0,'#493067');sunset.addColorStop(.48,'#d875b1');sunset.addColorStop(1,'#ffc393');g.fillStyle=sunset;g.fillRect(0,0,W,170);
+    g.fillStyle='#ffe0b0';g.beginPath();g.arc(W-85,75,38,0,Math.PI*2);g.fill();for(let n=0;n<5;n++)R(W-127,79+n*7,84,2,"#dc84ad");
+    // Vinewood's hillside sign, behind the Los Santos-style towers.
+    for(let hx=-((cam*.07)%620)-120;hx<W+620;hx+=620){
+      g.fillStyle='#4f6656';g.beginPath();g.moveTo(hx,144);g.lineTo(hx+100,91);g.lineTo(hx+208,67);g.lineTo(hx+295,95);g.lineTo(hx+390,78);g.lineTo(hx+485,144);g.closePath();g.fill();
+      text("VINEWOOD",hx+230,67,10,"#f6f0df","center");}
+    for(let i=-1;i<12;i++){const bx=i*54-(cam*.12%54),h=29+((i*17+99)%56);R(bx,150-h,42,h,"#464258");for(let yy=155-h;yy<145;yy+=9)for(let xx=bx+5;xx<bx+39;xx+=10)R(xx,yy,3,4,"#eac2a4");}
+    R(0,150,W,20,"#467c96");for(let n=0;n<4;n++)R(0,151+n*5,W,1,"#80c8cc");R(0,170,W,H-170,"#252839");
     const start=Math.floor(p/160);for(let i=start-1;i<start+5;i++){const dx=i*160-p,k=((i%4)+4)%4;
-      // tall coastal palms frame the skyline and the neon toy-room displays
-      R(dx+141,91,5,82,"#343850");for(let j=0;j<5;j++){R(dx+120+j*5,82+j*2,7,4,"#29584f");R(dx+146+j*4,90-j*3,6,4,"#29584f");R(dx+133-j*3,91+j*2,6,4,"#347466");}
-      if(k===0){R(dx+10,38,111,58,"#182033");text("GTA",dx+23,43,22,"#fff","left",false);text("V + VI",dx+28,72,12,"#7ce2d2","left",false);R(dx+10,94,111,3,"#ee7fb7");}
-      if(k===1){R(dx+5,85,127,35,"#244f49");R(dx+5,85,127,2,"#e0f6e4");R(dx+5,118,127,2,"#e0f6e4");text("LOS SANTOS",dx+12,94,10,"#fff","left",false);R(dx+22,120,4,50,"#89999b");R(dx+108,120,4,50,"#89999b");}
-      if(k===2){R(dx+9,62,118,82,"#765277");R(dx+13,66,110,74,"#402b51");text("VICE CITY",dx+16,76,11,"#ff95c9","left",false);text("TOY GARAGE",dx+20,98,8,"#71e5e1","left",false);R(dx+20,120,96,3,"#71e5e1");}
-      if(k===3){R(dx+12,130,116,7,"#628298");R(dx+18,137,5,33,"#293f57");R(dx+118,137,5,33,"#293f57");const savedSeed=itemSeed;for(let c=0;c<3;c++){itemSeed=c*16;ctx.save();ctx.translate(dx+20+c*34,102);ctx.scale(1.8,1.8);drawToyCityVehicle(c%2?'cruiserbike':'sportscar',0,0);ctx.restore();}itemSeed=savedSeed;}
+      if(k===0)drawCityPoster(dx+7,34,((Math.floor(i/4)%2)+2)%2?6:5);
+      if(k===1){ // green freeway sign and a little downtown building
+        R(dx+5,91,132,44,"#195c45");R(dx+5,91,132,2,"#d7eee1");R(dx+5,133,132,2,"#d7eee1");text("LOS SANTOS",dx+12,98,10,"#fff","left",false);text("VINEWOOD EXIT",dx+15,117,7,"#d9efde","left",false);
+        R(dx+22,135,4,35,"#8b9e9b");R(dx+114,135,4,35,"#8b9e9b");}
+      if(k===2){ // Vice City / Ocean Drive Art Deco hotel with pink-and-turquoise neon
+        R(dx+12,82,124,88,"#e7b2be");R(dx+27,66,94,16,"#f2c6cc");R(dx+45,52,58,14,"#f2c6cc");
+        R(dx+51,47,46,5,"#ef86c2");R(dx+16,86,116,3,"#85e4e3");R(dx+16,110,116,3,"#85e4e3");R(dx+16,136,116,3,"#85e4e3");
+        text("VICE CITY",dx+22,91,11,"#a83c92","left");text("OCEAN DRIVE",dx+26,119,8,"#245d70","left",false);
+        for(let w=0;w<5;w++){R(dx+23+w*21,144,12,23,"#6c6d93");R(dx+25+w*21,146,3,18,"#b6e9e6");}}
+      if(k===3){ // Del Perro-style pier wheel with a toy-car display below
+        const cx=dx+67,cy=101;g.strokeStyle='#e7b6bc';g.lineWidth=2;g.beginPath();g.arc(cx,cy,34,0,Math.PI*2);g.stroke();
+        for(let w=0;w<8;w++){const a=w*Math.PI/4,wx=cx+Math.cos(a)*34,wy=cy+Math.sin(a)*34;g.beginPath();g.moveTo(cx,cy);g.lineTo(wx,wy);g.stroke();R(wx-3,wy,6,6,"#8fdae0");}
+        R(cx-2,101,4,57,"#b8889e");R(dx+12,153,116,6,"#495c72");R(dx+18,159,5,17,"#293f57");R(dx+118,159,5,17,"#293f57");
+        const savedSeed=itemSeed;for(let c=0;c<3;c++){itemSeed=c*16;ctx.save();ctx.translate(dx+17+c*35,124);ctx.scale(1.9,1.9);drawToyCityVehicle(c%2?'cruiserbike':'sportscar',0,0);ctx.restore();}itemSeed=savedSeed;}
+      drawCityPalm(dx+141,78,96);
     }return;
   }
   if(lvl.L.theme==='pool'){
@@ -2337,6 +2370,7 @@ function drawTiles(th,t){
       if(th.dark&&top&&(!lvl.ground[c-1]||!lvl.ground[c+1])){const ex=!lvl.ground[c-1]?x:x+12;for(let q=0;q<4;q++)R(ex+(q%2)*2,y+q*2,2,2,q%2?"#212121":"#ffd600");R(x,y,T,1,"#ffd600");} // caution edge next to a pit
       if(th.speck){for(let q=0;q<4;q++)R(x+((c*5+q*7+r*3)%14),y+5+((c*3+q*5)%10),1,1,["#ff3d00","#ffea00","#00e5ff","#fafafa"][(c+q)%4]);}
       if(th.splat&&top){const sc2=["#e53935","#1e88e5","#fdd835","#43a047","#8e24aa"][(c*7)%5];R(x,y,T,4,sc2);if(c%3===0)R(x+5,y+4,3,3,sc2);if(c%4===1)R(x+10,y+4,2,5,sc2);}
+      if(th.road&&top){R(x,y,T,3,"#a3a4ac");if(c%3===0)R(x+2,y+5,10,2,"#f6dc83");}
       if(th.studs){R(x,y,T,1,shade(th.ground,28));R(x,y,1,T,shade(th.ground,-28));
         if(top)for(const ox of [3,11]){R(x+ox,y-2,4,2,"#cbd0d7");R(x+ox,y-2,3,1,"#e3e6eb");}}
       if(top&&tileAt(c+1,r)!=='#')R(x+15,y,1,T,'#0006');
@@ -2347,6 +2381,7 @@ function drawTiles(th,t){
       R(x,y,T,8,"#fafafa");R(x+15,y,1,8,"#9e9e9e");R(x+10,y,4,5,"#111");R(x,y+7,T,1,"#bdbdbd");g.globalAlpha=0.25;R(x,y+8,T,3,'#000');g.globalAlpha=1;
     }else if(tl==='='){
       R(x,y,T,7,th.plat);R(x,y,T,2,th.ptop);R(x,y+6,T,1,shade(th.plat,-40));R(x+((c*5)%11),y+3,4,1,shade(th.plat,-20));
+      if(th.road&&c%3===0)R(x+3,y+3,9,1,"#f6dc83");
       if(th.studs)for(const ox of [3,11]){R(x+ox,y-2,4,2,shade(th.plat,25));R(x+ox,y-2,3,1,shade(th.plat,60));}
       if(tileAt(c-1,r)!=='=')R(x,y,1,7,th.ptop);if(tileAt(c+1,r)!=='=')R(x+15,y,1,7,shade(th.plat,-40));
       g.globalAlpha=0.25;R(x,y+7,T,3,'#000');g.globalAlpha=1;

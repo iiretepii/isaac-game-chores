@@ -71,6 +71,7 @@ Each level is one object in the `LEVELS` array:
 | `dark` | Flashlight darkness with caution stripes |
 | `garden` | Garden flower beds |
 | `studs` | Roblox-style studded baseplates and toy platforms |
+| `road` | Asphalt-colored platforms and painted road markings in the GTA toy room |
 
 ## Level Generation Rules
 
