@@ -38,9 +38,10 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `chiptune` | *Press Start to Clean!* | 150 | 4 | 16 | 16 | Game Room Glitch | `music/22-game-room.mp3` |
 | `money` | *Winter (8-Bit) – Vivaldi* | 116 | 4 | 16 | 16 | Money Room Millions | `music/23-money-room.mp3` |
 | `grandprix` | *Castle Cup Celebration* (original) | 144 | 2 | 8 | 16 | MarioKart Toy Room | `music/24-kart-toy-room.mp3` |
-| `sad` | *Grounded Until Forever* | 66 | 2 | 8 | 8 | "Parents are home!" fail screen (starts about 3 s after the honk and the lose jingle) | `music/27-fail-screen.mp3` |
-| `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/26-ending-jubilee.mp3` |
-| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/25-whole-house-medley.mp3` |
+| `blockgarden` | *Lanterns in the Block Garden* (original) | 72 | 2 | 8 | 8 | Minecraft Block Room | `music/25-minecraft-room.mp3` |
+| `sad` | *Grounded Until Forever* | 66 | 2 | 8 | 8 | "Parents are home!" fail screen (starts about 3 s after the honk and the lose jingle) | `music/28-fail-screen.mp3` |
+| `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/27-ending-jubilee.mp3` |
+| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/26-whole-house-medley.mp3` |
 
 ## Volume Leveling
 
@@ -48,7 +49,7 @@ Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays a
 
 ## The Medley
 
-`MIX` lists the styles in order: rock, princess, jazz, pop, hiphop, garden, pool, techno, polka, crooner, muzak, library, practice, punkska, silly, science, workout, romantic, baroque, pets, chiptune, money, grandprix. The medley plays 4 bars of each, with a record scratch and crash between them, then loops.
+`MIX` lists the styles in order: rock, princess, jazz, pop, hiphop, garden, pool, techno, polka, crooner, muzak, library, practice, punkska, silly, science, workout, romantic, baroque, pets, chiptune, money, grandprix, blockgarden. The medley plays 4 bars of each, with a record scratch and crash between them, then loops.
 
 **Rule:** add each new musical style to `MIX`. The current medley omits `racerock`, the race-track arrangement of the existing rock song, and does not include the separate title or ending music.
 
@@ -96,3 +97,5 @@ Files are numbered in level order (`00-title`, `01-…` through the medley). Ins
 4. **Document:** update the README music table and this registry.
 
 The toy-room track is an original orchestral racing fanfare, not the Royal Raceway composition or recording. Its 0.9 gain trim measures about −41 dB RMS over the rendered loop.
+
+Minecraft Block Room uses an original sparse piano/ambient piece, with harp accents and no percussion. The 3.0 gain trim puts the rendered loop near −38 dB RMS; it is not a Minecraft soundtrack recording.

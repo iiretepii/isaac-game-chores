@@ -30,7 +30,8 @@ Generated from the `LEVELS` array in `index.html`.
 | 22 | Game Room Glitch | `gameroom` | videogame → gameshelf | 31 | 157s | 216 | 9 | 0.72 | 0.3 | yes | invader, chomper, ghosty | `chiptune` |
 | 23 | Money Room Millions | `money` | coin → coinchest | 32 | 160s | 260 | 10 | 0.7 | 0.25 | yes | hamster, roomba, slime | `money` |
 | 24 | MarioKart Toy Room | `kartroom` | alternating toykart / toybike → kartgarage | 33 | 163s | 270 | 10 | 0.7 | 0.25 | yes | roomba, squirrel, ghosty | `grandprix` |
-| 25 | The Whole House!! | `house` | mix → couch | 34 | 166s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
+| 25 | Minecraft Block Room | `blockroom` | diamondblock → blockchest | 34 | 166s | 280 | 10 | 0.7 | 0.2 | yes | bzombie, bskel, bspider, hisser | `blockgarden` |
+| 26 | The Whole House!! | `house` | mix → couch | 35 | 169s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
 
 ## Level Data Format
 

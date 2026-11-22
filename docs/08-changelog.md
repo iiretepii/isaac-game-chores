@@ -185,3 +185,9 @@ Grouped by milestone. See `git log` for every commit.
 - Added 33 toy pickups (17 karts, 16 bikes), a display garage, castle murals, trophies and checkered flags. The player, Isaac and Annie can collect both types.
 - Added Castle Cup Celebration, an original orchestral racing tune, plus its MP3 and an updated medley. The requested Royal Raceway track is not included.
 - Added both toys to the Whole House mix; the finale is now level 25 with 34 items and 166 seconds. Fixed the difficulty denominator at the prior 24-level ramp so adding the room preserves existing terrain.
+
+## 2026-11-22 — Minecraft Block Room
+
+- Added 34 toy diamond blocks for the player, Isaac and Annie to return to a wooden storage chest, with grass/dirt blocks, a crafting table, square trees, ore and a torch. Reuses the blocky critters.
+- Added Lanterns in the Block Garden, an original gentle piano/ambient piece (not a Minecraft recording), its MP3 and the updated finale medley.
+- Added diamond blocks to the Whole House mix; the finale is now level 26 with 35 items and 169 seconds. Existing terrain layouts remain unchanged.
