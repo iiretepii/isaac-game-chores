@@ -31,7 +31,8 @@ Generated from the `LEVELS` array in `index.html`.
 | 23 | Money Room Millions | `money` | coin → coinchest | 32 | 160s | 260 | 10 | 0.7 | 0.25 | yes | hamster, roomba, slime | `money` |
 | 24 | MarioKart Toy Room | `kartroom` | alternating toykart / toybike → kartgarage | 33 | 163s | 270 | 10 | 0.7 | 0.25 | yes | roomba, squirrel, ghosty | `grandprix` |
 | 25 | Minecraft Block Room | `blockroom` | diamondblock → blockchest | 34 | 166s | 280 | 10 | 0.7 | 0.2 | yes | bzombie, bskel, bspider, hisser | `blockgarden` |
-| 26 | The Whole House!! | `house` | mix → couch | 35 | 169s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
+| 26 | Roblox Avatar Roundup | `obbyroom` | avatar → avatarshelf | 35 | 169s | 290 | 10 | 0.7 | 0.2 | yes | roomba, invader, ghosty | `obby` |
+| 27 | The Whole House!! | `house` | mix → couch | 36 | 172s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
 
 ## Level Data Format
 
@@ -68,6 +69,7 @@ Each level is one object in the `LEVELS` array:
 | `speck` | Speckled gym floor |
 | `dark` | Flashlight darkness with caution stripes |
 | `garden` | Garden flower beds |
+| `studs` | Roblox-style studded baseplates and toy platforms |
 
 ## Level Generation Rules
 

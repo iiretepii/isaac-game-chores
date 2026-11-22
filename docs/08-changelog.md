@@ -191,3 +191,11 @@ Grouped by milestone. See `git log` for every commit.
 - Added 34 toy diamond blocks for the player, Isaac and Annie to return to a wooden storage chest, with grass/dirt blocks, a crafting table, square trees, ore and a torch. Reuses the blocky critters.
 - Added Lanterns in the Block Garden, an original gentle piano/ambient piece (not a Minecraft recording), its MP3 and the updated finale medley.
 - Added diamond blocks to the Whole House mix; the finale is now level 26 with 35 items and 169 seconds. Existing terrain layouts remain unchanged.
+
+## 2026-11-22 — Roblox Avatar Roundup
+
+- Added 35 toy avatars for the player, Isaac and Annie to collect and return to a display shelf, with four figure variants, miniature obby platforms and checkpoint flags.
+- Added Checkpoint Champions, an original upbeat electronic track (not audio from Roblox), its MP3 and the updated finale medley.
+- Added toy avatars to the Whole House mix; the finale is now level 27 with 36 items and 172 seconds. Existing terrain layouts remain unchanged.
+
+- Visual follow-up: made the room more recognizably Roblox with classic yellow/blue/green noobs, red-capped Guests, builders, studded gray baseplates, rainbow obby stairs, neon-green checkpoints and tilted-square Roblox toy signs.
