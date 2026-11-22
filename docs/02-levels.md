@@ -29,7 +29,8 @@ Generated from the `LEVELS` array in `index.html`.
 | 21 | Race Track Rumble | `race` | tire → tirerack | 30 | 154s | 214 | 9 | 0.7 | 0.3 | yes | roomba, squirrel, goose | `racerock` |
 | 22 | Game Room Glitch | `gameroom` | videogame → gameshelf | 31 | 157s | 216 | 9 | 0.72 | 0.3 | yes | invader, chomper, ghosty | `chiptune` |
 | 23 | Money Room Millions | `money` | coin → coinchest | 32 | 160s | 260 | 10 | 0.7 | 0.25 | yes | hamster, roomba, slime | `money` |
-| 24 | The Whole House!! | `house` | mix → couch | 33 | 163s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
+| 24 | MarioKart Toy Room | `kartroom` | alternating toykart / toybike → kartgarage | 33 | 163s | 270 | 10 | 0.7 | 0.25 | yes | roomba, squirrel, ghosty | `grandprix` |
+| 25 | The Whole House!! | `house` | mix → couch | 34 | 166s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
 
 ## Level Data Format
 
@@ -71,14 +72,14 @@ Each level is one object in the `LEVELS` array:
 
 - **Fixed seed:** each level has its own `seed` field, so inserting or reordering levels never changes another level's layout. New levels should get a new, unused seed (for example `777 + n × 1013` for the next unused `n`).
 - **Start and end:** the first 10 columns and last 16 columns are always flat, solid ground (the end zone is forced flat after generation, and long stepping-stone runs are not started within 60 tiles of the end), so the drop-off always sits on a platform. The drop-off sits near the end; wider drop-offs shift left so they stay on the flat ground. Most drop-offs are 70 px wide; the couch, giant robot and toy tote are narrower.
-- **Difficulty curve:** `D = level index / (levels − 1)` runs from 0 on Level 1 to 1 on the Whole House, and it drives every building block:
+- **Difficulty curve:** `D = min(1, level index / 23)` runs from 0 on Level 1 to 1 on Level 24 and stays at 1 for the Whole House, and it drives every building block:
   - **Pits** get wider (up to the level's `gap`) and more frequent, and late levels pick the widest sizes more often. Their landings get narrower (4–6 tiles early, 2–3 late) and can be higher or lower than the take-off.
   - **Stepping stones** (from about Level 7): two to four narrow pillars, 1–2 tiles wide, over open pits.
   - **Steps** grow from −1…+2 tiles early to −3…+5 late. A 5-tile climb needs a double jump.
   - **Moving-platform pits** widen from 6–8 tiles to 12–14, too wide to jump late in the game, so you have to ride. The platforms move slowly and steadily (42–60 px/s), because fast platforms just made levels annoying, not harder.
   - **Shelves** sit higher and get shorter, and **flat runs** get shorter.
 - **Building blocks:** pits (sometimes with moving platforms), stepping stones, steps, shelves (one-way platforms, sometimes stacked) and flat runs with a critter or LEGO brick.
-- **Jumpable:** a single jump clears 7 tiles on the flat and rises about 4 tiles; a perfect double jump clears about 11 tiles and rises about 8. Pits are capped so a perfect double jump has at least a 1-tile margin (10 tiles on the flat, 9 for a landing 1–2 tiles higher, 8 for 3 or more). A test script checks every pit and climb in all 24 levels against the jump physics.
+- **Jumpable:** a single jump clears 7 tiles on the flat and rises about 4 tiles; a perfect double jump clears about 11 tiles and rises about 8. Pits are capped so a perfect double jump has at least a 1-tile margin (10 tiles on the flat, 9 for a landing 1–2 tiles higher, 8 for 3 or more). The original 24-level physics check remains the baseline; the new room uses the same capped pit and climb rules.
 - **Item placement:** item spots are picked evenly along the level. If a level has fewer spots than `count`, it gets fewer items. Always check counts after editing (see [06](06-development-workflow.md)).
 
 ## Checklist: Adding a Level
@@ -91,3 +92,7 @@ Each level is one object in the `LEVELS` array:
 6. **Music:** add a song to `STYLES` and to `MIX` (see [04](04-audio.md)).
 7. **Test:** check that the item count is correct and that the level is winnable (see [06](06-development-workflow.md)).
 8. **Assets and docs:** record the MP3s, update the README and these docs, then add a changelog entry.
+
+### Mixed toy pickups
+
+MarioKart Toy Room uses `item: "kartbike"`; generation alternates `toykart` and `toybike` so both are guaranteed (17 karts and 16 bikes). Both toy types also appear in the Whole House mix.

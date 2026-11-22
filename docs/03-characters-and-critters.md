@@ -51,36 +51,36 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 
 | Key | Critter | Movement | Speed | Levels |
 |---|---|---|---|---|
-| `dust` | Dust bunny | walk | 30 | 3, 9, 12, 18, 24 |
-| `roach` | Cockroach | walk | 55 | 3, 9, 10, 13, 24 |
-| `roomba` | Robot vacuum | walk | 75 | 4, 8, 21, 23, 24 |
-| `cat` | Cat | walk | 50 | 4, 13, 14, 17, 24 |
-| `dog` | Dog | walk + hop | 90 | 5, 17, 24 |
-| `rat` | Rat | walk | 65 | 8, 17, 18, 19, 24 |
-| `bee` | Bee | fly | 40 | 5, 8, 24 |
-| `spider` | Spider | walk | 60 | 10, 11, 12, 13, 18, 19, 24 |
-| `bat` | Bat | fly | 55 | 19, 24 |
-| `bubble` | Soap bubble | fly | 35 | 9, 10, 14, 16, 24 |
-| `zap` | Lightning bolt | fly (jittery) | 65 | 15, 16, 24 |
-| `ant` | Ant | walk | 70 | 11, 14, 24 |
-| `hamster` | Hamster | walk + hop | 85 | 11, 12, 20, 23, 24 |
-| `mite` | Dust mite | walk | 45 | 17, 24 |
-| `bzombie` | Blocky zombie | walk | 32 | 1, 24 |
-| `bskel` | Blocky skeleton | walk | 42 | 1, 24 |
-| `bspider` | Blocky spider | walk | 62 | 1, 24 |
-| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1, 24 |
-| `tabby` | Orange tabby cat | walk | 50 | 2, 20, 24 |
-| `husky` | Husky | walk + hop | 72 | 2, 24 |
-| `pom` | Pomeranian | walk + hop | 80 | 2, 20, 24 |
-| `duck` | Duck | walk | 40 | 7, 24 |
-| `goose` | Goose (flashes HONK) | walk | 60 | 7, 21, 24 |
-| `swan` | Swan | walk | 35 | 7, 24 |
-| `invader` | Pixel space invader (original 8-bit alien, legs flick every frame) | fly | 45 | 22, 24 |
-| `chomper` | Yellow chomper that opens and closes its mouth, munching dots | walk | 72 | 22, 24 |
-| `ghosty` | Cyan arcade ghost with a wavy hem and eyes that look where it goes | walk | 52 | 22, 24 |
-| `squirrel` | Squirrel | walk + hop | 85 | 7, 21, 24 |
-| `weed` | Walking weed | walk | 38 | 6, 24 |
-| `slime` | Slime | walk | 42 | 16, 23, 24 |
+| `dust` | Dust bunny | walk | 30 | 3, 9, 12, 18, 25 |
+| `roach` | Cockroach | walk | 55 | 3, 9, 10, 13, 25 |
+| `roomba` | Robot vacuum | walk | 75 | 4, 8, 21, 23, 24, 25 |
+| `cat` | Cat | walk | 50 | 4, 13, 14, 17, 25 |
+| `dog` | Dog | walk + hop | 90 | 5, 17, 25 |
+| `rat` | Rat | walk | 65 | 8, 17, 18, 19, 25 |
+| `bee` | Bee | fly | 40 | 5, 8, 25 |
+| `spider` | Spider | walk | 60 | 10, 11, 12, 13, 18, 19, 25 |
+| `bat` | Bat | fly | 55 | 19, 25 |
+| `bubble` | Soap bubble | fly | 35 | 9, 10, 14, 16, 25 |
+| `zap` | Lightning bolt | fly (jittery) | 65 | 15, 16, 25 |
+| `ant` | Ant | walk | 70 | 11, 14, 25 |
+| `hamster` | Hamster | walk + hop | 85 | 11, 12, 20, 23, 25 |
+| `mite` | Dust mite | walk | 45 | 17, 25 |
+| `bzombie` | Blocky zombie | walk | 32 | 1, 25 |
+| `bskel` | Blocky skeleton | walk | 42 | 1, 25 |
+| `bspider` | Blocky spider | walk | 62 | 1, 25 |
+| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1, 25 |
+| `tabby` | Orange tabby cat | walk | 50 | 2, 20, 25 |
+| `husky` | Husky | walk + hop | 72 | 2, 25 |
+| `pom` | Pomeranian | walk + hop | 80 | 2, 20, 25 |
+| `duck` | Duck | walk | 40 | 7, 25 |
+| `goose` | Goose (flashes HONK) | walk | 60 | 7, 21, 25 |
+| `swan` | Swan | walk | 35 | 7, 25 |
+| `invader` | Pixel space invader (original 8-bit alien, legs flick every frame) | fly | 45 | 22, 25 |
+| `chomper` | Yellow chomper that opens and closes its mouth, munching dots | walk | 72 | 22, 25 |
+| `ghosty` | Cyan arcade ghost with a wavy hem and eyes that look where it goes | walk | 52 | 22, 24, 25 |
+| `squirrel` | Squirrel | walk + hop | 85 | 7, 21, 24, 25 |
+| `weed` | Walking weed | walk | 38 | 6, 25 |
+| `slime` | Slime | walk | 42 | 16, 23, 25 |
 
 ## Chore Items and Drop-offs
 
@@ -109,6 +109,7 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | Race Track Rumble | `tire` (racing tire with a silver rim) | `tirerack` (red metal tire shelf) |
 | Game Room Glitch | `videogame` (a variety of game controllers: classic flat pad, rounded pad with colored buttons, arcade joystick, twin-stick pad) | `gameshelf` (CRT TV showing an alien, a console and spots for controllers) |
 | Money Room Millions | `coin` (gold coins) | `coinchest` (a wide wooden chest with gold bands) |
+| MarioKart Toy Room | `toykart` / `toybike` (miniature karts and bikes with red- or green-capped drivers) | `kartgarage` (two-tier display garage) |
 | The Whole House!! | `mix` | `couch` |
 
 Some sprites change by position (`itemSeed`), including paint-bucket colors, robot-part shapes (gear, head, claw, battery), weight types (dumbbell, kettlebell, plate), towel colors, pillows and game controllers.

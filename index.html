@@ -982,10 +982,22 @@ STYLES.money={name:"WINTER (8-BIT) – VIVALDI",bpm:116,spb:4,bar:16,bars:16,
    else{                                                                  // 16: final F minor chord, then shiver out
      if(s16===0){[41,53,60,65,68,72,77].forEach(x=>x<50?chipTri(x,d*7,t,0.24):chipPulse(x,d*7,t,0.022,0.25,true));chipKick(t);nz(1.4,0.08,'highpass',5000,t);}
      if(s16>=8&&s16%2===0){chipPulse(65,d*0.9,t,0.012,0.25);chipPulse(68,d*0.9,t,0.012,0.25);}}}};
-const STYLE_GAIN={"sad":1.62,"money":0.82,"punkska":0.39,"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
+// An original grand-prix fanfare: bright horns, dancing strings, bells and snare.
+STYLES.grandprix={name:"CASTLE CUP CELEBRATION",bpm:144,spb:2,bar:8,bars:16,
+ melody:[72,76,79,77,74,79,76,72,74,77,81,79,76,74,71,67,
+         76,79,84,83,81,77,79,76,74,72,71,74,79,77,76,72],
+ play(i,t,d){const bar=Math.floor(i/8)%16,b=i%8,root=[48,53,55,48,57,53,50,55][bar%8],lift=bar>=8;
+  if(b===0){strings([root+12,root+16,root+19],d*7,t,0.01);tuba(root,d*1.5,t,0.11);}
+  if(b===4)tuba(root+7,d*1.5,t,0.09);
+  if(b%2===0)harp(root+[12,16,19,24][b/2],d*1.4,t,0.018);
+  if(b===2||b===6)snare(t,0.075);if(b%2)hat(t,false,0.016);if(b===0&&bar%4===0)crash(t,0.05);
+  const n=this.melody[(bar%4)*8+b]+(lift?12:0);
+  horn(n,d*0.88,t,lift?0.045:0.04);if(lift&&b%2===0)celesta(n+12,d,t,0.018);
+ }};
+const STYLE_GAIN={"grandprix":0.9,"sad":1.62,"money":0.82,"punkska":0.39,"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
 for(const k in STYLE_GAIN)if(STYLES[k])STYLES[k].gain=STYLE_GAIN[k];
 const MUSIC_BASE=0.38;
-const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','punkska','silly','science','workout','romantic','baroque','pets','chiptune','money'];
+const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','punkska','silly','science','workout','romantic','baroque','pets','chiptune','money','grandprix'];
 let music={on:false,style:'pop',step:0,next:0,seg:0,segStep:0,cycle:0};
 function startMusic(style){music.style=style;music.step=0;music.seg=0;music.segStep=0;music.cycle=0;music.on=true;if(AC)music.next=AC.currentTime+0.05;}
 function scheduler(){
@@ -1054,7 +1066,9 @@ const LEVELS=[
   text:"UNCLE PETE: I said ONE more game! Now there are controllers everywhere... and something just crawled out of the TV!"},
  {name:"MONEY ROOM MILLIONS",chore:"Pick up the coins and put them back in the coin chest",drop:"coinchest",item:"coin",seed:25089,count:32,time:160,len:260,gap:10,enemies:["hamster","roomba","slime"],density:.7,lego:.25,movers:1,theme:"money",music:"money",
   text:"UNCLE PETE: The coin chest tipped over! You, Isaac and Annie: every coin back in the chest. Time to cash in!"},
- {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",seed:20024,count:33,time:163,len:250,gap:10,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
+ {name:"MARIOKART TOY ROOM",chore:"Put the toy karts and bikes back in the display garage",drop:"kartgarage",item:"kartbike",seed:27115,count:33,time:163,len:270,gap:10,enemies:["roomba","squirrel","ghosty"],density:.7,lego:.25,movers:1,theme:"kartroom",music:"grandprix",
+  text:"MOM: You, Isaac and Annie left MarioKart toy karts AND bikes everywhere! Park them in the display garage. Ready, set, tidy!"},
+ {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",seed:20024,count:34,time:166,len:250,gap:10,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
   text:"BOTH: We're turning onto our street RIGHT NOW."},
 ];
 const THEMES={
@@ -1079,11 +1093,12 @@ const THEMES={
  attic:{sky:"#7a5233",wall2:"#6b4628",ground:"#795548",top:"#bcaaa4",plat:"#5d4037",ptop:"#8d6e63"},
  pets:{sky:"#ffe0b2",wall2:"#ffd59a",ground:"#8d6e63",top:"#aed581",plat:"#a1887f",ptop:"#ffcc80"},
  race:{sky:"#81d4fa",wall2:"#4fc3f7",ground:"#424242",top:"#e53935",plat:"#616161",ptop:"#fafafa"},
+ kartroom:{sky:"#8bcfea",wall2:"#77bed9",ground:"#8271a8",top:"#ffd54f",plat:"#d04444",ptop:"#fff1c1"},
  money:{sky:"#183e30",wall2:"#123327",ground:"#644422",top:"#ffd54f",plat:"#9a742a",ptop:"#fff59d"},
  gameroom:{sky:"#1a1033",wall2:"#140c29",ground:"#311b92",top:"#00e5ff",plat:"#ff4081",ptop:"#ff80ab"},
  house:{sky:"#2b2d6e",wall2:"#25275e",ground:"#5d3a8a",top:"#b388ff",plat:"#00897b",ptop:"#4db6ac"},
 };
-const ITEM_NAMES={coin:"coins",pillow:"pillows",videogame:"game controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
+const ITEM_NAMES={kartbike:"toy karts and bikes",toykart:"toy karts",toybike:"toy bikes",coin:"coins",pillow:"pillows",videogame:"game controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
@@ -1097,7 +1112,8 @@ function buildLevel(idx){
   //  only be crossed by riding a (slow, steady) moving platform. Every jump stays inside what the physics can clear:
   //  a single jump clears 7 tiles on the flat and a perfect double jump about 11, so the widest late pits (8-10 tiles)
 //  need a well-timed double jump; a single jump rises about 4 tiles, so 5-tile climbs need a double jump too.
-  const D=idx/Math.max(1,LEVELS.length-1),maxPit=L.gap,minPit=2+Math.floor(maxPit/3);
+  // Keep the original 24-level ramp stable when adding late-game rooms.
+  const D=Math.min(1,idx/23),maxPit=L.gap,minPit=2+Math.floor(maxPit/3);
   let x=0,h=3;
   for(;x<10;x++)ground[x]=h;
   const landing=()=>ri(Math.max(2,4-Math.round(2*D)),Math.max(3,6-Math.round(3*D)));   // run after a jump: 4-6 early, 2-3 late
@@ -1163,8 +1179,8 @@ function buildLevel(idx){
   const items=[],n=Math.min(L.count,cand.length);
   const used=new Set();
   for(let i=0;i<n;i++){let k=Math.round(i*(cand.length-1)/Math.max(1,n-1));while(used.has(k))k++;used.add(k);const s=cand[k];
-    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel","oldflower","testtube","book","chewtoy","tire","videogame","pillow","coin"];
-    items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%kinds.length]:L.item,got:false,bob:rng()*6});}
+    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel","oldflower","testtube","book","chewtoy","tire","videogame","pillow","coin","toykart","toybike"];
+    items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%kinds.length]:L.item==='kartbike'?(i%2?'toybike':'toykart'):L.item,got:false,bob:rng()*6});}
   const enemies=[];
   eSpots.filter(s=>s.x>14&&s.x<cols-10).forEach(s=>{
     const type=L.enemies[ri(0,L.enemies.length-1)];
@@ -1569,7 +1585,21 @@ function drawItem(k,x,y,t=0,glow=true){
   outlined(x,y,(ox,oy)=>drawItemRaw(k,ox,oy),1,1,'#000');
   const ph=(t*1.3+x*0.013)%3;if(ph<0.35){const a=Math.sin(ph/0.35*Math.PI);g.globalAlpha=a;sparkle(Math.round(x)+14,Math.round(y)+1,2+Math.round(a*2));g.globalAlpha=1;}
 }
+// Tiny collectible racers, with alternating red/green capped drivers.
+function drawToyRacer(k,x,y){
+ const green=Math.abs(Math.round(itemSeed/32))%2,c=green?"#43a047":"#e53935",dark=green?"#1b5e20":"#b71c1c";
+ if(k==='toybike'){
+  R(x,y+10,5,5,"#263238");R(x+11,y+10,5,5,"#263238");R(x+1,y+11,3,3,"#b0bec5");R(x+12,y+11,3,3,"#b0bec5");
+  R(x+3,y+8,10,2,c);R(x+5,y+6,5,3,dark);R(x+10,y+5,2,6,"#78909c");R(x+10,y+4,4,2,"#263238");
+  R(x+5,y+5,4,4,"#1e88e5");R(x+7,y+3,4,3,"#ffcc80");R(x+6,y+1,5,2,c);R(x+9,y+2,4,1,c);
+ }else{
+  R(x,y+10,4,5,"#263238");R(x+12,y+10,4,5,"#263238");R(x+1,y+11,2,2,"#b0bec5");R(x+13,y+11,2,2,"#b0bec5");
+  R(x+2,y+8,12,5,c);R(x+3,y+12,10,1,dark);R(x+1,y+6,4,2,"#fdd835");R(x+12,y+7,3,2,"#ffe082");
+  R(x+6,y+6,4,3,"#1e88e5");R(x+5,y+3,6,3,"#ffcc80");R(x+4,y+1,7,2,c);R(x+8,y+2,5,1,c);
+  R(x+7,y+1,2,1,"#fff");R(x+9,y+4,1,1,"#263238");}
+}
 function drawItemRaw(k,x,y){
+  if(k==='toykart'||k==='toybike'||k==='kartbike'){drawToyRacer(k==='kartbike'?'toykart':k,x,y);return;}
   x=Math.round(x);y=Math.round(y);
   if(k==='dish'){ // plate with leftover spaghetti
     R(x+3,y+3,10,1,"#fff");R(x+1,y+4,14,8,"#fff");R(x+3,y+12,10,1,"#fff");R(x+2,y+11,12,2,"#cfd8dc");
@@ -1695,11 +1725,11 @@ function drawItemRaw(k,x,y){
 }
 
 // Drop-off size: most sprites are drawn at 28 px and scaled up 2x; a few are drawn full-size already.
-const DROP_SCALE={coinchest:1,creamcouch:1,gameshelf:1,tirerack:1,petbasket:1,dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1};
+const DROP_SCALE={kartgarage:1,coinchest:1,creamcouch:1,gameshelf:1,tirerack:1,petbasket:1,dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1};
 // Normal height, much wider: these sprites are stretched sideways only.
 const DROP_WIDE={}; // (no longer used: wide drop-offs are drawn at full width)
-const DROP_W={coinchest:70,creamcouch:56,gameshelf:70,tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
-const DROP_TOP={coinchest:10,creamcouch:0,gameshelf:22,tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:0,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
+const DROP_W={kartgarage:70,coinchest:70,creamcouch:56,gameshelf:70,tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
+const DROP_TOP={kartgarage:18,coinchest:10,creamcouch:0,gameshelf:22,tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:0,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
 function drawDrop(d,ready,t){
   const x=Math.round(d.x),y=Math.round(d.y),k=d.kind;
   if(ready){g.save();g.globalAlpha=0.35+0.2*Math.sin(t*8);const rg=g.createRadialGradient(x+14,y+12,2,x+14,y+12,34);rg.addColorStop(0,'#fff59d');rg.addColorStop(1,'rgba(255,235,59,0)');g.fillStyle=rg;g.fillRect(x-24,y-24,76,72);g.restore();}
@@ -1719,6 +1749,12 @@ function drawDropRaw(k,x,y){
     R(x+2,y+4,44,2,"#e1f5fe");R(x,y+4,48,2,"#e3f2fd");R(x+2,y+22,44,2,"#81d4fa");
     for(let rr=0;rr<4;rr++)R(x+5+rr*11,y+7,1,14,"#e1f5fe");R(x+3,y+6,1,16,"#ffffff");
     R(x-2,y+9,3,5,"#81d4fa");R(x+47,y+9,3,5,"#81d4fa");}
+  else if(k==='kartgarage'){
+    R(x,y-15,70,39,"#1565c0");R(x+3,y-11,64,31,"#172b46");R(x,y-17,70,4,"#e53935");
+    for(let row=0;row<2;row++){for(let col=0;col<4;col++){
+      ctx.save();ctx.translate(x+7+col*15,y-10+row*16);ctx.scale(.75,.75);drawToyRacer(col%2?'toybike':'toykart',0,0);ctx.restore();}
+      R(x+2,y+2+row*16,66,3,"#ffd54f");}
+    R(x,y+21,70,3,"#0d47a1");R(x+33,y-11,3,32,"#42a5f5");}
   else if(k==='coinchest'){
     R(x,y-8,70,12,"#6d4024");R(x+3,y-11,64,5,"#a57036");R(x+3,y-6,64,8,"#251a13");
     for(let c=0;c<10;c++){R(x+5+c*6,y-3-(c%3)*2,5,4,"#ffd54f");R(x+6+c*6,y-3-(c%3)*2,3,1,"#fff59d");}
@@ -2090,6 +2126,15 @@ function drawBackground(th,t){
       if(k===1||k===3){R(dx,30,160,6,"#607d8b");R(dx+40,30,6,120,"#607d8b");R(dx+38,60,10,4,"#455a64");}
       if(k===2){R(dx+70,20,2,30,"#212121");R(dx+66,50,10,10,"#fff59d");g.save();g.globalAlpha=0.12;g.fillStyle='#fff59d';g.beginPath();g.moveTo(dx+66,56);g.lineTo(dx+76,56);g.lineTo(dx+130,200);g.lineTo(dx+12,200);g.fill();g.restore();}
       for(let b=0;b<6;b++)R(dx+((b*37)%150),40+b*22,22,10,"#ffffff08");
+    }else if(thn==='kartroom'){
+      if(k===0){ // castle mural behind the toy raceway
+        R(dx+28,84,76,86,"#fff1d1");R(dx+18,67,22,103,"#f7ddb1");R(dx+92,67,22,103,"#f7ddb1");
+        for(const bx of [18,92]){R(dx+bx-3,62,28,7,"#e57373");R(dx+bx+8,47,6,16,"#e57373");R(dx+bx+10,36,2,12,"#ffd54f");R(dx+bx+12,36,12,6,"#e53935");}
+        R(dx+56,125,20,45,"#866a94");R(dx+58,92,16,20,"#80c8e2");}
+      if(k===1){R(dx+12,48,124,48,"#d04444");R(dx+16,52,116,40,"#fff1d1");text("MARIOKART",dx+22,60,10,"#1565c0","left",false);text("TOY GARAGE",dx+25,78,8,"#b71c1c","left",false);}
+      if(k===2){R(dx+16,148,118,16,"#546e7a");R(dx+16,155,118,2,"#fff59d");for(let c=0;c<7;c++)R(dx+20+c*17,150,8,2,"#fff");
+        R(dx+58,112,30,4,"#ffd54f");R(dx+62,116,22,15,"#ffca28");R(dx+69,131,8,10,"#ffd54f");R(dx+61,141,24,4,"#b98a2e");}
+      if(k===3){for(let row=0;row<4;row++)for(let col=0;col<8;col++)R(dx+16+col*12,60+row*12,12,12,(row+col)%2?'#fff':'#263238');R(dx+14,108,100,4,"#e53935");}
     }else if(thn==='money'){
       if(k===0){R(dx+20,38,104,126,"#607d78");R(dx+26,44,92,114,"#314e45");R(dx+32,50,80,102,"#75968a");
         g.strokeStyle='#d4e0d2';g.lineWidth=4;g.beginPath();g.arc(dx+72,103,24,0,Math.PI*2);g.stroke();R(dx+68,82,8,42,"#b0c8b9");R(dx+51,99,42,8,"#b0c8b9");R(dx+69,100,6,6,"#ffd54f");}

@@ -3,7 +3,7 @@
 ## Contributors and Branches
 
 - **Contributors:** Pete (owner), Claude (Claude Code) and Codex. AI changes arrive either as direct commits on a working branch or as pull requests.
-- **Branches:** `main` is the published version; the README song links point at `main`. Claude works on `claude/adoring-cray-7vaqhn` and fast-forward merges to `main` when asked. Codex uses `codex/*` branches merged through pull requests.
+- **Branches:** `main` is the published version; the README song links point at `main`. Claude works on `claude/adoring-cray-7vaqhn` and fast-forward merges to `main` when asked. Codex commits directly to `main` at the owner's request; create a pull request only when asked.
 - **Before starting work:** pull `main` so you build on the other contributors' latest changes.
 
 ## Making a Change
@@ -35,4 +35,4 @@ There's no test framework. Testing is done by driving the game in headless Chrom
 - **New level:** see [02 – Levels](02-levels.md#checklist-adding-a-level).
 - **New song:** see [04 – Audio](04-audio.md#checklist-adding-a-song).
 - **New critter:** sprite in `drawEnemyRaw`, speed in `sp`, add it to levels and the Whole House, flying critters to the bee/bat/bubble/zap/invader checks, hoppers to the hop check, then update [03](03-characters-and-critters.md).
-- **Renaming or reordering levels:** the layout seed depends on the level index, recordings are numbered by level, and README tables are numbered. Update all three.
+- **Renaming or reordering levels:** each room has a fixed layout seed, and the difficulty ramp is capped at `levelIndex / 23`, recordings are numbered by level, and README tables are numbered. Update all three.

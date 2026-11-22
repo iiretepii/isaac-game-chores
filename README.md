@@ -29,7 +29,7 @@ The whole game is a single file, `index.html`. Open it in any modern web browser
 
 You ride a **bicycle** with spinning wheels and pedals, except on Race Track Rumble, where all three kids drive race cars. Duck to squeeze under low spots, and use the double jump to clear wide gaps or reach high shelves.
 
-On the title screen you can also open **Level Select** to jump straight to any of the 24 levels. After you finish a chore, the "Chore Complete!" screen also has a **Level Select** button (or press **L**) so you can jump to any level from there.
+On the title screen you can also open **Level Select** to jump straight to any of the 25 levels. After you finish a chore, the "Chore Complete!" screen also has a **Level Select** button (or press **L**) so you can jump to any level from there.
 
 Browsers don't allow sound until you interact with the page, so the title screen asks you to **click or press any key for sound** first. After that, press Enter (or tap) to start.
 
@@ -86,7 +86,7 @@ Their vehicles follow the terrain, with these helper abilities:
 
 ## The Levels
 
-Item counts rise by one each level. The game gets **progressively harder**. The first rooms only have small gaps, but by the end you need well-timed double jumps over wide pits, hops across narrow stepping stones, bigger climbs, and rides on moving platforms over pits too wide to jump. Most rooms are 170–216 tiles long, Money Room is 260, and the finale is 250. Every level has its own room, chore and music style.
+Item counts rise by one each level. The game gets **progressively harder**. The first rooms only have small gaps, but by the end you need well-timed double jumps over wide pits, hops across narrow stepping stones, bigger climbs, and rides on moving platforms over pits too wide to jump. Most rooms are 170–216 tiles long, Money Room is 260, the MarioKart toy room is 270, and the finale is 250. Every level has its own room, chore and music style.
 
 | # | Level | Chore | Items | Time | Critters | Music |
 |---|---|---|---|---|---|---|
@@ -113,7 +113,8 @@ Item counts rise by one each level. The game gets **progressively harder**. The 
 | 21 | **Race Track Rumble** | Racing tires → tire shelf (you, Isaac and Annie drive race cars here) | 30 | 154s | Robot vacuums, squirrels, geese | Isaac's Room rock song, very fast |
 | 22 | **Game Room Glitch** | Game controllers (classic pads, rounded pads, arcade joysticks, twin-stick pads) → game shelf | 31 | 157s | Pixel space invaders, chompers, arcade ghosts | NES-style chiptune |
 | 23 | **Money Room Millions** | Coins → coin chest | 32 | 160s | Hamsters, robot vacuums, slime | Vivaldi's "Winter" as 8-bit video game music |
-| 24 | **The Whole House!!** | Everything → dive on the couch | 33 | 163s | All of them | Medley of every style |
+| 24 | **MarioKart Toy Room** | Toy karts and bikes → display garage | 33 | 163s | Robot vacuums, squirrels, arcade ghosts | Original orchestral racing fanfare |
+| 25 | **The Whole House!!** | Everything → dive on the couch | 34 | 166s | All of them | Medley of every style |
 
 The basement is dark, with a pool of light that follows you around. At the pool, the floating platforms are striped lounge chairs and the gaps are the pool itself. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
 
@@ -153,9 +154,10 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Race Track | [*Radical Race Rock*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/21-race-track.mp3) | Isaac's Room rock song at racing speed (240 BPM instead of 144), stretched to about a minute: the riff, a key change up, an engine-revving breakdown and a final lap a fourth higher |
 | Game Room | [*Press Start to Clean!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/22-game-room.mp3) | The most video-game video-game music possible: NES-style pulse-wave lead with vibrato and echo, lightning-fast chord arpeggios, a bouncing triangle bass, noise drums, coin blings, a power-up sweep and a 1-UP jingle |
 | Money Room | [*Winter (8-Bit) – Vivaldi*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/23-money-room.mp3) | Antonio Vivaldi's "Winter" from *The Four Seasons* (1725, public domain), first movement, arranged from memory as NES-style video game music. It opens on the famous solo-violin arpeggios, then the repeated-note storm theme, the solo again, the shivering stacked chords with an icy trill building into a storm burst, and a plunging scale, played on pulse waves with a triangle bass and 8-bit drums |
-| Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/24-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
-| Ending | [*Jubilee for a Job Well Done*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/25-ending-jubilee.mp3) | An upbeat, triumphant celebration of a job well done: big horn fanfare calls with tuba and bells, a marching jubilee tune on strings and horns with handclaps, tambourine and bell runs, a crowd cheer as the key lifts, and a huge final chord with one more cheer |
-| Fail screen | [*Grounded Until Forever*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/26-fail-screen.mp3) | A slow, sad piano lament in A minor that plays when the parents beat you home: a lonely melody that keeps sighing downward, soft strings and a few celesta "teardrops" |
+| MarioKart Toy Room | [*Castle Cup Celebration*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/24-kart-toy-room.mp3) | An original cheerful grand-prix fanfare with horns, dancing strings, harp, celesta and snare; not a recording or recreation of Royal Raceway |
+| Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/25-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
+| Ending | [*Jubilee for a Job Well Done*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/26-ending-jubilee.mp3) | An upbeat, triumphant celebration of a job well done: big horn fanfare calls with tuba and bells, a marching jubilee tune on strings and horns with handclaps, tambourine and bell runs, a crowd cheer as the key lifts, and a huge final chord with one more cheer |
+| Fail screen | [*Grounded Until Forever*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/27-fail-screen.mp3) | A slow, sad piano lament in A minor that plays when the parents beat you home: a lonely melody that keeps sighing downward, soft strings and a few celesta "teardrops" |
 
 Sound effects include a slide whistle when you jump, a "boing" when you stomp, a car horn as the parents get close, a kazoo fanfare when you finish a level and a sad trombone when you get caught.
 

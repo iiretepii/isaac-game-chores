@@ -179,3 +179,9 @@ Grouped by milestone. See `git log` for every commit.
 - Each level's `gap` value now follows the curve (3 → 10). Layouts changed; seeds are the same.
 - A physics check confirms every pit and climb in all 24 levels can be cleared, with at least a tile of margin on a perfect double jump. Every level still has its full item count. Example from the check: Levels 1–9 need no double jumps; the Science Lab needs 2, the Game Room 8, the Money Room 6 and the Whole House 5.
 - Fixed the drop-off floating over a pit in Arts & Crafts, Workout Room and Pet Room. A long final obstacle could run past the end of the level and cover the flat end zone. The last 16 tiles are now always forced flat, and stepping stones do not start near the end. A check confirms the drop-off sits on solid ground in all 24 levels.
+
+## 2026-11-22 — MarioKart Toy Room
+
+- Added 33 toy pickups (17 karts, 16 bikes), a display garage, castle murals, trophies and checkered flags. The player, Isaac and Annie can collect both types.
+- Added Castle Cup Celebration, an original orchestral racing tune, plus its MP3 and an updated medley. The requested Royal Raceway track is not included.
+- Added both toys to the Whole House mix; the finale is now level 25 with 34 items and 166 seconds. Fixed the difficulty denominator at the prior 24-level ramp so adding the room preserves existing terrain.
