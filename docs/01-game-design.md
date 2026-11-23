@@ -68,6 +68,7 @@ Browsers block sound until the player interacts, so the title screen first asks 
 ## Content and Tone Guidelines
 
 - **Kid-friendly:** potty humor is fine at a cartoon level. Nothing scary beyond "spooky basement" and nothing violent: critters are stomped with a "boing" and puff away.
-- **Original content only:** don't copy characters, art, logos or music from existing games, movies or brands. Use original designs "in the style of" instead. Examples already in the game: a hissing bush-block instead of a Minecraft creeper, an original neon light-bike instead of a Tron bike, an original princess waltz instead of Disney songs, and generic "dolls" instead of the Barbie name.
+- **Hand-drawn toy-room art:** draw props, toys and scenery in the game's own pixel-art style. The requested MarioKart, Minecraft, Roblox and GTA V/VI toy rooms reference those games with miniature vehicles, blocks, avatars and city landmarks; no external game sprite files are loaded.
+- **Soundtracks:** the themed toy rooms use original compositions, not recordings from those games. Public-domain arrangements elsewhere are listed below.
 - **Public-domain music is fine:** quoting it is allowed (Mozart's Rondo alla Turca, Chopin's Nocturne Op. 9 No. 1, Ode to Joy and others in the Music Room, and Vivaldi's Winter in the Money Room).
 - **The family:** the family names are Isaac, Annie, Mom and Uncle Pete. Mom has long black hair and a purple dress; Uncle Pete has brown hair and a blue shirt. They appear on the "Parents are home!" screen (angry) and the victory screen (smiling).

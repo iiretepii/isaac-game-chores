@@ -75,7 +75,7 @@ Each level is one object in the `LEVELS` array:
 
 ## Level Generation Rules
 
-- **Fixed seed:** each level has its own `seed` field, so inserting or reordering levels never changes another level's layout. New levels should get a new, unused seed (for example `777 + n × 1013` for the next unused `n`).
+- **Fixed seed:** each level has its own `seed`, which preserves its random sequence. Geometry also depends on the index-based difficulty factor below: inserting or reordering an early room can still change its layout. Appending late rooms before the finale preserves earlier difficulty values because the ramp is capped. New levels need a new, unused seed; recheck layouts after reordering.
 - **Start and end:** the first 10 columns and last 16 columns are always flat, solid ground (the end zone is forced flat after generation, and long stepping-stone runs are not started within 60 tiles of the end), so the drop-off always sits on a platform. The drop-off sits near the end; wider drop-offs shift left so they stay on the flat ground. Most drop-offs are 70 px wide; the couch, giant robot and toy tote are narrower.
 - **Difficulty curve:** `D = min(1, level index / 23)` runs from 0 on Level 1 to 1 on Level 24 and stays at 1 for the Whole House, and it drives every building block:
   - **Pits** get wider (up to the level's `gap`) and more frequent, and late levels pick the widest sizes more often. Their landings get narrower (4–6 tiles early, 2–3 late) and can be higher or lower than the take-off.
@@ -84,7 +84,7 @@ Each level is one object in the `LEVELS` array:
   - **Moving-platform pits** widen from 6–8 tiles to 12–14, too wide to jump late in the game, so you have to ride. The platforms move slowly and steadily (42–60 px/s), because fast platforms just made levels annoying, not harder.
   - **Shelves** sit higher and get shorter, and **flat runs** get shorter.
 - **Building blocks:** pits (sometimes with moving platforms), stepping stones, steps, shelves (one-way platforms, sometimes stacked) and flat runs with a critter or LEGO brick.
-- **Jumpable:** a single jump clears 7 tiles on the flat and rises about 4 tiles; a perfect double jump clears about 11 tiles and rises about 8. Pits are capped so a perfect double jump has at least a 1-tile margin (10 tiles on the flat, 9 for a landing 1–2 tiles higher, 8 for 3 or more). The original 24-level physics check remains the baseline; the new room uses the same capped pit and climb rules.
+- **Jumpable:** a single jump clears 7 tiles on the flat and rises about 4 tiles; a perfect double jump clears about 11 tiles and rises about 8. Pits are capped so a perfect double jump has at least a 1-tile margin (10 tiles on the flat, 9 for a landing 1–2 tiles higher, 8 for 3 or more). The original 24-level physics check remains the baseline. Added rooms use the same capped pit and climb rules; full end-to-end playthroughs remain a separate check (see [07](07-backlog-and-known-issues.md)).
 - **Item placement:** item spots are picked evenly along the level. If a level has fewer spots than `count`, it gets fewer items. Always check counts after editing (see [06](06-development-workflow.md)).
 
 ## Checklist: Adding a Level

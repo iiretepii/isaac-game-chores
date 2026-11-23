@@ -53,7 +53,7 @@ Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays a
 
 `MIX` lists the styles in order: rock, princess, jazz, pop, hiphop, garden, pool, techno, polka, crooner, muzak, library, practice, punkska, silly, science, workout, romantic, baroque, pets, chiptune, money, grandprix, blockgarden, obby, cityradio. The medley plays 4 bars of each, with a record scratch and crash between them, then loops.
 
-**Rule:** add each new musical style to `MIX`. The current medley omits `racerock`, the race-track arrangement of the existing rock song, and does not include the separate title or ending music.
+**Rule:** add each new musical style to `MIX`. The current medley omits `racerock`, the race-track arrangement of the existing rock song, and does not include the separate title, ending or fail-screen music.
 
 ## Instruments
 

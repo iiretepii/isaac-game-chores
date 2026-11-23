@@ -212,3 +212,9 @@ Grouped by milestone. See `git log` for every commit.
 
 - Isaac and Annie now enter collection mode from the start of the Whole House and stay in it throughout the level. They prioritize chores over hunting detours, while retaining contact zaps and stomps.
 - Other rooms retain Annie's 33% and Isaac's 20% timer thresholds. Updated arrival lines avoid low-time warnings at the start of the finale.
+
+## 2026-11-23 — Repository and documentation verification
+
+- Confirmed all game source and 31 MP3 recordings are tracked on GitHub and the playable Site source matches `index.html`. Validated all 28 item counts, level settings, critter locations, music registry values and local/recording links.
+- Updated the documentation audit date, clarified fixed seeds versus index-based difficulty, documented full-time Whole House AI in the architecture notes, and aligned publishing instructions with the owner's direct-to-main preference.
+- Corrected rendering and themed-toy-room descriptions. No game behavior changed.

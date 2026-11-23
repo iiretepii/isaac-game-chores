@@ -20,7 +20,7 @@ There's no build step and there are no libraries. The only external resource is 
 5. **Game state:** `state`, `lvl`, `P` (the player), `sibs`, `startLevel`, collision helpers and `hurt`.
 6. **Update logic:** `updatePlayer`, `updateEnemies`, the sibling AI (`moveSibling`, `chooseSiblingTarget`, `updateSibs`) and `updatePlay`.
 7. **Drawing helpers:** `R` (rectangle), `text`, `wrap`, `outlined` (sprite outline system), `shadow`, tile texture cache and overlays.
-8. **Sprites:** `drawKidRaw`, `drawCyclistRaw`, `drawRaceCar` (race-track cars for all three kids, via `onRaceTrack()`), `drawItemRaw`, `drawDropRaw`, `drawEnemyRaw`, siblings, `GREETINGS`, `SIBS` and the penguin logo.
+8. **Sprites:** `drawKidRaw`, `drawCyclistRaw`, `drawRaceCar` (race-track cars for all three kids, via `onRaceTrack()`), `drawItemRaw` and the toy-vehicle, diamond-block and avatar helpers; `drawDropRaw`, `drawEnemyRaw`, siblings, `GREETINGS`, `SIBS` and the penguin logo.
 9. **Scenes:** `drawBackground` (per-theme branches), `drawTiles`, `drawHUD`, `drawPlay`, and the splash, title, intro, clear, lose and end screens.
 10. **Main loop:** `frame()`.
 
@@ -53,11 +53,15 @@ There's no build step and there are no libraries. The only external resource is 
 
 Collision is tile-based: `#` is solid, `=` is a one-way platform (land from above only) and `x` is a LEGO hazard. Moving platforms (`lvl.movers`) carry riders using `ride.dx`.
 
+## Sibling AI
+
+`updateSibs(dt)` sets `fullTime` when `lvl.L.theme === 'house'`. Both siblings then stay in collection mode from the first update, without detouring to hunt critters. Other rooms use Annie's 33% and Isaac's 20% timer thresholds and preserve nearby-critter hunting. `chooseSiblingTarget` reserves separate items, scores distance and nearby critters, and temporarily skips stalled targets. Contact zaps, stomps, ducking, double jumps and brief damage recovery still apply in the finale. Only the player can complete delivery.
+
 ## Rendering
 
-- **Primitives:** everything is drawn with `fillRect` through `R()`, so pixel art is resolution-independent. The canvas is CSS-scaled with `image-rendering: pixelated`.
+- **Primitives:** pixel art is drawn mainly with `fillRect` through `R()`, with Canvas paths, text and transforms for silhouettes, wheels, lettering and scenery. The canvas is CSS-scaled with `image-rendering: pixelated`.
 - **Outlines:** `outlined(x, y, fn)` draws a sprite onto an offscreen 176 × 144 canvas (padding `SP=48`), stamps a dark silhouette at four offsets, then draws the sprite on top. Large sprites must fit within that padding.
-- **Background:** a vertical gradient, parallax stripes, a wainscot and a theme branch with decorations every 160 px of parallax distance (index `k`).
+- **Background:** most indoor rooms use a gradient, parallax stripes, wainscoting and theme decorations every 160 px of parallax distance (index `k`). Outdoor/pool scenes and the GTA sunset-city scene use dedicated background branches. Roblox studs and GTA road markings are visual theme flags; collision geometry is unchanged.
 - **Overlays:** pre-rendered scan lines and vignette (`fx`), the basement flashlight, the red low-time flash and the HUD.
 
 ## Level Generation
