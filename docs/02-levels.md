@@ -33,7 +33,8 @@ Generated from the `LEVELS` array in `index.html`.
 | 25 | Minecraft Block Room | `blockroom` | diamondblock → blockchest | 34 | 166s | 280 | 10 | 0.7 | 0.2 | yes | bzombie, bskel, bspider, hisser | `blockgarden` |
 | 26 | Roblox Avatar Roundup | `obbyroom` | avatar → avatarshelf | 35 | 169s | 290 | 10 | 0.7 | 0.2 | yes | roomba, invader, ghosty | `obby` |
 | 27 | GTA V + VI Toy Room | `cityroom` | alternating sportscar / cruiserbike → citygarage | 36 | 172s | 300 | 10 | 0.7 | 0.2 | yes | roomba, dog, rat | `cityradio` |
-| 28 | The Whole House!! | `house` | mix → couch | 37 | 175s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
+| 28 | Charging Room Chaos | `chargingroom` | chargecable → cabledock | 37 | 175s | 310 | 10 | 0.7 | 0.2 | yes | zap, roomba, ant | `charging` |
+| 29 | The Whole House!! | `house` | mix → couch | 38 | 178s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
 
 ## Level Data Format
 

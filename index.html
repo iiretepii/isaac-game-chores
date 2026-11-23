@@ -1024,10 +1024,21 @@ STYLES.cityradio={name:"TWO CITIES, ONE SUNSET",bpm:108,spb:4,bar:16,bars:16,
   if(b%2===0){const n=this.melody[(bar%2)*8+b/2];if(bar>=8)sax(n,d*1.55,t,0.035,0.3);else softLead(mtof(n),d*1.65,t,0.045);}
   if(b===15&&bar%4===3)pluck(root+31,d,t,0.025,0.3,2600);
  }};
-const STYLE_GAIN={"cityradio":1.6,"obby":0.85,"blockgarden":3.0,"grandprix":0.9,"sad":1.62,"money":0.82,"punkska":0.39,"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
+// Original electronic charging-room track: bright arps and a steady dance pulse.
+STYLES.charging={name:"FULLY CHARGED",bpm:128,spb:4,bar:16,bars:16,
+ melody:[76,83,79,81,74,78,81,79,77,84,81,79,76,79,74,72],
+ play(i,t,d){const bar=Math.floor(i/16)%16,b=i%16,root=[48,55,53,57][bar%4],breakdown=bar>=8&&bar<12;
+  if(b%4===0){kick(t,breakdown?0.17:0.30);subBass(root-12,d*2.7,t,0.13);}
+  if(b===4||b===12)snare(t,0.085);if(b%2)hat(t,b===15,0.023);
+  pluck(root+[12,19,24,28,31,28,24,19][b%8],d*1.3,t,0.025,0.22,3000);
+  if(!breakdown&&b%2===0)popLead(this.melody[(bar%2)*8+b/2]+(bar>=12?12:0),d*1.6,t,0.03,0.25);
+  if(b===0)[0,4,7].forEach(n=>supersaw(root+12+n,d*7,t,0.006,1500));
+  if(b===15&&bar%4===3)robotBeep(root+31,d,t,0.016);
+ }};
+const STYLE_GAIN={"charging":1.0,"cityradio":1.6,"obby":0.85,"blockgarden":3.0,"grandprix":0.9,"sad":1.62,"money":0.82,"punkska":0.39,"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
 for(const k in STYLE_GAIN)if(STYLES[k])STYLES[k].gain=STYLE_GAIN[k];
 const MUSIC_BASE=0.38;
-const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','punkska','silly','science','workout','romantic','baroque','pets','chiptune','money','grandprix','blockgarden','obby','cityradio'];
+const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','punkska','silly','science','workout','romantic','baroque','pets','chiptune','money','grandprix','blockgarden','obby','cityradio','charging'];
 let music={on:false,style:'pop',step:0,next:0,seg:0,segStep:0,cycle:0};
 function startMusic(style){music.style=style;music.step=0;music.seg=0;music.segStep=0;music.cycle=0;music.on=true;if(AC)music.next=AC.currentTime+0.05;}
 function scheduler(){
@@ -1104,7 +1115,9 @@ const LEVELS=[
   text:"MOM: You, Isaac and Annie left Roblox avatar toys all over the room! Return every little builder to the shelf. Checkpoint: tidy!"},
  {name:"GTA V + VI TOY ROOM",chore:"Put the toy sports cars and bikes back in the city garage",drop:"citygarage",item:"citytoys",seed:33223,count:36,time:172,len:300,gap:10,enemies:["roomba","dog","rat"],density:.7,lego:.2,movers:1,theme:"cityroom",music:"cityradio",
   text:"UNCLE PETE: You, Isaac and Annie left toy supercars and bikes from your two cities everywhere! Park them in the garage. Sunset tidy-up!"},
- {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",seed:20024,count:37,time:175,len:250,gap:10,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
+ {name:"CHARGING ROOM CHAOS",chore:"Put the charging cables back on the cable organizer",drop:"cabledock",item:"chargecable",seed:35267,count:37,time:175,len:310,gap:10,enemies:["zap","roomba","ant"],density:.7,lego:.2,movers:1,theme:"chargingroom",music:"charging",
+  text:"MOM: You, Isaac and Annie left charging cables EVERYWHERE! Coil them up and put them on the organizer. Let's get this room fully charged!"},
+ {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",seed:20024,count:38,time:178,len:250,gap:10,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
   text:"BOTH: We're turning onto our street RIGHT NOW."},
 ];
 const THEMES={
@@ -1129,6 +1142,7 @@ const THEMES={
  attic:{sky:"#7a5233",wall2:"#6b4628",ground:"#795548",top:"#bcaaa4",plat:"#5d4037",ptop:"#8d6e63"},
  pets:{sky:"#ffe0b2",wall2:"#ffd59a",ground:"#8d6e63",top:"#aed581",plat:"#a1887f",ptop:"#ffcc80"},
  race:{sky:"#81d4fa",wall2:"#4fc3f7",ground:"#424242",top:"#e53935",plat:"#616161",ptop:"#fafafa"},
+ chargingroom:{sky:"#253952",wall2:"#1d2c44",ground:"#39485e",top:"#75edbd",plat:"#62579c",ptop:"#b5a7ff"},
  cityroom:{sky:"#985577",wall2:"#794266",ground:"#3c4250",top:"#8a8e96",plat:"#5b6071",ptop:"#d1d2dc",road:1},
  obbyroom:{sky:"#75c9ff",wall2:"#61b5ed",ground:"#767a80",top:"#a8adb4",plat:"#f04438",ptop:"#ff9a84",studs:1},
  blockroom:{sky:"#83bde2",wall2:"#75acd0",ground:"#795438",top:"#69ad45",plat:"#785236",ptop:"#bd965d"},
@@ -1137,7 +1151,7 @@ const THEMES={
  gameroom:{sky:"#1a1033",wall2:"#140c29",ground:"#311b92",top:"#00e5ff",plat:"#ff4081",ptop:"#ff80ab"},
  house:{sky:"#2b2d6e",wall2:"#25275e",ground:"#5d3a8a",top:"#b388ff",plat:"#00897b",ptop:"#4db6ac"},
 };
-const ITEM_NAMES={citytoys:"toy sports cars and bikes",sportscar:"toy sports cars",cruiserbike:"toy bikes",avatar:"toy Roblox avatars",diamondblock:"toy diamond blocks",kartbike:"toy karts and bikes",toykart:"toy karts",toybike:"toy bikes",coin:"coins",pillow:"pillows",videogame:"game controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
+const ITEM_NAMES={chargecable:"charging cables",citytoys:"toy sports cars and bikes",sportscar:"toy sports cars",cruiserbike:"toy bikes",avatar:"toy Roblox avatars",diamondblock:"toy diamond blocks",kartbike:"toy karts and bikes",toykart:"toy karts",toybike:"toy bikes",coin:"coins",pillow:"pillows",videogame:"game controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
@@ -1218,7 +1232,7 @@ function buildLevel(idx){
   const items=[],n=Math.min(L.count,cand.length);
   const used=new Set();
   for(let i=0;i<n;i++){let k=Math.round(i*(cand.length-1)/Math.max(1,n-1));while(used.has(k))k++;used.add(k);const s=cand[k];
-    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel","oldflower","testtube","book","chewtoy","tire","videogame","pillow","coin","toykart","toybike","diamondblock","avatar","sportscar","cruiserbike"];
+    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel","oldflower","testtube","book","chewtoy","tire","videogame","pillow","coin","toykart","toybike","diamondblock","avatar","sportscar","cruiserbike","chargecable"];
     items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%kinds.length]:L.item==='kartbike'?(i%2?'toybike':'toykart'):L.item==='citytoys'?(i%2?'cruiserbike':'sportscar'):L.item,got:false,bob:rng()*6});}
   const enemies=[];
   eSpots.filter(s=>s.x>14&&s.x<cols-10).forEach(s=>{
@@ -1674,7 +1688,16 @@ function drawToyCityVehicle(k,x,y){
   R(x,y+7,4,2,"#273d55");R(x+1,y+6,3,1,color);R(x+14,y+9,2,1,"#fff3c4");R(x,y+9,1,2,"#f33348");R(x+5,y+12,7,1,shade(color,-40));
  }
 }
+function drawChargingCable(x,y){
+ const v=Math.abs(Math.round(itemSeed/16))%4,c=["#f1f5fa","#67e5dc","#ffbc65","#a895f5"][v],dk=shade(c,-55);
+ // Coiled insulated cable with a USB-A plug and a small USB-C/lightning-style end.
+ R(x+4,y+4,8,2,c);R(x+2,y+6,2,6,c);R(x+4,y+11,8,2,c);R(x+11,y+6,2,5,c);
+ R(x+5,y+7,4,2,dk);R(x+5,y+9,5,1,c);R(x+1,y+2,2,5,c);R(x+10,y+2,2,4,c);
+ R(x,y,5,3,"#a9b8c7");R(x+1,y,3,1,"#eef4f7");R(x+1,y+1,1,1,"#40536a");R(x+3,y+1,1,1,"#40536a");
+ R(x+10,y,4,3,"#ccd8e3");R(x+11,y+1,2,1,v%2?"#dfb75a":"#546a7d");R(x+4,y+12,7,1,dk);
+}
 function drawItemRaw(k,x,y){
+  if(k==='chargecable'){drawChargingCable(x,y);return;}
   if(k==='sportscar'||k==='cruiserbike'||k==='citytoys'){drawToyCityVehicle(k==='citytoys'?'sportscar':k,x,y);return;}
   if(k==='avatar'){drawToyAvatar(x,y);return;}
   if(k==='diamondblock'){drawDiamondBlock(x,y);return;}
@@ -1804,11 +1827,11 @@ function drawItemRaw(k,x,y){
 }
 
 // Drop-off size: most sprites are drawn at 28 px and scaled up 2x; a few are drawn full-size already.
-const DROP_SCALE={citygarage:1,avatarshelf:1,blockchest:1,kartgarage:1,coinchest:1,creamcouch:1,gameshelf:1,tirerack:1,petbasket:1,dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1};
+const DROP_SCALE={cabledock:1,citygarage:1,avatarshelf:1,blockchest:1,kartgarage:1,coinchest:1,creamcouch:1,gameshelf:1,tirerack:1,petbasket:1,dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1};
 // Normal height, much wider: these sprites are stretched sideways only.
 const DROP_WIDE={}; // (no longer used: wide drop-offs are drawn at full width)
-const DROP_W={citygarage:70,avatarshelf:70,blockchest:70,kartgarage:70,coinchest:70,creamcouch:56,gameshelf:70,tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
-const DROP_TOP={citygarage:18,avatarshelf:18,blockchest:11,kartgarage:18,coinchest:10,creamcouch:0,gameshelf:22,tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:0,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
+const DROP_W={cabledock:70,citygarage:70,avatarshelf:70,blockchest:70,kartgarage:70,coinchest:70,creamcouch:56,gameshelf:70,tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
+const DROP_TOP={cabledock:14,citygarage:18,avatarshelf:18,blockchest:11,kartgarage:18,coinchest:10,creamcouch:0,gameshelf:22,tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:0,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
 function drawDrop(d,ready,t){
   const x=Math.round(d.x),y=Math.round(d.y),k=d.kind;
   if(ready){g.save();g.globalAlpha=0.35+0.2*Math.sin(t*8);const rg=g.createRadialGradient(x+14,y+12,2,x+14,y+12,34);rg.addColorStop(0,'#fff59d');rg.addColorStop(1,'rgba(255,235,59,0)');g.fillStyle=rg;g.fillRect(x-24,y-24,76,72);g.restore();}
@@ -1828,6 +1851,10 @@ function drawDropRaw(k,x,y){
     R(x+2,y+4,44,2,"#e1f5fe");R(x,y+4,48,2,"#e3f2fd");R(x+2,y+22,44,2,"#81d4fa");
     for(let rr=0;rr<4;rr++)R(x+5+rr*11,y+7,1,14,"#e1f5fe");R(x+3,y+6,1,16,"#ffffff");
     R(x-2,y+9,3,5,"#81d4fa");R(x+47,y+9,3,5,"#81d4fa");}
+  else if(k==='cabledock'){
+    R(x,y-12,70,36,"#c7d5e0");R(x+3,y-9,64,25,"#253952");R(x,y-14,70,3,"#75edbd");
+    const savedSeed=itemSeed;for(let c=0;c<4;c++){itemSeed=c*16;R(x+10+c*15,y-6,2,5,"#c7d5e0");ctx.save();ctx.translate(x+5+c*15,y-2);ctx.scale(.85,.85);drawChargingCable(0,0);ctx.restore();}itemSeed=savedSeed;
+    R(x+3,y+17,64,4,"#52677f");for(let c=0;c<6;c++){R(x+7+c*10,y+18,6,2,"#17293a");R(x+8+c*10,y+18,3,1,"#75edbd");}R(x,y+22,70,2,"#8ea5b9");}
   else if(k==='citygarage'){
     R(x,y-15,70,39,"#293f57");R(x+3,y-11,64,31,"#121b2b");R(x,y-17,70,3,"#f07cb6");R(x,y-14,70,1,"#ffd2e8");
     const savedSeed=itemSeed;for(let row=0;row<2;row++){for(let col=0;col<4;col++){
@@ -2271,6 +2298,22 @@ function drawBackground(th,t){
       if(k===1||k===3){R(dx,30,160,6,"#607d8b");R(dx+40,30,6,120,"#607d8b");R(dx+38,60,10,4,"#455a64");}
       if(k===2){R(dx+70,20,2,30,"#212121");R(dx+66,50,10,10,"#fff59d");g.save();g.globalAlpha=0.12;g.fillStyle='#fff59d';g.beginPath();g.moveTo(dx+66,56);g.lineTo(dx+76,56);g.lineTo(dx+130,200);g.lineTo(dx+12,200);g.fill();g.restore();}
       for(let b=0;b<6;b++)R(dx+((b*37)%150),40+b*22,22,10,"#ffffff08");
+    }else if(thn==='chargingroom'){
+      if(k===0){ // a giant phone display with an animated charging battery
+        R(dx+36,34,60,124,"#121c30");R(dx+40,40,52,108,"#374d68");R(dx+52,35,28,3,"#53677b");
+        R(dx+52,74,28,48,"#c7d5e0");R(dx+61,70,10,4,"#c7d5e0");R(dx+55,77,22,42,"#1d2c44");
+        const bars=1+(Math.floor(t*2)%4);for(let n=0;n<bars;n++)R(dx+57,109-n*9,18,6,"#75edbd");
+        R(dx+62,149,10,3,"#7c94a8");}
+      if(k===1){R(dx+8,44,132,42,"#75edbd");R(dx+12,48,124,34,"#15263b");text("FULLY CHARGED",dx+18,56,8,"#b2ffe2","left",false);text("CABLE CREW",dx+28,72,7,"#b5a7ff","left",false);
+        for(let port=0;port<3;port++){R(dx+25+port*32,105,23,28,"#c7d5e0");R(dx+30+port*32,113,13,5,"#253952");R(dx+33+port*32,122,7,4,"#52677f");}}
+      if(k===2){ // charging desk with tablet, headphones and neatly coiled spare cables
+        R(dx+10,141,128,8,"#a9bed0");R(dx+18,149,6,24,"#52677f");R(dx+124,149,6,24,"#52677f");
+        R(dx+24,99,58,38,"#101d31");R(dx+28,103,50,30,"#50618d");R(dx+49,111,12,14,"#75edbd");R(dx+53,108,4,3,"#75edbd");
+        const savedSeed=itemSeed;for(let c=0;c<2;c++){itemSeed=c*16;ctx.save();ctx.translate(dx+92+c*21,122);ctx.scale(1.25,1.25);drawChargingCable(0,0);ctx.restore();}itemSeed=savedSeed;}
+      if(k===3){ // tidy wall cable hooks and a softly glowing power-status panel
+        R(dx+18,43,110,83,"#52677f");R(dx+22,47,102,75,"#1d2c44");
+        const savedSeed=itemSeed;for(let c=0;c<4;c++){itemSeed=c*16;R(dx+35+c*24,67,3,8,"#a9bed0");ctx.save();ctx.translate(dx+27+c*24,77);ctx.scale(1.25,1.25);drawChargingCable(0,0);ctx.restore();}itemSeed=savedSeed;
+        text("COIL & STORE",dx+30,54,7,"#b2ffe2","left",false);R(dx+32,108,80,5,"#75edbd");}
     }else if(thn==='obbyroom'){
       if(k===0){ // classic rainbow obby steps on a studded gray baseplate
         const colors=["#f04438","#ff8b21","#ffdd24","#59d135","#18bdff","#a755ed"];

@@ -218,3 +218,9 @@ Grouped by milestone. See `git log` for every commit.
 - Confirmed all game source and 31 MP3 recordings are tracked on GitHub and the playable Site source matches `index.html`. Validated all 28 item counts, level settings, critter locations, music registry values and local/recording links.
 - Updated the documentation audit date, clarified fixed seeds versus index-based difficulty, documented full-time Whole House AI in the architecture notes, and aligned publishing instructions with the owner's direct-to-main preference.
 - Corrected rendering and themed-toy-room descriptions. No game behavior changed.
+
+## 2026-11-23 — Charging Room Chaos
+
+- Added 37 coiled charging cables for the player, Isaac and Annie to return to a cable organizer, with four cable colors, USB-style plugs, battery displays, a charging desk and wall hooks.
+- Added Fully Charged, an original electronic track, its MP3 and the updated finale medley.
+- Added charging cables to the Whole House mix; the finale is now level 29 with 38 items and 178 seconds. Full-time finale helpers and all previous terrain layouts are preserved.

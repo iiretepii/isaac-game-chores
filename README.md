@@ -29,7 +29,7 @@ The whole game is a single file, `index.html`. Open it in any modern web browser
 
 You ride a **bicycle** with spinning wheels and pedals, except on Race Track Rumble, where all three kids drive race cars. Duck to squeeze under low spots, and use the double jump to clear wide gaps or reach high shelves.
 
-On the title screen you can also open **Level Select** to jump straight to any of the 28 levels. After you finish a chore, the "Chore Complete!" screen also has a **Level Select** button (or press **L**) so you can jump to any level from there.
+On the title screen you can also open **Level Select** to jump straight to any of the 29 levels. After you finish a chore, the "Chore Complete!" screen also has a **Level Select** button (or press **L**) so you can jump to any level from there.
 
 Browsers don't allow sound until you interact with the page, so the title screen asks you to **click or press any key for sound** first. After that, press Enter (or tap) to start.
 
@@ -86,7 +86,7 @@ Their vehicles follow the terrain, with these helper abilities:
 
 ## The Levels
 
-Item counts rise by one each level. The game gets **progressively harder**. The first rooms only have small gaps, but by the end you need well-timed double jumps over wide pits, hops across narrow stepping stones, bigger climbs, and rides on moving platforms over pits too wide to jump. Most rooms are 170–216 tiles long, Money Room is 260, the MarioKart toy room is 270, the Minecraft room is 280, the Roblox room is 290, the GTA toy room is 300, and the finale is 250. Every level has its own room, chore and music style.
+Item counts rise by one each level. The game gets **progressively harder**. The first rooms only have small gaps, but by the end you need well-timed double jumps over wide pits, hops across narrow stepping stones, bigger climbs, and rides on moving platforms over pits too wide to jump. Most rooms are 170–216 tiles long, Money Room is 260, the MarioKart toy room is 270, the Minecraft room is 280, the Roblox room is 290, the GTA toy room is 300, the charging room is 310, and the finale is 250. Every level has its own room, chore and music style.
 
 | # | Level | Chore | Items | Time | Critters | Music |
 |---|---|---|---|---|---|---|
@@ -117,7 +117,8 @@ Item counts rise by one each level. The game gets **progressively harder**. The 
 | 25 | **Minecraft Block Room** | Toy diamond blocks → storage chest | 34 | 166s | Blocky zombies, skeletons, spiders, hissing bush-blocks | Original gentle piano and ambient music |
 | 26 | **Roblox Avatar Roundup** | Toy Roblox avatars → display shelf | 35 | 169s | Robot vacuums, pixel space invaders, arcade ghosts | Original upbeat electronic obby-style music |
 | 27 | **GTA V + VI Toy Room** | Toy sports cars and bikes → city garage | 36 | 172s | Robot vacuums, dogs, rats | Original sunset-city synth/funk radio groove |
-| 28 | **The Whole House!!** | Everything → dive on the couch | 37 | 175s | All of them | Medley of every style |
+| 28 | **Charging Room Chaos** | Charging cables → cable organizer | 37 | 175s | Lightning bolts, robot vacuums, ants | Original electronic dance music |
+| 29 | **The Whole House!!** | Everything → dive on the couch | 38 | 178s | All of them | Medley of every style |
 
 The basement is dark, with a pool of light that follows you around. At the pool, the floating platforms are striped lounge chairs and the gaps are the pool itself. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
 
@@ -161,9 +162,10 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Minecraft Block Room | [*Lanterns in the Block Garden*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/25-minecraft-room.mp3) | Original spacious piano, soft ambient tones and little harp lights, with no drums; not a Minecraft soundtrack recording |
 | Roblox Avatar Roundup | [*Checkpoint Champions*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/26-roblox-room.mp3) | Original upbeat obby/tycoon-style electronic music with bright plucks, synth chords, bass and dance drums; not a recording from Roblox |
 | GTA V + VI Toy Room | [*Two Cities, One Sunset*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/27-gta-room.mp3) | Original sunset-driving synth/funk with electric piano, synth bass and saxophone; not a GTA soundtrack recording |
-| Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/28-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
-| Ending | [*Jubilee for a Job Well Done*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/29-ending-jubilee.mp3) | An upbeat, triumphant celebration of a job well done: big horn fanfare calls with tuba and bells, a marching jubilee tune on strings and horns with handclaps, tambourine and bell runs, a crowd cheer as the key lifts, and a huge final chord with one more cheer |
-| Fail screen | [*Grounded Until Forever*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/30-fail-screen.mp3) | A slow, sad piano lament in A minor that plays when the parents beat you home: a lonely melody that keeps sighing downward, soft strings and a few celesta "teardrops" |
+| Charging Room | [*Fully Charged*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/28-charging-room.mp3) | Original electronic dance track with bright arpeggios, synth chords, bass and a steady beat |
+| Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/29-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
+| Ending | [*Jubilee for a Job Well Done*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/30-ending-jubilee.mp3) | An upbeat, triumphant celebration of a job well done: big horn fanfare calls with tuba and bells, a marching jubilee tune on strings and horns with handclaps, tambourine and bell runs, a crowd cheer as the key lifts, and a huge final chord with one more cheer |
+| Fail screen | [*Grounded Until Forever*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/31-fail-screen.mp3) | A slow, sad piano lament in A minor that plays when the parents beat you home: a lonely melody that keeps sighing downward, soft strings and a few celesta "teardrops" |
 
 Sound effects include a slide whistle when you jump, a "boing" when you stomp, a car horn as the parents get close, a kazoo fanfare when you finish a level and a sad trombone when you get caught.
 

@@ -52,36 +52,36 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 
 | Key | Critter | Movement | Speed | Levels |
 |---|---|---|---|---|
-| `dust` | Dust bunny | walk | 30 | 3, 9, 12, 18, 28 |
-| `roach` | Cockroach | walk | 55 | 3, 9, 10, 13, 28 |
-| `roomba` | Robot vacuum | walk | 75 | 4, 8, 21, 23, 24, 26, 27, 28 |
-| `cat` | Cat | walk | 50 | 4, 13, 14, 17, 28 |
-| `dog` | Dog | walk + hop | 90 | 5, 17, 27, 28 |
-| `rat` | Rat | walk | 65 | 8, 17, 18, 19, 27, 28 |
-| `bee` | Bee | fly | 40 | 5, 8, 28 |
-| `spider` | Spider | walk | 60 | 10, 11, 12, 13, 18, 19, 28 |
-| `bat` | Bat | fly | 55 | 19, 28 |
-| `bubble` | Soap bubble | fly | 35 | 9, 10, 14, 16, 28 |
-| `zap` | Lightning bolt | fly (jittery) | 65 | 15, 16, 28 |
-| `ant` | Ant | walk | 70 | 11, 14, 28 |
-| `hamster` | Hamster | walk + hop | 85 | 11, 12, 20, 23, 28 |
-| `mite` | Dust mite | walk | 45 | 17, 28 |
-| `bzombie` | Blocky zombie | walk | 32 | 1, 25, 28 |
-| `bskel` | Blocky skeleton | walk | 42 | 1, 25, 28 |
-| `bspider` | Blocky spider | walk | 62 | 1, 25, 28 |
-| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1, 25, 28 |
-| `tabby` | Orange tabby cat | walk | 50 | 2, 20, 28 |
-| `husky` | Husky | walk + hop | 72 | 2, 28 |
-| `pom` | Pomeranian | walk + hop | 80 | 2, 20, 28 |
-| `duck` | Duck | walk | 40 | 7, 28 |
-| `goose` | Goose (flashes HONK) | walk | 60 | 7, 21, 28 |
-| `swan` | Swan | walk | 35 | 7, 28 |
-| `invader` | Pixel space invader (original 8-bit alien, legs flick every frame) | fly | 45 | 22, 26, 28 |
-| `chomper` | Yellow chomper that opens and closes its mouth, munching dots | walk | 72 | 22, 28 |
-| `ghosty` | Cyan arcade ghost with a wavy hem and eyes that look where it goes | walk | 52 | 22, 24, 26, 28 |
-| `squirrel` | Squirrel | walk + hop | 85 | 7, 21, 24, 28 |
-| `weed` | Walking weed | walk | 38 | 6, 28 |
-| `slime` | Slime | walk | 42 | 16, 23, 28 |
+| `dust` | Dust bunny | walk | 30 | 3, 9, 12, 18, 29 |
+| `roach` | Cockroach | walk | 55 | 3, 9, 10, 13, 29 |
+| `roomba` | Robot vacuum | walk | 75 | 4, 8, 21, 23, 24, 26, 27, 28, 29 |
+| `cat` | Cat | walk | 50 | 4, 13, 14, 17, 29 |
+| `dog` | Dog | walk + hop | 90 | 5, 17, 27, 29 |
+| `rat` | Rat | walk | 65 | 8, 17, 18, 19, 27, 29 |
+| `bee` | Bee | fly | 40 | 5, 8, 29 |
+| `spider` | Spider | walk | 60 | 10, 11, 12, 13, 18, 19, 29 |
+| `bat` | Bat | fly | 55 | 19, 29 |
+| `bubble` | Soap bubble | fly | 35 | 9, 10, 14, 16, 29 |
+| `zap` | Lightning bolt | fly (jittery) | 65 | 15, 16, 28, 29 |
+| `ant` | Ant | walk | 70 | 11, 14, 28, 29 |
+| `hamster` | Hamster | walk + hop | 85 | 11, 12, 20, 23, 29 |
+| `mite` | Dust mite | walk | 45 | 17, 29 |
+| `bzombie` | Blocky zombie | walk | 32 | 1, 25, 29 |
+| `bskel` | Blocky skeleton | walk | 42 | 1, 25, 29 |
+| `bspider` | Blocky spider | walk | 62 | 1, 25, 29 |
+| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1, 25, 29 |
+| `tabby` | Orange tabby cat | walk | 50 | 2, 20, 29 |
+| `husky` | Husky | walk + hop | 72 | 2, 29 |
+| `pom` | Pomeranian | walk + hop | 80 | 2, 20, 29 |
+| `duck` | Duck | walk | 40 | 7, 29 |
+| `goose` | Goose (flashes HONK) | walk | 60 | 7, 21, 29 |
+| `swan` | Swan | walk | 35 | 7, 29 |
+| `invader` | Pixel space invader (original 8-bit alien, legs flick every frame) | fly | 45 | 22, 26, 29 |
+| `chomper` | Yellow chomper that opens and closes its mouth, munching dots | walk | 72 | 22, 29 |
+| `ghosty` | Cyan arcade ghost with a wavy hem and eyes that look where it goes | walk | 52 | 22, 24, 26, 29 |
+| `squirrel` | Squirrel | walk + hop | 85 | 7, 21, 24, 29 |
+| `weed` | Walking weed | walk | 38 | 6, 29 |
+| `slime` | Slime | walk | 42 | 16, 23, 29 |
 
 ## Chore Items and Drop-offs
 
@@ -114,6 +114,7 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | Minecraft Block Room | `diamondblock` (isometric turquoise toy diamond blocks) | `blockchest` (wide wooden storage chest with blocks inside) |
 | Roblox Avatar Roundup | `avatar` (classic yellow noobs, red-capped Guests, builders and modern hair avatars) | `avatarshelf` (two-tier display shelf) |
 | GTA V + VI Toy Room | `sportscar` / `cruiserbike` (colorful toy sports cars and motorcycles) | `citygarage` (neon two-tier display garage) |
+| Charging Room Chaos | `chargecable` (coiled charging cables in four colors, with USB-style plugs) | `cabledock` (wall organizer with cable hooks and a charging strip) |
 | The Whole House!! | `mix` | `couch` |
 
 Some sprites change by position (`itemSeed`), including paint-bucket colors, robot-part shapes (gear, head, claw, battery), weight types (dumbbell, kettlebell, plate), towel colors, pillows and game controllers.
