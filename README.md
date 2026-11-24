@@ -27,7 +27,7 @@ The whole game is a single file, `index.html`. Open it in any modern web browser
 | Pause | P or Esc | — |
 | Mute | M | — |
 
-You ride a **bicycle** with spinning wheels and pedals, except on Race Track Rumble, where all three kids drive race cars, and MarioKart Toy Room, where you ride a Standard Kart, Isaac rides a Biddybuggy-style kart and Annie rides a Sport Bike. Duck to squeeze under low spots, and use the double jump to clear wide gaps or reach high shelves.
+You ride a **bicycle** with spinning wheels and pedals, except on Race Track Rumble, where all three kids drive race cars, and MarioKart Toy Room, where you ride a Standard Kart, Isaac rides a Flame Rider with Hot Wheels and Annie rides a Sport Bike. Duck to squeeze under low spots, and use the double jump to clear wide gaps or reach high shelves.
 
 On the title screen you can also open **Level Select** to jump straight to any of the 29 levels. After you finish a chore, the "Chore Complete!" screen also has a **Level Select** button (or press **L**) so you can jump to any level from there.
 
@@ -113,7 +113,7 @@ Item counts rise by one each level. The game gets **progressively harder**. The 
 | 21 | **Race Track Rumble** | Racing tires → tire shelf (you, Isaac and Annie drive race cars here) | 30 | 154s | Robot vacuums, squirrels, geese | Isaac's Room rock song, very fast |
 | 22 | **Game Room Glitch** | Game controllers (classic pads, rounded pads, arcade joysticks, twin-stick pads) → game shelf | 31 | 157s | Pixel space invaders, chompers, arcade ghosts | NES-style chiptune |
 | 23 | **Money Room Millions** | Coins → coin chest | 32 | 160s | Hamsters, robot vacuums, slime | Vivaldi's "Winter" as 8-bit video game music |
-| 24 | **MarioKart Toy Room** | Toy karts and bikes → display garage (you: Standard Kart; Isaac: Biddybuggy; Annie: Sport Bike) | 33 | 163s | Robot vacuums, squirrels, arcade ghosts | Original orchestral racing fanfare |
+| 24 | **MarioKart Toy Room** | Toy karts and bikes → display garage (you: Standard Kart; Isaac: Flame Rider with Hot Wheels; Annie: Sport Bike) | 33 | 163s | Robot vacuums, squirrels, arcade ghosts | Original orchestral racing fanfare |
 | 25 | **Minecraft Block Room** | Toy diamond blocks → storage chest | 34 | 166s | Blocky zombies, skeletons, spiders, hissing bush-blocks | Original gentle piano and ambient music |
 | 26 | **Roblox Avatar Roundup** | Toy Roblox avatars → display shelf | 35 | 169s | Robot vacuums, pixel space invaders, arcade ghosts | Original upbeat electronic obby-style music |
 | 27 | **GTA V + VI Toy Room** | Toy sports cars and bikes → city garage | 36 | 172s | Robot vacuums, dogs, rats | Original sunset-city synth/funk radio groove |

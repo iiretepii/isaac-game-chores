@@ -229,3 +229,8 @@ Grouped by milestone. See `git log` for every commit.
 
 - In MarioKart Toy Room, the player now drives a red Standard Kart, Isaac a blue Biddybuggy-style kart, and Annie a pink Sport Bike, all drawn as pixel-art versions of MarioKart 8 Deluxe vehicles.
 - Rides appear during intro, gameplay, pause and chore-complete scenes. Wheel animation, direction changes, ducking, jumps, damage flashes and Annie's balloon are retained; the light-bike trail is hidden in this room. Other rooms and all music are unchanged.
+
+## 2026-11-24 — Isaac’s Flame Rider
+
+- Isaac now rides a Flame Rider with Hot Wheels in MarioKart Toy Room: a chopper silhouette, raised handlebars, silver fork and exhaust, flame-painted tank, and chunky flame-colored wheels with spinning spokes.
+- The player’s Standard Kart, Annie’s Sport Bike, and existing controls and physics are retained.

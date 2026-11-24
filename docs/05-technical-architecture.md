@@ -20,7 +20,7 @@ There's no build step and there are no libraries. The only external resource is 
 5. **Game state:** `state`, `lvl`, `P` (the player), `sibs`, `startLevel`, collision helpers and `hurt`.
 6. **Update logic:** `updatePlayer`, `updateEnemies`, the sibling AI (`moveSibling`, `chooseSiblingTarget`, `updateSibs`) and `updatePlay`.
 7. **Drawing helpers:** `R` (rectangle), `text`, `wrap`, `outlined` (sprite outline system), `shadow`, tile texture cache and overlays.
-8. **Sprites:** `drawKidRaw`, `drawCyclistRaw`, `drawRaceCar` (race-track cars via `onRaceTrack()`), `drawKartRoomRide` (Standard Kart, Biddybuggy and Sport Bike via `onKartRoom()`), `drawItemRaw` and the toy-vehicle, diamond-block and avatar helpers; `drawDropRaw`, `drawEnemyRaw`, siblings, `GREETINGS`, `SIBS` and the penguin logo.
+8. **Sprites:** `drawKidRaw`, `drawCyclistRaw`, `drawRaceCar` (race-track cars via `onRaceTrack()`), `drawKartRoomRide` (Standard Kart, Flame Rider with Hot Wheels and Sport Bike via `onKartRoom()`), `drawItemRaw` and the toy-vehicle, diamond-block and avatar helpers; `drawDropRaw`, `drawEnemyRaw`, siblings, `GREETINGS`, `SIBS` and the penguin logo.
 9. **Scenes:** `drawBackground` (per-theme branches), `drawTiles`, `drawHUD`, `drawPlay`, and the splash, title, intro, clear, lose and end screens.
 10. **Main loop:** `frame()`.
 
@@ -62,7 +62,7 @@ Collision is tile-based: `#` is solid, `=` is a one-way platform (land from abov
 - **Primitives:** pixel art is drawn mainly with `fillRect` through `R()`, with Canvas paths, text and transforms for silhouettes, wheels, lettering and scenery. The canvas is CSS-scaled with `image-rendering: pixelated`.
 - **Outlines:** `outlined(x, y, fn)` draws a sprite onto an offscreen 176 × 144 canvas (padding `SP=48`), stamps a dark silhouette at four offsets, then draws the sprite on top. Large sprites must fit within that padding.
 - **Background:** most indoor rooms use a gradient, parallax stripes, wainscoting and theme decorations every 160 px of parallax distance (index `k`). Outdoor/pool scenes and the GTA sunset-city scene use dedicated background branches. Roblox studs and GTA road markings are visual theme flags; collision geometry is unchanged.
-- **Room-specific rides:** `drawCyclistRaw` routes the player to a Standard Kart in MarioKart Toy Room; `drawSibling` routes Isaac to a Biddybuggy and Annie to a Sport Bike. Rendering is mirrored for direction and preserves wheel alignment, ducking and hurt flashes. Isaac's light-bike trail is suppressed in that room. The physics and collectible toy sprites are unchanged.
+- **Room-specific rides:** `drawCyclistRaw` routes the player to a Standard Kart in MarioKart Toy Room; `drawSibling` routes Isaac to a Flame Rider with Hot Wheels and Annie to a Sport Bike. Rendering is mirrored for direction and preserves wheel alignment, ducking and hurt flashes. Isaac's light-bike trail is suppressed in that room. The physics and collectible toy sprites are unchanged.
 - **Overlays:** pre-rendered scan lines and vignette (`fx`), the basement flashlight, the red low-time flash and the HUD.
 
 ## Level Generation
