@@ -234,3 +234,9 @@ Grouped by milestone. See `git log` for every commit.
 
 - Isaac now rides a Flame Rider with Hot Wheels in MarioKart Toy Room: a chopper silhouette, raised handlebars, silver fork and exhaust, flame-painted tank, and chunky flame-colored wheels with spinning spokes.
 - The player’s Standard Kart, Annie’s Sport Bike, and existing controls and physics are retained.
+
+## 2026-11-24 — Independent 3D fork
+
+- Added `3d/` as a separate playable Three.js game; retained the original game source unchanged.
+- Added modeled characters, furniture, collectibles, perspective lighting/shadows, 29 room choices, helping siblings, shared collection/delivery, time doubling, hazards, double jump, duck, pause and touch controls.
+- Reused snapshots of the existing level data and synthesized music; documented the simplified first-version scope in `3d/README.md` and `09-3d-fork.md`.

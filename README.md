@@ -1,5 +1,11 @@
 # Chore Rush!
 
+## New: Chore Rush 3D
+
+A separate, playable 3D fork lives in [`3d/`](3d/README.md). [Play the 3D version](https://isaac-game-chores-play.magneticlorikeet2.chatgpt.site/3d/) or [play the original](https://isaac-game-chores-play.magneticlorikeet2.chatgpt.site/). The original `index.html` remains unchanged.
+
+The 3D edition has modeled rooms, furniture, riders, lighting and shadows, all 29 room choices, helping siblings, collectible chores and the original synthesized music. This first version adapts the game into open 3D rooms; it does not yet reproduce every 2D obstacle layout or unique enemy and item design.
+
 **Beat the parents home!** A 90s-style side-scrolling platformer where you race through the house finishing chores before Mom and Uncle Pete pull into the driveway.
 
 *A Belvoir Studios game. Made by Isaac & Pete.*

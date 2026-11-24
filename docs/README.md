@@ -18,3 +18,5 @@ These documents describe how *Chore Rush!* is designed and built, so that anyone
 - **Same change, same commit:** when a change alters something these docs describe (a level, critter, song, rule or constant), update the matching doc in the same commit.
 - **The code is the source of truth:** the level, critter and music tables were checked against `index.html` on 2026-11-23, covering all 29 levels and 32 recordings, the latest themed toy rooms, and full-time Whole House helpers. If a doc and the code disagree, trust the code and fix the doc.
 - **Where to log things:** add new problems to [07 – Backlog and Known Issues](07-backlog-and-known-issues.md), and record finished work in [08 – Changelog](08-changelog.md).
+
+- [09 – Independent 3D fork](09-3d-fork.md)
