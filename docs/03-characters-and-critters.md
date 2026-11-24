@@ -5,6 +5,7 @@
 - **Look:** a kid in a backwards yellow cap and red shirt, riding a turquoise **bicycle** with spinning spokes and moving pedals.
 - **Hitbox:** 10 × 14 px standing, 10 × 8 px ducking. You can only stand back up when there's headroom.
 - **Moves:** run, variable-height jump, one double jump, duck.
+- **MarioKart Toy Room:** the player drives a red Standard Kart; Isaac rides a blue Biddybuggy-style kart and Annie a pink Sport Bike. These are hand-drawn pixel-art versions of MarioKart 8 Deluxe vehicle models, rendered only in that room during intro, play, pause and chore-complete scenes. Controls and collision boxes are unchanged; Annie retains her balloon.
 - **Greeting:** when the siblings appear, the player says a random greeting in a speech bubble (21 options in `GREETINGS`, such as "HEY PAL!", "NO CAP, HI!" and "Sup Bro!").
 
 ## Siblings: Isaac and Annie
@@ -12,7 +13,7 @@
 | | Annie (little sister) | Isaac (big brother) |
 |---|---|---|
 | Look | Pigtails, pretty pink dress, pink balloon | Red shirt, blue cap, blue-and-red name label |
-| Ride | Purple skateboard (pink race car #2 on the race track) | Original **neon light-bike**: black body, red neon edges, glowing disc wheels, red light trail (blue-and-red race car #3 on the race track) |
+| Ride | Purple skateboard; pink Sport Bike in MarioKart Toy Room; pink race car #2 on the race track | Original **neon light-bike**: black body, red neon edges, glowing disc wheels, red light trail (blue Biddybuggy-style kart in MarioKart Toy Room; blue-and-red race car #3 on the race track) |
 | Speed | 176 px/s | 176 px/s |
 | Follows at | 24 px behind the player | 62 px behind the player |
 | Starts collecting at | Immediately in the Whole House; **33%** of the time limit left elsewhere | Immediately in the Whole House; **20%** elsewhere |

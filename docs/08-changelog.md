@@ -224,3 +224,8 @@ Grouped by milestone. See `git log` for every commit.
 - Added 37 coiled charging cables for the player, Isaac and Annie to return to a cable organizer, with four cable colors, USB-style plugs, battery displays, a charging desk and wall hooks.
 - Added Fully Charged, an original electronic track, its MP3 and the updated finale medley.
 - Added charging cables to the Whole House mix; the finale is now level 29 with 38 items and 178 seconds. Full-time finale helpers and all previous terrain layouts are preserved.
+
+## 2026-11-24 — MarioKart room rides
+
+- In MarioKart Toy Room, the player now drives a red Standard Kart, Isaac a blue Biddybuggy-style kart, and Annie a pink Sport Bike, all drawn as pixel-art versions of MarioKart 8 Deluxe vehicles.
+- Rides appear during intro, gameplay, pause and chore-complete scenes. Wheel animation, direction changes, ducking, jumps, damage flashes and Annie's balloon are retained; the light-bike trail is hidden in this room. Other rooms and all music are unchanged.
