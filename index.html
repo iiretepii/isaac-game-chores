@@ -2038,12 +2038,14 @@ function drawDropRaw(k,x,y){
     R(x-4,y+2,8,18,"#d9c9a3");R(x-4,y+2,8,2,"#f3ead5");R(x+52,y+2,8,18,"#d9c9a3");R(x+52,y+2,8,2,"#f3ead5");
     R(x+4,y+9,48,7,"#f5ecd7");R(x+4,y+9,48,2,"#fffaf0");R(x+20,y+9,1,7,"#cdbb94");R(x+36,y+9,1,7,"#cdbb94");
     R(x-4,y+16,64,5,"#c8b48a");R(x-2,y+21,3,3,"#5d4037");R(x+53,y+21,3,3,"#5d4037");R(x+26,y+21,3,3,"#5d4037");}
-  else if(k==='couch'){ // big comfy 3-seat sofa
-    R(x+2,y-2,52,12,"#8e24aa");R(x+2,y-2,52,2,"#ba68c8");R(x+19,y,1,9,"#6a1b9a");R(x+36,y,1,9,"#6a1b9a");
-    R(x-4,y+2,8,18,"#6a1b9a");R(x-4,y+2,8,2,"#9c4dcc");R(x+52,y+2,8,18,"#6a1b9a");R(x+52,y+2,8,2,"#9c4dcc");
-    R(x+4,y+9,48,7,"#ab47bc");R(x+4,y+9,48,2,"#ce93d8");R(x+20,y+9,1,7,"#7b1fa2");R(x+36,y+9,1,7,"#7b1fa2");
-    R(x-4,y+16,64,5,"#7b1fa2");R(x-2,y+21,3,3,"#3e2723");R(x+53,y+21,3,3,"#3e2723");R(x+26,y+21,3,3,"#3e2723");
-    R(x+8,y+3,9,6,"#ffd54f");R(x+9,y+4,7,1,"#ffecb3");R(x+40,y+3,9,6,"#4fc3f7");R(x+41,y+4,7,1,"#b3e5fc");}
+  else if(k==='couch'){ // Whole House: the living-room cream sofa with matching colorful throw pillows.
+    drawDropRaw('creamcouch',x,y);
+    const savedSeed=itemSeed;
+    for(const [offset,color] of [[5,0],[21,2],[37,4]]){
+      itemSeed=color*16;drawItemRaw('pillow',x+offset,y-3);
+    }
+    itemSeed=savedSeed;
+  }
 }
 
 function drawEnemy(e,t){

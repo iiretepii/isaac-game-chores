@@ -240,3 +240,8 @@ Grouped by milestone. See `git log` for every commit.
 - Added `3d/` as a separate playable Three.js game; retained the original game source unchanged.
 - Added modeled characters, furniture, collectibles, perspective lighting/shadows, 29 room choices, helping siblings, shared collection/delivery, time doubling, hazards, double jump, duck, pause and touch controls.
 - Reused snapshots of the existing level data and synthesized music; documented the simplified first-version scope in `3d/README.md` and `09-3d-fork.md`.
+
+## 2026-11-24 — Whole House cream couch
+
+- The 2D Whole House ending couch now reuses the living room’s cream sofa artwork, with red, yellow and blue pillows drawn by the same colorful-pillow sprite used for living-room pickups.
+- Existing Whole House pillow pickups, item mix, couch hitbox and completion behavior are retained. The separate 3D fork is unchanged.
