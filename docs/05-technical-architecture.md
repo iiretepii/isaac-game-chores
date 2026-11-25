@@ -97,3 +97,7 @@ Holiday rooms share `drawHolidayItem` for collectible art and `drawHolidayDrop` 
 `drawCousinToy` supplies toy monster trucks and surfboards for pickups, room scenery, and the `monsterarena`/`surfrack` drop-off displays. Both are included in the Whole House mix.
 
 Room ordering is independent of challenge: `difficultyIndex` preserves each room’s generation ramp and critter-speed scaling when moved. Daniel’s and Colin’s rooms are third and fourth; level numbers and listening MP3 filenames follow the new order.
+
+### Mobile control gestures
+
+The 2D touch buttons cancel native `touchstart`/`touchend` gestures with non-passive listeners to prevent Safari double-tap zoom. Pointer capture keeps holds/releases working when a finger leaves a button; pointer cancellation, lost capture and window blur release held inputs. Touch-only browsers use a fallback without duplicating jumps on Pointer Events browsers. Double-click, context-menu and compatibility-click defaults are cancelled on the controls.

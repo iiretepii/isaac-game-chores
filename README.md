@@ -33,6 +33,8 @@ The original **2D game** is a single file, `index.html`. Open it in any modern w
 | Pause | P or Esc | — |
 | Mute | M | — |
 
+On phones and tablets, the touch buttons support repeated Jump taps and holding movement while jumping.
+
 You ride a **bicycle** with spinning wheels and pedals, except on Race Track Rumble, where all three kids drive race cars, and MarioKart Toy Room, where you ride a Standard Kart, Isaac rides a Flame Rider with Hot Wheels and Annie rides a Sport Bike. Duck to squeeze under low spots, and use the double jump to clear wide gaps or reach high shelves.
 
 On the title screen you can also open **Level Select** to jump straight to any of the 40 levels. After you finish a chore, the "Chore Complete!" screen also has a **Level Select** button (or press **L**) so you can jump to any level from there.

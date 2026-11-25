@@ -8,12 +8,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#120c24;--fg:#fff}
-html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);overflow:hidden;touch-action:none;-webkit-user-select:none;user-select:none}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);overflow:hidden;overscroll-behavior:none;touch-action:none;-webkit-user-select:none;user-select:none}
 body{display:flex;align-items:center;justify-content:center;font-family:"Press Start 2P",monospace}
 canvas{image-rendering:pixelated;image-rendering:crisp-edges;background:#000;box-shadow:0 0 0 4px #fff,0 0 0 8px #e53935,0 0 40px #000}
 #touch{position:fixed;inset:auto 0 0 0;display:none;justify-content:space-between;padding:16px;pointer-events:none}
 #touch .grp{display:flex;gap:14px}
-#touch button{pointer-events:auto;width:72px;height:72px;border-radius:50%;border:4px solid #fff;background:rgba(229,57,53,.55);color:#fff;font:16px "Press Start 2P",monospace;touch-action:none}
+#touch button{pointer-events:auto;width:72px;height:72px;border-radius:50%;border:4px solid #fff;background:rgba(229,57,53,.55);color:#fff;font:16px "Press Start 2P",monospace;touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
 #touch button.j{background:rgba(255,193,7,.6);width:88px;height:88px}
 @media (pointer:coarse){#touch{display:flex}}
 </style>
@@ -21,8 +21,8 @@ canvas{image-rendering:pixelated;image-rendering:crisp-edges;background:#000;box
 <body>
 <canvas id="c" width="480" height="272"></canvas>
 <div id="touch">
-  <div class="grp"><button data-k="left">&#9664;</button><button data-k="right">&#9654;</button></div>
-  <div class="grp"><button data-k="duck">DUCK</button><button class="j" data-k="jump">JUMP</button></div>
+  <div class="grp"><button type="button" data-k="left">&#9664;</button><button type="button" data-k="right">&#9654;</button></div>
+  <div class="grp"><button type="button" data-k="duck">DUCK</button><button type="button" class="j" data-k="jump">JUMP</button></div>
 </div>
 <script>
 "use strict";
@@ -49,11 +49,22 @@ addEventListener('keydown',e=>{
   if(e.code==='KeyP'||e.code==='Escape'){if(state==='play')state='pause';else if(state==='pause')state='play';}
 });
 addEventListener('keyup',e=>{const k=KM[e.code];if(k)keys[k]=false;});
+// Cancel native tap gestures on the controls, including Safari's double-tap zoom.
 document.querySelectorAll('#touch button').forEach(b=>{
   const k=b.dataset.k;
-  b.addEventListener('pointerdown',e=>{e.preventDefault();initAudio();if(k==='jump'){jumpPressed=true;anyPress=true;}keys[k]=true;});
-  const up=e=>{keys[k]=false;};b.addEventListener('pointerup',up);b.addEventListener('pointercancel',up);b.addEventListener('pointerleave',up);
+  const press=e=>{e.preventDefault();initAudio();if(k==='jump'){jumpPressed=true;anyPress=true;}keys[k]=true;};
+  const up=()=>{keys[k]=false;};
+  b.addEventListener('pointerdown',e=>{press(e);b.setPointerCapture?.(e.pointerId);});
+  ['pointerup','pointercancel','lostpointercapture'].forEach(type=>b.addEventListener(type,up));
+  // Non-passive touch listeners are needed on iOS even with touch-action:none.
+  b.addEventListener('touchstart',e=>{e.preventDefault();if(!window.PointerEvent)press(e);},{passive:false});
+  b.addEventListener('touchend',e=>{e.preventDefault();if(!window.PointerEvent)up();},{passive:false});
+  b.addEventListener('touchcancel',up,{passive:false});
+  ['dblclick','contextmenu'].forEach(type=>b.addEventListener(type,e=>e.preventDefault()));
+  b.addEventListener('click',e=>{e.preventDefault();b.blur();});
 });
+addEventListener('blur',()=>{for(const k in keys)keys[k]=false;jumpPressed=false;});
+
 document.addEventListener('pointerdown',e=>{if(e.target.closest&&e.target.closest('#touch'))return;initAudio();
   const r=cv.getBoundingClientRect(),cx=(e.clientX-r.left)*W/r.width,cy=(e.clientY-r.top)*H/r.height;
   if(state==='title'&&!soundGate&&inBox(cx,cy,SELECT_BTN)){openSelect();return;}

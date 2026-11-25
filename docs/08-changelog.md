@@ -315,3 +315,8 @@ Grouped by milestone. See `git log` for every commit.
 - Moved Daniel’s Monster Jam Room to level 3 and Colin’s Surf Shack to level 4, immediately after Isaac’s and Annie’s rooms.
 - Preserved each room’s layout, item count, timer and critter speed using a stable `difficultyIndex`; room counts and timers no longer increase in menu order.
 - Renumbered listening-song files and level/critters tables, reordered the mashup to follow level order, and re-recorded it. The 3D fork is unchanged.
+
+## 2026-11-25 — Prevent Jump-button zoom
+
+- Prevented native double-tap zoom and long-press gestures on 2D touch controls, including Safari, with explicit non-passive touch-event cancellation.
+- Added pointer capture, cancellation/blur cleanup and a touch-only fallback so repeated jumps and simultaneous movement remain responsive.
