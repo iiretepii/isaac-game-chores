@@ -320,3 +320,10 @@ Grouped by milestone. See `git log` for every commit.
 
 - Prevented native double-tap zoom and long-press gestures on 2D touch controls, including Safari, with explicit non-passive touch-event cancellation.
 - Added pointer capture, cancellation/blur cleanup and a touch-only fallback so repeated jumps and simultaneous movement remain responsive.
+
+## 2026-11-25 — Mom’s and Uncle Pete’s rooms, regression pass
+
+- Added Mom’s Room fifth: collect necklaces, rings and earrings into her jewelry box, with a vanity, mirror and Jewel Box Waltz.
+- Added Uncle Pete’s Room sixth: collect Bears jerseys, footballs and caps into his locker, with Bears decor and Bears Cleanup Drive.
+- Preserved Daniel and Colin as third/fourth and existing room difficulty. Finale is now level 42 with 51 items and 217 seconds, including both new item types and all 41 level songs.
+- Fixed portrait phone canvas clipping by allowing downscaling. Updated recordings, references and design tables; the independent 3D fork is unchanged.

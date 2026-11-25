@@ -67,37 +67,37 @@ Speeds are in pixels per second; critters run about 6% faster per stored `diffic
 
 | Key | Critter | Movement | Speed | Levels |
 |---|---|---|---|---|
-| `dust` | Dust bunny | walk | 30 | 5, 11, 14, 20, 40 |
-| `roach` | Cockroach | walk | 55 | 5, 11, 12, 15, 40 |
-| `roomba` | Robot vacuum | walk | 75 | 3, 6, 10, 23, 25, 26, 28, 29, 30, 33, 36, 39, 40 |
-| `cat` | Cat | walk | 50 | 6, 15, 16, 19, 33, 34, 40 |
-| `dog` | Dog | walk + hop | 90 | 7, 19, 29, 39, 40 |
-| `rat` | Rat | walk | 65 | 3, 10, 19, 20, 21, 29, 40 |
-| `bee` | Bee | fly | 40 | 7, 10, 37, 38, 40 |
-| `spider` | Spider | walk | 60 | 12, 13, 14, 15, 20, 21, 31, 40 |
-| `bat` | Bat | fly | 55 | 21, 31, 40 |
-| `bubble` | Soap bubble | fly | 35 | 4, 11, 12, 16, 18, 34, 36, 40 |
-| `zap` | Lightning bolt | fly (jittery) | 65 | 17, 18, 30, 40 |
-| `ant` | Ant | walk | 70 | 13, 16, 30, 40 |
-| `hamster` | Hamster | walk + hop | 85 | 13, 14, 22, 25, 33, 34, 35, 37, 38, 39, 40 |
-| `mite` | Dust mite | walk | 45 | 19, 40 |
-| `bzombie` | Blocky zombie | walk | 32 | 1, 27, 40 |
-| `bskel` | Blocky skeleton | walk | 42 | 1, 27, 40 |
-| `bspider` | Blocky spider | walk | 62 | 1, 27, 40 |
-| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1, 27, 40 |
-| `tabby` | Orange tabby cat | walk | 50 | 2, 22, 40 |
-| `husky` | Husky | walk + hop | 72 | 2, 40 |
-| `pom` | Pomeranian | walk + hop | 80 | 2, 22, 40 |
-| `duck` | Duck | walk | 40 | 4, 9, 40 |
-| `turkey` | Turkey (fan tail, blue head, red wattle) | walk | 52 | 32, 40 |
-| `goose` | Goose (flashes HONK) | walk | 60 | 9, 23, 40 |
-| `swan` | Swan | walk | 35 | 9, 40 |
-| `invader` | Pixel space invader (original 8-bit alien, legs flick every frame) | fly | 45 | 24, 28, 40 |
-| `chomper` | Yellow chomper that opens and closes its mouth, munching dots | walk | 72 | 3, 24, 36, 40 |
-| `ghosty` | Cyan arcade ghost with a wavy hem and eyes that look where it goes | walk | 52 | 24, 26, 28, 31, 40 |
-| `squirrel` | Squirrel | walk + hop | 85 | 4, 9, 23, 26, 35, 37, 38, 40 |
-| `weed` | Walking weed | walk | 38 | 8, 35, 40 |
-| `slime` | Slime | walk | 42 | 18, 25, 40 |
+| `dust` | Dust bunny | walk | 30 | 7, 13, 16, 22, 42 |
+| `roach` | Cockroach | walk | 55 | 7, 13, 14, 17, 42 |
+| `roomba` | Robot vacuum | walk | 75 | 3, 6, 8, 12, 25, 27, 28, 30, 31, 32, 35, 38, 41, 42 |
+| `cat` | Cat | walk | 50 | 5, 8, 17, 18, 21, 35, 36, 42 |
+| `dog` | Dog | walk + hop | 90 | 6, 9, 21, 31, 41, 42 |
+| `rat` | Rat | walk | 65 | 3, 12, 21, 22, 23, 31, 42 |
+| `bee` | Bee | fly | 40 | 9, 12, 39, 40, 42 |
+| `spider` | Spider | walk | 60 | 14, 15, 16, 17, 22, 23, 33, 42 |
+| `bat` | Bat | fly | 55 | 23, 33, 42 |
+| `bubble` | Soap bubble | fly | 35 | 4, 5, 13, 14, 18, 20, 36, 38, 42 |
+| `zap` | Lightning bolt | fly (jittery) | 65 | 19, 20, 32, 42 |
+| `ant` | Ant | walk | 70 | 15, 18, 32, 42 |
+| `hamster` | Hamster | walk + hop | 85 | 5, 15, 16, 24, 27, 35, 36, 37, 39, 40, 41, 42 |
+| `mite` | Dust mite | walk | 45 | 21, 42 |
+| `bzombie` | Blocky zombie | walk | 32 | 1, 29, 42 |
+| `bskel` | Blocky skeleton | walk | 42 | 1, 29, 42 |
+| `bspider` | Blocky spider | walk | 62 | 1, 29, 42 |
+| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1, 29, 42 |
+| `tabby` | Orange tabby cat | walk | 50 | 2, 24, 42 |
+| `husky` | Husky | walk + hop | 72 | 2, 42 |
+| `pom` | Pomeranian | walk + hop | 80 | 2, 24, 42 |
+| `duck` | Duck | walk | 40 | 4, 11, 42 |
+| `turkey` | Turkey (fan tail, blue head, red wattle) | walk | 52 | 6, 34, 42 |
+| `goose` | Goose (flashes HONK) | walk | 60 | 11, 25, 42 |
+| `swan` | Swan | walk | 35 | 11, 42 |
+| `invader` | Pixel space invader (original 8-bit alien, legs flick every frame) | fly | 45 | 26, 30, 42 |
+| `chomper` | Yellow chomper that opens and closes its mouth, munching dots | walk | 72 | 3, 26, 38, 42 |
+| `ghosty` | Cyan arcade ghost with a wavy hem and eyes that look where it goes | walk | 52 | 26, 28, 30, 33, 42 |
+| `squirrel` | Squirrel | walk + hop | 85 | 4, 11, 25, 28, 37, 39, 40, 42 |
+| `weed` | Walking weed | walk | 38 | 10, 37, 42 |
+| `slime` | Slime | walk | 42 | 20, 27, 42 |
 
 ## Chore Items and Drop-offs
 
@@ -107,6 +107,8 @@ Speeds are in pixels per second; critters run about 6% faster per stored `diffic
 | Annie's Room | `doll` | `dollhouse` (wide Neuschwanstein-style castle) |
 | Daniel's Monster Jam Room | `monstertrucktoy` (four toy truck colors, oversized wheels) | `monsterarena` (arena garage) |
 | Colin's Surf Shack | `surfboardtoy` (four striped board colors) | `surfrack` (wooden surfboard rack) |
+| Mom's Room | `jewelry` (necklaces, rings and earrings) | `jewelrybox` |
+| Uncle Pete's Room | `bearsgear` (Bears jerseys, footballs and caps) | `bearslocker` |
 | Kitchen Catastrophe | `dish` | `dishwasher` (built into a counter) |
 | Living Room Lego-Land | `pillow` (fluffy throw pillow in 10 colors) | `creamcouch` (wide cream sofa, 56 px like the ending couch, with no pillows on it) |
 | Backyard Bonanza | `leaf` | `bag` |

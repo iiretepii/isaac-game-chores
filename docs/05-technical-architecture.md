@@ -86,9 +86,9 @@ See [02 – Levels](02-levels.md) for the rules.
 
 ### Whole House mashup
 
-`playMashupTick` layers three level songs at a shared 128 BPM. `MASHUP_TICKS=64` sets each group to four 4/4 bars; thirteen groups cover all 39 songs. Each layer has its own gain, guitar and reverb buses, with the song’s trim divided by three. Individual room playback is unchanged. See [04](04-audio.md) for recording details.
+`playMashupTick` layers three level songs at a shared 128 BPM. `MASHUP_TICKS=64` sets each group to four 4/4 bars; fourteen groups cover all 41 songs. Each layer has its own gain, guitar and reverb buses, with the song’s trim divided by three. Individual room playback is unchanged. See [04](04-audio.md) for recording details.
 
-Holiday rooms share `drawHolidayItem` for collectible art and `drawHolidayDrop` for decorated return spots. Their nine theme branches add banners, garlands and holiday props. Level Select computes its row height from `LEVELS.length`, fitting all 40 choices.
+Holiday rooms share `drawHolidayItem` for collectible art and `drawHolidayDrop` for decorated return spots. Their nine theme branches add banners, garlands and holiday props. Level Select computes its row height from `LEVELS.length`, fitting all 42 choices.
 
 ### Four family helpers
 
@@ -101,3 +101,5 @@ Room ordering is independent of challenge: `difficultyIndex` preserves each room
 ### Mobile control gestures
 
 The 2D touch buttons cancel native `touchstart`/`touchend` gestures with non-passive listeners to prevent Safari double-tap zoom. Pointer capture keeps holds/releases working when a finger leaves a button; pointer cancellation, lost capture and window blur release held inputs. Touch-only browsers use a fallback without duplicating jumps on Pointer Events browsers. Double-click, context-menu and compatibility-click defaults are cancelled on the controls.
+
+`drawParentItem` supplies three jewelry variants and three Bears gear variants for collectibles, matching return spots, and bedroom decorations. Canvas `fit()` permits scales below 1 so the 480×272 game fits portrait phone screens instead of clipping.
