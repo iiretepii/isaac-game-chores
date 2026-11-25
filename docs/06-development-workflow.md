@@ -9,7 +9,7 @@
 ## Making a Change
 
 1. **Sync:** check for local changes, then pull the latest `main` without overwriting unfinished work.
-2. **Change:** edit `index.html` (and the README and docs if the change affects them).
+2. **Change:** edit root `index.html` for the 2D game, or files under `3d/` for the independent 3D game. Update the matching README and docs. Do not propagate changes between editions unless requested.
 3. **Test:** follow the steps below.
 4. **Record:** re-record any changed songs (see [04](04-audio.md)).
 5. **Commit and push:** the owner has requested direct commits to `main`; commit the code, relevant docs and recordings together, then push. Use a feature branch or pull request only when requested.
@@ -24,9 +24,14 @@ There's no test framework. Testing is done by driving the game in headless Chrom
 - **Music:** call each style's `play()` for a full loop to catch errors (the audio clock can be fake or offline).
 - **Look at it:** check new art in a screenshot before shipping.
 
+### 3D Fork Checks
+
+The 3D game requires HTTP and WebGL. Check module syntax and simulation behavior, then verify rendering and controls in a supported browser when available. Its first release has simulation coverage but still needs browser visual/device testing; see [the fork README](../3d/README.md). The root 2D edition retains its own physics and music behavior; the fork’s snapshots do not automatically track changes.
+
 ## Publishing
 
-- **Current play link:** https://isaac-game-chores-play.magneticlorikeet2.chatgpt.site. Sites publication is separate from the GitHub merge: update the existing Site from the intended source revision and verify deployment.
+- **3D play link:** https://isaac-game-chores-play.magneticlorikeet2.chatgpt.site/3d/. Publish both directories together and retain the root 2D entry point.
+- **Current 2D play link:** https://isaac-game-chores-play.magneticlorikeet2.chatgpt.site. Sites publication is separate from the GitHub merge: update the existing Site from the intended source revision and verify deployment.
 - **Alternate artifact:** https://claude.ai/artifact/7bgXsM4dhpEVavZJgvo6ZJ. This is a separate publication; do not assume either hosted copy updates automatically when `main` changes.
 - **Repo:** the GitHub repo is public. The README links each song to its raw MP3 on `main`, so it plays in the browser.
 

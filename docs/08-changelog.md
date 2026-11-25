@@ -260,3 +260,8 @@ Grouped by milestone. See `git log` for every commit.
 
 - Moved Isaac’s treasure-chest dragon onto the outside front panel as a static painted emblem, using the collectible’s green dragon and purple wings. Closed the lid and moved the keyhole beside the painting.
 - Collectible dragons keep their existing animation; gameplay and the 3D fork are unchanged.
+
+## 2026-11-25 — Documentation audit
+
+- Verified current 2D room tables and links, bedroom helpers, MarioKart rides, cream finale couch and painted-dragon chest.
+- Clarified the 2D/3D directory split, added the 3D fork to the design-doc index and workflow, and retained the 3D browser-verification limitation.

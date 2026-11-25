@@ -2,7 +2,7 @@
 
 ## New: Chore Rush 3D
 
-A separate, playable 3D fork lives in [`3d/`](3d/README.md). [Play the 3D version](https://isaac-game-chores-play.magneticlorikeet2.chatgpt.site/3d/) or [play the original](https://isaac-game-chores-play.magneticlorikeet2.chatgpt.site/). The original `index.html` remains unchanged.
+A separate, playable 3D fork lives in [`3d/`](3d/README.md). [Play the 3D version](https://isaac-game-chores-play.magneticlorikeet2.chatgpt.site/3d/) or [play the original](https://isaac-game-chores-play.magneticlorikeet2.chatgpt.site/). The original 2D game remains in the root `index.html`; the fork has its own files and develops independently.
 
 The 3D edition has modeled rooms, furniture, riders, lighting and shadows, all 29 room choices, helping siblings, collectible chores and the original synthesized music. This first version adapts the game into open 3D rooms; it does not yet reproduce every 2D obstacle layout or unique enemy and item design.
 
@@ -18,7 +18,7 @@ The 3D edition has modeled rooms, furniture, riders, lighting and shadows, all 2
 
 ## How to Play
 
-The whole game is a single file, `index.html`. Open it in any modern web browser (Chrome, Edge, Firefox, Safari) on a computer, tablet or phone. No install or internet connection is needed, except to load the pixel font (it falls back to a plain font offline).
+The original **2D game** is a single file, `index.html`. Open it in any modern web browser (Chrome, Edge, Firefox, Safari) on a computer, tablet or phone. No install or internet connection is needed, except to load the pixel font (it falls back to a plain font offline).
 
 ### Controls
 
@@ -183,7 +183,7 @@ For developers, the [`docs/`](docs/) folder holds the project's design documents
 
 ## How It's Built
 
-The whole game (code, graphics, levels and music) lives in a single file, [`index.html`](index.html). There are no image files, no sound files, no game engine and no build step: open the file in a browser and it runs. The only thing loaded from the internet is the "Press Start 2P" pixel font, and the game falls back to a plain font without it.
+The **2D game** (code, graphics, levels and synthesized music) lives in a single file, [`index.html`](index.html). It loads no image or sound files and uses no game engine or build step: open the file in a browser and it runs. The only thing loaded from the internet is the "Press Start 2P" pixel font, and the game falls back to a plain font without it.
 
 ### The Game Loop
 

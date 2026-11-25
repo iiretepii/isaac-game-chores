@@ -1,6 +1,6 @@
 # Chore Rush 3D
 
-An independent 3D adaptation of Chore Rush, in the same repository. The original `../index.html` is retained without edits. This folder can evolve separately.
+An independent 3D adaptation of Chore Rush, in the same repository. The original 2D game remains in `../index.html` and develops independently. This folder can evolve separately.
 
 [Play 3D](https://isaac-game-chores-play.magneticlorikeet2.chatgpt.site/3d/) · [Play the original](https://isaac-game-chores-play.magneticlorikeet2.chatgpt.site/)
 

@@ -1,5 +1,7 @@
 # 01 – Game Design
 
+This document describes the original 2D game. See [09 – 3D Fork](09-3d-fork.md) for the separate 3D adaptation.
+
 ## Vision
 
 *Chore Rush!* is a 90s-style side-scrolling platformer for kids and families. You race through the rooms of a house (and the yard) doing chores before Mom and Uncle Pete get home. It should feel like a goofy Saturday-morning cartoon: bright, fast, silly and never mean.

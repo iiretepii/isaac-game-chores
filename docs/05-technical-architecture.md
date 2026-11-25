@@ -4,12 +4,13 @@
 
 | Path | Purpose |
 |---|---|
-| `index.html` | The entire game (HTML, CSS and JavaScript; no build step) |
+| `index.html` | The original 2D game (HTML, CSS and JavaScript; no build step) |
 | `README.md` | Player-facing overview, level and music tables |
 | `music/*.mp3` | Recordings of every song (generated; see [04](04-audio.md)) |
 | `docs/` | These design documents |
+| `3d/` | Independent 3D game: ES modules, vendored Three.js, separate level/music snapshots and README |
 
-There's no build step and there are no libraries. The only external resource is the "Press Start 2P" Google Font, with a monospace fallback.
+The 2D edition has no build step or libraries. The 3D edition uses vendored Three.js; see [09](09-3d-fork.md). The only external resource is the "Press Start 2P" Google Font, with a monospace fallback.
 
 ## Layout of `index.html` (Top to Bottom)
 
