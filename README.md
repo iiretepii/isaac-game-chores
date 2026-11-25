@@ -102,8 +102,8 @@ Daniel’s Monster Jam Room is level 3, and Colin’s Surf Shack is level 4, Mom
 |---|---|---|---|---|---|---|
 | 1 | **Isaac's Room** | Blocky toy dragons → pretend treasure chest with a matching dragon painted on the front | 10 | 94s | Blocky zombies, skeletons, spiders and hissing bush-blocks | Rock |
 | 2 | **Annie's Room** | Dolls → castle doll house | 11 | 98s | A tabby cat, a husky and a Pomeranian | Fairy-tale princess waltz |
-| 3 | **Daniel'S Monster Jam Room** | Park the toy monster trucks in the arena garage | 47 | 205s | roomba, chomper, rat | Stadium Stomp |
-| 4 | **Colin'S Surf Shack** | Put the toy surfboards back on the surfboard rack | 48 | 208s | duck, squirrel, bubble | Surfs Up Shuffle |
+| 3 | **Daniel'S Monster Jam Room** | Park the toy monster trucks in the arena garage | 12 | 205s | roomba, chomper, rat | Stadium Stomp |
+| 4 | **Colin'S Surf Shack** | Put the toy surfboards back on the surfboard rack | 13 | 208s | duck, squirrel, bubble | Surfs Up Shuffle |
 | 5 | **Mom'S Room** | Put the jewelry back in Mom's jewelry box | 49 | 211s | hamster, cat, bubble | Jewel Box Waltz |
 | 6 | **Uncle Pete'S Room** | Put the Chicago Bears gear in Uncle Pete's locker | 50 | 214s | roomba, dog, turkey | Bears Cleanup Drive |
 | 7 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 12 | 101s | Dust bunnies, cockroaches | Swing jazz |

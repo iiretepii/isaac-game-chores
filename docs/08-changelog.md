@@ -327,3 +327,8 @@ Grouped by milestone. See `git log` for every commit.
 - Added Uncle Pete’s Room sixth: collect Bears jerseys, footballs and caps into his locker, with Bears decor and Bears Cleanup Drive.
 - Preserved Daniel and Colin as third/fourth and existing room difficulty. Finale is now level 42 with 51 items and 217 seconds, including both new item types and all 41 level songs.
 - Fixed portrait phone canvas clipping by allowing downscaling. Updated recordings, references and design tables; the independent 3D fork is unchanged.
+
+## 2026-11-25 — Cousin pickup counts
+
+- Reduced Daniel’s level-3 room to 12 toy monster trucks and Colin’s level-4 room to 13 toy surfboards.
+- Kept their timers, terrain settings, music and helper behavior unchanged; updated the README and design tables.

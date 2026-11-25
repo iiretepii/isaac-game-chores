@@ -8,8 +8,8 @@ Generated from the `LEVELS` array in `index.html`.
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | Isaac's Room | `bedroom` | dragon → toychest | 10 | 94s | 170 | 3 | 0.4 | 0 | no | bzombie, bskel, bspider, hisser | `rock` |
 | 2 | Annie's Room | `annie` | doll → dollhouse | 11 | 98s | 173 | 3 | 0.45 | 0 | no | tabby, husky, pom | `princess` |
-| 3 | Daniel'S Monster Jam Room | `danielroom` | monstertrucktoy → monsterarena | 47 | 205s | 410 | 10 | 0.7 | 0.2 | yes | roomba, chomper, rat | `monsterjam` |
-| 4 | Colin'S Surf Shack | `colinroom` | surfboardtoy → surfrack | 48 | 208s | 420 | 10 | 0.7 | 0.2 | yes | duck, squirrel, bubble | `surfrock` |
+| 3 | Daniel'S Monster Jam Room | `danielroom` | monstertrucktoy → monsterarena | 12 | 205s | 410 | 10 | 0.7 | 0.2 | yes | roomba, chomper, rat | `monsterjam` |
+| 4 | Colin'S Surf Shack | `colinroom` | surfboardtoy → surfrack | 13 | 208s | 420 | 10 | 0.7 | 0.2 | yes | duck, squirrel, bubble | `surfrock` |
 | 5 | Mom'S Room | `momroom` | jewelry → jewelrybox | 49 | 211s | 430 | 10 | 0.7 | 0.2 | yes | hamster, cat, bubble | `momwaltz` |
 | 6 | Uncle Pete'S Room | `peteroom` | bearsgear → bearslocker | 50 | 214s | 440 | 10 | 0.7 | 0.2 | yes | roomba, dog, turkey | `bearsgroove` |
 | 7 | Kitchen Catastrophe | `kitchen` | dish → dishwasher | 12 | 101s | 175 | 4 | 0.45 | 0 | no | dust, roach | `jazz` |
@@ -121,4 +121,4 @@ GTA V + VI Toy Room uses `item: "citytoys"`; generation alternates `sportscar` a
 
 ## Room order and stable difficulty
 
-Daniel’s Monster Jam Room and Colin’s Surf Shack are levels 3 and 4. Each `LEVELS` entry has a `difficultyIndex` preserving its earlier ramp value and critter-speed multiplier; seeds, terrain, pickup count, timer and music remain unchanged. `buildLevel` uses `difficultyIndex` for its capped ramp, and `updateEnemies` uses it for speed. New levels without this field fall back to their current index. Counts and timers are now room-specific rather than increasing at every menu position.
+Daniel’s Monster Jam Room and Colin’s Surf Shack are levels 3 and 4. Each `LEVELS` entry has a `difficultyIndex` preserving its earlier ramp value and critter-speed multiplier; seeds, terrain, timer and music remain unchanged when reordered; Daniel and Colin now have 12/13 pickups. `buildLevel` uses `difficultyIndex` for its capped ramp, and `updateEnemies` uses it for speed. New levels without this field fall back to their current index. Counts and timers are now room-specific rather than increasing at every menu position.
