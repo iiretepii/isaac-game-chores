@@ -42,9 +42,16 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `obby` | *Checkpoint Champions* (original) | 132 | 4 | 16 | 16 | Roblox Avatar Roundup | `music/26-roblox-room.mp3` |
 | `cityradio` | *Two Cities, One Sunset* (original) | 108 | 4 | 16 | 16 | GTA V + VI Toy Room | `music/27-gta-room.mp3` |
 | `charging` | *Fully Charged* (original) | 128 | 4 | 16 | 16 | Charging Room Chaos | `music/28-charging-room.mp3` |
-| `sad` | *Grounded Until Forever* | 66 | 2 | 8 | 8 | "Parents are home!" fail screen (starts about 3 s after the honk and the lose jingle) | `music/31-fail-screen.mp3` |
-| `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/30-ending-jubilee.mp3` |
-| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/29-whole-house-medley.mp3` |
+| `halloween` | *Spooky Sugar Shuffle* (original) | 112 | 4 | 16 | 16 | Halloween Haunt | `music/29-halloween.mp3` |
+| `thanksgiving` | *Harvest Home Hop* (original) | 106 | 4 | 16 | 16 | Thanksgiving Feast | `music/30-thanksgiving.mp3` |
+| `christmas` | *Tinsel Time* (original) | 132 | 4 | 16 | 16 | Christmas Cheer | `music/31-christmas.mp3` |
+| `valentine` | *Hearts Together* (original) | 96 | 4 | 16 | 16 | Valentines Day Love | `music/32-valentine.mp3` |
+| `stpatrick` | *Lucky Clover Jig* (original) | 144 | 4 | 16 | 16 | St Patricks Day Luck | `music/33-stpatrick.mp3` |
+| `aprilfools` | *Whoops-a-Daisy* (original) | 138 | 4 | 16 | 16 | April Fools Day Pranks | `music/34-aprilfools.mp3` |
+| `easter` | *Springtime Hop* (original) | 120 | 4 | 16 | 16 | Easter Egg Hunt | `music/35-easter.mp3` |
+| `sad` | *Grounded Until Forever* | 66 | 2 | 8 | 8 | "Parents are home!" fail screen (starts about 3 s after the honk and the lose jingle) | `music/38-fail-screen.mp3` |
+| `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/37-ending-jubilee.mp3` |
+| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/36-whole-house-medley.mp3` |
 
 ## Volume Leveling
 
@@ -52,7 +59,7 @@ Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays a
 
 ## The Medley
 
-`MIX` includes all 28 level songs in room order, including Race Track Rumble’s `racerock` arrangement. The Whole House music is a simultaneous mashup: three level tracks play together at a shared 128 BPM, with a new group every four 4/4 bars (7.5 seconds). Ten groups cover every level song before the groups repeat; the final group wraps to the first two tracks to keep three layers playing.
+`MIX` includes all 35 level songs in room order, including Race Track Rumble’s `racerock` arrangement. The Whole House music is a simultaneous mashup: three level tracks play together at a shared 128 BPM, with a new group every four 4/4 bars (7.5 seconds). Twelve groups cover every level song before the groups repeat; the final group wraps to the first track to keep three layers playing.
 
 Each layer keeps its instrument arrangement and per-song gain trim, scaled to one third. Independent guitar/reverb buses prevent one layer’s instruments from taking another layer’s volume. Notes align to the shared beat; the original time signatures and rubato are adapted for the mashup. Individual rooms keep their original songs and tempos. Title, victory and fail-screen songs are not level tracks and remain separate. The last-15-seconds speedup still applies.
 
@@ -110,3 +117,5 @@ Roblox Avatar Roundup uses an original electronic dance track, Checkpoint Champi
 GTA V + VI Toy Room uses an original synth/funk radio groove with electric piano, synth bass, saxophone and a soft synth lead. It does not include GTA recordings. The 1.6 volume trim measures near −35.3 dB RMS over the rendered loop.
 
 Charging Room Chaos uses Fully Charged, an original electronic dance track with plucked arpeggios, synth lead, pads and a steady beat. Its 1.0 volume trim measures about −35.9 dB RMS over the rendered loop.
+
+The seven holiday songs use 8.0 gain trims: measured in-game RMS is about −35.4 to −33.7 dB, with April Fools slightly louder for its prank accents. They are original synth arrangements. The 2D mashup now covers 35 songs in twelve groups (90 seconds per group rotation).

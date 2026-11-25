@@ -276,3 +276,9 @@ Grouped by milestone. See `git log` for every commit.
 
 - Uncle Pete now wears a navy Chicago Bears #34 jersey with orange trim, an orange C chest patch, white numbers and orange-and-white sleeve stripes on both the angry parents screen and happy victory screen.
 - His face, pants and animations are retained; the separate 3D fork is unchanged.
+
+## 2026-11-25 — Seven holiday rooms
+
+- Added Halloween, Thanksgiving, Christmas, Valentine’s Day, St Patrick’s Day, April Fools Day and Easter as 2D levels 29–35, with distinct themes, collectibles, decorated return spots and original songs.
+- Expanded Level Select to fit 36 choices; the Whole House finale is level 36 with 45 pickups and 199 seconds, and includes all holiday items and all 35 level songs in its mashup.
+- Added seven song recordings, re-recorded/renumbered the finale mashup and moved ending/fail recordings to 37/38. Existing rooms’ settings and the 29-room 3D snapshot are retained.
