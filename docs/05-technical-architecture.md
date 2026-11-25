@@ -95,3 +95,5 @@ Holiday rooms share `drawHolidayItem` for collectible art and `drawHolidayDrop` 
 `SIBS` defines Annie, Isaac, Daniel and Colin. Shared update, physics and target-reservation loops handle all four; appearance, follow distance, rush threshold, bedroom ownership and vehicle selection come from each entry. Menu lineups iterate the registry, including a compact level-intro lineup. The original 3D fork remains separate.
 
 `drawCousinToy` supplies toy monster trucks and surfboards for pickups, room scenery, and the `monsterarena`/`surfrack` drop-off displays. Both are included in the Whole House mix.
+
+Room ordering is independent of challenge: `difficultyIndex` preserves each room’s generation ramp and critter-speed scaling when moved. Daniel’s and Colin’s rooms are third and fourth; level numbers and listening MP3 filenames follow the new order.

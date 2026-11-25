@@ -8,43 +8,43 @@ Generated from the `LEVELS` array in `index.html`.
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | Isaac's Room | `bedroom` | dragon → toychest | 10 | 94s | 170 | 3 | 0.4 | 0 | no | bzombie, bskel, bspider, hisser | `rock` |
 | 2 | Annie's Room | `annie` | doll → dollhouse | 11 | 98s | 173 | 3 | 0.45 | 0 | no | tabby, husky, pom | `princess` |
-| 3 | Kitchen Catastrophe | `kitchen` | dish → dishwasher | 12 | 101s | 175 | 4 | 0.45 | 0 | no | dust, roach | `jazz` |
-| 4 | Living Room Lego-Land | `living` | pillow → creamcouch | 13 | 104s | 178 | 4 | 0.5 | 0.4 | no | roomba, cat | `pop` |
-| 5 | Backyard Bonanza | `yard` | leaf → bag | 14 | 107s | 181 | 4 | 0.55 | 0.2 | yes | dog, bee | `hiphop` |
-| 6 | Garden Glow-Up | `garden` | oldflower (dandelion-clump weeds) → compost | 15 | 110s | 183 | 5 | 0.62 | 0 | yes | weed | `garden` |
-| 7 | Pool Party Panic | `pool` | towel → towelbasket | 16 | 113s | 183 | 5 | 0.58 | 0 | yes | duck, goose, swan, squirrel | `pool` |
-| 8 | Garage of Doom | `garage` | trash → can (dumpster) | 17 | 116s | 186 | 5 | 0.62 | 0.45 | yes | rat, roomba, bee | `techno` |
-| 9 | Laundry Room Pee-Yew! | `laundry` | undies → washer | 18 | 119s | 189 | 5 | 0.64 | 0.3 | yes | bubble, dust, roach | `polka` |
-| 10 | Bathroom Blunder | `bathroom` | poop → toilet | 19 | 122s | 191 | 6 | 0.66 | 0.3 | yes | bubble, roach, spider | `crooner` |
-| 11 | Home Office Havoc | `office` | paper → recycle | 20 | 125s | 194 | 6 | 0.68 | 0.3 | yes | ant, spider, hamster | `muzak` |
-| 12 | Library Book Roundup | `library` | book → libraryshelf | 21 | 128s | 197 | 6 | 0.45 | 0 | yes | dust, spider, hamster | `library` |
-| 13 | Music Room Mayhem | `musicroom` | score → bookshelf | 22 | 131s | 197 | 7 | 0.7 | 0.3 | yes | cat, spider, roach | `practice` |
-| 14 | Arts & Crafts Chaos | `arts` | paint → paintshelf | 23 | 134s | 199 | 7 | 0.7 | 0.35 | yes | ant, cat, bubble | `punkska` |
-| 15 | Tech Room Trouble | `tech` | robot → workbench | 24 | 137s | 202 | 7 | 0.75 | 0.35 | yes | zap | `silly` |
-| 16 | Science Lab Scramble | `science` | testtube → labrack | 25 | 140s | 204 | 8 | 0.7 | 0.2 | yes | slime, bubble, zap | `science` |
-| 17 | Workout Room Workout | `gym` | weight → weightrack | 26 | 143s | 205 | 8 | 0.76 | 0.35 | yes | rat, cat, dog, mite | `workout` |
-| 18 | The Spooky Basement | `basement` | shirt → dryer | 27 | 146s | 207 | 8 | 0.66 | 0.3 | yes | spider, rat, dust | `romantic` |
-| 19 | Attic of Antiques | `attic` | ornament → trunk | 28 | 149s | 210 | 8 | 0.7 | 0.35 | yes | bat, spider, rat | `baroque` |
-| 20 | Pet Room Pandemonium | `pets` | chewtoy → petbasket | 29 | 152s | 212 | 9 | 0.66 | 0.3 | yes | hamster, tabby, pom | `pets` |
-| 21 | Race Track Rumble | `race` | tire → tirerack | 30 | 154s | 214 | 9 | 0.7 | 0.3 | yes | roomba, squirrel, goose | `racerock` |
-| 22 | Game Room Glitch | `gameroom` | videogame → gameshelf | 31 | 157s | 216 | 9 | 0.72 | 0.3 | yes | invader, chomper, ghosty | `chiptune` |
-| 23 | Money Room Millions | `money` | coin → coinchest | 32 | 160s | 260 | 10 | 0.7 | 0.25 | yes | hamster, roomba, slime | `money` |
-| 24 | MarioKart Toy Room | `kartroom` | alternating toykart / toybike → kartgarage | 33 | 163s | 270 | 10 | 0.7 | 0.25 | yes | roomba, squirrel, ghosty | `grandprix` |
-| 25 | Minecraft Block Room | `blockroom` | diamondblock → blockchest | 34 | 166s | 280 | 10 | 0.7 | 0.2 | yes | bzombie, bskel, bspider, hisser | `blockgarden` |
-| 26 | Roblox Avatar Roundup | `obbyroom` | avatar → avatarshelf | 35 | 169s | 290 | 10 | 0.7 | 0.2 | yes | roomba, invader, ghosty | `obby` |
-| 27 | GTA V + VI Toy Room | `cityroom` | alternating sportscar / cruiserbike → citygarage | 36 | 172s | 300 | 10 | 0.7 | 0.2 | yes | roomba, dog, rat | `cityradio` |
-| 28 | Charging Room Chaos | `chargingroom` | chargecable → cabledock | 37 | 175s | 310 | 10 | 0.7 | 0.2 | yes | zap, roomba, ant | `charging` |
-| 29 | Halloween Haunt | `halloween` | carvedpumpkin → pumpkinbucket | 38 | 178s | 320 | 10 | 0.7 | 0.2 | yes | bat, spider, ghosty | `halloween` |
-| 30 | Thanksgiving Feast | `thanksgiving` | pieslice → pietable | 39 | 181s | 330 | 10 | 0.7 | 0.2 | yes | turkey | `thanksgiving` |
-| 31 | Christmas Cheer | `christmas` | gift → gifttree | 40 | 184s | 340 | 10 | 0.7 | 0.2 | yes | roomba, cat, hamster | `christmas` |
-| 32 | Valentines Day Love | `valentine` | valentinecard → heartbox | 41 | 187s | 350 | 10 | 0.7 | 0.2 | yes | bubble, hamster, cat | `valentine` |
-| 33 | St Patricks Day Luck | `stpatrick` | shamrock → luckypot | 42 | 190s | 360 | 10 | 0.7 | 0.2 | yes | squirrel, hamster, weed | `stpatrick` |
-| 34 | April Fools Day Pranks | `aprilfools` | pranktoy → prankbox | 43 | 193s | 370 | 10 | 0.7 | 0.2 | yes | chomper, roomba, bubble | `aprilfools` |
-| 35 | Easter Egg Hunt | `easter` | easteregg → eggbasket | 44 | 196s | 380 | 10 | 0.7 | 0.2 | yes | hamster, squirrel, bee | `easter` |
-| 36 | Mother'S Day Blooms | `mothersday` | bouquet → momvase | 45 | 199s | 390 | 10 | 0.7 | 0.2 | yes | bee, hamster, squirrel | `mothersday` |
-| 37 | Father'S Day Surprise | `fathersday` | necktie → dadrack | 46 | 202s | 400 | 10 | 0.7 | 0.2 | yes | roomba, dog, hamster | `fathersday` |
-| 38 | Daniel'S Monster Jam Room | `danielroom` | monstertrucktoy → monsterarena | 47 | 205s | 410 | 10 | 0.7 | 0.2 | yes | roomba, chomper, rat | `monsterjam` |
-| 39 | Colin'S Surf Shack | `colinroom` | surfboardtoy → surfrack | 48 | 208s | 420 | 10 | 0.7 | 0.2 | yes | duck, squirrel, bubble | `surfrock` |
+| 3 | Daniel'S Monster Jam Room | `danielroom` | monstertrucktoy → monsterarena | 47 | 205s | 410 | 10 | 0.7 | 0.2 | yes | roomba, chomper, rat | `monsterjam` |
+| 4 | Colin'S Surf Shack | `colinroom` | surfboardtoy → surfrack | 48 | 208s | 420 | 10 | 0.7 | 0.2 | yes | duck, squirrel, bubble | `surfrock` |
+| 5 | Kitchen Catastrophe | `kitchen` | dish → dishwasher | 12 | 101s | 175 | 4 | 0.45 | 0 | no | dust, roach | `jazz` |
+| 6 | Living Room Lego-Land | `living` | pillow → creamcouch | 13 | 104s | 178 | 4 | 0.5 | 0.4 | no | roomba, cat | `pop` |
+| 7 | Backyard Bonanza | `yard` | leaf → bag | 14 | 107s | 181 | 4 | 0.55 | 0.2 | yes | dog, bee | `hiphop` |
+| 8 | Garden Glow-Up | `garden` | oldflower (dandelion-clump weeds) → compost | 15 | 110s | 183 | 5 | 0.62 | 0 | yes | weed | `garden` |
+| 9 | Pool Party Panic | `pool` | towel → towelbasket | 16 | 113s | 183 | 5 | 0.58 | 0 | yes | duck, goose, swan, squirrel | `pool` |
+| 10 | Garage of Doom | `garage` | trash → can (dumpster) | 17 | 116s | 186 | 5 | 0.62 | 0.45 | yes | rat, roomba, bee | `techno` |
+| 11 | Laundry Room Pee-Yew! | `laundry` | undies → washer | 18 | 119s | 189 | 5 | 0.64 | 0.3 | yes | bubble, dust, roach | `polka` |
+| 12 | Bathroom Blunder | `bathroom` | poop → toilet | 19 | 122s | 191 | 6 | 0.66 | 0.3 | yes | bubble, roach, spider | `crooner` |
+| 13 | Home Office Havoc | `office` | paper → recycle | 20 | 125s | 194 | 6 | 0.68 | 0.3 | yes | ant, spider, hamster | `muzak` |
+| 14 | Library Book Roundup | `library` | book → libraryshelf | 21 | 128s | 197 | 6 | 0.45 | 0 | yes | dust, spider, hamster | `library` |
+| 15 | Music Room Mayhem | `musicroom` | score → bookshelf | 22 | 131s | 197 | 7 | 0.7 | 0.3 | yes | cat, spider, roach | `practice` |
+| 16 | Arts & Crafts Chaos | `arts` | paint → paintshelf | 23 | 134s | 199 | 7 | 0.7 | 0.35 | yes | ant, cat, bubble | `punkska` |
+| 17 | Tech Room Trouble | `tech` | robot → workbench | 24 | 137s | 202 | 7 | 0.75 | 0.35 | yes | zap | `silly` |
+| 18 | Science Lab Scramble | `science` | testtube → labrack | 25 | 140s | 204 | 8 | 0.7 | 0.2 | yes | slime, bubble, zap | `science` |
+| 19 | Workout Room Workout | `gym` | weight → weightrack | 26 | 143s | 205 | 8 | 0.76 | 0.35 | yes | rat, cat, dog, mite | `workout` |
+| 20 | The Spooky Basement | `basement` | shirt → dryer | 27 | 146s | 207 | 8 | 0.66 | 0.3 | yes | spider, rat, dust | `romantic` |
+| 21 | Attic of Antiques | `attic` | ornament → trunk | 28 | 149s | 210 | 8 | 0.7 | 0.35 | yes | bat, spider, rat | `baroque` |
+| 22 | Pet Room Pandemonium | `pets` | chewtoy → petbasket | 29 | 152s | 212 | 9 | 0.66 | 0.3 | yes | hamster, tabby, pom | `pets` |
+| 23 | Race Track Rumble | `race` | tire → tirerack | 30 | 154s | 214 | 9 | 0.7 | 0.3 | yes | roomba, squirrel, goose | `racerock` |
+| 24 | Game Room Glitch | `gameroom` | videogame → gameshelf | 31 | 157s | 216 | 9 | 0.72 | 0.3 | yes | invader, chomper, ghosty | `chiptune` |
+| 25 | Money Room Millions | `money` | coin → coinchest | 32 | 160s | 260 | 10 | 0.7 | 0.25 | yes | hamster, roomba, slime | `money` |
+| 26 | MarioKart Toy Room | `kartroom` | alternating toykart / toybike → kartgarage | 33 | 163s | 270 | 10 | 0.7 | 0.25 | yes | roomba, squirrel, ghosty | `grandprix` |
+| 27 | Minecraft Block Room | `blockroom` | diamondblock → blockchest | 34 | 166s | 280 | 10 | 0.7 | 0.2 | yes | bzombie, bskel, bspider, hisser | `blockgarden` |
+| 28 | Roblox Avatar Roundup | `obbyroom` | avatar → avatarshelf | 35 | 169s | 290 | 10 | 0.7 | 0.2 | yes | roomba, invader, ghosty | `obby` |
+| 29 | GTA V + VI Toy Room | `cityroom` | alternating sportscar / cruiserbike → citygarage | 36 | 172s | 300 | 10 | 0.7 | 0.2 | yes | roomba, dog, rat | `cityradio` |
+| 30 | Charging Room Chaos | `chargingroom` | chargecable → cabledock | 37 | 175s | 310 | 10 | 0.7 | 0.2 | yes | zap, roomba, ant | `charging` |
+| 31 | Halloween Haunt | `halloween` | carvedpumpkin → pumpkinbucket | 38 | 178s | 320 | 10 | 0.7 | 0.2 | yes | bat, spider, ghosty | `halloween` |
+| 32 | Thanksgiving Feast | `thanksgiving` | pieslice → pietable | 39 | 181s | 330 | 10 | 0.7 | 0.2 | yes | turkey | `thanksgiving` |
+| 33 | Christmas Cheer | `christmas` | gift → gifttree | 40 | 184s | 340 | 10 | 0.7 | 0.2 | yes | roomba, cat, hamster | `christmas` |
+| 34 | Valentines Day Love | `valentine` | valentinecard → heartbox | 41 | 187s | 350 | 10 | 0.7 | 0.2 | yes | bubble, hamster, cat | `valentine` |
+| 35 | St Patricks Day Luck | `stpatrick` | shamrock → luckypot | 42 | 190s | 360 | 10 | 0.7 | 0.2 | yes | squirrel, hamster, weed | `stpatrick` |
+| 36 | April Fools Day Pranks | `aprilfools` | pranktoy → prankbox | 43 | 193s | 370 | 10 | 0.7 | 0.2 | yes | chomper, roomba, bubble | `aprilfools` |
+| 37 | Easter Egg Hunt | `easter` | easteregg → eggbasket | 44 | 196s | 380 | 10 | 0.7 | 0.2 | yes | hamster, squirrel, bee | `easter` |
+| 38 | Mother'S Day Blooms | `mothersday` | bouquet → momvase | 45 | 199s | 390 | 10 | 0.7 | 0.2 | yes | bee, hamster, squirrel | `mothersday` |
+| 39 | Father'S Day Surprise | `fathersday` | necktie → dadrack | 46 | 202s | 400 | 10 | 0.7 | 0.2 | yes | roomba, dog, hamster | `fathersday` |
 | 40 | The Whole House!! | `house` | mix → couch | 49 | 211s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
 
 ## Level Data Format
@@ -54,6 +54,7 @@ Each level is one object in the `LEVELS` array:
 | Field | Meaning |
 |---|---|
 | `name` | Title shown on the intro card (ALL CAPS) |
+| `difficultyIndex` | Stable zero-based difficulty slot; preserves generation and critter speed when the room moves |
 | `seed` | Fixed random seed for the layout (stays the same if levels are inserted or reordered) |
 | `chore` | One-line chore description |
 | `drop` | Drop-off sprite key (drawn in `drawDropRaw`) |
@@ -87,9 +88,9 @@ Each level is one object in the `LEVELS` array:
 
 ## Level Generation Rules
 
-- **Fixed seed:** each level has its own `seed`, which preserves its random sequence. Geometry also depends on the index-based difficulty factor below: inserting or reordering an early room can still change its layout. Appending late rooms before the finale preserves earlier difficulty values because the ramp is capped. New levels need a new, unused seed; recheck layouts after reordering.
+- **Fixed seed:** each level has its own `seed`, which preserves its random sequence. Geometry also depends on the stored difficulty factor below: a changed difficulty setting can still change its layout. Appending late rooms before the finale preserves earlier difficulty values because the ramp is capped. New levels need a new, unused seed; recheck layouts after reordering.
 - **Start and end:** the first 10 columns and last 16 columns are always flat, solid ground (the end zone is forced flat after generation, and long stepping-stone runs are not started within 60 tiles of the end), so the drop-off always sits on a platform. The drop-off sits near the end; wider drop-offs shift left so they stay on the flat ground. Most drop-offs are 70 px wide; the couch, giant robot and toy tote are narrower.
-- **Difficulty curve:** `D = min(1, level index / 23)` runs from 0 on Level 1 to 1 on Level 24 and stays at 1 for the Whole House, and it drives every building block:
+- **Difficulty curve:** `D = min(1, (difficultyIndex ?? level index) / 23)` uses the room’s stored difficulty, from 0 to 1, capped at 1 for challenging rooms including the Whole House, and it drives every building block:
   - **Pits** get wider (up to the level's `gap`) and more frequent, and late levels pick the widest sizes more often. Their landings get narrower (4–6 tiles early, 2–3 late) and can be higher or lower than the take-off.
   - **Stepping stones** (from about Level 7): two to four narrow pillars, 1–2 tiles wide, over open pits.
   - **Steps** grow from −1…+2 tiles early to −3…+5 late. A 5-tile climb needs a double jump.
@@ -115,3 +116,7 @@ Each level is one object in the `LEVELS` array:
 MarioKart Toy Room uses `item: "kartbike"`; generation alternates `toykart` and `toybike` so both are guaranteed (17 karts and 16 bikes). Both toy types also appear in the Whole House mix.
 
 GTA V + VI Toy Room uses `item: "citytoys"`; generation alternates `sportscar` and `cruiserbike` to guarantee 18 of each. Both toy types are also included in the Whole House mix.
+
+## Room order and stable difficulty
+
+Daniel’s Monster Jam Room and Colin’s Surf Shack are levels 3 and 4. Each `LEVELS` entry has a `difficultyIndex` preserving its earlier ramp value and critter-speed multiplier; seeds, terrain, pickup count, timer and music remain unchanged. `buildLevel` uses `difficultyIndex` for its capped ramp, and `updateEnemies` uses it for speed. New levels without this field fall back to their current index. Counts and timers are now room-specific rather than increasing at every menu position.
