@@ -299,3 +299,7 @@ Grouped by milestone. See `git log` for every commit.
 - Added Daniel (green/yellow) and Colin (purple/teal) as playable-session helpers with the same shared collection, physics, duck/double-jump and critter abilities as Isaac and Annie. All four help throughout Whole House; ordinary rush thresholds are Daniel 20% and Colin 33%.
 - Added both cousins to the title, level-intro, chore-complete and ending lineups, with Daniel on a monster truck and Colin on a surfboard in every room. Colin says “Surfs Up!”.
 - Moved helper-specific settings into data so cousins do not inherit Isaac’s bedroom assignment or light-bike trail. The 3D fork is unchanged.
+
+## 2026-11-25 — Colin’s immediate greeting
+
+- Colin says “Surfs Up!” immediately on every level intro, including retries and level-select starts. His greeting repeats when gameplay begins and takes priority over first-frame helper rush announcements.

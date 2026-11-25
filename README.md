@@ -66,7 +66,7 @@ Isaac, Annie, and your cousins **Daniel and Colin** join you on every level. All
 - **Annie** (little sister) rides her skateboard in a pretty pink dress, holding a pink balloon ("I'll help all day! (for cookies)"). The balloon lets her **float a little** at the top of each jump and drift down more slowly.
 - **Isaac** (big brother) wears a red shirt and a blue cap (red and blue are his favorite colors) and rides his **neon light-bike**: a sleek black futuristic bike with glowing red edges and disc wheels that leaves a glowing light trail behind it ("Vrrrm! Neon light-bike, baby!").
 
-Daniel wears green with a yellow cap; Colin wears purple with a teal cap. Daniel drives a green monster truck; Colin rides a turquoise-and-purple surfboard and greets you with “Surfs Up!”. Their rides appear in every room and menu lineup, using the same 176 px/s speed and helper abilities. All four appear on the title, level-intro, chore-complete and final victory screens.
+Daniel wears green with a yellow cap; Colin wears purple with a teal cap. Daniel drives a green monster truck; Colin rides a turquoise-and-purple surfboard and greets you immediately on every level’s intro with “Surfs Up!”. Their rides appear in every room and menu lineup, using the same 176 px/s speed and helper abilities. All four appear on the title, level-intro, chore-complete and final victory screens.
 
 When they show up, you greet them with a goofy speech bubble picked at random, like "HEY PAL!", "YOOO!", "LET HIM COOK!", "NO CAP, HI!", "BRO-TATO CHIP!" or "Sup Bro!".
 

@@ -1356,6 +1356,7 @@ function startLevel(i){
   P.x=2*T;P.y=(ROWS-lvl.ground[2])*T-P.h;P.vx=P.vy=0;P.inv=0;P.ride=null;P.carry=0;P.face=1;
   lastSafe={x:P.x,y:P.y};
   state='intro';stateT=0;stopMusic();
+  say(SIBS.find(d=>d.name==='COLIN').line,2.5);
 }
 function say(t,d=2){msg=t;msgT=d;}
 
@@ -1546,9 +1547,11 @@ function chooseSiblingTarget(s,dt){
   }
 }
 function updateSibs(dt){
+  let colinArrived=false;
   if(P.speechT>0)P.speechT-=dt;
   const played=lvl.L.time-timeLeft; // all four helpers appear immediately
   SIBS.forEach((d,k)=>{if(played>=d.delay&&!sibs.some(s=>s.k===k)&&P.carry<lvl.total){
+    if(d.name==='COLIN')colinArrived=true;
     sibs.push({k,d,x:P.x,y:P.y+P.h-20,h:20,duck:false,jumps:0,vy:0,on:false,ride:null,face:1,anim:0,target:null,hop:0});say(d.line,2.5);P.speech=GREETINGS[Math.random()*GREETINGS.length|0];P.speechT=2.2;
     if(AC){const t0=AC.currentTime;if(k){tone(90,0.9,'sawtooth',0.06,600,t0,sfxGain);tone(180,0.9,'square',0.03,1200,t0,sfxGain);} // electric VRRRRM
       else [72,76,79,84].forEach((n,i)=>tone(mtof(n),0.12,'square',0.1,null,t0+i*0.07));}
@@ -1572,6 +1575,7 @@ function updateSibs(dt){
       const it=s.target;it.got=true;s.rest=0;P.carry++;score+=25;levelScore+=25;SFX.collect();puff(it.x+8,it.y+8,s.d.color,8);
       const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?s.d.name+"! "+left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);}
   }
+  if(colinArrived)say(SIBS.find(d=>d.name==='COLIN').line,2.5);
 }
 function updatePlay(dt){
   timeLeft-=dt;updateSibs(dt);
@@ -2821,6 +2825,7 @@ function drawIntro(t){
   const L=lvl.L;
   text("LEVEL "+(levelIdx+1),W/2,44,8,"#aaa","center");
   text(L.name,W/2,60,12,"#ffeb3b","center");
+  text(SIBS.find(d=>d.name==='COLIN').line,W/2,76,6,"#b39ddb","center",false);
   // phone text bubble
   R(70,86,W-140,62,"#e0e0e0");R(70,86,W-140,10,"#43a047");text("NEW TEXT!",78,88,6,"#fff","left",false);
   g.save();wrap(L.text,W/2,100,W-160,8,"#212121");g.restore();
