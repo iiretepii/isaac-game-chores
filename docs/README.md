@@ -19,5 +19,5 @@ Docs 01–08 describe the original **2D game**. Doc 09 describes the separate **
 ## Keeping These Docs Current
 
 - **Same change, same commit:** when a change alters something these docs describe (a level, critter, song, rule or constant), update the matching doc in the same commit.
-- **The code is the source of truth:** the level, critter and music tables were checked against `index.html` on 2026-11-25, covering all 38 levels and 41 recordings, MarioKart rides, bedroom and Whole House helpers, the cream finale couch, the painted-dragon treasure chest, and the separate 3D fork. If a doc and the code disagree, trust the code and fix the doc.
+- **The code is the source of truth:** the level, critter and music tables were checked against `index.html` on 2026-11-25, covering all 40 levels and 43 recordings, MarioKart rides, bedroom and Whole House helpers, the cream finale couch, the painted-dragon treasure chest, and the separate 3D fork. If a doc and the code disagree, trust the code and fix the doc.
 - **Where to log things:** add new problems to [07 – Backlog and Known Issues](07-backlog-and-known-issues.md), and record finished work in [08 – Changelog](08-changelog.md).

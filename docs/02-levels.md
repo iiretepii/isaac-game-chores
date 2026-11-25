@@ -43,7 +43,9 @@ Generated from the `LEVELS` array in `index.html`.
 | 35 | Easter Egg Hunt | `easter` | easteregg → eggbasket | 44 | 196s | 380 | 10 | 0.7 | 0.2 | yes | hamster, squirrel, bee | `easter` |
 | 36 | Mother'S Day Blooms | `mothersday` | bouquet → momvase | 45 | 199s | 390 | 10 | 0.7 | 0.2 | yes | bee, hamster, squirrel | `mothersday` |
 | 37 | Father'S Day Surprise | `fathersday` | necktie → dadrack | 46 | 202s | 400 | 10 | 0.7 | 0.2 | yes | roomba, dog, hamster | `fathersday` |
-| 38 | The Whole House!! | `house` | mix → couch | 47 | 205s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
+| 38 | Daniel'S Monster Jam Room | `danielroom` | monstertrucktoy → monsterarena | 47 | 205s | 410 | 10 | 0.7 | 0.2 | yes | roomba, chomper, rat | `monsterjam` |
+| 39 | Colin'S Surf Shack | `colinroom` | surfboardtoy → surfrack | 48 | 208s | 420 | 10 | 0.7 | 0.2 | yes | duck, squirrel, bubble | `surfrock` |
+| 40 | The Whole House!! | `house` | mix → couch | 49 | 211s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
 
 ## Level Data Format
 

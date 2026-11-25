@@ -47,9 +47,9 @@ Daniel and Colin are also entries in `SIBS`, sharing `updateSibs`, `chooseSiblin
 | Look | Green shirt, yellow cap, green name label | Purple shirt, teal cap, purple name label |
 | Ride | Green monster truck with oversized wheels, in every room | Turquoise-and-purple surfboard, in every room |
 | Follows at | 100 px behind | 138 px behind |
-| Collects at | 20% time remaining; immediately throughout Whole House | 33% time remaining; immediately throughout Whole House |
+| Collects at | 20% time remaining; immediately in his own room and throughout Whole House | 33% time remaining; immediately in his own room and throughout Whole House |
 
-Helper configuration uses `rush`, `follow`, `ownTheme`, `kart`, `color` and `neon` rather than treating every nonzero index as Isaac. Isaac and Annie retain their own-bedroom collection behavior; cousins have no bedroom assignment. All four share item reservations, so they choose separate targets. `drawMenuSiblings` lays out four helpers on the title, intro, clear and ending screens; the intro lineup is scaled to fit beneath its instructions.
+Helper configuration uses `rush`, `follow`, `ownTheme`, `kart`, `color` and `neon` rather than treating every nonzero index as Isaac. Isaac and Annie retain their own-bedroom collection behavior; Daniel owns `danielroom` and Colin owns `colinroom`, so they also prioritize chores throughout their own rooms. All four share item reservations, so they choose separate targets. `drawMenuSiblings` lays out four helpers on the title, intro, clear and ending screens; the intro lineup is scaled to fit beneath its instructions.
 
 ## The Parents: Mom and Uncle Pete
 
@@ -67,37 +67,37 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 
 | Key | Critter | Movement | Speed | Levels |
 |---|---|---|---|---|
-| `dust` | Dust bunny | walk | 30 | 3, 9, 12, 18, 38 |
-| `roach` | Cockroach | walk | 55 | 3, 9, 10, 13, 38 |
-| `roomba` | Robot vacuum | walk | 75 | 4, 8, 21, 23, 24, 26, 27, 28, 31, 34, 37, 38 |
-| `cat` | Cat | walk | 50 | 4, 13, 14, 17, 31, 32, 38 |
-| `dog` | Dog | walk + hop | 90 | 5, 17, 27, 37, 38 |
-| `rat` | Rat | walk | 65 | 8, 17, 18, 19, 27, 38 |
-| `bee` | Bee | fly | 40 | 5, 8, 35, 36, 38 |
-| `spider` | Spider | walk | 60 | 10, 11, 12, 13, 18, 19, 29, 38 |
-| `bat` | Bat | fly | 55 | 19, 29, 38 |
-| `bubble` | Soap bubble | fly | 35 | 9, 10, 14, 16, 32, 34, 38 |
-| `zap` | Lightning bolt | fly (jittery) | 65 | 15, 16, 28, 38 |
-| `ant` | Ant | walk | 70 | 11, 14, 28, 38 |
-| `hamster` | Hamster | walk + hop | 85 | 11, 12, 20, 23, 31, 32, 33, 35, 36, 37, 38 |
-| `mite` | Dust mite | walk | 45 | 17, 38 |
-| `bzombie` | Blocky zombie | walk | 32 | 1, 25, 38 |
-| `bskel` | Blocky skeleton | walk | 42 | 1, 25, 38 |
-| `bspider` | Blocky spider | walk | 62 | 1, 25, 38 |
-| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1, 25, 38 |
-| `tabby` | Orange tabby cat | walk | 50 | 2, 20, 38 |
-| `husky` | Husky | walk + hop | 72 | 2, 38 |
-| `pom` | Pomeranian | walk + hop | 80 | 2, 20, 38 |
-| `duck` | Duck | walk | 40 | 7, 38 |
-| `turkey` | Turkey (fan tail, blue head, red wattle) | walk | 52 | 30, 38 |
-| `goose` | Goose (flashes HONK) | walk | 60 | 7, 21, 38 |
-| `swan` | Swan | walk | 35 | 7, 38 |
-| `invader` | Pixel space invader (original 8-bit alien, legs flick every frame) | fly | 45 | 22, 26, 38 |
-| `chomper` | Yellow chomper that opens and closes its mouth, munching dots | walk | 72 | 22, 34, 38 |
-| `ghosty` | Cyan arcade ghost with a wavy hem and eyes that look where it goes | walk | 52 | 22, 24, 26, 29, 38 |
-| `squirrel` | Squirrel | walk + hop | 85 | 7, 21, 24, 33, 35, 36, 38 |
-| `weed` | Walking weed | walk | 38 | 6, 33, 38 |
-| `slime` | Slime | walk | 42 | 16, 23, 38 |
+| `dust` | Dust bunny | walk | 30 | 3, 9, 12, 18, 40 |
+| `roach` | Cockroach | walk | 55 | 3, 9, 10, 13, 40 |
+| `roomba` | Robot vacuum | walk | 75 | 4, 8, 21, 23, 24, 26, 27, 28, 31, 34, 37, 38, 40 |
+| `cat` | Cat | walk | 50 | 4, 13, 14, 17, 31, 32, 40 |
+| `dog` | Dog | walk + hop | 90 | 5, 17, 27, 37, 40 |
+| `rat` | Rat | walk | 65 | 8, 17, 18, 19, 27, 38, 40 |
+| `bee` | Bee | fly | 40 | 5, 8, 35, 36, 40 |
+| `spider` | Spider | walk | 60 | 10, 11, 12, 13, 18, 19, 29, 40 |
+| `bat` | Bat | fly | 55 | 19, 29, 40 |
+| `bubble` | Soap bubble | fly | 35 | 9, 10, 14, 16, 32, 34, 39, 40 |
+| `zap` | Lightning bolt | fly (jittery) | 65 | 15, 16, 28, 40 |
+| `ant` | Ant | walk | 70 | 11, 14, 28, 40 |
+| `hamster` | Hamster | walk + hop | 85 | 11, 12, 20, 23, 31, 32, 33, 35, 36, 37, 40 |
+| `mite` | Dust mite | walk | 45 | 17, 40 |
+| `bzombie` | Blocky zombie | walk | 32 | 1, 25, 40 |
+| `bskel` | Blocky skeleton | walk | 42 | 1, 25, 40 |
+| `bspider` | Blocky spider | walk | 62 | 1, 25, 40 |
+| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1, 25, 40 |
+| `tabby` | Orange tabby cat | walk | 50 | 2, 20, 40 |
+| `husky` | Husky | walk + hop | 72 | 2, 40 |
+| `pom` | Pomeranian | walk + hop | 80 | 2, 20, 40 |
+| `duck` | Duck | walk | 40 | 7, 39, 40 |
+| `turkey` | Turkey (fan tail, blue head, red wattle) | walk | 52 | 30, 40 |
+| `goose` | Goose (flashes HONK) | walk | 60 | 7, 21, 40 |
+| `swan` | Swan | walk | 35 | 7, 40 |
+| `invader` | Pixel space invader (original 8-bit alien, legs flick every frame) | fly | 45 | 22, 26, 40 |
+| `chomper` | Yellow chomper that opens and closes its mouth, munching dots | walk | 72 | 22, 34, 38, 40 |
+| `ghosty` | Cyan arcade ghost with a wavy hem and eyes that look where it goes | walk | 52 | 22, 24, 26, 29, 40 |
+| `squirrel` | Squirrel | walk + hop | 85 | 7, 21, 24, 33, 35, 36, 39, 40 |
+| `weed` | Walking weed | walk | 38 | 6, 33, 40 |
+| `slime` | Slime | walk | 42 | 16, 23, 40 |
 
 ## Chore Items and Drop-offs
 
@@ -140,6 +140,8 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | Easter Egg Hunt | `easteregg` | `eggbasket` |
 | Mother's Day Blooms | `bouquet` (colorful tied flowers) | `momvase` (Mom's vase on a table) |
 | Father's Day Surprise | `necktie` (striped ties in four colors) | `dadrack` (Dad's gift rack) |
+| Daniel's Monster Jam Room | `monstertrucktoy` (four toy truck colors, oversized wheels) | `monsterarena` (arena garage) |
+| Colin's Surf Shack | `surfboardtoy` (four striped board colors) | `surfrack` (wooden surfboard rack) |
 | The Whole House!! | `mix` (including the same colorful `pillow` collectibles as Living Room) | `couch` (reuses `creamcouch` with matching red, yellow and blue throw pillows) |
 
 Some sprites change by position (`itemSeed`), including paint-bucket colors, robot-part shapes (gear, head, claw, battery), weight types (dumbbell, kettlebell, plate), towel colors, pillows and game controllers.

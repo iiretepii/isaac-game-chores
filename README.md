@@ -35,7 +35,7 @@ The original **2D game** is a single file, `index.html`. Open it in any modern w
 
 You ride a **bicycle** with spinning wheels and pedals, except on Race Track Rumble, where all three kids drive race cars, and MarioKart Toy Room, where you ride a Standard Kart, Isaac rides a Flame Rider with Hot Wheels and Annie rides a Sport Bike. Duck to squeeze under low spots, and use the double jump to clear wide gaps or reach high shelves.
 
-On the title screen you can also open **Level Select** to jump straight to any of the 38 levels. After you finish a chore, the "Chore Complete!" screen also has a **Level Select** button (or press **L**) so you can jump to any level from there.
+On the title screen you can also open **Level Select** to jump straight to any of the 40 levels. After you finish a chore, the "Chore Complete!" screen also has a **Level Select** button (or press **L**) so you can jump to any level from there.
 
 Browsers don't allow sound until you interact with the page, so the title screen asks you to **click or press any key for sound** first. After that, press Enter (or tap) to start.
 
@@ -70,12 +70,12 @@ Daniel wears green with a yellow cap; Colin wears purple with a teal cap. Daniel
 
 When they show up, you greet them with a goofy speech bubble picked at random, like "HEY PAL!", "YOOO!", "LET HIM COOK!", "NO CAP, HI!", "BRO-TATO CHIP!" or "Sup Bro!".
 
-**How they help:** In **The Whole House!!**, all four helpers collect items from the start and keep helping for the entire level, prioritizing chores over detours to hunt critters. **Isaac also collects immediately in Isaac’s Room, and Annie collects immediately in Annie’s Room**, prioritizing their own chores. In other rooms, they ride behind you and sprint ahead to collect items when the clock gets low:
+**How they help:** In **The Whole House!!**, all four helpers collect items from the start and keep helping for the entire level, prioritizing chores over detours to hunt critters. **Isaac also collects immediately in Isaac’s Room, Annie collects immediately in Annie’s Room, Daniel in his Monster Jam room, and Colin in his Surf Shack**, prioritizing their own chores. In other rooms, they ride behind you and sprint ahead to collect items when the clock gets low:
 
 - **Annie and Colin** start grabbing items when there's **33% of the time** left ("Turbo mode! I'll grab some!").
 - **Isaac and Daniel** join in at **20%** ("Turbo mode! I'll grab some!").
 
-**They're both aces.** Annie and Isaac spot obstacles early, clear gaps and walls cleanly, go hunting for bad guys near you, and **zap any critter they touch** ("ZAP! +100").
+**They’re all aces.** Annie, Isaac, Daniel and Colin spot obstacles early, clear gaps and walls cleanly, go hunting for bad guys near you, and **zap any critter they touch** ("ZAP! +100").
 
 Their vehicles follow the terrain, with these helper abilities:
 
@@ -94,7 +94,7 @@ Their vehicles follow the terrain, with these helper abilities:
 
 ## The Levels
 
-Item counts rise by one each level. The game gets **progressively harder**. The first rooms only have small gaps, but by the end you need well-timed double jumps over wide pits, hops across narrow stepping stones, bigger climbs, and rides on moving platforms over pits too wide to jump. Most rooms are 170–216 tiles long, Money Room is 260, the MarioKart toy room is 270, the Minecraft room is 280, the Roblox room is 290, the GTA toy room is 300, the charging room is 310, the nine holiday rooms are 320–400, and the finale is 250. Every level has its own room, chore and music style.
+Item counts rise by one each level. The game gets **progressively harder**. The first rooms only have small gaps, but by the end you need well-timed double jumps over wide pits, hops across narrow stepping stones, bigger climbs, and rides on moving platforms over pits too wide to jump. Most rooms are 170–216 tiles long, Money Room is 260, the MarioKart toy room is 270, the Minecraft room is 280, the Roblox room is 290, the GTA toy room is 300, the charging room is 310, the nine holiday rooms are 320–400, Daniel’s room is 410, Colin’s room is 420, and the finale is 250. Every level has its own room, chore and music style.
 
 | # | Level | Chore | Items | Time | Critters | Music |
 |---|---|---|---|---|---|---|
@@ -135,7 +135,9 @@ Item counts rise by one each level. The game gets **progressively harder**. The 
 | 35 | **Easter Egg Hunt** | Return the painted eggs to the Easter basket | 44 | 196s | hamster, squirrel, bee | Original Springtime Hop |
 | 36 | **Mother'S Day Blooms** | Put the flower bouquets in Mom's vase | 45 | 199s | bee, hamster, squirrel | Bouquets for Mom |
 | 37 | **Father'S Day Surprise** | Put the colorful ties on Dad's gift rack | 46 | 202s | roomba, dog, hamster | Dads Day Groove |
-| 38 | **The Whole House!!** | Everything → dive on the living room’s cream couch with matching colorful pillows | 47 | 205s | All of them | Three-track mashup of all level music |
+| 38 | **Daniel'S Monster Jam Room** | Park the toy monster trucks in the arena garage | 47 | 205s | roomba, chomper, rat | Stadium Stomp |
+| 39 | **Colin'S Surf Shack** | Put the toy surfboards back on the surfboard rack | 48 | 208s | duck, squirrel, bubble | Surfs Up Shuffle |
+| 40 | **The Whole House!!** | Everything → dive on the living room’s cream couch with matching colorful pillows | 49 | 211s | All of them | Three-track mashup of all level music |
 
 The basement is dark, with a pool of light that follows you around. At the pool, the floating platforms are striped lounge chairs and the gaps are the pool itself. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
 
@@ -189,9 +191,11 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Easter Egg Hunt | [*Springtime Hop*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/35-easter.mp3) | Original holiday tune |
 | Mother'S Day Blooms | [*Bouquets for Mom*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/36-mothersday.mp3) | Original gentle flower-day melody |
 | Father'S Day Surprise | [*Dads Day Groove*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/37-fathersday.mp3) | Original upbeat family groove |
-| Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/38-whole-house-medley.mp3) | Layers three level tracks at once, rotating groups every four bars |
-| Ending | [*Jubilee for a Job Well Done*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/39-ending-jubilee.mp3) | An upbeat, triumphant celebration of a job well done: big horn fanfare calls with tuba and bells, a marching jubilee tune on strings and horns with handclaps, tambourine and bell runs, a crowd cheer as the key lifts, and a huge final chord with one more cheer |
-| Fail screen | [*Grounded Until Forever*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/40-fail-screen.mp3) | A slow, sad piano lament in A minor that plays when the parents beat you home: a lonely melody that keeps sighing downward, soft strings and a few celesta "teardrops" |
+| Daniel'S Monster Jam Room | [*Stadium Stomp*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/38-monsterjam.mp3) | Original monster-truck stadium rock |
+| Colin'S Surf Shack | [*Surfs Up Shuffle*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/39-surfrock.mp3) | Original bright surf-rock-inspired synth groove |
+| Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/40-whole-house-medley.mp3) | Layers three level tracks at once, rotating groups every four bars |
+| Ending | [*Jubilee for a Job Well Done*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/41-ending-jubilee.mp3) | An upbeat, triumphant celebration of a job well done: big horn fanfare calls with tuba and bells, a marching jubilee tune on strings and horns with handclaps, tambourine and bell runs, a crowd cheer as the key lifts, and a huge final chord with one more cheer |
+| Fail screen | [*Grounded Until Forever*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/42-fail-screen.mp3) | A slow, sad piano lament in A minor that plays when the parents beat you home: a lonely melody that keeps sighing downward, soft strings and a few celesta "teardrops" |
 
 Sound effects include a slide whistle when you jump, a "boing" when you stomp, a car horn as the parents get close, a kazoo fanfare when you finish a level and a sad trombone when you get caught.
 
@@ -244,7 +248,7 @@ The **2D game** (code, graphics, levels and synthesized music) lives in a single
 - **Walking critters** patrol back and forth and turn around at walls, gaps and LEGO bricks. Dogs, huskies, Pomeranians, hamsters and squirrels also hop now and then.
 - **Flying critters** (bees, bats, soap bubbles, lightning bolts) bob up and down along a short path.
 - If you land on a critter from above, you stomp it. Any other touch knocks the player back and costs 5 seconds (siblings just bounce off, with no penalty).
-- **Isaac, Annie, Daniel and Colin** obey solid walls, one-way platforms and moving platforms; Annie's balloon slows her descent. In the Whole House all four collect from the start, as does Isaac in his bedroom and Annie in hers; otherwise they follow just behind the player until the time left drops to 33% (Annie and Colin) or 20% (Isaac and Daniel). When collecting, a helper AI chooses each sibling's next item, splitting the work and favoring items with fewer nearby critters. While riding, it looks ahead and decides when to jump (walls, gaps, critters, LEGO bricks), when to double jump (over a pit or up to a high item) and when to duck (low ceilings). If a sibling stops getting closer to its item, it gives up on that one for a few seconds and picks another.
+- **Isaac, Annie, Daniel and Colin** obey solid walls, one-way platforms and moving platforms; Annie's balloon slows her descent. In the Whole House all four collect from the start, as does each helper in their own bedroom; otherwise they follow just behind the player until the time left drops to 33% (Annie and Colin) or 20% (Isaac and Daniel). When collecting, a helper AI chooses each sibling's next item, splitting the work and favoring items with fewer nearby critters. While riding, it looks ahead and decides when to jump (walls, gaps, critters, LEGO bricks), when to double jump (over a pit or up to a high item) and when to duck (low ceilings). If a sibling stops getting closer to its item, it gives up on that one for a few seconds and picks another.
 - **Abilities:** all four helpers look further ahead, hunt critters near the player, and zap any critter they touch. Sibling bumps and falls never cost time.
 
 ### Music and Sound

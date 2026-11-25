@@ -303,3 +303,9 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-25 — Colin’s immediate greeting
 
 - Colin says “Surfs Up!” immediately on every level intro, including retries and level-select starts. His greeting repeats when gameplay begins and takes priority over first-frame helper rush announcements.
+
+## 2026-11-25 — Daniel’s and Colin’s rooms
+
+- Added Daniel’s Monster Jam Room (level 38): collect toy monster trucks into an arena garage, with dirt ramps, checkered flags and the original Stadium Stomp synth-rock song.
+- Added Colin’s Surf Shack (level 39): collect toy surfboards onto the rack, with waves, board displays and the original Surfs Up Shuffle song.
+- Each cousin collects immediately in his own room. The finale is level 40 with 49 items, 211 seconds, both cousin toy types and all 39 level songs in its mashup. Added/renumbered song recordings and updated docs; the 3D fork is unchanged.

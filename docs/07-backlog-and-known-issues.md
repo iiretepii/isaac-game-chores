@@ -4,7 +4,7 @@
 
 | # | Issue | Status |
 |---|---|---|
-| 1 | Item counts didn't strictly climb | **Fixed 2026-11-16.** Counts now run 10 → 47 across 38 levels, one more per level |
+| 1 | Item counts didn't strictly climb | **Fixed 2026-11-16.** Counts now run 10 → 49 across 40 levels, one more per level |
 | 2 | Time limits dropped in three places | **Mostly fixed 2026-11-16.** Limits rise throughout, but Race Track gives 154 s after Pet Room's 152 s: a 2 s increase rather than the 3 s guideline |
 | 3 | Whole House missed newer items and critters | **Fixed 2026-11-16.** It includes the newer toy collections (coins, karts, bikes, diamond blocks, avatars and sports cars) as well as weeds, test tubes, books and all current critter types |
 | 4 | Time doubling made the clock trivial | **Fixed 2026-11-16.** Removed: items no longer add time, so the parents' car is a real threat. Other rooms retain low-time sibling rushes; the Whole House now has full-time collection help |
