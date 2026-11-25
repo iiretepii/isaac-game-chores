@@ -287,3 +287,9 @@ Grouped by milestone. See `git log` for every commit.
 
 - Thanksgiving now has turkey critters, with fan tails, blue heads and red wattles; they use normal walking, collision and stomp rules. Turkeys are also included in Whole House.
 - Halloween pickups, decorations and the pumpkin-bucket display now use glowing carved pumpkins rather than candy; the finale item mix matches. Music and the 3D fork are unchanged.
+
+## 2026-11-25 — Mother’s Day and Father’s Day
+
+- Added Mother’s Day Blooms (level 36): collect flower bouquets into Mom’s vase, with floral decorations and the original song Bouquets for Mom.
+- Added Father’s Day Surprise (level 37): collect colorful ties onto Dad’s gift rack, with a gift-table backdrop and the original Dads Day Groove.
+- The finale is now level 38 with 47 pickups and 205 seconds, both new item types and all 37 level songs in its mashup. Re-recorded and renumbered the finale MP3 and ending/fail recordings. Existing rooms and the 3D fork are retained.

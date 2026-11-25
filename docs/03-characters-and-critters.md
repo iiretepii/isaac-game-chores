@@ -54,37 +54,37 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 
 | Key | Critter | Movement | Speed | Levels |
 |---|---|---|---|---|
-| `dust` | Dust bunny | walk | 30 | 3, 9, 12, 18, 36 |
-| `roach` | Cockroach | walk | 55 | 3, 9, 10, 13, 36 |
-| `roomba` | Robot vacuum | walk | 75 | 4, 8, 21, 23, 24, 26, 27, 28, 31, 34, 36 |
-| `cat` | Cat | walk | 50 | 4, 13, 14, 17, 31, 32, 36 |
-| `dog` | Dog | walk + hop | 90 | 5, 17, 27, 36 |
-| `rat` | Rat | walk | 65 | 8, 17, 18, 19, 27, 36 |
-| `bee` | Bee | fly | 40 | 5, 8, 35, 36 |
-| `spider` | Spider | walk | 60 | 10, 11, 12, 13, 18, 19, 29, 36 |
-| `bat` | Bat | fly | 55 | 19, 29, 36 |
-| `bubble` | Soap bubble | fly | 35 | 9, 10, 14, 16, 32, 34, 36 |
-| `zap` | Lightning bolt | fly (jittery) | 65 | 15, 16, 28, 36 |
-| `ant` | Ant | walk | 70 | 11, 14, 28, 36 |
-| `hamster` | Hamster | walk + hop | 85 | 11, 12, 20, 23, 31, 32, 33, 35, 36 |
-| `mite` | Dust mite | walk | 45 | 17, 36 |
-| `bzombie` | Blocky zombie | walk | 32 | 1, 25, 36 |
-| `bskel` | Blocky skeleton | walk | 42 | 1, 25, 36 |
-| `bspider` | Blocky spider | walk | 62 | 1, 25, 36 |
-| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1, 25, 36 |
-| `tabby` | Orange tabby cat | walk | 50 | 2, 20, 36 |
-| `husky` | Husky | walk + hop | 72 | 2, 36 |
-| `pom` | Pomeranian | walk + hop | 80 | 2, 20, 36 |
-| `duck` | Duck | walk | 40 | 7, 36 |
-| `turkey` | Turkey (fan tail, blue head, red wattle) | walk | 52 | 30, 36 |
-| `goose` | Goose (flashes HONK) | walk | 60 | 7, 21, 36 |
-| `swan` | Swan | walk | 35 | 7, 36 |
-| `invader` | Pixel space invader (original 8-bit alien, legs flick every frame) | fly | 45 | 22, 26, 36 |
-| `chomper` | Yellow chomper that opens and closes its mouth, munching dots | walk | 72 | 22, 34, 36 |
-| `ghosty` | Cyan arcade ghost with a wavy hem and eyes that look where it goes | walk | 52 | 22, 24, 26, 29, 36 |
-| `squirrel` | Squirrel | walk + hop | 85 | 7, 21, 24, 33, 35, 36 |
-| `weed` | Walking weed | walk | 38 | 6, 33, 36 |
-| `slime` | Slime | walk | 42 | 16, 23, 36 |
+| `dust` | Dust bunny | walk | 30 | 3, 9, 12, 18, 38 |
+| `roach` | Cockroach | walk | 55 | 3, 9, 10, 13, 38 |
+| `roomba` | Robot vacuum | walk | 75 | 4, 8, 21, 23, 24, 26, 27, 28, 31, 34, 37, 38 |
+| `cat` | Cat | walk | 50 | 4, 13, 14, 17, 31, 32, 38 |
+| `dog` | Dog | walk + hop | 90 | 5, 17, 27, 37, 38 |
+| `rat` | Rat | walk | 65 | 8, 17, 18, 19, 27, 38 |
+| `bee` | Bee | fly | 40 | 5, 8, 35, 36, 38 |
+| `spider` | Spider | walk | 60 | 10, 11, 12, 13, 18, 19, 29, 38 |
+| `bat` | Bat | fly | 55 | 19, 29, 38 |
+| `bubble` | Soap bubble | fly | 35 | 9, 10, 14, 16, 32, 34, 38 |
+| `zap` | Lightning bolt | fly (jittery) | 65 | 15, 16, 28, 38 |
+| `ant` | Ant | walk | 70 | 11, 14, 28, 38 |
+| `hamster` | Hamster | walk + hop | 85 | 11, 12, 20, 23, 31, 32, 33, 35, 36, 37, 38 |
+| `mite` | Dust mite | walk | 45 | 17, 38 |
+| `bzombie` | Blocky zombie | walk | 32 | 1, 25, 38 |
+| `bskel` | Blocky skeleton | walk | 42 | 1, 25, 38 |
+| `bspider` | Blocky spider | walk | 62 | 1, 25, 38 |
+| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1, 25, 38 |
+| `tabby` | Orange tabby cat | walk | 50 | 2, 20, 38 |
+| `husky` | Husky | walk + hop | 72 | 2, 38 |
+| `pom` | Pomeranian | walk + hop | 80 | 2, 20, 38 |
+| `duck` | Duck | walk | 40 | 7, 38 |
+| `turkey` | Turkey (fan tail, blue head, red wattle) | walk | 52 | 30, 38 |
+| `goose` | Goose (flashes HONK) | walk | 60 | 7, 21, 38 |
+| `swan` | Swan | walk | 35 | 7, 38 |
+| `invader` | Pixel space invader (original 8-bit alien, legs flick every frame) | fly | 45 | 22, 26, 38 |
+| `chomper` | Yellow chomper that opens and closes its mouth, munching dots | walk | 72 | 22, 34, 38 |
+| `ghosty` | Cyan arcade ghost with a wavy hem and eyes that look where it goes | walk | 52 | 22, 24, 26, 29, 38 |
+| `squirrel` | Squirrel | walk + hop | 85 | 7, 21, 24, 33, 35, 36, 38 |
+| `weed` | Walking weed | walk | 38 | 6, 33, 38 |
+| `slime` | Slime | walk | 42 | 16, 23, 38 |
 
 ## Chore Items and Drop-offs
 
@@ -125,6 +125,8 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | St Patricks Day Luck | `shamrock` | `luckypot` |
 | April Fools Day Pranks | `pranktoy` | `prankbox` |
 | Easter Egg Hunt | `easteregg` | `eggbasket` |
+| Mother's Day Blooms | `bouquet` (colorful tied flowers) | `momvase` (Mom's vase on a table) |
+| Father's Day Surprise | `necktie` (striped ties in four colors) | `dadrack` (Dad's gift rack) |
 | The Whole House!! | `mix` (including the same colorful `pillow` collectibles as Living Room) | `couch` (reuses `creamcouch` with matching red, yellow and blue throw pillows) |
 
 Some sprites change by position (`itemSeed`), including paint-bucket colors, robot-part shapes (gear, head, claw, battery), weight types (dumbbell, kettlebell, plate), towel colors, pillows and game controllers.

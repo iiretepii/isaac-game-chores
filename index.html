@@ -1086,10 +1086,22 @@ STYLES.easter={name:"SPRINGTIME HOP",bpm:120,spb:4,bar:16,bars:16,gain:8,melody:
  if(b===0)[0,4,7].forEach(v=>tone(mtof(root+12+v),d*6,'sine',.008,null,t,musicGain));
  if(b===4||b===12)noise(.045,.018,1800,t,musicGain);
  }};
+STYLES.mothersday={name:"BOUQUETS FOR MOM",bpm:96,spb:4,bar:16,bars:16,gain:8,
+ play(i,t,d){const b=i%16,bar=Math.floor(i/16)%16,root=[48,53,55,48][bar%4],melody=[76,79,84,83,81,79,77,76];
+  if(b%2===0)tone(mtof(melody[(b/2+Math.floor(bar/4))%8]),d*1.8,'sine',.035,null,t,musicGain);
+  if(b%4===0)tone(mtof(root),d*2.5,'triangle',.05,null,t,musicGain);
+  if(b===0)[0,4,7].forEach(n=>tone(mtof(root+12+n),d*7,'sine',.008,null,t,musicGain));
+ }};
+STYLES.fathersday={name:"DADS DAY GROOVE",bpm:124,spb:4,bar:16,bars:16,gain:8,
+ play(i,t,d){const b=i%16,bar=Math.floor(i/16)%16,root=[45,50,52,45][bar%4],melody=[69,73,76,78,76,73,71,69];
+  if(b%2===0)tone(mtof(melody[(b/2+Math.floor(bar/4))%8]),d*1.4,'triangle',.035,null,t,musicGain);
+  if(b%4===0)tone(mtof(root),d*2.6,'triangle',.055,null,t,musicGain);
+  if(b===4||b===12)noise(.045,.018,1800,t,musicGain);if(b%4===3)noise(.025,.009,6500,t,musicGain);
+ }};
 const STYLE_GAIN={"charging":1.0,"cityradio":1.6,"obby":0.85,"blockgarden":3.0,"grandprix":0.9,"sad":1.62,"money":0.82,"punkska":0.39,"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
 for(const k in STYLE_GAIN)if(STYLES[k])STYLES[k].gain=STYLE_GAIN[k];
 const MUSIC_BASE=0.38;
-const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','punkska','silly','science','workout','romantic','baroque','pets','racerock','chiptune','money','grandprix','blockgarden','obby','cityradio','charging',"halloween","thanksgiving","christmas","valentine","stpatrick","aprilfools","easter"];
+const MIX=['rock','princess','jazz','pop','hiphop','garden','pool','techno','polka','crooner','muzak','library','practice','punkska','silly','science','workout','romantic','baroque','pets','racerock','chiptune','money','grandprix','blockgarden','obby','cityradio','charging',"halloween","thanksgiving","christmas","valentine","stpatrick","aprilfools","easter","mothersday","fathersday"];
 let music={on:false,style:'pop',step:0,next:0,seg:0,segStep:0,cycle:0};
 function startMusic(style){music.style=style;music.step=0;music.seg=0;music.segStep=0;music.cycle=0;music.on=true;if(AC)music.next=AC.currentTime+0.05;}
 // Three simultaneous tracks, synchronized to a common beat. Each group lasts four 4/4 bars.
@@ -1193,10 +1205,14 @@ const LEVELS=[
  {"name":"ST PATRICKS DAY LUCK","chore":"Gather the shamrocks into the lucky pot","drop":"luckypot","item":"shamrock","seed":44053,"count":42,"time":190,"len":360,"gap":10,"enemies":["squirrel","hamster","weed"],"density":0.7,"lego":0.2,"movers":1,"theme":"stpatrick","music":"stpatrick","text":"MOM: You, Isaac and Annie: gather the shamrocks into the lucky pot. Holiday cleanup time!"},
  {"name":"APRIL FOOLS DAY PRANKS","chore":"Put the prank toys back in the joke box","drop":"prankbox","item":"pranktoy","seed":45066,"count":43,"time":193,"len":370,"gap":10,"enemies":["chomper","roomba","bubble"],"density":0.7,"lego":0.2,"movers":1,"theme":"aprilfools","music":"aprilfools","text":"MOM: You, Isaac and Annie: put the prank toys back in the joke box. Holiday cleanup time!"},
  {"name":"EASTER EGG HUNT","chore":"Return the painted eggs to the Easter basket","drop":"eggbasket","item":"easteregg","seed":46079,"count":44,"time":196,"len":380,"gap":10,"enemies":["hamster","squirrel","bee"],"density":0.7,"lego":0.2,"movers":1,"theme":"easter","music":"easter","text":"MOM: You, Isaac and Annie: return the painted eggs to the easter basket. Holiday cleanup time!"},
- {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",seed:20024,count:45,time:199,len:250,gap:10,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty","turkey"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
+ {"name":"MOTHER'S DAY BLOOMS","chore":"Put the flower bouquets in Mom's vase","drop":"momvase","item":"bouquet","seed":48107,"count":45,"time":199,"len":390,"gap":10,"enemies":["bee","hamster","squirrel"],"density":0.7,"lego":0.2,"movers":1,"theme":"mothersday","music":"mothersday","text":"MOM: What lovely flowers! You, Isaac and Annie: gather the bouquets into my vase!"},
+ {"name":"FATHER'S DAY SURPRISE","chore":"Put the colorful ties on Dad's gift rack","drop":"dadrack","item":"necktie","seed":50147,"count":46,"time":202,"len":400,"gap":10,"enemies":["roomba","dog","hamster"],"density":0.7,"lego":0.2,"movers":1,"theme":"fathersday","music":"fathersday","text":"UNCLE PETE: So many ties! You, Isaac and Annie: put them on Dad's gift rack for Father's Day!"},
+ {name:"THE WHOLE HOUSE!!",chore:"Grab everything & dive on the couch",drop:"couch",item:"mix",seed:20024,count:47,time:205,len:250,gap:10,enemies:["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty","turkey"],density:.75,lego:.5,movers:1,theme:"house",music:"mix",
   text:"BOTH: We're turning onto our street RIGHT NOW."},
 ];
 const THEMES={
+ mothersday:{sky:"#edc2d0",wall2:"#dba4ba",ground:"#91636e",top:"#e9e8b4",plat:"#8baf83",ptop:"#d3e9be"},
+ fathersday:{sky:"#8eabc5",wall2:"#7696b4",ground:"#62574d",top:"#efbd78",plat:"#436781",ptop:"#a2d1e4"},
  halloween:{"sky":"#352044","wall2":"#241332","ground":"#653d29","top":"#ff9e33","plat":"#673b8c","ptop":"#b18bdb"},
  thanksgiving:{"sky":"#a35e32","wall2":"#86452b","ground":"#765033","top":"#eeb65e","plat":"#925f36","ptop":"#f2c986"},
  christmas:{"sky":"#245951","wall2":"#19443c","ground":"#6e4538","top":"#f4ead4","plat":"#b64048","ptop":"#ffd978"},
@@ -1234,7 +1250,7 @@ const THEMES={
  gameroom:{sky:"#1a1033",wall2:"#140c29",ground:"#311b92",top:"#00e5ff",plat:"#ff4081",ptop:"#ff80ab"},
  house:{sky:"#2b2d6e",wall2:"#25275e",ground:"#5d3a8a",top:"#b388ff",plat:"#00897b",ptop:"#4db6ac"},
 };
-const ITEM_NAMES={"carvedpumpkin":"carved pumpkins","pieslice":"pie slices","gift":"presents","valentinecard":"valentines","shamrock":"shamrocks","pranktoy":"prank toys","easteregg":"painted Easter eggs",chargecable:"charging cables",citytoys:"toy sports cars and bikes",sportscar:"toy sports cars",cruiserbike:"toy bikes",avatar:"toy Roblox avatars",diamondblock:"toy diamond blocks",kartbike:"toy karts and bikes",toykart:"toy karts",toybike:"toy bikes",coin:"coins",pillow:"pillows",videogame:"game controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
+const ITEM_NAMES={bouquet:"flower bouquets",necktie:"colorful ties","carvedpumpkin":"carved pumpkins","pieslice":"pie slices","gift":"presents","valentinecard":"valentines","shamrock":"shamrocks","pranktoy":"prank toys","easteregg":"painted Easter eggs",chargecable:"charging cables",citytoys:"toy sports cars and bikes",sportscar:"toy sports cars",cruiserbike:"toy bikes",avatar:"toy Roblox avatars",diamondblock:"toy diamond blocks",kartbike:"toy karts and bikes",toykart:"toy karts",toybike:"toy bikes",coin:"coins",pillow:"pillows",videogame:"game controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
@@ -1315,7 +1331,7 @@ function buildLevel(idx){
   const items=[],n=Math.min(L.count,cand.length);
   const used=new Set();
   for(let i=0;i<n;i++){let k=Math.round(i*(cand.length-1)/Math.max(1,n-1));while(used.has(k))k++;used.add(k);const s=cand[k];
-    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel","oldflower","testtube","book","chewtoy","tire","videogame","pillow","coin","toykart","toybike","diamondblock","avatar","sportscar","cruiserbike","chargecable","carvedpumpkin","pieslice","gift","valentinecard","shamrock","pranktoy","easteregg"];
+    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel","oldflower","testtube","book","chewtoy","tire","videogame","pillow","coin","toykart","toybike","diamondblock","avatar","sportscar","cruiserbike","chargecable","carvedpumpkin","pieslice","gift","valentinecard","shamrock","pranktoy","easteregg","bouquet","necktie"];
     items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%kinds.length]:L.item==='kartbike'?(i%2?'toybike':'toykart'):L.item==='citytoys'?(i%2?'cruiserbike':'sportscar'):L.item,got:false,bob:rng()*6});}
   const enemies=[];
   eSpots.filter(s=>s.x>14&&s.x<cols-10).forEach(s=>{
@@ -1828,7 +1844,7 @@ function drawChargingCable(x,y){
  R(x,y,5,3,"#a9b8c7");R(x+1,y,3,1,"#eef4f7");R(x+1,y+1,1,1,"#40536a");R(x+3,y+1,1,1,"#40536a");
  R(x+10,y,4,3,"#ccd8e3");R(x+11,y+1,2,1,v%2?"#dfb75a":"#546a7d");R(x+4,y+12,7,1,dk);
 }
-const HOLIDAY_ITEMS=['carvedpumpkin','pieslice','gift','valentinecard','shamrock','pranktoy','easteregg'];
+const HOLIDAY_ITEMS=['carvedpumpkin','pieslice','gift','valentinecard','shamrock','pranktoy','easteregg','bouquet','necktie'];
 function drawHolidayItem(k,x,y){
  const color=['#ed6994','#77c9da','#eab955','#9d8cd4'][Math.abs(Math.round(itemSeed/16))%4];
  if(k==='carvedpumpkin'){
@@ -1836,6 +1852,15 @@ function drawHolidayItem(k,x,y){
   R(x+4,y+4,1,8,"#ffac42");R(x+11,y+4,1,8,"#d96c1f");
   R(x+4,y+6,3,3,"#4b3026");R(x+9,y+6,3,3,"#4b3026");R(x+5,y+7,1,1,"#ffe56b");R(x+10,y+7,1,1,"#ffe56b");
   R(x+4,y+10,8,2,"#4b3026");R(x+5,y+10,1,1,"#ffe56b");R(x+8,y+11,1,1,"#ffe56b");R(x+11,y+10,1,1,"#ffe56b");
+ }
+ else if(k==='bouquet'){
+  R(x+7,y+6,2,9,"#45864c");R(x+4,y+9,4,2,"#75ac57");R(x+9,y+7,4,2,"#75ac57");
+  for(const [dx,dy,c] of [[2,3,color],[7,1,'#ef6e96'],[10,5,'#be8cdb']]){R(x+dx,y+dy,5,5,c);R(x+dx+2,y+dy+2,1,1,"#ffe39a");}
+  R(x+6,y+11,5,2,"#ffe8bd");R(x+4,y+10,2,4,"#ffe8bd");R(x+11,y+10,2,4,"#ffe8bd");
+ }
+ else if(k==='necktie'){
+  R(x+5,y+1,6,3,color);R(x+6,y+4,4,8,color);R(x+5,y+10,6,3,color);R(x+6,y+13,4,1,color);R(x+7,y+14,2,1,color);
+  R(x+6,y+6,4,1,"#fff1c8");R(x+6,y+9,4,1,"#fff1c8");R(x+6,y+12,4,1,"#fff1c8");
  }
  else if(k==='pieslice'){for(let r=0;r<9;r++)R(x+2,y+3+r,Math.min(12,r+4),1,"#ed9e3a");R(x+2,y+12,12,3,"#d2a774");R(x+4,y+5,3,2,"#fff3d3");}
  else if(k==='gift'){R(x+2,y+4,12,11,color);R(x+1,y+3,14,3,color);R(x+7,y+3,2,12,"#fff0b5");R(x+2,y+8,12,2,"#fff0b5");R(x+4,y,4,3,"#fff0b5");R(x+9,y,4,3,"#fff0b5");}
@@ -1976,11 +2001,11 @@ function drawItemRaw(k,x,y,animated=true){
 }
 
 // Drop-off size: most sprites are drawn at 28 px and scaled up 2x; a few are drawn full-size already.
-const DROP_SCALE={pumpkinbucket:1,pietable:1,gifttree:1,heartbox:1,luckypot:1,prankbox:1,eggbasket:1,cabledock:1,citygarage:1,avatarshelf:1,blockchest:1,kartgarage:1,coinchest:1,creamcouch:1,gameshelf:1,tirerack:1,petbasket:1,dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1};
+const DROP_SCALE={momvase:1,dadrack:1,pumpkinbucket:1,pietable:1,gifttree:1,heartbox:1,luckypot:1,prankbox:1,eggbasket:1,cabledock:1,citygarage:1,avatarshelf:1,blockchest:1,kartgarage:1,coinchest:1,creamcouch:1,gameshelf:1,tirerack:1,petbasket:1,dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1};
 // Normal height, much wider: these sprites are stretched sideways only.
 const DROP_WIDE={}; // (no longer used: wide drop-offs are drawn at full width)
-const DROP_W={pumpkinbucket:70,pietable:70,gifttree:70,heartbox:70,luckypot:70,prankbox:70,eggbasket:70,cabledock:70,citygarage:70,avatarshelf:70,blockchest:70,kartgarage:70,coinchest:70,creamcouch:56,gameshelf:70,tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
-const DROP_TOP={pumpkinbucket:24,pietable:24,gifttree:24,heartbox:24,luckypot:24,prankbox:24,eggbasket:24,cabledock:14,citygarage:18,avatarshelf:18,blockchest:11,kartgarage:18,coinchest:10,creamcouch:0,gameshelf:22,tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:14,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
+const DROP_W={momvase:70,dadrack:70,pumpkinbucket:70,pietable:70,gifttree:70,heartbox:70,luckypot:70,prankbox:70,eggbasket:70,cabledock:70,citygarage:70,avatarshelf:70,blockchest:70,kartgarage:70,coinchest:70,creamcouch:56,gameshelf:70,tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
+const DROP_TOP={momvase:30,dadrack:30,pumpkinbucket:24,pietable:24,gifttree:24,heartbox:24,luckypot:24,prankbox:24,eggbasket:24,cabledock:14,citygarage:18,avatarshelf:18,blockchest:11,kartgarage:18,coinchest:10,creamcouch:0,gameshelf:22,tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:14,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
 function drawDrop(d,ready,t){
   const x=Math.round(d.x),y=Math.round(d.y),k=d.kind;
   if(ready){g.save();g.globalAlpha=0.35+0.2*Math.sin(t*8);const rg=g.createRadialGradient(x+14,y+12,2,x+14,y+12,34);rg.addColorStop(0,'#fff59d');rg.addColorStop(1,'rgba(255,235,59,0)');g.fillStyle=rg;g.fillRect(x-24,y-24,76,72);g.restore();}
@@ -1991,6 +2016,15 @@ function drawDrop(d,ready,t){
   if(ready)text("HERE!",x+d.w/2,y-14-(DROP_TOP[k]??24)-Math.abs(Math.sin(t*5))*4,8,"#ffeb3b","center");
 }
 function drawHolidayDrop(k,x,y,item){
+ if(k==='momvase'){
+  R(x,y+18,70,6,"#8d5c53");R(x+24,y-2,22,22,"#b9deea");R(x+28,y-12,14,12,"#90bfd3");R(x+26,y-14,18,4,"#d4eff7");R(x+28,y+1,3,15,"#e4f7f9");
+  const saved=itemSeed;for(let n=0;n<3;n++){itemSeed=n*16;drawHolidayItem('bouquet',x+16+n*12,y-25+n%2*4);}itemSeed=saved;return;
+ }
+ if(k==='dadrack'){
+  R(x+5,y-15,4,39,"#b7834e");R(x+61,y-15,4,39,"#b7834e");R(x+3,y-17,64,4,"#e7be83");R(x,y+20,70,4,"#86613d");
+  const saved=itemSeed;for(let n=0;n<4;n++){itemSeed=n*16;R(x+15+n*12,y-14,1,5,"#d9e3e5");drawHolidayItem('necktie',x+8+n*12,y-9);}itemSeed=saved;return;
+ }
+
  const colors={pumpkinbucket:'#f58b27',pietable:'#a36636',gifttree:'#3c9861',heartbox:'#da6b99',luckypot:'#313643',prankbox:'#9772c9',eggbasket:'#c99a64'},c=colors[k];
  if(k==='gifttree'){for(let r=0;r<24;r++)R(x+35-r,y-24+r,r*2+1,1,c);R(x+32,y,6,20,"#825334");for(let n=0;n<6;n++)R(x+21+n*5,y-8+(n%2)*8,3,3,n%2?"#ffd55b":"#e85d6f");R(x+33,y-28,5,5,"#ffe36b");}
  else if(k==='pietable'){R(x,y+3,70,6,"#e9bd85");R(x+5,y+9,5,15,c);R(x+60,y+9,5,15,c);R(x+15,y-3,40,6,"#fff2db");}
@@ -2001,7 +2035,7 @@ function drawHolidayDrop(k,x,y,item){
  const seed=itemSeed;for(let n=0;n<3;n++){itemSeed=n*16;drawHolidayItem(item,x+10+n*18,y+(k==='gifttree'?8:-6));}itemSeed=seed;
 }
 function drawDropRaw(k,x,y){
-  const holidayDrop={pumpkinbucket:'carvedpumpkin',pietable:'pieslice',gifttree:'gift',heartbox:'valentinecard',luckypot:'shamrock',prankbox:'pranktoy',eggbasket:'easteregg'};
+  const holidayDrop={pumpkinbucket:'carvedpumpkin',pietable:'pieslice',gifttree:'gift',heartbox:'valentinecard',luckypot:'shamrock',prankbox:'pranktoy',eggbasket:'easteregg',momvase:'bouquet',dadrack:'necktie'};
   if(holidayDrop[k]){drawHolidayDrop(k,x,y,holidayDrop[k]);return;}
 
   if(k==='toybox'){ // big clear plastic storage tote with a blue snap lid propped behind it, toys inside
@@ -2478,11 +2512,13 @@ function drawBackground(th,t){
       if(k===1||k===3){R(dx,30,160,6,"#607d8b");R(dx+40,30,6,120,"#607d8b");R(dx+38,60,10,4,"#455a64");}
       if(k===2){R(dx+70,20,2,30,"#212121");R(dx+66,50,10,10,"#fff59d");g.save();g.globalAlpha=0.12;g.fillStyle='#fff59d';g.beginPath();g.moveTo(dx+66,56);g.lineTo(dx+76,56);g.lineTo(dx+130,200);g.lineTo(dx+12,200);g.fill();g.restore();}
       for(let b=0;b<6;b++)R(dx+((b*37)%150),40+b*22,22,10,"#ffffff08");
-    }else if(['halloween','thanksgiving','christmas','valentine','stpatrick','aprilfools','easter'].includes(thn)){
-      const decor={halloween:['HALLOWEEN','carvedpumpkin','#ffae48'],thanksgiving:['GIVE THANKS','pieslice','#ffd48a'],christmas:['MERRY CHRISTMAS','gift','#e85a6e'],valentine:['HAPPY VALENTINES','valentinecard','#f572a1'],stpatrick:['LUCKY CLOVERS','shamrock','#a5df84'],aprilfools:['APRIL FOOLS!','pranktoy','#ffce64'],easter:['HAPPY EASTER','easteregg','#e9b1de']}[thn];
+    }else if(['halloween','thanksgiving','christmas','valentine','stpatrick','aprilfools','easter','mothersday','fathersday'].includes(thn)){
+      const decor={mothersday:['HAPPY MOTHERS DAY','bouquet','#e998b5'],fathersday:['HAPPY FATHERS DAY','necktie','#8ebbd9'],halloween:['HALLOWEEN','carvedpumpkin','#ffae48'],thanksgiving:['GIVE THANKS','pieslice','#ffd48a'],christmas:['MERRY CHRISTMAS','gift','#e85a6e'],valentine:['HAPPY VALENTINES','valentinecard','#f572a1'],stpatrick:['LUCKY CLOVERS','shamrock','#a5df84'],aprilfools:['APRIL FOOLS!','pranktoy','#ffce64'],easter:['HAPPY EASTER','easteregg','#e9b1de']}[thn];
       R(dx+8,40,142,32,decor[2]);R(dx+11,43,136,26,"#ffffff");text(decor[0],dx+79,52,7,"#3e3546","center",false);
       for(let n=0;n<7;n++){R(dx+n*24,22,25,1,decor[2]);R(dx+n*24+7,23,10,7,n%2?decor[2]:"#fff3d5");}
       const saved=itemSeed;for(let n=0;n<4;n++){itemSeed=n*16;ctx.save();ctx.translate(dx+17+n*34,105+(n%2)*24);ctx.scale(1.5,1.5);drawHolidayItem(decor[1],0,0);ctx.restore();}itemSeed=saved;
+      if(thn==='mothersday'){R(dx+50,150,55,12,"#caedf1");R(dx+60,162,35,10,"#a4cdd8");text("LOVE YOU MOM",dx+80,88,7,"#fff1db","center",false);}
+      if(thn==='fathersday'){R(dx+20,151,116,5,"#e8bb7c");R(dx+27,156,5,25,"#a37a4b");R(dx+124,156,5,25,"#a37a4b");text("THANKS DAD!",dx+80,88,7,"#fff1db","center",false);}
       if(thn==='halloween'){R(dx+27,78,2,19,"#e7d8f5");R(dx+18,86,20,1,"#e7d8f5");R(dx+22,82,12,1,"#e7d8f5");}
       if(thn==='thanksgiving'){R(dx+12,165,130,7,"#d8a467");R(dx+21,172,6,20,"#805735");R(dx+124,172,6,20,"#805735");}
       if(thn==='christmas'){for(let n=0;n<12;n++)R(dx+(n*29)%155,78+(n*17+t*12)%112,2,2,"#fff5dc");for(let r=0;r<44;r++)R(dx+80-r,120+r,r*2+1,1,"#2c8052");R(dx+77,161,6,15,"#896244");R(dx+77,115,7,7,"#ffdb61");}

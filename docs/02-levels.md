@@ -41,7 +41,9 @@ Generated from the `LEVELS` array in `index.html`.
 | 33 | St Patricks Day Luck | `stpatrick` | shamrock → luckypot | 42 | 190s | 360 | 10 | 0.7 | 0.2 | yes | squirrel, hamster, weed | `stpatrick` |
 | 34 | April Fools Day Pranks | `aprilfools` | pranktoy → prankbox | 43 | 193s | 370 | 10 | 0.7 | 0.2 | yes | chomper, roomba, bubble | `aprilfools` |
 | 35 | Easter Egg Hunt | `easter` | easteregg → eggbasket | 44 | 196s | 380 | 10 | 0.7 | 0.2 | yes | hamster, squirrel, bee | `easter` |
-| 36 | The Whole House!! | `house` | mix → couch | 45 | 199s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
+| 36 | Mother'S Day Blooms | `mothersday` | bouquet → momvase | 45 | 199s | 390 | 10 | 0.7 | 0.2 | yes | bee, hamster, squirrel | `mothersday` |
+| 37 | Father'S Day Surprise | `fathersday` | necktie → dadrack | 46 | 202s | 400 | 10 | 0.7 | 0.2 | yes | roomba, dog, hamster | `fathersday` |
+| 38 | The Whole House!! | `house` | mix → couch | 47 | 205s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
 
 ## Level Data Format
 
