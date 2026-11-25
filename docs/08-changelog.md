@@ -255,3 +255,8 @@ Grouped by milestone. See `git log` for every commit.
 
 - Replaced the 2D Isaac’s Room toy chest art with a pretend wooden treasure chest, raised lid, gold-colored straps and keyhole.
 - A dragon peeks out using the exact same green, purple-winged collectible dragon renderer. Drop-off size and completion behavior remain unchanged; the HERE label clears the lid.
+
+## 2026-11-25 — Painted dragon chest
+
+- Moved Isaac’s treasure-chest dragon onto the outside front panel as a static painted emblem, using the collectible’s green dragon and purple wings. Closed the lid and moved the keyhole beside the painting.
+- Collectible dragons keep their existing animation; gameplay and the 3D fork are unchanged.

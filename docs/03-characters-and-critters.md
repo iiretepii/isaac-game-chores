@@ -89,7 +89,7 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 
 | Level | Item (sprite key) | Drop-off (sprite key) |
 |---|---|---|
-| Isaac's Room | `dragon` | `toychest` (pretend treasure chest with the same green toy dragon peeking out) |
+| Isaac's Room | `dragon` | `toychest` (pretend treasure chest with the same green toy dragon painted on the front) |
 | Annie's Room | `doll` | `dollhouse` (wide Neuschwanstein-style castle) |
 | Kitchen Catastrophe | `dish` | `dishwasher` (built into a counter) |
 | Living Room Lego-Land | `pillow` (fluffy throw pillow in 10 colors) | `creamcouch` (wide cream sofa, 56 px like the ending couch, with no pillows on it) |
@@ -123,4 +123,4 @@ Some sprites change by position (`itemSeed`), including paint-bucket colors, rob
 
 
 
-Isaac’s Room uses a pretend wooden treasure chest (`toychest`) with gold-colored straps and a keyhole. The dragon peeking out is drawn with the same `drawItemRaw('dragon')` sprite as the room’s collectibles.
+Isaac’s Room uses a pretend wooden treasure chest (`toychest`) with gold-colored straps and a keyhole. The static dragon painted on the outside is drawn with the same `drawItemRaw('dragon')` sprite as the room’s collectibles.
