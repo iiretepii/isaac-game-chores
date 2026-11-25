@@ -124,7 +124,7 @@ Item counts rise by one each level. The game gets **progressively harder**. The 
 | 26 | **Roblox Avatar Roundup** | Toy Roblox avatars → display shelf | 35 | 169s | Robot vacuums, pixel space invaders, arcade ghosts | Original upbeat electronic obby-style music |
 | 27 | **GTA V + VI Toy Room** | Toy sports cars and bikes → city garage | 36 | 172s | Robot vacuums, dogs, rats | Original sunset-city synth/funk radio groove |
 | 28 | **Charging Room Chaos** | Charging cables → cable organizer | 37 | 175s | Lightning bolts, robot vacuums, ants | Original electronic dance music |
-| 29 | **The Whole House!!** | Everything → dive on the living room’s cream couch with matching colorful pillows | 38 | 178s | All of them | Medley of every style |
+| 29 | **The Whole House!!** | Everything → dive on the living room’s cream couch with matching colorful pillows | 38 | 178s | All of them | Three-track mashup of all level music |
 
 The basement is dark, with a pool of light that follows you around. At the pool, the floating platforms are striped lounge chairs and the gaps are the pool itself. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
 
@@ -169,7 +169,7 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Roblox Avatar Roundup | [*Checkpoint Champions*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/26-roblox-room.mp3) | Original upbeat obby/tycoon-style electronic music with bright plucks, synth chords, bass and dance drums; not a recording from Roblox |
 | GTA V + VI Toy Room | [*Two Cities, One Sunset*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/27-gta-room.mp3) | Original sunset-driving synth/funk with electric piano, synth bass and saxophone; not a GTA soundtrack recording |
 | Charging Room | [*Fully Charged*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/28-charging-room.mp3) | Original electronic dance track with bright arpeggios, synth chords, bass and a steady beat |
-| Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/29-whole-house-medley.mp3) | Switches style every four bars with a record scratch |
+| Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/29-whole-house-medley.mp3) | Layers three level tracks at once, rotating groups every four bars |
 | Ending | [*Jubilee for a Job Well Done*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/30-ending-jubilee.mp3) | An upbeat, triumphant celebration of a job well done: big horn fanfare calls with tuba and bells, a marching jubilee tune on strings and horns with handclaps, tambourine and bell runs, a crowd cheer as the key lifts, and a huge final chord with one more cheer |
 | Fail screen | [*Grounded Until Forever*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/31-fail-screen.mp3) | A slow, sad piano lament in A minor that plays when the parents beat you home: a lonely melody that keeps sighing downward, soft strings and a few celesta "teardrops" |
 
@@ -232,7 +232,7 @@ The **2D game** (code, graphics, levels and synthesized music) lives in a single
 - **All music and sound effects are synthesized live** in the browser with the Web Audio API. Every instrument (rock guitar, organ, piano, steel drums, kazoo, accordion, the crooner's "ohhh" voice and so on) is built from basic sound waves shaped by filters and volume envelopes.
 - The rock guitars get their crunch from a **distortion** effect, and the echo on the piano, organ and strings comes from a **reverb** built from generated noise.
 - A small **music sequencer** plans notes a fraction of a second ahead, so the timing stays steady even when the game is busy. Each song is a "style" with its own tempo, chords, melody and instruments. Some songs speed up and slow down slightly for a more human feel.
-- The **Whole House medley** switches to the next style every four bars, with a record scratch in between.
+- The **Whole House mashup** plays three level songs together at 128 BPM, rotating groups every four bars and including every level’s music, including the race-track arrangement.
 - The **attic fugue** was planned with a small helper script that picked chord notes for the inner voices and checked that no two voices move in parallel fifths or octaves. The finished notes are stored in the game as data.
 - Browsers don't allow sound until the player interacts with the page, so the first click, tap or key press turns the sound on.
 

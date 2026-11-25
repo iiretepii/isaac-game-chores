@@ -48,13 +48,15 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 
 ## Volume Leveling
 
-Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays at about −35 dB RMS. The gentle pieces are set a little quieter: title and basement −38, music room and attic −37, library −37, fail screen −38. Money Room uses a 0.82 trim (about −35 dB RMS). The pet room song (about −32) and the ending fanfare (about −31) are set a little louder so the victory song stands out. The scheduler sets the music volume to `MUSIC_BASE × gain` whenever the style changes, including between medley segments. After writing or changing a song, re-measure its loudness and update its trim.
+Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays at about −35 dB RMS. The gentle pieces are set a little quieter: title and basement −38, music room and attic −37, library −37, fail screen −38. Money Room uses a 0.82 trim (about −35 dB RMS). The pet room song (about −32) and the ending fanfare (about −31) are set a little louder so the victory song stands out. For individual songs, the scheduler sets the music volume to `MUSIC_BASE × gain`. The mashup applies each trim inside its isolated layer bus, divided by three. After writing or changing a song, re-measure its loudness and update its trim.
 
 ## The Medley
 
-`MIX` lists the styles in order: rock, princess, jazz, pop, hiphop, garden, pool, techno, polka, crooner, muzak, library, practice, punkska, silly, science, workout, romantic, baroque, pets, chiptune, money, grandprix, blockgarden, obby, cityradio, charging. The medley plays 4 bars of each, with a record scratch and crash between them, then loops.
+`MIX` includes all 28 level songs in room order, including Race Track Rumble’s `racerock` arrangement. The Whole House music is a simultaneous mashup: three level tracks play together at a shared 128 BPM, with a new group every four 4/4 bars (7.5 seconds). Ten groups cover every level song before the groups repeat; the final group wraps to the first two tracks to keep three layers playing.
 
-**Rule:** add each new musical style to `MIX`. The current medley omits `racerock`, the race-track arrangement of the existing rock song, and does not include the separate title, ending or fail-screen music.
+Each layer keeps its instrument arrangement and per-song gain trim, scaled to one third. Independent guitar/reverb buses prevent one layer’s instruments from taking another layer’s volume. Notes align to the shared beat; the original time signatures and rubato are adapted for the mashup. Individual rooms keep their original songs and tempos. Title, victory and fail-screen songs are not level tracks and remain separate. The last-15-seconds speedup still applies.
+
+**Rule:** add every new level song to `MIX`, including alternate arrangements, and re-record the mashup. The 3D fork retains its separate audio snapshot unless explicitly updated.
 
 ## Instruments
 
@@ -86,7 +88,7 @@ Shared reverb comes from a convolver with a generated noise impulse (`reverb()`)
 
 The recordings are made by running the game's code in headless Chromium:
 1. **Swap the audio context:** replace `AC` with an `OfflineAudioContext`, and reset `revIn`, `gtrBus`, `leadBus`, `noiseBuf`, `master`, `musicGain` and `sfxGain` to nodes on that context.
-2. **Schedule the song:** call each style's `play()` across one loop. Short loops repeat until the file is at least about 40 s long. The medley plays four bars of each style in `MIX`.
+2. **Schedule the song:** call each style's `play()` across one loop. Short loops repeat until the file is at least about 40 s long. For the mashup, call `playMashupTick` for `Math.ceil(MIX.length / 3) * MASHUP_TICKS` ticks at `60 / MASHUP_BPM / 4` seconds per tick. This records all simultaneous layers through one full group rotation.
 3. **Render:** render to WAV and normalize the peak to 90%. Gentle songs (title, basement, attic, music room, library) therefore sound louder than they do in the game.
 4. **Convert:** encode as a 96 kbps MP3 with `ffmpeg`.
 

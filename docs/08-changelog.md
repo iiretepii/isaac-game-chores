@@ -265,3 +265,9 @@ Grouped by milestone. See `git log` for every commit.
 
 - Verified current 2D room tables and links, bedroom helpers, MarioKart rides, cream finale couch and painted-dragon chest.
 - Clarified the 2D/3D directory split, added the 3D fork to the design-doc index and workflow, and retained the 3D browser-verification limitation.
+
+## 2026-11-25 — Simultaneous Whole House mashup
+
+- Replaced sequential medley playback in the 2D Whole House with three level tracks playing simultaneously, rotating four-bar groups at 128 BPM.
+- Included all 28 level songs, including the previously omitted Race Track Rumble arrangement, with isolated instrument buses and reduced layer volumes.
+- Updated the listening MP3 and audio documentation; individual room songs and the 3D fork’s snapshot remain separate.

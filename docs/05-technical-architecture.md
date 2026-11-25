@@ -16,7 +16,7 @@ The 2D edition has no build step or libraries. The 3D edition uses vendored Thre
 
 1. **Setup:** canvas (480 × 272, `T=16` px tiles, `ROWS=17`), window scaling and input (keyboard map `KM`, touch buttons, pointer handling).
 2. **Audio core:** `initAudio`, `tone`, `noise`, `kazoo`, `softLead` and the `SFX` table.
-3. **Music engine:** instrument helpers, drum helpers, `STYLES`, `MIX`, `startMusic` and the `scheduler`.
+3. **Music engine:** instrument helpers, drum helpers, `STYLES`, `MIX`, `playMashupTick`, `startMusic` and the `scheduler`.
 4. **Level data:** `LEVELS`, `THEMES`, `ITEM_NAMES`, the seeded RNG `rngf` and `buildLevel`.
 5. **Game state:** `state`, `lvl`, `P` (the player), `sibs`, `startLevel`, collision helpers and `hurt`.
 6. **Update logic:** `updatePlayer`, `updateEnemies`, the sibling AI (`moveSibling`, `chooseSiblingTarget`, `updateSibs`) and `updatePlay`.
@@ -82,4 +82,8 @@ See [02 – Levels](02-levels.md) for the rules.
 
 - **Startup:** `initAudio()` creates the `AudioContext` (on page load if the browser allows it, otherwise on first input), the master, music and SFX gain nodes and a noise buffer, and starts the `scheduler` on a 25 ms interval.
 - **Scheduling:** the scheduler stays 0.15 s ahead of the audio clock, calling the current style's `play(step, time, stepDuration)`, which schedules oscillators at exact times.
-- **Medley and tempo:** in the medley it advances through `MIX` every 4 bars. During `play` with under 15 s left, the tempo rises 8%.
+- **Medley and tempo:** the mashup rotates groups of three songs from `MIX` every four shared 4/4 bars. During `play` with under 15 s left, the tempo rises 8%.
+
+### Whole House mashup
+
+`playMashupTick` layers three level songs at a shared 128 BPM. `MASHUP_TICKS=64` sets each group to four 4/4 bars; ten groups cover all 28 songs. Each layer has its own gain, guitar and reverb buses, with the song’s trim divided by three. Individual room playback is unchanged. See [04](04-audio.md) for recording details.
