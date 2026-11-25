@@ -86,9 +86,9 @@ See [02 – Levels](02-levels.md) for the rules.
 
 ### Whole House mashup
 
-`playMashupTick` layers three level songs at a shared 128 BPM. `MASHUP_TICKS=64` sets each group to four 4/4 bars; fourteen groups cover all 41 songs. Each layer has its own gain, guitar and reverb buses, with the song’s trim divided by three. Individual room playback is unchanged. See [04](04-audio.md) for recording details.
+`playMashupTick` layers three level songs at a shared 128 BPM. `MASHUP_TICKS=64` sets each group to four 4/4 bars; fourteen groups cover all 42 songs. Each layer has its own gain, guitar and reverb buses, with the song’s trim divided by three. Individual room playback is unchanged. See [04](04-audio.md) for recording details.
 
-Holiday rooms share `drawHolidayItem` for collectible art and `drawHolidayDrop` for decorated return spots. Their nine theme branches add banners, garlands and holiday props. Level Select computes its row height from `LEVELS.length`, fitting all 42 choices.
+Holiday rooms share `drawHolidayItem` for collectible art and `drawHolidayDrop` for decorated return spots. Their nine theme branches add banners, garlands and holiday props. Level Select computes its row height from `LEVELS.length`, fitting all 43 choices.
 
 ### Five family helpers
 
@@ -105,3 +105,5 @@ The 2D touch buttons cancel native `touchstart`/`touchend` gestures with non-pas
 `drawParentItem` supplies three jewelry variants and three Bears gear variants for collectibles, matching return spots, and bedroom decorations. Canvas `fit()` permits scales below 1 so the 480×272 game fits portrait phone screens instead of clipping.
 
 Andrew’s `fly` flag routes movement to `moveFlyingHelper` and rendering to animated wings, ahead of room-specific vehicle rendering. Flight steers toward shared item targets, avoids solid tiles and does not apply ground gravity. Ground helpers retain `moveSibling` physics.
+
+Andrew’s Sky Room is fifth (`andrewroom`, `ownTheme` for Andrew), with 14 flying toys and a toy hangar. `drawFlyingToy` draws toy planes, helicopters and kites for pickups and the room. Andrew’s belly-down rendering rotates his original `drawKidRaw` sprite so his face, outfit and wing design stay the same.

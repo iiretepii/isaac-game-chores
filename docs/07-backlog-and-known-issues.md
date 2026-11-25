@@ -4,7 +4,7 @@
 
 | # | Issue | Status |
 |---|---|---|
-| 1 | Item counts didn't strictly climb | **Fixed 2026-11-16.** Counts span 10–51 across 42 levels. Following the requested room reorder, counts are room-specific; Daniel and Colin are third/fourth with 12/13 pickups |
+| 1 | Item counts didn't strictly climb | **Fixed 2026-11-16.** Counts span 10–52 across 43 levels. Following the requested room reorder, counts are room-specific; Daniel and Colin are third/fourth with 12/13 pickups |
 | 2 | Time limits dropped in three places | **Mostly fixed 2026-11-16.** Timers now follow each room’s stored challenge settings, rather than menu position; reordered cousin rooms retain 205/208 seconds |
 | 3 | Whole House missed newer items and critters | **Fixed 2026-11-16.** It includes the newer toy collections (coins, karts, bikes, diamond blocks, avatars and sports cars) as well as weeds, test tubes, books and all current critter types |
 | 4 | Time doubling made the clock trivial | **Fixed 2026-11-16.** Removed: items no longer add time, so the parents' car is a real threat. Other rooms retain low-time sibling rushes; the Whole House now has full-time collection help |

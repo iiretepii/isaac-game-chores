@@ -61,7 +61,7 @@ Browsers block sound until the player interacts, so the title screen first asks 
 
 ## Difficulty Curve Guidelines
 
-- **Item count:** is room-specific: 42 levels contain 10–51 items, with 51 in the Whole House. Daniel’s and Colin’s rooms are third and fourth, with 12 and 13 pickups respectively.
+- **Item count:** is room-specific: 43 levels contain 10–52 items, with 52 in the Whole House. Daniel’s and Colin’s rooms are third and fourth, with 12 and 13 pickups respectively.
 - **Time limit:** is stored per room and preserved when rooms move. Most original difficulty steps allowed 3 seconds more than the preceding step. Picking up items does **not** add time.
 - **Length:** is usually 170–216 tiles. Money Room is 260 tiles, MarioKart Toy Room is 270, Minecraft Block Room is 280, Roblox Avatar Roundup is 290, GTA V + VI Toy Room is 300, Charging Room Chaos is 310, and the finale is 250. Some adjacent rooms share the same length.
 - **Rising challenge:** rooms have different difficulty settings. Isaac’s and Annie’s rooms have small single-jump gaps. More challenging rooms add wider pits that need a well-timed double jump (8–10 tiles), bigger climbs, narrow stepping stones and long pits you can only cross by riding a moving platform. Critter density and LEGO bricks also increase. Moving platforms stay slow and steady instead of getting faster.

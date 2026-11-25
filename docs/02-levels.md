@@ -10,44 +10,45 @@ Generated from the `LEVELS` array in `index.html`.
 | 2 | Annie's Room | `annie` | doll → dollhouse | 11 | 98s | 173 | 3 | 0.45 | 0 | no | tabby, husky, pom | `princess` |
 | 3 | Daniel'S Monster Jam Room | `danielroom` | monstertrucktoy → monsterarena | 12 | 205s | 410 | 10 | 0.7 | 0.2 | yes | roomba, chomper, rat | `monsterjam` |
 | 4 | Colin'S Surf Shack | `colinroom` | surfboardtoy → surfrack | 13 | 208s | 420 | 10 | 0.7 | 0.2 | yes | duck, squirrel, bubble | `surfrock` |
-| 5 | Mom'S Room | `momroom` | jewelry → jewelrybox | 49 | 211s | 430 | 10 | 0.7 | 0.2 | yes | hamster, cat, bubble | `momwaltz` |
-| 6 | Uncle Pete'S Room | `peteroom` | bearsgear → bearslocker | 50 | 214s | 440 | 10 | 0.7 | 0.2 | yes | roomba, dog, turkey | `bearsgroove` |
-| 7 | Kitchen Catastrophe | `kitchen` | dish → dishwasher | 12 | 101s | 175 | 4 | 0.45 | 0 | no | dust, roach | `jazz` |
-| 8 | Living Room Lego-Land | `living` | pillow → creamcouch | 13 | 104s | 178 | 4 | 0.5 | 0.4 | no | roomba, cat | `pop` |
-| 9 | Backyard Bonanza | `yard` | leaf → bag | 14 | 107s | 181 | 4 | 0.55 | 0.2 | yes | dog, bee | `hiphop` |
-| 10 | Garden Glow-Up | `garden` | oldflower (dandelion-clump weeds) → compost | 15 | 110s | 183 | 5 | 0.62 | 0 | yes | weed | `garden` |
-| 11 | Pool Party Panic | `pool` | towel → towelbasket | 16 | 113s | 183 | 5 | 0.58 | 0 | yes | duck, goose, swan, squirrel | `pool` |
-| 12 | Garage of Doom | `garage` | trash → can (dumpster) | 17 | 116s | 186 | 5 | 0.62 | 0.45 | yes | rat, roomba, bee | `techno` |
-| 13 | Laundry Room Pee-Yew! | `laundry` | undies → washer | 18 | 119s | 189 | 5 | 0.64 | 0.3 | yes | bubble, dust, roach | `polka` |
-| 14 | Bathroom Blunder | `bathroom` | poop → toilet | 19 | 122s | 191 | 6 | 0.66 | 0.3 | yes | bubble, roach, spider | `crooner` |
-| 15 | Home Office Havoc | `office` | paper → recycle | 20 | 125s | 194 | 6 | 0.68 | 0.3 | yes | ant, spider, hamster | `muzak` |
-| 16 | Library Book Roundup | `library` | book → libraryshelf | 21 | 128s | 197 | 6 | 0.45 | 0 | yes | dust, spider, hamster | `library` |
-| 17 | Music Room Mayhem | `musicroom` | score → bookshelf | 22 | 131s | 197 | 7 | 0.7 | 0.3 | yes | cat, spider, roach | `practice` |
-| 18 | Arts & Crafts Chaos | `arts` | paint → paintshelf | 23 | 134s | 199 | 7 | 0.7 | 0.35 | yes | ant, cat, bubble | `punkska` |
-| 19 | Tech Room Trouble | `tech` | robot → workbench | 24 | 137s | 202 | 7 | 0.75 | 0.35 | yes | zap | `silly` |
-| 20 | Science Lab Scramble | `science` | testtube → labrack | 25 | 140s | 204 | 8 | 0.7 | 0.2 | yes | slime, bubble, zap | `science` |
-| 21 | Workout Room Workout | `gym` | weight → weightrack | 26 | 143s | 205 | 8 | 0.76 | 0.35 | yes | rat, cat, dog, mite | `workout` |
-| 22 | The Spooky Basement | `basement` | shirt → dryer | 27 | 146s | 207 | 8 | 0.66 | 0.3 | yes | spider, rat, dust | `romantic` |
-| 23 | Attic of Antiques | `attic` | ornament → trunk | 28 | 149s | 210 | 8 | 0.7 | 0.35 | yes | bat, spider, rat | `baroque` |
-| 24 | Pet Room Pandemonium | `pets` | chewtoy → petbasket | 29 | 152s | 212 | 9 | 0.66 | 0.3 | yes | hamster, tabby, pom | `pets` |
-| 25 | Race Track Rumble | `race` | tire → tirerack | 30 | 154s | 214 | 9 | 0.7 | 0.3 | yes | roomba, squirrel, goose | `racerock` |
-| 26 | Game Room Glitch | `gameroom` | videogame → gameshelf | 31 | 157s | 216 | 9 | 0.72 | 0.3 | yes | invader, chomper, ghosty | `chiptune` |
-| 27 | Money Room Millions | `money` | coin → coinchest | 32 | 160s | 260 | 10 | 0.7 | 0.25 | yes | hamster, roomba, slime | `money` |
-| 28 | MarioKart Toy Room | `kartroom` | alternating toykart / toybike → kartgarage | 33 | 163s | 270 | 10 | 0.7 | 0.25 | yes | roomba, squirrel, ghosty | `grandprix` |
-| 29 | Minecraft Block Room | `blockroom` | diamondblock → blockchest | 34 | 166s | 280 | 10 | 0.7 | 0.2 | yes | bzombie, bskel, bspider, hisser | `blockgarden` |
-| 30 | Roblox Avatar Roundup | `obbyroom` | avatar → avatarshelf | 35 | 169s | 290 | 10 | 0.7 | 0.2 | yes | roomba, invader, ghosty | `obby` |
-| 31 | GTA V + VI Toy Room | `cityroom` | alternating sportscar / cruiserbike → citygarage | 36 | 172s | 300 | 10 | 0.7 | 0.2 | yes | roomba, dog, rat | `cityradio` |
-| 32 | Charging Room Chaos | `chargingroom` | chargecable → cabledock | 37 | 175s | 310 | 10 | 0.7 | 0.2 | yes | zap, roomba, ant | `charging` |
-| 33 | Halloween Haunt | `halloween` | carvedpumpkin → pumpkinbucket | 38 | 178s | 320 | 10 | 0.7 | 0.2 | yes | bat, spider, ghosty | `halloween` |
-| 34 | Thanksgiving Feast | `thanksgiving` | pieslice → pietable | 39 | 181s | 330 | 10 | 0.7 | 0.2 | yes | turkey | `thanksgiving` |
-| 35 | Christmas Cheer | `christmas` | gift → gifttree | 40 | 184s | 340 | 10 | 0.7 | 0.2 | yes | roomba, cat, hamster | `christmas` |
-| 36 | Valentines Day Love | `valentine` | valentinecard → heartbox | 41 | 187s | 350 | 10 | 0.7 | 0.2 | yes | bubble, hamster, cat | `valentine` |
-| 37 | St Patricks Day Luck | `stpatrick` | shamrock → luckypot | 42 | 190s | 360 | 10 | 0.7 | 0.2 | yes | squirrel, hamster, weed | `stpatrick` |
-| 38 | April Fools Day Pranks | `aprilfools` | pranktoy → prankbox | 43 | 193s | 370 | 10 | 0.7 | 0.2 | yes | chomper, roomba, bubble | `aprilfools` |
-| 39 | Easter Egg Hunt | `easter` | easteregg → eggbasket | 44 | 196s | 380 | 10 | 0.7 | 0.2 | yes | hamster, squirrel, bee | `easter` |
-| 40 | Mother'S Day Blooms | `mothersday` | bouquet → momvase | 45 | 199s | 390 | 10 | 0.7 | 0.2 | yes | bee, hamster, squirrel | `mothersday` |
-| 41 | Father'S Day Surprise | `fathersday` | necktie → dadrack | 46 | 202s | 400 | 10 | 0.7 | 0.2 | yes | roomba, dog, hamster | `fathersday` |
-| 42 | The Whole House!! | `house` | mix → couch | 51 | 217s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
+| 5 | Andrew's Sky Room | `andrewroom` | flyingtoy → toyhangar | 14 | 107s | 184 | 4 | 0.45 | 0.15 | no | bee, bat, bubble | `skyhop` |
+| 6 | Mom'S Room | `momroom` | jewelry → jewelrybox | 49 | 211s | 430 | 10 | 0.7 | 0.2 | yes | hamster, cat, bubble | `momwaltz` |
+| 7 | Uncle Pete'S Room | `peteroom` | bearsgear → bearslocker | 50 | 214s | 440 | 10 | 0.7 | 0.2 | yes | roomba, dog, turkey | `bearsgroove` |
+| 8 | Kitchen Catastrophe | `kitchen` | dish → dishwasher | 12 | 101s | 175 | 4 | 0.45 | 0 | no | dust, roach | `jazz` |
+| 9 | Living Room Lego-Land | `living` | pillow → creamcouch | 13 | 104s | 178 | 4 | 0.5 | 0.4 | no | roomba, cat | `pop` |
+| 10 | Backyard Bonanza | `yard` | leaf → bag | 14 | 107s | 181 | 4 | 0.55 | 0.2 | yes | dog, bee | `hiphop` |
+| 11 | Garden Glow-Up | `garden` | oldflower (dandelion-clump weeds) → compost | 15 | 110s | 183 | 5 | 0.62 | 0 | yes | weed | `garden` |
+| 12 | Pool Party Panic | `pool` | towel → towelbasket | 16 | 113s | 183 | 5 | 0.58 | 0 | yes | duck, goose, swan, squirrel | `pool` |
+| 13 | Garage of Doom | `garage` | trash → can (dumpster) | 17 | 116s | 186 | 5 | 0.62 | 0.45 | yes | rat, roomba, bee | `techno` |
+| 14 | Laundry Room Pee-Yew! | `laundry` | undies → washer | 18 | 119s | 189 | 5 | 0.64 | 0.3 | yes | bubble, dust, roach | `polka` |
+| 15 | Bathroom Blunder | `bathroom` | poop → toilet | 19 | 122s | 191 | 6 | 0.66 | 0.3 | yes | bubble, roach, spider | `crooner` |
+| 16 | Home Office Havoc | `office` | paper → recycle | 20 | 125s | 194 | 6 | 0.68 | 0.3 | yes | ant, spider, hamster | `muzak` |
+| 17 | Library Book Roundup | `library` | book → libraryshelf | 21 | 128s | 197 | 6 | 0.45 | 0 | yes | dust, spider, hamster | `library` |
+| 18 | Music Room Mayhem | `musicroom` | score → bookshelf | 22 | 131s | 197 | 7 | 0.7 | 0.3 | yes | cat, spider, roach | `practice` |
+| 19 | Arts & Crafts Chaos | `arts` | paint → paintshelf | 23 | 134s | 199 | 7 | 0.7 | 0.35 | yes | ant, cat, bubble | `punkska` |
+| 20 | Tech Room Trouble | `tech` | robot → workbench | 24 | 137s | 202 | 7 | 0.75 | 0.35 | yes | zap | `silly` |
+| 21 | Science Lab Scramble | `science` | testtube → labrack | 25 | 140s | 204 | 8 | 0.7 | 0.2 | yes | slime, bubble, zap | `science` |
+| 22 | Workout Room Workout | `gym` | weight → weightrack | 26 | 143s | 205 | 8 | 0.76 | 0.35 | yes | rat, cat, dog, mite | `workout` |
+| 23 | The Spooky Basement | `basement` | shirt → dryer | 27 | 146s | 207 | 8 | 0.66 | 0.3 | yes | spider, rat, dust | `romantic` |
+| 24 | Attic of Antiques | `attic` | ornament → trunk | 28 | 149s | 210 | 8 | 0.7 | 0.35 | yes | bat, spider, rat | `baroque` |
+| 25 | Pet Room Pandemonium | `pets` | chewtoy → petbasket | 29 | 152s | 212 | 9 | 0.66 | 0.3 | yes | hamster, tabby, pom | `pets` |
+| 26 | Race Track Rumble | `race` | tire → tirerack | 30 | 154s | 214 | 9 | 0.7 | 0.3 | yes | roomba, squirrel, goose | `racerock` |
+| 27 | Game Room Glitch | `gameroom` | videogame → gameshelf | 31 | 157s | 216 | 9 | 0.72 | 0.3 | yes | invader, chomper, ghosty | `chiptune` |
+| 28 | Money Room Millions | `money` | coin → coinchest | 32 | 160s | 260 | 10 | 0.7 | 0.25 | yes | hamster, roomba, slime | `money` |
+| 29 | MarioKart Toy Room | `kartroom` | alternating toykart / toybike → kartgarage | 33 | 163s | 270 | 10 | 0.7 | 0.25 | yes | roomba, squirrel, ghosty | `grandprix` |
+| 30 | Minecraft Block Room | `blockroom` | diamondblock → blockchest | 34 | 166s | 280 | 10 | 0.7 | 0.2 | yes | bzombie, bskel, bspider, hisser | `blockgarden` |
+| 31 | Roblox Avatar Roundup | `obbyroom` | avatar → avatarshelf | 35 | 169s | 290 | 10 | 0.7 | 0.2 | yes | roomba, invader, ghosty | `obby` |
+| 32 | GTA V + VI Toy Room | `cityroom` | alternating sportscar / cruiserbike → citygarage | 36 | 172s | 300 | 10 | 0.7 | 0.2 | yes | roomba, dog, rat | `cityradio` |
+| 33 | Charging Room Chaos | `chargingroom` | chargecable → cabledock | 37 | 175s | 310 | 10 | 0.7 | 0.2 | yes | zap, roomba, ant | `charging` |
+| 34 | Halloween Haunt | `halloween` | carvedpumpkin → pumpkinbucket | 38 | 178s | 320 | 10 | 0.7 | 0.2 | yes | bat, spider, ghosty | `halloween` |
+| 35 | Thanksgiving Feast | `thanksgiving` | pieslice → pietable | 39 | 181s | 330 | 10 | 0.7 | 0.2 | yes | turkey | `thanksgiving` |
+| 36 | Christmas Cheer | `christmas` | gift → gifttree | 40 | 184s | 340 | 10 | 0.7 | 0.2 | yes | roomba, cat, hamster | `christmas` |
+| 37 | Valentines Day Love | `valentine` | valentinecard → heartbox | 41 | 187s | 350 | 10 | 0.7 | 0.2 | yes | bubble, hamster, cat | `valentine` |
+| 38 | St Patricks Day Luck | `stpatrick` | shamrock → luckypot | 42 | 190s | 360 | 10 | 0.7 | 0.2 | yes | squirrel, hamster, weed | `stpatrick` |
+| 39 | April Fools Day Pranks | `aprilfools` | pranktoy → prankbox | 43 | 193s | 370 | 10 | 0.7 | 0.2 | yes | chomper, roomba, bubble | `aprilfools` |
+| 40 | Easter Egg Hunt | `easter` | easteregg → eggbasket | 44 | 196s | 380 | 10 | 0.7 | 0.2 | yes | hamster, squirrel, bee | `easter` |
+| 41 | Mother'S Day Blooms | `mothersday` | bouquet → momvase | 45 | 199s | 390 | 10 | 0.7 | 0.2 | yes | bee, hamster, squirrel | `mothersday` |
+| 42 | Father'S Day Surprise | `fathersday` | necktie → dadrack | 46 | 202s | 400 | 10 | 0.7 | 0.2 | yes | roomba, dog, hamster | `fathersday` |
+| 43 | The Whole House!! | `house` | mix → couch | 52 | 220s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
 
 ## Level Data Format
 

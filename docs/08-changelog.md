@@ -340,3 +340,9 @@ Grouped by milestone. See `git log` for every commit.
 - Added Andrew to title, intro, chore-complete and ending lineups. Existing ground rides and the separate 3D fork are retained.
 
 - Andrew’s flying sprite now uses a belly-down pose, with arms stretched forward and feet trailing behind; direction mirrors the pose. Flight behavior is retained.
+
+## 2026-11-25 — Andrew’s Sky Room fifth
+
+- Added Andrew’s Sky Room as level 5 with 14 toy planes, helicopters and kites to return to a toy hangar, cloud decorations and Wings Above the House, an original airy synth song. Andrew helps immediately in his own room.
+- Moved Mom’s Room to sixth and Uncle Pete’s to seventh while preserving existing room settings and layouts. Finale is level 43 with 52 items, 220 seconds and all 42 level songs.
+- Andrew keeps the original face, palette and wings; his original character sprite is rotated belly-down. Updated music numbering and the mashup recording.

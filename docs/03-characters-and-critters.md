@@ -53,7 +53,7 @@ Helper configuration uses `rush`, `follow`, `ownTheme`, `kart`, `color` and `neo
 
 ## Cousin Andrew: winged helper
 
-Andrew is the fifth `SIBS` entry (`fly:1`), with an orange shirt, blue pants/cap and animated white-and-blue wings. His belly-down flight pose has feet trailing behind and face/arms pointing forward, mirrored with direction. He appears immediately, flies at up to 176 px/s, follows 90 px behind and 40 px above the player, and collects at 33% time remaining or immediately in Whole House. He uses shared target reservations, pickup scoring and critter contact/stomp handling. He prioritizes collection over critter-hunting detours. Only the player delivers.
+Andrew is the fifth `SIBS` entry (`fly:1`), with an orange shirt, blue pants/cap and animated white-and-blue wings. His belly-down pose rotates the original `drawKidRaw` sprite with the same face and palette; the original wings remain unchanged. He appears immediately, flies at up to 176 px/s, follows 90 px behind and 40 px above the player, and collects at 33% time remaining or immediately in his Sky Room and Whole House. He uses shared target reservations, pickup scoring and critter contact/stomp handling. He prioritizes collection over critter-hunting detours. Only the player delivers.
 
 `moveFlyingHelper` steers vertically toward item height, flies across gaps, climbs around obstructions, respects solid walls and descending one-way platforms, and keeps him inside world bounds. He can take LEGO damage when flying low; brief damage rest pauses flight. He does not use the ground helpers’ gravity or double jump. All scenes and room types retain his wings. The menu lineup includes him on the left, with the ending’s Mom moved outward to leave space.
 
@@ -73,37 +73,37 @@ Speeds are in pixels per second; critters run about 6% faster per stored `diffic
 
 | Key | Critter | Movement | Speed | Levels |
 |---|---|---|---|---|
-| `dust` | Dust bunny | walk | 30 | 7, 13, 16, 22, 42 |
-| `roach` | Cockroach | walk | 55 | 7, 13, 14, 17, 42 |
-| `roomba` | Robot vacuum | walk | 75 | 3, 6, 8, 12, 25, 27, 28, 30, 31, 32, 35, 38, 41, 42 |
-| `cat` | Cat | walk | 50 | 5, 8, 17, 18, 21, 35, 36, 42 |
-| `dog` | Dog | walk + hop | 90 | 6, 9, 21, 31, 41, 42 |
-| `rat` | Rat | walk | 65 | 3, 12, 21, 22, 23, 31, 42 |
-| `bee` | Bee | fly | 40 | 9, 12, 39, 40, 42 |
-| `spider` | Spider | walk | 60 | 14, 15, 16, 17, 22, 23, 33, 42 |
-| `bat` | Bat | fly | 55 | 23, 33, 42 |
-| `bubble` | Soap bubble | fly | 35 | 4, 5, 13, 14, 18, 20, 36, 38, 42 |
-| `zap` | Lightning bolt | fly (jittery) | 65 | 19, 20, 32, 42 |
-| `ant` | Ant | walk | 70 | 15, 18, 32, 42 |
-| `hamster` | Hamster | walk + hop | 85 | 5, 15, 16, 24, 27, 35, 36, 37, 39, 40, 41, 42 |
-| `mite` | Dust mite | walk | 45 | 21, 42 |
-| `bzombie` | Blocky zombie | walk | 32 | 1, 29, 42 |
-| `bskel` | Blocky skeleton | walk | 42 | 1, 29, 42 |
-| `bspider` | Blocky spider | walk | 62 | 1, 29, 42 |
-| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1, 29, 42 |
-| `tabby` | Orange tabby cat | walk | 50 | 2, 24, 42 |
-| `husky` | Husky | walk + hop | 72 | 2, 42 |
-| `pom` | Pomeranian | walk + hop | 80 | 2, 24, 42 |
-| `duck` | Duck | walk | 40 | 4, 11, 42 |
-| `turkey` | Turkey (fan tail, blue head, red wattle) | walk | 52 | 6, 34, 42 |
-| `goose` | Goose (flashes HONK) | walk | 60 | 11, 25, 42 |
-| `swan` | Swan | walk | 35 | 11, 42 |
-| `invader` | Pixel space invader (original 8-bit alien, legs flick every frame) | fly | 45 | 26, 30, 42 |
-| `chomper` | Yellow chomper that opens and closes its mouth, munching dots | walk | 72 | 3, 26, 38, 42 |
-| `ghosty` | Cyan arcade ghost with a wavy hem and eyes that look where it goes | walk | 52 | 26, 28, 30, 33, 42 |
-| `squirrel` | Squirrel | walk + hop | 85 | 4, 11, 25, 28, 37, 39, 40, 42 |
-| `weed` | Walking weed | walk | 38 | 10, 37, 42 |
-| `slime` | Slime | walk | 42 | 20, 27, 42 |
+| `dust` | Dust bunny | walk | 30 | 8, 14, 17, 23, 43 |
+| `roach` | Cockroach | walk | 55 | 8, 14, 15, 18, 43 |
+| `roomba` | Robot vacuum | walk | 75 | 3, 7, 9, 13, 26, 28, 29, 31, 32, 33, 36, 39, 42, 43 |
+| `cat` | Cat | walk | 50 | 6, 9, 18, 19, 22, 36, 37, 43 |
+| `dog` | Dog | walk + hop | 90 | 7, 10, 22, 32, 42, 43 |
+| `rat` | Rat | walk | 65 | 3, 13, 22, 23, 24, 32, 43 |
+| `bee` | Bee | fly | 40 | 5, 10, 13, 40, 41, 43 |
+| `spider` | Spider | walk | 60 | 15, 16, 17, 18, 23, 24, 34, 43 |
+| `bat` | Bat | fly | 55 | 5, 24, 34, 43 |
+| `bubble` | Soap bubble | fly | 35 | 4, 5, 6, 14, 15, 19, 21, 37, 39, 43 |
+| `zap` | Lightning bolt | fly (jittery) | 65 | 20, 21, 33, 43 |
+| `ant` | Ant | walk | 70 | 16, 19, 33, 43 |
+| `hamster` | Hamster | walk + hop | 85 | 6, 16, 17, 25, 28, 36, 37, 38, 40, 41, 42, 43 |
+| `mite` | Dust mite | walk | 45 | 22, 43 |
+| `bzombie` | Blocky zombie | walk | 32 | 1, 30, 43 |
+| `bskel` | Blocky skeleton | walk | 42 | 1, 30, 43 |
+| `bspider` | Blocky spider | walk | 62 | 1, 30, 43 |
+| `hisser` | Hissing bush-block (original; flashes when near) | walk | 38 | 1, 30, 43 |
+| `tabby` | Orange tabby cat | walk | 50 | 2, 25, 43 |
+| `husky` | Husky | walk + hop | 72 | 2, 43 |
+| `pom` | Pomeranian | walk + hop | 80 | 2, 25, 43 |
+| `duck` | Duck | walk | 40 | 4, 12, 43 |
+| `turkey` | Turkey (fan tail, blue head, red wattle) | walk | 52 | 7, 35, 43 |
+| `goose` | Goose (flashes HONK) | walk | 60 | 12, 26, 43 |
+| `swan` | Swan | walk | 35 | 12, 43 |
+| `invader` | Pixel space invader (original 8-bit alien, legs flick every frame) | fly | 45 | 27, 31, 43 |
+| `chomper` | Yellow chomper that opens and closes its mouth, munching dots | walk | 72 | 3, 27, 39, 43 |
+| `ghosty` | Cyan arcade ghost with a wavy hem and eyes that look where it goes | walk | 52 | 27, 29, 31, 34, 43 |
+| `squirrel` | Squirrel | walk + hop | 85 | 4, 12, 26, 29, 38, 40, 41, 43 |
+| `weed` | Walking weed | walk | 38 | 11, 38, 43 |
+| `slime` | Slime | walk | 42 | 21, 28, 43 |
 
 ## Chore Items and Drop-offs
 
@@ -150,6 +150,7 @@ Speeds are in pixels per second; critters run about 6% faster per stored `diffic
 | Easter Egg Hunt | `easteregg` | `eggbasket` |
 | Mother's Day Blooms | `bouquet` (colorful tied flowers) | `momvase` (Mom's vase on a table) |
 | Father's Day Surprise | `necktie` (striped ties in four colors) | `dadrack` (Dad's gift rack) |
+| Andrew's Sky Room | `flyingtoy` (toy planes, helicopters and kites) | `toyhangar` |
 | The Whole House!! | `mix` (including the same colorful `pillow` collectibles as Living Room) | `couch` (reuses `creamcouch` with matching red, yellow and blue throw pillows) |
 
 Some sprites change by position (`itemSeed`), including paint-bucket colors, robot-part shapes (gear, head, claw, battery), weight types (dumbbell, kettlebell, plate), towel colors, pillows and game controllers.

@@ -1136,10 +1136,17 @@ STYLES.bearsgroove={name:"BEARS CLEANUP DRIVE",bpm:144,spb:4,bar:16,bars:16,gain
   if(b===0||b===8)[0,7].forEach(n=>tone(mtof(root+12+n),d*2,'sawtooth',.007,null,t,musicGain));
   if(b===4||b===12)noise(.055,.019,1800,t,musicGain);if(b%4===3)noise(.02,.007,6500,t,musicGain);
  }};
+STYLES.skyhop={name:"WINGS ABOVE THE HOUSE",bpm:120,spb:4,bar:16,bars:16,gain:8,
+ play(i,t,d){const b=i%16,bar=Math.floor(i/16)%16,root=[48,53,55,48][bar%4],melody=[72,76,79,84,83,79,77,76];
+  if(b%2===0){const note=melody[(b/2+Math.floor(bar/4))%8];tone(mtof(note),d*1.8,'sine',.033,null,t,musicGain);tone(mtof(note+12),d*.7,'sine',.007,null,t,musicGain);}
+  if(b%4===0)tone(mtof(root),d*2.6,'triangle',.055,null,t,musicGain);
+  if(b===0)[0,4,7].forEach(n=>tone(mtof(root+12+n),d*5,'sine',.008,null,t,musicGain));
+  if(b===4||b===12)noise(.025,.009,4800,t,musicGain);
+ }};
 const STYLE_GAIN={"charging":1.0,"cityradio":1.6,"obby":0.85,"blockgarden":3.0,"grandprix":0.9,"sad":1.62,"money":0.82,"punkska":0.39,"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
 for(const k in STYLE_GAIN)if(STYLES[k])STYLES[k].gain=STYLE_GAIN[k];
 const MUSIC_BASE=0.38;
-const MIX=["rock","princess","monsterjam","surfrock","momwaltz","bearsgroove","jazz","pop","hiphop","garden","pool","techno","polka","crooner","muzak","library","practice","punkska","silly","science","workout","romantic","baroque","pets","racerock","chiptune","money","grandprix","blockgarden","obby","cityradio","charging","halloween","thanksgiving","christmas","valentine","stpatrick","aprilfools","easter","mothersday","fathersday"];
+const MIX=["rock","princess","monsterjam","surfrock","skyhop","momwaltz","bearsgroove","jazz","pop","hiphop","garden","pool","techno","polka","crooner","muzak","library","practice","punkska","silly","science","workout","romantic","baroque","pets","racerock","chiptune","money","grandprix","blockgarden","obby","cityradio","charging","halloween","thanksgiving","christmas","valentine","stpatrick","aprilfools","easter","mothersday","fathersday"];
 let music={on:false,style:'pop',step:0,next:0,seg:0,segStep:0,cycle:0};
 function startMusic(style){music.style=style;music.step=0;music.seg=0;music.segStep=0;music.cycle=0;music.on=true;if(AC)music.next=AC.currentTime+0.05;}
 // Three simultaneous tracks, synchronized to a common beat. Each group lasts four 4/4 bars.
@@ -1184,6 +1191,7 @@ const LEVELS=[
  {"name":"ANNIE'S ROOM","chore":"Put the dolls back in the doll house","drop":"dollhouse","item":"doll","seed":1790,"count":11,"time":98,"len":173,"gap":3,"enemies":["tabby","husky","pom"],"density":0.45,"lego":0,"movers":0,"theme":"annie","music":"princess","text":"MOM: Annie, your dolls are having a party ALL over the floor. Doll house, now!","difficultyIndex":1},
  {"name":"DANIEL'S MONSTER JAM ROOM","chore":"Park the toy monster trucks in the arena garage","drop":"monsterarena","item":"monstertrucktoy","seed":52183,"count":12,"time":205,"len":410,"gap":10,"enemies":["roomba","chomper","rat"],"density":0.7,"lego":0.2,"movers":1,"theme":"danielroom","music":"monsterjam","text":"DANIEL: Monster Jam time! Help me park every toy monster truck in the arena garage!","difficultyIndex":37},
  {"name":"COLIN'S SURF SHACK","chore":"Put the toy surfboards back on the surfboard rack","drop":"surfrack","item":"surfboardtoy","seed":54217,"count":13,"time":208,"len":420,"gap":10,"enemies":["duck","squirrel","bubble"],"density":0.7,"lego":0.2,"movers":1,"theme":"colinroom","music":"surfrock","text":"COLIN: Surfs Up! Help me put the toy surfboards back on the rack. Then we can catch a wave!","difficultyIndex":38},
+ {"name":"ANDREW'S SKY ROOM","chore":"Put the flying toys back in the toy hangar","drop":"toyhangar","item":"flyingtoy","seed":60317,"count":14,"time":107,"len":184,"gap":4,"enemies":["bee","bat","bubble"],"density":0.45,"lego":0.15,"movers":0,"theme":"andrewroom","music":"skyhop","difficultyIndex":4,"text":"ANDREW: Planes, helicopters and kites everywhere! Help me put my flying toys in the hangar!"},
  {"name":"MOM'S ROOM","chore":"Put the jewelry back in Mom's jewelry box","drop":"jewelrybox","item":"jewelry","seed":56249,"count":49,"time":211,"len":430,"gap":10,"enemies":["hamster","cat","bubble"],"density":0.7,"lego":0.2,"movers":1,"theme":"momroom","music":"momwaltz","difficultyIndex":39,"text":"MOM: My necklaces, rings and earrings are everywhere! You and the cleanup crew: jewelry box, please!"},
  {"name":"UNCLE PETE'S ROOM","chore":"Put the Chicago Bears gear in Uncle Pete's locker","drop":"bearslocker","item":"bearsgear","seed":58271,"count":50,"time":214,"len":440,"gap":10,"enemies":["roomba","dog","turkey"],"density":0.7,"lego":0.2,"movers":1,"theme":"peteroom","music":"bearsgroove","difficultyIndex":40,"text":"UNCLE PETE: My Bears jerseys, caps and footballs need a home. Team cleanup: put them in my locker!"},
  {"name":"KITCHEN CATASTROPHE","chore":"Load the dirty dishes into the dishwasher","drop":"dishwasher","item":"dish","seed":2803,"count":12,"time":101,"len":175,"gap":4,"enemies":["dust","roach"],"density":0.45,"lego":0,"movers":0,"theme":"kitchen","music":"jazz","text":"UNCLE PETE: Why is there a pancake on the ceiling? Fix it.","difficultyIndex":2},
@@ -1221,9 +1229,10 @@ const LEVELS=[
  {"name":"EASTER EGG HUNT","chore":"Return the painted eggs to the Easter basket","drop":"eggbasket","item":"easteregg","seed":46079,"count":44,"time":196,"len":380,"gap":10,"enemies":["hamster","squirrel","bee"],"density":0.7,"lego":0.2,"movers":1,"theme":"easter","music":"easter","text":"MOM: You, Isaac and Annie: return the painted eggs to the easter basket. Holiday cleanup time!","difficultyIndex":34},
  {"name":"MOTHER'S DAY BLOOMS","chore":"Put the flower bouquets in Mom's vase","drop":"momvase","item":"bouquet","seed":48107,"count":45,"time":199,"len":390,"gap":10,"enemies":["bee","hamster","squirrel"],"density":0.7,"lego":0.2,"movers":1,"theme":"mothersday","music":"mothersday","text":"MOM: What lovely flowers! You, Isaac and Annie: gather the bouquets into my vase!","difficultyIndex":35},
  {"name":"FATHER'S DAY SURPRISE","chore":"Put the colorful ties on Dad's gift rack","drop":"dadrack","item":"necktie","seed":50147,"count":46,"time":202,"len":400,"gap":10,"enemies":["roomba","dog","hamster"],"density":0.7,"lego":0.2,"movers":1,"theme":"fathersday","music":"fathersday","text":"UNCLE PETE: So many ties! You, Isaac and Annie: put them on Dad's gift rack for Father's Day!","difficultyIndex":36},
- {"name":"THE WHOLE HOUSE!!","chore":"Grab everything & dive on the couch","drop":"couch","item":"mix","seed":20024,"count":51,"time":217,"len":250,"gap":10,"enemies":["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty","turkey"],"density":0.75,"lego":0.5,"movers":1,"theme":"house","music":"mix","text":"BOTH: We're turning onto our street RIGHT NOW.","difficultyIndex":39},
+ {"name":"THE WHOLE HOUSE!!","chore":"Grab everything & dive on the couch","drop":"couch","item":"mix","seed":20024,"count":52,"time":220,"len":250,"gap":10,"enemies":["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty","turkey"],"density":0.75,"lego":0.5,"movers":1,"theme":"house","music":"mix","text":"BOTH: We're turning onto our street RIGHT NOW.","difficultyIndex":39},
 ];
 const THEMES={
+ andrewroom:{sky:"#89c9e8",wall2:"#70b3dc",ground:"#b5906e",top:"#f1dfb6",plat:"#7d9fc1",ptop:"#d6eff9"},
  momroom:{sky:"#c5a5cc",wall2:"#b08ab9",ground:"#806174",top:"#f2d4e7",plat:"#b79066",ptop:"#f3d4a3"},
  peteroom:{sky:"#293b54",wall2:"#1b2a40",ground:"#655349",top:"#d98349",plat:"#435a70",ptop:"#dce5ec"},
  danielroom:{sky:"#355040",wall2:"#273c30",ground:"#634935",top:"#c2e371",plat:"#637681",ptop:"#c5d5dd"},
@@ -1267,7 +1276,7 @@ const THEMES={
  gameroom:{sky:"#1a1033",wall2:"#140c29",ground:"#311b92",top:"#00e5ff",plat:"#ff4081",ptop:"#ff80ab"},
  house:{sky:"#2b2d6e",wall2:"#25275e",ground:"#5d3a8a",top:"#b388ff",plat:"#00897b",ptop:"#4db6ac"},
 };
-const ITEM_NAMES={jewelry:"jewelry pieces",bearsgear:"Bears gear",monstertrucktoy:"toy monster trucks",surfboardtoy:"toy surfboards",bouquet:"flower bouquets",necktie:"colorful ties","carvedpumpkin":"carved pumpkins","pieslice":"pie slices","gift":"presents","valentinecard":"valentines","shamrock":"shamrocks","pranktoy":"prank toys","easteregg":"painted Easter eggs",chargecable:"charging cables",citytoys:"toy sports cars and bikes",sportscar:"toy sports cars",cruiserbike:"toy bikes",avatar:"toy Roblox avatars",diamondblock:"toy diamond blocks",kartbike:"toy karts and bikes",toykart:"toy karts",toybike:"toy bikes",coin:"coins",pillow:"pillows",videogame:"game controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
+const ITEM_NAMES={flyingtoy:"flying toys",jewelry:"jewelry pieces",bearsgear:"Bears gear",monstertrucktoy:"toy monster trucks",surfboardtoy:"toy surfboards",bouquet:"flower bouquets",necktie:"colorful ties","carvedpumpkin":"carved pumpkins","pieslice":"pie slices","gift":"presents","valentinecard":"valentines","shamrock":"shamrocks","pranktoy":"prank toys","easteregg":"painted Easter eggs",chargecable:"charging cables",citytoys:"toy sports cars and bikes",sportscar:"toy sports cars",cruiserbike:"toy bikes",avatar:"toy Roblox avatars",diamondblock:"toy diamond blocks",kartbike:"toy karts and bikes",toykart:"toy karts",toybike:"toy bikes",coin:"coins",pillow:"pillows",videogame:"game controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
@@ -1348,7 +1357,7 @@ function buildLevel(idx){
   const items=[],n=Math.min(L.count,cand.length);
   const used=new Set();
   for(let i=0;i<n;i++){let k=Math.round(i*(cand.length-1)/Math.max(1,n-1));while(used.has(k))k++;used.add(k);const s=cand[k];
-    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel","oldflower","testtube","book","chewtoy","tire","videogame","pillow","coin","toykart","toybike","diamondblock","avatar","sportscar","cruiserbike","chargecable","carvedpumpkin","pieslice","gift","valentinecard","shamrock","pranktoy","easteregg","bouquet","necktie","monstertrucktoy","surfboardtoy","jewelry","bearsgear"];
+    const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel","oldflower","testtube","book","chewtoy","tire","videogame","pillow","coin","toykart","toybike","diamondblock","avatar","sportscar","cruiserbike","chargecable","carvedpumpkin","pieslice","gift","valentinecard","shamrock","pranktoy","easteregg","bouquet","necktie","monstertrucktoy","surfboardtoy","jewelry","bearsgear","flyingtoy"];
     items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%kinds.length]:L.item==='kartbike'?(i%2?'toybike':'toykart'):L.item==='citytoys'?(i%2?'cruiserbike':'sportscar'):L.item,got:false,bob:rng()*6});}
   const enemies=[];
   eSpots.filter(s=>s.x>14&&s.x<cols-10).forEach(s=>{
@@ -1802,7 +1811,7 @@ const SIBS=[
  {name:"ISAAC",rush:.2,follow:62,ownTheme:"bedroom",kart:"flamerider",neon:1,color:"#42a5f5",ace:1,delay:0,speed:176,pal:{shirt:"#e53935",shirtD:"#b71c1c",pants:"#424242",cap:"#1e88e5",capH:"#64b5f6",hair:"#3e2723",logo:"#fff"},line:"ISAAC: VRRRM! NEON LIGHT-BIKE, BABY!"},
  {name:"DANIEL",ownTheme:"danielroom",ride:"monstertruck",rush:.2,follow:100,kart:"standard",color:"#81c784",ace:1,delay:0,speed:176,pal:{shirt:"#43a047",shirtD:"#256b2b",pants:"#37474f",cap:"#f9a825",capH:"#ffe082",hair:"#5d4037",logo:"#fff"},line:"DANIEL: COUSIN CREW, READY TO CLEAN!"},
  {name:"COLIN",ownTheme:"colinroom",ride:"surfboard",rush:.33,follow:138,kart:"standard",color:"#b39ddb",ace:1,delay:0,speed:176,pal:{shirt:"#7e57c2",shirtD:"#512da8",pants:"#455a64",cap:"#00acc1",capH:"#80deea",hair:"#3e2723",logo:"#fff"},line:"COLIN: Surfs Up!"},
- {name:"ANDREW",fly:1,rush:.33,follow:90,color:"#a7ddff",ace:1,delay:0,speed:176,pal:{shirt:"#ffb74d",shirtD:"#e68a25",pants:"#4b76a5",cap:"#90caf9",capH:"#e1f5fe",hair:"#6d4c41",logo:"#fff"},line:"ANDREW: WINGS ON! LET'S FLY!"},
+ {name:"ANDREW",ownTheme:"andrewroom",fly:1,rush:.33,follow:90,color:"#a7ddff",ace:1,delay:0,speed:176,pal:{shirt:"#ffb74d",shirtD:"#e68a25",pants:"#4b76a5",cap:"#90caf9",capH:"#e1f5fe",hair:"#6d4c41",logo:"#fff"},line:"ANDREW: WINGS ON! LET'S FLY!"},
 ];
 function drawKidRaw(x,y,face,frame,air,pal=PAL_ME){
   const f=face<0;const X=(dx,w)=>f?x+10-dx-w:x+dx;
@@ -1950,7 +1959,14 @@ function drawParentItem(k,x,y){
   else{R(x+4,y+3,8,8,navy);R(x+2,y+5,12,6,navy);R(x+1,y+10,15,3,orange);R(x+6,y+5,4,1,orange);R(x+6,y+6,1,3,orange);R(x+6,y+8,4,1,orange);}
  }
 }
+function drawFlyingToy(x,y){
+ const v=Math.abs(Math.round(itemSeed/16))%3,c=['#ffb65b','#b39bdf','#66d8d8'][v];
+ if(v===0){R(x+1,y+7,14,3,c);R(x+8,y+2,3,12,c);R(x+1,y+4,3,8,c);R(x+11,y+6,3,1,"#d8f6ff");R(x+15,y+7,1,3,"#fff0b0");}
+ else if(v===1){R(x+7,y+2,2,3,"#506e88");R(x+1,y+1,14,1,"#e8f5fa");R(x+5,y+5,9,6,c);R(x+1,y+7,5,2,c);R(x,y+4,2,4,c);R(x+10,y+6,3,3,"#e5faff");R(x+5,y+12,10,1,"#617785");R(x+7,y+10,1,2,"#617785");R(x+12,y+10,1,2,"#617785");}
+ else{for(let n=0;n<6;n++)R(x+7-n,y+1+n,1+n*2,1,c);for(let n=0;n<5;n++)R(x+3+n,y+7+n,9-n*2,1,c);R(x+7,y+2,1,9,"#fff2cd");R(x+4,y+6,7,1,"#fff2cd");R(x+7,y+12,1,3,"#f5ebcb");R(x+8,y+14,4,1,"#f5ebcb");}
+}
 function drawItemRaw(k,x,y,animated=true){
+  if(k==='flyingtoy'){drawFlyingToy(x,y);return;}
   if(k==='jewelry'||k==='bearsgear'){drawParentItem(k,x,y);return;}
   if(k==='monstertrucktoy'||k==='surfboardtoy'){drawCousinToy(k,x,y);return;}
   if(HOLIDAY_ITEMS.includes(k)){drawHolidayItem(k,x,y);return;}
@@ -2084,11 +2100,11 @@ function drawItemRaw(k,x,y,animated=true){
 }
 
 // Drop-off size: most sprites are drawn at 28 px and scaled up 2x; a few are drawn full-size already.
-const DROP_SCALE={jewelrybox:1,bearslocker:1,monsterarena:1,surfrack:1,momvase:1,dadrack:1,pumpkinbucket:1,pietable:1,gifttree:1,heartbox:1,luckypot:1,prankbox:1,eggbasket:1,cabledock:1,citygarage:1,avatarshelf:1,blockchest:1,kartgarage:1,coinchest:1,creamcouch:1,gameshelf:1,tirerack:1,petbasket:1,dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1};
+const DROP_SCALE={toyhangar:1,jewelrybox:1,bearslocker:1,monsterarena:1,surfrack:1,momvase:1,dadrack:1,pumpkinbucket:1,pietable:1,gifttree:1,heartbox:1,luckypot:1,prankbox:1,eggbasket:1,cabledock:1,citygarage:1,avatarshelf:1,blockchest:1,kartgarage:1,coinchest:1,creamcouch:1,gameshelf:1,tirerack:1,petbasket:1,dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1};
 // Normal height, much wider: these sprites are stretched sideways only.
 const DROP_WIDE={}; // (no longer used: wide drop-offs are drawn at full width)
-const DROP_W={jewelrybox:70,bearslocker:70,monsterarena:70,surfrack:70,momvase:70,dadrack:70,pumpkinbucket:70,pietable:70,gifttree:70,heartbox:70,luckypot:70,prankbox:70,eggbasket:70,cabledock:70,citygarage:70,avatarshelf:70,blockchest:70,kartgarage:70,coinchest:70,creamcouch:56,gameshelf:70,tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
-const DROP_TOP={jewelrybox:24,bearslocker:24,monsterarena:24,surfrack:24,momvase:30,dadrack:30,pumpkinbucket:24,pietable:24,gifttree:24,heartbox:24,luckypot:24,prankbox:24,eggbasket:24,cabledock:14,citygarage:18,avatarshelf:18,blockchest:11,kartgarage:18,coinchest:10,creamcouch:0,gameshelf:22,tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:14,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
+const DROP_W={toyhangar:70,jewelrybox:70,bearslocker:70,monsterarena:70,surfrack:70,momvase:70,dadrack:70,pumpkinbucket:70,pietable:70,gifttree:70,heartbox:70,luckypot:70,prankbox:70,eggbasket:70,cabledock:70,citygarage:70,avatarshelf:70,blockchest:70,kartgarage:70,coinchest:70,creamcouch:56,gameshelf:70,tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
+const DROP_TOP={toyhangar:24,jewelrybox:24,bearslocker:24,monsterarena:24,surfrack:24,momvase:30,dadrack:30,pumpkinbucket:24,pietable:24,gifttree:24,heartbox:24,luckypot:24,prankbox:24,eggbasket:24,cabledock:14,citygarage:18,avatarshelf:18,blockchest:11,kartgarage:18,coinchest:10,creamcouch:0,gameshelf:22,tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:14,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
 function drawDrop(d,ready,t){
   const x=Math.round(d.x),y=Math.round(d.y),k=d.kind;
   if(ready){g.save();g.globalAlpha=0.35+0.2*Math.sin(t*8);const rg=g.createRadialGradient(x+14,y+12,2,x+14,y+12,34);rg.addColorStop(0,'#fff59d');rg.addColorStop(1,'rgba(255,235,59,0)');g.fillStyle=rg;g.fillRect(x-24,y-24,76,72);g.restore();}
@@ -2118,6 +2134,12 @@ function drawHolidayDrop(k,x,y,item){
  const seed=itemSeed;for(let n=0;n<3;n++){itemSeed=n*16;drawHolidayItem(item,x+10+n*18,y+(k==='gifttree'?8:-6));}itemSeed=seed;
 }
 function drawDropRaw(k,x,y){
+ if(k==='toyhangar'){
+  R(x,y-10,70,34,"#a8c5dc");for(let r=0;r<8;r++)R(x+6+r*3,y-11-r,58-r*6,1,"#dcecf5");
+  R(x+4,y-6,62,27,"#3e5f80");R(x+4,y+5,62,2,"#9dc7df");R(x,y+21,70,3,"#6f8eab");
+  const old=itemSeed;for(let n=0;n<3;n++){itemSeed=n*16;drawFlyingToy(x+7+n*20,y-5);}itemSeed=old;return;
+ }
+
  if(k==='jewelrybox'||k==='bearslocker'){
   const mom=k==='jewelrybox';
   if(mom){R(x,y-10,70,13,"#c598c9");R(x+3,y-7,64,8,"#eacfe8");R(x,y+3,70,21,"#a779b0");R(x,y+3,70,3,"#f2d36e");R(x+32,y+8,6,7,"#ffe07b");R(x+3,y+22,64,2,"#765680");}
@@ -2609,6 +2631,11 @@ function drawBackground(th,t){
       if(k===1||k===3){R(dx,30,160,6,"#607d8b");R(dx+40,30,6,120,"#607d8b");R(dx+38,60,10,4,"#455a64");}
       if(k===2){R(dx+70,20,2,30,"#212121");R(dx+66,50,10,10,"#fff59d");g.save();g.globalAlpha=0.12;g.fillStyle='#fff59d';g.beginPath();g.moveTo(dx+66,56);g.lineTo(dx+76,56);g.lineTo(dx+130,200);g.lineTo(dx+12,200);g.fill();g.restore();}
       for(let b=0;b<6;b++)R(dx+((b*37)%150),40+b*22,22,10,"#ffffff08");
+    }else if(thn==='andrewroom'){
+      R(dx+5,40,150,28,"#e0f4ff");R(dx+8,43,144,22,"#5d91be");text("ANDREW'S SKY ROOM",dx+80,50,8,"#fff1cb","center",false);
+      for(let n=0;n<3;n++){const cx=dx+17+n*48;R(cx,80+(n%2)*17,32,8,"#eefaff");R(cx+7,76+(n%2)*17,18,7,"#eefaff");R(cx+9,88+(n%2)*17,16,2,"#cce9f7");R(cx+15,90+(n%2)*17,1,19,"#e2f4fc");}
+      const old=itemSeed;for(let n=0;n<3;n++){itemSeed=n*16;ctx.save();ctx.translate(dx+17+n*47,116+Math.sin(t*2+n)*3);ctx.scale(1.8,1.8);drawFlyingToy(0,0);ctx.restore();}itemSeed=old;
+      R(dx+9,163,142,6,"#c5a782");R(dx+18,169,5,18,"#9d7f5c");R(dx+137,169,5,18,"#9d7f5c");
     }else if(thn==='momroom'){
       R(dx+5,40,150,26,"#f5d4e7");text("MOM'S ROOM",dx+80,49,9,"#694367","center",false);
       R(dx+32,82,78,56,"#d6b57b");R(dx+36,86,70,48,"#c4e9ee");R(dx+40,89,5,39,"#efffff");
@@ -2823,15 +2850,9 @@ function drawSibling(s,t){
           R(wx+(side<0?1:5),wy-2,6,4,"#f4fcff");
           for(let q=0;q<3;q++)R(wx+q*3,wy+8,2,flap?3:5,"#e5f8ff");
         }
-        // Belly-down flying pose: feet trail behind, face and arms lead the way.
-        const X=(dx,w)=>s.face<0?ox+10-dx-w:ox+dx,pal=s.d.pal;
-        R(X(-7,11),oy+9,11,4,pal.pants);R(X(-8,11),oy+14,11,3,pal.pants);
-        R(X(-12,5),oy+10,5,3,"#ffffff");R(X(-13,5),oy+14,5,3,"#ffffff");
-        R(X(2,12),oy+8,12,7,pal.shirt);R(X(3,10),oy+13,10,2,pal.shirtD);
-        R(X(8,13),oy+14,13,3,"#f5c08a");R(X(5,9),oy+6,9,2,"#f5c08a");
-        R(X(13,8),oy+6,8,7,"#f5c08a");R(X(12,9),oy+4,9,3,pal.cap);R(X(13,8),oy+4,8,1,pal.capH);
-        R(X(19,4),oy+6,4,1,pal.cap);R(X(18,2),oy+8,2,2,"#fff");R(X(19,1),oy+9,1,1,"#263238");
-        R(X(20,2),oy+11,2,1,"#f5c08a");R(X(18,2),oy+12,2,1,"#b95447");
+        // Keep Andrew's original sprite and palette; only rotate his pose belly-down.
+        ctx.save();ctx.translate(ox+5,oy+10);ctx.rotate(s.face>0?Math.PI/2:-Math.PI/2);
+        drawKidRaw(-5,-7,s.face,s.anim/2,true,s.d.pal);ctx.restore();
       }
       else if(s.d.ride==='monstertruck'){
         const mirror=s.face<0,X=(dx,w)=>mirror?ox+10-dx-w:ox+dx;

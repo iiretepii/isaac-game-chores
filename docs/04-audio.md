@@ -17,47 +17,48 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `princess` | *Once Upon A Tidy Room* | 150 | 2 | 6 | 16 | Annie's Room | `music/02-annies-room.mp3` |
 | `monsterjam` | *Stadium Stomp* (original) | 148 | 4 | 16 | 16 | Daniel'S Monster Jam Room | `music/03-monsterjam.mp3` |
 | `surfrock` | *Surfs Up Shuffle* (original) | 136 | 4 | 16 | 16 | Colin'S Surf Shack | `music/04-surfrock.mp3` |
-| `momwaltz` | *Jewel Box Waltz* (original) | 100 | 4 | 12 | 16 | Mom's Room | `music/05-momwaltz.mp3` |
-| `bearsgroove` | *Bears Cleanup Drive* (original) | 144 | 4 | 16 | 16 | Uncle Pete's Room | `music/06-bearsgroove.mp3` |
-| `jazz` | *Cool Kitchen Jazz* | 150 | 2 | 8 | 8 | Kitchen Catastrophe | `music/07-kitchen.mp3` |
-| `pop` | *Poptastic Pop* | 118 | 2 | 8 | 8 | Living Room Lego-Land | `music/08-living-room.mp3` |
-| `hiphop` | *Backyard Boom-Bap* | 90 | 4 | 16 | 4 | Backyard Bonanza | `music/09-backyard.mp3` |
+| `skyhop` | *Wings Above the House* (original) | 120 | 4 | 16 | 16 | Andrew's Sky Room | `music/05-skyhop.mp3` |
+| `momwaltz` | *Jewel Box Waltz* (original) | 100 | 4 | 12 | 16 | Mom's Room | `music/06-momwaltz.mp3` |
+| `bearsgroove` | *Bears Cleanup Drive* (original) | 144 | 4 | 16 | 16 | Uncle Pete's Room | `music/07-bearsgroove.mp3` |
+| `jazz` | *Cool Kitchen Jazz* | 150 | 2 | 8 | 8 | Kitchen Catastrophe | `music/08-kitchen.mp3` |
+| `pop` | *Poptastic Pop* | 118 | 2 | 8 | 8 | Living Room Lego-Land | `music/09-living-room.mp3` |
 | `french2` | *Les Petits Peintres* (no longer used by a level) | 112 | 2 | 8 | 16 | — | — |
-| `garden` | *Seashell Sunday* | 104 | 2 | 8 | 16 | Garden Glow-Up | `music/10-garden.mp3` |
-| `pool` | *Cannonball Calypso* | 128 | 4 | 16 | 16 | Pool Party Panic | `music/11-pool.mp3` |
-| `techno` | *Garage Funk-Techno* | 126 | 4 | 16 | 4 | Garage of Doom | `music/12-garage.mp3` |
-| `polka` | *Oompah Undies Polka* | 132 | 2 | 4 | 16 | Laundry Room Pee-Yew! | `music/13-laundry-room.mp3` |
-| `crooner` | *Bathroom Amore* | 228 | 2 | 6 | 16 | Bathroom Blunder | `music/14-bathroom.mp3` |
-| `muzak` | *Muzak For Meetings (Vol. 3)* | 104 | 2 | 8 | 8 | Home Office Havoc | `music/15-home-office.mp3` |
-| `library` | *Where the Books Open Up* | 108 | 2 | 8 | 16 | Library Book Roundup | `music/16-library.mp3` |
-| `practice` | *Piano Practice (Mom Is Listening)* | 100 | 4 | 16 | 49 | Music Room Mayhem | `music/17-music-room.mp3` |
-| `punkska` | *Paint the Town (Tie-Dye)!* | 184 | 2 | 8 | 16 | Arts & Crafts Chaos | `music/18-arts-and-crafts.mp3` |
-| `silly` | *Beep Boop Banana Boogie* | 150 | 2 | 8 | 8 | Tech Room Trouble | `music/19-tech-room.mp3` |
-| `science` | *Mad Science Slam* | 112 | 4 | 16 | 16 | Science Lab Scramble | `music/20-science-lab.mp3` |
-| `workout` | *Maximum Reps!!!* | 140 | 4 | 16 | 8 | Workout Room Workout | `music/21-workout-room.mp3` |
-| `romantic` | *Nocturne In The Basement* | 66 | 4 | 16 | 32 | The Spooky Basement | `music/22-basement.mp3` |
-| `baroque` | *Little Fugue in the Attic* | 84 | 4 | 16 | 20 | Attic of Antiques | `music/23-attic.mp3` |
-| `pets` | *Wag Wag Woof Woof!* | 168 | 4 | 16 | 16 | Pet Room Pandemonium | `music/24-pet-room.mp3` |
-| `racerock` | *Radical Race Rock* | 240 | 2 | 8 | 32 | Race Track Rumble | `music/25-race-track.mp3` |
-| `chiptune` | *Press Start to Clean!* | 150 | 4 | 16 | 16 | Game Room Glitch | `music/26-game-room.mp3` |
-| `money` | *Winter (8-Bit) – Vivaldi* | 116 | 4 | 16 | 16 | Money Room Millions | `music/27-money-room.mp3` |
-| `grandprix` | *Castle Cup Celebration* (original) | 144 | 2 | 8 | 16 | MarioKart Toy Room | `music/28-kart-toy-room.mp3` |
-| `blockgarden` | *Lanterns in the Block Garden* (original) | 72 | 2 | 8 | 8 | Minecraft Block Room | `music/29-minecraft-room.mp3` |
-| `obby` | *Checkpoint Champions* (original) | 132 | 4 | 16 | 16 | Roblox Avatar Roundup | `music/30-roblox-room.mp3` |
-| `cityradio` | *Two Cities, One Sunset* (original) | 108 | 4 | 16 | 16 | GTA V + VI Toy Room | `music/31-gta-room.mp3` |
-| `charging` | *Fully Charged* (original) | 128 | 4 | 16 | 16 | Charging Room Chaos | `music/32-charging-room.mp3` |
-| `halloween` | *Spooky Sugar Shuffle* (original) | 112 | 4 | 16 | 16 | Halloween Haunt | `music/33-halloween.mp3` |
-| `thanksgiving` | *Harvest Home Hop* (original) | 106 | 4 | 16 | 16 | Thanksgiving Feast | `music/34-thanksgiving.mp3` |
-| `christmas` | *Tinsel Time* (original) | 132 | 4 | 16 | 16 | Christmas Cheer | `music/35-christmas.mp3` |
-| `valentine` | *Hearts Together* (original) | 96 | 4 | 16 | 16 | Valentines Day Love | `music/36-valentine.mp3` |
-| `stpatrick` | *Lucky Clover Jig* (original) | 144 | 4 | 16 | 16 | St Patricks Day Luck | `music/37-stpatrick.mp3` |
-| `aprilfools` | *Whoops-a-Daisy* (original) | 138 | 4 | 16 | 16 | April Fools Day Pranks | `music/38-aprilfools.mp3` |
-| `easter` | *Springtime Hop* (original) | 120 | 4 | 16 | 16 | Easter Egg Hunt | `music/39-easter.mp3` |
-| `mothersday` | *Bouquets for Mom* (original) | 96 | 4 | 16 | 16 | Mother'S Day Blooms | `music/40-mothersday.mp3` |
-| `fathersday` | *Dads Day Groove* (original) | 124 | 4 | 16 | 16 | Father'S Day Surprise | `music/41-fathersday.mp3` |
-| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/42-whole-house-medley.mp3` |
-| `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/43-ending-jubilee.mp3` |
-| `sad` | *Grounded Until Forever* | 66 | 2 | 8 | 8 | "Parents are home!" fail screen (starts about 3 s after the honk and the lose jingle) | `music/44-fail-screen.mp3` |
+| `hiphop` | *Backyard Boom-Bap* | 90 | 4 | 16 | 4 | Backyard Bonanza | `music/10-backyard.mp3` |
+| `garden` | *Seashell Sunday* | 104 | 2 | 8 | 16 | Garden Glow-Up | `music/11-garden.mp3` |
+| `pool` | *Cannonball Calypso* | 128 | 4 | 16 | 16 | Pool Party Panic | `music/12-pool.mp3` |
+| `techno` | *Garage Funk-Techno* | 126 | 4 | 16 | 4 | Garage of Doom | `music/13-garage.mp3` |
+| `polka` | *Oompah Undies Polka* | 132 | 2 | 4 | 16 | Laundry Room Pee-Yew! | `music/14-laundry-room.mp3` |
+| `crooner` | *Bathroom Amore* | 228 | 2 | 6 | 16 | Bathroom Blunder | `music/15-bathroom.mp3` |
+| `muzak` | *Muzak For Meetings (Vol. 3)* | 104 | 2 | 8 | 8 | Home Office Havoc | `music/16-home-office.mp3` |
+| `library` | *Where the Books Open Up* | 108 | 2 | 8 | 16 | Library Book Roundup | `music/17-library.mp3` |
+| `practice` | *Piano Practice (Mom Is Listening)* | 100 | 4 | 16 | 49 | Music Room Mayhem | `music/18-music-room.mp3` |
+| `punkska` | *Paint the Town (Tie-Dye)!* | 184 | 2 | 8 | 16 | Arts & Crafts Chaos | `music/19-arts-and-crafts.mp3` |
+| `silly` | *Beep Boop Banana Boogie* | 150 | 2 | 8 | 8 | Tech Room Trouble | `music/20-tech-room.mp3` |
+| `science` | *Mad Science Slam* | 112 | 4 | 16 | 16 | Science Lab Scramble | `music/21-science-lab.mp3` |
+| `workout` | *Maximum Reps!!!* | 140 | 4 | 16 | 8 | Workout Room Workout | `music/22-workout-room.mp3` |
+| `romantic` | *Nocturne In The Basement* | 66 | 4 | 16 | 32 | The Spooky Basement | `music/23-basement.mp3` |
+| `baroque` | *Little Fugue in the Attic* | 84 | 4 | 16 | 20 | Attic of Antiques | `music/24-attic.mp3` |
+| `pets` | *Wag Wag Woof Woof!* | 168 | 4 | 16 | 16 | Pet Room Pandemonium | `music/25-pet-room.mp3` |
+| `racerock` | *Radical Race Rock* | 240 | 2 | 8 | 32 | Race Track Rumble | `music/26-race-track.mp3` |
+| `chiptune` | *Press Start to Clean!* | 150 | 4 | 16 | 16 | Game Room Glitch | `music/27-game-room.mp3` |
+| `money` | *Winter (8-Bit) – Vivaldi* | 116 | 4 | 16 | 16 | Money Room Millions | `music/28-money-room.mp3` |
+| `grandprix` | *Castle Cup Celebration* (original) | 144 | 2 | 8 | 16 | MarioKart Toy Room | `music/29-kart-toy-room.mp3` |
+| `blockgarden` | *Lanterns in the Block Garden* (original) | 72 | 2 | 8 | 8 | Minecraft Block Room | `music/30-minecraft-room.mp3` |
+| `obby` | *Checkpoint Champions* (original) | 132 | 4 | 16 | 16 | Roblox Avatar Roundup | `music/31-roblox-room.mp3` |
+| `cityradio` | *Two Cities, One Sunset* (original) | 108 | 4 | 16 | 16 | GTA V + VI Toy Room | `music/32-gta-room.mp3` |
+| `charging` | *Fully Charged* (original) | 128 | 4 | 16 | 16 | Charging Room Chaos | `music/33-charging-room.mp3` |
+| `halloween` | *Spooky Sugar Shuffle* (original) | 112 | 4 | 16 | 16 | Halloween Haunt | `music/34-halloween.mp3` |
+| `thanksgiving` | *Harvest Home Hop* (original) | 106 | 4 | 16 | 16 | Thanksgiving Feast | `music/35-thanksgiving.mp3` |
+| `christmas` | *Tinsel Time* (original) | 132 | 4 | 16 | 16 | Christmas Cheer | `music/36-christmas.mp3` |
+| `valentine` | *Hearts Together* (original) | 96 | 4 | 16 | 16 | Valentines Day Love | `music/37-valentine.mp3` |
+| `stpatrick` | *Lucky Clover Jig* (original) | 144 | 4 | 16 | 16 | St Patricks Day Luck | `music/38-stpatrick.mp3` |
+| `aprilfools` | *Whoops-a-Daisy* (original) | 138 | 4 | 16 | 16 | April Fools Day Pranks | `music/39-aprilfools.mp3` |
+| `easter` | *Springtime Hop* (original) | 120 | 4 | 16 | 16 | Easter Egg Hunt | `music/40-easter.mp3` |
+| `mothersday` | *Bouquets for Mom* (original) | 96 | 4 | 16 | 16 | Mother'S Day Blooms | `music/41-mothersday.mp3` |
+| `fathersday` | *Dads Day Groove* (original) | 124 | 4 | 16 | 16 | Father'S Day Surprise | `music/42-fathersday.mp3` |
+| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/43-whole-house-medley.mp3` |
+| `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/44-ending-jubilee.mp3` |
+| `sad` | *Grounded Until Forever* | 66 | 2 | 8 | 8 | "Parents are home!" fail screen (starts about 3 s after the honk and the lose jingle) | `music/45-fail-screen.mp3` |
 
 ## Volume Leveling
 
@@ -65,7 +66,7 @@ Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays a
 
 ## The Medley
 
-`MIX` includes all 41 level songs in room order, including Race Track Rumble’s `racerock` arrangement. The Whole House music is a simultaneous mashup: three level tracks play together at a shared 128 BPM, with a new group every four 4/4 bars (7.5 seconds). Fourteen groups cover every level song before the groups repeat; the final group wraps to the first song to keep three simultaneous layers.
+`MIX` includes all 42 level songs in room order, including Race Track Rumble’s `racerock` arrangement. The Whole House music is a simultaneous mashup: three level tracks play together at a shared 128 BPM, with a new group every four 4/4 bars (7.5 seconds). Fourteen groups cover every level song before the groups repeat. Each track appears once per group rotation.
 
 Each layer keeps its instrument arrangement and per-song gain trim, scaled to one third. Independent guitar/reverb buses prevent one layer’s instruments from taking another layer’s volume. Notes align to the shared beat; the original time signatures and rubato are adapted for the mashup. Individual rooms keep their original songs and tempos. Title, victory and fail-screen songs are not level tracks and remain separate. The last-15-seconds speedup still applies.
 
@@ -124,7 +125,7 @@ GTA V + VI Toy Room uses an original synth/funk radio groove with electric piano
 
 Charging Room Chaos uses Fully Charged, an original electronic dance track with plucked arpeggios, synth lead, pads and a steady beat. Its 1.0 volume trim measures about −35.9 dB RMS over the rendered loop.
 
-The seven holiday songs use 8.0 gain trims: measured in-game RMS is about −35.4 to −33.7 dB, with April Fools slightly louder for its prank accents. They are original synth arrangements. The 2D mashup now covers 41 songs in fourteen groups (105 seconds per group rotation).
+The seven holiday songs use 8.0 gain trims: measured in-game RMS is about −35.4 to −33.7 dB, with April Fools slightly louder for its prank accents. They are original synth arrangements. The 2D mashup now covers 42 songs in fourteen groups (105 seconds per group rotation).
 
 Mother’s Day and Father’s Day use original synth arrangements with 8.0 gain trims, measured at about −34.9 and −35.9 dB RMS respectively.
 

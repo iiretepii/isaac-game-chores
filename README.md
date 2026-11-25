@@ -37,7 +37,7 @@ On phones and tablets, the touch buttons support repeated Jump taps and holding 
 
 You ride a **bicycle** with spinning wheels and pedals, except on Race Track Rumble, where all three kids drive race cars, and MarioKart Toy Room, where you ride a Standard Kart, Isaac rides a Flame Rider with Hot Wheels and Annie rides a Sport Bike. Duck to squeeze under low spots, and use the double jump to clear wide gaps or reach high shelves.
 
-On the title screen you can also open **Level Select** to jump straight to any of the 42 levels. After you finish a chore, the "Chore Complete!" screen also has a **Level Select** button (or press **L**) so you can jump to any level from there.
+On the title screen you can also open **Level Select** to jump straight to any of the 43 levels. After you finish a chore, the "Chore Complete!" screen also has a **Level Select** button (or press **L**) so you can jump to any level from there.
 
 Browsers don't allow sound until you interact with the page, so the title screen asks you to **click or press any key for sound** first. After that, press Enter (or tap) to start.
 
@@ -70,11 +70,11 @@ Isaac, Annie, and your cousins **Daniel, Colin and Andrew** join you on every le
 
 Daniel wears green with a yellow cap; Colin wears purple with a teal cap. Daniel drives a green monster truck; Colin rides a turquoise-and-purple surfboard and greets you immediately on every level’s intro with “Surfs Up!”. Their rides appear in every room and menu lineup, using the same 176 px/s speed and helper abilities. All five appear on the title, level-intro, chore-complete and final victory screens.
 
-**Andrew** wears an orange shirt and pale-blue cap, with flapping white-and-blue wings, flying belly-down with his arms stretched forward. He flies over gaps and up to items, steers around solid obstacles, and helps collect at 33% time remaining or immediately throughout Whole House. He keeps his wings in every room, including racing rooms.
+**Andrew** wears an orange shirt and pale-blue cap, with flapping white-and-blue wings, flying belly-down with his original face, outfit and wings. He flies over gaps and up to items, steers around solid obstacles, and helps collect at 33% time remaining or immediately in his Sky Room and throughout Whole House. He keeps his wings in every room, including racing rooms.
 
 When they show up, you greet them with a goofy speech bubble picked at random, like "HEY PAL!", "YOOO!", "LET HIM COOK!", "NO CAP, HI!", "BRO-TATO CHIP!" or "Sup Bro!".
 
-**How they help:** In **The Whole House!!**, all five helpers collect items from the start and keep helping for the entire level, prioritizing chores over detours to hunt critters. **Isaac also collects immediately in Isaac’s Room, Annie collects immediately in Annie’s Room, Daniel in his Monster Jam room, and Colin in his Surf Shack**, prioritizing their own chores. In other rooms, they ride behind you and sprint ahead to collect items when the clock gets low:
+**How they help:** In **The Whole House!!**, all five helpers collect items from the start and keep helping for the entire level, prioritizing chores over detours to hunt critters. **Isaac also collects immediately in Isaac’s Room, Annie collects immediately in Annie’s Room, Daniel in his Monster Jam room, and Colin in his Surf Shack, and Andrew in his Sky Room**, prioritizing their own chores. In other rooms, they ride behind you and sprint ahead to collect items when the clock gets low:
 
 - **Annie, Colin and Andrew** start grabbing items when there's **33% of the time** left ("Turbo mode! I'll grab some!").
 - **Isaac and Daniel** join in at **20%** ("Turbo mode! I'll grab some!").
@@ -98,7 +98,7 @@ Their vehicles follow the terrain, with these helper abilities:
 
 ## The Levels
 
-Daniel’s Monster Jam Room is level 3, and Colin’s Surf Shack is level 4, Mom’s Room is level 5, and Uncle Pete’s Room is level 6. Each room keeps its existing item count, timer and difficulty when reordered. Isaac’s and Annie’s rooms have small gaps; the more challenging rooms need well-timed double jumps over wide pits, hops across narrow stepping stones, bigger climbs, and rides on moving platforms over pits too wide to jump. Most rooms are 170–216 tiles long, Money Room is 260, the MarioKart toy room is 270, the Minecraft room is 280, the Roblox room is 290, the GTA toy room is 300, the charging room is 310, the nine holiday rooms are 320–400, Daniel’s room is 410, Colin’s room is 420, Mom’s room is 430, Uncle Pete’s is 440, and the finale is 250. Every level has its own room, chore and music style.
+Daniel’s Monster Jam Room is level 3, and Colin’s Surf Shack is level 4, Andrew’s Sky Room is level 5, Mom’s Room is level 6, and Uncle Pete’s Room is level 7. Each room keeps its existing item count, timer and difficulty when reordered. Isaac’s and Annie’s rooms have small gaps; the more challenging rooms need well-timed double jumps over wide pits, hops across narrow stepping stones, bigger climbs, and rides on moving platforms over pits too wide to jump. Most rooms are 170–216 tiles long, Money Room is 260, the MarioKart toy room is 270, the Minecraft room is 280, the Roblox room is 290, the GTA toy room is 300, the charging room is 310, the nine holiday rooms are 320–400, Daniel’s room is 410, Colin’s room is 420, Mom’s room is 430, Uncle Pete’s is 440, and the finale is 250. Every level has its own room, chore and music style.
 
 | # | Level | Chore | Items | Time | Critters | Music |
 |---|---|---|---|---|---|---|
@@ -106,44 +106,45 @@ Daniel’s Monster Jam Room is level 3, and Colin’s Surf Shack is level 4, Mom
 | 2 | **Annie's Room** | Dolls → castle doll house | 11 | 98s | A tabby cat, a husky and a Pomeranian | Fairy-tale princess waltz |
 | 3 | **Daniel'S Monster Jam Room** | Park the toy monster trucks in the arena garage | 12 | 205s | roomba, chomper, rat | Stadium Stomp |
 | 4 | **Colin'S Surf Shack** | Put the toy surfboards back on the surfboard rack | 13 | 208s | duck, squirrel, bubble | Surfs Up Shuffle |
-| 5 | **Mom'S Room** | Put the jewelry back in Mom's jewelry box | 49 | 211s | hamster, cat, bubble | Jewel Box Waltz |
-| 6 | **Uncle Pete'S Room** | Put the Chicago Bears gear in Uncle Pete's locker | 50 | 214s | roomba, dog, turkey | Bears Cleanup Drive |
-| 7 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 12 | 101s | Dust bunnies, cockroaches | Swing jazz |
-| 8 | **Living Room Lego-Land** | Pillows in lots of colors → cream couch | 13 | 104s | Robot vacuums, cats | Bubblegum pop |
-| 9 | **Backyard Bonanza** | Leaves → leaf bag | 14 | 107s | Dogs, bees | Boom-bap hip hop |
-| 10 | **Garden Glow-Up** | Weeds (pulled-up dandelion clumps) → compost bin | 15 | 110s | Walking weeds | Beatles-style sing-along |
-| 11 | **Pool Party Panic** | Soggy towels → towel basket | 16 | 113s | Ducks, geese, swans, squirrels | Silly splashy calypso |
-| 12 | **Garage of Doom** | Smelly trash → dumpster | 17 | 116s | Rats, robot vacuums, bees | Funky techno |
-| 13 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 18 | 119s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
-| 14 | **Bathroom Blunder** | Runaway poops → toilet | 19 | 122s | Soap bubbles, cockroaches, spiders | Italian crooner waltz |
-| 15 | **Home Office Havoc** | Old work papers → recycle bin | 20 | 125s | Ants, spiders, hamsters | Terrible elevator music |
-| 16 | **Library Book Roundup** | Books → library shelf | 21 | 128s | Dust bunnies, spiders, hamsters | Inspirational strings and harp |
-| 17 | **Music Room Mayhem** | Old piano scores → bookshelf | 22 | 131s | Cats, spiders, cockroaches | Kid practicing piano |
-| 18 | **Arts & Crafts Chaos** | Paint buckets → shelves | 23 | 134s | Ants, cats, soap bubbles | Ska-punk for rebels and hippies |
-| 19 | **Tech Room Trouble** | Robot parts → giant robot | 24 | 137s | Little lightning bolts | The silliest song ever |
-| 20 | **Science Lab Scramble** | Test tubes → lab rack | 25 | 140s | Slime, soap bubbles, lightning bolts | Zany 90s science-TV funk |
-| 21 | **Workout Room Workout** | Weights → weight rack | 26 | 143s | Rats, cats, dogs, dust mites | High-octane workout anthem |
-| 22 | **The Spooky Basement** | Wet shirts → dryer | 27 | 146s | Spiders, rats, dust bunnies | Romantic movie-theme piano |
-| 23 | **Attic of Antiques** | Holiday ornaments → old trunk | 28 | 149s | Bats, spiders, rats | Bach-style pipe organ |
-| 24 | **Pet Room Pandemonium** | Squeaky pet toys (bones, balls, rubber mice) → pet toy basket | 29 | 152s | Hamsters, a tabby cat, a Pomeranian | Silly, happy chiptune with barking, meowing pets |
-| 25 | **Race Track Rumble** | Racing tires → tire shelf (you, Isaac and Annie drive race cars here) | 30 | 154s | Robot vacuums, squirrels, geese | Isaac's Room rock song, very fast |
-| 26 | **Game Room Glitch** | Game controllers (classic pads, rounded pads, arcade joysticks, twin-stick pads) → game shelf | 31 | 157s | Pixel space invaders, chompers, arcade ghosts | NES-style chiptune |
-| 27 | **Money Room Millions** | Coins → coin chest | 32 | 160s | Hamsters, robot vacuums, slime | Vivaldi's "Winter" as 8-bit video game music |
-| 28 | **MarioKart Toy Room** | Toy karts and bikes → display garage (you: Standard Kart; Isaac: Flame Rider with Hot Wheels; Annie: Sport Bike) | 33 | 163s | Robot vacuums, squirrels, arcade ghosts | Original orchestral racing fanfare |
-| 29 | **Minecraft Block Room** | Toy diamond blocks → storage chest | 34 | 166s | Blocky zombies, skeletons, spiders, hissing bush-blocks | Original gentle piano and ambient music |
-| 30 | **Roblox Avatar Roundup** | Toy Roblox avatars → display shelf | 35 | 169s | Robot vacuums, pixel space invaders, arcade ghosts | Original upbeat electronic obby-style music |
-| 31 | **GTA V + VI Toy Room** | Toy sports cars and bikes → city garage | 36 | 172s | Robot vacuums, dogs, rats | Original sunset-city synth/funk radio groove |
-| 32 | **Charging Room Chaos** | Charging cables → cable organizer | 37 | 175s | Lightning bolts, robot vacuums, ants | Original electronic dance music |
-| 33 | **Halloween Haunt** | Put the carved pumpkins in the pumpkin bucket | 38 | 178s | bat, spider, ghosty | Original Spooky Sugar Shuffle |
-| 34 | **Thanksgiving Feast** | Return the pie slices to the feast table | 39 | 181s | turkey | Original Harvest Home Hop |
-| 35 | **Christmas Cheer** | Put the presents under the Christmas tree | 40 | 184s | roomba, cat, hamster | Original Tinsel Time |
-| 36 | **Valentines Day Love** | Put the valentines in the heart mailbox | 41 | 187s | bubble, hamster, cat | Original Hearts Together |
-| 37 | **St Patricks Day Luck** | Gather the shamrocks into the lucky pot | 42 | 190s | squirrel, hamster, weed | Original Lucky Clover Jig |
-| 38 | **April Fools Day Pranks** | Put the prank toys back in the joke box | 43 | 193s | chomper, roomba, bubble | Original Whoops-a-Daisy |
-| 39 | **Easter Egg Hunt** | Return the painted eggs to the Easter basket | 44 | 196s | hamster, squirrel, bee | Original Springtime Hop |
-| 40 | **Mother'S Day Blooms** | Put the flower bouquets in Mom's vase | 45 | 199s | bee, hamster, squirrel | Bouquets for Mom |
-| 41 | **Father'S Day Surprise** | Put the colorful ties on Dad's gift rack | 46 | 202s | roomba, dog, hamster | Dads Day Groove |
-| 42 | **The Whole House!!** | Everything → dive on the living room’s cream couch with matching colorful pillows | 51 | 217s | All of them | Three-track mashup of all level music |
+| 5 | **Andrew's Sky Room** | Flying toys → toy hangar | 14 | 107s | Bees, bats, bubbles | Wings Above the House |
+| 6 | **Mom'S Room** | Put the jewelry back in Mom's jewelry box | 49 | 211s | hamster, cat, bubble | Jewel Box Waltz |
+| 7 | **Uncle Pete'S Room** | Put the Chicago Bears gear in Uncle Pete's locker | 50 | 214s | roomba, dog, turkey | Bears Cleanup Drive |
+| 8 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 12 | 101s | Dust bunnies, cockroaches | Swing jazz |
+| 9 | **Living Room Lego-Land** | Pillows in lots of colors → cream couch | 13 | 104s | Robot vacuums, cats | Bubblegum pop |
+| 10 | **Backyard Bonanza** | Leaves → leaf bag | 14 | 107s | Dogs, bees | Boom-bap hip hop |
+| 11 | **Garden Glow-Up** | Weeds (pulled-up dandelion clumps) → compost bin | 15 | 110s | Walking weeds | Beatles-style sing-along |
+| 12 | **Pool Party Panic** | Soggy towels → towel basket | 16 | 113s | Ducks, geese, swans, squirrels | Silly splashy calypso |
+| 13 | **Garage of Doom** | Smelly trash → dumpster | 17 | 116s | Rats, robot vacuums, bees | Funky techno |
+| 14 | **Laundry Room Pee-Yew!** | Stinky underwear → washer | 18 | 119s | Soap bubbles, dust bunnies, cockroaches | German oom-pah polka |
+| 15 | **Bathroom Blunder** | Runaway poops → toilet | 19 | 122s | Soap bubbles, cockroaches, spiders | Italian crooner waltz |
+| 16 | **Home Office Havoc** | Old work papers → recycle bin | 20 | 125s | Ants, spiders, hamsters | Terrible elevator music |
+| 17 | **Library Book Roundup** | Books → library shelf | 21 | 128s | Dust bunnies, spiders, hamsters | Inspirational strings and harp |
+| 18 | **Music Room Mayhem** | Old piano scores → bookshelf | 22 | 131s | Cats, spiders, cockroaches | Kid practicing piano |
+| 19 | **Arts & Crafts Chaos** | Paint buckets → shelves | 23 | 134s | Ants, cats, soap bubbles | Ska-punk for rebels and hippies |
+| 20 | **Tech Room Trouble** | Robot parts → giant robot | 24 | 137s | Little lightning bolts | The silliest song ever |
+| 21 | **Science Lab Scramble** | Test tubes → lab rack | 25 | 140s | Slime, soap bubbles, lightning bolts | Zany 90s science-TV funk |
+| 22 | **Workout Room Workout** | Weights → weight rack | 26 | 143s | Rats, cats, dogs, dust mites | High-octane workout anthem |
+| 23 | **The Spooky Basement** | Wet shirts → dryer | 27 | 146s | Spiders, rats, dust bunnies | Romantic movie-theme piano |
+| 24 | **Attic of Antiques** | Holiday ornaments → old trunk | 28 | 149s | Bats, spiders, rats | Bach-style pipe organ |
+| 25 | **Pet Room Pandemonium** | Squeaky pet toys (bones, balls, rubber mice) → pet toy basket | 29 | 152s | Hamsters, a tabby cat, a Pomeranian | Silly, happy chiptune with barking, meowing pets |
+| 26 | **Race Track Rumble** | Racing tires → tire shelf (you, Isaac and Annie drive race cars here) | 30 | 154s | Robot vacuums, squirrels, geese | Isaac's Room rock song, very fast |
+| 27 | **Game Room Glitch** | Game controllers (classic pads, rounded pads, arcade joysticks, twin-stick pads) → game shelf | 31 | 157s | Pixel space invaders, chompers, arcade ghosts | NES-style chiptune |
+| 28 | **Money Room Millions** | Coins → coin chest | 32 | 160s | Hamsters, robot vacuums, slime | Vivaldi's "Winter" as 8-bit video game music |
+| 29 | **MarioKart Toy Room** | Toy karts and bikes → display garage (you: Standard Kart; Isaac: Flame Rider with Hot Wheels; Annie: Sport Bike) | 33 | 163s | Robot vacuums, squirrels, arcade ghosts | Original orchestral racing fanfare |
+| 30 | **Minecraft Block Room** | Toy diamond blocks → storage chest | 34 | 166s | Blocky zombies, skeletons, spiders, hissing bush-blocks | Original gentle piano and ambient music |
+| 31 | **Roblox Avatar Roundup** | Toy Roblox avatars → display shelf | 35 | 169s | Robot vacuums, pixel space invaders, arcade ghosts | Original upbeat electronic obby-style music |
+| 32 | **GTA V + VI Toy Room** | Toy sports cars and bikes → city garage | 36 | 172s | Robot vacuums, dogs, rats | Original sunset-city synth/funk radio groove |
+| 33 | **Charging Room Chaos** | Charging cables → cable organizer | 37 | 175s | Lightning bolts, robot vacuums, ants | Original electronic dance music |
+| 34 | **Halloween Haunt** | Put the carved pumpkins in the pumpkin bucket | 38 | 178s | bat, spider, ghosty | Original Spooky Sugar Shuffle |
+| 35 | **Thanksgiving Feast** | Return the pie slices to the feast table | 39 | 181s | turkey | Original Harvest Home Hop |
+| 36 | **Christmas Cheer** | Put the presents under the Christmas tree | 40 | 184s | roomba, cat, hamster | Original Tinsel Time |
+| 37 | **Valentines Day Love** | Put the valentines in the heart mailbox | 41 | 187s | bubble, hamster, cat | Original Hearts Together |
+| 38 | **St Patricks Day Luck** | Gather the shamrocks into the lucky pot | 42 | 190s | squirrel, hamster, weed | Original Lucky Clover Jig |
+| 39 | **April Fools Day Pranks** | Put the prank toys back in the joke box | 43 | 193s | chomper, roomba, bubble | Original Whoops-a-Daisy |
+| 40 | **Easter Egg Hunt** | Return the painted eggs to the Easter basket | 44 | 196s | hamster, squirrel, bee | Original Springtime Hop |
+| 41 | **Mother'S Day Blooms** | Put the flower bouquets in Mom's vase | 45 | 199s | bee, hamster, squirrel | Bouquets for Mom |
+| 42 | **Father'S Day Surprise** | Put the colorful ties on Dad's gift rack | 46 | 202s | roomba, dog, hamster | Dads Day Groove |
+| 43 | **The Whole House!!** | Everything → dive on the living room’s cream couch with matching colorful pillows | 52 | 220s | All of them | Three-track mashup of all level music |
 
 The basement is dark, with a pool of light that follows you around. At the pool, the floating platforms are striped lounge chairs and the gaps are the pool itself. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
 
@@ -164,46 +165,47 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Annie's Room | [*Once Upon a Tidy Room*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/02-annies-room.mp3) | Harp, strings, flute and celesta in a princess waltz |
 | Daniel'S Monster Jam Room | [*Stadium Stomp*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/03-monsterjam.mp3) | Original monster-truck stadium rock |
 | Colin'S Surf Shack | [*Surfs Up Shuffle*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/04-surfrock.mp3) | Original bright surf-rock-inspired synth groove |
-| Mom's Room | [*Jewel Box Waltz*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/05-momwaltz.mp3) | Original gentle jewelry-box waltz |
-| Uncle Pete's Room | [*Bears Cleanup Drive*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/06-bearsgroove.mp3) | Original Bears-inspired stadium synth groove |
-| Kitchen | [*Cool Kitchen Jazz*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/07-kitchen.mp3) | Swing beat, walking bass, ride cymbal, electric piano, saxophone |
-| Living Room | [*Poptastic Pop*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/08-living-room.mp3) | Four-on-the-floor beat, claps, synth bass, catchy synth hook |
-| Backyard | [*Backyard Boom-Bap*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/09-backyard.mp3) | Deep kicks, crunchy snare, lo-fi keys, record scratches, vinyl crackle |
-| Garden | [*Seashell Sunday*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/10-garden.mp3) | A cheerful late-60s, Beatles-style sing-along: jangly 12-string guitar strums, a walking bass, honky-tonk piano, simple backbeat drums, a whistled lead and underwater bubble gurgles |
-| Pool | [*Cannonball Calypso*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/11-pool.mp3) | Super-silly splashy pool party: steel drums, bubbly boing bass, ukulele strums, congas, shaker, bubble pops, a rubber-duck squeak, slide whistle and a big CANNONBALL splash |
-| Garage | [*Garage Funk-Techno*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/12-garage.mp3) | Dance beat, squelchy acid bass, cowbell, chord stabs |
-| Laundry Room | [*Oompah Undies Polka*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/13-laundry-room.mp3) | Tuba, accordion, two trumpets, wah-wah trombone, slide whistle |
-| Bathroom | [*Bathroom Amore*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/14-bathroom.mp3) | Bouncy, cheesy crooner waltz: crooning "ohhh" voice, mandolin, accordion oom-pah-pah, tambourine, castanets, a corny key change and a "ba-da-BING!" |
-| Home Office | [*Muzak for Meetings (Vol. 3)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/15-home-office.mp3) | Wobbly pan flute, sour notes, late vibraphone, elevator ding |
-| Library | [*Where the Books Open Up*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/16-library.mp3) | An inspirational "discovering a new world" theme: running harp arpeggios, a soaring violin melody, warm cello and viola, celesta sparkles and a soft heartbeat drum that lifts the second half |
-| Music Room | [*Piano Practice (Mom Is Listening)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/17-music-room.mp3) | A kid practicing piano: scales with a wrong note, Mozart's *Rondo alla Turca* (a fumbled false start, then the opening with a bouncy oom-pah left hand), Chopin's dreamy *Nocturne Op. 9 No. 1* with a sparkling run, then *In the Hall of the Mountain King* (speeding up), swung jazz licks, Bach's C-major Prelude, Chopsticks and Ode to Joy, with page-turn pauses |
-| Arts & Crafts | [*Paint the Town (Tie-Dye)!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/18-arts-and-crafts.mp3) | Ska-punk for rebels and hippies: bouncy off-beat guitar skanks, a bubbling organ and a trumpet-and-sax horn section, then a full-on punk chorus with distorted power chords and pounding drums, a jangling tambourine throughout and a big stop at the end |
-| Tech Room | [*Beep Boop Banana Boogie*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/19-tech-room.mp3) | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |
-| Science Lab | [*Mad Science Slam*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/20-science-lab.mp3) | Zany 90s science-TV-style funk: punchy drum machine, slap bass, synth-brass stabs, a call-and-response hook, "HEY!" shouts, bubbling beakers, zaps and laser sweeps |
-| Workout Room | [*Maximum Reps!!!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/21-workout-room.mp3) | Pounding four-on-the-floor beat, rolling bass, supersaw synth riff, coach's whistle, "HEY!" shouts and a snare-roll build-up into a big drop |
-| Basement | [*Nocturne in the Basement*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/22-basement.mp3) | Romantic film-score piano in the style of classic Italian movie themes: a simple, singing melody with long notes and big expressive leaps over flowing arpeggios, warm strings, and on the repeat the strings take the melody while the piano floats above |
-| Attic | [*Little Fugue in the Attic*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/23-attic.mp3) | A four-voice pipe-organ fugue in D minor (about a minute): entries in alto, soprano, tenor and bass, three episodes, a middle entry, a low bass entry, a trill over a dominant pedal and a Picardy-third ending |
-| Pet Room | [*Wag Wag Woof Woof!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/24-pet-room.mp3) | A super-silly, bouncy video-game song: a pulse-wave lead with a kazoo joining in, boing bass, oom-pah chord stabs and 8-bit drums, while pixel dogs woof, cats meow, birds tweet, a squeaky toy squeaks and a hamster wheel spins |
-| Race Track | [*Radical Race Rock*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/25-race-track.mp3) | Isaac's Room rock song at racing speed (240 BPM instead of 144), stretched to about a minute: the riff, a key change up, an engine-revving breakdown and a final lap a fourth higher |
-| Game Room | [*Press Start to Clean!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/26-game-room.mp3) | The most video-game video-game music possible: NES-style pulse-wave lead with vibrato and echo, lightning-fast chord arpeggios, a bouncing triangle bass, noise drums, coin blings, a power-up sweep and a 1-UP jingle |
-| Money Room | [*Winter (8-Bit) – Vivaldi*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/27-money-room.mp3) | Antonio Vivaldi's "Winter" from *The Four Seasons* (1725, public domain), first movement, arranged from memory as NES-style video game music. It opens on the famous solo-violin arpeggios, then the repeated-note storm theme, the solo again, the shivering stacked chords with an icy trill building into a storm burst, and a plunging scale, played on pulse waves with a triangle bass and 8-bit drums |
-| MarioKart Toy Room | [*Castle Cup Celebration*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/28-kart-toy-room.mp3) | An original cheerful grand-prix fanfare with horns, dancing strings, harp, celesta and snare; not a recording or recreation of Royal Raceway |
-| Minecraft Block Room | [*Lanterns in the Block Garden*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/29-minecraft-room.mp3) | Original spacious piano, soft ambient tones and little harp lights, with no drums; not a Minecraft soundtrack recording |
-| Roblox Avatar Roundup | [*Checkpoint Champions*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/30-roblox-room.mp3) | Original upbeat obby/tycoon-style electronic music with bright plucks, synth chords, bass and dance drums; not a recording from Roblox |
-| GTA V + VI Toy Room | [*Two Cities, One Sunset*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/31-gta-room.mp3) | Original sunset-driving synth/funk with electric piano, synth bass and saxophone; not a GTA soundtrack recording |
-| Charging Room | [*Fully Charged*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/32-charging-room.mp3) | Original electronic dance track with bright arpeggios, synth chords, bass and a steady beat |
-| Halloween Haunt | [*Spooky Sugar Shuffle*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/33-halloween.mp3) | Original holiday tune |
-| Thanksgiving Feast | [*Harvest Home Hop*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/34-thanksgiving.mp3) | Original holiday tune |
-| Christmas Cheer | [*Tinsel Time*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/35-christmas.mp3) | Original holiday tune |
-| Valentines Day Love | [*Hearts Together*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/36-valentine.mp3) | Original holiday tune |
-| St Patricks Day Luck | [*Lucky Clover Jig*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/37-stpatrick.mp3) | Original holiday tune |
-| April Fools Day Pranks | [*Whoops-a-Daisy*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/38-aprilfools.mp3) | Original holiday tune |
-| Easter Egg Hunt | [*Springtime Hop*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/39-easter.mp3) | Original holiday tune |
-| Mother'S Day Blooms | [*Bouquets for Mom*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/40-mothersday.mp3) | Original gentle flower-day melody |
-| Father'S Day Surprise | [*Dads Day Groove*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/41-fathersday.mp3) | Original upbeat family groove |
-| Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/42-whole-house-medley.mp3) | Layers three level tracks at once, rotating groups every four bars |
-| Ending | [*Jubilee for a Job Well Done*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/43-ending-jubilee.mp3) | An upbeat, triumphant celebration of a job well done: big horn fanfare calls with tuba and bells, a marching jubilee tune on strings and horns with handclaps, tambourine and bell runs, a crowd cheer as the key lifts, and a huge final chord with one more cheer |
-| Fail screen | [*Grounded Until Forever*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/44-fail-screen.mp3) | A slow, sad piano lament in A minor that plays when the parents beat you home: a lonely melody that keeps sighing downward, soft strings and a few celesta "teardrops" |
+| Andrew's Sky Room | [*Wings Above the House*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/05-skyhop.mp3) | Original airy synth melody |
+| Mom's Room | [*Jewel Box Waltz*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/06-momwaltz.mp3) | Original gentle jewelry-box waltz |
+| Uncle Pete's Room | [*Bears Cleanup Drive*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/07-bearsgroove.mp3) | Original Bears-inspired stadium synth groove |
+| Kitchen | [*Cool Kitchen Jazz*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/08-kitchen.mp3) | Swing beat, walking bass, ride cymbal, electric piano, saxophone |
+| Living Room | [*Poptastic Pop*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/09-living-room.mp3) | Four-on-the-floor beat, claps, synth bass, catchy synth hook |
+| Backyard | [*Backyard Boom-Bap*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/10-backyard.mp3) | Deep kicks, crunchy snare, lo-fi keys, record scratches, vinyl crackle |
+| Garden | [*Seashell Sunday*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/11-garden.mp3) | A cheerful late-60s, Beatles-style sing-along: jangly 12-string guitar strums, a walking bass, honky-tonk piano, simple backbeat drums, a whistled lead and underwater bubble gurgles |
+| Pool | [*Cannonball Calypso*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/12-pool.mp3) | Super-silly splashy pool party: steel drums, bubbly boing bass, ukulele strums, congas, shaker, bubble pops, a rubber-duck squeak, slide whistle and a big CANNONBALL splash |
+| Garage | [*Garage Funk-Techno*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/13-garage.mp3) | Dance beat, squelchy acid bass, cowbell, chord stabs |
+| Laundry Room | [*Oompah Undies Polka*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/14-laundry-room.mp3) | Tuba, accordion, two trumpets, wah-wah trombone, slide whistle |
+| Bathroom | [*Bathroom Amore*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/15-bathroom.mp3) | Bouncy, cheesy crooner waltz: crooning "ohhh" voice, mandolin, accordion oom-pah-pah, tambourine, castanets, a corny key change and a "ba-da-BING!" |
+| Home Office | [*Muzak for Meetings (Vol. 3)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/16-home-office.mp3) | Wobbly pan flute, sour notes, late vibraphone, elevator ding |
+| Library | [*Where the Books Open Up*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/17-library.mp3) | An inspirational "discovering a new world" theme: running harp arpeggios, a soaring violin melody, warm cello and viola, celesta sparkles and a soft heartbeat drum that lifts the second half |
+| Music Room | [*Piano Practice (Mom Is Listening)*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/18-music-room.mp3) | A kid practicing piano: scales with a wrong note, Mozart's *Rondo alla Turca* (a fumbled false start, then the opening with a bouncy oom-pah left hand), Chopin's dreamy *Nocturne Op. 9 No. 1* with a sparkling run, then *In the Hall of the Mountain King* (speeding up), swung jazz licks, Bach's C-major Prelude, Chopsticks and Ode to Joy, with page-turn pauses |
+| Arts & Crafts | [*Paint the Town (Tie-Dye)!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/19-arts-and-crafts.mp3) | Ska-punk for rebels and hippies: bouncy off-beat guitar skanks, a bubbling organ and a trumpet-and-sax horn section, then a full-on punk chorus with distorted power chords and pounding drums, a jangling tambourine throughout and a big stop at the end |
+| Tech Room | [*Beep Boop Banana Boogie*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/20-tech-room.mp3) | Kazoo, boingy bass, chipmunk robot beeps, rubber-duck squeaks, clown horns, cuckoo clock, slide whistles, sad trombone and the occasional burp |
+| Science Lab | [*Mad Science Slam*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/21-science-lab.mp3) | Zany 90s science-TV-style funk: punchy drum machine, slap bass, synth-brass stabs, a call-and-response hook, "HEY!" shouts, bubbling beakers, zaps and laser sweeps |
+| Workout Room | [*Maximum Reps!!!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/22-workout-room.mp3) | Pounding four-on-the-floor beat, rolling bass, supersaw synth riff, coach's whistle, "HEY!" shouts and a snare-roll build-up into a big drop |
+| Basement | [*Nocturne in the Basement*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/23-basement.mp3) | Romantic film-score piano in the style of classic Italian movie themes: a simple, singing melody with long notes and big expressive leaps over flowing arpeggios, warm strings, and on the repeat the strings take the melody while the piano floats above |
+| Attic | [*Little Fugue in the Attic*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/24-attic.mp3) | A four-voice pipe-organ fugue in D minor (about a minute): entries in alto, soprano, tenor and bass, three episodes, a middle entry, a low bass entry, a trill over a dominant pedal and a Picardy-third ending |
+| Pet Room | [*Wag Wag Woof Woof!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/25-pet-room.mp3) | A super-silly, bouncy video-game song: a pulse-wave lead with a kazoo joining in, boing bass, oom-pah chord stabs and 8-bit drums, while pixel dogs woof, cats meow, birds tweet, a squeaky toy squeaks and a hamster wheel spins |
+| Race Track | [*Radical Race Rock*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/26-race-track.mp3) | Isaac's Room rock song at racing speed (240 BPM instead of 144), stretched to about a minute: the riff, a key change up, an engine-revving breakdown and a final lap a fourth higher |
+| Game Room | [*Press Start to Clean!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/27-game-room.mp3) | The most video-game video-game music possible: NES-style pulse-wave lead with vibrato and echo, lightning-fast chord arpeggios, a bouncing triangle bass, noise drums, coin blings, a power-up sweep and a 1-UP jingle |
+| Money Room | [*Winter (8-Bit) – Vivaldi*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/28-money-room.mp3) | Antonio Vivaldi's "Winter" from *The Four Seasons* (1725, public domain), first movement, arranged from memory as NES-style video game music. It opens on the famous solo-violin arpeggios, then the repeated-note storm theme, the solo again, the shivering stacked chords with an icy trill building into a storm burst, and a plunging scale, played on pulse waves with a triangle bass and 8-bit drums |
+| MarioKart Toy Room | [*Castle Cup Celebration*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/29-kart-toy-room.mp3) | An original cheerful grand-prix fanfare with horns, dancing strings, harp, celesta and snare; not a recording or recreation of Royal Raceway |
+| Minecraft Block Room | [*Lanterns in the Block Garden*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/30-minecraft-room.mp3) | Original spacious piano, soft ambient tones and little harp lights, with no drums; not a Minecraft soundtrack recording |
+| Roblox Avatar Roundup | [*Checkpoint Champions*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/31-roblox-room.mp3) | Original upbeat obby/tycoon-style electronic music with bright plucks, synth chords, bass and dance drums; not a recording from Roblox |
+| GTA V + VI Toy Room | [*Two Cities, One Sunset*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/32-gta-room.mp3) | Original sunset-driving synth/funk with electric piano, synth bass and saxophone; not a GTA soundtrack recording |
+| Charging Room | [*Fully Charged*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/33-charging-room.mp3) | Original electronic dance track with bright arpeggios, synth chords, bass and a steady beat |
+| Halloween Haunt | [*Spooky Sugar Shuffle*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/34-halloween.mp3) | Original holiday tune |
+| Thanksgiving Feast | [*Harvest Home Hop*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/35-thanksgiving.mp3) | Original holiday tune |
+| Christmas Cheer | [*Tinsel Time*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/36-christmas.mp3) | Original holiday tune |
+| Valentines Day Love | [*Hearts Together*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/37-valentine.mp3) | Original holiday tune |
+| St Patricks Day Luck | [*Lucky Clover Jig*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/38-stpatrick.mp3) | Original holiday tune |
+| April Fools Day Pranks | [*Whoops-a-Daisy*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/39-aprilfools.mp3) | Original holiday tune |
+| Easter Egg Hunt | [*Springtime Hop*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/40-easter.mp3) | Original holiday tune |
+| Mother'S Day Blooms | [*Bouquets for Mom*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/41-mothersday.mp3) | Original gentle flower-day melody |
+| Father'S Day Surprise | [*Dads Day Groove*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/42-fathersday.mp3) | Original upbeat family groove |
+| Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/43-whole-house-medley.mp3) | Layers three level tracks at once, rotating groups every four bars |
+| Ending | [*Jubilee for a Job Well Done*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/44-ending-jubilee.mp3) | An upbeat, triumphant celebration of a job well done: big horn fanfare calls with tuba and bells, a marching jubilee tune on strings and horns with handclaps, tambourine and bell runs, a crowd cheer as the key lifts, and a huge final chord with one more cheer |
+| Fail screen | [*Grounded Until Forever*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/45-fail-screen.mp3) | A slow, sad piano lament in A minor that plays when the parents beat you home: a lonely melody that keeps sighing downward, soft strings and a few celesta "teardrops" |
 
 Sound effects include a slide whistle when you jump, a "boing" when you stomp, a car horn as the parents get close, a kazoo fanfare when you finish a level and a sad trombone when you get caught.
 
