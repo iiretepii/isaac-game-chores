@@ -55,7 +55,7 @@ Collision is tile-based: `#` is solid, `=` is a one-way platform (land from abov
 
 ## Sibling AI
 
-`updateSibs(dt)` sets `fullTime` when `lvl.L.theme === 'house'`. Both siblings then stay in collection mode from the first update, without detouring to hunt critters. Other rooms use Annie's 33% and Isaac's 20% timer thresholds and preserve nearby-critter hunting. `chooseSiblingTarget` reserves separate items, scores distance and nearby critters, and temporarily skips stalled targets. Contact zaps, stomps, ducking, double jumps and brief damage recovery still apply in the finale. Only the player can complete delivery.
+`updateSibs(dt)` sets per-sibling `fullTime` in the Whole House, for Isaac in `bedroom`, and for Annie in `annie`. Eligible siblings stay in collection mode from the first update, without detouring to hunt critters. Otherwise, siblings use Annie's 33% and Isaac's 20% timer thresholds and preserve nearby-critter hunting. `chooseSiblingTarget` reserves separate items, scores distance and nearby critters, and temporarily skips stalled targets. Contact zaps, stomps, ducking, double jumps and brief damage recovery still apply in the finale. Only the player can complete delivery.
 
 ## Rendering
 

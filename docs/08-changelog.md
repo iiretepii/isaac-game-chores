@@ -245,3 +245,8 @@ Grouped by milestone. See `git log` for every commit.
 
 - The 2D Whole House ending couch now reuses the living room’s cream sofa artwork, with red, yellow and blue pillows drawn by the same colorful-pillow sprite used for living-room pickups.
 - Existing Whole House pillow pickups, item mix, couch hitbox and completion behavior are retained. The separate 3D fork is unchanged.
+
+## 2026-11-25 — Clean your own room
+
+- Isaac now collects from the start and throughout Isaac’s Room; Annie does the same in Annie’s Room. Bedroom owners prioritize chores over critter hunting.
+- The other sibling keeps their normal timer threshold; both still help throughout the Whole House. The 3D fork is unchanged.
