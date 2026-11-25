@@ -2856,7 +2856,10 @@ function drawSibling(s,t){
         ctx.save();ctx.translate(ox+5,oy+10);ctx.rotate(s.face>0?Math.PI/2:-Math.PI/2);
         ctx.beginPath();ctx.rect(-8,-1,18,16);ctx.clip();
         drawKidRaw(-5,-7,s.face,s.anim/2,true,s.d.pal);ctx.restore();
-        const hx=ox+(s.face>0?5:-5),hy=oy+3;
+        const neckX=(dx,w)=>s.face<0?ox+10-dx-w:ox+dx;
+        R(neckX(4,5),oy+8,5,5,"#f5c08a"); // neck overlaps the shoulder and chin
+        R(neckX(3,4),oy+10,4,4,s.d.pal.shirt); // connected shirt collar
+        const hx=ox+(s.face>0?4:-4),hy=oy+4;
         ctx.save();ctx.beginPath();ctx.rect(hx-2,hy-1,16,7);ctx.clip();
         drawKidRaw(hx,hy,s.face,0,false,s.d.pal);ctx.restore();
       }

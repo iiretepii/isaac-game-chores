@@ -361,3 +361,7 @@ Grouped by milestone. See `git log` for every commit.
 
 - Fixed personal rides taking priority over race cars and karts. Daniel, Colin and Andrew now get race cars and helmets in Race Track Rumble and Standard Karts in MarioKart Toy Room.
 - Andrew uses ground movement in both vehicle rooms. Ordinary-room monster truck, surfboard and winged flight are retained. Race vehicles also remain visible when paused.
+
+## 2026-11-25 — Andrew’s connected flying pose
+
+- Moved Andrew’s upright head closer to his flying body and added a neck and shirt collar overlapping the chin and shoulder, so the pose remains connected in both directions. The original face, outfit and wings are retained.
