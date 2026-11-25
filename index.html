@@ -1880,7 +1880,7 @@ const DROP_SCALE={cabledock:1,citygarage:1,avatarshelf:1,blockchest:1,kartgarage
 // Normal height, much wider: these sprites are stretched sideways only.
 const DROP_WIDE={}; // (no longer used: wide drop-offs are drawn at full width)
 const DROP_W={cabledock:70,citygarage:70,avatarshelf:70,blockchest:70,kartgarage:70,coinchest:70,creamcouch:56,gameshelf:70,tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
-const DROP_TOP={cabledock:14,citygarage:18,avatarshelf:18,blockchest:11,kartgarage:18,coinchest:10,creamcouch:0,gameshelf:22,tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:0,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
+const DROP_TOP={cabledock:14,citygarage:18,avatarshelf:18,blockchest:11,kartgarage:18,coinchest:10,creamcouch:0,gameshelf:22,tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:14,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
 function drawDrop(d,ready,t){
   const x=Math.round(d.x),y=Math.round(d.y),k=d.kind;
   if(ready){g.save();g.globalAlpha=0.35+0.2*Math.sin(t*8);const rg=g.createRadialGradient(x+14,y+12,2,x+14,y+12,34);rg.addColorStop(0,'#fff59d');rg.addColorStop(1,'rgba(255,235,59,0)');g.fillStyle=rg;g.fillRect(x-24,y-24,76,72);g.restore();}
@@ -1989,10 +1989,20 @@ function drawDropRaw(k,x,y){
     R(x+3,y+4,64,20,"#1e88e5");R(x+1,y+1,68,4,"#1565c0");R(x+3,y+22,64,2,"#0d47a1");R(x+20,y+2,30,2,"#0d47a1");
     for(let i=6;i<66;i+=8)R(x+3+i,y+7,1,13,"#1976d2");R(x+27,y+8,16,11,"#bbdefb");R(x+30,y+10,10,7,"#1e88e5");R(x+33,y+12,4,3,"#bbdefb");
     R(x+24,y-2,10,3,"#fafafa");R(x+38,y-1,8,2,"#fafafa");}
-  else if(k==='toychest'){ // long wooden toy chest with two latches and toys peeking out
-    R(x,y+8,70,16,"#8d6e63");R(x,y+2,70,7,"#a1887f");R(x,y+8,70,2,"#4e342e");R(x+2,y+3,66,1,"#bcaaa4");
-    for(let i=12;i<70;i+=16)R(x+i,y+11,1,12,"#6d4c41");R(x+16,y+9,4,5,"#ffd54f");R(x+50,y+9,4,5,"#ffd54f");
-    R(x+8,y-2,6,4,"#e53935");R(x+30,y-3,4,5,"#43a047");R(x+56,y-2,7,4,"#1e88e5");R(x+2,y+22,4,2,"#4e342e");R(x+64,y+22,4,2,"#4e342e");}
+  else if(k==='toychest'){ // pretend pirate treasure chest with a collectible toy dragon inside
+    // Raised rounded lid: painted wood and bright toy brass straps.
+    R(x+2,y-8,66,15,"#9b6034");R(x+6,y-12,58,5,"#b77a43");R(x+10,y-14,50,3,"#d49a59");
+    R(x+8,y-11,54,1,"#edbc79");R(x+4,y-6,62,11,"#513521");
+    for(const bx of [8,57]){R(x+bx,y-11,5,17,"#edc34c");R(x+bx+1,y-10,2,15,"#ffe695");}
+    // Exactly the same green, purple-winged dragon as the room's pickups.
+    drawItemRaw('dragon',x+26,y-9);
+    // Front rim overlaps the dragon's feet so it sits inside the chest.
+    R(x,y+7,70,17,"#a56c3b");R(x,y+7,70,3,"#e4b66d");R(x+2,y+11,66,1,"#774725");R(x+2,y+18,66,1,"#774725");
+    for(const bx of [7,58]){R(x+bx,y+9,5,15,"#edc34c");R(x+bx+1,y+10,1,12,"#fff0a5");}
+    R(x+30,y+9,10,11,"#ffd45c");R(x+32,y+10,6,2,"#fff0a5");R(x+34,y+13,2,4,"#6c4826");
+    R(x,y+22,70,2,"#654027");R(x+3,y+23,5,1,"#453020");R(x+62,y+23,5,1,"#453020");
+    for(const bx of [9,60])for(const by of [12,20])R(x+bx,y+by,1,1,"#8a6524");
+  }
   else if(k==='dollhouse'){ // wide pink fairy-tale castle, Neuschwanstein-style: slender towers with tall pointed spires
     const tower=(tx,tw,th,fl)=>{R(tx,y+24-th,tw,th,"#f8bbd0");R(tx,y+24-th,tw,1,"#fce4ec");R(tx+tw-2,y+24-th,2,th,"#f48fb1");
       for(let rr=0;rr<12;rr++){const hw=Math.round((tw+4)*(12-rr)/24);R(tx+tw/2-hw,y+24-th-rr-1,hw*2,1,rr%4===0?"#ce93d8":"#ab47bc");}

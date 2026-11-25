@@ -250,3 +250,8 @@ Grouped by milestone. See `git log` for every commit.
 
 - Isaac now collects from the start and throughout Isaac’s Room; Annie does the same in Annie’s Room. Bedroom owners prioritize chores over critter hunting.
 - The other sibling keeps their normal timer threshold; both still help throughout the Whole House. The 3D fork is unchanged.
+
+## 2026-11-25 — Isaac’s pretend treasure chest
+
+- Replaced the 2D Isaac’s Room toy chest art with a pretend wooden treasure chest, raised lid, gold-colored straps and keyhole.
+- A dragon peeks out using the exact same green, purple-winged collectible dragon renderer. Drop-off size and completion behavior remain unchanged; the HERE label clears the lid.

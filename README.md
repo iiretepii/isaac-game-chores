@@ -96,7 +96,7 @@ Item counts rise by one each level. The game gets **progressively harder**. The 
 
 | # | Level | Chore | Items | Time | Critters | Music |
 |---|---|---|---|---|---|---|
-| 1 | **Isaac's Room** | Blocky toy dragons → toy chest | 10 | 94s | Blocky zombies, skeletons, spiders and hissing bush-blocks | Rock |
+| 1 | **Isaac's Room** | Blocky toy dragons → pretend treasure chest with a matching dragon | 10 | 94s | Blocky zombies, skeletons, spiders and hissing bush-blocks | Rock |
 | 2 | **Annie's Room** | Dolls → castle doll house | 11 | 98s | A tabby cat, a husky and a Pomeranian | Fairy-tale princess waltz |
 | 3 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 12 | 101s | Dust bunnies, cockroaches | Swing jazz |
 | 4 | **Living Room Lego-Land** | Pillows in lots of colors → cream couch | 13 | 104s | Robot vacuums, cats | Bubblegum pop |
