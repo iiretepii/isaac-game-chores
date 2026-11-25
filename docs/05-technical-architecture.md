@@ -96,7 +96,7 @@ Holiday rooms share `drawHolidayItem` for collectible art and `drawHolidayDrop` 
 
 `drawCousinToy` supplies toy monster trucks and surfboards for pickups, room scenery, and the `monsterarena`/`surfrack` drop-off displays. Both are included in the Whole House mix.
 
-Room ordering is independent of challenge: `difficultyIndex` preserves each room’s generation ramp and critter-speed scaling when moved. Daniel’s and Colin’s rooms are third and fourth; level numbers and listening MP3 filenames follow the new order.
+Challenge follows room order: each room's `difficultyIndex` (0–23) and `gap` are set from its position, driving the generation ramp and critter-speed scaling. Daniel’s and Colin’s rooms are third and fourth; level numbers and listening MP3 filenames follow the new order.
 
 ### Mobile control gestures
 

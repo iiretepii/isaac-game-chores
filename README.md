@@ -98,7 +98,7 @@ Their vehicles follow the terrain, with these helper abilities:
 
 ## The Levels
 
-Daniel’s Monster Jam Room is level 3, and Colin’s Surf Shack is level 4, Andrew’s Sky Room is level 5, Mom’s Room is level 6, and Uncle Pete’s Room is level 7. Each room keeps its existing item count, timer and difficulty when reordered. Isaac’s and Annie’s rooms have small gaps; the more challenging rooms need well-timed double jumps over wide pits, hops across narrow stepping stones, bigger climbs, and rides on moving platforms over pits too wide to jump. Most rooms are 170–216 tiles long, Money Room is 260, the MarioKart toy room is 270, the Minecraft room is 280, the Roblox room is 290, the GTA toy room is 300, the charging room is 310, the nine holiday rooms are 320–400, Daniel’s room is 410, Colin’s room is 420, Mom’s room is 430, Uncle Pete’s is 440, and the finale is 250. Every level has its own room, chore and music style.
+Daniel’s Monster Jam Room is level 3, and Colin’s Surf Shack is level 4, Andrew’s Sky Room is level 5, Mom’s Room is level 6, and Uncle Pete’s Room is level 7. Each room keeps its own item count and timer. Difficulty follows the room's **position**: Level 1 is the easiest and every level is a little harder than the one before, up to the Whole House.
 
 | # | Level | Chore | Items | Time | Critters | Music |
 |---|---|---|---|---|---|---|

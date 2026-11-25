@@ -69,7 +69,7 @@ Drawn by `drawMom(x,y,mood)` and `drawPete(x,y,mood)` as 22 × 52 px figures wit
 
 ## Critters
 
-Speeds are in pixels per second; critters run about 6% faster per stored `difficultyIndex` step, independent of menu position. "Fly" critters bob on a sine wave along a short path. "Walk" critters patrol and turn at walls, gaps and LEGO bricks. Any critter can be stomped from above.
+Speeds are in pixels per second; critters run about 6% faster per `difficultyIndex` step, which follows the room's position (up to about 2.4× on the Whole House). "Fly" critters bob on a sine wave along a short path. "Walk" critters patrol and turn at walls, gaps and LEGO bricks. Any critter can be stomped from above.
 
 | Key | Critter | Movement | Speed | Levels |
 |---|---|---|---|---|
@@ -136,10 +136,10 @@ Speeds are in pixels per second; critters run about 6% faster per stored `diffic
 | Race Track Rumble | `tire` (racing tire with a silver rim) | `tirerack` (red metal tire shelf) |
 | Game Room Glitch | `videogame` (a variety of game controllers: classic flat pad, rounded pad with colored buttons, arcade joystick, twin-stick pad) | `gameshelf` (CRT TV showing an alien, a console and spots for controllers) |
 | Money Room Millions | `coin` (gold coins) | `coinchest` (a wide wooden chest with gold bands) |
-| MarioKart Toy Room | `toykart` / `toybike` (miniature karts and bikes with red- or green-capped drivers) | `kartgarage` (two-tier display garage) |
+| MarioKart Toy Room | `kartbike`: alternating `toykart` / `toybike` (miniature karts and bikes with red- or green-capped drivers) | `kartgarage` (two-tier display garage) |
 | Minecraft Block Room | `diamondblock` (isometric turquoise toy diamond blocks) | `blockchest` (wide wooden storage chest with blocks inside) |
 | Roblox Avatar Roundup | `avatar` (classic yellow noobs, red-capped Guests, builders and modern hair avatars) | `avatarshelf` (two-tier display shelf) |
-| GTA V + VI Toy Room | `sportscar` / `cruiserbike` (colorful toy sports cars and motorcycles) | `citygarage` (neon two-tier display garage) |
+| GTA V + VI Toy Room | `citytoys`: alternating `sportscar` / `cruiserbike` (colorful toy sports cars and motorcycles) | `citygarage` (neon two-tier display garage) |
 | Charging Room Chaos | `chargecable` (coiled charging cables in four colors, with USB-style plugs) | `cabledock` (wall organizer with cable hooks and a charging strip) |
 | Halloween Haunt | `carvedpumpkin` | `pumpkinbucket` |
 | Thanksgiving Feast | `pieslice` | `pietable` |

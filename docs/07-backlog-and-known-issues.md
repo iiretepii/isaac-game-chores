@@ -8,7 +8,7 @@
 | 2 | Time limits dropped in three places | **Mostly fixed 2026-11-16.** Timers now follow each room’s stored challenge settings, rather than menu position; reordered cousin rooms retain 205/208 seconds |
 | 3 | Whole House missed newer items and critters | **Fixed 2026-11-16.** It includes the newer toy collections (coins, karts, bikes, diamond blocks, avatars and sports cars) as well as weeds, test tubes, books and all current critter types |
 | 4 | Time doubling made the clock trivial | **Fixed 2026-11-16.** Removed: items no longer add time, so the parents' car is a real threat. Other rooms retain low-time sibling rushes; the Whole House now has full-time collection help |
-| 5 | Inserting a level reshuffled later layouts | **RNG reseeding fixed 2026-11-16.** Each room has a fixed `seed`. Geometry and critter speeds now use each room’s stored `difficultyIndex`, preserving challenge when rooms move; late additions preserve the capped ramp |
+| 5 | Inserting a level reshuffled later layouts | **RNG reseeding fixed 2026-11-16.** Each room has a fixed `seed`. Geometry and critter speeds use each room's `difficultyIndex`, which follows its position so the game gets steadily harder |
 | 6 | Unused sprites | **Fixed 2026-11-16.** Removed `sock`, `hamper`, `markercup`, `shredder` and `sink` |
 | 7 | Basement "auto-moving" report | Open. Not reproduced; visibility improved; waiting for feedback |
 | 8 | Recording volumes differ from the game | Won't fix. Every MP3 is normalized on its own for listening, so the gentle songs sound louder in the recordings than in the game (where volumes are leveled) |

@@ -350,3 +350,9 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-25 — Andrew flies with his head up
 
 - Kept Andrew’s body belly-down and drew his original face/head upright, looking forward in both flight directions. His outfit, wings and flying behavior are retained.
+
+### Steady difficulty climb restored
+- After the new rooms were added, each room kept its own difficulty, so Daniel's, Colin's, Mom's and Uncle Pete's rooms (Levels 3, 4, 6 and 7) had 10-tile double-jump gaps right after the easy kids' rooms. Every room's `difficultyIndex` and `gap` now follow its position: 0 and 3 tiles on Level 1, rising to 23 and 10 tiles on the Whole House. Item counts and time limits are unchanged.
+- The item-spot fallback now packs spots more tightly when needed, so the Whole House gets all 52 items (it had 51).
+- Checks: every pit and climb in all 43 levels can be cleared, every level has its full item count, and every drop-off sits on solid ground.
+- Docs: the MarioKart and GTA rows now name the real item keys (`kartbike`, `citytoys`).
