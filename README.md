@@ -70,7 +70,7 @@ Isaac, Annie, and your cousins **Daniel, Colin and Andrew** join you on every le
 
 Daniel wears green with a yellow cap; Colin wears purple with a teal cap. Daniel drives a green monster truck; Colin rides a turquoise-and-purple surfboard and greets you immediately on every level’s intro with “Surfs Up!”. Their rides appear in every room and menu lineup, using the same 176 px/s speed and helper abilities. All five appear on the title, level-intro, chore-complete and final victory screens.
 
-**Andrew** wears an orange shirt and pale-blue cap, with flapping white-and-blue wings, flying belly-down with his original face, outfit and wings. He flies over gaps and up to items, steers around solid obstacles, and helps collect at 33% time remaining or immediately in his Sky Room and throughout Whole House. He keeps his wings in every room, including racing rooms.
+**Andrew** wears an orange shirt and pale-blue cap, with flapping white-and-blue wings, flying belly-down with his head up and his original face, outfit and wings. He flies over gaps and up to items, steers around solid obstacles, and helps collect at 33% time remaining or immediately in his Sky Room and throughout Whole House. He keeps his wings in every room, including racing rooms.
 
 When they show up, you greet them with a goofy speech bubble picked at random, like "HEY PAL!", "YOOO!", "LET HIM COOK!", "NO CAP, HI!", "BRO-TATO CHIP!" or "Sup Bro!".
 

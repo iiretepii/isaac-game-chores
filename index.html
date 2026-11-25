@@ -2850,9 +2850,13 @@ function drawSibling(s,t){
           R(wx+(side<0?1:5),wy-2,6,4,"#f4fcff");
           for(let q=0;q<3;q++)R(wx+q*3,wy+8,2,flap?3:5,"#e5f8ff");
         }
-        // Keep Andrew's original sprite and palette; only rotate his pose belly-down.
+        // Original body belly-down, with the original face upright and looking forward.
         ctx.save();ctx.translate(ox+5,oy+10);ctx.rotate(s.face>0?Math.PI/2:-Math.PI/2);
+        ctx.beginPath();ctx.rect(-8,-1,18,16);ctx.clip();
         drawKidRaw(-5,-7,s.face,s.anim/2,true,s.d.pal);ctx.restore();
+        const hx=ox+(s.face>0?5:-5),hy=oy+3;
+        ctx.save();ctx.beginPath();ctx.rect(hx-2,hy-1,16,7);ctx.clip();
+        drawKidRaw(hx,hy,s.face,0,false,s.d.pal);ctx.restore();
       }
       else if(s.d.ride==='monstertruck'){
         const mirror=s.face<0,X=(dx,w)=>mirror?ox+10-dx-w:ox+dx;

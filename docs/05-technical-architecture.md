@@ -106,4 +106,4 @@ The 2D touch buttons cancel native `touchstart`/`touchend` gestures with non-pas
 
 Andrew’s `fly` flag routes movement to `moveFlyingHelper` and rendering to animated wings, ahead of room-specific vehicle rendering. Flight steers toward shared item targets, avoids solid tiles and does not apply ground gravity. Ground helpers retain `moveSibling` physics.
 
-Andrew’s Sky Room is fifth (`andrewroom`, `ownTheme` for Andrew), with 14 flying toys and a toy hangar. `drawFlyingToy` draws toy planes, helicopters and kites for pickups and the room. Andrew’s belly-down rendering rotates his original `drawKidRaw` sprite so his face, outfit and wing design stay the same.
+Andrew’s Sky Room is fifth (`andrewroom`, `ownTheme` for Andrew), with 14 flying toys and a toy hangar. `drawFlyingToy` draws toy planes, helicopters and kites for pickups and the room. Andrew’s belly-down rendering rotates his original body and redraws his original head upright so his face, outfit and wing design stay the same.
