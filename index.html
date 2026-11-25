@@ -1547,7 +1547,7 @@ function chooseSiblingTarget(s,dt){
 }
 function updateSibs(dt){
   if(P.speechT>0)P.speechT-=dt;
-  const played=lvl.L.time-timeLeft; // both siblings pitch in immediately and keep collecting
+  const played=lvl.L.time-timeLeft; // all four helpers appear immediately
   SIBS.forEach((d,k)=>{if(played>=d.delay&&!sibs.some(s=>s.k===k)&&P.carry<lvl.total){
     sibs.push({k,d,x:P.x,y:P.y+P.h-20,h:20,duck:false,jumps:0,vy:0,on:false,ride:null,face:1,anim:0,target:null,hop:0});say(d.line,2.5);P.speech=GREETINGS[Math.random()*GREETINGS.length|0];P.speechT=2.2;
     if(AC){const t0=AC.currentTime;if(k){tone(90,0.9,'sawtooth',0.06,600,t0,sfxGain);tone(180,0.9,'square',0.03,1200,t0,sfxGain);} // electric VRRRRM
@@ -1557,19 +1557,19 @@ function updateSibs(dt){
   for(const s of sibs){
     const resting=s.rest>0;if(resting)s.rest=Math.max(0,s.rest-dt); // only pause briefly after taking damage
     // Each sibling owns their bedroom chore; both help throughout the Whole House.
-    const ownRoom=s.k?lvl.L.theme==='bedroom':lvl.L.theme==='annie';
+    const ownRoom=s.d.ownTheme===lvl.L.theme;
     const fullTime=wholeHouse||ownRoom;
-    const rush=fullTime||frac<=(s.k?0.2:0.33);
-    if(rush&&!s.rushing){say(ownRoom?(s.k?"ISAAC: MY ROOM, MY CHORES!":"ANNIE: MY ROOM! I’LL CLEAN UP!"):wholeHouse?(s.k?"ISAAC: WHOLE HOUSE TURBO!":"ANNIE: EVERY ROOM! LET'S GO!"):(s.k?"ISAAC: TURBO MODE! I GOT THIS!":"ANNIE: TIME'S RUNNING OUT! I'LL GRAB SOME!"),2);popText(s.x-10,s.y-12,fullTime?"TEAM CLEAN!":"GO GO GO!",s.k?"#69f0ae":"#f48fb1");}
+    const rush=fullTime||frac<=s.d.rush;
+    if(rush&&!s.rushing){say(s.d.name+": "+(ownRoom?"MY ROOM, MY CHORES!":wholeHouse?"WHOLE HOUSE CLEANUP CREW!":"TURBO MODE! I'LL GRAB SOME!"),2);popText(s.x-10,s.y-12,fullTime?"TEAM CLEAN!":"GO GO GO!",s.d.color);}
     s.rushing=rush;
     let tx,moving;
     const prey=s.d.ace&&!fullTime?lvl.enemies.find(e=>e.alive&&Math.abs(e.x-P.x)<280&&Math.abs(e.x-s.x)<320&&Math.abs(e.y-s.y)<90):null;
     if(prey&&!resting){tx=prey.x;moving=true;}                                                         // both siblings hunt nearby bad guys
     else if(rush){chooseSiblingTarget(s,dt);tx=s.target?s.target.x:P.x;moving=!resting;}
-    else{s.target=null;tx=P.x-(s.k?62:24)*P.face;moving=!resting&&Math.abs(tx-s.x)>6;if(!moving)s.face=P.face;}
+    else{s.target=null;tx=P.x-s.d.follow*P.face;moving=!resting&&Math.abs(tx-s.x)>6;if(!moving)s.face=P.face;}
     moveSibling(s,dt,tx,moving);
     if(s.target&&!s.target.got&&Math.abs(s.target.x+8-(s.x+5))<12&&Math.abs(s.target.y+8-(s.y+7))<14){
-      const it=s.target;it.got=true;s.rest=0;P.carry++;score+=25;levelScore+=25;SFX.collect();puff(it.x+8,it.y+8,s.k?"#69f0ae":"#f48fb1",8);
+      const it=s.target;it.got=true;s.rest=0;P.carry++;score+=25;levelScore+=25;SFX.collect();puff(it.x+8,it.y+8,s.d.color,8);
       const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?s.d.name+"! "+left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);}
   }
 }
@@ -1743,8 +1743,10 @@ const PAL_ME={shirt:"#e53935",shirtD:"#b71c1c",pants:"#1e3a8a",cap:"#ffd600",cap
 const GREETINGS=["HEY PAL!","YOOO!","WASSUP!","HIYA!","SUP, NOODLE?","LET HIM COOK!","NO CAP, HI!","W SIBLING!","SKIBIDI HI!","ITS GIVING HELP!",
  "HOWDY, PARTNER!","AYOOO!","BIG W!","YOU'RE GOATED!","SLAY!","BET!","OK, RIZZ!","FR FR, HI!","BRO-TATO CHIP!","HEY BESTIE!","Sup Bro!"];
 const SIBS=[
- {name:"ANNIE",ace:1,balloon:1,delay:0,speed:176,pal:{dress:1,shirt:"#ec407a",shirtD:"#ad1457",pants:"#ec407a",cap:null,hair:"#ff8f00",logo:"#fff",pig:1},line:"ANNIE: I'LL HELP ALL DAY! (FOR COOKIES)"},
- {name:"ISAAC",ace:1,delay:0,speed:176,pal:{shirt:"#e53935",shirtD:"#b71c1c",pants:"#424242",cap:"#1e88e5",capH:"#64b5f6",hair:"#3e2723",logo:"#fff"},line:"ISAAC: VRRRM! NEON LIGHT-BIKE, BABY!"},
+ {name:"ANNIE",rush:.33,follow:24,ownTheme:"annie",kart:"sportbike",color:"#f48fb1",ace:1,balloon:1,delay:0,speed:176,pal:{dress:1,shirt:"#ec407a",shirtD:"#ad1457",pants:"#ec407a",cap:null,hair:"#ff8f00",logo:"#fff",pig:1},line:"ANNIE: I'LL HELP ALL DAY! (FOR COOKIES)"},
+ {name:"ISAAC",rush:.2,follow:62,ownTheme:"bedroom",kart:"flamerider",neon:1,color:"#42a5f5",ace:1,delay:0,speed:176,pal:{shirt:"#e53935",shirtD:"#b71c1c",pants:"#424242",cap:"#1e88e5",capH:"#64b5f6",hair:"#3e2723",logo:"#fff"},line:"ISAAC: VRRRM! NEON LIGHT-BIKE, BABY!"},
+ {name:"DANIEL",ride:"monstertruck",rush:.2,follow:100,kart:"standard",color:"#81c784",ace:1,delay:0,speed:176,pal:{shirt:"#43a047",shirtD:"#256b2b",pants:"#37474f",cap:"#f9a825",capH:"#ffe082",hair:"#5d4037",logo:"#fff"},line:"DANIEL: COUSIN CREW, READY TO CLEAN!"},
+ {name:"COLIN",ride:"surfboard",rush:.33,follow:138,kart:"standard",color:"#b39ddb",ace:1,delay:0,speed:176,pal:{shirt:"#7e57c2",shirtD:"#512da8",pants:"#455a64",cap:"#00acc1",capH:"#80deea",hair:"#3e2723",logo:"#fff"},line:"COLIN: Surfs Up!"},
 ];
 function drawKidRaw(x,y,face,frame,air,pal=PAL_ME){
   const f=face<0;const X=(dx,w)=>f?x+10-dx-w:x+dx;
@@ -2701,9 +2703,24 @@ function drawSibling(s,t){
       R(bx-3,byy+1,7,7,"#f06292");R(bx-4,byy+2,9,5,"#f06292");R(bx-1,byy,3,9,"#f06292");R(bx-2,byy+2,2,2,"#fce4ec");R(bx,byy+9,1,1,"#c2185b");}
     g.save();g.translate(Math.round(s.x),Math.round(by));g.scale(1,s.duck?0.6:1);
     outlined(0,0,(ox,oy)=>{
-      if(onKartRoom()){drawKartRoomRide(ox,oy+6,s.face,s.anim/2,s.k?'flamerider':'sportbike',s.d.pal);}
-      else if(onRaceTrack()){const an=s.d.name==='ANNIE';drawRaceCar(ox,oy+5,s.face,s.anim/2,an?"#ec407a":"#1e88e5",an?"#fce4ec":"#e53935",an?2:3,s.d.pal,an?"#f8bbd0":"#e53935",an?"#ec407a":"#1e88e5");}
-      else if(s.k){ // Big Bro on a sleek neon light-bike: glowing disc wheels, low enclosed body, neon edge lines
+      if(s.d.ride==='monstertruck'){
+        const mirror=s.face<0,X=(dx,w)=>mirror?ox+10-dx-w:ox+dx;
+        drawKidRaw(ox,oy-3,s.face,0,false,s.d.pal);
+        R(X(-10,34),oy+7,34,6,"#2e7d32");R(X(-7,29),oy+5,29,5,"#66bb6a");
+        R(X(10,13),oy+3,13,7,"#43a047");R(X(13,7),oy+2,7,4,"#b3e5fc");R(X(16,2),oy+2,2,4,"#e9f7ff");
+        R(X(-9,31),oy+11,31,2,"#ffe082");R(X(22,4),oy+8,4,3,"#d7e3ed");R(X(21,3),oy+6,3,2,"#fff3ad");
+        for(const wx of [-10,15]){R(X(wx,11),oy+10,11,10,"#1b222c");R(X(wx+1,9),oy+9,9,12,"#1b222c");R(X(wx+3,5),oy+12,5,6,"#ffca28");R(X(wx+4,3),oy+13,3,4,"#91a3b5");
+          const tread=Math.floor(s.anim/8)%2;R(X(wx+2+tread,2),oy+10,2,1,"#60717d");R(X(wx+7-tread,2),oy+19,2,1,"#60717d");}
+      }
+      else if(s.d.ride==='surfboard'){
+        drawKidRaw(ox,oy,s.face,s.anim/2,!s.on,s.d.pal);
+        R(ox-11,oy+16,33,2,"#35c7d7");R(ox-8,oy+15,27,4,"#70e0e7");R(ox-4,oy+14,19,1,"#b9f8f4");
+        R(ox-5,oy+16,20,1,"#ffffff");R(ox+2,oy+15,3,4,"#9c79d0");R(ox+7,oy+15,3,4,"#9c79d0");
+        R(ox-4,oy+19,3,1,"#148b9d");R(ox+13,oy+19,3,1,"#148b9d");
+      }
+      else if(onKartRoom()){drawKartRoomRide(ox,oy+6,s.face,s.anim/2,s.d.kart,s.d.pal);}
+      else if(onRaceTrack()){const an=s.d.name==='ANNIE',isaac=s.d.name==='ISAAC';drawRaceCar(ox,oy+5,s.face,s.anim/2,isaac?"#1e88e5":s.d.pal.shirt,an?"#fce4ec":isaac?"#e53935":s.d.color,s.k+2,s.d.pal,isaac?"#e53935":s.d.pal.cap||s.d.pal.shirt,isaac?"#1e88e5":s.d.color);}
+      else if(s.d.neon){ // Big Bro on a sleek neon light-bike: glowing disc wheels, low enclosed body, neon edge lines
         const f=s.face>0,F=(dx,w)=>f?ox+dx:ox+10-dx-w,N="#ff1744",N2="#ff8a80",gl=Math.floor(clock*8)%2;
         drawKidRaw(ox,oy-1,s.face,0,false,s.d.pal);
         R(F(-6,23),oy+10,23,6,"#0d0d0d");R(F(-4,19),oy+8,19,2,"#0d0d0d");R(F(2,10),oy+6,10,2,"#0d0d0d");   // low enclosed body + canopy
@@ -2711,10 +2728,10 @@ function drawSibling(s,t){
         R(F(15,2),oy+9,2,2,"#ffffff");R(F(-7,1),oy+11,1,4,N);                                                  // headlight + tail light
         for(const wx of [-6,10]){R(F(wx,7),oy+12,7,7,"#0d0d0d");R(F(wx,7),oy+12,7,1,N);R(F(wx,7),oy+18,7,1,N);R(F(wx,1),oy+13,1,5,N);R(F(wx+6,1),oy+13,1,5,N);
           R(F(wx+2,3),oy+14,3,3,gl?N2:N);}                                                                   // glowing disc wheels
-            }else{drawKidRaw(ox,oy,s.face,s.anim/2,!s.on,s.d.pal);R(ox-2,oy+15,15,2,"#ab47bc");R(ox,oy+17,2,2,"#212121");R(ox+9,oy+17,2,2,"#212121");}
+            }else{drawKidRaw(ox,oy,s.face,s.anim/2,!s.on,s.d.pal);R(ox-2,oy+15,15,2,s.k<2?"#ab47bc":s.d.pal.shirt);R(ox,oy+17,2,2,"#212121");R(ox+9,oy+17,2,2,"#212121");}
     });g.restore();
-    if(s.k){text(s.d.name,s.x+6,by-11,6,"#e53935","center");text(s.d.name,s.x+5,by-12,6,"#42a5f5","center",false);} // Isaac: blue with a red shadow, his favorite colors
-    else text(s.d.name,s.x+5,by-(s.d.balloon?33:12),6,"#f48fb1","center");}
+    if(s.d.neon){text(s.d.name,s.x+6,by-11,6,"#e53935","center");text(s.d.name,s.x+5,by-12,6,"#42a5f5","center",false);} // Isaac: blue with a red shadow, his favorite colors
+    else text(s.d.name,s.x+5,by-(s.d.balloon?33:12),6,s.d.color,"center");}
 
 function drawPlay(t){
   const th=lvl.theme;
@@ -2724,7 +2741,7 @@ function drawPlay(t){
   drawDrop(lvl.drop,P.carry>=lvl.total,t);
   for(const it of lvl.items)if(!it.got&&Math.abs(it.x-cam-W/2)<W)drawItem(it.kind,it.x,it.y+Math.sin(t*4+it.bob)*2,t);
   for(const e of lvl.enemies)if(Math.abs(e.x-cam-W/2)<W)drawEnemy(e,t);
-  for(const s of sibs){if(!s.k||onKartRoom())continue;s.trail=s.trail||[];s.trail.push([s.x+5-s.face*10,s.y+17]);if(s.trail.length>28)s.trail.shift();
+  for(const s of sibs){if(!s.d.neon||onKartRoom())continue;s.trail=s.trail||[];s.trail.push([s.x+5-s.face*10,s.y+17]);if(s.trail.length>28)s.trail.shift();
     g.save();g.lineCap='round';for(const [w,c,al] of [[6,'#ff1744',0.25],[2,'#ff8a80',0.9]]){g.strokeStyle=c;g.lineWidth=w;g.globalAlpha=al;g.beginPath();s.trail.forEach(([tx,ty],k)=>k?g.lineTo(tx,ty):g.moveTo(tx,ty));g.stroke();}g.restore();}
   for(const s of sibs)drawSibling(s,t);
   const kg=groundBelow(P.x+P.w/2,P.y+P.h-2);if(kg!==null)shadow(P.x+P.w/2,kg,6*Math.max(0.4,1-(kg-P.y-P.h)/120),0.35);
@@ -2771,8 +2788,11 @@ function drawSplash(t){
     text("BELVOIR",W/2,46,24,"#ffffff","center");text("S T U D I O S",W/2,84,10,"#81d4fa","center");R(W/2-90,100,180,2,"#81d4fa");}
   g.globalAlpha=1;g.drawImage(fx,0,0);
 }
-function drawMenuSiblings(t,y){
-  for(let k=0;k<2;k++)drawSibling({k,d:SIBS[k],x:W/2+(k?66:-76),y,face:k?-1:1,anim:t*40,on:true,inv:0},t);
+function drawMenuSiblings(t,y,scale=1){
+  const offsets=[-80,40,-40,80];
+  g.save();g.translate(W/2,y);g.scale(scale,scale);
+  SIBS.forEach((d,k)=>drawSibling({k,d,x:offsets[k],y:0,face:offsets[k]>0?-1:1,anim:t*40,on:true,inv:0},t));
+  g.restore();
 }
 function drawTitle(t){
   // starry retro bg
@@ -2786,7 +2806,7 @@ function drawTitle(t){
   text("BEAT THE PARENTS HOME",W/2,124,8,"#fff","center");
   drawKid(W/2-5,150+Math.abs(Math.sin(t*5))*-14,1,t*40,Math.sin(t*5)>0.3,0);
   drawMenuSiblings(t,148);
-  drawItem("toy",W/2-100,160+Math.cos(t*3)*3);drawItem("leaf",W/2+90,160+Math.sin(t*3)*3);
+  drawItem("toy",W/2-155,160+Math.cos(t*3)*3);drawItem("leaf",W/2+150,160+Math.sin(t*3)*3);
   if(soundGate)text("CLICK OR PRESS ANY KEY FOR SOUND",W/2,200,8,Math.floor(t*2)%2?"#ffeb3b":"#fff","center");
   else if(Math.floor(t*2)%2)text("PRESS ENTER / TAP TO START",W/2,200,8,"#76ff03","center");
   if(!soundGate){const b=SELECT_BTN;R(b.x-1,b.y-1,b.w+2,b.h+2,"#ffeb3b");R(b.x,b.y,b.w,b.h,"#3d2a8a");text("LEVEL SELECT (L)",W/2,b.y+3,6,"#ffeb3b","center",false);}
@@ -2808,6 +2828,7 @@ function drawIntro(t){
   drawItem(L.item==='mix'?'trash':L.item,W/2-62,168+dy,clock);text("x"+lvl.total+"  in "+L.time+" SEC",W/2+8,173+dy,8,"#76ff03","center");
   text("NOW PLAYING: "+(L.music==='mix'?"ALL OF IT AT ONCE!":STYLES[L.music].name),W/2,192+dy,6,"#ff80ab","center");
   if(stateT>0.8&&Math.floor(t*2)%2)text("PRESS ENTER / TAP!",W/2,208+dy,8,"#fff","center");
+  drawMenuSiblings(t,245,.65);
 }
 const WIN_LINES=["Mom: Wow. Did a robot do this?","Uncle Pete: I'm suspicious... but proud.","Mom: Is this even our house?!","Uncle Pete: Who are you and what did you do with our kid?"];
 const LOSE_LINES=["MOM: WHY IS THERE A SOCK IN THE FRIDGE?!","UNCLE PETE: YOU'RE GROUNDED UNTIL YOU'RE 40!","MOM: NO VIDEO GAMES FOR A MILLION YEARS!","UNCLE PETE: IS THAT... A PANCAKE ON THE CAT?"];

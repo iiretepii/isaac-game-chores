@@ -59,19 +59,21 @@ The bar at the top of the screen shows the parents' car driving toward the house
 - **LEGO bricks** on the floor cost 5 seconds if you step on them.
 - **Falling into a gap** costs 5 seconds and puts you back on the last safe ground.
 
-### Sibling Helpers
+### Sibling and Cousin Helpers
 
-Your siblings help you with chores for the **entire game**, on every level. Both of them start right next to you as soon as the level begins:
+Isaac, Annie, and your cousins **Daniel and Colin** join you on every level. All four appear beside you when the level begins.
 
 - **Annie** (little sister) rides her skateboard in a pretty pink dress, holding a pink balloon ("I'll help all day! (for cookies)"). The balloon lets her **float a little** at the top of each jump and drift down more slowly.
 - **Isaac** (big brother) wears a red shirt and a blue cap (red and blue are his favorite colors) and rides his **neon light-bike**: a sleek black futuristic bike with glowing red edges and disc wheels that leaves a glowing light trail behind it ("Vrrrm! Neon light-bike, baby!").
 
+Daniel wears green with a yellow cap; Colin wears purple with a teal cap. Daniel drives a green monster truck; Colin rides a turquoise-and-purple surfboard and greets you with “Surfs Up!”. Their rides appear in every room and menu lineup, using the same 176 px/s speed and helper abilities. All four appear on the title, level-intro, chore-complete and final victory screens.
+
 When they show up, you greet them with a goofy speech bubble picked at random, like "HEY PAL!", "YOOO!", "LET HIM COOK!", "NO CAP, HI!", "BRO-TATO CHIP!" or "Sup Bro!".
 
-**How they help:** In **The Whole House!!**, both siblings collect items from the start and keep helping for the entire level, prioritizing chores over detours to hunt critters. **Isaac also collects immediately in Isaac’s Room, and Annie collects immediately in Annie’s Room**, prioritizing their own chores. In other rooms, they ride behind you and sprint ahead to collect items when the clock gets low:
+**How they help:** In **The Whole House!!**, all four helpers collect items from the start and keep helping for the entire level, prioritizing chores over detours to hunt critters. **Isaac also collects immediately in Isaac’s Room, and Annie collects immediately in Annie’s Room**, prioritizing their own chores. In other rooms, they ride behind you and sprint ahead to collect items when the clock gets low:
 
-- **Annie** starts grabbing items when there's **33% of the time** left ("Time's running out! I'll grab some!").
-- **Isaac** joins in at **20%** ("Turbo mode! I got this!").
+- **Annie and Colin** start grabbing items when there's **33% of the time** left ("Turbo mode! I'll grab some!").
+- **Isaac and Daniel** join in at **20%** ("Turbo mode! I'll grab some!").
 
 **They're both aces.** Annie and Isaac spot obstacles early, clear gaps and walls cleanly, go hunting for bad guys near you, and **zap any critter they touch** ("ZAP! +100").
 
@@ -242,8 +244,8 @@ The **2D game** (code, graphics, levels and synthesized music) lives in a single
 - **Walking critters** patrol back and forth and turn around at walls, gaps and LEGO bricks. Dogs, huskies, Pomeranians, hamsters and squirrels also hop now and then.
 - **Flying critters** (bees, bats, soap bubbles, lightning bolts) bob up and down along a short path.
 - If you land on a critter from above, you stomp it. Any other touch knocks the player back and costs 5 seconds (siblings just bounce off, with no penalty).
-- **Isaac and Annie** obey solid walls, one-way platforms and moving platforms; Annie's balloon slows her descent. In the Whole House both collect from the start, as does Isaac in his bedroom and Annie in hers; otherwise they follow just behind the player until the time left drops to 33% (Annie) or 20% (Isaac). When collecting, a helper AI chooses each sibling's next item, splitting the work and favoring items with fewer nearby critters. While riding, it looks ahead and decides when to jump (walls, gaps, critters, LEGO bricks), when to double jump (over a pit or up to a high item) and when to duck (low ceilings). If a sibling stops getting closer to its item, it gives up on that one for a few seconds and picks another.
-- **Abilities:** both siblings look further ahead, hunt critters near the player, and zap any critter they touch. Sibling bumps and falls never cost time.
+- **Isaac, Annie, Daniel and Colin** obey solid walls, one-way platforms and moving platforms; Annie's balloon slows her descent. In the Whole House all four collect from the start, as does Isaac in his bedroom and Annie in hers; otherwise they follow just behind the player until the time left drops to 33% (Annie and Colin) or 20% (Isaac and Daniel). When collecting, a helper AI chooses each sibling's next item, splitting the work and favoring items with fewer nearby critters. While riding, it looks ahead and decides when to jump (walls, gaps, critters, LEGO bricks), when to double jump (over a pit or up to a high item) and when to duck (low ceilings). If a sibling stops getting closer to its item, it gives up on that one for a few seconds and picks another.
+- **Abilities:** all four helpers look further ahead, hunt critters near the player, and zap any critter they touch. Sibling bumps and falls never cost time.
 
 ### Music and Sound
 

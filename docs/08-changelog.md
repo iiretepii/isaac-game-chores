@@ -293,3 +293,9 @@ Grouped by milestone. See `git log` for every commit.
 - Added Mother’s Day Blooms (level 36): collect flower bouquets into Mom’s vase, with floral decorations and the original song Bouquets for Mom.
 - Added Father’s Day Surprise (level 37): collect colorful ties onto Dad’s gift rack, with a gift-table backdrop and the original Dads Day Groove.
 - The finale is now level 38 with 47 pickups and 205 seconds, both new item types and all 37 level songs in its mashup. Re-recorded and renumbered the finale MP3 and ending/fail recordings. Existing rooms and the 3D fork are retained.
+
+## 2026-11-25 — Cousins Daniel and Colin
+
+- Added Daniel (green/yellow) and Colin (purple/teal) as playable-session helpers with the same shared collection, physics, duck/double-jump and critter abilities as Isaac and Annie. All four help throughout Whole House; ordinary rush thresholds are Daniel 20% and Colin 33%.
+- Added both cousins to the title, level-intro, chore-complete and ending lineups, with Daniel on a monster truck and Colin on a surfboard in every room. Colin says “Surfs Up!”.
+- Moved helper-specific settings into data so cousins do not inherit Isaac’s bedroom assignment or light-bike trail. The 3D fork is unchanged.

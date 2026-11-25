@@ -18,7 +18,7 @@
 | Follows at | 24 px behind the player | 62 px behind the player |
 | Starts collecting at | Immediately in her room and the Whole House; **33%** of the time limit left elsewhere | Immediately in his room and the Whole House; **20%** elsewhere |
 | Arrival line | "I'll help all day! (for cookies)" | "Vrrrm! Neon light-bike, baby!" |
-| Rush line | "Time's running out! I'll grab some!" | "Turbo mode! I got this!" |
+| Rush line | "TURBO MODE! I'LL GRAB SOME!" | "TURBO MODE! I'LL GRAB SOME!" |
 
 **Abilities** (both have the `ace` flag in `SIBS`; Annie is just as good as Isaac):
 - They look further ahead for walls, gaps and critters (12 px versus 4 px; critters 70 px versus 44 px). Outside their own bedroom and the Whole House, they hunt the first live critter in the enemy list that is within 280 px horizontally of the player, 320 px horizontally of the sibling and 90 px vertically of the sibling, ahead of following or collecting. Their rides defeat any critter they touch from any side ("ZAP! +100"), with a slightly bigger zap area than their bodies.
@@ -29,14 +29,27 @@
 - **Isaac's name label** is blue with a red shadow (his favorite colors) on every level. He wears a red shirt and a blue cap (palette `shirt: #e53935`, `cap: #1e88e5`).
 
 **Behavior spec:**
-- **Arrival:** both appear next to the player as soon as the level starts.
+- **Arrival:** all four helpers appear next to the player as soon as the level starts.
 - **Normal mode:** outside their own bedroom and the Whole House, they follow a spot behind the player and stop and face the same way when the player stops.
 - **Their own rooms:** Isaac collects immediately in Isaac’s Room, and Annie collects immediately in Annie’s Room, prioritizing chores over hunting. The other sibling retains their usual timer threshold.
-- **Whole House:** both enter collection mode immediately and remain in it for the entire level. Chore collection takes priority over hunting nearby critters; contact zaps and stomps still work.
+- **Whole House:** all four helpers enter collection mode immediately and remain in it for the entire level. Chore collection takes priority over hunting nearby critters; contact zaps and stomps still work.
 - **Rush mode:** throughout their own bedroom and the Whole House, or when the time left elsewhere is at or below their threshold, they pick items (penalizing ones near critters in the target score, splitting work between them, giving up on an item after 2 s without progress and retrying it 4 s later) and drive to them.
 - **Physics:** terrain collisions match the player (walls, one-way and moving platforms); Annie's balloon changes her gravity and fall speed as described above. The AI decides when to jump (walls, gaps, critters, LEGO), double jump (over pits, up to high items) and duck (low ceilings).
 - **Damage:** downward stomps defeat critters (+100) and bounce the sibling upward; other critter contact triggers their ace zap (+100). LEGO hits bounce them back ("OOPS!") and falls respawn them on safe ground ("BACK!"). Neither costs time.
 - **Delivery:** siblings never deliver; only the player can finish the level.
+
+## Cousins: Daniel and Colin
+
+Daniel and Colin are also entries in `SIBS`, sharing `updateSibs`, `chooseSiblingTarget`, `moveSibling`, `siblingCritters` and `drawSibling` with Isaac and Annie. Both appear immediately, move at 176 px/s and have `ace:1`: ducking, double jumping, terrain/platform collisions, collecting, critter stomps/contact zaps, LEGO recovery and fall respawns use the same code. Only the player completes delivery.
+
+| | Daniel | Colin |
+|---|---|---|
+| Look | Green shirt, yellow cap, green name label | Purple shirt, teal cap, purple name label |
+| Ride | Green monster truck with oversized wheels, in every room | Turquoise-and-purple surfboard, in every room |
+| Follows at | 100 px behind | 138 px behind |
+| Collects at | 20% time remaining; immediately throughout Whole House | 33% time remaining; immediately throughout Whole House |
+
+Helper configuration uses `rush`, `follow`, `ownTheme`, `kart`, `color` and `neon` rather than treating every nonzero index as Isaac. Isaac and Annie retain their own-bedroom collection behavior; cousins have no bedroom assignment. All four share item reservations, so they choose separate targets. `drawMenuSiblings` lays out four helpers on the title, intro, clear and ending screens; the intro lineup is scaled to fit beneath its instructions.
 
 ## The Parents: Mom and Uncle Pete
 

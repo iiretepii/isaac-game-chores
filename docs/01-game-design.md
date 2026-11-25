@@ -13,7 +13,7 @@ This document describes the original 2D game. See [09 – 3D Fork](09-3d-fork.md
 1. **Silly first.** Every room has a gag, from stinky underwear and runaway poops to walking weeds and a kid practicing piano. Text messages, critters and music lean into humor.
 2. **Each room is its own world.** Every level has a unique chore, drop-off spot, critters, background art and music genre.
 3. **Easy to pick up.** Move, jump, duck. There are no lives and no game over: you can always retry.
-4. **Family help.** Isaac and Annie (the siblings) ride along and help, so the game feels cooperative.
+4. **Family help.** Isaac and Annie (siblings), plus Daniel and Colin (cousins), ride along and help, so the game feels cooperative.
 5. **One file, works anywhere.** The whole game is a single `index.html` that runs in any browser, on desktop or phone, with no install.
 
 ## Core Loop
