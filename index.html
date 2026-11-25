@@ -2823,7 +2823,15 @@ function drawSibling(s,t){
           R(wx+(side<0?1:5),wy-2,6,4,"#f4fcff");
           for(let q=0;q<3;q++)R(wx+q*3,wy+8,2,flap?3:5,"#e5f8ff");
         }
-        drawKidRaw(ox,oy,s.face,s.anim/2,true,s.d.pal);
+        // Belly-down flying pose: feet trail behind, face and arms lead the way.
+        const X=(dx,w)=>s.face<0?ox+10-dx-w:ox+dx,pal=s.d.pal;
+        R(X(-7,11),oy+9,11,4,pal.pants);R(X(-8,11),oy+14,11,3,pal.pants);
+        R(X(-12,5),oy+10,5,3,"#ffffff");R(X(-13,5),oy+14,5,3,"#ffffff");
+        R(X(2,12),oy+8,12,7,pal.shirt);R(X(3,10),oy+13,10,2,pal.shirtD);
+        R(X(8,13),oy+14,13,3,"#f5c08a");R(X(5,9),oy+6,9,2,"#f5c08a");
+        R(X(13,8),oy+6,8,7,"#f5c08a");R(X(12,9),oy+4,9,3,pal.cap);R(X(13,8),oy+4,8,1,pal.capH);
+        R(X(19,4),oy+6,4,1,pal.cap);R(X(18,2),oy+8,2,2,"#fff");R(X(19,1),oy+9,1,1,"#263238");
+        R(X(20,2),oy+11,2,1,"#f5c08a");R(X(18,2),oy+12,2,1,"#b95447");
       }
       else if(s.d.ride==='monstertruck'){
         const mirror=s.face<0,X=(dx,w)=>mirror?ox+10-dx-w:ox+dx;

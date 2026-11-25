@@ -338,3 +338,5 @@ Grouped by milestone. See `git log` for every commit.
 - Added cousin Andrew as a fifth helper, wearing animated white-and-blue wings and an orange shirt. He flies over gaps and up to pickups while respecting solid obstacles.
 - Andrew joins every level, collects at 33% time remaining or immediately throughout Whole House, and shares item reservations, scoring and critter interactions.
 - Added Andrew to title, intro, chore-complete and ending lineups. Existing ground rides and the separate 3D fork are retained.
+
+- Andrew’s flying sprite now uses a belly-down pose, with arms stretched forward and feet trailing behind; direction mirrors the pose. Flight behavior is retained.
