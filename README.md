@@ -124,8 +124,8 @@ Item counts rise by one each level. The game gets **progressively harder**. The 
 | 26 | **Roblox Avatar Roundup** | Toy Roblox avatars → display shelf | 35 | 169s | Robot vacuums, pixel space invaders, arcade ghosts | Original upbeat electronic obby-style music |
 | 27 | **GTA V + VI Toy Room** | Toy sports cars and bikes → city garage | 36 | 172s | Robot vacuums, dogs, rats | Original sunset-city synth/funk radio groove |
 | 28 | **Charging Room Chaos** | Charging cables → cable organizer | 37 | 175s | Lightning bolts, robot vacuums, ants | Original electronic dance music |
-| 29 | **Halloween Haunt** | Put the candy in the pumpkin bucket | 38 | 178s | bat, spider, ghosty | Original Spooky Sugar Shuffle |
-| 30 | **Thanksgiving Feast** | Return the pie slices to the feast table | 39 | 181s | hamster, squirrel, goose | Original Harvest Home Hop |
+| 29 | **Halloween Haunt** | Put the carved pumpkins in the pumpkin bucket | 38 | 178s | bat, spider, ghosty | Original Spooky Sugar Shuffle |
+| 30 | **Thanksgiving Feast** | Return the pie slices to the feast table | 39 | 181s | turkey | Original Harvest Home Hop |
 | 31 | **Christmas Cheer** | Put the presents under the Christmas tree | 40 | 184s | roomba, cat, hamster | Original Tinsel Time |
 | 32 | **Valentines Day Love** | Put the valentines in the heart mailbox | 41 | 187s | bubble, hamster, cat | Original Hearts Together |
 | 33 | **St Patricks Day Luck** | Gather the shamrocks into the lucky pot | 42 | 190s | squirrel, hamster, weed | Original Lucky Clover Jig |

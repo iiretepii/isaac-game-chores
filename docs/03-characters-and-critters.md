@@ -66,7 +66,7 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | `bubble` | Soap bubble | fly | 35 | 9, 10, 14, 16, 32, 34, 36 |
 | `zap` | Lightning bolt | fly (jittery) | 65 | 15, 16, 28, 36 |
 | `ant` | Ant | walk | 70 | 11, 14, 28, 36 |
-| `hamster` | Hamster | walk + hop | 85 | 11, 12, 20, 23, 30, 31, 32, 33, 35, 36 |
+| `hamster` | Hamster | walk + hop | 85 | 11, 12, 20, 23, 31, 32, 33, 35, 36 |
 | `mite` | Dust mite | walk | 45 | 17, 36 |
 | `bzombie` | Blocky zombie | walk | 32 | 1, 25, 36 |
 | `bskel` | Blocky skeleton | walk | 42 | 1, 25, 36 |
@@ -76,12 +76,13 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | `husky` | Husky | walk + hop | 72 | 2, 36 |
 | `pom` | Pomeranian | walk + hop | 80 | 2, 20, 36 |
 | `duck` | Duck | walk | 40 | 7, 36 |
-| `goose` | Goose (flashes HONK) | walk | 60 | 7, 21, 30, 36 |
+| `turkey` | Turkey (fan tail, blue head, red wattle) | walk | 52 | 30, 36 |
+| `goose` | Goose (flashes HONK) | walk | 60 | 7, 21, 36 |
 | `swan` | Swan | walk | 35 | 7, 36 |
 | `invader` | Pixel space invader (original 8-bit alien, legs flick every frame) | fly | 45 | 22, 26, 36 |
 | `chomper` | Yellow chomper that opens and closes its mouth, munching dots | walk | 72 | 22, 34, 36 |
 | `ghosty` | Cyan arcade ghost with a wavy hem and eyes that look where it goes | walk | 52 | 22, 24, 26, 29, 36 |
-| `squirrel` | Squirrel | walk + hop | 85 | 7, 21, 24, 30, 33, 35, 36 |
+| `squirrel` | Squirrel | walk + hop | 85 | 7, 21, 24, 33, 35, 36 |
 | `weed` | Walking weed | walk | 38 | 6, 33, 36 |
 | `slime` | Slime | walk | 42 | 16, 23, 36 |
 
@@ -117,7 +118,7 @@ Speeds are in pixels per second; levels run about 6% faster per level index. "Fl
 | Roblox Avatar Roundup | `avatar` (classic yellow noobs, red-capped Guests, builders and modern hair avatars) | `avatarshelf` (two-tier display shelf) |
 | GTA V + VI Toy Room | `sportscar` / `cruiserbike` (colorful toy sports cars and motorcycles) | `citygarage` (neon two-tier display garage) |
 | Charging Room Chaos | `chargecable` (coiled charging cables in four colors, with USB-style plugs) | `cabledock` (wall organizer with cable hooks and a charging strip) |
-| Halloween Haunt | `candy` | `pumpkinbucket` |
+| Halloween Haunt | `carvedpumpkin` | `pumpkinbucket` |
 | Thanksgiving Feast | `pieslice` | `pietable` |
 | Christmas Cheer | `gift` | `gifttree` |
 | Valentines Day Love | `valentinecard` | `heartbox` |

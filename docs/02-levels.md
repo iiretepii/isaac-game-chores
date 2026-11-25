@@ -34,8 +34,8 @@ Generated from the `LEVELS` array in `index.html`.
 | 26 | Roblox Avatar Roundup | `obbyroom` | avatar → avatarshelf | 35 | 169s | 290 | 10 | 0.7 | 0.2 | yes | roomba, invader, ghosty | `obby` |
 | 27 | GTA V + VI Toy Room | `cityroom` | alternating sportscar / cruiserbike → citygarage | 36 | 172s | 300 | 10 | 0.7 | 0.2 | yes | roomba, dog, rat | `cityradio` |
 | 28 | Charging Room Chaos | `chargingroom` | chargecable → cabledock | 37 | 175s | 310 | 10 | 0.7 | 0.2 | yes | zap, roomba, ant | `charging` |
-| 29 | Halloween Haunt | `halloween` | candy → pumpkinbucket | 38 | 178s | 320 | 10 | 0.7 | 0.2 | yes | bat, spider, ghosty | `halloween` |
-| 30 | Thanksgiving Feast | `thanksgiving` | pieslice → pietable | 39 | 181s | 330 | 10 | 0.7 | 0.2 | yes | hamster, squirrel, goose | `thanksgiving` |
+| 29 | Halloween Haunt | `halloween` | carvedpumpkin → pumpkinbucket | 38 | 178s | 320 | 10 | 0.7 | 0.2 | yes | bat, spider, ghosty | `halloween` |
+| 30 | Thanksgiving Feast | `thanksgiving` | pieslice → pietable | 39 | 181s | 330 | 10 | 0.7 | 0.2 | yes | turkey | `thanksgiving` |
 | 31 | Christmas Cheer | `christmas` | gift → gifttree | 40 | 184s | 340 | 10 | 0.7 | 0.2 | yes | roomba, cat, hamster | `christmas` |
 | 32 | Valentines Day Love | `valentine` | valentinecard → heartbox | 41 | 187s | 350 | 10 | 0.7 | 0.2 | yes | bubble, hamster, cat | `valentine` |
 | 33 | St Patricks Day Luck | `stpatrick` | shamrock → luckypot | 42 | 190s | 360 | 10 | 0.7 | 0.2 | yes | squirrel, hamster, weed | `stpatrick` |

@@ -282,3 +282,8 @@ Grouped by milestone. See `git log` for every commit.
 - Added Halloween, Thanksgiving, Christmas, Valentine’s Day, St Patrick’s Day, April Fools Day and Easter as 2D levels 29–35, with distinct themes, collectibles, decorated return spots and original songs.
 - Expanded Level Select to fit 36 choices; the Whole House finale is level 36 with 45 pickups and 199 seconds, and includes all holiday items and all 35 level songs in its mashup.
 - Added seven song recordings, re-recorded/renumbered the finale mashup and moved ending/fail recordings to 37/38. Existing rooms’ settings and the 29-room 3D snapshot are retained.
+
+## 2026-11-25 — Holiday critters and pumpkins
+
+- Thanksgiving now has turkey critters, with fan tails, blue heads and red wattles; they use normal walking, collision and stomp rules. Turkeys are also included in Whole House.
+- Halloween pickups, decorations and the pumpkin-bucket display now use glowing carved pumpkins rather than candy; the finale item mix matches. Music and the 3D fork are unchanged.
