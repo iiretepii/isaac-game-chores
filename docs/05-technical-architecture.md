@@ -90,9 +90,9 @@ See [02 – Levels](02-levels.md) for the rules.
 
 Holiday rooms share `drawHolidayItem` for collectible art and `drawHolidayDrop` for decorated return spots. Their nine theme branches add banners, garlands and holiday props. Level Select computes its row height from `LEVELS.length`, fitting all 42 choices.
 
-### Four family helpers
+### Five family helpers
 
-`SIBS` defines Annie, Isaac, Daniel and Colin. Shared update, physics and target-reservation loops handle all four; appearance, follow distance, rush threshold, bedroom ownership and vehicle selection come from each entry. Menu lineups iterate the registry, including a compact level-intro lineup. The original 3D fork remains separate.
+`SIBS` defines Annie, Isaac, Daniel, Colin and Andrew. Shared update, physics and target-reservation loops handle all five; appearance, follow distance, rush threshold, bedroom ownership and vehicle selection come from each entry. Menu lineups iterate the registry, including a compact level-intro lineup. The original 3D fork remains separate.
 
 `drawCousinToy` supplies toy monster trucks and surfboards for pickups, room scenery, and the `monsterarena`/`surfrack` drop-off displays. Both are included in the Whole House mix.
 
@@ -103,3 +103,5 @@ Room ordering is independent of challenge: `difficultyIndex` preserves each room
 The 2D touch buttons cancel native `touchstart`/`touchend` gestures with non-passive listeners to prevent Safari double-tap zoom. Pointer capture keeps holds/releases working when a finger leaves a button; pointer cancellation, lost capture and window blur release held inputs. Touch-only browsers use a fallback without duplicating jumps on Pointer Events browsers. Double-click, context-menu and compatibility-click defaults are cancelled on the controls.
 
 `drawParentItem` supplies three jewelry variants and three Bears gear variants for collectibles, matching return spots, and bedroom decorations. Canvas `fit()` permits scales below 1 so the 480×272 game fits portrait phone screens instead of clipping.
+
+Andrew’s `fly` flag routes movement to `moveFlyingHelper` and rendering to animated wings, ahead of room-specific vehicle rendering. Flight steers toward shared item targets, avoids solid tiles and does not apply ground gravity. Ground helpers retain `moveSibling` physics.

@@ -29,10 +29,10 @@
 - **Isaac's name label** is blue with a red shadow (his favorite colors) on every level. He wears a red shirt and a blue cap (palette `shirt: #e53935`, `cap: #1e88e5`).
 
 **Behavior spec:**
-- **Arrival:** all four helpers appear next to the player as soon as the level starts.
+- **Arrival:** all five helpers appear next to the player as soon as the level starts.
 - **Normal mode:** outside their own bedroom and the Whole House, they follow a spot behind the player and stop and face the same way when the player stops.
 - **Their own rooms:** Isaac collects immediately in Isaac’s Room, and Annie collects immediately in Annie’s Room, prioritizing chores over hunting. The other sibling retains their usual timer threshold.
-- **Whole House:** all four helpers enter collection mode immediately and remain in it for the entire level. Chore collection takes priority over hunting nearby critters; contact zaps and stomps still work.
+- **Whole House:** all five helpers enter collection mode immediately and remain in it for the entire level. Chore collection takes priority over hunting nearby critters; contact zaps and stomps still work.
 - **Rush mode:** throughout their own bedroom and the Whole House, or when the time left elsewhere is at or below their threshold, they pick items (penalizing ones near critters in the target score, splitting work between them, giving up on an item after 2 s without progress and retrying it 4 s later) and drive to them.
 - **Physics:** terrain collisions match the player (walls, one-way and moving platforms); Annie's balloon changes her gravity and fall speed as described above. The AI decides when to jump (walls, gaps, critters, LEGO), double jump (over pits, up to high items) and duck (low ceilings).
 - **Damage:** downward stomps defeat critters (+100) and bounce the sibling upward; other critter contact triggers their ace zap (+100). LEGO hits bounce them back ("OOPS!") and falls respawn them on safe ground ("BACK!"). Neither costs time.
@@ -49,7 +49,13 @@ Daniel and Colin are also entries in `SIBS`, sharing `updateSibs`, `chooseSiblin
 | Follows at | 100 px behind | 138 px behind |
 | Collects at | 20% time remaining; immediately in his own room and throughout Whole House | 33% time remaining; immediately in his own room and throughout Whole House |
 
-Helper configuration uses `rush`, `follow`, `ownTheme`, `kart`, `color` and `neon` rather than treating every nonzero index as Isaac. Isaac and Annie retain their own-bedroom collection behavior; Daniel owns `danielroom` and Colin owns `colinroom`, so they also prioritize chores throughout their own rooms. All four share item reservations, so they choose separate targets. `drawMenuSiblings` lays out four helpers on the title, intro, clear and ending screens; the intro lineup is scaled to fit beneath its instructions.
+Helper configuration uses `rush`, `follow`, `ownTheme`, `kart`, `color` and `neon` rather than treating every nonzero index as Isaac. Isaac and Annie retain their own-bedroom collection behavior; Daniel owns `danielroom` and Colin owns `colinroom`, so they also prioritize chores throughout their own rooms. All five share item reservations, so they choose separate targets. `drawMenuSiblings` lays out five helpers on the title, intro, clear and ending screens; the intro lineup is scaled to fit beneath its instructions.
+
+## Cousin Andrew: winged helper
+
+Andrew is the fifth `SIBS` entry (`fly:1`), with an orange shirt, blue pants/cap and animated white-and-blue wings. He appears immediately, flies at up to 176 px/s, follows 90 px behind and 40 px above the player, and collects at 33% time remaining or immediately in Whole House. He uses shared target reservations, pickup scoring and critter contact/stomp handling. He prioritizes collection over critter-hunting detours. Only the player delivers.
+
+`moveFlyingHelper` steers vertically toward item height, flies across gaps, climbs around obstructions, respects solid walls and descending one-way platforms, and keeps him inside world bounds. He can take LEGO damage when flying low; brief damage rest pauses flight. He does not use the ground helpers’ gravity or double jump. All scenes and room types retain his wings. The menu lineup includes him on the left, with the ending’s Mom moved outward to leave space.
 
 ## The Parents: Mom and Uncle Pete
 

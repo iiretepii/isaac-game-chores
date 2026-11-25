@@ -332,3 +332,9 @@ Grouped by milestone. See `git log` for every commit.
 
 - Reduced Daniel’s level-3 room to 12 toy monster trucks and Colin’s level-4 room to 13 toy surfboards.
 - Kept their timers, terrain settings, music and helper behavior unchanged; updated the README and design tables.
+
+## 2026-11-25 — Andrew’s wings
+
+- Added cousin Andrew as a fifth helper, wearing animated white-and-blue wings and an orange shirt. He flies over gaps and up to pickups while respecting solid obstacles.
+- Andrew joins every level, collects at 33% time remaining or immediately throughout Whole House, and shares item reservations, scoring and critter interactions.
+- Added Andrew to title, intro, chore-complete and ending lineups. Existing ground rides and the separate 3D fork are retained.
