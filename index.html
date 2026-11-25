@@ -1528,7 +1528,7 @@ function moveFlyingHelper(s,dt,tx,moving){
 }
 // Sibling vehicles share terrain physics: gravity, solid walls, hops and moving platforms.
 function moveSibling(s,dt,tx,moving){
-  if(s.d.fly){moveFlyingHelper(s,dt,tx,moving);return;}
+  if(s.d.fly&&!['race','kartroom'].includes(lvl.L.theme)){moveFlyingHelper(s,dt,tx,moving);return;}
   s.inv=Math.max(0,(s.inv||0)-dt);
   s.h=s.h||20;s.jumps=s.jumps||0;
   const w=10,sp=moving?s.d.speed*(s.target?1:0.8):0;
@@ -1760,7 +1760,7 @@ function drawKartRoomRide(x,y,face,frame,model,pal,duck=false){
     wheel(-9,9,"#bccad6");wheel(17,9,"#bccad6");px(7,-2,7,2,"#f5c08a");
   }
 }
-const onRaceTrack=()=>lvl&&lvl.L&&lvl.L.theme==='race'&&(state==='play'||state==='clear'||state==='intro');
+const onRaceTrack=()=>lvl&&lvl.L&&lvl.L.theme==='race'&&['play','clear','intro','pause'].includes(state);
 function drawRaceCar(x,y,face,frame,body,stripe,num,pal,helm=body,helm2=stripe){
   const f=face<0,X=(dx,w)=>f?x+10-dx-w:x+dx,dk=shade(body,-60);
   drawKidRaw(x+(f?-1:1),y-9,face,0,false,pal);                                       // driver, waist-deep in the cockpit
@@ -1811,7 +1811,7 @@ const SIBS=[
  {name:"ISAAC",rush:.2,follow:62,ownTheme:"bedroom",kart:"flamerider",neon:1,color:"#42a5f5",ace:1,delay:0,speed:176,pal:{shirt:"#e53935",shirtD:"#b71c1c",pants:"#424242",cap:"#1e88e5",capH:"#64b5f6",hair:"#3e2723",logo:"#fff"},line:"ISAAC: VRRRM! NEON LIGHT-BIKE, BABY!"},
  {name:"DANIEL",ownTheme:"danielroom",ride:"monstertruck",rush:.2,follow:100,kart:"standard",color:"#81c784",ace:1,delay:0,speed:176,pal:{shirt:"#43a047",shirtD:"#256b2b",pants:"#37474f",cap:"#f9a825",capH:"#ffe082",hair:"#5d4037",logo:"#fff"},line:"DANIEL: COUSIN CREW, READY TO CLEAN!"},
  {name:"COLIN",ownTheme:"colinroom",ride:"surfboard",rush:.33,follow:138,kart:"standard",color:"#b39ddb",ace:1,delay:0,speed:176,pal:{shirt:"#7e57c2",shirtD:"#512da8",pants:"#455a64",cap:"#00acc1",capH:"#80deea",hair:"#3e2723",logo:"#fff"},line:"COLIN: Surfs Up!"},
- {name:"ANDREW",ownTheme:"andrewroom",fly:1,rush:.33,follow:90,color:"#a7ddff",ace:1,delay:0,speed:176,pal:{shirt:"#ffb74d",shirtD:"#e68a25",pants:"#4b76a5",cap:"#90caf9",capH:"#e1f5fe",hair:"#6d4c41",logo:"#fff"},line:"ANDREW: WINGS ON! LET'S FLY!"},
+ {name:"ANDREW",kart:"standard",ownTheme:"andrewroom",fly:1,rush:.33,follow:90,color:"#a7ddff",ace:1,delay:0,speed:176,pal:{shirt:"#ffb74d",shirtD:"#e68a25",pants:"#4b76a5",cap:"#90caf9",capH:"#e1f5fe",hair:"#6d4c41",logo:"#fff"},line:"ANDREW: WINGS ON! LET'S FLY!"},
 ];
 function drawKidRaw(x,y,face,frame,air,pal=PAL_ME){
   const f=face<0;const X=(dx,w)=>f?x+10-dx-w:x+dx;
@@ -2843,7 +2843,9 @@ function drawSibling(s,t){
       R(bx-3,byy+1,7,7,"#f06292");R(bx-4,byy+2,9,5,"#f06292");R(bx-1,byy,3,9,"#f06292");R(bx-2,byy+2,2,2,"#fce4ec");R(bx,byy+9,1,1,"#c2185b");}
     g.save();g.translate(Math.round(s.x),Math.round(by));g.scale(1,s.duck?0.6:1);
     outlined(0,0,(ox,oy)=>{
-      if(s.d.fly){
+      if(onKartRoom()){drawKartRoomRide(ox,oy+6,s.face,s.anim/2,s.d.kart,s.d.pal);}
+      else if(onRaceTrack()){const an=s.d.name==='ANNIE',isaac=s.d.name==='ISAAC';drawRaceCar(ox,oy+5,s.face,s.anim/2,isaac?"#1e88e5":s.d.pal.shirt,an?"#fce4ec":isaac?"#e53935":s.d.color,s.k+2,s.d.pal,isaac?"#e53935":s.d.pal.cap||s.d.pal.shirt,isaac?"#1e88e5":s.d.color);}
+      else if(s.d.fly){
         const flap=Math.sin(t*10+s.x*.02)>0?1:0,wy=oy+(flap?-3:3);
         for(const side of [-1,1]){const wx=side<0?ox-12:ox+10;
           R(wx,wy+4,12,5,"#9bc8e6");R(wx+(side<0?0:3),wy+1,9,4,"#d2efff");
@@ -2873,8 +2875,6 @@ function drawSibling(s,t){
         R(ox-5,oy+16,20,1,"#ffffff");R(ox+2,oy+15,3,4,"#9c79d0");R(ox+7,oy+15,3,4,"#9c79d0");
         R(ox-4,oy+19,3,1,"#148b9d");R(ox+13,oy+19,3,1,"#148b9d");
       }
-      else if(onKartRoom()){drawKartRoomRide(ox,oy+6,s.face,s.anim/2,s.d.kart,s.d.pal);}
-      else if(onRaceTrack()){const an=s.d.name==='ANNIE',isaac=s.d.name==='ISAAC';drawRaceCar(ox,oy+5,s.face,s.anim/2,isaac?"#1e88e5":s.d.pal.shirt,an?"#fce4ec":isaac?"#e53935":s.d.color,s.k+2,s.d.pal,isaac?"#e53935":s.d.pal.cap||s.d.pal.shirt,isaac?"#1e88e5":s.d.color);}
       else if(s.d.neon){ // Big Bro on a sleek neon light-bike: glowing disc wheels, low enclosed body, neon edge lines
         const f=s.face>0,F=(dx,w)=>f?ox+dx:ox+10-dx-w,N="#ff1744",N2="#ff8a80",gl=Math.floor(clock*8)%2;
         drawKidRaw(ox,oy-1,s.face,0,false,s.d.pal);

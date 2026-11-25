@@ -104,6 +104,6 @@ The 2D touch buttons cancel native `touchstart`/`touchend` gestures with non-pas
 
 `drawParentItem` supplies three jewelry variants and three Bears gear variants for collectibles, matching return spots, and bedroom decorations. Canvas `fit()` permits scales below 1 so the 480×272 game fits portrait phone screens instead of clipping.
 
-Andrew’s `fly` flag routes movement to `moveFlyingHelper` and rendering to animated wings, ahead of room-specific vehicle rendering. Flight steers toward shared item targets, avoids solid tiles and does not apply ground gravity. Ground helpers retain `moveSibling` physics.
+Room-specific race-car and kart rendering takes priority over personal rides and wings. Andrew’s `fly` flag routes movement to `moveFlyingHelper` and rendering to animated wings outside the two vehicle rooms. Flight steers toward shared item targets, avoids solid tiles and does not apply ground gravity. Ground helpers retain `moveSibling` physics.
 
 Andrew’s Sky Room is fifth (`andrewroom`, `ownTheme` for Andrew), with 14 flying toys and a toy hangar. `drawFlyingToy` draws toy planes, helicopters and kites for pickups and the room. Andrew’s belly-down rendering rotates his original body and redraws his original head upright so his face, outfit and wing design stay the same.

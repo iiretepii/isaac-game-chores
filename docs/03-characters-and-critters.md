@@ -25,7 +25,7 @@
 - Neither sibling fumbles obstacles or trips.
 - **Annie's balloon** (`balloon:1` in `SIBS`): she carries a pink balloon on a string. When she is in the air and no longer rising fast (`vy > -60`), gravity drops from 1300 to 680 px/s² and her fall speed is capped at 230 px/s (normally 600), giving a short float at the top of each jump and a gentle descent. Her name label sits above the balloon.
 - **Annie's outfit** (`dress:1` in her palette): a pink dress with puff sleeves, a bow at the waist and a flared, ruffled skirt, drawn over the usual kid sprite in `drawKidRaw`.
-- **Race cars** (`drawRaceCar`, used when `onRaceTrack()`): on Race Track Rumble the player (orange car #1, white helmet), Annie (pink car #2, pink helmet, still with her balloon) and Isaac (blue car #3 with a red stripe and red helmet, his favorite colors) drive race cars instead of the bike, skateboard and light-bike. Everyone wears a striped racing helmet with a dark visor. Only the look changes; hitboxes and physics are the same.
+- **Race cars** (`drawRaceCar`, used when `onRaceTrack()`): on Race Track Rumble the player (orange car #1, white helmet), Annie (pink car #2, pink helmet, still with her balloon) and Isaac (blue car #3 with a red stripe and red helmet, his favorite colors) drive race cars instead of the bike, skateboard and light-bike. Daniel (green #4), Colin (purple #5) and Andrew (orange #6) also drive cars there. Everyone wears a striped racing helmet with a dark visor. Only the look changes; hitboxes and physics are the same.
 - **Isaac's name label** is blue with a red shadow (his favorite colors) on every level. He wears a red shirt and a blue cap (palette `shirt: #e53935`, `cap: #1e88e5`).
 
 **Behavior spec:**
@@ -45,7 +45,7 @@ Daniel and Colin are also entries in `SIBS`, sharing `updateSibs`, `chooseSiblin
 | | Daniel | Colin |
 |---|---|---|
 | Look | Green shirt, yellow cap, green name label | Purple shirt, teal cap, purple name label |
-| Ride | Green monster truck with oversized wheels, in every room | Turquoise-and-purple surfboard, in every room |
+| Ride | Green monster truck normally; green race car #4 with helmet in Race Track Rumble; Standard Kart in MarioKart Toy Room | Turquoise-and-purple surfboard normally; purple race car #5 with helmet in Race Track Rumble; Standard Kart in MarioKart Toy Room |
 | Follows at | 100 px behind | 138 px behind |
 | Collects at | 20% time remaining; immediately in his own room and throughout Whole House | 33% time remaining; immediately in his own room and throughout Whole House |
 
@@ -55,7 +55,7 @@ Helper configuration uses `rush`, `follow`, `ownTheme`, `kart`, `color` and `neo
 
 Andrew is the fifth `SIBS` entry (`fly:1`), with an orange shirt, blue pants/cap and animated white-and-blue wings. His belly-down body uses the original `drawKidRaw` sprite and palette, with its head clipped out; the same original head is drawn upright, looking forward. The original face and wings remain unchanged. He appears immediately, flies at up to 176 px/s, follows 90 px behind and 40 px above the player, and collects at 33% time remaining or immediately in his Sky Room and Whole House. He uses shared target reservations, pickup scoring and critter contact/stomp handling. He prioritizes collection over critter-hunting detours. Only the player delivers.
 
-`moveFlyingHelper` steers vertically toward item height, flies across gaps, climbs around obstructions, respects solid walls and descending one-way platforms, and keeps him inside world bounds. He can take LEGO damage when flying low; brief damage rest pauses flight. He does not use the ground helpers’ gravity or double jump. All scenes and room types retain his wings. The menu lineup includes him on the left, with the ending’s Mom moved outward to leave space.
+`moveFlyingHelper` steers vertically toward item height, flies across gaps, climbs around obstructions, respects solid walls and descending one-way platforms, and keeps him inside world bounds. He can take LEGO damage when flying low; brief damage rest pauses flight. He does not use the ground helpers’ gravity or double jump. Ordinary rooms and menu lineups retain his wings. In Race Track Rumble he drives orange race car #6 with a helmet, and in MarioKart Toy Room he drives a Standard Kart. Both vehicle rooms use ground-helper physics, including ducking and double jumping. The menu lineup includes him on the left, with the ending’s Mom moved outward to leave space.
 
 ## The Parents: Mom and Uncle Pete
 

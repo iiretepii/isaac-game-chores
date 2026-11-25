@@ -356,3 +356,8 @@ Grouped by milestone. See `git log` for every commit.
 - The item-spot fallback now packs spots more tightly when needed, so the Whole House gets all 52 items (it had 51).
 - Checks: every pit and climb in all 43 levels can be cleared, every level has its full item count, and every drop-off sits on solid ground.
 - Docs: the MarioKart and GTA rows now name the real item keys (`kartbike`, `citytoys`).
+
+## 2026-11-25 — Cousin racing vehicles
+
+- Fixed personal rides taking priority over race cars and karts. Daniel, Colin and Andrew now get race cars and helmets in Race Track Rumble and Standard Karts in MarioKart Toy Room.
+- Andrew uses ground movement in both vehicle rooms. Ordinary-room monster truck, surfboard and winged flight are retained. Race vehicles also remain visible when paused.
