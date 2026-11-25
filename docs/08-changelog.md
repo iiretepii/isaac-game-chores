@@ -271,3 +271,8 @@ Grouped by milestone. See `git log` for every commit.
 - Replaced sequential medley playback in the 2D Whole House with three level tracks playing simultaneously, rotating four-bar groups at 128 BPM.
 - Included all 28 level songs, including the previously omitted Race Track Rumble arrangement, with isolated instrument buses and reduced layer volumes.
 - Updated the listening MP3 and audio documentation; individual room songs and the 3D fork’s snapshot remain separate.
+
+## 2026-11-25 — Uncle Pete’s Bears jersey
+
+- Uncle Pete now wears a navy Chicago Bears #34 jersey with orange trim, an orange C chest patch, white numbers and orange-and-white sleeve stripes on both the angry parents screen and happy victory screen.
+- His face, pants and animations are retained; the separate 3D fork is unchanged.

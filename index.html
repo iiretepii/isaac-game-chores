@@ -2685,7 +2685,7 @@ function drawLose(t){
   text(P.carry+"/"+lvl.total+" "+ITEM_NAMES[lvl.L.item].toUpperCase()+" DONE",W/2,182,8,"#ffeb3b","center");
   if(stateT>1.2&&Math.floor(t*2)%2)text("ENTER / TAP: TRY AGAIN",W/2,210,8,"#fff","center");
 }
-// The parents. Mom: very pretty, long black hair, purple dress. Uncle Pete: handsome, brown hair, blue shirt.
+// The parents. Mom: very pretty, long black hair, purple dress. Uncle Pete: handsome, brown hair, Chicago Bears jersey.
 //  mood: 1 = angry (lose screen), 0 = happy (victory screen). (x,y) is the top-left of a 22 x 52 figure.
 // Very mad face: steep V eyebrows, squinty eyes, red cheeks, a big open frown with gritted teeth,
 //  a throbbing anger mark and puffs of steam.
@@ -2727,13 +2727,21 @@ function drawPete(x,y,mood){
   if(mood){parentMad(x,y,"#3e2723");}
   else{R(x+6,y+9,4,1,"#4e342e");R(x+12,y+9,4,1,"#4e342e");R(x+8,y+15,6,2,"#fff");R(x+8,y+15,6,1,"#8d4a3a");R(x+7,y+14,1,1,"#8d4a3a");R(x+14,y+14,1,1,"#8d4a3a");}
   R(x+10,y+13,2,2,"#e0a070");R(x+9,y+19,4,2,skin);                                                  // nose, neck
-  R(x+4,y+21,14,16,"#1e88e5");R(x+4,y+21,14,2,"#42a5f5");R(x+8,y+21,2,3,"#bbdefb");R(x+12,y+21,2,3,"#bbdefb"); // blue shirt + collar
-  R(x+10,y+24,1,12,"#1565c0");for(let q=0;q<3;q++)R(x+11,y+26+q*4,1,1,"#e3f2fd");R(x+4,y+21,1,16,"#1565c0");
+  const navy="#0b162a",orange="#c83803",white="#ffffff";
+  R(x+4,y+21,14,16,navy);R(x+4,y+21,14,1,"#22354f"); // Bears home jersey
+  R(x+8,y+21,2,2,orange);R(x+12,y+21,2,2,orange);R(x+10,y+23,2,1,orange); // V neck
+  R(x+5,y+24,3,3,orange);R(x+6,y+25,2,1,navy); // small orange C chest patch
+  // White number 34 with orange edging, rendered as pixel numerals.
+  const digits=[['111','001','111','001','111'],['101','101','111','001','001']];
+  digits.forEach((rows,n)=>{const dx=x+7+n*5;R(dx-1,y+28,5,7,orange);R(dx,y+29,3,5,navy);
+    rows.forEach((row,ry)=>{for(let rx=0;rx<3;rx++)if(row[rx]==='1')R(dx+rx,y+29+ry,1,1,white);});});
+  R(x+4,y+36,14,1,orange);
   const up=mood&&Math.floor(clock*6)%2;                                                              // right arm is raised while yelling
-  R(x+1,y+22,4,12,"#1e88e5");R(x+1,y+33,4,3,skin);if(!up){R(x+17,y+22,4,12,"#1e88e5");R(x+17,y+33,4,3,skin);}else R(x+17,y+22,3,3,"#1e88e5"); // shoulders, sleeves, hands
+  R(x+1,y+22,4,12,navy);R(x+1,y+33,4,3,skin);if(!up){R(x+17,y+22,4,12,navy);R(x+17,y+33,4,3,skin);}else R(x+17,y+22,3,3,navy); // shoulders, sleeves, hands
+  for(const ax of up?[1]:[1,17]){R(x+ax,y+25,4,2,orange);R(x+ax,y+28,4,1,white);R(x+ax,y+30,4,1,orange);}
   R(x+5,y+37,12,2,"#4e342e");R(x+10,y+37,2,2,"#ffca28");                                            // belt
   R(x+5,y+39,5,11,"#37474f");R(x+12,y+39,5,11,"#37474f");R(x+4,y+50,6,2,"#212121");R(x+12,y+50,6,2,"#212121");
-  if(mood)madArm(x,y,1,skin,"#1e88e5");}
+  if(mood)madArm(x,y,1,skin,navy);}
 function drawEnd(t){
   R(0,0,W,H,"#1a1040");
   for(let i=0;i<40;i++){const x=(i*61+t*60)%W,y=(i*37+t*(30+i))%H;R(x,y,3,3,["#ffeb3b","#e53935","#76ff03","#40c4ff"][i%4]);}
