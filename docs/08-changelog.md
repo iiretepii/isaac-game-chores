@@ -374,3 +374,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-26 — Sharper intro dialogue
 
 - Restored the four owner messages to the pixel font’s 8 px size, widened the message card and removed dialogue text shadows for clearer letters. The exact requested wording is retained.
+
+## 2026-11-26 — Owners offer to help
+
+- Appended “Oh, and I’ll help you” to the about-to-start messages for Isaac, Annie, Daniel, Colin and Andrew, preserving the rest of their dialogue.
