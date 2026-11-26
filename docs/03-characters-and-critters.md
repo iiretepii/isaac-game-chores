@@ -161,13 +161,13 @@ Isaac’s Room uses a pretend wooden treasure chest (`toychest`) with gold-color
 
 ## Room-owner intro messages
 
-The first five rooms show their owners’ requested lines on the about-to-start screen:
+The first four rooms show their owners’ requested lines on the about-to-start screen:
 
 - **Isaac:** “My toy dragons are flying all over my room! Dragons in dragon treasure chest. Now! Oh, and I’ll help you”
 - **Annie:** “My Barbie dolls are partying all over my room! Put them in my toy Barbie doll castle. Now! Oh, and I’ll help you”
 - **Daniel:** “My toy monster trucks are driving all over my room! Toy monster truck shelf. Now! Oh, and I’ll help you”
 - **Colin:** “My toy surfboards are surfing all over my room! Toy surfboard shelf. Now! Oh, and I’ll help you”
 
-- **Andrew:** “Planes, helicopters and kites everywhere! Help me put my flying toys in the hangar! Oh, and I’ll help you”
+Andrew’s Sky Room keeps its original intro message without the added ending.
 
 Each message is prefixed with the owner’s name. These messages use 8 px lettering (`introSize: 8` or the default) and a wider message card to keep the full text readable. The dialogue uses clean, unshadowed text. Chore items, return spots and helper greetings are retained.

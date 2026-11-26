@@ -383,3 +383,7 @@ Grouped by milestone. See `git log` for every commit.
 - Christmas Cheer now plays *A Very Merry Medley* (160 BPM, about 67 s): Jingle Bells, Silent Night (slower and calmer), Deck the Halls, We Wish You a Merry Christmas (in place of the copyrighted *Rudolph*) and a Joy to the World finale, with sleigh bells throughout and harp sweeps between songs. It replaces *Tinsel Time*.
 - The melodies and harmonies were checked three ways. On paper: bar lengths, chord counts and beat notes against chords. In playback: all 390 bass and chord notes match the written chord at the melody step they sound on, and all 140 melody notes start exactly on their written step.
 - Volume trim 1.95 (about −34.5 dB RMS). Re-recorded `music/36-christmas.mp3` and the Whole House mashup `music/43-whole-house-medley.mp3`.
+
+## 2026-11-26 — Help offer limited to four rooms
+
+- Kept “Oh, and I’ll help you” in Isaac’s, Annie’s, Daniel’s and Colin’s intro messages only; restored Andrew’s original intro ending.
