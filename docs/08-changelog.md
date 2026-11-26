@@ -415,3 +415,7 @@ Grouped by milestone. See `git log` for every commit.
 - Added Ghost Bridge: its collector gets invisible one-way platforms over gaps for 12 seconds. Other characters and critters do not receive platforms.
 - Every room now has five unframed bonuses: the original three plus two rotating extras. All five helpers can collect every kind, with independent ownership, timers and effects.
 - Updated the timer HUD and helper status labels for multiple simultaneous powers. Original terrain, chores, music and the separate 3D game are retained.
+
+## 2026-11-26 — Whole House Ghost Bridges
+
+- Added three extra Ghost Bridge pickups spread through Whole House, keeping the existing five bonuses. Each bridge still belongs only to its collector and lasts 12 seconds.

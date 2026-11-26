@@ -1462,6 +1462,11 @@ function makePowerups(level){
  }
  const used=[],desired=[7,Math.round(level.cols*.4),Math.round(level.cols*.72),Math.round(level.cols*.23),Math.round(level.cols*.87)];
  const extras=Object.keys(POWER_DEFS).slice(3),types=['shield','boost','magnet',extras[(level.idx*2)%extras.length],extras[(level.idx*2+1)%extras.length]];
+ // Extra personal bridges are spread throughout the Whole House finale.
+ if(level.L.theme==='house'&&level.L.item==='mix'){
+  types.push('bridge','bridge','bridge');
+  desired.push(...[.16,.5,.8].map(f=>Math.round(level.cols*f)));
+ }
  return types.map((kind,i)=>{
   const options=candidates.filter(q=>used.every(c=>Math.abs(c-q.c)>=4));
   options.sort((a,b)=>Math.abs(a.c-desired[i])-Math.abs(b.c-desired[i]));

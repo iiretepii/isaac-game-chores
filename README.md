@@ -63,7 +63,7 @@ The bar at the top of the screen shows the parents' car driving toward the house
 
 ### Power-ups
 
-Each 2D room has five optional bonus pickups: shield, speed and magnet plus two rotating powers from the eleven new types. You, Isaac, Annie, Daniel, Colin or Andrew can collect the unframed icons to power themselves up:
+Each 2D room has five optional bonus pickups: shield, speed and magnet plus two rotating powers from the eleven new types. Whole House also has three extra Ghost Bridge pickups spread through the room. You, Isaac, Annie, Daniel, Colin or Andrew can collect the unframed icons to power themselves up:
 
 | Power-up | Effect | Lasts |
 |---|---|---|
