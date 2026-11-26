@@ -463,3 +463,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-26 — Grounded racing-room Andrew
 
 - Disabled Andrew’s gap rescues in Race Track Rumble and MarioKart Toy Room. Normal fall rules and Rescue Balloon powers still apply there. Andrew continues rescuing teammates in other rooms, including Training.
+
+## 2026-11-26 — Player intro dialogue
+
+- Added seven room-specific player lines to about-to-start screens. The player’s portrait and “YOU SAY” bubble alternate with the existing message every four seconds; the original introductions are retained.

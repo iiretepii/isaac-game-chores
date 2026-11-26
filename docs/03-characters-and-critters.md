@@ -191,3 +191,5 @@ Whoever Andrew rescues says **“W Andrew!”** in a speech bubble attached to t
 Sibling and cousin greetings, cleanup lines, power-up announcements and Andrew’s rescue calls appear in speech bubbles attached to their speaker. Family room introductions show a speech bubble beside the speaking character; parent phone messages stay in the intro panel.
 
 After the rescued character says “W Andrew!”, Andrew replies **“Happy to help!”** in his own speech bubble. The reply follows after a short pause and pauses with the game.
+
+The player has room-specific “YOU SAY” intro dialogue in Living Room, Library, Race Track Rumble, MarioKart Toy Room, Minecraft, LEGO Builders Room and Whole House. Their bubble and portrait alternate with the existing room message every four seconds, starting with the player.
