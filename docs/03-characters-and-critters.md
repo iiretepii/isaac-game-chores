@@ -158,3 +158,14 @@ Some sprites change by position (`itemSeed`), including paint-bucket colors, rob
 
 
 Isaac’s Room uses a pretend wooden treasure chest (`toychest`) with gold-colored straps and a keyhole. The static dragon painted on the outside is drawn with the same `drawItemRaw('dragon')` sprite as the room’s collectibles.
+
+## Room-owner intro messages
+
+The first four rooms show their owners’ requested lines on the about-to-start screen:
+
+- **Isaac:** “My toy dragons are flying all over my room! Dragons in dragon treasure chest. Now!”
+- **Annie:** “My Barbie dolls are partying all over my room! Put them in my toy Barbie doll castle. Now!”
+- **Daniel:** “My toy monster trucks are driving all over my room! Toy monster truck shelf. Now!”
+- **Colin:** “My toy surfboards are surfing all over my room! Toy surfboard shelf. Now!”
+
+Each message is prefixed with the owner’s name. These four rooms use `introSize: 7` to keep the full text inside the message card. Chore items, return spots and helper greetings are retained.

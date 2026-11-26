@@ -365,3 +365,8 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-25 — Andrew’s connected flying pose
 
 - Moved Andrew’s upright head closer to his flying body and added a neck and shirt collar overlapping the chin and shoulder, so the pose remains connected in both directions. The original face, outfit and wings are retained.
+
+## 2026-11-26 — Room owners introduce their chores
+
+- Replaced Isaac’s, Annie’s, Daniel’s and Colin’s intro-card dialogue with the owner’s exact requested lines, including Annie’s Barbie dolls and toy Barbie doll castle wording.
+- Added an optional `introSize` setting so the longer messages fit the card; gameplay and Colin’s immediate “Surfs Up!” greeting are retained.
