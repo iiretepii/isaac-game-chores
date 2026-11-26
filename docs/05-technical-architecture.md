@@ -121,7 +121,7 @@ Andrew’s Sky Room is fifth (`andrewroom`, `ownTheme` for Andrew), with 14 flyi
 
 Andrew rescues the player or any other helper who falls into a gap while he is present, except in Race Track Rumble and MarioKart Toy Room. In those two rooms he stays in his vehicle and cannot rescue anyone; normal fall rules and personal Rescue Balloon powers still apply. He swoops in with his wings and returns them to the last safe ground without a time penalty or using their Rescue Balloon. He can catch teammates during an ongoing rescue; he cannot rescue himself.
 
-Andrew moves twice as fast as before (352 px/s). He catches descending teammates over gaps before they leave the screen, reacts in the same update, and visibly carries the rescued character to safety over 1.8 seconds. Another fall can trigger a rescue immediately, even during his swoop.
+Andrew moves twice as fast as before (352 px/s). He waits until a descending teammate is falling below the playable area, leaving jumps and moving-platform landings uninterrupted, reacts in the same update, and visibly carries the rescued character to safety over 1.8 seconds. Another fall can trigger a rescue immediately, even during his swoop.
 
 During a rescue the passenger stays visible below Andrew, follows his slow return arc and cannot move or fall again until landing. Catching is immediate; only the carry back is slow. Pausing freezes the carry, and starting a room clears it.
 

@@ -467,3 +467,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-26 — Player intro dialogue
 
 - Added seven room-specific player lines to about-to-start screens. The player’s portrait and “YOU SAY” bubble alternate with the existing message every four seconds; the original introductions are retained.
+
+## 2026-11-26 — Let moving-platform jumps finish
+
+- Andrew no longer treats ordinary downward jumps over gaps as failed falls. He waits until a descending, unsupported character reaches the bottom of the screen before rescuing, so moving-platform jumps and double jumps can finish.

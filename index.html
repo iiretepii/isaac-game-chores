@@ -1561,7 +1561,8 @@ function collectHelperItem(s,it){
 // Andrew reacts in the same update, before a falling teammate leaves the screen.
 const ANDREW_RESCUE_TIME=1.8;
 function needsAndrewRescue(actor){
- return actor.y>H-12||(actor.vy>0&&actor.y+actor.h>H-64&&groundBelow(actor.x+(actor.w||10)/2,actor.y+actor.h)===null);
+ // A jump over a pit is not a fall: wait until the actor drops below the playable area.
+ return !actor.on&&!actor.ride&&actor.vy>0&&actor.y>H-12;
 }
 function andrewRescue(actor){
  if(['race','kartroom'].includes(lvl.L.theme))return false;
