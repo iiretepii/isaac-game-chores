@@ -63,15 +63,26 @@ The bar at the top of the screen shows the parents' car driving toward the house
 
 ### Power-ups
 
-Each 2D room has three optional bonus pickups. You, Isaac, Annie, Daniel, Colin or Andrew can collect the unframed icons to power themselves up:
+Each 2D room has five optional bonus pickups: shield, speed and magnet plus two rotating powers from the eleven new types. You, Isaac, Annie, Daniel, Colin or Andrew can collect the unframed icons to power themselves up:
 
 | Power-up | Effect | Lasts |
 |---|---|---|
 | Blue shield | Protects its collector from critter and LEGO hits; gaps still cost time | 10 seconds |
 | Yellow lightning bolt | Makes its collector move or fly 1.5× faster | 8 seconds |
 | Purple magnet | Pulls nearby chore items toward its collector, without pulling through solid walls | 10 seconds |
+| Jump Boots | Higher jumps | 10 seconds |
+| Feather Float | Slower falling | 10 seconds |
+| Triple Jump | A third jump in midair | 10 seconds |
+| Star | Defeats critters on contact and protects against LEGO hits | 8 seconds |
+| Fire Aura | Defeats nearby critters with a clear path | 8 seconds |
+| Ice Aura | Freezes nearby critters with a clear path | 8 seconds |
+| Slow Aura | Slows nearby critters with a clear path | 10 seconds |
+| Double Points | Doubles the collector’s chore and critter points | 10 seconds |
+| Rescue Balloon | Catches one fall into a gap | Up to 12 seconds |
+| Item Compass | Points toward remaining chores, then the drop-off | 12 seconds |
+| Ghost Bridge | Invisible platforms let the collector cross gaps | 12 seconds |
 
-Your active powers have countdowns beneath the HUD; helpers show their own countdowns below their names. Each powered character has a shield bubble, speed streaks or orbiting magnet sparks. Different powers work together; another pickup refreshes that power’s timer. Timers pause with the game and reset on a retry or new room. Each bonus belongs only to the character who collects it; helper pickups do not activate your powers. The pickup message names the finder. Bonuses do not count as chores or need to be collected to finish.
+Your active powers have countdowns beneath the HUD; helpers show their own countdowns below their names. Powered characters have effect markers; Ghost Bridge leaves the platforms invisible. Jump and falling powers affect grounded characters, including Andrew in vehicle rooms. Ghost Bridge creates personal one-way platforms over pits only while active; it does not protect anyone else. Different powers work together; another pickup refreshes that power’s timer. Timers pause with the game and reset on a retry or new room. Each bonus belongs only to the character who collects it; helper pickups do not activate your powers. The pickup message names the finder. Bonuses do not count as chores or need to be collected to finish.
 
 ### Sibling and Cousin Helpers
 

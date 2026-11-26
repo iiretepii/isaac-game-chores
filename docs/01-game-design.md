@@ -26,7 +26,7 @@ This document describes the original 2D game. See [09 – 3D Fork](09-3d-fork.md
 
 ## Optional Power-ups
 
-Every 2D room has one shield, one speed boost and one magnet bonus, placed above flat ground. The player or any sibling/cousin can collect these separately from chores, activating only the collector’s power. Shield prevents critter/LEGO damage for 10 seconds but does not prevent fall penalties; speed gives the collector 1.5× movement or flight for 8 seconds; magnet pulls nearby chores with a clear path through the room within 90 px for 10 seconds. Powers stack by type, refresh on repeat pickup, pause with play and reset on each level start. Completion still requires only chore items and delivery.
+Every 2D room has five bonuses placed above flat ground: shield, speed, magnet and two rotating extras. The extras are Jump Boots, Feather Float, Triple Jump, Star, Fire Aura, Ice Aura, Slow Aura, Double Points, Rescue Balloon, Item Compass and Ghost Bridge. The player or any sibling/cousin can collect these separately from chores, activating only the collector’s power. Shield prevents critter/LEGO damage for 10 seconds but does not prevent fall penalties; speed gives the collector 1.5× movement or flight for 8 seconds; magnet pulls nearby chores with a clear path through the room within 90 px for 10 seconds. Powers stack by type, refresh on repeat pickup, pause with play and reset on each level start. Jump powers change grounded movement; auras affect nearby critters through clear paths. Double Points affects chore/critter rewards, Rescue catches one fall, Compass points toward chores or delivery, and Ghost Bridge creates invisible personal platforms across gaps for 12 seconds. Completion still requires only chore items and delivery.
 
 ## Rules
 

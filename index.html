@@ -1421,15 +1421,48 @@ function buildLevel(idx){
 }
 
 // Bonus pickups use no room RNG, so terrain, enemies and chores stay unchanged.
-const POWER_DEFS={shield:{name:'SHIELD',duration:10,color:'#73d8f1'},boost:{name:'SPEED',duration:8,color:'#ffd75d'},magnet:{name:'MAGNET',duration:10,color:'#d1a0ff'}};
+const POWER_DEFS={
+ shield:{name:'SHIELD',duration:10,color:'#73d8f1',code:'SH'},boost:{name:'SPEED',duration:8,color:'#ffd75d',code:'SP'},magnet:{name:'MAGNET',duration:10,color:'#d1a0ff',code:'MG'},
+ spring:{name:'JUMP',duration:10,color:'#8be896',code:'JB'},feather:{name:'FLOAT',duration:10,color:'#d9f6ff',code:'FL'},triple:{name:'TRIPLE',duration:10,color:'#8ebcff',code:'TJ'},
+ star:{name:'STAR',duration:8,color:'#fff19a',code:'ST'},fire:{name:'FIRE',duration:8,color:'#ff985d',code:'FR'},ice:{name:'ICE',duration:8,color:'#86e9ef',code:'IC'},
+ slow:{name:'SLOW',duration:10,color:'#bd9aea',code:'SL'},double:{name:'2X',duration:10,color:'#ffc3e5',code:'2X'},rescue:{name:'RESCUE',duration:12,color:'#ffb5aa',code:'RS'},compass:{name:'COMPASS',duration:12,color:'#b0e8c6',code:'CP'},bridge:{name:'GHOST BRIDGE',duration:12,color:'#c6dcff',code:'GB'}
+};
+function freshPowers(){return Object.fromEntries(Object.keys(POWER_DEFS).map(k=>[k,0]));}
+function maxJumps(a){return a.powers?.triple>0?3:2;}
+function jumpVelocity(a){return -430*(a.powers?.spring>0?1.2:1);}
+function pointMultiplier(a){return a.powers?.double>0?2:1;}
+function nearestChore(a){return lvl.items.filter(it=>!it.got).sort((u,v)=>Math.hypot(u.x-a.x,u.y-a.y)-Math.hypot(v.x-a.x,v.y-a.y))[0]||lvl.drop;}
+function powerLineClear(x,y,tx,ty){const n=Math.max(1,Math.ceil(Math.hypot(tx-x,ty-y)/4));for(let i=0;i<=n;i++)if(solid(Math.floor((x+(tx-x)*i/n)/T),Math.floor((y+(ty-y)*i/n)/T)))return false;return true;}
+function auraNear(a,e,r){return Math.hypot(a.x+5-(e.x+e.w/2),a.y+(a.h||20)/2-(e.y+e.h/2))<=r&&powerLineClear(a.x+5,a.y+(a.h||20)/2,e.x+e.w/2,e.y+e.h/2);}
+function enemyPowerScale(e){const actors=[P,...sibs];if(actors.some(a=>a.powers?.ice>0&&auraNear(a,e,96)))return 0;return actors.some(a=>a.powers?.slow>0&&auraNear(a,e,96))?0.35:1;}
+function defeatWithPower(e,a){if(!e.alive)return;e.alive=false;e.dead=.5;const points=100*pointMultiplier(a);score+=points;levelScore+=points;SFX.boing();puff(e.x+7,e.y+6,a.powers?.fire>0?'#ff985d':'#fff19a',10,65);popText(e.x,e.y-8,'+'+points,'#fff19a');}
+function updatePowerAuras(){for(const a of [P,...sibs])if(a.powers?.fire>0)for(const e of lvl.enemies)if(e.alive&&auraNear(a,e,44))defeatWithPower(e,a);}
+
+// Personal one-way surfaces span only actual pits; the room map stays unchanged.
+function ghostBridgeY(actor,x){
+ if(!(actor.powers?.bridge>0))return null;
+ const c=Math.floor(x/T);if(c<0||c>=lvl.cols||lvl.ground[c])return null;
+ let left=c-1,right=c+1;
+ while(left>=0&&!lvl.ground[left])left--;
+ while(right<lvl.cols&&!lvl.ground[right])right++;
+ if(left<0||right>=lvl.cols)return null;
+ return (ROWS-Math.max(lvl.ground[left],lvl.ground[right]))*T;
+}
+function landOnGhostBridge(actor,prevB,width){
+ const y=ghostBridgeY(actor,actor.x+width/2),bottom=actor.y+actor.h;
+ if(y===null||prevB>y+.5||bottom<y)return false;
+ actor.y=y-actor.h;actor.vy=0;actor.on=true;actor.ride=null;return true;
+}
+
 function makePowerups(level){
  const candidates=[];
  for(let c=6;c<level.cols-8;c++){
   const h=level.ground[c],r=ROWS-h;
   if(h&&level.ground[c-1]===h&&level.ground[c+1]===h&&level.map[r-1][c]==='.'&&level.map[r-2][c]==='.')candidates.push({c,x:c*T,y:r*T-18});
  }
- const used=[],desired=[7,Math.round(level.cols*.4),Math.round(level.cols*.72)];
- return Object.keys(POWER_DEFS).map((kind,i)=>{
+ const used=[],desired=[7,Math.round(level.cols*.4),Math.round(level.cols*.72),Math.round(level.cols*.23),Math.round(level.cols*.87)];
+ const extras=Object.keys(POWER_DEFS).slice(3),types=['shield','boost','magnet',extras[(level.idx*2)%extras.length],extras[(level.idx*2+1)%extras.length]];
+ return types.map((kind,i)=>{
   const options=candidates.filter(q=>used.every(c=>Math.abs(c-q.c)>=4));
   options.sort((a,b)=>Math.abs(a.c-desired[i])-Math.abs(b.c-desired[i]));
   const safe=options.find(q=>!level.enemies.some(e=>Math.abs(e.x-q.x)<32)&&!level.items.some(it=>Math.abs(it.x-q.x)<20&&Math.abs(it.y-q.y)<20))||options[0];
@@ -1439,11 +1472,11 @@ function makePowerups(level){
 
 // ================= GAME STATE =================
 let sibs=[],state='splash',lvl=null,levelIdx=0,score=0,timeLeft=0,cam=0,msg=null,msgT=0,stateT=0,parts=[],honked=false,levelScore=0,lastSafe={x:32,y:0};
-const P={powers:{shield:0,boost:0,magnet:0},x:0,y:0,w:10,h:14,duck:false,jumps:0,vx:0,vy:0,on:false,face:1,coyote:0,buf:0,inv:0,ride:null,anim:0,carry:0};
+const P={powers:freshPowers(),x:0,y:0,w:10,h:14,duck:false,jumps:0,vx:0,vy:0,on:false,face:1,coyote:0,buf:0,inv:0,ride:null,anim:0,carry:0};
 
 function startLevel(i){
   levelIdx=i;lvl=buildLevel(i);timeLeft=lvl.L.time;cam=0;parts=[];honked=false;levelScore=0;sibs=[];
-  P.powers={shield:0,boost:0,magnet:0};
+  P.powers=freshPowers();
   P.h=14;P.duck=false;P.jumps=0;
   P.x=2*T;P.y=(ROWS-lvl.ground[2])*T-P.h;P.vx=P.vy=0;P.inv=0;P.ride=null;P.carry=0;P.face=1;
   lastSafe={x:P.x,y:P.y};
@@ -1461,7 +1494,7 @@ function popText(x,y,txt,col='#fff'){parts.push({x,y,vx:0,vy:-40,life:1,txt,col}
 
 function grantPower(kind,collector=P){
  const def=POWER_DEFS[kind];if(!def)return;
- (collector.powers||(collector.powers={shield:0,boost:0,magnet:0}))[kind]=def.duration;say(collector.d?collector.d.name+' FOUND '+def.name+'!':def.name+' ON!',1.8);popText(collector.x-6,collector.y-16,def.name+'!',def.color);puff(collector.x+5,collector.y+5,def.color,14,75);
+ (collector.powers||(collector.powers=freshPowers()))[kind]=def.duration;say(collector.d?collector.d.name+' FOUND '+def.name+'!':def.name+' ON!',1.8);popText(collector.x-6,collector.y-16,def.name+'!',def.color);puff(collector.x+5,collector.y+5,def.color,14,75);
  if(AC)[76,80,83].forEach((note,i)=>tone(mtof(note),.12,'sine',.08,null,AC.currentTime+i*.07));
 }
 function collectPowerups(){
@@ -1472,8 +1505,8 @@ function collectPowerups(){
  }
 }
 function tickPowers(dt){for(const actor of [P,...sibs]){
- const powers=actor.powers||(actor.powers={shield:0,boost:0,magnet:0});
- for(const kind in POWER_DEFS)powers[kind]=Math.max(0,powers[kind]-dt);
+ const powers=actor.powers||(actor.powers=freshPowers());
+ for(const kind in POWER_DEFS)powers[kind]=Math.max(0,(powers[kind]||0)-dt);
 }}
 function attractChore(it,dt,collector=P){
  if(it.got||!(collector.powers?.magnet>0))return false;
@@ -1490,12 +1523,12 @@ function pullWithMagnets(it,dt){
  for(const actor of magnets)if(attractChore(it,dt,actor))break;
 }
 function collectHelperItem(s,it){
- if(it.got)return;it.got=true;s.rest=0;P.carry++;score+=25;levelScore+=25;SFX.collect();puff(it.x+8,it.y+8,s.d.color,8);
+ if(it.got)return;it.got=true;s.rest=0;P.carry++;score+=25*pointMultiplier(s);levelScore+=25*pointMultiplier(s);SFX.collect();puff(it.x+8,it.y+8,s.d.color,8);
  const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?s.d.name+"! "+left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);
 }
 
 function hurt(fromX){
-  if(P.powers.shield>0){if(P.inv<=0){P.inv=.35;popText(P.x-8,P.y-12,'BLOCKED!','#73d8f1');}return;}
+  if(P.powers.shield>0||P.powers.star>0){if(P.inv<=0){P.inv=.35;popText(P.x-8,P.y-12,'BLOCKED!','#73d8f1');}return;}
   if(P.inv>0)return;
   P.inv=1.5;timeLeft=Math.max(0,timeLeft-5);P.vy=-260;P.vx=(P.x<fromX?-1:1)*170;
   SFX.hurt();popText(P.x,P.y-6,"-5 SEC","#ff5252");
@@ -1518,12 +1551,12 @@ function updatePlayer(dt){
   if(P.on){P.coyote=0.1;P.jumps=0;}
   else if(P.coyote<=0)P.jumps=Math.max(1,P.jumps);
   P.sq=Math.max(0,(P.sq||0)-dt*5);
-  if(P.buf>0&&(P.coyote>0||P.jumps<2)){
-    const second=P.coyote<=0;P.jumps=second?2:1;P.vy=-430;P.on=false;P.coyote=0;P.buf=0;P.ride=null;
+  if(P.buf>0&&(P.coyote>0||P.jumps<maxJumps(P))){
+    const second=P.coyote<=0;P.jumps=second?P.jumps+1:1;P.vy=jumpVelocity(P);P.on=false;P.coyote=0;P.buf=0;P.ride=null;
     SFX.jump();puff(P.x+P.w/2,P.y+P.h,second?"#80deea":"#fff",second?10:4,second?75:40);
   }
   if(!keys.jump&&P.vy<-160)P.vy=-160;
-  P.vy=Math.min(P.vy+1300*dt,600);
+  const feather=P.powers.feather>0&&P.vy>0;P.vy=Math.min(P.vy+(feather?420:1300)*dt,feather?200:600);
   // X
   P.x+=P.vx*dt;
   let r0=Math.floor(P.y/T),r1=Math.floor((P.y+P.h-0.01)/T);
@@ -1535,6 +1568,7 @@ function updatePlayer(dt){
   if(P.vy>=0){
     const r=Math.floor((P.y+P.h)/T);
     for(let c=c0;c<=c1;c++){const t=tileAt(c,r);if(t==='#'||(t==='='&&prevB<=r*T+0.5)){P.y=r*T-P.h;P.vy=0;P.on=true;P.ride=null;break;}}
+    if(!P.on)landOnGhostBridge(P,prevB,P.w);
     if(!P.on)for(const m of lvl.movers){if(P.x+P.w>m.x&&P.x<m.x+m.w&&prevB<=m.y+1&&P.y+P.h>=m.y){P.y=m.y-P.h;P.vy=0;P.on=true;P.ride=m;break;}}
   }else{
     const r=Math.floor(P.y/T);for(let c=c0;c<=c1;c++)if(solid(c,r)){P.y=(r+1)*T;P.vy=0;break;}
@@ -1548,7 +1582,7 @@ function updatePlayer(dt){
   const hr0=Math.floor((P.y+4)/T),hr1=Math.floor((P.y+P.h-1)/T);
   for(let r=hr0;r<=hr1;r++)for(let c=c0;c<=c1;c++)if(tileAt(c,r)==='x'){const lx=c*T,ly=r*T+8;if(P.y+P.h>ly&&P.x+P.w>lx+2&&P.x<lx+14)hurt(lx+8);}
   // pit
-  if(P.y>H+20){SFX.fall();timeLeft=Math.max(0,timeLeft-5);say("WHOOPS! -5 SEC",1.5);P.x=lastSafe.x;P.h=14;P.duck=false;P.jumps=0;P.y=lastSafe.y-4;P.vx=P.vy=0;P.inv=1.2;}
+  if(P.y>H+20||(P.powers.rescue>0&&P.y>H-12)){SFX.fall();if(P.powers.rescue>0){P.powers.rescue=0;say("RESCUED!",1.5);}else{timeLeft=Math.max(0,timeLeft-5);say("WHOOPS! -5 SEC",1.5);}P.x=lastSafe.x;P.h=14;P.duck=false;P.jumps=0;P.y=lastSafe.y-4;P.vx=P.vy=0;P.inv=1.2;}
   P.anim+=Math.abs(P.vx)*dt;
   if(P.inv>0)P.inv-=dt;
 }
@@ -1557,14 +1591,15 @@ function updateEnemies(dt){
   for(const e of lvl.enemies){
     if(!e.alive){e.dead-=dt;continue;}
     if(Math.abs(e.x-P.x)>W)continue;
-    e.t+=dt;
+    const enemyDt=dt*enemyPowerScale(e);
+    e.t+=enemyDt;
     const sp={turkey:52,invader:45,chomper:72,ghosty:52,slime:42,weed:38,dust:30,roach:55,roomba:75,cat:50,dog:90,rat:65,duck:40,goose:60,swan:35,squirrel:85,mite:45,bee:40,spider:60,bat:55,bubble:35,zap:65,bzombie:32,bskel:42,bspider:62,hisser:38,tabby:50,husky:72,pom:80,ant:70,hamster:85}[e.type]*(1+(lvl.L.difficultyIndex??levelIdx)*0.06);
-    if((e.type==='bee'||e.type==='bat'||e.type==='bubble'||e.type==='zap'||e.type==='invader')){e.x+=e.vx*sp*dt;e.y=e.by+Math.sin(e.t*3)*22+(e.type==='zap'?Math.sin(e.t*37)*2:0);if(Math.abs(e.x-e.ox)>60||e.ox===undefined){if(e.ox===undefined)e.ox=e.x;else{e.vx*=-1;e.x+=e.vx*2;}}}
+    if((e.type==='bee'||e.type==='bat'||e.type==='bubble'||e.type==='zap'||e.type==='invader')){e.x+=e.vx*sp*enemyDt;e.y=e.by+Math.sin(e.t*3)*22+(e.type==='zap'?Math.sin(e.t*37)*2:0);if(Math.abs(e.x-e.ox)>60||e.ox===undefined){if(e.ox===undefined)e.ox=e.x;else{e.vx*=-1;e.x+=e.vx*2;}}}
     else{
       if(e.type==='cat'&&Math.sin(e.t*1.3)>0.6){/* cat sits and licks paw */}
-      else e.x+=e.vx*sp*dt;
-      if((e.type==='squirrel'||e.type==='dog'||e.type==='hamster'||e.type==='husky'||e.type==='pom')&&e.vy===0&&Math.random()<dt*0.8)e.vy=-300;
-      e.vy+=1300*dt;e.y+=e.vy*dt;
+      else e.x+=e.vx*sp*enemyDt;
+      if((e.type==='squirrel'||e.type==='dog'||e.type==='hamster'||e.type==='husky'||e.type==='pom')&&e.vy===0&&Math.random()<enemyDt*0.8)e.vy=-300;
+      e.vy+=1300*enemyDt;e.y+=e.vy*enemyDt;
       const r=Math.floor((e.y+e.h)/T),cA=Math.floor((e.x+2)/T),cB=Math.floor((e.x+e.w-2)/T);
       if(solid(cA,r)||solid(cB,r)){e.y=r*T-e.h;e.vy=0;}
       const front=e.vx>0?Math.floor((e.x+e.w)/T):Math.floor(e.x/T),mr=Math.floor((e.y+e.h/2)/T);
@@ -1572,7 +1607,8 @@ function updateEnemies(dt){
       if(e.y>H+40)e.alive=false;
     }
     if(overlap(P,e)){
-      if(P.vy>40&&P.y+P.h-e.y<10){e.alive=false;e.dead=0.5;P.vy=keys.jump?-420:-300;SFX.boing();score+=100;levelScore+=100;puff(e.x+7,e.y+6,"#ccc",10);popText(e.x,e.y-4,"+100","#ffeb3b");}
+      if(P.powers.star>0){defeatWithPower(e,P);continue;}
+      if(P.vy>40&&P.y+P.h-e.y<10){e.alive=false;e.dead=0.5;P.vy=keys.jump?-420:-300;SFX.boing();score+=100*pointMultiplier(P);levelScore+=100*pointMultiplier(P);puff(e.x+7,e.y+6,"#ccc",10);popText(e.x,e.y-4,"+100","#ffeb3b");}
       else hurt(e.x+e.w/2);
     }
   }
@@ -1580,7 +1616,7 @@ function updateEnemies(dt){
 }
 
 function hurtSibling(s){
-  if(s.powers?.shield>0){if(!(s.inv>0)){s.inv=.35;popText(s.x-8,s.y-12,'BLOCKED!','#73d8f1');}return;}
+  if(s.powers?.shield>0||s.powers?.star>0){if(!(s.inv>0)){s.inv=.35;popText(s.x-8,s.y-12,'BLOCKED!','#73d8f1');}return;}
   if(s.inv>0)return;
   s.inv=1.5;s.vy=-260;s.on=false;s.ride=null;s.rest=0.35;
   SFX.boing();popText(s.x,s.y-6,"OOPS!","#fff"); // siblings bounce off hazards with no time penalty
@@ -1588,11 +1624,12 @@ function hurtSibling(s){
 function siblingCritters(s,prevB){
   const body=s.d.ace?{x:s.x-6,y:s.y-6,w:22,h:(s.h||20)+6}:{x:s.x,y:s.y,w:10,h:s.h||20}; // ace siblings' zap reaches a little further
   for(const e of lvl.enemies){if(!e.alive||!overlap(body,e))continue;
+    if(s.powers?.star>0){defeatWithPower(e,s);continue;}
     if(s.d.ace&&!(s.vy>40&&prevB<=e.y+10)){ // ace siblings zap critters on contact
-      e.alive=false;e.dead=0.5;SFX.boing();score+=100;levelScore+=100;puff(e.x+7,e.y+6,"#ff1744",12,120);popText(e.x,e.y-4,"ZAP! +100","#ff8a80");continue;}
+      e.alive=false;e.dead=0.5;SFX.boing();score+=100*pointMultiplier(s);levelScore+=100*pointMultiplier(s);puff(e.x+7,e.y+6,"#ff1744",12,120);popText(e.x,e.y-4,"ZAP! +100","#ff8a80");continue;}
     if(s.vy>40&&prevB<=e.y+10){
       e.alive=false;e.dead=0.5;s.vy=-300;s.on=false;s.ride=null;
-      SFX.boing();score+=100;levelScore+=100;puff(e.x+7,e.y+6,"#ccc",10);popText(e.x,e.y-4,"+100","#ffeb3b");
+      SFX.boing();score+=100*pointMultiplier(s);levelScore+=100*pointMultiplier(s);puff(e.x+7,e.y+6,"#ccc",10);popText(e.x,e.y-4,"+100","#ffeb3b");
     }else hurtSibling(s);
   }
 }
@@ -1649,16 +1686,16 @@ function moveSibling(s,dt,tx,moving){
     if(s.on)s.jumps=0;else s.jumps=Math.max(1,s.jumps);
     const reach=s.d.ace?12:4,front=Math.floor((s.x+(dir>0?w+reach:-reach))/T),foot=Math.floor((s.y+h+2)/T); // ace siblings look further ahead
     const wall=solid(front,foot-1)||solid(front,foot-2);
-    const gap=tileAt(front,foot)==='.'&&tileAt(front,foot+1)==='.';
+    const gap=tileAt(front,foot)==='.'&&tileAt(front,foot+1)==='.'&&ghostBridgeY(s,front*T+T/2)===null;
     const above=s.target&&s.target.y+16<s.y&&Math.abs(dx)<64;
     const critter=lvl.enemies.some(e=>e.alive&&(e.x+e.w/2-(s.x+w/2))*dir>0&&Math.abs(e.x-s.x)<(s.d.ace?70:44)&&Math.abs(e.y-(s.y+h))<24);
     const legoCol=Math.floor((s.x+w/2+dir*(sp*0.14+8))/T);
     const lego=dir&&(tileAt(legoCol,foot-1)==='x'||tileAt(legoCol,foot-2)==='x');
     const first=s.on&&((dir&&(wall||gap||critter||lego))||above);
-    const overPit=groundBelow(s.x+w/2,s.y+h)===null;
-    const second=!s.on&&s.jumps<2&&s.vy>=-60&&(above||(dir&&overPit));
+    const overPit=groundBelow(s.x+w/2,s.y+h)===null&&ghostBridgeY(s,s.x+w/2)===null;
+    const second=!s.on&&s.jumps<maxJumps(s)&&s.vy>=-60&&(above||(dir&&overPit));
     if(moving&&!s.duck&&s.inv<=0&&(first||second)){
-      s.jumps=first?1:2;s.vy=-430;s.on=false;s.ride=null;
+      s.jumps=first?1:s.jumps+1;s.vy=jumpVelocity(s);s.on=false;s.ride=null;
       puff(s.x+w/2,s.y+h,second?"#80deea":"#fff",second?8:4,55);
     }
     const oldX=s.x;s.x+=dir*sp*step;
@@ -1667,11 +1704,12 @@ function moveSibling(s,dt,tx,moving){
       if(dir&&solid(col,r)){s.x=dir>0?col*T-w:(col+1)*T;break;}}
     s.x=Math.max(0,Math.min(lvl.cols*T-w,s.x));s.anim+=Math.abs(s.x-oldX);
     const prevB=s.y+h,floaty=s.d.balloon&&!s.on&&(s.vy||0)>-60; // Annie's balloon: a gentle float at the top of a jump and on the way down
-    s.vy=Math.min((s.vy||0)+(floaty?680:1300)*step,floaty?230:600);s.y+=s.vy*step;s.on=false;
+    const feather=s.powers?.feather>0&&(s.vy||0)>0;s.vy=Math.min((s.vy||0)+(feather?420:floaty?680:1300)*step,feather?200:floaty?230:600);s.y+=s.vy*step;s.on=false;
     const c0=Math.floor(s.x/T),c1=Math.floor((s.x+w-0.01)/T);
     if(s.vy>=0){
       const r=Math.floor((s.y+h)/T);
       for(let c=c0;c<=c1;c++){const t=tileAt(c,r);if(t==='#'||(t==='='&&prevB<=r*T+0.5)){s.y=r*T-h;s.vy=0;s.on=true;s.ride=null;break;}}
+      if(!s.on)landOnGhostBridge(s,prevB,w);
       if(!s.on)for(const m of lvl.movers){if(s.x+w>m.x&&s.x<m.x+m.w&&prevB<=m.y+1&&s.y+h>=m.y){s.y=m.y-h;s.vy=0;s.on=true;s.ride=m;break;}}
     }else{
       const r=Math.floor(s.y/T);for(let c=c0;c<=c1;c++)if(solid(c,r)){s.y=(r+1)*T;s.vy=0;break;}
@@ -1683,7 +1721,8 @@ function moveSibling(s,dt,tx,moving){
       if(tileAt(c,r)==='x'&&overlap({x:s.x,y:s.y+4,w,h:h-4},{x:c*T+2,y:r*T+8,w:12,h:8}))hurtSibling(s);
     }
     if(!s.on)s.ride=null;
-    if(s.y>H+40){
+    if(s.y>H+40||(s.powers?.rescue>0&&s.y>H-12)){
+      if(s.powers?.rescue>0)s.powers.rescue=0;
       popText(lastSafe.x,lastSafe.y-12,"BACK!","#fff"); // siblings who fall pop back next to the safe ground, no penalty
       s.x=lastSafe.x;s.h=20;s.duck=false;s.jumps=0;s.y=lastSafe.y-6;s.vy=0;s.on=false;s.ride=null;s.inv=1.2;
       break;
@@ -1715,7 +1754,7 @@ function updateSibs(dt){
   const played=lvl.L.time-timeLeft; // all five helpers appear immediately
   SIBS.forEach((d,k)=>{if(played>=d.delay&&!sibs.some(s=>s.k===k)&&P.carry<lvl.total){
     if(d.name==='COLIN')colinArrived=true;
-    sibs.push({k,d,powers:{shield:0,boost:0,magnet:0},x:P.x,y:P.y+P.h-20,h:20,duck:false,jumps:0,vy:0,on:false,ride:null,face:1,anim:0,target:null,hop:0});say(d.line,2.5);P.speech=GREETINGS[Math.random()*GREETINGS.length|0];P.speechT=2.2;
+    sibs.push({k,d,powers:freshPowers(),x:P.x,y:P.y+P.h-20,h:20,duck:false,jumps:0,vy:0,on:false,ride:null,face:1,anim:0,target:null,hop:0});say(d.line,2.5);P.speech=GREETINGS[Math.random()*GREETINGS.length|0];P.speechT=2.2;
     if(AC){const t0=AC.currentTime;if(k){tone(90,0.9,'sawtooth',0.06,600,t0,sfxGain);tone(180,0.9,'square',0.03,1200,t0,sfxGain);} // electric VRRRRM
       else [72,76,79,84].forEach((n,i)=>tone(mtof(n),0.12,'square',0.1,null,t0+i*0.07));}
     for(let i=0;i<14;i++)parts.push({x:P.x,y:P.y-10,vx:(Math.random()-.5)*200,vy:-Math.random()*150,life:1,col:k?"#43a047":"#ec407a"});}});
@@ -1741,8 +1780,8 @@ function updateSibs(dt){
 function updatePlay(dt){
   timeLeft-=dt;tickPowers(dt);collectPowerups();updateSibs(dt);
   if(timeLeft<=10&&!honked){honked=true;SFX.honk();say("HONK HONK! THEY'RE CLOSE!",2);}
-  updatePlayer(dt);collectPowerups();updateEnemies(dt);
-  for(const it of lvl.items){pullWithMagnets(it,dt);if(!it.got&&overlap(P,it)){it.got=true;P.carry++;score+=50;levelScore+=50;SFX.collect();puff(it.x+8,it.y+8,"#ffeb3b",8);
+  updatePlayer(dt);collectPowerups();updatePowerAuras();updateEnemies(dt);
+  for(const it of lvl.items){pullWithMagnets(it,dt);if(!it.got&&overlap(P,it)){it.got=true;P.carry++;score+=50*pointMultiplier(P);levelScore+=50*pointMultiplier(P);SFX.collect();puff(it.x+8,it.y+8,"#ffeb3b",8);
     const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);}
     else if(!it.got){const finder=sibs.find(s=>s.powers?.magnet>0&&overlap({x:s.x,y:s.y,w:10,h:s.h||20},it));if(finder)collectHelperItem(finder,it);}
   }
@@ -2912,12 +2951,24 @@ function drawPowerIcon(kind,x,y){
  const color=POWER_DEFS[kind].color;
  if(kind==='shield'){R(x+3,y+2,10,7,color);R(x+4,y+9,8,3,color);R(x+6,y+12,4,2,color);R(x+7,y+3,2,8,'#e7fbff');}
  else if(kind==='boost'){R(x+7,y+1,6,3,color);R(x+5,y+4,6,3,color);R(x+3,y+7,9,3,color);R(x+7,y+10,4,2,color);R(x+6,y+12,3,2,color);}
- else{R(x+2,y+3,4,9,color);R(x+10,y+3,4,9,color);R(x+4,y+10,8,4,color);R(x+2,y+2,4,3,'#ffffff');R(x+10,y+2,4,3,'#ffcfda');}
+ else if(kind==='magnet'){R(x+2,y+3,4,9,color);R(x+10,y+3,4,9,color);R(x+4,y+10,8,4,color);R(x+2,y+2,4,3,'#ffffff');R(x+10,y+2,4,3,'#ffcfda');}
+ else if(kind==='spring'){R(x+3,y+2,5,8,color);R(x+3,y+10,10,4,color);for(let n=0;n<3;n++)R(x+1+n*3,y+14,3,1,'#f5ffcf');}
+ else if(kind==='feather'){for(let n=0;n<10;n++){R(x+3+Math.floor(n/2),y+12-n,5,1,color);R(x+5+Math.floor(n/2),y+12-n,1,2,'#fff');}R(x+3,y+12,2,3,color);}
+ else if(kind==='triple'){for(let n=0;n<3;n++){R(x+1+n*5,y+5-n*2,3,7,color);R(x+n*5,y+5-n*2,5,1,'#fff');}}
+ else if(kind==='star'){R(x+6,y+1,4,13,color);R(x+1,y+6,14,4,color);R(x+3,y+4,10,8,color);R(x+4,y+12,3,3,color);R(x+10,y+12,3,3,color);R(x+6,y+6,1,3,'#785f2b');R(x+9,y+6,1,3,'#785f2b');}
+ else if(kind==='fire'){R(x+6,y+1,3,12,color);R(x+3,y+5,9,9,color);R(x+1,y+9,13,4,color);R(x+6,y+8,4,6,'#fff1a1');R(x+8,y+6,2,5,'#fff1a1');}
+ else if(kind==='ice'){R(x+7,y+1,2,14,color);R(x+1,y+7,14,2,color);for(let n=0;n<11;n++){R(x+2+n,y+2+n,1,1,color);R(x+12-n,y+2+n,1,1,color);}R(x+6,y+6,4,4,'#fff');}
+ else if(kind==='slow'){R(x+2,y+1,12,2,color);R(x+2,y+13,12,2,color);for(let n=0;n<5;n++){R(x+3+n,y+3+n,10-n*2,1,color);R(x+7-n,y+8+n,2+n*2,1,color);}}
+ else if(kind==='double'){const two=['111','001','111','100','111'];two.forEach((row,ry)=>{for(let rx=0;rx<3;rx++)if(row[rx]==='1')R(x+1+rx*2,y+3+ry*2,2,2,color)});for(let n=0;n<5;n++){R(x+9+n,y+5+n,1,1,'#fff');R(x+13-n,y+5+n,1,1,'#fff');}}
+ else if(kind==='rescue'){R(x+4,y+1,8,2,color);R(x+2,y+3,12,7,color);R(x+4,y+10,8,2,color);R(x+7,y+12,2,3,'#fff0d5');R(x+5,y+14,3,1,'#fff0d5');R(x+5,y+3,2,2,'#fff');}
+ else if(kind==='bridge'){R(x+1,y+7,14,2,color);R(x+2,y+9,2,5,color);R(x+12,y+9,2,5,color);for(let n=0;n<3;n++)R(x+3+n*4,y+3,2,2,'#fff');}
+ else if(kind==='compass'){R(x+4,y+1,8,2,color);R(x+1,y+4,14,8,color);R(x+4,y+13,8,2,color);R(x+3,y+3,10,10,'#254855');R(x+7,y+3,2,6,'#ffcfb0');R(x+6,y+9,4,3,'#fff');}
+
 }
+function powerHudRows(){return Math.ceil(Object.keys(POWER_DEFS).filter(k=>P.powers[k]>0).length/4);}
 function drawPowerHUD(){
- let slot=0;for(const [kind,def] of Object.entries(POWER_DEFS))if(P.powers[kind]>0){const x=4+slot++*124;
-  R(x,31,116,11,'#1a203bee');R(x,31,2,11,def.color);text(def.name+' '+Math.ceil(P.powers[kind])+'s',x+7,33,8,def.color,'left',false);
-  R(x,42,116*P.powers[kind]/def.duration,1,def.color);
+ let slot=0;for(const [kind,def] of Object.entries(POWER_DEFS))if(P.powers[kind]>0){const x=4+(slot%4)*118,y=31+Math.floor(slot++/4)*12;
+  R(x,y,114,11,'#1a203bee');R(x,y,2,11,def.color);text(def.name+' '+Math.ceil(P.powers[kind])+'s',x+5,y+2,8,def.color,'left',false);R(x,y+11,114*P.powers[kind]/def.duration,1,def.color);
  }
 }
 function drawPowerEffects(t,actor=P){
@@ -2926,6 +2977,9 @@ function drawPowerEffects(t,actor=P){
  if(powers.shield>0){g.save();g.strokeStyle='#8ce8ff';g.lineWidth=2;g.globalAlpha=.65+.2*Math.sin(t*6);g.beginPath();g.arc(cx,cy,actor===P?17:20,0,Math.PI*2);g.stroke();g.restore();}
  if(powers.boost>0)for(let n=0;n<3;n++)R(actor.x-actor.face*(6+n*5),actor.y+(actor.h||20)-4,3,2,['#ffe78b','#ffd05b','#ef9c43'][n]);
  if(powers.magnet>0)for(let n=0;n<4;n++){const a=t*3+n*Math.PI/2;R(cx+Math.cos(a)*20,cy+Math.sin(a)*16,2,2,'#d8afff');}
+ for(const key of ['spring','feather','triple','star','fire','ice','slow','double','rescue'])if(powers[key]>0){const c=POWER_DEFS[key].color;for(let n=0;n<3;n++){const a=t*(key==='slow'?1:3)+n*Math.PI*2/3;R(cx+Math.cos(a)*24,cy+Math.sin(a)*19,2,2,c);}}
+ if(powers.compass>0){const target=nearestChore(actor);if(target){const dx=target.x-actor.x,dy=target.y-actor.y,vertical=Math.abs(dy)>Math.abs(dx);text(vertical?(dy<0?'^':'v'):(dx<0?'<':'>'),cx+(vertical?0:Math.sign(dx)*24),cy+(vertical?Math.sign(dy)*24:-4),8,POWER_DEFS.compass.color,'center');}}
+
 }
 
 function drawHUD(t){
@@ -3014,8 +3068,9 @@ function drawSibling(s,t){
     });g.restore();
     if(s.d.neon){text(s.d.name,s.x+6,by-11,6,"#e53935","center");text(s.d.name,s.x+5,by-12,6,"#42a5f5","center",false);} // Isaac: blue with a red shadow, his favorite colors
     else text(s.d.name,s.x+5,by-(s.d.balloon?33:12),6,s.d.color,"center");
-    const active=Object.keys(POWER_DEFS).filter(k=>s.powers?.[k]>0).map(k=>k[0].toUpperCase()+Math.ceil(s.powers[k])).join(' ');
-    if(active)text(active,s.x+5,by+24,8,s.d.color,'center');}
+    const active=Object.keys(POWER_DEFS).filter(k=>s.powers?.[k]>0).map(k=>POWER_DEFS[k].code+Math.ceil(s.powers[k]));
+    const status=active.slice(0,3).join(' ')+(active.length>3?' +'+(active.length-3):'');
+    if(status)text(status,s.x+5,by+24,8,s.d.color,'center');}
 
 function drawPlay(t){
   const th=lvl.theme;
@@ -3042,7 +3097,7 @@ function drawPlay(t){
   if(th.dark){g.save();const lx=P.x-cam+5,ly=P.y+6,dg=g.createRadialGradient(lx,ly,70,lx,ly,260);dg.addColorStop(0,'rgba(0,0,10,0)');dg.addColorStop(1,'rgba(0,0,10,0.42)');g.fillStyle=dg;g.fillRect(0,0,W,H);g.restore();}
   g.drawImage(fx,0,0);
   drawHUD(t);drawPowerHUD();
-  if(msgT>0)text(msg,W/2,44,8,"#fff","center");
+  if(msgT>0)text(msg,W/2,44+Math.max(0,powerHudRows()-1)*12,8,"#fff","center");
   // arrow to drop when done
   if(P.carry>=lvl.total&&lvl.drop.x-cam>W){text(">>>",W-30,H/2,10,Math.floor(t*4)%2?"#ffeb3b":"#fff");}
 }

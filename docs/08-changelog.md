@@ -408,3 +408,10 @@ Grouped by milestone. See `git log` for every commit.
 - Gave the player and each helper separate power timers. A sibling/cousin pickup no longer powers up the player.
 - Shields protect their owner; speed boosts ground movement and Andrew’s flight; magnets pull chores toward their owner and count helper collections only once.
 - Added effects and countdowns on the powered helper while retaining the player’s own HUD. Pause, expiry and level reset apply independently to all characters.
+
+## 2026-11-26 — Eleven more personal power-ups
+
+- Added Jump Boots, Feather Float, Triple Jump, Star, Fire Aura, Ice Aura, Slow Aura, Double Points, Rescue Balloon and Item Compass.
+- Added Ghost Bridge: its collector gets invisible one-way platforms over gaps for 12 seconds. Other characters and critters do not receive platforms.
+- Every room now has five unframed bonuses: the original three plus two rotating extras. All five helpers can collect every kind, with independent ownership, timers and effects.
+- Updated the timer HUD and helper status labels for multiple simultaneous powers. Original terrain, chores, music and the separate 3D game are retained.
