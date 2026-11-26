@@ -1532,6 +1532,7 @@ function collectPowerups(){
 }
 function tickPowers(dt){for(const actor of [P,...sibs]){
  actor.dialogueT=Math.max(0,(actor.dialogueT||0)-dt);
+ if(actor.rescueReplyDelay>0){actor.rescueReplyDelay=Math.max(0,actor.rescueReplyDelay-dt);if(actor.rescueReplyDelay===0)helperSays(actor,'Happy to help!',2.7);}
  actor.rescueThanks=Math.max(0,(actor.rescueThanks||0)-dt);
  const powers=actor.powers||(actor.powers=freshPowers());
  for(const kind in POWER_DEFS)powers[kind]=Math.max(0,(powers[kind]||0)-dt);
@@ -1574,6 +1575,7 @@ function andrewRescue(actor){
  updateAndrewCarries(0);
  puff(from.x,from.y,'#d2efff',14,90);
  const name=actor===P?'YOU':actor.d.name;say('ANDREW: I GOT '+name+'!',2);
+ andrew.rescueReplyDelay=.9;
  popText(actor.x-12,actor.y-16,'SAVED BY ANDREW!','#d2efff');SFX.boing();return true;
 }
 function updateAndrewCarries(dt){

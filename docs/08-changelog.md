@@ -447,3 +447,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-26 — Family speech bubbles
 
 - Moved helper dialogue from the top message banner to wrapped speech bubbles attached to each speaker, including greetings, cleanup lines, power-up announcements and Andrew’s rescue calls. Family introductions now identify and show their speaker.
+
+## 2026-11-26 — Andrew’s rescue reply
+
+- Andrew replies “Happy to help!” in his own speech bubble shortly after the rescued character says “W Andrew!”.

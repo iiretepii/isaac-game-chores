@@ -189,3 +189,5 @@ During a rescue the passenger stays visible below Andrew, follows his slow retur
 Whoever Andrew rescues says **“W Andrew!”** in a speech bubble attached to that character during the carry and briefly after landing.
 
 Sibling and cousin greetings, cleanup lines, power-up announcements and Andrew’s rescue calls appear in speech bubbles attached to their speaker. Family room introductions show a speech bubble beside the speaking character; parent phone messages stay in the intro panel.
+
+After the rescued character says “W Andrew!”, Andrew replies **“Happy to help!”** in his own speech bubble. The reply follows after a short pause and pauses with the game.
