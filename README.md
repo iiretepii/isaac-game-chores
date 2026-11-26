@@ -158,16 +158,16 @@ Daniel’s Monster Jam Room is level 3, and Colin’s Surf Shack is level 4, And
 | 31 | **Roblox Avatar Roundup** | Toy Roblox avatars → display shelf | 35 | 169s | Robot vacuums, pixel space invaders, arcade ghosts | Original upbeat electronic obby-style music |
 | 32 | **GTA V + VI Toy Room** | Toy sports cars and bikes → city garage | 36 | 172s | Robot vacuums, dogs, rats | Original sunset-city synth/funk radio groove |
 | 33 | **Charging Room Chaos** | Charging cables → cable organizer | 37 | 175s | Lightning bolts, robot vacuums, ants | Original electronic dance music |
-| 34 | **Halloween Haunt** | Put the carved pumpkins in the pumpkin bucket | 38 | 178s | bat, spider, ghosty | Original Spooky Sugar Shuffle |
-| 35 | **Thanksgiving Feast** | Return the pie slices to the feast table | 39 | 181s | turkey | Original Harvest Home Hop |
-| 36 | **Christmas Cheer** | Put the presents under the Christmas tree | 40 | 184s | roomba, cat, hamster | Festive Christmas carol medley |
-| 37 | **Valentines Day Love** | Put the valentines in the heart mailbox | 41 | 187s | bubble, hamster, cat | Original Hearts Together |
-| 38 | **St Patricks Day Luck** | Gather the shamrocks into the lucky pot | 42 | 190s | squirrel, hamster, weed | Original Lucky Clover Jig |
-| 39 | **April Fools Day Pranks** | Put the prank toys back in the joke box | 43 | 193s | chomper, roomba, bubble | Original Whoops-a-Daisy |
-| 40 | **Easter Egg Hunt** | Return the painted eggs to the Easter basket | 44 | 196s | hamster, squirrel, bee | Original Springtime Hop |
-| 41 | **Mother'S Day Blooms** | Put the flower bouquets in Mom's vase | 45 | 199s | bee, hamster, squirrel | Bouquets for Mom |
-| 42 | **Father'S Day Surprise** | Put the colorful ties on Dad's gift rack | 46 | 202s | roomba, dog, hamster | Dads Day Groove |
-| 43 | **LEGO Builders Room** | LEGO bricks → LEGO storage bin | 20 | 180s | Roombas, slimes | Press Start to Clean! |
+| 34 | **LEGO Builders Room** | LEGO bricks → LEGO storage bin | 20 | 180s | Roombas, slimes | Press Start to Clean! |
+| 35 | **Halloween Haunt** | Put the carved pumpkins in the pumpkin bucket | 38 | 178s | bat, spider, ghosty | Original Spooky Sugar Shuffle |
+| 36 | **Thanksgiving Feast** | Return the pie slices to the feast table | 39 | 181s | turkey | Original Harvest Home Hop |
+| 37 | **Christmas Cheer** | Put the presents under the Christmas tree | 40 | 184s | roomba, cat, hamster | Festive Christmas carol medley |
+| 38 | **Valentines Day Love** | Put the valentines in the heart mailbox | 41 | 187s | bubble, hamster, cat | Original Hearts Together |
+| 39 | **St Patricks Day Luck** | Gather the shamrocks into the lucky pot | 42 | 190s | squirrel, hamster, weed | Original Lucky Clover Jig |
+| 40 | **April Fools Day Pranks** | Put the prank toys back in the joke box | 43 | 193s | chomper, roomba, bubble | Original Whoops-a-Daisy |
+| 41 | **Easter Egg Hunt** | Return the painted eggs to the Easter basket | 44 | 196s | hamster, squirrel, bee | Original Springtime Hop |
+| 42 | **Mother'S Day Blooms** | Put the flower bouquets in Mom's vase | 45 | 199s | bee, hamster, squirrel | Bouquets for Mom |
+| 43 | **Father'S Day Surprise** | Put the colorful ties on Dad's gift rack | 46 | 202s | roomba, dog, hamster | Dads Day Groove |
 | 44 | **The Whole House!!** | Everything → dive on the living room’s cream couch with matching colorful pillows | 52 | 220s | All of them | Three-track mashup of all level music |
 
 The basement is dark, with a pool of light that follows you around. At the pool, the floating platforms are striped lounge chairs and the gaps are the pool itself. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
@@ -322,4 +322,4 @@ After the rescued character says “W Andrew!”, Andrew replies **“Happy to h
 
 ### LEGO Builders Room
 
-Collect 20 colorful LEGO bricks and put them in the yellow-lidded storage bin. The room has a studded baseplate floor, building shelves and castle display, moving platforms, roombas and slimes, plus the existing upbeat *Press Start to Clean!* chiptune. It sits just before Whole House; Training remains optional. Collectible bricks glow like other chores; floor LEGO hazards still need to be avoided.
+Collect 20 colorful LEGO bricks and put them in the yellow-lidded storage bin. The room has a studded baseplate floor, building shelves and castle display, moving platforms, roombas and slimes, plus the existing upbeat *Press Start to Clean!* chiptune. It sits immediately after Charging Room Chaos; Training remains optional. Collectible bricks glow like other chores; floor LEGO hazards still need to be avoided.

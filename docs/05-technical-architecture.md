@@ -127,4 +127,4 @@ During a rescue the passenger stays visible below Andrew, follows his slow retur
 
 `TRAINING_IDX` identifies the appended optional room. `buildTrainingLevel` supplies deterministic practice terrain without changing the original room generator. `training` disables timer depletion and helper rush collection, uses position-based tips, and returns to title after clear; the adventure ends at the original Whole House finale.
 
-LEGO Builders Room uses theme `legoroom`, collectible `legobrick` and full-size drop `legobin` (70 px, scale 1). Its backdrop renders brick shelves, castle and baseplate studs. It reuses `chiptune` audio and the existing procedural terrain and team physics. It precedes Whole House; `TRAINING_IDX` still points to optional training.
+LEGO Builders Room uses theme `legoroom`, collectible `legobrick` and full-size drop `legobin` (70 px, scale 1). Its backdrop renders brick shelves, castle and baseplate studs. It reuses `chiptune` audio and the existing procedural terrain and team physics. It follows Charging Room Chaos; `TRAINING_IDX` still points to optional training.

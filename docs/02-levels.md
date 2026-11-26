@@ -39,16 +39,16 @@ Generated from the `LEVELS` array in `index.html`.
 | 31 | Roblox Avatar Roundup | `obbyroom` | avatar → avatarshelf | 35 | 169s | 290 | 8 | 0.7 | 0.2 | yes | roomba, invader, ghosty | `obby` |
 | 32 | GTA V + VI Toy Room | `cityroom` | citytoys (alternating sportscar / cruiserbike) → citygarage | 36 | 172s | 300 | 8 | 0.7 | 0.2 | yes | roomba, dog, rat | `cityradio` |
 | 33 | Charging Room Chaos | `chargingroom` | chargecable → cabledock | 37 | 175s | 310 | 8 | 0.7 | 0.2 | yes | zap, roomba, ant | `charging` |
-| 34 | Halloween Haunt | `halloween` | carvedpumpkin → pumpkinbucket | 38 | 178s | 320 | 8 | 0.7 | 0.2 | yes | bat, spider, ghosty | `halloween` |
-| 35 | Thanksgiving Feast | `thanksgiving` | pieslice → pietable | 39 | 181s | 330 | 9 | 0.7 | 0.2 | yes | turkey | `thanksgiving` |
-| 36 | Christmas Cheer | `christmas` | gift → gifttree | 40 | 184s | 340 | 9 | 0.7 | 0.2 | yes | roomba, cat, hamster | `christmas` |
-| 37 | Valentines Day Love | `valentine` | valentinecard → heartbox | 41 | 187s | 350 | 9 | 0.7 | 0.2 | yes | bubble, hamster, cat | `valentine` |
-| 38 | St Patricks Day Luck | `stpatrick` | shamrock → luckypot | 42 | 190s | 360 | 9 | 0.7 | 0.2 | yes | squirrel, hamster, weed | `stpatrick` |
-| 39 | April Fools Day Pranks | `aprilfools` | pranktoy → prankbox | 43 | 193s | 370 | 9 | 0.7 | 0.2 | yes | chomper, roomba, bubble | `aprilfools` |
-| 40 | Easter Egg Hunt | `easter` | easteregg → eggbasket | 44 | 196s | 380 | 9 | 0.7 | 0.2 | yes | hamster, squirrel, bee | `easter` |
-| 41 | Mother'S Day Blooms | `mothersday` | bouquet → momvase | 45 | 199s | 390 | 10 | 0.7 | 0.2 | yes | bee, hamster, squirrel | `mothersday` |
-| 42 | Father'S Day Surprise | `fathersday` | necktie → dadrack | 46 | 202s | 400 | 10 | 0.7 | 0.2 | yes | roomba, dog, hamster | `fathersday` |
-| 43 | Lego Builders Room | `legoroom` | legobrick → legobin | 20 | 180s | 230 | 5 | 0.5 | 0.15 | yes | roomba, slime | `chiptune` |
+| 34 | Lego Builders Room | `legoroom` | legobrick → legobin | 20 | 180s | 230 | 5 | 0.5 | 0.15 | yes | roomba, slime | `chiptune` |
+| 35 | Halloween Haunt | `halloween` | carvedpumpkin → pumpkinbucket | 38 | 178s | 320 | 8 | 0.7 | 0.2 | yes | bat, spider, ghosty | `halloween` |
+| 36 | Thanksgiving Feast | `thanksgiving` | pieslice → pietable | 39 | 181s | 330 | 9 | 0.7 | 0.2 | yes | turkey | `thanksgiving` |
+| 37 | Christmas Cheer | `christmas` | gift → gifttree | 40 | 184s | 340 | 9 | 0.7 | 0.2 | yes | roomba, cat, hamster | `christmas` |
+| 38 | Valentines Day Love | `valentine` | valentinecard → heartbox | 41 | 187s | 350 | 9 | 0.7 | 0.2 | yes | bubble, hamster, cat | `valentine` |
+| 39 | St Patricks Day Luck | `stpatrick` | shamrock → luckypot | 42 | 190s | 360 | 9 | 0.7 | 0.2 | yes | squirrel, hamster, weed | `stpatrick` |
+| 40 | April Fools Day Pranks | `aprilfools` | pranktoy → prankbox | 43 | 193s | 370 | 9 | 0.7 | 0.2 | yes | chomper, roomba, bubble | `aprilfools` |
+| 41 | Easter Egg Hunt | `easter` | easteregg → eggbasket | 44 | 196s | 380 | 9 | 0.7 | 0.2 | yes | hamster, squirrel, bee | `easter` |
+| 42 | Mother'S Day Blooms | `mothersday` | bouquet → momvase | 45 | 199s | 390 | 10 | 0.7 | 0.2 | yes | bee, hamster, squirrel | `mothersday` |
+| 43 | Father'S Day Surprise | `fathersday` | necktie → dadrack | 46 | 202s | 400 | 10 | 0.7 | 0.2 | yes | roomba, dog, hamster | `fathersday` |
 | 44 | The Whole House!! | `house` | mix → couch | 52 | 220s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
 
 ## Level Data Format
