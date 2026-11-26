@@ -451,3 +451,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-26 — Andrew’s rescue reply
 
 - Andrew replies “Happy to help!” in his own speech bubble shortly after the rescued character says “W Andrew!”.
+
+## 2026-11-26 — LEGO Builders Room
+
+- Added a room before Whole House with 20 colorful LEGO bricks to put in a LEGO storage bin, studded baseplate scenery, shelves and a castle display. Uses existing chiptune music, roombas and slimes, moving platforms, power-ups and family helpers. There are now 44 chores plus optional training.

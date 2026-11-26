@@ -48,7 +48,8 @@ Generated from the `LEVELS` array in `index.html`.
 | 40 | Easter Egg Hunt | `easter` | easteregg → eggbasket | 44 | 196s | 380 | 9 | 0.7 | 0.2 | yes | hamster, squirrel, bee | `easter` |
 | 41 | Mother'S Day Blooms | `mothersday` | bouquet → momvase | 45 | 199s | 390 | 10 | 0.7 | 0.2 | yes | bee, hamster, squirrel | `mothersday` |
 | 42 | Father'S Day Surprise | `fathersday` | necktie → dadrack | 46 | 202s | 400 | 10 | 0.7 | 0.2 | yes | roomba, dog, hamster | `fathersday` |
-| 43 | The Whole House!! | `house` | mix → couch | 52 | 220s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
+| 43 | Lego Builders Room | `legoroom` | legobrick → legobin | 20 | 180s | 230 | 5 | 0.5 | 0.15 | yes | roomba, slime | `chiptune` |
+| 44 | The Whole House!! | `house` | mix → couch | 52 | 220s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
 
 ## Level Data Format
 
@@ -126,4 +127,8 @@ Daniel’s Monster Jam Room and Colin’s Surf Shack are levels 3 and 4. Each ro
 
 ## Optional Training Room
 
-Level Select entry 44 is an optional practice room outside the 43-room adventure. It has 6 toys, a toy chest, 110 tiles, two fixed gaps (4 and 6 tiles), a raised one-way platform, no critters, no LEGO hazards, no moving platforms and no time limit. It uses the `living` theme and existing `chiptune` music. Five ordinary bonuses plus an extra Ghost Bridge allow practice; position-based tips explain controls and delivery. Title button / T opens training directly. Completion returns to the title screen.
+Level Select entry 45 is an optional practice room outside the 44-room adventure. It has 6 toys, a toy chest, 110 tiles, two fixed gaps (4 and 6 tiles), a raised one-way platform, no critters, no LEGO hazards, no moving platforms and no time limit. It uses the `living` theme and existing `chiptune` music. Five ordinary bonuses plus an extra Ghost Bridge allow practice; position-based tips explain controls and delivery. Title button / T opens training directly. Completion returns to the title screen.
+
+## LEGO Builders Room
+
+A colorful building room with collectible studded bricks, a LEGO storage bin, green baseplate floor, shelves and a castle display. It uses the existing `chiptune` music and the normal team collection, power-up and Andrew rescue mechanics.

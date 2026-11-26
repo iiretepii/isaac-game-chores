@@ -37,7 +37,7 @@ On phones and tablets, the touch buttons support repeated Jump taps and holding 
 
 You ride a **bicycle** with spinning wheels and pedals, except on Race Track Rumble, where all three kids drive race cars, and MarioKart Toy Room, where you ride a Standard Kart, Isaac rides a Flame Rider with Hot Wheels and Annie rides a Sport Bike. Duck to squeeze under low spots, and use the double jump to clear wide gaps or reach high shelves.
 
-On the title screen you can also open **Level Select** to jump straight to any of the 43 chores or the optional Training Room. After you finish a chore, the "Chore Complete!" screen also has a **Level Select** button (or press **L**) so you can jump to any level from there.
+On the title screen you can also open **Level Select** to jump straight to any of the 44 chores or the optional Training Room. After you finish a chore, the "Chore Complete!" screen also has a **Level Select** button (or press **L**) so you can jump to any level from there.
 
 Browsers don't allow sound until you interact with the page, so the title screen asks you to **click or press any key for sound** first. After that, press Enter (or tap) to start.
 
@@ -167,7 +167,8 @@ Daniel’s Monster Jam Room is level 3, and Colin’s Surf Shack is level 4, And
 | 40 | **Easter Egg Hunt** | Return the painted eggs to the Easter basket | 44 | 196s | hamster, squirrel, bee | Original Springtime Hop |
 | 41 | **Mother'S Day Blooms** | Put the flower bouquets in Mom's vase | 45 | 199s | bee, hamster, squirrel | Bouquets for Mom |
 | 42 | **Father'S Day Surprise** | Put the colorful ties on Dad's gift rack | 46 | 202s | roomba, dog, hamster | Dads Day Groove |
-| 43 | **The Whole House!!** | Everything → dive on the living room’s cream couch with matching colorful pillows | 52 | 220s | All of them | Three-track mashup of all level music |
+| 43 | **LEGO Builders Room** | LEGO bricks → LEGO storage bin | 20 | 180s | Roombas, slimes | Press Start to Clean! |
+| 44 | **The Whole House!!** | Everything → dive on the living room’s cream couch with matching colorful pillows | 52 | 220s | All of them | Three-track mashup of all level music |
 
 The basement is dark, with a pool of light that follows you around. At the pool, the floating platforms are striped lounge chairs and the gaps are the pool itself. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
 
@@ -307,7 +308,7 @@ During a rescue the passenger stays visible below Andrew, follows his slow retur
 
 ### Training Room
 
-Choose **Training Room (T)** on the title screen, press **T**, or pick it in Level Select. Practice moving, double jumping, ducking and power-ups, then collect six toys and deliver them to the chest. There is no time limit, no critters or LEGO hazards, and Andrew can rescue you over the two practice gaps. The family follows along while leaving the toys for you to collect. Completing training returns to the title; the original 43-room adventure keeps its order and ending. Training uses the existing *Press Start to Clean!* music.
+Choose **Training Room (T)** on the title screen, press **T**, or pick it in Level Select. Practice moving, double jumping, ducking and power-ups, then collect six toys and deliver them to the chest. There is no time limit, no critters or LEGO hazards, and Andrew can rescue you over the two practice gaps. The family follows along while leaving the toys for you to collect. Completing training returns to the title; the original 44-room adventure keeps its order and ending. Training uses the existing *Press Start to Clean!* music.
 
 Whoever Andrew rescues says **“W Andrew!”** in a speech bubble attached to that character during the carry and briefly after landing.
 
@@ -318,3 +319,7 @@ After the rescued character says “W Andrew!”, Andrew replies **“Happy to h
 ### Crew artwork gallery
 
 [Browse all saved crew images and the power-up guide](artwork/README.md), including real-life, Minecraft, Roblox, baby, superhero, villain and LEGO versions. Original PNGs and earlier variants are preserved in `artwork/`.
+
+### LEGO Builders Room
+
+Collect 20 colorful LEGO bricks and put them in the yellow-lidded storage bin. The room has a studded baseplate floor, building shelves and castle display, moving platforms, roombas and slimes, plus the existing upbeat *Press Start to Clean!* chiptune. It sits just before Whole House; Training remains optional. Collectible bricks glow like other chores; floor LEGO hazards still need to be avoided.
