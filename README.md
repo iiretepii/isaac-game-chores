@@ -61,6 +61,18 @@ The bar at the top of the screen shows the parents' car driving toward the house
 - **LEGO bricks** on the floor cost 5 seconds if you step on them.
 - **Falling into a gap** costs 5 seconds and puts you back on the last safe ground.
 
+### Power-ups
+
+Each 2D room has three optional bonus pickups. Walk into their colored icons to activate them:
+
+| Power-up | Effect | Lasts |
+|---|---|---|
+| Blue shield | Protects you from critter and LEGO hits; gaps still cost time | 10 seconds |
+| Yellow lightning bolt | Makes you move 1.5× faster | 8 seconds |
+| Purple magnet | Pulls nearby chore items toward you, without pulling through solid walls | 10 seconds |
+
+Active powers have countdowns beneath the HUD, plus a shield bubble, speed streaks or orbiting magnet sparks. Different powers work together; another pickup refreshes that power’s timer. Timers pause with the game and reset on a retry or new room. Bonuses are for the player and do not count as chores or need to be collected to finish.
+
 ### Sibling and Cousin Helpers
 
 Isaac, Annie, and your cousins **Daniel, Colin and Andrew** join you on every level. All five appear beside you when the level begins.

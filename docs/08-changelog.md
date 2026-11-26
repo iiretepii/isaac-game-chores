@@ -387,3 +387,9 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-26 — Help offer limited to four rooms
 
 - Kept “Oh, and I’ll help you” in Isaac’s, Annie’s, Daniel’s and Colin’s intro messages only; restored Andrew’s original intro ending.
+
+## 2026-11-26 — Collectible power-ups
+
+- Added optional shield, speed and magnet pickups to every 2D room, with distinct pixel icons, player effects and HUD countdowns.
+- Shield blocks critter/LEGO damage for 10 seconds, speed boosts player movement 1.5× for 8 seconds, and magnet draws nearby chores along clear paths for 10 seconds. Powers stack by type, refresh and reset on retries/new rooms.
+- Bonus placement preserves room RNG and chore counts. Normal collection, helper behavior, music and the separate 3D fork are retained.

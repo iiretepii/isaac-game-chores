@@ -1416,15 +1416,34 @@ function buildLevel(idx){
   const dh=ground[cols-6];
   const dw=DROP_W[L.drop]||56; // every drop-off is about as wide as the couch
   const drop={x:(cols-6)*T-4-(dw-28),y:(ROWS-dh)*T-24,w:dw,h:24,kind:L.drop};
-  return {L,idx,cols,map,ground,items,enemies,movers,drop,theme:THEMES[L.theme],total:items.length};
+  const level={L,idx,cols,map,ground,items,enemies,movers,drop,theme:THEMES[L.theme],total:items.length};
+  level.powerups=makePowerups(level);return level;
+}
+
+// Bonus pickups use no room RNG, so terrain, enemies and chores stay unchanged.
+const POWER_DEFS={shield:{name:'SHIELD',duration:10,color:'#73d8f1'},boost:{name:'SPEED',duration:8,color:'#ffd75d'},magnet:{name:'MAGNET',duration:10,color:'#d1a0ff'}};
+function makePowerups(level){
+ const candidates=[];
+ for(let c=6;c<level.cols-8;c++){
+  const h=level.ground[c],r=ROWS-h;
+  if(h&&level.ground[c-1]===h&&level.ground[c+1]===h&&level.map[r-1][c]==='.'&&level.map[r-2][c]==='.')candidates.push({c,x:c*T,y:r*T-18});
+ }
+ const used=[],desired=[7,Math.round(level.cols*.4),Math.round(level.cols*.72)];
+ return Object.keys(POWER_DEFS).map((kind,i)=>{
+  const options=candidates.filter(q=>used.every(c=>Math.abs(c-q.c)>=4));
+  options.sort((a,b)=>Math.abs(a.c-desired[i])-Math.abs(b.c-desired[i]));
+  const safe=options.find(q=>!level.enemies.some(e=>Math.abs(e.x-q.x)<32)&&!level.items.some(it=>Math.abs(it.x-q.x)<20&&Math.abs(it.y-q.y)<20))||options[0];
+  if(!safe)return null;used.push(safe.c);return {kind,x:safe.x,y:safe.y,w:16,h:16,got:false};
+ }).filter(Boolean);
 }
 
 // ================= GAME STATE =================
 let sibs=[],state='splash',lvl=null,levelIdx=0,score=0,timeLeft=0,cam=0,msg=null,msgT=0,stateT=0,parts=[],honked=false,levelScore=0,lastSafe={x:32,y:0};
-const P={x:0,y:0,w:10,h:14,duck:false,jumps:0,vx:0,vy:0,on:false,face:1,coyote:0,buf:0,inv:0,ride:null,anim:0,carry:0};
+const P={powers:{shield:0,boost:0,magnet:0},x:0,y:0,w:10,h:14,duck:false,jumps:0,vx:0,vy:0,on:false,face:1,coyote:0,buf:0,inv:0,ride:null,anim:0,carry:0};
 
 function startLevel(i){
   levelIdx=i;lvl=buildLevel(i);timeLeft=lvl.L.time;cam=0;parts=[];honked=false;levelScore=0;sibs=[];
+  P.powers={shield:0,boost:0,magnet:0};
   P.h=14;P.duck=false;P.jumps=0;
   P.x=2*T;P.y=(ROWS-lvl.ground[2])*T-P.h;P.vx=P.vy=0;P.inv=0;P.ride=null;P.carry=0;P.face=1;
   lastSafe={x:P.x,y:P.y};
@@ -1440,7 +1459,26 @@ const overlap=(a,b)=>a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y;
 function puff(x,y,col,n=8,sp=80){for(let i=0;i<n;i++)parts.push({x,y,vx:(Math.random()-.5)*sp*2,vy:(Math.random()-.8)*sp*1.5,life:0.6+Math.random()*0.4,col});}
 function popText(x,y,txt,col='#fff'){parts.push({x,y,vx:0,vy:-40,life:1,txt,col});}
 
+function grantPower(kind){
+ const def=POWER_DEFS[kind];if(!def)return;
+ P.powers[kind]=def.duration;say(def.name+' ON!',1.8);popText(P.x-6,P.y-16,def.name+'!',def.color);puff(P.x+5,P.y+5,def.color,14,75);
+ if(AC)[76,80,83].forEach((note,i)=>tone(mtof(note),.12,'sine',.08,null,AC.currentTime+i*.07));
+}
+function collectPowerups(){
+ for(const bonus of lvl.powerups||[])if(!bonus.got&&overlap(P,bonus)){bonus.got=true;grantPower(bonus.kind);}
+}
+function tickPowers(dt){for(const kind in POWER_DEFS)P.powers[kind]=Math.max(0,P.powers[kind]-dt);}
+function attractChore(it,dt){
+ if(it.got||P.powers.magnet<=0)return;
+ const dx=P.x+P.w/2-(it.x+it.w/2),dy=P.y+P.h/2-(it.y+it.h/2),dist=Math.hypot(dx,dy);
+ if(dist>90||dist===0)return;
+ const samples=Math.max(1,Math.ceil(dist/4));
+ for(let i=0;i<=samples;i++){const f=i/samples;if(solid(Math.floor((it.x+8+dx*f)/T),Math.floor((it.y+8+dy*f)/T)))return;}
+ const move=Math.min(dist,240*dt);it.x+=dx/dist*move;it.y+=dy/dist*move;
+}
+
 function hurt(fromX){
+  if(P.powers.shield>0){if(P.inv<=0){P.inv=.35;popText(P.x-8,P.y-12,'BLOCKED!','#73d8f1');}return;}
   if(P.inv>0)return;
   P.inv=1.5;timeLeft=Math.max(0,timeLeft-5);P.vy=-260;P.vx=(P.x<fromX?-1:1)*170;
   SFX.hurt();popText(P.x,P.y-6,"-5 SEC","#ff5252");
@@ -1456,7 +1494,7 @@ function updatePlayer(dt){
   P.duck=P.h<14;
   const dir=(keys.right?1:0)-(keys.left?1:0);
   if(P.ride){P.x+=P.ride.dx;}
-  const max=150,acc=P.on?1400:900;
+  const boost=P.powers.boost>0?1.5:1,max=150*boost,acc=(P.on?1400:900)*boost;
   if(dir){P.vx+=dir*acc*dt;P.face=dir;}else{const f=(P.on?1600:400)*dt;P.vx=Math.abs(P.vx)<=f?0:P.vx-Math.sign(P.vx)*f;}
   if(Math.abs(P.vx)>max&&P.inv<1.2)P.vx=Math.sign(P.vx)*max;
   P.coyote-=dt;P.buf-=dt;if(jumpPressed)P.buf=0.12;
@@ -1685,10 +1723,10 @@ function updateSibs(dt){
   if(colinArrived)say(SIBS.find(d=>d.name==='COLIN').line,2.5);
 }
 function updatePlay(dt){
-  timeLeft-=dt;updateSibs(dt);
+  timeLeft-=dt;tickPowers(dt);collectPowerups();updateSibs(dt);
   if(timeLeft<=10&&!honked){honked=true;SFX.honk();say("HONK HONK! THEY'RE CLOSE!",2);}
-  updatePlayer(dt);updateEnemies(dt);
-  for(const it of lvl.items){if(!it.got&&overlap(P,it)){it.got=true;P.carry++;score+=50;levelScore+=50;SFX.collect();puff(it.x+8,it.y+8,"#ffeb3b",8);
+  updatePlayer(dt);collectPowerups();updateEnemies(dt);
+  for(const it of lvl.items){attractChore(it,dt);if(!it.got&&overlap(P,it)){it.got=true;P.carry++;score+=50;levelScore+=50;SFX.collect();puff(it.x+8,it.y+8,"#ffeb3b",8);
     const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);}}
   if(overlap(P,lvl.drop)){
     if(P.carry>=lvl.total){
@@ -2852,6 +2890,25 @@ function drawTiles(th,t){
     g.globalAlpha=0.5;R(x+m.w/2-1,m.y+8,2,4+Math.sin(clock*20)*2,'#fff');g.globalAlpha=1;}
 }
 
+function drawPowerIcon(kind,x,y){
+ const color=POWER_DEFS[kind].color;R(x-2,y-2,20,20,color);R(x-1,y-1,18,18,'#1b2241');
+ if(kind==='shield'){R(x+3,y+2,10,7,color);R(x+4,y+9,8,3,color);R(x+6,y+12,4,2,color);R(x+7,y+3,2,8,'#e7fbff');}
+ else if(kind==='boost'){R(x+7,y+1,6,3,color);R(x+5,y+4,6,3,color);R(x+3,y+7,9,3,color);R(x+7,y+10,4,2,color);R(x+6,y+12,3,2,color);}
+ else{R(x+2,y+3,4,9,color);R(x+10,y+3,4,9,color);R(x+4,y+10,8,4,color);R(x+2,y+2,4,3,'#ffffff');R(x+10,y+2,4,3,'#ffcfda');R(x+6,y+5,4,5,'#1b2241');}
+}
+function drawPowerHUD(){
+ let slot=0;for(const [kind,def] of Object.entries(POWER_DEFS))if(P.powers[kind]>0){const x=4+slot++*124;
+  R(x,31,116,11,'#1a203bee');R(x,31,2,11,def.color);text(def.name+' '+Math.ceil(P.powers[kind])+'s',x+7,33,8,def.color,'left',false);
+  R(x,42,116*P.powers[kind]/def.duration,1,def.color);
+ }
+}
+function drawPowerEffects(t){
+ const cx=P.x+P.w/2,cy=P.y+P.h/2;
+ if(P.powers.shield>0){g.save();g.strokeStyle='#8ce8ff';g.lineWidth=2;g.globalAlpha=.65+.2*Math.sin(t*6);g.beginPath();g.arc(cx,cy,17,0,Math.PI*2);g.stroke();g.restore();}
+ if(P.powers.boost>0)for(let n=0;n<3;n++)R(P.x-P.face*(6+n*5),P.y+P.h-4,3,2,['#ffe78b','#ffd05b','#ef9c43'][n]);
+ if(P.powers.magnet>0)for(let n=0;n<4;n++){const a=t*3+n*Math.PI/2;R(cx+Math.cos(a)*20,cy+Math.sin(a)*16,2,2,'#d8afff');}
+}
+
 function drawHUD(t){
   const hg=g.createLinearGradient(0,0,0,28);hg.addColorStop(0,'#2a1d5cee');hg.addColorStop(1,'#120c24ee');g.fillStyle=hg;g.fillRect(0,0,W,28);R(0,27,W,1,'#ffeb3b');R(0,28,W,2,'#0006');
   const L=lvl.L;
@@ -2944,6 +3001,7 @@ function drawPlay(t){
   drawTiles(th,t);
   g.save();g.translate(-Math.round(cam),0);
   drawDrop(lvl.drop,P.carry>=lvl.total,t);
+  for(const bonus of lvl.powerups||[])if(!bonus.got&&Math.abs(bonus.x-cam-W/2)<W)outlined(bonus.x,bonus.y+Math.round(Math.sin(t*3)*1),(x,y)=>drawPowerIcon(bonus.kind,x,y));
   for(const it of lvl.items)if(!it.got&&Math.abs(it.x-cam-W/2)<W)drawItem(it.kind,it.x,it.y+Math.sin(t*4+it.bob)*2,t);
   for(const e of lvl.enemies)if(Math.abs(e.x-cam-W/2)<W)drawEnemy(e,t);
   for(const s of sibs){if(!s.d.neon||onKartRoom())continue;s.trail=s.trail||[];s.trail.push([s.x+5-s.face*10,s.y+17]);if(s.trail.length>28)s.trail.shift();
@@ -2951,6 +3009,7 @@ function drawPlay(t){
   for(const s of sibs)drawSibling(s,t);
   const kg=groundBelow(P.x+P.w/2,P.y+P.h-2);if(kg!==null)shadow(P.x+P.w/2,kg,6*Math.max(0.4,1-(kg-P.y-P.h)/120),0.35);
   const st=P.sq||0,sx=1+st*0.35,sy=1-st*0.3+(!P.on&&P.vy<-100?0.12:0);
+  drawPowerEffects(t);
   drawKid(P.x,P.y+P.h-14,P.face,P.anim/2,!P.on,P.inv>0?P.inv:0,sx,sy,P.duck);
   if(P.speechT>0){g.font='8px '+FONT;const tw=Math.ceil(g.measureText(P.speech).width)+8,bx=Math.round(Math.max(cam+3,Math.min(cam+W-tw-3,P.x+P.w/2-tw/2))),byy=Math.round(P.y-24-Math.max(0,P.speechT-2)*20);
     R(bx-1,byy-1,tw+2,16,"#000");R(bx,byy,tw,14,"#fff");{const px=Math.round(P.x+P.w/2);R(px-3,byy+14,6,2,"#fff");R(px-2,byy+16,4,2,"#fff");R(px-1,byy+18,2,1,"#000");}
@@ -2960,7 +3019,7 @@ function drawPlay(t){
   if(timeLeft<15){g.globalAlpha=0.12+0.1*Math.sin(t*10);R(0,0,W,H,"#ff1744");g.globalAlpha=1;}
   if(th.dark){g.save();const lx=P.x-cam+5,ly=P.y+6,dg=g.createRadialGradient(lx,ly,70,lx,ly,260);dg.addColorStop(0,'rgba(0,0,10,0)');dg.addColorStop(1,'rgba(0,0,10,0.42)');g.fillStyle=dg;g.fillRect(0,0,W,H);g.restore();}
   g.drawImage(fx,0,0);
-  drawHUD(t);
+  drawHUD(t);drawPowerHUD();
   if(msgT>0)text(msg,W/2,44,8,"#fff","center");
   // arrow to drop when done
   if(P.carry>=lvl.total&&lvl.drop.x-cam>W){text(">>>",W-30,H/2,10,Math.floor(t*4)%2?"#ffeb3b":"#fff");}

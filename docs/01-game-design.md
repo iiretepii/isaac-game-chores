@@ -24,6 +24,10 @@ This document describes the original 2D game. See [09 – 3D Fork](09-3d-fork.md
 4. **Level select:** from the title screen, or from the "Chore Complete!" screen after any level, any level can be started directly.
 5. **Result:** finish to get a time bonus and a funny parent reaction. If time runs out, the parents arrive ("YOU'RE GROUNDED UNTIL YOU'RE 40!") and you retry the level.
 
+## Optional Power-ups
+
+Every 2D room has one shield, one speed boost and one magnet bonus, placed above flat ground. The player collects these separately from chores. Shield prevents critter/LEGO damage for 10 seconds but does not prevent fall penalties; speed gives 1.5× movement for 8 seconds; magnet pulls nearby chores with a clear path through the room within 90 px for 10 seconds. Powers stack by type, refresh on repeat pickup, pause with play and reset on each level start. Completion still requires only chore items and delivery.
+
 ## Rules
 
 | Rule | Value |

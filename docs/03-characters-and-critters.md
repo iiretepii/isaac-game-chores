@@ -171,3 +171,7 @@ The first four rooms show their owners’ requested lines on the about-to-start 
 Andrew’s Sky Room keeps its original intro message without the added ending.
 
 Each message is prefixed with the owner’s name. These messages use 8 px lettering (`introSize: 8` or the default) and a wider message card to keep the full text readable. The dialogue uses clean, unshadowed text. Chore items, return spots and helper greetings are retained.
+
+## Bonus power-ups
+
+Shield, speed and magnet icons are separate from `lvl.items` and do not increment `P.carry`. Only the player collects them. Their 10/8/10-second timers live in `P.powers`; ground helpers and Andrew keep their existing speeds, flight and collection behavior. Shield changes player damage handling, and magnet moves uncollected chore objects so ordinary player/helper collection still resolves each item once.

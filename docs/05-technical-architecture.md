@@ -107,3 +107,11 @@ The 2D touch buttons cancel native `touchstart`/`touchend` gestures with non-pas
 Room-specific race-car and kart rendering takes priority over personal rides and wings. Andrew’s `fly` flag routes movement to `moveFlyingHelper` and rendering to animated wings outside the two vehicle rooms. Flight steers toward shared item targets, avoids solid tiles and does not apply ground gravity. Ground helpers retain `moveSibling` physics.
 
 Andrew’s Sky Room is fifth (`andrewroom`, `ownTheme` for Andrew), with 14 flying toys and a toy hangar. `drawFlyingToy` draws toy planes, helicopters and kites for pickups and the room. Andrew’s belly-down rendering rotates his original body and redraws his original head upright so his face, outfit and wing design stay the same.
+
+## Power-ups
+
+`POWER_DEFS` defines shield (10 s), boost (8 s) and magnet (10 s). `makePowerups(level)` adds one of each above clear, flat ground without consuming room RNG, preserving existing terrain, chores and enemy placement. They are stored in `lvl.powerups`, separate from chore totals.
+
+`P.powers` resets in `startLevel`. `tickPowers` runs only during play; `collectPowerups` detects player pickup and refreshes the selected effect via `grantPower`. Shield intercepts `hurt` but leaves pit respawns unchanged. Boost multiplies player acceleration and max speed by 1.5. `attractChore` pulls uncollected items within 90 px at up to 240 px/s, sampling the line for solid tiles, then normal collection/delivery handles them. Helpers use the same item objects and reservations.
+
+`drawPowerIcon`, `drawPowerEffects` and `drawPowerHUD` provide distinct pixel icons, player effects and clear 8 px countdown labels. Different effects can be active together; timers freeze during pause and clear/retry transitions.
