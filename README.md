@@ -300,3 +300,5 @@ The **2D game** (code, graphics, levels and synthesized music) lives in a single
 Andrew rescues the player or any other helper who falls into a gap while he is present, including in vehicle rooms. He swoops in with his wings and returns them to the last safe ground without a time penalty or using their Rescue Balloon. He can catch teammates during an ongoing rescue; he cannot rescue himself.
 
 All five siblings and cousins jump in sync with the player on the title, level-complete and game-ending screens. The about-to-start lineup stays still.
+
+Andrew moves twice as fast as before (352 px/s). He catches descending teammates over gaps before they leave the screen, reacts in the same update, and finishes his rescue swoop in 0.12 seconds. Another fall can trigger a rescue immediately, even during his swoop.

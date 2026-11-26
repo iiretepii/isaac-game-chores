@@ -427,3 +427,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-26 — Family celebration jumps
 
 - Isaac, Annie, Daniel, Colin and Andrew now jump along with the player on the title, level-complete and game-ending screens, matching each screen’s jump timing and height.
+
+## 2026-11-26 — Faster Andrew rescues
+
+- Doubled Andrew’s movement speed, catches teammates earlier above gaps, and shortened his rescue swoop from 0.65 to 0.12 seconds. Rescues remain immediate and have no cooldown.
