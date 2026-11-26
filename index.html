@@ -1461,7 +1461,7 @@ function popText(x,y,txt,col='#fff'){parts.push({x,y,vx:0,vy:-40,life:1,txt,col}
 
 function grantPower(kind,collector=P){
  const def=POWER_DEFS[kind];if(!def)return;
- P.powers[kind]=def.duration;say(collector.d?collector.d.name+' FOUND '+def.name+'!':def.name+' ON!',1.8);popText(collector.x-6,collector.y-16,def.name+'!',def.color);puff(collector.x+5,collector.y+5,def.color,14,75);
+ (collector.powers||(collector.powers={shield:0,boost:0,magnet:0}))[kind]=def.duration;say(collector.d?collector.d.name+' FOUND '+def.name+'!':def.name+' ON!',1.8);popText(collector.x-6,collector.y-16,def.name+'!',def.color);puff(collector.x+5,collector.y+5,def.color,14,75);
  if(AC)[76,80,83].forEach((note,i)=>tone(mtof(note),.12,'sine',.08,null,AC.currentTime+i*.07));
 }
 function collectPowerups(){
@@ -1471,14 +1471,27 @@ function collectPowerups(){
   if(collector){bonus.got=true;grantPower(bonus.kind,collector);}
  }
 }
-function tickPowers(dt){for(const kind in POWER_DEFS)P.powers[kind]=Math.max(0,P.powers[kind]-dt);}
-function attractChore(it,dt){
- if(it.got||P.powers.magnet<=0)return;
- const dx=P.x+P.w/2-(it.x+it.w/2),dy=P.y+P.h/2-(it.y+it.h/2),dist=Math.hypot(dx,dy);
- if(dist>90||dist===0)return;
+function tickPowers(dt){for(const actor of [P,...sibs]){
+ const powers=actor.powers||(actor.powers={shield:0,boost:0,magnet:0});
+ for(const kind in POWER_DEFS)powers[kind]=Math.max(0,powers[kind]-dt);
+}}
+function attractChore(it,dt,collector=P){
+ if(it.got||!(collector.powers?.magnet>0))return false;
+ const dx=collector.x+(collector.w||10)/2-(it.x+it.w/2),dy=collector.y+(collector.h||20)/2-(it.y+it.h/2),dist=Math.hypot(dx,dy);
+ if(dist>90)return false;if(dist===0)return true;
  const samples=Math.max(1,Math.ceil(dist/4));
- for(let i=0;i<=samples;i++){const f=i/samples;if(solid(Math.floor((it.x+8+dx*f)/T),Math.floor((it.y+8+dy*f)/T)))return;}
- const move=Math.min(dist,240*dt);it.x+=dx/dist*move;it.y+=dy/dist*move;
+ for(let i=0;i<=samples;i++){const f=i/samples;if(solid(Math.floor((it.x+8+dx*f)/T),Math.floor((it.y+8+dy*f)/T)))return false;}
+ const move=Math.min(dist,240*dt);it.x+=dx/dist*move;it.y+=dy/dist*move;return true;
+}
+
+function pullWithMagnets(it,dt){
+ if(it.got)return;
+ const magnets=[P,...sibs].filter(a=>a.powers?.magnet>0).sort((a,b)=>Math.hypot(a.x-it.x,a.y-it.y)-Math.hypot(b.x-it.x,b.y-it.y));
+ for(const actor of magnets)if(attractChore(it,dt,actor))break;
+}
+function collectHelperItem(s,it){
+ if(it.got)return;it.got=true;s.rest=0;P.carry++;score+=25;levelScore+=25;SFX.collect();puff(it.x+8,it.y+8,s.d.color,8);
+ const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?s.d.name+"! "+left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);
 }
 
 function hurt(fromX){
@@ -1567,6 +1580,7 @@ function updateEnemies(dt){
 }
 
 function hurtSibling(s){
+  if(s.powers?.shield>0){if(!(s.inv>0)){s.inv=.35;popText(s.x-8,s.y-12,'BLOCKED!','#73d8f1');}return;}
   if(s.inv>0)return;
   s.inv=1.5;s.vy=-260;s.on=false;s.ride=null;s.rest=0.35;
   SFX.boing();popText(s.x,s.y-6,"OOPS!","#fff"); // siblings bounce off hazards with no time penalty
@@ -1588,12 +1602,12 @@ function moveFlyingHelper(s,dt,tx,moving){
   if(s.rest>0){s.vy=0;return;}
   const goalX=Math.max(0,Math.min(lvl.cols*T-10,tx));
   const goalY=Math.max(4,Math.min(H-20,s.target?s.target.y+1:P.y-40));
-  const steps=Math.max(1,Math.ceil(dt*s.d.speed/3)),step=dt/steps;
+  const flySpeed=s.d.speed*(s.powers?.boost>0?1.5:1),steps=Math.max(1,Math.ceil(dt*flySpeed/3)),step=dt/steps;
   const blocked=(nx,ny)=>{for(let r=Math.floor(ny/T);r<=Math.floor((ny+s.h-.01)/T);r++)for(let c=Math.floor(nx/T);c<=Math.floor((nx+9.99)/T);c++){
     const tile=tileAt(c,r);if(tile==='#'||(tile==='='&&ny>s.y&&s.y+s.h<=r*T+.5))return true;
   }return false;};
   for(let n=0;n<steps;n++){
-    const dx=goalX-s.x,dy=goalY-s.y,dist=Math.hypot(dx,dy),speed=s.d.speed*step;
+    const dx=goalX-s.x,dy=goalY-s.y,dist=Math.hypot(dx,dy),speed=flySpeed*step;
     let mx=moving&&dist?dx/dist*Math.min(speed,dist):0,my=dist?dy/dist*Math.min(speed,dist):0;
     if(!moving)my=Math.sign(dy)*Math.min(Math.abs(dy),speed);
     if(mx&&blocked(s.x+mx,s.y)){mx=0;my=-speed;if(blocked(s.x,s.y+my)&&dy>0)my=speed;}
@@ -1620,7 +1634,7 @@ function moveSibling(s,dt,tx,moving){
   if(s.d.fly&&!['race','kartroom'].includes(lvl.L.theme)){moveFlyingHelper(s,dt,tx,moving);return;}
   s.inv=Math.max(0,(s.inv||0)-dt);
   s.h=s.h||20;s.jumps=s.jumps||0;
-  const w=10,sp=moving?s.d.speed*(s.target?1:0.8):0;
+  const w=10,sp=moving?s.d.speed*(s.powers?.boost>0?1.5:1)*(s.target?1:0.8):0;
   const steps=Math.max(1,Math.ceil(dt*Math.max(sp,600)/4)),step=dt/steps;
   for(let n=0;n<steps;n++){
     if(s.ride&&s.on)s.x+=s.ride.dx/steps;
@@ -1701,7 +1715,7 @@ function updateSibs(dt){
   const played=lvl.L.time-timeLeft; // all five helpers appear immediately
   SIBS.forEach((d,k)=>{if(played>=d.delay&&!sibs.some(s=>s.k===k)&&P.carry<lvl.total){
     if(d.name==='COLIN')colinArrived=true;
-    sibs.push({k,d,x:P.x,y:P.y+P.h-20,h:20,duck:false,jumps:0,vy:0,on:false,ride:null,face:1,anim:0,target:null,hop:0});say(d.line,2.5);P.speech=GREETINGS[Math.random()*GREETINGS.length|0];P.speechT=2.2;
+    sibs.push({k,d,powers:{shield:0,boost:0,magnet:0},x:P.x,y:P.y+P.h-20,h:20,duck:false,jumps:0,vy:0,on:false,ride:null,face:1,anim:0,target:null,hop:0});say(d.line,2.5);P.speech=GREETINGS[Math.random()*GREETINGS.length|0];P.speechT=2.2;
     if(AC){const t0=AC.currentTime;if(k){tone(90,0.9,'sawtooth',0.06,600,t0,sfxGain);tone(180,0.9,'square',0.03,1200,t0,sfxGain);} // electric VRRRRM
       else [72,76,79,84].forEach((n,i)=>tone(mtof(n),0.12,'square',0.1,null,t0+i*0.07));}
     for(let i=0;i<14;i++)parts.push({x:P.x,y:P.y-10,vx:(Math.random()-.5)*200,vy:-Math.random()*150,life:1,col:k?"#43a047":"#ec407a"});}});
@@ -1720,9 +1734,7 @@ function updateSibs(dt){
     else if(rush){chooseSiblingTarget(s,dt);tx=s.target?s.target.x:P.x;moving=!resting;}
     else{s.target=null;tx=P.x-s.d.follow*P.face;moving=!resting&&Math.abs(tx-s.x)>6;if(!moving)s.face=P.face;}
     moveSibling(s,dt,tx,moving);
-    if(s.target&&!s.target.got&&Math.abs(s.target.x+8-(s.x+5))<12&&Math.abs(s.target.y+8-(s.y+7))<14){
-      const it=s.target;it.got=true;s.rest=0;P.carry++;score+=25;levelScore+=25;SFX.collect();puff(it.x+8,it.y+8,s.d.color,8);
-      const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?s.d.name+"! "+left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);}
+    if(s.target&&!s.target.got&&Math.abs(s.target.x+8-(s.x+5))<12&&Math.abs(s.target.y+8-(s.y+7))<14)collectHelperItem(s,s.target);
   }
   if(colinArrived)say(SIBS.find(d=>d.name==='COLIN').line,2.5);
 }
@@ -1730,8 +1742,10 @@ function updatePlay(dt){
   timeLeft-=dt;tickPowers(dt);collectPowerups();updateSibs(dt);
   if(timeLeft<=10&&!honked){honked=true;SFX.honk();say("HONK HONK! THEY'RE CLOSE!",2);}
   updatePlayer(dt);collectPowerups();updateEnemies(dt);
-  for(const it of lvl.items){attractChore(it,dt);if(!it.got&&overlap(P,it)){it.got=true;P.carry++;score+=50;levelScore+=50;SFX.collect();puff(it.x+8,it.y+8,"#ffeb3b",8);
-    const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);}}
+  for(const it of lvl.items){pullWithMagnets(it,dt);if(!it.got&&overlap(P,it)){it.got=true;P.carry++;score+=50;levelScore+=50;SFX.collect();puff(it.x+8,it.y+8,"#ffeb3b",8);
+    const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);}
+    else if(!it.got){const finder=sibs.find(s=>s.powers?.magnet>0&&overlap({x:s.x,y:s.y,w:10,h:s.h||20},it));if(finder)collectHelperItem(finder,it);}
+  }
   if(overlap(P,lvl.drop)){
     if(P.carry>=lvl.total){
       const bonus=Math.ceil(timeLeft)*10;score+=bonus;levelScore+=bonus;state='clear';stateT=0;stopMusic();SFX.win();puff(lvl.drop.x+14,lvl.drop.y,"#ffeb3b",30,150);
@@ -2906,11 +2920,12 @@ function drawPowerHUD(){
   R(x,42,116*P.powers[kind]/def.duration,1,def.color);
  }
 }
-function drawPowerEffects(t){
- const cx=P.x+P.w/2,cy=P.y+P.h/2;
- if(P.powers.shield>0){g.save();g.strokeStyle='#8ce8ff';g.lineWidth=2;g.globalAlpha=.65+.2*Math.sin(t*6);g.beginPath();g.arc(cx,cy,17,0,Math.PI*2);g.stroke();g.restore();}
- if(P.powers.boost>0)for(let n=0;n<3;n++)R(P.x-P.face*(6+n*5),P.y+P.h-4,3,2,['#ffe78b','#ffd05b','#ef9c43'][n]);
- if(P.powers.magnet>0)for(let n=0;n<4;n++){const a=t*3+n*Math.PI/2;R(cx+Math.cos(a)*20,cy+Math.sin(a)*16,2,2,'#d8afff');}
+function drawPowerEffects(t,actor=P){
+ const powers=actor.powers;if(!powers)return;
+ const cx=actor.x+(actor.w||10)/2,cy=actor.y+(actor.h||20)/2;
+ if(powers.shield>0){g.save();g.strokeStyle='#8ce8ff';g.lineWidth=2;g.globalAlpha=.65+.2*Math.sin(t*6);g.beginPath();g.arc(cx,cy,actor===P?17:20,0,Math.PI*2);g.stroke();g.restore();}
+ if(powers.boost>0)for(let n=0;n<3;n++)R(actor.x-actor.face*(6+n*5),actor.y+(actor.h||20)-4,3,2,['#ffe78b','#ffd05b','#ef9c43'][n]);
+ if(powers.magnet>0)for(let n=0;n<4;n++){const a=t*3+n*Math.PI/2;R(cx+Math.cos(a)*20,cy+Math.sin(a)*16,2,2,'#d8afff');}
 }
 
 function drawHUD(t){
@@ -2942,6 +2957,7 @@ function drawHUD(t){
 
 function drawSibling(s,t){
   if(s.inv>0&&Math.floor(s.inv*15)%2)return;
+  drawPowerEffects(t,s);
   const by=s.y;
     if(s.d.balloon){ // pink balloon on a string, bobbing above her hand and lagging behind when she moves
       const hx=Math.round(s.x)+(s.face>0?8:2),hy=Math.round(by)+(s.duck?4:9),bob=Math.sin(t*3+s.x*0.02)*1.5,
@@ -2997,7 +3013,9 @@ function drawSibling(s,t){
             }else{drawKidRaw(ox,oy,s.face,s.anim/2,!s.on,s.d.pal);R(ox-2,oy+15,15,2,s.k<2?"#ab47bc":s.d.pal.shirt);R(ox,oy+17,2,2,"#212121");R(ox+9,oy+17,2,2,"#212121");}
     });g.restore();
     if(s.d.neon){text(s.d.name,s.x+6,by-11,6,"#e53935","center");text(s.d.name,s.x+5,by-12,6,"#42a5f5","center",false);} // Isaac: blue with a red shadow, his favorite colors
-    else text(s.d.name,s.x+5,by-(s.d.balloon?33:12),6,s.d.color,"center");}
+    else text(s.d.name,s.x+5,by-(s.d.balloon?33:12),6,s.d.color,"center");
+    const active=Object.keys(POWER_DEFS).filter(k=>s.powers?.[k]>0).map(k=>k[0].toUpperCase()+Math.ceil(s.powers[k])).join(' ');
+    if(active)text(active,s.x+5,by+24,8,s.d.color,'center');}
 
 function drawPlay(t){
   const th=lvl.theme;

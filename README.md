@@ -63,15 +63,15 @@ The bar at the top of the screen shows the parents' car driving toward the house
 
 ### Power-ups
 
-Each 2D room has three optional bonus pickups. You, Isaac, Annie, Daniel, Colin or Andrew can collect the unframed icons to activate them for you:
+Each 2D room has three optional bonus pickups. You, Isaac, Annie, Daniel, Colin or Andrew can collect the unframed icons to power themselves up:
 
 | Power-up | Effect | Lasts |
 |---|---|---|
-| Blue shield | Protects you from critter and LEGO hits; gaps still cost time | 10 seconds |
-| Yellow lightning bolt | Makes you move 1.5× faster | 8 seconds |
-| Purple magnet | Pulls nearby chore items toward you, without pulling through solid walls | 10 seconds |
+| Blue shield | Protects its collector from critter and LEGO hits; gaps still cost time | 10 seconds |
+| Yellow lightning bolt | Makes its collector move or fly 1.5× faster | 8 seconds |
+| Purple magnet | Pulls nearby chore items toward its collector, without pulling through solid walls | 10 seconds |
 
-Active powers have countdowns beneath the HUD, plus a shield bubble, speed streaks or orbiting magnet sparks. Different powers work together; another pickup refreshes that power’s timer. Timers pause with the game and reset on a retry or new room. Any family helper can grab a bonus and activate your power; the pickup message names the finder. Bonuses do not count as chores or need to be collected to finish.
+Your active powers have countdowns beneath the HUD; helpers show their own countdowns below their names. Each powered character has a shield bubble, speed streaks or orbiting magnet sparks. Different powers work together; another pickup refreshes that power’s timer. Timers pause with the game and reset on a retry or new room. Each bonus belongs only to the character who collects it; helper pickups do not activate your powers. The pickup message names the finder. Bonuses do not count as chores or need to be collected to finish.
 
 ### Sibling and Cousin Helpers
 

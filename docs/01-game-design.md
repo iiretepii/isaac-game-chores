@@ -26,7 +26,7 @@ This document describes the original 2D game. See [09 – 3D Fork](09-3d-fork.md
 
 ## Optional Power-ups
 
-Every 2D room has one shield, one speed boost and one magnet bonus, placed above flat ground. The player or any sibling/cousin can collect these separately from chores, activating the player’s power. Shield prevents critter/LEGO damage for 10 seconds but does not prevent fall penalties; speed gives 1.5× movement for 8 seconds; magnet pulls nearby chores with a clear path through the room within 90 px for 10 seconds. Powers stack by type, refresh on repeat pickup, pause with play and reset on each level start. Completion still requires only chore items and delivery.
+Every 2D room has one shield, one speed boost and one magnet bonus, placed above flat ground. The player or any sibling/cousin can collect these separately from chores, activating only the collector’s power. Shield prevents critter/LEGO damage for 10 seconds but does not prevent fall penalties; speed gives the collector 1.5× movement or flight for 8 seconds; magnet pulls nearby chores with a clear path through the room within 90 px for 10 seconds. Powers stack by type, refresh on repeat pickup, pause with play and reset on each level start. Completion still requires only chore items and delivery.
 
 ## Rules
 

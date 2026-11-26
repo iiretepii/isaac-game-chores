@@ -402,3 +402,9 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-26 — Parent-room pickup counts
 
 - Corrected Mom’s level-6 room to 15 jewelry pieces and Uncle Pete’s level-7 room to 16 Bears gear items, matching their early-game positions. Other room settings and the Whole House mix are retained.
+
+## 2026-11-26 — Power-ups belong to their collector
+
+- Gave the player and each helper separate power timers. A sibling/cousin pickup no longer powers up the player.
+- Shields protect their owner; speed boosts ground movement and Andrew’s flight; magnets pull chores toward their owner and count helper collections only once.
+- Added effects and countdowns on the powered helper while retaining the player’s own HUD. Pause, expiry and level reset apply independently to all characters.
