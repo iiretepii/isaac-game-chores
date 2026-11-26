@@ -1459,13 +1459,17 @@ const overlap=(a,b)=>a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y;
 function puff(x,y,col,n=8,sp=80){for(let i=0;i<n;i++)parts.push({x,y,vx:(Math.random()-.5)*sp*2,vy:(Math.random()-.8)*sp*1.5,life:0.6+Math.random()*0.4,col});}
 function popText(x,y,txt,col='#fff'){parts.push({x,y,vx:0,vy:-40,life:1,txt,col});}
 
-function grantPower(kind){
+function grantPower(kind,collector=P){
  const def=POWER_DEFS[kind];if(!def)return;
- P.powers[kind]=def.duration;say(def.name+' ON!',1.8);popText(P.x-6,P.y-16,def.name+'!',def.color);puff(P.x+5,P.y+5,def.color,14,75);
+ P.powers[kind]=def.duration;say(collector.d?collector.d.name+' FOUND '+def.name+'!':def.name+' ON!',1.8);popText(collector.x-6,collector.y-16,def.name+'!',def.color);puff(collector.x+5,collector.y+5,def.color,14,75);
  if(AC)[76,80,83].forEach((note,i)=>tone(mtof(note),.12,'sine',.08,null,AC.currentTime+i*.07));
 }
 function collectPowerups(){
- for(const bonus of lvl.powerups||[])if(!bonus.got&&overlap(P,bonus)){bonus.got=true;grantPower(bonus.kind);}
+ for(const bonus of lvl.powerups||[]){
+  if(bonus.got)continue;
+  const collector=overlap(P,bonus)?P:sibs.find(s=>overlap({x:s.x,y:s.y,w:10,h:s.h||20},bonus));
+  if(collector){bonus.got=true;grantPower(bonus.kind,collector);}
+ }
 }
 function tickPowers(dt){for(const kind in POWER_DEFS)P.powers[kind]=Math.max(0,P.powers[kind]-dt);}
 function attractChore(it,dt){
@@ -2891,10 +2895,10 @@ function drawTiles(th,t){
 }
 
 function drawPowerIcon(kind,x,y){
- const color=POWER_DEFS[kind].color;R(x-2,y-2,20,20,color);R(x-1,y-1,18,18,'#1b2241');
+ const color=POWER_DEFS[kind].color;
  if(kind==='shield'){R(x+3,y+2,10,7,color);R(x+4,y+9,8,3,color);R(x+6,y+12,4,2,color);R(x+7,y+3,2,8,'#e7fbff');}
  else if(kind==='boost'){R(x+7,y+1,6,3,color);R(x+5,y+4,6,3,color);R(x+3,y+7,9,3,color);R(x+7,y+10,4,2,color);R(x+6,y+12,3,2,color);}
- else{R(x+2,y+3,4,9,color);R(x+10,y+3,4,9,color);R(x+4,y+10,8,4,color);R(x+2,y+2,4,3,'#ffffff');R(x+10,y+2,4,3,'#ffcfda');R(x+6,y+5,4,5,'#1b2241');}
+ else{R(x+2,y+3,4,9,color);R(x+10,y+3,4,9,color);R(x+4,y+10,8,4,color);R(x+2,y+2,4,3,'#ffffff');R(x+10,y+2,4,3,'#ffcfda');}
 }
 function drawPowerHUD(){
  let slot=0;for(const [kind,def] of Object.entries(POWER_DEFS))if(P.powers[kind]>0){const x=4+slot++*124;

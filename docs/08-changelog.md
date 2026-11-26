@@ -393,3 +393,8 @@ Grouped by milestone. See `git log` for every commit.
 - Added optional shield, speed and magnet pickups to every 2D room, with distinct pixel icons, player effects and HUD countdowns.
 - Shield blocks critter/LEGO damage for 10 seconds, speed boosts player movement 1.5× for 8 seconds, and magnet draws nearby chores along clear paths for 10 seconds. Powers stack by type, refresh and reset on retries/new rooms.
 - Bonus placement preserves room RNG and chore counts. Normal collection, helper behavior, music and the separate 3D fork are retained.
+
+## 2026-11-26 — Unframed team power-up pickups
+
+- Removed square frames and dark backplates from shield, speed and magnet icons.
+- Isaac, Annie, Daniel, Colin and Andrew can now collect bonuses by contact and activate the player’s power. Feedback appears at the finder and names them; simultaneous contact still claims each pickup only once.

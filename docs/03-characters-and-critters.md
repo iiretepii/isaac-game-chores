@@ -174,4 +174,4 @@ Each message is prefixed with the owner’s name. These messages use 8 px letter
 
 ## Bonus power-ups
 
-Shield, speed and magnet icons are separate from `lvl.items` and do not increment `P.carry`. Only the player collects them. Their 10/8/10-second timers live in `P.powers`; ground helpers and Andrew keep their existing speeds, flight and collection behavior. Shield changes player damage handling, and magnet moves uncollected chore objects so ordinary player/helper collection still resolves each item once.
+Shield, speed and magnet icons are separate from `lvl.items` and do not increment `P.carry`. The player or any of the five helpers can collect them; all pickups activate the player’s power. Their 10/8/10-second timers live in `P.powers`; ground helpers and Andrew keep their existing speeds, flight and collection behavior. Shield changes player damage handling, and magnet moves uncollected chore objects so ordinary player/helper collection still resolves each item once.
