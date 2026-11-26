@@ -178,7 +178,7 @@ All fourteen power-up types are separate from `lvl.items` and do not increment `
 
 The eleven additional powers are Jump Boots, Feather Float, Triple Jump, Star, Fire Aura, Ice Aura, Slow Aura, Double Points, Rescue Balloon, Item Compass and Ghost Bridge (see the README for durations). Grounded helpers use jump/fall powers; Andrew retains flight outside vehicle rooms. Ghost Bridge gives only its collector invisible one-way platforms over bounded gaps, disappearing when the 12-second timer expires. Helpers with it can ride across pits without jumping.
 
-Andrew rescues the player or any other helper who falls into a gap while he is present, including in vehicle rooms. He swoops in with his wings and returns them to the last safe ground without a time penalty or using their Rescue Balloon. He can catch teammates during an ongoing rescue; he cannot rescue himself.
+Andrew rescues the player or any other helper who falls into a gap while he is present, except in Race Track Rumble and MarioKart Toy Room. In those two rooms he stays in his vehicle and cannot rescue anyone; normal fall rules and personal Rescue Balloon powers still apply. He swoops in with his wings and returns them to the last safe ground without a time penalty or using their Rescue Balloon. He can catch teammates during an ongoing rescue; he cannot rescue himself.
 
 All five siblings and cousins jump in sync with the player on the title, level-complete and game-ending screens. The about-to-start lineup stays still.
 

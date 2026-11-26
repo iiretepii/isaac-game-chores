@@ -1564,6 +1564,7 @@ function needsAndrewRescue(actor){
  return actor.y>H-12||(actor.vy>0&&actor.y+actor.h>H-64&&groundBelow(actor.x+(actor.w||10)/2,actor.y+actor.h)===null);
 }
 function andrewRescue(actor){
+ if(['race','kartroom'].includes(lvl.L.theme))return false;
  const andrew=sibs.find(s=>s.d.name==='ANDREW'&&s!==actor);
  if(!andrew)return false;
  if(actor.rescueCarry)return true;

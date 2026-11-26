@@ -459,3 +459,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-26 — LEGO room order
 
 - Moved LEGO Builders Room directly after Charging Room Chaos as level 34; updated the level tables. Whole House remains the finale and Training remains optional.
+
+## 2026-11-26 — Grounded racing-room Andrew
+
+- Disabled Andrew’s gap rescues in Race Track Rumble and MarioKart Toy Room. Normal fall rules and Rescue Balloon powers still apply there. Andrew continues rescuing teammates in other rooms, including Training.
