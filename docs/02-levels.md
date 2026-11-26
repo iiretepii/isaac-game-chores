@@ -11,8 +11,8 @@ Generated from the `LEVELS` array in `index.html`.
 | 3 | Daniel'S Monster Jam Room | `danielroom` | monstertrucktoy → monsterarena | 12 | 205s | 410 | 3 | 0.7 | 0.2 | yes | roomba, chomper, rat | `monsterjam` |
 | 4 | Colin'S Surf Shack | `colinroom` | surfboardtoy → surfrack | 13 | 208s | 420 | 4 | 0.7 | 0.2 | yes | duck, squirrel, bubble | `surfrock` |
 | 5 | Andrew's Sky Room | `andrewroom` | flyingtoy → toyhangar | 14 | 107s | 184 | 4 | 0.45 | 0.15 | no | bee, bat, bubble | `skyhop` |
-| 6 | Mom'S Room | `momroom` | jewelry → jewelrybox | 49 | 211s | 430 | 4 | 0.7 | 0.2 | yes | hamster, cat, bubble | `momwaltz` |
-| 7 | Uncle Pete'S Room | `peteroom` | bearsgear → bearslocker | 50 | 214s | 440 | 4 | 0.7 | 0.2 | yes | roomba, dog, turkey | `bearsgroove` |
+| 6 | Mom'S Room | `momroom` | jewelry → jewelrybox | 15 | 211s | 430 | 4 | 0.7 | 0.2 | yes | hamster, cat, bubble | `momwaltz` |
+| 7 | Uncle Pete'S Room | `peteroom` | bearsgear → bearslocker | 16 | 214s | 440 | 4 | 0.7 | 0.2 | yes | roomba, dog, turkey | `bearsgroove` |
 | 8 | Kitchen Catastrophe | `kitchen` | dish → dishwasher | 12 | 101s | 175 | 4 | 0.45 | 0 | no | dust, roach | `jazz` |
 | 9 | Living Room Lego-Land | `living` | pillow → creamcouch | 13 | 104s | 178 | 4 | 0.5 | 0.4 | no | roomba, cat | `pop` |
 | 10 | Backyard Bonanza | `yard` | leaf → bag | 14 | 107s | 181 | 5 | 0.55 | 0.2 | yes | dog, bee | `hiphop` |

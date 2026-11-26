@@ -119,8 +119,8 @@ Daniel’s Monster Jam Room is level 3, and Colin’s Surf Shack is level 4, And
 | 3 | **Daniel'S Monster Jam Room** | Park the toy monster trucks in the arena garage | 12 | 205s | roomba, chomper, rat | Stadium Stomp |
 | 4 | **Colin'S Surf Shack** | Put the toy surfboards back on the surfboard rack | 13 | 208s | duck, squirrel, bubble | Surfs Up Shuffle |
 | 5 | **Andrew's Sky Room** | Flying toys → toy hangar | 14 | 107s | Bees, bats, bubbles | Wings Above the House |
-| 6 | **Mom'S Room** | Put the jewelry back in Mom's jewelry box | 49 | 211s | hamster, cat, bubble | Jewel Box Waltz |
-| 7 | **Uncle Pete'S Room** | Put the Chicago Bears gear in Uncle Pete's locker | 50 | 214s | roomba, dog, turkey | Bears Cleanup Drive |
+| 6 | **Mom'S Room** | Put the jewelry back in Mom's jewelry box | 15 | 211s | hamster, cat, bubble | Jewel Box Waltz |
+| 7 | **Uncle Pete'S Room** | Put the Chicago Bears gear in Uncle Pete's locker | 16 | 214s | roomba, dog, turkey | Bears Cleanup Drive |
 | 8 | **Kitchen Catastrophe** | Dirty dishes → dishwasher | 12 | 101s | Dust bunnies, cockroaches | Swing jazz |
 | 9 | **Living Room Lego-Land** | Pillows in lots of colors → cream couch | 13 | 104s | Robot vacuums, cats | Bubblegum pop |
 | 10 | **Backyard Bonanza** | Leaves → leaf bag | 14 | 107s | Dogs, bees | Boom-bap hip hop |

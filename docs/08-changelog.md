@@ -398,3 +398,7 @@ Grouped by milestone. See `git log` for every commit.
 
 - Removed square frames and dark backplates from shield, speed and magnet icons.
 - Isaac, Annie, Daniel, Colin and Andrew can now collect bonuses by contact and activate the player’s power. Feedback appears at the finder and names them; simultaneous contact still claims each pickup only once.
+
+## 2026-11-26 — Parent-room pickup counts
+
+- Corrected Mom’s level-6 room to 15 jewelry pieces and Uncle Pete’s level-7 room to 16 Bears gear items, matching their early-game positions. Other room settings and the Whole House mix are retained.
