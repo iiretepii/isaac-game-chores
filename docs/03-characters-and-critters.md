@@ -168,4 +168,4 @@ The first four rooms show their owners’ requested lines on the about-to-start 
 - **Daniel:** “My toy monster trucks are driving all over my room! Toy monster truck shelf. Now!”
 - **Colin:** “My toy surfboards are surfing all over my room! Toy surfboard shelf. Now!”
 
-Each message is prefixed with the owner’s name. These four rooms use `introSize: 7` to keep the full text inside the message card. Chore items, return spots and helper greetings are retained.
+Each message is prefixed with the owner’s name. These four rooms use `introSize: 8` and a wider message card to keep the full text readable. The dialogue uses clean, unshadowed text. Chore items, return spots and helper greetings are retained.

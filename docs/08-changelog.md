@@ -370,3 +370,7 @@ Grouped by milestone. See `git log` for every commit.
 
 - Replaced Isaac’s, Annie’s, Daniel’s and Colin’s intro-card dialogue with the owner’s exact requested lines, including Annie’s Barbie dolls and toy Barbie doll castle wording.
 - Added an optional `introSize` setting so the longer messages fit the card; gameplay and Colin’s immediate “Surfs Up!” greeting are retained.
+
+## 2026-11-26 — Sharper intro dialogue
+
+- Restored the four owner messages to the pixel font’s 8 px size, widened the message card and removed dialogue text shadows for clearer letters. The exact requested wording is retained.

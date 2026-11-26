@@ -1187,10 +1187,10 @@ function scheduler(){
 
 // ================= LEVEL DATA =================
 const LEVELS=[
- {"name":"ISAAC'S ROOM","chore":"Put the toy dragons back in the toy chest","drop":"toychest","item":"dragon","seed":777,"count":10,"time":94,"len":170,"gap":3,"enemies":["bzombie","bskel","bspider","hisser"],"density":0.4,"lego":0,"movers":0,"theme":"bedroom","music":"rock","text":"ISAAC: My toy dragons are flying all over my room! Dragons in dragon treasure chest. Now!","difficultyIndex":0,"introSize":7},
- {"name":"ANNIE'S ROOM","chore":"Put the dolls back in the doll house","drop":"dollhouse","item":"doll","seed":1790,"count":11,"time":98,"len":173,"gap":3,"enemies":["tabby","husky","pom"],"density":0.45,"lego":0,"movers":0,"theme":"annie","music":"princess","text":"ANNIE: My Barbie dolls are partying all over my room! Put them in my toy Barbie doll castle. Now!","difficultyIndex":1,"introSize":7},
- {"name":"DANIEL'S MONSTER JAM ROOM","chore":"Park the toy monster trucks in the arena garage","drop":"monsterarena","item":"monstertrucktoy","seed":52183,"count":12,"time":205,"len":410,"gap":3,"enemies":["roomba","chomper","rat"],"density":0.7,"lego":0.2,"movers":1,"theme":"danielroom","music":"monsterjam","text":"DANIEL: My toy monster trucks are driving all over my room! Toy monster truck shelf. Now!","difficultyIndex":1,"introSize":7},
- {"name":"COLIN'S SURF SHACK","chore":"Put the toy surfboards back on the surfboard rack","drop":"surfrack","item":"surfboardtoy","seed":54217,"count":13,"time":208,"len":420,"gap":4,"enemies":["duck","squirrel","bubble"],"density":0.7,"lego":0.2,"movers":1,"theme":"colinroom","music":"surfrock","text":"COLIN: My toy surfboards are surfing all over my room! Toy surfboard shelf. Now!","difficultyIndex":2,"introSize":7},
+ {"name":"ISAAC'S ROOM","chore":"Put the toy dragons back in the toy chest","drop":"toychest","item":"dragon","seed":777,"count":10,"time":94,"len":170,"gap":3,"enemies":["bzombie","bskel","bspider","hisser"],"density":0.4,"lego":0,"movers":0,"theme":"bedroom","music":"rock","text":"ISAAC: My toy dragons are flying all over my room! Dragons in dragon treasure chest. Now!","difficultyIndex":0,"introSize":8},
+ {"name":"ANNIE'S ROOM","chore":"Put the dolls back in the doll house","drop":"dollhouse","item":"doll","seed":1790,"count":11,"time":98,"len":173,"gap":3,"enemies":["tabby","husky","pom"],"density":0.45,"lego":0,"movers":0,"theme":"annie","music":"princess","text":"ANNIE: My Barbie dolls are partying all over my room! Put them in my toy Barbie doll castle. Now!","difficultyIndex":1,"introSize":8},
+ {"name":"DANIEL'S MONSTER JAM ROOM","chore":"Park the toy monster trucks in the arena garage","drop":"monsterarena","item":"monstertrucktoy","seed":52183,"count":12,"time":205,"len":410,"gap":3,"enemies":["roomba","chomper","rat"],"density":0.7,"lego":0.2,"movers":1,"theme":"danielroom","music":"monsterjam","text":"DANIEL: My toy monster trucks are driving all over my room! Toy monster truck shelf. Now!","difficultyIndex":1,"introSize":8},
+ {"name":"COLIN'S SURF SHACK","chore":"Put the toy surfboards back on the surfboard rack","drop":"surfrack","item":"surfboardtoy","seed":54217,"count":13,"time":208,"len":420,"gap":4,"enemies":["duck","squirrel","bubble"],"density":0.7,"lego":0.2,"movers":1,"theme":"colinroom","music":"surfrock","text":"COLIN: My toy surfboards are surfing all over my room! Toy surfboard shelf. Now!","difficultyIndex":2,"introSize":8},
  {"name":"ANDREW'S SKY ROOM","chore":"Put the flying toys back in the toy hangar","drop":"toyhangar","item":"flyingtoy","seed":60317,"count":14,"time":107,"len":184,"gap":4,"enemies":["bee","bat","bubble"],"density":0.45,"lego":0.15,"movers":0,"theme":"andrewroom","music":"skyhop","difficultyIndex":2,"text":"ANDREW: Planes, helicopters and kites everywhere! Help me put my flying toys in the hangar!"},
  {"name":"MOM'S ROOM","chore":"Put the jewelry back in Mom's jewelry box","drop":"jewelrybox","item":"jewelry","seed":56249,"count":49,"time":211,"len":430,"gap":4,"enemies":["hamster","cat","bubble"],"density":0.7,"lego":0.2,"movers":1,"theme":"momroom","music":"momwaltz","difficultyIndex":3,"text":"MOM: My necklaces, rings and earrings are everywhere! You and the cleanup crew: jewelry box, please!"},
  {"name":"UNCLE PETE'S ROOM","chore":"Put the Chicago Bears gear in Uncle Pete's locker","drop":"bearslocker","item":"bearsgear","seed":58271,"count":50,"time":214,"len":440,"gap":4,"enemies":["roomba","dog","turkey"],"density":0.7,"lego":0.2,"movers":1,"theme":"peteroom","music":"bearsgroove","difficultyIndex":3,"text":"UNCLE PETE: My Bears jerseys, caps and footballs need a home. Team cleanup: put them in my locker!"},
@@ -1699,10 +1699,10 @@ function text(t,x,y,size=8,col='#fff',align='left',shadow=true){
   g.font=size+'px '+FONT;g.textAlign=align;g.textBaseline='top';
   if(shadow){g.fillStyle='#000';g.fillText(t,x+1,y+1);}g.fillStyle=col;g.fillText(t,x,y);
 }
-function wrap(t,x,y,maxW,size,col,align='center'){
+function wrap(t,x,y,maxW,size,col,align='center',shadow=true){
   g.font=size+'px '+FONT;const words=t.split(' ');let line='',yy=y;
-  for(const w of words){const test=line?line+' '+w:w;if(g.measureText(test).width>maxW&&line){text(line,x,yy,size,col,align);line=w;yy+=size+6;}else line=test;}
-  if(line)text(line,x,yy,size,col,align);return yy+size+6;
+  for(const w of words){const test=line?line+' '+w:w;if(g.measureText(test).width>maxW&&line){text(line,x,yy,size,col,align,shadow);line=w;yy+=size+6;}else line=test;}
+  if(line)text(line,x,yy,size,col,align,shadow);return yy+size+6;
 }
 
 const KS=1; // player sprite scale
@@ -2981,8 +2981,8 @@ function drawIntro(t){
   text(L.name,W/2,60,12,"#ffeb3b","center");
   text(SIBS.find(d=>d.name==='COLIN').line,W/2,76,6,"#b39ddb","center",false);
   // phone text bubble
-  R(70,86,W-140,62,"#e0e0e0");R(70,86,W-140,10,"#43a047");text("NEW TEXT!",78,88,6,"#fff","left",false);
-  g.save();wrap(L.text,W/2,100,W-160,L.introSize||8,"#212121");g.restore();
+  R(48,86,W-96,62,"#e0e0e0");R(48,86,W-96,10,"#43a047");text("NEW TEXT!",56,88,8,"#fff","left",false);
+  g.save();wrap(L.text,W/2,100,W-120,L.introSize||8,"#212121","center",false);g.restore();
   const cy=wrap("CHORE: "+L.chore,W/2,154,W-120,8,"#fff"),dy=cy-166; // long chores wrap onto a second line inside the panel
   drawItem(L.item==='mix'?'trash':L.item,W/2-62,168+dy,clock);text("x"+lvl.total+"  in "+L.time+" SEC",W/2+8,173+dy,8,"#76ff03","center");
   text("NOW PLAYING: "+(L.music==='mix'?"ALL OF IT AT ONCE!":STYLES[L.music].name),W/2,192+dy,6,"#ff80ab","center");
