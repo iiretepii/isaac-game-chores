@@ -1532,6 +1532,21 @@ function collectHelperItem(s,it){
  const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?s.d.name+"! "+left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);
 }
 
+// Andrew catches falling teammates, then carries them back to the last safe ground.
+function andrewRescue(actor){
+ const andrew=sibs.find(s=>s.d.name==='ANDREW'&&s!==actor);
+ if(!andrew)return false;
+ const from={x:actor.x,y:Math.min(actor.y,H-24)};
+ actor.h=actor===P?14:20;actor.duck=false;actor.jumps=0;
+ actor.x=lastSafe.x;actor.y=lastSafe.y+14-actor.h-4;
+ actor.vx=actor.vy=0;actor.on=false;actor.ride=null;actor.inv=1.2;
+ andrew.x=actor.x;andrew.y=Math.max(4,actor.y-26);andrew.vy=0;andrew.on=false;andrew.ride=null;andrew.rest=0;
+ andrew.rescueFlight={from,to:{x:andrew.x,y:andrew.y}};andrew.rescueT=.65;
+ puff(from.x,from.y,'#d2efff',14,90);puff(actor.x,actor.y,'#d2efff',14,65);
+ const name=actor===P?'YOU':actor.d.name;say('ANDREW: I GOT '+name+'!',1.8);
+ popText(actor.x-12,actor.y-16,'SAVED BY ANDREW!','#d2efff');SFX.boing();return true;
+}
+
 function hurt(fromX){
   if(P.powers.shield>0||P.powers.star>0){if(P.inv<=0){P.inv=.35;popText(P.x-8,P.y-12,'BLOCKED!','#73d8f1');}return;}
   if(P.inv>0)return;
@@ -1587,7 +1602,8 @@ function updatePlayer(dt){
   const hr0=Math.floor((P.y+4)/T),hr1=Math.floor((P.y+P.h-1)/T);
   for(let r=hr0;r<=hr1;r++)for(let c=c0;c<=c1;c++)if(tileAt(c,r)==='x'){const lx=c*T,ly=r*T+8;if(P.y+P.h>ly&&P.x+P.w>lx+2&&P.x<lx+14)hurt(lx+8);}
   // pit
-  if(P.y>H+20||(P.powers.rescue>0&&P.y>H-12)){SFX.fall();if(P.powers.rescue>0){P.powers.rescue=0;say("RESCUED!",1.5);}else{timeLeft=Math.max(0,timeLeft-5);say("WHOOPS! -5 SEC",1.5);}P.x=lastSafe.x;P.h=14;P.duck=false;P.jumps=0;P.y=lastSafe.y-4;P.vx=P.vy=0;P.inv=1.2;}
+  if(P.y>H-12&&andrewRescue(P)){}
+  else if(P.y>H+20||(P.powers.rescue>0&&P.y>H-12)){SFX.fall();if(P.powers.rescue>0){P.powers.rescue=0;say("RESCUED!",1.5);}else{timeLeft=Math.max(0,timeLeft-5);say("WHOOPS! -5 SEC",1.5);}P.x=lastSafe.x;P.h=14;P.duck=false;P.jumps=0;P.y=lastSafe.y-4;P.vx=P.vy=0;P.inv=1.2;}
   P.anim+=Math.abs(P.vx)*dt;
   if(P.inv>0)P.inv-=dt;
 }
@@ -1726,6 +1742,7 @@ function moveSibling(s,dt,tx,moving){
       if(tileAt(c,r)==='x'&&overlap({x:s.x,y:s.y+4,w,h:h-4},{x:c*T+2,y:r*T+8,w:12,h:8}))hurtSibling(s);
     }
     if(!s.on)s.ride=null;
+    if(s.y>H-12&&andrewRescue(s))break;
     if(s.y>H+40||(s.powers?.rescue>0&&s.y>H-12)){
       if(s.powers?.rescue>0)s.powers.rescue=0;
       popText(lastSafe.x,lastSafe.y-12,"BACK!","#fff"); // siblings who fall pop back next to the safe ground, no penalty
@@ -1765,6 +1782,7 @@ function updateSibs(dt){
     for(let i=0;i<14;i++)parts.push({x:P.x,y:P.y-10,vx:(Math.random()-.5)*200,vy:-Math.random()*150,life:1,col:k?"#43a047":"#ec407a"});}});
   const frac=timeLeft/lvl.L.time,wholeHouse=lvl.L.theme==='house';
   for(const s of sibs){
+    if(s.rescueT>0){s.rescueT=Math.max(0,s.rescueT-dt);continue;}
     const resting=s.rest>0;if(resting)s.rest=Math.max(0,s.rest-dt); // only pause briefly after taking damage
     // Each sibling owns their bedroom chore; both help throughout the Whole House.
     const ownRoom=s.d.ownTheme===lvl.L.theme;
@@ -3015,6 +3033,8 @@ function drawHUD(t){
 }
 
 function drawSibling(s,t){
+  if(s.rescueT>0&&s.rescueFlight){const f=1-s.rescueT/.65,a=s.rescueFlight;
+    s={...s,x:a.from.x+(a.to.x-a.from.x)*f,y:a.from.y+(a.to.y-a.from.y)*f-Math.sin(f*Math.PI)*40,inv:0,duck:false};}
   if(s.inv>0&&Math.floor(s.inv*15)%2)return;
   drawPowerEffects(t,s);
   const by=s.y;
@@ -3026,8 +3046,8 @@ function drawSibling(s,t){
       R(bx-3,byy+1,7,7,"#f06292");R(bx-4,byy+2,9,5,"#f06292");R(bx-1,byy,3,9,"#f06292");R(bx-2,byy+2,2,2,"#fce4ec");R(bx,byy+9,1,1,"#c2185b");}
     g.save();g.translate(Math.round(s.x),Math.round(by));g.scale(1,s.duck?0.6:1);
     outlined(0,0,(ox,oy)=>{
-      if(onKartRoom()){drawKartRoomRide(ox,oy+6,s.face,s.anim/2,s.d.kart,s.d.pal);}
-      else if(onRaceTrack()){const an=s.d.name==='ANNIE',isaac=s.d.name==='ISAAC';drawRaceCar(ox,oy+5,s.face,s.anim/2,isaac?"#1e88e5":s.d.pal.shirt,an?"#fce4ec":isaac?"#e53935":s.d.color,s.k+2,s.d.pal,isaac?"#e53935":s.d.pal.cap||s.d.pal.shirt,isaac?"#1e88e5":s.d.color);}
+      if(onKartRoom()&&!(s.rescueT>0)){drawKartRoomRide(ox,oy+6,s.face,s.anim/2,s.d.kart,s.d.pal);}
+      else if(onRaceTrack()&&!(s.rescueT>0)){const an=s.d.name==='ANNIE',isaac=s.d.name==='ISAAC';drawRaceCar(ox,oy+5,s.face,s.anim/2,isaac?"#1e88e5":s.d.pal.shirt,an?"#fce4ec":isaac?"#e53935":s.d.color,s.k+2,s.d.pal,isaac?"#e53935":s.d.pal.cap||s.d.pal.shirt,isaac?"#1e88e5":s.d.color);}
       else if(s.d.fly){
         const flap=Math.sin(t*10+s.x*.02)>0?1:0,wy=oy+(flap?-3:3);
         for(const side of [-1,1]){const wx=side<0?ox-12:ox+10;

@@ -419,3 +419,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-26 — Whole House Ghost Bridges
 
 - Added three extra Ghost Bridge pickups spread through Whole House, keeping the existing five bonuses. Each bridge still belongs only to its collector and lasts 12 seconds.
+
+## 2026-11-26 — Andrew rescues falling teammates
+
+- Andrew catches the player and other helpers before they fall out of the room, swoops back to safe ground, and prevents the player’s fall penalty. His wings work for rescues in vehicle rooms too; existing fall behavior remains when Andrew is absent or is the one falling.
