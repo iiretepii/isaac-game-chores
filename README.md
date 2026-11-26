@@ -310,3 +310,5 @@ During a rescue the passenger stays visible below Andrew, follows his slow retur
 Choose **Training Room (T)** on the title screen, press **T**, or pick it in Level Select. Practice moving, double jumping, ducking and power-ups, then collect six toys and deliver them to the chest. There is no time limit, no critters or LEGO hazards, and Andrew can rescue you over the two practice gaps. The family follows along while leaving the toys for you to collect. Completing training returns to the title; the original 43-room adventure keeps its order and ending. Training uses the existing *Press Start to Clean!* music.
 
 Whoever Andrew rescues says **“W Andrew!”** in a speech bubble attached to that character during the carry and briefly after landing.
+
+Sibling and cousin greetings, cleanup lines, power-up announcements and Andrew’s rescue calls appear in speech bubbles attached to their speaker. Family room introductions show a speech bubble beside the speaking character; parent phone messages stay in the intro panel.

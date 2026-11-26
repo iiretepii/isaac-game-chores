@@ -1504,7 +1504,12 @@ function startLevel(i){
   state='intro';stateT=0;stopMusic();
   say(SIBS.find(d=>d.name==='COLIN').line,2.5);
 }
-function say(t,d=2){msg=t;msgT=d;}
+function helperSays(actor,line,d=2){actor.dialogue=line;actor.dialogueT=d;}
+function say(t,d=2){
+ const speaker=SIBS.find(s=>t.startsWith(s.name+':'));
+ if(speaker){const actor=sibs.find(s=>s.d===speaker);if(actor)helperSays(actor,t.slice(t.indexOf(':')+1).trim(),d);return;}
+ msg=t;msgT=d;
+}
 
 const tileAt=(c,r)=>{if(c<0||c>=lvl.cols)return'#';if(r<0||r>=ROWS)return'.';return lvl.map[r][c];};
 const solid=(c,r)=>tileAt(c,r)==='#';
@@ -1515,7 +1520,7 @@ function popText(x,y,txt,col='#fff'){parts.push({x,y,vx:0,vy:-40,life:1,txt,col}
 
 function grantPower(kind,collector=P){
  const def=POWER_DEFS[kind];if(!def)return;
- (collector.powers||(collector.powers=freshPowers()))[kind]=def.duration;say(collector.d?collector.d.name+' FOUND '+def.name+'!':def.name+' ON!',1.8);popText(collector.x-6,collector.y-16,def.name+'!',def.color);puff(collector.x+5,collector.y+5,def.color,14,75);
+ (collector.powers||(collector.powers=freshPowers()))[kind]=def.duration;if(collector.d)helperSays(collector,'FOUND '+def.name+'!',1.8);else say(def.name+' ON!',1.8);popText(collector.x-6,collector.y-16,def.name+'!',def.color);puff(collector.x+5,collector.y+5,def.color,14,75);
  if(AC)[76,80,83].forEach((note,i)=>tone(mtof(note),.12,'sine',.08,null,AC.currentTime+i*.07));
 }
 function collectPowerups(){
@@ -1526,6 +1531,7 @@ function collectPowerups(){
  }
 }
 function tickPowers(dt){for(const actor of [P,...sibs]){
+ actor.dialogueT=Math.max(0,(actor.dialogueT||0)-dt);
  actor.rescueThanks=Math.max(0,(actor.rescueThanks||0)-dt);
  const powers=actor.powers||(actor.powers=freshPowers());
  for(const kind in POWER_DEFS)powers[kind]=Math.max(0,(powers[kind]||0)-dt);
@@ -3136,6 +3142,17 @@ function drawSibling(s,t){
     const status=active.slice(0,3).join(' ')+(active.length>3?' +'+(active.length-3):'');
     if(status)text(status,s.x+5,by+24,8,s.d.color,'center');}
 
+function drawSpeechBubble(actor,line,world=true,width=176,size=8){
+ if(world&&(actor.x+10<cam||actor.x>cam+W))return;
+ g.font=size+'px '+FONT;
+ const words=line.split(' '),lines=[];let row='';
+ for(const word of words){const test=row?row+' '+word:word;if(row&&g.measureText(test).width>width-12){lines.push(row);row=word;}else row=test;}if(row)lines.push(row);
+ const w=Math.min(width,Math.max(54,...lines.map(l=>g.measureText(l).width+12))),h=lines.length*(size+4)+8,left=world?cam:0;
+ const x=Math.max(left+2,Math.min(left+W-w-2,actor.x+5-w/2)),y=Math.max(3,actor.y-h-16);
+ R(x-1,y-1,w+2,h+2,'#182b42');R(x,y,w,h,'#fff');
+ R(Math.max(x+4,Math.min(x+w-8,actor.x+3)),y+h,4,5,'#fff');
+ lines.forEach((l,i)=>text(l,x+w/2,y+4+i*(size+4),size,'#20354c','center',false));
+}
 function drawRescueThanks(actor){
  if(!(actor.rescueThanks>0))return;
  const w=84,x=Math.max(cam+2,Math.min(cam+W-w-2,actor.x+5-w/2)),y=Math.min(H-20,actor.y+(actor.h||20)+8);
@@ -3161,7 +3178,7 @@ function drawPlay(t){
   if(P.speechT>0){g.font='8px '+FONT;const tw=Math.ceil(g.measureText(P.speech).width)+8,bx=Math.round(Math.max(cam+3,Math.min(cam+W-tw-3,P.x+P.w/2-tw/2))),byy=Math.round(P.y-24-Math.max(0,P.speechT-2)*20);
     R(bx-1,byy-1,tw+2,16,"#000");R(bx,byy,tw,14,"#fff");{const px=Math.round(P.x+P.w/2);R(px-3,byy+14,6,2,"#fff");R(px-2,byy+16,4,2,"#fff");R(px-1,byy+18,2,1,"#000");}
     text(P.speech,bx+tw/2,byy+3,8,"#e53935","center",false);}
-  for(const actor of [P,...sibs])drawRescueThanks(actor);
+  for(const actor of [P,...sibs]){drawRescueThanks(actor);if(actor.dialogueT>0)drawSpeechBubble(actor,actor.dialogue);}
   for(const p of parts){g.globalAlpha=Math.min(1,p.life*2);if(p.txt)text(p.txt,p.x,p.y,8,p.col);else{const z=p.life>0.5?3:2;R(p.x,p.y,z,z,p.col);}}
   g.globalAlpha=1;g.restore();
   if(timeLeft<15){g.globalAlpha=0.12+0.1*Math.sin(t*10);R(0,0,W,H,"#ff1744");g.globalAlpha=1;}
@@ -3238,15 +3255,18 @@ function drawIntro(t){
   const L=lvl.L;
   text("LEVEL "+(levelIdx+1),W/2,44,8,"#aaa","center");
   text(L.name,W/2,60,12,"#ffeb3b","center");
-  text(SIBS.find(d=>d.name==='COLIN').line,W/2,76,6,"#b39ddb","center",false);
-  // phone text bubble
-  R(48,86,W-96,62,"#e0e0e0");R(48,86,W-96,10,"#43a047");text("NEW TEXT!",56,88,8,"#fff","left",false);
-  g.save();wrap(L.text,W/2,100,W-120,L.introSize||8,"#212121","center",false);g.restore();
+
+  const introSpeaker=SIBS.find(d=>L.text.startsWith(d.name+':'));
+  // Family introductions point to the speaker; parent texts keep their phone styling.
+  R(48,86,W-96,62,"#e0e0e0");R(48,86,W-96,10,"#43a047");text(introSpeaker?introSpeaker.name+" SAYS:":"NEW TEXT!",56,88,8,"#fff","left",false);
+  g.save();wrap(introSpeaker?L.text.slice(L.text.indexOf(':')+1).trim():L.text,W/2,100,W-120,L.introSize||8,"#212121","center",false);g.restore();
+  if(introSpeaker){const k=SIBS.indexOf(introSpeaker);drawSibling({k,d:introSpeaker,x:32,y:126,face:1,anim:t*30,on:true,inv:0},t);R(44,126,8,4,'#e0e0e0');}
   const cy=wrap("CHORE: "+L.chore,W/2,154,W-120,8,"#fff"),dy=cy-166; // long chores wrap onto a second line inside the panel
   drawItem(L.item==='mix'?'trash':L.item,W/2-62,168+dy,clock);text("x"+lvl.total+(L.training?"  NO TIME LIMIT":"  in "+L.time+" SEC"),W/2+8,173+dy,8,"#76ff03","center");
   text("NOW PLAYING: "+(L.music==='mix'?"ALL OF IT AT ONCE!":STYLES[L.music].name),W/2,192+dy,6,"#ff80ab","center");
   if(stateT>0.8&&Math.floor(t*2)%2)text("PRESS ENTER / TAP!",W/2,208+dy,8,"#fff","center");
   drawMenuSiblings(t,245,.65);
+  drawSpeechBubble({x:W/2+80*.65,y:245},'Surfs Up!',false,100,6);
 }
 const WIN_LINES=["Mom: Wow. Did a robot do this?","Uncle Pete: I'm suspicious... but proud.","Mom: Is this even our house?!","Uncle Pete: Who are you and what did you do with our kid?"];
 const LOSE_LINES=["MOM: WHY IS THERE A SOCK IN THE FRIDGE?!","UNCLE PETE: YOU'RE GROUNDED UNTIL YOU'RE 40!","MOM: NO VIDEO GAMES FOR A MILLION YEARS!","UNCLE PETE: IS THAT... A PANCAKE ON THE CAT?"];
