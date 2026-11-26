@@ -435,3 +435,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-26 — Visible rescue carries
 
 - Kept Andrew’s immediate catch and replaced the instant passenger teleport with a visible 1.8-second carry to safe ground. The passenger stays below Andrew, protected and unable to move until landing.
+
+## 2026-11-26 — Optional Training Room
+
+- Added title button / T and Level Select access to a training room with six toys, practice gaps and platform, power-ups, Andrew rescues and control tips. No time pressure or enemies. The original 43 chores keep their numbering, order and finale.

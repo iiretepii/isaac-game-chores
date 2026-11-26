@@ -37,7 +37,7 @@ On phones and tablets, the touch buttons support repeated Jump taps and holding 
 
 You ride a **bicycle** with spinning wheels and pedals, except on Race Track Rumble, where all three kids drive race cars, and MarioKart Toy Room, where you ride a Standard Kart, Isaac rides a Flame Rider with Hot Wheels and Annie rides a Sport Bike. Duck to squeeze under low spots, and use the double jump to clear wide gaps or reach high shelves.
 
-On the title screen you can also open **Level Select** to jump straight to any of the 43 levels. After you finish a chore, the "Chore Complete!" screen also has a **Level Select** button (or press **L**) so you can jump to any level from there.
+On the title screen you can also open **Level Select** to jump straight to any of the 43 chores or the optional Training Room. After you finish a chore, the "Chore Complete!" screen also has a **Level Select** button (or press **L**) so you can jump to any level from there.
 
 Browsers don't allow sound until you interact with the page, so the title screen asks you to **click or press any key for sound** first. After that, press Enter (or tap) to start.
 
@@ -304,3 +304,7 @@ All five siblings and cousins jump in sync with the player on the title, level-c
 Andrew moves twice as fast as before (352 px/s). He catches descending teammates over gaps before they leave the screen, reacts in the same update, and visibly carries the rescued character to safety over 1.8 seconds. Another fall can trigger a rescue immediately, even during his swoop.
 
 During a rescue the passenger stays visible below Andrew, follows his slow return arc and cannot move or fall again until landing. Catching is immediate; only the carry back is slow. Pausing freezes the carry, and starting a room clears it.
+
+### Training Room
+
+Choose **Training Room (T)** on the title screen, press **T**, or pick it in Level Select. Practice moving, double jumping, ducking and power-ups, then collect six toys and deliver them to the chest. There is no time limit, no critters or LEGO hazards, and Andrew can rescue you over the two practice gaps. The family follows along while leaving the toys for you to collect. Completing training returns to the title; the original 43-room adventure keeps its order and ending. Training uses the existing *Press Start to Clean!* music.

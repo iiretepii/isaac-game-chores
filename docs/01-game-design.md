@@ -78,3 +78,7 @@ Browsers block sound until the player interacts, so the title screen first asks 
 - **Soundtracks:** the themed toy rooms use original compositions, not recordings from those games. Public-domain arrangements elsewhere are listed below.
 - **Public-domain music is fine:** quoting it is allowed (Mozart's Rondo alla Turca, Chopin's Nocturne Op. 9 No. 1, Ode to Joy and others in the Music Room, and Vivaldi's Winter in the Money Room).
 - **The family:** the family names are Isaac, Annie, Mom and Uncle Pete. Mom has long black hair and a purple dress; Uncle Pete has brown hair and a navy Chicago Bears #34 jersey with orange-and-white sleeve stripes. They appear on the "Parents are home!" screen (angry) and the victory screen (smiling).
+
+## Optional training
+
+A separate Training Room is available through the title button / T and Level Select. It teaches controls, power-ups, gaps, collection and delivery with six toys and no time pressure or enemies. Existing chore order is retained.

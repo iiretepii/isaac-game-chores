@@ -43,6 +43,7 @@ addEventListener('keydown',e=>{
   if(k){if(k==='jump'&&!keys.jump)jumpPressed=true;keys[k]=true;e.preventDefault();}
   if(e.code==='Enter'||e.code==='Space')anyPress=true;
   if(e.code==='KeyM')toggleMute();
+  if(state==='title'&&!soundGate&&e.code==='KeyT'){playFromSelect(TRAINING_IDX);return;}
   if(state==='title'&&!soundGate&&e.code==='KeyL'){openSelect();return;}
   if(state==='clear'&&stateT>1&&e.code==='KeyL'){selIdx=Math.min(levelIdx+1,LEVELS.length-1);openSelect();return;}
   if(state==='select'){selectKey(e.code);e.preventDefault();return;}
@@ -67,6 +68,7 @@ addEventListener('blur',()=>{for(const k in keys)keys[k]=false;jumpPressed=false
 
 document.addEventListener('pointerdown',e=>{if(e.target.closest&&e.target.closest('#touch'))return;initAudio();
   const r=cv.getBoundingClientRect(),cx=(e.clientX-r.left)*W/r.width,cy=(e.clientY-r.top)*H/r.height;
+  if(state==='title'&&!soundGate&&inBox(cx,cy,TRAINING_BTN)){playFromSelect(TRAINING_IDX);return;}
   if(state==='title'&&!soundGate&&inBox(cx,cy,SELECT_BTN)){openSelect();return;}
   if(state==='clear'&&stateT>1&&inBox(cx,cy,CLEAR_SEL_BTN)){selIdx=Math.min(levelIdx+1,LEVELS.length-1);openSelect();return;}
   if(state==='select'){selectTap(cx,cy);return;}
@@ -1278,6 +1280,10 @@ const LEVELS=[
  {"name":"FATHER'S DAY SURPRISE","chore":"Put the colorful ties on Dad's gift rack","drop":"dadrack","item":"necktie","seed":50147,"count":46,"time":202,"len":400,"gap":10,"enemies":["roomba","dog","hamster"],"density":0.7,"lego":0.2,"movers":1,"theme":"fathersday","music":"fathersday","text":"UNCLE PETE: So many ties! You, Isaac and Annie: put them on Dad's gift rack for Father's Day!","difficultyIndex":22},
  {"name":"THE WHOLE HOUSE!!","chore":"Grab everything & dive on the couch","drop":"couch","item":"mix","seed":20024,"count":52,"time":220,"len":250,"gap":10,"enemies":["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty","turkey"],"density":0.75,"lego":0.5,"movers":1,"theme":"house","music":"mix","text":"BOTH: We're turning onto our street RIGHT NOW.","difficultyIndex":23},
 ];
+// Optional practice room: appended so all existing room numbers stay unchanged.
+LEVELS.push({name:'TRAINING ROOM',training:true,chore:'Collect 6 toys and put them in the chest',drop:'toychest',item:'toy',seed:1126,count:6,time:300,len:110,gap:6,enemies:[],density:0,lego:0,movers:0,theme:'living',music:'chiptune',difficultyIndex:0,text:'ANDREW: Let us practice! Move, jump twice, duck and try the power-ups. I will catch you over gaps. No time limit!'});
+const TRAINING_IDX=LEVELS.length-1;
+
 const THEMES={
  andrewroom:{sky:"#89c9e8",wall2:"#70b3dc",ground:"#b5906e",top:"#f1dfb6",plat:"#7d9fc1",ptop:"#d6eff9"},
  momroom:{sky:"#c5a5cc",wall2:"#b08ab9",ground:"#806174",top:"#f2d4e7",plat:"#b79066",ptop:"#f3d4a3"},
@@ -1327,7 +1333,17 @@ const ITEM_NAMES={flyingtoy:"flying toys",jewelry:"jewelry pieces",bearsgear:"Be
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
+function buildTrainingLevel(idx){
+ const L=LEVELS[idx],cols=L.len,ground=Array(cols).fill(3),map=Array.from({length:ROWS},(_,r)=>Array(cols).fill(r>=ROWS-3?'#':'.'));
+ for(const [a,b] of [[52,55],[75,80]])for(let c=a;c<=b;c++){ground[c]=0;for(let r=0;r<ROWS;r++)map[r][c]='.';}
+ for(let c=30;c<=35;c++)map[11][c]='=';
+ const items=[12,24,33,44,65,89].map((c,i)=>({x:c*T,y:(c===33?11:ROWS-3)*T-18,w:16,h:16,kind:'toy',got:false,bob:i}));
+ const drop={x:100*T,y:(ROWS-3)*T-24,w:DROP_W.toychest||56,h:24,kind:'toychest'};
+ const level={L,idx,cols,map,ground,items,enemies:[],movers:[],drop,theme:THEMES[L.theme],total:items.length};
+ level.powerups=makePowerups(level);level.powerups.push({kind:'bridge',x:49*T,y:(ROWS-3)*T-18,w:16,h:16,got:false});return level;
+}
 function buildLevel(idx){
+ if(LEVELS[idx].training)return buildTrainingLevel(idx);
   const L=LEVELS[idx],rng=rngf(L.seed??(777+idx*1013)),cols=L.len;
   const ri=(a,b)=>a+Math.floor(rng()*(b-a+1));
   const map=[];for(let r=0;r<ROWS;r++)map.push(new Array(cols).fill('.'));
@@ -1572,7 +1588,7 @@ function updateAndrewCarries(dt){
 function hurt(fromX){
   if(P.powers.shield>0||P.powers.star>0){if(P.inv<=0){P.inv=.35;popText(P.x-8,P.y-12,'BLOCKED!','#73d8f1');}return;}
   if(P.inv>0)return;
-  P.inv=1.5;timeLeft=Math.max(0,timeLeft-5);P.vy=-260;P.vx=(P.x<fromX?-1:1)*170;
+  P.inv=1.5;timeLeft=lvl.L.training?timeLeft:Math.max(0,timeLeft-5);P.vy=-260;P.vx=(P.x<fromX?-1:1)*170;
   SFX.hurt();popText(P.x,P.y-6,"-5 SEC","#ff5252");
   const oops=["OUCH!","YIKES!","BONK!","OOF!","MY TOE!"];say(oops[Math.random()*oops.length|0],1);
 }
@@ -1626,7 +1642,7 @@ function updatePlayer(dt){
   for(let r=hr0;r<=hr1;r++)for(let c=c0;c<=c1;c++)if(tileAt(c,r)==='x'){const lx=c*T,ly=r*T+8;if(P.y+P.h>ly&&P.x+P.w>lx+2&&P.x<lx+14)hurt(lx+8);}
   // pit
   if(needsAndrewRescue(P)&&andrewRescue(P)){}
-  else if(P.y>H+20||(P.powers.rescue>0&&P.y>H-12)){SFX.fall();if(P.powers.rescue>0){P.powers.rescue=0;say("RESCUED!",1.5);}else{timeLeft=Math.max(0,timeLeft-5);say("WHOOPS! -5 SEC",1.5);}P.x=lastSafe.x;P.h=14;P.duck=false;P.jumps=0;P.y=lastSafe.y-4;P.vx=P.vy=0;P.inv=1.2;}
+  else if(P.y>H+20||(P.powers.rescue>0&&P.y>H-12)){SFX.fall();if(P.powers.rescue>0){P.powers.rescue=0;say("RESCUED!",1.5);}else{timeLeft=lvl.L.training?timeLeft:Math.max(0,timeLeft-5);say("WHOOPS! -5 SEC",1.5);}P.x=lastSafe.x;P.h=14;P.duck=false;P.jumps=0;P.y=lastSafe.y-4;P.vx=P.vy=0;P.inv=1.2;}
   P.anim+=Math.abs(P.vx)*dt;
   if(P.inv>0)P.inv-=dt;
 }
@@ -1810,7 +1826,7 @@ function updateSibs(dt){
     // Each sibling owns their bedroom chore; both help throughout the Whole House.
     const ownRoom=s.d.ownTheme===lvl.L.theme;
     const fullTime=wholeHouse||ownRoom;
-    const rush=fullTime||frac<=s.d.rush;
+    const rush=!lvl.L.training&&(fullTime||frac<=s.d.rush);
     if(rush&&!s.rushing){say(s.d.name+": "+(ownRoom?"MY ROOM, MY CHORES!":wholeHouse?"WHOLE HOUSE CLEANUP CREW!":"TURBO MODE! I'LL GRAB SOME!"),2);popText(s.x-10,s.y-12,fullTime?"TEAM CLEAN!":"GO GO GO!",s.d.color);}
     s.rushing=rush;
     let tx,moving;
@@ -1824,7 +1840,7 @@ function updateSibs(dt){
   if(colinArrived)say(SIBS.find(d=>d.name==='COLIN').line,2.5);
 }
 function updatePlay(dt){
-  timeLeft-=dt;tickPowers(dt);updateAndrewCarries(dt);collectPowerups();updateSibs(dt);
+  timeLeft=lvl.L.training?lvl.L.time:timeLeft-dt;tickPowers(dt);updateAndrewCarries(dt);collectPowerups();updateSibs(dt);
   if(timeLeft<=10&&!honked){honked=true;SFX.honk();say("HONK HONK! THEY'RE CLOSE!",2);}
   updatePlayer(dt);collectPowerups();updatePowerAuras();updateEnemies(dt);
   for(const it of lvl.items){pullWithMagnets(it,dt);if(!it.got&&overlap(P,it)){it.got=true;P.carry++;score+=50*pointMultiplier(P);levelScore+=50*pointMultiplier(P);SFX.collect();puff(it.x+8,it.y+8,"#ffeb3b",8);
@@ -3051,7 +3067,7 @@ function drawHUD(t){
     R(x+2,y+8,6,4,"#212121");R(x+14,y+8,6,4,"#212121");R(x+3,y+9,4,2,"#9e9e9e");R(x+15,y+9,4,2,"#9e9e9e");R(x+4,y+9,2,2,"#e0e0e0");R(x+16,y+9,2,2,"#e0e0e0");
   });
   const urgent=timeLeft<15;
-  const secs=Math.ceil(timeLeft),timer=secs>=1e9?(secs/1e9).toFixed(1)+"Bs":secs>=1e6?(secs/1e6).toFixed(1)+"Ms":secs>=1e3?(secs/1e3).toFixed(1)+"Ks":secs+"s";text(timer,mx-6,10,8,urgent&&Math.floor(t*6)%2?"#ff1744":"#fff","right");
+  const secs=Math.ceil(timeLeft),timer=secs>=1e9?(secs/1e9).toFixed(1)+"Bs":secs>=1e6?(secs/1e6).toFixed(1)+"Ms":secs>=1e3?(secs/1e3).toFixed(1)+"Ks":secs+"s";text(lvl.L.training?"PRACTICE":timer,mx-6,10,8,urgent&&Math.floor(t*6)%2?"#ff1744":"#fff","right");
   text("LV"+(levelIdx+1),W-4,22,6,"#aaa","right",false);
 }
 
@@ -3143,6 +3159,10 @@ function drawPlay(t){
   if(th.dark){g.save();const lx=P.x-cam+5,ly=P.y+6,dg=g.createRadialGradient(lx,ly,70,lx,ly,260);dg.addColorStop(0,'rgba(0,0,10,0)');dg.addColorStop(1,'rgba(0,0,10,0.42)');g.fillStyle=dg;g.fillRect(0,0,W,H);g.restore();}
   g.drawImage(fx,0,0);
   drawHUD(t);drawPowerHUD();
+  if(lvl.L.training){const c=P.x/T;
+    const tip=c<18?'A/D OR ARROWS: MOVE':c<29?'SPACE OR JUMP: TAP TWICE TO DOUBLE JUMP':c<40?'DOWN / S OR DUCK: CROUCH':c<49?'TOUCH A POWER-UP TO TRY ITS POWER':c<61?'GHOST BRIDGE CROSSES GAPS. ANDREW CAN SAVE YOU!':c<84?'PRACTICE YOUR DOUBLE JUMP OVER THE GAP':P.carry<lvl.total?'COLLECT ALL 6 TOYS, THEN FIND THE CHEST':'BRING YOUR TOYS TO THE CHEST >>>';
+    R(4,60,W-8,18,'#162c48');text(tip,W/2,65,6,'#b6fff1','center',false);}
+
   if(msgT>0)text(msg,W/2,44+Math.max(0,powerHudRows()-1)*12,8,"#fff","center");
   // arrow to drop when done
   if(P.carry>=lvl.total&&lvl.drop.x-cam>W){text(">>>",W-30,H/2,10,Math.floor(t*4)%2?"#ffeb3b":"#fff");}
@@ -3194,6 +3214,7 @@ function drawTitle(t){
   drawKid(W/2-5,150+Math.abs(Math.sin(t*5))*-14,1,t*40,Math.sin(t*5)>0.3,0);
   drawMenuSiblings(t,148,1,-Math.abs(Math.sin(t*5))*14);
   drawItem("toy",W/2-200,160+Math.cos(t*3)*3);drawItem("leaf",W/2+150,160+Math.sin(t*3)*3);
+  if(!soundGate){const b=TRAINING_BTN;R(b.x,b.y,b.w,b.h,"#17635b");text("TRAINING ROOM (T)",W/2,b.y+4,6,"#b6fff1","center",false);}
   if(soundGate)text("CLICK OR PRESS ANY KEY FOR SOUND",W/2,200,8,Math.floor(t*2)%2?"#ffeb3b":"#fff","center");
   else if(Math.floor(t*2)%2)text("PRESS ENTER / TAP TO START",W/2,200,8,"#76ff03","center");
   if(!soundGate){const b=SELECT_BTN;R(b.x-1,b.y-1,b.w+2,b.h+2,"#ffeb3b");R(b.x,b.y,b.w,b.h,"#3d2a8a");text("LEVEL SELECT (L)",W/2,b.y+3,6,"#ffeb3b","center",false);}
@@ -3213,7 +3234,7 @@ function drawIntro(t){
   R(48,86,W-96,62,"#e0e0e0");R(48,86,W-96,10,"#43a047");text("NEW TEXT!",56,88,8,"#fff","left",false);
   g.save();wrap(L.text,W/2,100,W-120,L.introSize||8,"#212121","center",false);g.restore();
   const cy=wrap("CHORE: "+L.chore,W/2,154,W-120,8,"#fff"),dy=cy-166; // long chores wrap onto a second line inside the panel
-  drawItem(L.item==='mix'?'trash':L.item,W/2-62,168+dy,clock);text("x"+lvl.total+"  in "+L.time+" SEC",W/2+8,173+dy,8,"#76ff03","center");
+  drawItem(L.item==='mix'?'trash':L.item,W/2-62,168+dy,clock);text("x"+lvl.total+(L.training?"  NO TIME LIMIT":"  in "+L.time+" SEC"),W/2+8,173+dy,8,"#76ff03","center");
   text("NOW PLAYING: "+(L.music==='mix'?"ALL OF IT AT ONCE!":STYLES[L.music].name),W/2,192+dy,6,"#ff80ab","center");
   if(stateT>0.8&&Math.floor(t*2)%2)text("PRESS ENTER / TAP!",W/2,208+dy,8,"#fff","center");
   drawMenuSiblings(t,245,.65);
@@ -3229,7 +3250,7 @@ function drawClear(t){
   text("TOTAL: "+score,W/2,160,8,"#fff","center");
   drawKid(W/2-5,190-Math.abs(Math.sin(t*6))*12,1,0,true,0);
   drawMenuSiblings(t,184,1,-Math.abs(Math.sin(t*6))*12);
-  if(stateT>1&&Math.floor(t*2)%2)text(levelIdx<LEVELS.length-1?"ENTER / TAP: NEXT CHORE":"ENTER / TAP: ...",W/2,214,8,"#fff","center");
+  if(stateT>1&&Math.floor(t*2)%2)text(lvl.L.training?"ENTER / TAP: BACK TO TITLE":levelIdx<TRAINING_IDX-1?"ENTER / TAP: NEXT CHORE":"ENTER / TAP: ...",W/2,214,8,"#fff","center");
   if(stateT>1){const b=CLEAR_SEL_BTN;R(b.x-1,b.y-1,b.w+2,b.h+2,"#ffeb3b");R(b.x,b.y,b.w,b.h,"#3d2a8a");text("LEVEL SELECT (L)",W/2,b.y+3,6,"#ffeb3b","center",false);}
 }
 function drawLose(t){
@@ -3317,6 +3338,7 @@ function drawEnd(t){
 
 // ================= LEVEL SELECT =================
 // Pick any level from the title screen: press L or tap the LEVEL SELECT button. Arrows + Enter, or tap a level.
+const TRAINING_BTN={x:W/2-66,y:180,w:132,h:14};
 const SELECT_BTN={x:W/2-62,y:209,w:124,h:13},CLEAR_SEL_BTN={x:W/2-62,y:232,w:124,h:13},SEL_COLS=6,SEL_W=78,SEL_H=Math.min(46,Math.floor((H-70)/Math.ceil(LEVELS.length/SEL_COLS))),SEL_X=(W-SEL_COLS*SEL_W)/2+2,SEL_Y=40;
 let selIdx=0;
 const inBox=(x,y,b)=>x>=b.x&&x<=b.x+b.w&&y>=b.y&&y<=b.y+b.h;
@@ -3364,7 +3386,7 @@ function frame(now){
     else if(state==='title'){if(pressed){if(soundGate){soundGate=false;initAudio();}else{score=0;startLevel(0);}}else if(soundGate&&soundReady())soundGate=false;}
     else if(state==='intro'){if(pressed&&stateT>0.5){state='play';jumpPressed=false;startMusic(lvl.L.music);}}
     else if(state==='play'){updatePlay(STEP);updateParts(STEP);}
-    else if(state==='clear'){updateParts(STEP);if(pressed&&stateT>1){if(levelIdx<LEVELS.length-1)startLevel(levelIdx+1);else{state='end';stateT=0;startMusic('finale');}}}
+    else if(state==='clear'){updateParts(STEP);if(pressed&&stateT>1){if(lvl.L.training){state='title';stateT=0;stopMusic();}else if(levelIdx<TRAINING_IDX-1)startLevel(levelIdx+1);else{state='end';stateT=0;startMusic('finale');}}}
     else if(state==='lose'){if(pressed&&stateT>1.2){score=Math.max(0,score-levelScore);startLevel(levelIdx);}}
     else if(state==='end'){if(pressed&&stateT>1.5){state='title';stateT=0;startMusic('french');}}
     jumpPressed=false;

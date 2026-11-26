@@ -124,3 +124,5 @@ Andrew rescues the player or any other helper who falls into a gap while he is p
 Andrew moves twice as fast as before (352 px/s). He catches descending teammates over gaps before they leave the screen, reacts in the same update, and visibly carries the rescued character to safety over 1.8 seconds. Another fall can trigger a rescue immediately, even during his swoop.
 
 During a rescue the passenger stays visible below Andrew, follows his slow return arc and cannot move or fall again until landing. Catching is immediate; only the carry back is slow. Pausing freezes the carry, and starting a room clears it.
+
+`TRAINING_IDX` identifies the appended optional room. `buildTrainingLevel` supplies deterministic practice terrain without changing the original room generator. `training` disables timer depletion and helper rush collection, uses position-based tips, and returns to title after clear; the adventure ends at the original Whole House finale.

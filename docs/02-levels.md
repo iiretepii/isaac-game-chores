@@ -123,3 +123,7 @@ GTA V + VI Toy Room uses `item: "citytoys"`; generation alternates `sportscar` a
 ## Room order and stable difficulty
 
 Daniel’s Monster Jam Room and Colin’s Surf Shack are levels 3 and 4. Each room's `difficultyIndex` and `gap` follow its position, so the challenge climbs steadily through all 43 levels; seeds, timers and music are per room; Daniel and Colin now have 12/13 pickups. `buildLevel` uses `difficultyIndex` for its capped ramp, and `updateEnemies` uses it for speed. New levels without this field fall back to their current index. Counts and timers are now room-specific rather than increasing at every menu position.
+
+## Optional Training Room
+
+Level Select entry 44 is an optional practice room outside the 43-room adventure. It has 6 toys, a toy chest, 110 tiles, two fixed gaps (4 and 6 tiles), a raised one-way platform, no critters, no LEGO hazards, no moving platforms and no time limit. It uses the `living` theme and existing `chiptune` music. Five ordinary bonuses plus an extra Ghost Bridge allow practice; position-based tips explain controls and delivery. Title button / T opens training directly. Completion returns to the title screen.
