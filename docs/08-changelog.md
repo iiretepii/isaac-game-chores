@@ -423,3 +423,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-26 — Andrew rescues falling teammates
 
 - Andrew catches the player and other helpers before they fall out of the room, swoops back to safe ground, and prevents the player’s fall penalty. His wings work for rescues in vehicle rooms too; existing fall behavior remains when Andrew is absent or is the one falling.
+
+## 2026-11-26 — Family celebration jumps
+
+- Isaac, Annie, Daniel, Colin and Andrew now jump along with the player on the title, level-complete and game-ending screens, matching each screen’s jump timing and height.

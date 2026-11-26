@@ -298,3 +298,5 @@ The **2D game** (code, graphics, levels and synthesized music) lives in a single
 - The MP3s in the [`music/`](music/) folder were made by running the game's own music code in a hidden browser. The browser renders each song into an audio file faster than real time, without playing it out loud, and the files were then converted to MP3. They capture the game's synthesized arrangements; normalization and the absence of live gameplay effects can make the listening experience differ.
 
 Andrew rescues the player or any other helper who falls into a gap while he is present, including in vehicle rooms. He swoops in with his wings and returns them to the last safe ground without a time penalty or using their Rescue Balloon. He can catch teammates during an ongoing rescue; he cannot rescue himself.
+
+All five siblings and cousins jump in sync with the player on the title, level-complete and game-ending screens. The about-to-start lineup stays still.

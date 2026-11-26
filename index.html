@@ -3154,10 +3154,10 @@ function drawSplash(t){
     text("BELVOIR",W/2,46,24,"#ffffff","center");text("S T U D I O S",W/2,84,10,"#81d4fa","center");R(W/2-90,100,180,2,"#81d4fa");}
   g.globalAlpha=1;g.drawImage(fx,0,0);
 }
-function drawMenuSiblings(t,y,scale=1){
+function drawMenuSiblings(t,y,scale=1,jump=0){
   const offsets=[-80,40,-40,80,-150];
   g.save();g.translate(W/2,y);g.scale(scale,scale);
-  SIBS.forEach((d,k)=>drawSibling({k,d,x:offsets[k],y:0,face:offsets[k]>0?-1:1,anim:t*40,on:true,inv:0},t));
+  SIBS.forEach((d,k)=>drawSibling({k,d,x:offsets[k],y:jump/scale,face:offsets[k]>0?-1:1,anim:t*40,on:jump===0,inv:0},t));
   g.restore();
 }
 function drawTitle(t){
@@ -3171,7 +3171,7 @@ function drawTitle(t){
   text("RUSH!",W/2,78-wob,32,"#e53935","center");
   text("BEAT THE PARENTS HOME",W/2,124,8,"#fff","center");
   drawKid(W/2-5,150+Math.abs(Math.sin(t*5))*-14,1,t*40,Math.sin(t*5)>0.3,0);
-  drawMenuSiblings(t,148);
+  drawMenuSiblings(t,148,1,-Math.abs(Math.sin(t*5))*14);
   drawItem("toy",W/2-200,160+Math.cos(t*3)*3);drawItem("leaf",W/2+150,160+Math.sin(t*3)*3);
   if(soundGate)text("CLICK OR PRESS ANY KEY FOR SOUND",W/2,200,8,Math.floor(t*2)%2?"#ffeb3b":"#fff","center");
   else if(Math.floor(t*2)%2)text("PRESS ENTER / TAP TO START",W/2,200,8,"#76ff03","center");
@@ -3207,7 +3207,7 @@ function drawClear(t){
   text("LEVEL SCORE: "+levelScore,W/2,142,8,"#ffeb3b","center");
   text("TOTAL: "+score,W/2,160,8,"#fff","center");
   drawKid(W/2-5,190-Math.abs(Math.sin(t*6))*12,1,0,true,0);
-  drawMenuSiblings(t,184);
+  drawMenuSiblings(t,184,1,-Math.abs(Math.sin(t*6))*12);
   if(stateT>1&&Math.floor(t*2)%2)text(levelIdx<LEVELS.length-1?"ENTER / TAP: NEXT CHORE":"ENTER / TAP: ...",W/2,214,8,"#fff","center");
   if(stateT>1){const b=CLEAR_SEL_BTN;R(b.x-1,b.y-1,b.w+2,b.h+2,"#ffeb3b");R(b.x,b.y,b.w,b.h,"#3d2a8a");text("LEVEL SELECT (L)",W/2,b.y+3,6,"#ffeb3b","center",false);}
 }
@@ -3288,7 +3288,7 @@ function drawEnd(t){
   wrap("Every chore done before the parents got home. They are so confused they are taking you out for pizza AND ice cream.",W/2,80,W-80,8,"#fff");
   text("FINAL SCORE: "+score,W/2,160,10,"#76ff03","center");
   drawKid(W/2-5,190-Math.abs(Math.sin(t*6))*16,Math.sin(t*2)>0?1:-1,t*40,true,0);
-  drawMenuSiblings(t,184);
+  drawMenuSiblings(t,184,1,-Math.abs(Math.sin(t*6))*16);
   outlined(W/2-190,160,(ox,oy)=>drawMom(ox,oy,0));outlined(W/2+128,160,(ox,oy)=>drawPete(ox,oy,0)); // happy parents
   if(stateT>1.5&&Math.floor(t*2)%2)text("ENTER / TAP: PLAY AGAIN",W/2,226,8,"#fff","center");
   text("MADE BY ISAAC & PETE",W/2,250,8,"#ffeb3b","center");
