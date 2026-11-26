@@ -49,7 +49,7 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `charging` | *Fully Charged* (original) | 128 | 4 | 16 | 16 | Charging Room Chaos | `music/33-charging-room.mp3` |
 | `halloween` | *Spooky Sugar Shuffle* (original) | 112 | 4 | 16 | 16 | Halloween Haunt | `music/34-halloween.mp3` |
 | `thanksgiving` | *Harvest Home Hop* (original) | 106 | 4 | 16 | 16 | Thanksgiving Feast | `music/35-thanksgiving.mp3` |
-| `christmas` | *Tinsel Time* (original) | 132 | 4 | 16 | 16 | Christmas Cheer | `music/36-christmas.mp3` |
+| `christmas` | *A Very Merry Medley* (public-domain carols) | 160 | 4 | 16 | 41 | Christmas Cheer | `music/36-christmas.mp3` |
 | `valentine` | *Hearts Together* (original) | 96 | 4 | 16 | 16 | Valentines Day Love | `music/37-valentine.mp3` |
 | `stpatrick` | *Lucky Clover Jig* (original) | 144 | 4 | 16 | 16 | St Patricks Day Luck | `music/38-stpatrick.mp3` |
 | `aprilfools` | *Whoops-a-Daisy* (original) | 138 | 4 | 16 | 16 | April Fools Day Pranks | `music/39-aprilfools.mp3` |
@@ -134,3 +134,8 @@ Daniel’s room uses an original stadium-rock synth arrangement; Colin’s uses 
 Mom’s room uses a gentle original 3/4 synth waltz; Uncle Pete’s room uses an original stadium-style synth groove. Both have independent 8.0 gain trims and are included in the Whole House mashup.
 
 The new Mom’s Room and Uncle Pete’s Room recordings measured approximately −35.8 and −35.6 dB RMS in-game before listening-file normalization.
+
+### Christmas medley
+
+`STYLES.christmas` is *A Very Merry Medley*: Jingle Bells, Silent Night, Deck the Halls, We Wish You a Merry Christmas and Joy to the World, all public domain. *Rudolph the Red-Nosed Reindeer* (1949) is still under copyright, so *We Wish You a Merry Christmas* stands in for it. Each carol is a `SONGS` entry with a melody (`[midi, sixteenths]`) that fills whole bars exactly, plus one chord string per bar. `"F/G"` splits a bar into equal parts, and `"C/G7/C/C"` gives one chord per beat. *We Wish* has a one-beat `pickup`. Per-song speed (`rub`) keeps Silent Night calmer. Before changing it, check three things: each melody's length equals `pickup + bars × bar length`, the chord list has one entry per bar, and every melody note on a beat belongs to its chord. Trim `gain: 1.95` (about −34.5 dB RMS, like the other holiday songs).
+

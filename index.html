@@ -1061,13 +1061,60 @@ STYLES.thanksgiving={name:"HARVEST HOME HOP",bpm:106,spb:4,bar:16,bars:16,gain:8
  if(b===0)[0,4,7].forEach(v=>tone(mtof(root+12+v),d*6,'sine',.008,null,t,musicGain));
  if(b===4||b===12)noise(.045,.018,1800,t,musicGain);
  }};
-STYLES.christmas={name:"TINSEL TIME",bpm:132,spb:4,bar:16,bars:16,gain:8,melody:[79, 76, 79, 84, 83, 79, 77, 76],
- play(i,t,d){const b=i%16,bar=Math.floor(i/16)%16,root=47+[0,5,7,0][bar%4];
- if(b%4===0)tone(mtof(root),d*2.6,'triangle',.055,null,t,musicGain);
- if(b%2===0)tone(mtof(this.melody[(b/2+Math.floor(bar/4))%8]),d*1.6,"sine",.035,null,t,musicGain);
- if(b===0)[0,4,7].forEach(v=>tone(mtof(root+12+v),d*6,'sine',.008,null,t,musicGain));
- if(b%2)noise(.025,.012,6500,t,musicGain);
- }};
+// CHRISTMAS: "A Very Merry Medley": Jingle Bells, Silent Night, Deck the Halls, We Wish You a Merry Christmas and
+//  Joy to the World (all public domain), arranged festively: sleigh bells all the way through, a bright celesta and
+//  brass lead, bouncy oom-pah bass, harp glissandos between songs and a big brassy finale.
+STYLES.christmas=(()=>{
+  const ev=[],sp=[];let pos=0;
+  const at=(st,fn)=>{(ev[pos+st]=ev[pos+st]||[]).push(fn);};
+  const CH={C:[60,64,67],F:[60,65,69],G:[59,62,67],G7:[59,62,65,67],Am:[60,64,69],Dm:[62,65,69],E:[59,64,68],D7:[60,62,66]};
+  const RT={C:36,F:41,G:43,G7:43,Am:45,Dm:38,E:40,D7:38};   // bass roots, so the bass plays the chord's root, not its bottom note
+  const bell=(t,v=1)=>{nz(0.07,0.028*v,'highpass',9000,t);nz(0.05,0.016*v,'bandpass',6200,t,4);};
+  const gliss=(st)=>at(st,(t,d)=>[60,64,67,72,76,79,84,88,91,96].forEach((m,k)=>harp(m,1.2,t+k*d*0.4,0.035)));
+  // SONGS: melody as [midi,length in 16ths] (0 = rest); chords one string per bar, where "F/G" splits the bar into
+  //  equal parts (two halves, or "C/G7/C/C" for one chord per beat). Every carol starts on a downbeat except We Wish,
+  //  which has a one-beat pickup; chords then start after the pickup.
+  const SONGS=[
+   {name:'Jingle Bells',bar:16,speed:0.9,drums:1,sparkle:1,lead:(m,l,t)=>trumpet(m,l,t,0.06),
+    mel:[[76,4],[76,4],[76,8], [76,4],[76,4],[76,8], [76,4],[79,4],[72,6],[74,2], [76,16],
+         [77,4],[77,4],[77,6],[77,2], [77,4],[76,4],[76,4],[76,2],[76,2], [79,4],[79,4],[77,4],[74,4], [72,16]],
+    ch:['C','C','C','C','F','F/C/C/C','G7','C']},
+   {name:'Silent Night',bar:12,speed:1.3,gentle:1,lead:(m,l,t)=>{flute(m+12,l,t,0.045);celesta(m+12,l*0.6,t,0.018);},
+    mel:[[67,6],[69,2],[67,4], [64,12], [67,6],[69,2],[67,4], [64,12], [74,8],[74,4], [71,12], [72,8],[72,4], [67,12],
+         [74,8],[74,4], [77,6],[74,2],[71,4], [72,12], [76,12], [72,6],[67,2],[64,4], [67,6],[65,2],[62,4], [60,12]],
+    ch:['C','C','C','C','G','G','C','C','G7','G7','C','C','C','G7','C']},
+   {name:'Deck the Halls',bar:16,speed:0.95,drums:1,lead:(m,l,t)=>{trumpet(m,l,t,0.05);celesta(m+12,l,t,0.018);},
+    mel:[[79,6],[77,2],[76,4],[74,4], [72,4],[74,4],[76,4],[72,4], [74,2],[76,2],[77,2],[74,2],[76,6],[74,2], [72,4],[71,4],[72,8],
+         [79,6],[77,2],[76,4],[74,4], [72,4],[74,4],[76,4],[72,4], [81,2],[81,2],[81,2],[81,2],[79,6],[77,2], [76,4],[74,4],[72,8]],
+    ch:['C/C/C/G7','C/G7/C/C','G7/C','C/G7/C/C','C/C/C/G7','C/G7/C/C','F/F/C/C','C/G7/C/C']},
+   {name:'We Wish You a Merry Christmas',bar:12,pickup:4,speed:0.9,drums:1,gallop:1,lead:(m,l,t)=>{celesta(m+12,l,t,0.035);trumpet(m,l,t,0.035);},
+    mel:[[67,4], [72,4],[72,2],[74,2],[72,2],[71,2], [69,4],[69,4],[69,4], [74,4],[74,2],[76,2],[74,2],[72,2], [71,4],[67,4],[67,4],
+         [76,4],[76,2],[77,2],[76,2],[74,2], [72,4],[69,4],[67,2],[67,2], [69,4],[74,4],[71,4], [72,12]],
+    ch:['C','F','D7','G','E7','Am/Am/C','F/G7/G7','C']},
+   {name:'Joy to the World',bar:16,speed:1,drums:1,sparkle:1,lead:(m,l,t)=>{trumpet(m+12,l,t,0.055);trumpet(m,l,t,0.035);},
+    mel:[[72,4],[71,3],[69,1],[67,6],[65,2], [64,4],[62,4],[60,6],[67,2], [69,6],[69,2],[71,6],[71,2], [72,16],
+         [72,4],[69,4],[67,3],[65,1],[64,2],[65,2], [64,4],[62,4],[60,8]],
+    ch:['C/G7/C/G7','C/G7/C/C','F/F/G/G','C','F/F/C/C','C/G7/C/C'],final:1}];
+  const CH2={...CH,E7:[59,62,64,68]};const RT2={...RT,E7:40};
+  const chordAt=(sg,step)=>{const b=Math.floor((step-(sg.pickup||0))/sg.bar);if(b<0)return null;const parts=sg.ch[Math.min(b,sg.ch.length-1)].split('/');
+    return parts[Math.floor(((step-(sg.pickup||0))%sg.bar)/(sg.bar/parts.length))];};
+  const carol=(sg)=>{
+    const len=sg.mel.reduce((a,b)=>a+b[1],0),barLen=sg.bar,total=len;          // melodies are written to fill whole bars exactly
+    let st=0;for(const [m,l] of sg.mel){if(m){const s0=st;at(s0,(t,d)=>{sg.lead(m,d*l*0.95,t);if(sg.sparkle)celesta(m+12,d*l,t,0.02);});}st+=l;}
+    for(let q=sg.pickup||0;q<total;q+=4){const cn=chordAt(sg,q),c=CH2[cn],r=RT2[cn],beat=((q-(sg.pickup||0))%barLen)/4,prev=chordAt(sg,q-4);
+      if(sg.gentle){if(beat===0||cn!==prev)at(q,(t,d)=>{strings(c,d*4*(barLen/4-beat)*0.95,t,0.016);piano(r+12,d*4,t,0.06,0.4);});else at(q,(t,d)=>c.forEach(x=>piano(x,d*3,t,0.025,0.5)));}
+      else at(q,(t,d)=>{if(beat%2===0)walkBass(r+12,d*3.5,t,0.26);else c.forEach(x=>pluck(x,d*1.6,t,0.03,0.25,3600));
+        if(sg.drums){if(beat%2===0)kick(t,0.3);else snare(t,0.12);}});}
+    for(let q=0;q<total;q+=2)at(q,(t,d)=>{bell(t,sg.gentle?0.5:1);if(sg.gallop&&q%4===2)bell(t+d,0.7);});
+    if(sg.final)at(total-8,(t,d)=>{crash(t);[48,60,64,67,72,76,79,84].forEach(m=>trumpet(m,d*10,t,0.035));gliss(0);});
+    for(let k=0;k<total;k++)sp[pos+k]=sg.speed;pos+=total;};
+  const breath=(n)=>{gliss(0);for(let k=0;k<n;k++)sp[pos+k]=1;for(let k=0;k<n;k+=2)at(k,(t)=>bell(t,0.6));pos+=n;};
+  SONGS.forEach((sg,k)=>{carol(sg);if(k<SONGS.length-1)breath(4);});
+  for(let k=0;k<8;k++)sp[pos+k]=1;pos+=8;
+  while(pos%16){sp[pos]=1;pos++;}
+  return {name:"A VERY MERRY MEDLEY",bpm:160,gain:1.95,spb:4,bar:16,bars:pos/16,rub(i){return sp[i%pos]||1;},
+    play(i,t,d){const e=ev[i%pos];if(e)for(const f of e)f(t,d);}};
+})();
 STYLES.valentine={name:"HEARTS TOGETHER",bpm:96,spb:4,bar:16,bars:16,gain:8,melody:[72, 76, 79, 83, 81, 79, 76, 74],
  play(i,t,d){const b=i%16,bar=Math.floor(i/16)%16,root=45+[0,5,7,0][bar%4];
  if(b%4===0)tone(mtof(root),d*2.6,'triangle',.055,null,t,musicGain);

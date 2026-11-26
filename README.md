@@ -137,7 +137,7 @@ Daniel’s Monster Jam Room is level 3, and Colin’s Surf Shack is level 4, And
 | 33 | **Charging Room Chaos** | Charging cables → cable organizer | 37 | 175s | Lightning bolts, robot vacuums, ants | Original electronic dance music |
 | 34 | **Halloween Haunt** | Put the carved pumpkins in the pumpkin bucket | 38 | 178s | bat, spider, ghosty | Original Spooky Sugar Shuffle |
 | 35 | **Thanksgiving Feast** | Return the pie slices to the feast table | 39 | 181s | turkey | Original Harvest Home Hop |
-| 36 | **Christmas Cheer** | Put the presents under the Christmas tree | 40 | 184s | roomba, cat, hamster | Original Tinsel Time |
+| 36 | **Christmas Cheer** | Put the presents under the Christmas tree | 40 | 184s | roomba, cat, hamster | Festive Christmas carol medley |
 | 37 | **Valentines Day Love** | Put the valentines in the heart mailbox | 41 | 187s | bubble, hamster, cat | Original Hearts Together |
 | 38 | **St Patricks Day Luck** | Gather the shamrocks into the lucky pot | 42 | 190s | squirrel, hamster, weed | Original Lucky Clover Jig |
 | 39 | **April Fools Day Pranks** | Put the prank toys back in the joke box | 43 | 193s | chomper, roomba, bubble | Original Whoops-a-Daisy |
@@ -196,7 +196,7 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Charging Room | [*Fully Charged*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/33-charging-room.mp3) | Original electronic dance track with bright arpeggios, synth chords, bass and a steady beat |
 | Halloween Haunt | [*Spooky Sugar Shuffle*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/34-halloween.mp3) | Original holiday tune |
 | Thanksgiving Feast | [*Harvest Home Hop*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/35-thanksgiving.mp3) | Original holiday tune |
-| Christmas Cheer | [*Tinsel Time*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/36-christmas.mp3) | Original holiday tune |
+| Christmas Cheer | [*A Very Merry Medley*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/36-christmas.mp3) | A fast, festive medley of public-domain carols: *Jingle Bells*, a calmer *Silent Night*, *Deck the Halls*, *We Wish You a Merry Christmas* (with galloping reindeer bells) and a big brassy *Joy to the World* finale. Sleigh bells run all the way through and harp sweeps link the songs |
 | Valentines Day Love | [*Hearts Together*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/37-valentine.mp3) | Original holiday tune |
 | St Patricks Day Luck | [*Lucky Clover Jig*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/38-stpatrick.mp3) | Original holiday tune |
 | April Fools Day Pranks | [*Whoops-a-Daisy*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/39-aprilfools.mp3) | Original holiday tune |
