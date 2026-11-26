@@ -431,3 +431,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-26 — Faster Andrew rescues
 
 - Doubled Andrew’s movement speed, catches teammates earlier above gaps, and shortened his rescue swoop from 0.65 to 0.12 seconds. Rescues remain immediate and have no cooldown.
+
+## 2026-11-26 — Visible rescue carries
+
+- Kept Andrew’s immediate catch and replaced the instant passenger teleport with a visible 1.8-second carry to safe ground. The passenger stays below Andrew, protected and unable to move until landing.

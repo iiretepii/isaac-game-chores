@@ -182,4 +182,6 @@ Andrew rescues the player or any other helper who falls into a gap while he is p
 
 All five siblings and cousins jump in sync with the player on the title, level-complete and game-ending screens. The about-to-start lineup stays still.
 
-Andrew moves twice as fast as before (352 px/s). He catches descending teammates over gaps before they leave the screen, reacts in the same update, and finishes his rescue swoop in 0.12 seconds. Another fall can trigger a rescue immediately, even during his swoop.
+Andrew moves twice as fast as before (352 px/s). He catches descending teammates over gaps before they leave the screen, reacts in the same update, and visibly carries the rescued character to safety over 1.8 seconds. Another fall can trigger a rescue immediately, even during his swoop.
+
+During a rescue the passenger stays visible below Andrew, follows his slow return arc and cannot move or fall again until landing. Catching is immediate; only the carry back is slow. Pausing freezes the carry, and starting a room clears it.
