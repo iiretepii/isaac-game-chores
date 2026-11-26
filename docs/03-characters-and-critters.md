@@ -185,3 +185,5 @@ All five siblings and cousins jump in sync with the player on the title, level-c
 Andrew moves twice as fast as before (352 px/s). He catches descending teammates over gaps before they leave the screen, reacts in the same update, and visibly carries the rescued character to safety over 1.8 seconds. Another fall can trigger a rescue immediately, even during his swoop.
 
 During a rescue the passenger stays visible below Andrew, follows his slow return arc and cannot move or fall again until landing. Catching is immediate; only the carry back is slow. Pausing freezes the carry, and starting a room clears it.
+
+Whoever Andrew rescues says **“W Andrew!”** in a speech bubble attached to that character during the carry and briefly after landing.

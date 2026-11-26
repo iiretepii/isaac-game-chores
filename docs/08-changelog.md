@@ -439,3 +439,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-26 — Optional Training Room
 
 - Added title button / T and Level Select access to a training room with six toys, practice gaps and platform, power-ups, Andrew rescues and control tips. No time pressure or enemies. The original 43 chores keep their numbering, order and finale.
+
+## 2026-11-26 — W Andrew!
+
+- Every rescued player, sibling or cousin now thanks Andrew with a “W Andrew!” speech bubble during the rescue and shortly after landing.
