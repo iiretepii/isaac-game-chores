@@ -16,7 +16,9 @@ canvas{image-rendering:pixelated;image-rendering:crisp-edges;background:#000;box
 #touch button{pointer-events:auto;width:72px;height:72px;border-radius:50%;border:4px solid #fff;background:rgba(229,57,53,.55);color:#fff;font:16px "Press Start 2P",monospace;touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
 #touch button.j{background:rgba(255,193,7,.6);width:88px;height:88px}
 #play-tools{position:fixed;top:max(10px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));display:flex;gap:8px;z-index:10}
-#play-tools[hidden]{display:none}
+#play-tools[hidden],#power-lab[hidden]{display:none}
+#power-lab{position:fixed;left:12px;top:max(60px,env(safe-area-inset-top));z-index:11;display:flex;gap:6px;flex-wrap:wrap;max-width:calc(100vw - 24px)}
+#power-lab select,#power-lab button{min-height:44px;max-width:210px;padding:8px;border:2px solid #9ee9f0;border-radius:8px;background:#172d48;color:#fff;font:14px sans-serif;touch-action:manipulation}
 #play-tools button{min-width:76px;min-height:44px;padding:8px;border:2px solid #fff;border-radius:10px;background:#21163f;color:#fff;font:10px "Press Start 2P",monospace;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 #play-tools button:focus-visible{outline:3px solid #ffeb3b;outline-offset:3px}
 @media (pointer:coarse){#touch{display:flex}}
@@ -32,6 +34,11 @@ canvas{image-rendering:pixelated;image-rendering:crisp-edges;background:#000;box
  <button id="pause-game" type="button" aria-label="Pause game" aria-pressed="false">PAUSE</button>
  <button id="mute-game" type="button" aria-label="Mute sound" aria-pressed="false">MUTE</button>
 </div>
+<div id="power-lab" hidden aria-label="Power-up testing controls">
+ <select id="test-power" aria-label="Choose a power-up to test"></select>
+ <button id="test-again" type="button">Test Again</button>
+ <button id="exit-lab" type="button">Exit Lab</button>
+</div>
 <script>
 "use strict";
 // ================= SETUP =================
@@ -46,11 +53,13 @@ const FONT='"Press Start 2P",monospace';
 const keys={left:false,right:false,jump:false,duck:false};let jumpPressed=false,anyPress=false;
 const KM={ArrowLeft:'left',KeyA:'left',ArrowRight:'right',KeyD:'right',Space:'jump',ArrowUp:'jump',KeyW:'jump',KeyZ:'jump',ArrowDown:'duck',KeyS:'duck'};
 addEventListener('keydown',e=>{
+  if(e.target?.closest?.('#power-lab'))return;
   initAudio();
   const k=KM[e.code];
   if(k){if(k==='jump'&&!keys.jump)jumpPressed=true;keys[k]=true;e.preventDefault();}
   if(e.code==='Enter'||e.code==='Space')anyPress=true;
   if(e.code==='KeyM')toggleMute();
+  if(state==='title'&&!soundGate&&e.code==='KeyB'){playFromSelect(POWER_LAB_IDX);return;}
   if(state==='title'&&!soundGate&&e.code==='KeyT'){playFromSelect(TRAINING_IDX);return;}
   if(state==='title'&&!soundGate&&e.code==='KeyL'){openSelect();return;}
   if(state==='clear'&&stateT>1&&e.code==='KeyL'){selIdx=Math.min(levelIdx+1,LEVELS.length-1);openSelect();return;}
@@ -72,9 +81,11 @@ document.querySelectorAll('#touch button').forEach(b=>{
   ['dblclick','contextmenu'].forEach(type=>b.addEventListener(type,e=>e.preventDefault()));
   b.addEventListener('click',e=>{e.preventDefault();b.blur();});
 });
+const labTools=document.getElementById('power-lab'),powerSelect=document.getElementById('test-power');
 const playTools=document.getElementById('play-tools'),pauseButton=document.getElementById('pause-game'),muteButton=document.getElementById('mute-game');
 function syncPlayTools(){
  playTools.hidden=!['play','pause'].includes(state);
+ labTools.hidden=!(lvl?.L.testLab&&state==='play');
  pauseButton.textContent=state==='pause'?'RESUME':'PAUSE';
  pauseButton.setAttribute?.('aria-label',state==='pause'?'Resume game':'Pause game');pauseButton.setAttribute?.('aria-pressed',String(state==='pause'));
  muteButton.textContent=muted?'UNMUTE':'MUTE';muteButton.setAttribute?.('aria-label',muted?'Unmute sound':'Mute sound');muteButton.setAttribute?.('aria-pressed',String(muted));
@@ -88,11 +99,16 @@ for(const [button,action] of [[pauseButton,()=>togglePause()],[muteButton,()=>{i
  button.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();action();button.blur();});
  button.addEventListener('dblclick',e=>e.preventDefault());
 }
+labTools.addEventListener('pointerdown',e=>e.stopPropagation());
+powerSelect.addEventListener('change',()=>testPower(powerSelect.value));
+document.getElementById('test-again').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();testPower(powerSelect.value);});
+document.getElementById('exit-lab').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();state='title';stateT=0;stopMusic();syncPlayTools();});
 addEventListener('blur',()=>{for(const k in keys)keys[k]=false;jumpPressed=false;});
 
-document.addEventListener('pointerdown',e=>{if(e.target.closest&&e.target.closest('#touch, #play-tools'))return;initAudio();
+document.addEventListener('pointerdown',e=>{if(e.target.closest&&e.target.closest('#touch, #play-tools, #power-lab'))return;initAudio();
   const r=cv.getBoundingClientRect(),cx=(e.clientX-r.left)*W/r.width,cy=(e.clientY-r.top)*H/r.height;
   if(tapPlayerPower(cx,cy)){e.preventDefault();return;}
+  if(state==='title'&&!soundGate&&inBox(cx,cy,POWER_LAB_BTN)){playFromSelect(POWER_LAB_IDX);return;}
   if(state==='title'&&!soundGate&&inBox(cx,cy,TRAINING_BTN)){playFromSelect(TRAINING_IDX);return;}
   if(state==='title'&&!soundGate&&inBox(cx,cy,SELECT_BTN)){openSelect();return;}
   if(state==='clear'&&stateT>1&&inBox(cx,cy,CLEAR_SEL_BTN)){selIdx=Math.min(levelIdx+1,LEVELS.length-1);openSelect();return;}
@@ -1326,6 +1342,8 @@ const LEVELS=[
 // Optional practice room: appended so all existing room numbers stay unchanged.
 LEVELS.push({name:'TRAINING ROOM',training:true,chore:'Collect 6 toys and put them in the chest',drop:'toychest',item:'toy',seed:1126,count:6,time:300,len:110,gap:6,enemies:[],density:0,lego:0,movers:0,theme:'living',music:'chiptune',difficultyIndex:0,text:'ANDREW: Let us practice! Move, jump twice, duck and try the power-ups. I will catch you over gaps. No time limit!'});
 const TRAINING_IDX=LEVELS.length-1;
+LEVELS.push({...LEVELS[TRAINING_IDX],name:'POWER-UP TESTING ROOM',testLab:true,chore:'Choose a power-up and test its powers',text:'YOU: Welcome to the Power-Up Lab! Choose any power. A practice critter appears for combat powers. Test Again resets your experiment.'});
+const POWER_LAB_IDX=LEVELS.length-1;
 
 const THEMES={
  balcony:{sky:"#b7dcf2",wall2:"#91bad8",ground:"#a87953",top:"#e8bd87",plat:"#8f714f",ptop:"#f0d4aa"},
@@ -1598,6 +1616,7 @@ function startLevel(i){
   P.x=2*T;P.y=(ROWS-lvl.ground[2])*T-P.h;P.vx=P.vy=0;P.inv=0;P.ride=null;P.carry=0;P.face=1;
   lastSafe={x:P.x,y:P.y};
   state='intro';stateT=0;stopMusic();
+  if(lvl.L.testLab){powerSelect.innerHTML='<option value="">Choose a power-up...</option>'+Object.keys(POWER_DEFS).map(k=>'<option value="'+k+'">'+POWER_TEST_NAMES[k]+'</option>').join('');powerSelect.value='';lvl.powerups=[];}
   say(SIBS.find(d=>d.name==='COLIN').line,2.5);
 }
 // Speech: helpers take turns, so only one helper bubble shows at a time. New lines wait in a short queue (the oldest
@@ -1626,6 +1645,21 @@ const overlap=(a,b)=>a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y;
 function puff(x,y,col,n=8,sp=80){for(let i=0;i<n;i++)parts.push({x,y,vx:(Math.random()-.5)*sp*2,vy:(Math.random()-.8)*sp*1.5,life:0.6+Math.random()*0.4,col});}
 function popText(x,y,txt,col='#fff'){parts.push({x,y,vx:0,vy:-40,life:1,txt,col});}
 
+const POWER_TEST_NAMES={boost:'Speed Boost',spring:'Jump Boots',feather:'Feather Float',triple:'Triple Jump',double:'Double Points',rescue:'Rescue Balloon',compass:'Item Compass',bridge:'Ghost Bridge',shield:'Shield',magnet:'Magnet',star:'Star',fire:'Fire Aura',ice:'Ice Aura',slow:'Slow Aura',electric:'Electric Aura',water:'Water Aura',air:'Air Aura',earth:'Earth Aura',strength:'Strength Aura'};
+function testPower(kind){
+ if(!lvl?.L.testLab||!POWER_DEFS[kind])return false;
+ lvl=buildTrainingLevel(POWER_LAB_IDX);lvl.powerups=[];sibs=[];parts=[];
+ P.powers=freshPowers();P.storedPowers=freshPowers();P.rescueCarry=null;P.rescueThanks=0;P.carry=0;
+ P.h=14;P.duck=false;P.x=10*T;P.y=(ROWS-lvl.ground[10])*T-P.h;P.vx=P.vy=0;P.on=true;P.ride=null;P.jumps=0;P.inv=0;P.buf=0;
+ lastSafe={x:P.x,y:P.y};cam=0;score=levelScore=0;timeLeft=lvl.L.time;
+ for(const k in keys)keys[k]=false;jumpPressed=false;anyPress=false;
+ grantPower(kind);
+ if(['star','fire','electric','water','air','earth','strength','ice','slow'].includes(kind)){
+  const range=auraRange(P)||44;
+  lvl.enemies=[{type:'roach',x:P.x+Math.min(22,range-8),y:P.y+P.h-12,w:14,h:12,vx:-1,vy:0,alive:true,t:0,dead:0}];
+ }
+ state='play';powerSelect.value=kind;syncPlayTools();return true;
+}
 function ownedPlayerPowers(){return Object.keys(POWER_DEFS).filter(k=>P.powers[k]>0||P.storedPowers[k]>0);}
 function togglePlayerPower(kind){
  if(!['play','pause'].includes(state)||!POWER_DEFS[kind])return false;
@@ -1945,6 +1979,7 @@ function chooseSiblingTarget(s,dt){
   }
 }
 function updateSibs(dt){
+  if(lvl.L.testLab){sibs=[];return;}
   let colinArrived=false;
   if(P.speechT>0)P.speechT-=dt;
   const played=lvl.L.time-timeLeft; // all five helpers appear immediately
@@ -1982,7 +2017,7 @@ function updatePlay(dt){
     const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);}
     else if(!it.got){const finder=sibs.find(s=>s.powers?.magnet>0&&overlap({x:s.x,y:s.y,w:10,h:s.h||20},it));if(finder)collectHelperItem(finder,it);}
   }
-  if(!P.rescueCarry&&overlap(P,lvl.drop)){
+  if(!lvl.L.testLab&&!P.rescueCarry&&overlap(P,lvl.drop)){
     if(P.carry>=lvl.total){
       const bonus=Math.ceil(timeLeft)*10;score+=bonus;levelScore+=bonus;state='clear';stateT=0;stopMusic();SFX.win();puff(lvl.drop.x+14,lvl.drop.y,"#ffeb3b",30,150);
     }else if(msgT<=0){SFX.nope();say("STILL "+(lvl.total-P.carry)+" "+ITEM_NAMES[lvl.L.item].toUpperCase()+" LEFT!",1.5);}
@@ -3410,7 +3445,7 @@ function drawPlay(t){
   if(th.dark){g.save();const lx=P.x-cam+5,ly=P.y+6,dg=g.createRadialGradient(lx,ly,70,lx,ly,260);dg.addColorStop(0,'rgba(0,0,10,0)');dg.addColorStop(1,'rgba(0,0,10,0.42)');g.fillStyle=dg;g.fillRect(0,0,W,H);g.restore();}
   g.drawImage(fx,0,0);
   drawHUD(t);drawPowerHUD();
-  if(lvl.L.training){const c=P.x/T;
+  if(lvl.L.training&&!lvl.L.testLab){const c=P.x/T;
     const tip=c<18?'A/D OR ARROWS: MOVE':c<29?'SPACE OR JUMP: TAP TWICE TO DOUBLE JUMP':c<40?'DOWN / S OR DUCK: CROUCH':c<49?'TOUCH A POWER-UP TO TRY ITS POWER':c<61?'GHOST BRIDGE CROSSES GAPS. ANDREW CAN SAVE YOU!':c<84?'PRACTICE YOUR DOUBLE JUMP OVER THE GAP':P.carry<lvl.total?'COLLECT ALL 6 TOYS, THEN FIND THE CHEST':'BRING YOUR TOYS TO THE CHEST >>>';
     R(4,60,W-8,18,'#162c48');text(tip,W/2,65,6,'#b6fff1','center',false);}
 
@@ -3466,6 +3501,7 @@ function drawTitle(t){
   drawMenuSiblings(t,148,1,-Math.abs(Math.sin(t*5))*14);
   drawItem("toy",W/2-200,160+Math.cos(t*3)*3);drawItem("leaf",W/2+150,160+Math.sin(t*3)*3);
   if(!soundGate){const b=TRAINING_BTN;R(b.x,b.y,b.w,b.h,"#17635b");text("TRAINING ROOM (T)",W/2,b.y+4,6,"#b6fff1","center",false);}
+  if(!soundGate){const b=POWER_LAB_BTN;R(b.x,b.y,b.w,b.h,"#274c73");text("POWER-UP LAB (B)",b.x+b.w/2,b.y+4,6,"#b6fff1","center",false);}
   if(soundGate)text("CLICK OR PRESS ANY KEY FOR SOUND",W/2,200,8,Math.floor(t*2)%2?"#ffeb3b":"#fff","center");
   else if(Math.floor(t*2)%2)text("PRESS ENTER / TAP TO START",W/2,200,8,"#76ff03","center");
   if(!soundGate){const b=SELECT_BTN;R(b.x-1,b.y-1,b.w+2,b.h+2,"#ffeb3b");R(b.x,b.y,b.w,b.h,"#3d2a8a");text("LEVEL SELECT (L)",W/2,b.y+3,6,"#ffeb3b","center",false);}
@@ -3595,6 +3631,7 @@ function drawEnd(t){
 
 // ================= LEVEL SELECT =================
 // Pick any level from the title screen: press L or tap the LEVEL SELECT button. Arrows + Enter, or tap a level.
+const POWER_LAB_BTN={x:W/2+78,y:180,w:132,h:14};
 const TRAINING_BTN={x:W/2-66,y:180,w:132,h:14};
 const SELECT_BTN={x:W/2-62,y:209,w:124,h:13},CLEAR_SEL_BTN={x:W/2-62,y:232,w:124,h:13},SEL_COLS=6,SEL_W=78,SEL_H=Math.min(46,Math.floor((H-70)/Math.ceil(LEVELS.length/SEL_COLS))),SEL_X=(W-SEL_COLS*SEL_W)/2+2,SEL_Y=40;
 let selIdx=0;

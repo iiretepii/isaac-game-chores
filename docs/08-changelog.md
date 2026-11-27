@@ -528,3 +528,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-27 — Strength punch animation
 
 - Strength Aura now defeats nearby critters with a big cartoon fist punch, knockback, impact burst and stars.
+
+## 2026-11-27 — Power-Up Testing Room
+
+- Added a separate optional lab with selector for all 19 powers, repeat/reset and exit controls, no time limit, and a practice critter for combat powers. Added title button / B and Level Select access.

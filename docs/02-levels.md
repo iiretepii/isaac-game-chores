@@ -137,3 +137,7 @@ A colorful building room with collectible studded bricks, a LEGO storage bin, gr
 ## Balcony Reading Break
 
 Collect 11 newspapers and 11 magazines left from earlier reading and put them in a wicker reading basket. New `balcony` scenery shows railings, chairs, table, plants and neighborhood views. Uses existing relaxing `blockgarden` music; room precedes Whole House.
+
+## Power-Up Testing Room
+
+Open **Power-Up Lab (B)** on the title screen or choose it in Level Select. Pick any of the 19 powers from the selector; **Test Again** resets the practice area and refreshes it, and **Exit Lab** returns to the title. Combat auras, Star, Ice and Slow spawn a practice roach. Other powers can be tried on the room’s chores, shelves and gaps. The timer is unlimited, helpers stay outside the lab, and collecting chores does not end testing. Your normal power ON/OFF controls still work. The 45-room adventure and optional Training Room keep their existing order.

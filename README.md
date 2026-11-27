@@ -353,3 +353,7 @@ Aura defeats now have 1.5-second animations: **Earth** drops a grass-topped hard
 Electric Aura now visibly electrocutes nearby critters with jittering, flashing cyan/yellow lightning and sparks during their defeat animation.
 
 Strength Aura delivers a big cartoon fist punch that knocks nearby critters back with an impact burst and spinning stars.
+
+## Power-Up Testing Room
+
+Open **Power-Up Lab (B)** on the title screen or choose it in Level Select. Pick any of the 19 powers from the selector; **Test Again** resets the practice area and refreshes it, and **Exit Lab** returns to the title. Combat auras, Star, Ice and Slow spawn a practice roach. Other powers can be tried on the room’s chores, shelves and gaps. The timer is unlimited, helpers stay outside the lab, and collecting chores does not end testing. Your normal power ON/OFF controls still work. The 45-room adventure and optional Training Room keep their existing order.
