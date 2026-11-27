@@ -524,3 +524,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-27 — Electric defeat animation
 
 - Electric Aura now shows nearby critters getting electrocuted with flashing lightning, jitter and sparks before disappearing.
+
+## 2026-11-27 — Strength punch animation
+
+- Strength Aura now defeats nearby critters with a big cartoon fist punch, knockback, impact burst and stars.
