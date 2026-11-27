@@ -18,6 +18,8 @@ canvas{image-rendering:pixelated;image-rendering:crisp-edges;background:#000;box
 #play-tools{position:fixed;top:max(10px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));display:flex;gap:8px;z-index:10}
 #play-tools[hidden],#power-lab[hidden]{display:none}
 #power-lab{position:fixed;left:12px;top:max(60px,env(safe-area-inset-top));z-index:11;display:flex;gap:6px;flex-wrap:wrap;max-width:calc(100vw - 24px)}
+#power-lab.choosing{left:50%;top:45%;transform:translate(-50%,-50%);justify-content:center;width:max-content;max-width:calc(100vw - 24px)}
+#power-lab.choosing #test-again{display:none}
 #power-lab select,#power-lab button{min-height:44px;max-width:210px;padding:8px;border:2px solid #9ee9f0;border-radius:8px;background:#172d48;color:#fff;font:14px sans-serif;touch-action:manipulation}
 #play-tools button{min-width:76px;min-height:44px;padding:8px;border:2px solid #fff;border-radius:10px;background:#21163f;color:#fff;font:10px "Press Start 2P",monospace;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 #play-tools button:focus-visible{outline:3px solid #ffeb3b;outline-offset:3px}
@@ -85,7 +87,8 @@ const labTools=document.getElementById('power-lab'),powerSelect=document.getElem
 const playTools=document.getElementById('play-tools'),pauseButton=document.getElementById('pause-game'),muteButton=document.getElementById('mute-game');
 function syncPlayTools(){
  playTools.hidden=!['play','pause'].includes(state);
- labTools.hidden=!(lvl?.L.testLab&&state==='play');
+ labTools.hidden=!(lvl?.L.testLab&&['play','labchoose'].includes(state));
+ labTools.classList?.toggle('choosing',state==='labchoose');
  pauseButton.textContent=state==='pause'?'RESUME':'PAUSE';
  pauseButton.setAttribute?.('aria-label',state==='pause'?'Resume game':'Pause game');pauseButton.setAttribute?.('aria-pressed',String(state==='pause'));
  muteButton.textContent=muted?'UNMUTE':'MUTE';muteButton.setAttribute?.('aria-label',muted?'Unmute sound':'Mute sound');muteButton.setAttribute?.('aria-pressed',String(muted));
@@ -1342,7 +1345,7 @@ const LEVELS=[
 // Optional practice room: appended so all existing room numbers stay unchanged.
 LEVELS.push({name:'TRAINING ROOM',training:true,chore:'Collect 6 toys and put them in the chest',drop:'toychest',item:'toy',seed:1126,count:6,time:300,len:110,gap:6,enemies:[],density:0,lego:0,movers:0,theme:'living',music:'chiptune',difficultyIndex:0,text:'ANDREW: Let us practice! Move, jump twice, duck and try the power-ups. I will catch you over gaps. No time limit!'});
 const TRAINING_IDX=LEVELS.length-1;
-LEVELS.push({...LEVELS[TRAINING_IDX],name:'POWER-UP TESTING ROOM',testLab:true,chore:'Choose a power-up and test its powers',text:'YOU: Welcome to the Power-Up Lab! Choose any power. A practice critter appears for combat powers. Test Again resets your experiment.'});
+LEVELS.push({...LEVELS[TRAINING_IDX],name:'POWER-UP TESTING ROOM',testLab:true,chore:'Choose a power-up and test its powers',text:'ANDREW: I made this lab! Choose a power after this screen. I will watch your tests. Combat powers get a practice critter!'});
 const POWER_LAB_IDX=LEVELS.length-1;
 
 const THEMES={
@@ -1646,6 +1649,11 @@ function puff(x,y,col,n=8,sp=80){for(let i=0;i<n;i++)parts.push({x,y,vx:(Math.ra
 function popText(x,y,txt,col='#fff'){parts.push({x,y,vx:0,vy:-40,life:1,txt,col});}
 
 const POWER_TEST_NAMES={boost:'Speed Boost',spring:'Jump Boots',feather:'Feather Float',triple:'Triple Jump',double:'Double Points',rescue:'Rescue Balloon',compass:'Item Compass',bridge:'Ghost Bridge',shield:'Shield',magnet:'Magnet',star:'Star',fire:'Fire Aura',ice:'Ice Aura',slow:'Slow Aura',electric:'Electric Aura',water:'Water Aura',air:'Air Aura',earth:'Earth Aura',strength:'Strength Aura'};
+function labAndrew(){
+ let a=sibs.find(s=>s.d.name==='ANDREW');
+ if(!a){const k=SIBS.findIndex(d=>d.name==='ANDREW');a={k,d:SIBS[k],powers:freshPowers(),x:P.x+88,y:148,h:20,face:-1,anim:0,on:false,inv:0,observer:true};sibs.push(a);}
+ a.x=Math.max(12,Math.min(lvl.cols*T-20,P.x+88));a.y=Math.max(28,Math.min(H-70,P.y-34));a.face=-1;return a;
+}
 function testPower(kind){
  if(!lvl?.L.testLab||!POWER_DEFS[kind])return false;
  lvl=buildTrainingLevel(POWER_LAB_IDX);lvl.powerups=[];sibs=[];parts=[];
@@ -1658,7 +1666,7 @@ function testPower(kind){
   const range=auraRange(P)||44;
   lvl.enemies=[{type:'roach',x:P.x+Math.min(22,range-8),y:P.y+P.h-12,w:14,h:12,vx:-1,vy:0,alive:true,t:0,dead:0}];
  }
- state='play';powerSelect.value=kind;syncPlayTools();return true;
+ labAndrew();state='play';stateT=0;powerSelect.value=kind;syncPlayTools();startMusic(lvl.L.music);return true;
 }
 function ownedPlayerPowers(){return Object.keys(POWER_DEFS).filter(k=>P.powers[k]>0||P.storedPowers[k]>0);}
 function togglePlayerPower(kind){
@@ -1719,7 +1727,7 @@ function needsAndrewRescue(actor){
  return !actor.on&&!actor.ride&&actor.vy>0&&actor.y>H-12;
 }
 function andrewRescue(actor){
- if(['race','kartroom'].includes(lvl.L.theme))return false;
+ if(lvl.L.testLab||['race','kartroom'].includes(lvl.L.theme))return false;
  const andrew=sibs.find(s=>s.d.name==='ANDREW'&&s!==actor);
  if(!andrew)return false;
  if(actor.rescueCarry)return true;
@@ -1979,7 +1987,7 @@ function chooseSiblingTarget(s,dt){
   }
 }
 function updateSibs(dt){
-  if(lvl.L.testLab){sibs=[];return;}
+  if(lvl.L.testLab){labAndrew();return;}
   let colinArrived=false;
   if(P.speechT>0)P.speechT-=dt;
   const played=lvl.L.time-timeLeft; // all five helpers appear immediately
@@ -3511,6 +3519,15 @@ function drawTitle(t){
   g.drawImage(fx,0,0);
 }
 
+function drawLabChoose(t){
+ drawPlay(t);panel();
+ text('POWER-UP LAB',W/2,52,16,'#7ff3ff','center');
+ text('CHOOSE A POWER-UP TO TEST',W/2,84,8,'#fff','center');
+ text('COMBAT POWERS SPAWN A PRACTICE CRITTER',W/2,105,6,'#ffeaaa','center',false);
+ const k=SIBS.findIndex(d=>d.name==='ANDREW');
+ drawSibling({k,d:SIBS[k],x:W/2-5,y:195,face:1,anim:t*20,on:false,inv:0},t);
+ drawSpeechBubble({x:W/2-5,y:191},'I made this lab! I will watch.',false,220,6);
+}
 function drawIntro(t){
   drawPlay(t);panel();
   const L=lvl.L;
@@ -3679,7 +3696,7 @@ function frame(now){
     const pressed=anyPress;anyPress=false;
     if(state==='splash'){if(stateT>4||(pressed&&stateT>0.3)){state='title';stateT=0;}else if(stateT>1.4&&stateT<1.42&&AC)[84,88,91].forEach((n,k)=>tone(mtof(n),0.15,'triangle',0.08,null,AC.currentTime+k*0.08));}
     else if(state==='title'){if(pressed){if(soundGate){soundGate=false;initAudio();}else{score=0;startLevel(0);}}else if(soundGate&&soundReady())soundGate=false;}
-    else if(state==='intro'){if(pressed&&stateT>0.5){state='play';jumpPressed=false;startMusic(lvl.L.music);}}
+    else if(state==='intro'){if(pressed&&stateT>0.5){state=lvl.L.testLab?'labchoose':'play';stateT=0;jumpPressed=false;anyPress=false;if(!lvl.L.testLab)startMusic(lvl.L.music);syncPlayTools();}}
     else if(state==='play'){updatePlay(STEP);updateParts(STEP);}
     else if(state==='clear'){updateParts(STEP);if(pressed&&stateT>1){if(lvl.L.training){state='title';stateT=0;stopMusic();}else if(levelIdx<TRAINING_IDX-1)startLevel(levelIdx+1);else{state='end';stateT=0;startMusic('finale');}}}
     else if(state==='lose'){if(pressed&&stateT>1.2){score=Math.max(0,score-levelScore);startLevel(levelIdx);}}
@@ -3690,6 +3707,7 @@ function frame(now){
   else if(state==='select')drawSelect(clock);
   else if(state==='title'){drawTitle(clock);if(AC&&!music.on)startMusic('french');}
   else if(state==='intro')drawIntro(clock);
+  else if(state==='labchoose')drawLabChoose(clock);
   else if(state==='play')drawPlay(clock);
   else if(state==='pause'){drawPlay(clock);panel();text("PAUSED",W/2,110,16,"#ffeb3b","center");text("TAP RESUME OR PRESS P",W/2,140,8,"#fff","center");}
   else if(state==='clear')drawClear(clock);

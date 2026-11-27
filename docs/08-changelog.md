@@ -532,3 +532,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-27 — Power-Up Testing Room
 
 - Added a separate optional lab with selector for all 19 powers, repeat/reset and exit controls, no time limit, and a practice critter for combat powers. Added title button / B and Level Select access.
+
+## 2026-11-27 — Andrew’s lab chooser and observation
+
+- Added a dedicated power-selection screen after the lab intro. Andrew introduces himself as its creator and watches tests without defeating practice critters or interrupting rescue-power experiments.
