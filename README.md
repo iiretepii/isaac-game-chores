@@ -325,3 +325,5 @@ After the rescued character says “W Andrew!”, Andrew replies **“Happy to h
 Collect 20 colorful LEGO bricks and put them in the yellow-lidded storage bin. The room has a studded baseplate floor, building shelves and castle display, moving platforms, roombas and slimes, plus the existing upbeat *Press Start to Clean!* chiptune. It sits immediately after Charging Room Chaos; Training remains optional. Collectible bricks glow like other chores; floor LEGO hazards still need to be avoided.
 
 The player has room-specific “YOU SAY” intro dialogue in Living Room, Library, Race Track Rumble, MarioKart Toy Room, Minecraft, LEGO Builders Room and Whole House. Their bubble and portrait alternate with the existing room message every four seconds, starting with the player.
+
+During play, touch-friendly **Pause / Resume** and **Mute / Unmute** buttons appear in the upper-right corner. They also work with a mouse; P/Escape and M remain available. Pausing clears held movement, and tapping these controls does not trigger a jump or advance a screen. Labels and accessibility state follow keyboard changes too.

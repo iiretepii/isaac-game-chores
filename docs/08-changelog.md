@@ -471,3 +471,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-26 — Let moving-platform jumps finish
 
 - Andrew no longer treats ordinary downward jumps over gaps as failed falls. He waits until a descending, unsupported character reaches the bottom of the screen before rescuing, so moving-platform jumps and double jumps can finish.
+
+## 2026-11-27 — Touch pause and mute
+
+- Added 44-pixel-minimum Pause/Resume and Mute/Unmute buttons during gameplay and pause, with current-state labels and accessible pressed states. Kept keyboard controls and prevented control taps from triggering gameplay actions.

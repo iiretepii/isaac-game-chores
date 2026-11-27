@@ -15,6 +15,10 @@ canvas{image-rendering:pixelated;image-rendering:crisp-edges;background:#000;box
 #touch .grp{display:flex;gap:14px}
 #touch button{pointer-events:auto;width:72px;height:72px;border-radius:50%;border:4px solid #fff;background:rgba(229,57,53,.55);color:#fff;font:16px "Press Start 2P",monospace;touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
 #touch button.j{background:rgba(255,193,7,.6);width:88px;height:88px}
+#play-tools{position:fixed;top:max(10px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));display:flex;gap:8px;z-index:10}
+#play-tools[hidden]{display:none}
+#play-tools button{min-width:76px;min-height:44px;padding:8px;border:2px solid #fff;border-radius:10px;background:#21163f;color:#fff;font:10px "Press Start 2P",monospace;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+#play-tools button:focus-visible{outline:3px solid #ffeb3b;outline-offset:3px}
 @media (pointer:coarse){#touch{display:flex}}
 </style>
 </head>
@@ -23,6 +27,10 @@ canvas{image-rendering:pixelated;image-rendering:crisp-edges;background:#000;box
 <div id="touch">
   <div class="grp"><button type="button" data-k="left">&#9664;</button><button type="button" data-k="right">&#9654;</button></div>
   <div class="grp"><button type="button" data-k="duck">DUCK</button><button type="button" class="j" data-k="jump">JUMP</button></div>
+</div>
+<div id="play-tools" hidden aria-label="Game controls">
+ <button id="pause-game" type="button" aria-label="Pause game" aria-pressed="false">PAUSE</button>
+ <button id="mute-game" type="button" aria-label="Mute sound" aria-pressed="false">MUTE</button>
 </div>
 <script>
 "use strict";
@@ -47,7 +55,7 @@ addEventListener('keydown',e=>{
   if(state==='title'&&!soundGate&&e.code==='KeyL'){openSelect();return;}
   if(state==='clear'&&stateT>1&&e.code==='KeyL'){selIdx=Math.min(levelIdx+1,LEVELS.length-1);openSelect();return;}
   if(state==='select'){selectKey(e.code);e.preventDefault();return;}
-  if(e.code==='KeyP'||e.code==='Escape'){if(state==='play')state='pause';else if(state==='pause')state='play';}
+  if(e.code==='KeyP'||e.code==='Escape')togglePause();
 });
 addEventListener('keyup',e=>{const k=KM[e.code];if(k)keys[k]=false;});
 // Cancel native tap gestures on the controls, including Safari's double-tap zoom.
@@ -64,9 +72,25 @@ document.querySelectorAll('#touch button').forEach(b=>{
   ['dblclick','contextmenu'].forEach(type=>b.addEventListener(type,e=>e.preventDefault()));
   b.addEventListener('click',e=>{e.preventDefault();b.blur();});
 });
+const playTools=document.getElementById('play-tools'),pauseButton=document.getElementById('pause-game'),muteButton=document.getElementById('mute-game');
+function syncPlayTools(){
+ playTools.hidden=!['play','pause'].includes(state);
+ pauseButton.textContent=state==='pause'?'RESUME':'PAUSE';
+ pauseButton.setAttribute?.('aria-label',state==='pause'?'Resume game':'Pause game');pauseButton.setAttribute?.('aria-pressed',String(state==='pause'));
+ muteButton.textContent=muted?'UNMUTE':'MUTE';muteButton.setAttribute?.('aria-label',muted?'Unmute sound':'Mute sound');muteButton.setAttribute?.('aria-pressed',String(muted));
+}
+function togglePause(){
+ if(state==='play')state='pause';else if(state==='pause')state='play';
+ for(const k in keys)keys[k]=false;jumpPressed=false;anyPress=false;syncPlayTools();
+}
+for(const [button,action] of [[pauseButton,()=>togglePause()],[muteButton,()=>{initAudio();toggleMute();}]]){
+ button.addEventListener('pointerdown',e=>e.stopPropagation());
+ button.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();action();button.blur();});
+ button.addEventListener('dblclick',e=>e.preventDefault());
+}
 addEventListener('blur',()=>{for(const k in keys)keys[k]=false;jumpPressed=false;});
 
-document.addEventListener('pointerdown',e=>{if(e.target.closest&&e.target.closest('#touch'))return;initAudio();
+document.addEventListener('pointerdown',e=>{if(e.target.closest&&e.target.closest('#touch, #play-tools'))return;initAudio();
   const r=cv.getBoundingClientRect(),cx=(e.clientX-r.left)*W/r.width,cy=(e.clientY-r.top)*H/r.height;
   if(state==='title'&&!soundGate&&inBox(cx,cy,TRAINING_BTN)){playFromSelect(TRAINING_IDX);return;}
   if(state==='title'&&!soundGate&&inBox(cx,cy,SELECT_BTN)){openSelect();return;}
@@ -86,13 +110,13 @@ let AC=null,master=null,musicGain=null,sfxGain=null,muted=false,noiseBuf=null;
 function initAudio(){
   if(AC){if(AC.state==='suspended')AC.resume();return;}
   try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){return;}
-  master=AC.createGain();master.gain.value=0.5;master.connect(AC.destination);
+  master=AC.createGain();master.gain.value=muted?0:0.5;master.connect(AC.destination);
   musicGain=AC.createGain();musicGain.gain.value=0.38;musicGain.connect(master);
   sfxGain=AC.createGain();sfxGain.gain.value=0.8;sfxGain.connect(master);
   noiseBuf=AC.createBuffer(1,AC.sampleRate,AC.sampleRate);const d=noiseBuf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
   setInterval(scheduler,25);
 }
-function toggleMute(){muted=!muted;if(master)master.gain.value=muted?0:0.5;}
+function toggleMute(){muted=!muted;if(master)master.gain.value=muted?0:0.5;syncPlayTools();}
 const mtof=n=>440*Math.pow(2,(n-69)/12);
 function tone(f,dur,type='square',vol=0.2,slide=null,t=null,dest=null){
   if(!AC)return;t=t??AC.currentTime;
@@ -3438,6 +3462,7 @@ function drawSelect(t){
 // ================= MAIN LOOP =================
 let last=performance.now(),acc=0,clock=0;
 function frame(now){
+  syncPlayTools();
   let dt=Math.min(0.1,(now-last)/1000);last=now;acc+=dt;
   const STEP=1/60;
   while(acc>=STEP){
@@ -3457,7 +3482,7 @@ function frame(now){
   else if(state==='title'){drawTitle(clock);if(AC&&!music.on)startMusic('french');}
   else if(state==='intro')drawIntro(clock);
   else if(state==='play')drawPlay(clock);
-  else if(state==='pause'){drawPlay(clock);panel();text("PAUSED",W/2,110,16,"#ffeb3b","center");text("P TO RESUME",W/2,140,8,"#fff","center");}
+  else if(state==='pause'){drawPlay(clock);panel();text("PAUSED",W/2,110,16,"#ffeb3b","center");text("TAP RESUME OR PRESS P",W/2,140,8,"#fff","center");}
   else if(state==='clear')drawClear(clock);
   else if(state==='lose')drawLose(clock);
   else if(state==='end')drawEnd(clock);
