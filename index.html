@@ -92,6 +92,7 @@ addEventListener('blur',()=>{for(const k in keys)keys[k]=false;jumpPressed=false
 
 document.addEventListener('pointerdown',e=>{if(e.target.closest&&e.target.closest('#touch, #play-tools'))return;initAudio();
   const r=cv.getBoundingClientRect(),cx=(e.clientX-r.left)*W/r.width,cy=(e.clientY-r.top)*H/r.height;
+  if(tapPlayerPower(cx,cy)){e.preventDefault();return;}
   if(state==='title'&&!soundGate&&inBox(cx,cy,TRAINING_BTN)){playFromSelect(TRAINING_IDX);return;}
   if(state==='title'&&!soundGate&&inBox(cx,cy,SELECT_BTN)){openSelect();return;}
   if(state==='clear'&&stateT>1&&inBox(cx,cy,CLEAR_SEL_BTN)){selIdx=Math.min(levelIdx+1,LEVELS.length-1);openSelect();return;}
@@ -1585,11 +1586,11 @@ function makePowerups(level){
 
 // ================= GAME STATE =================
 let sibs=[],state='splash',lvl=null,levelIdx=0,score=0,timeLeft=0,cam=0,msg=null,msgT=0,stateT=0,parts=[],honked=false,levelScore=0,lastSafe={x:32,y:0};
-const P={powers:freshPowers(),x:0,y:0,w:10,h:14,duck:false,jumps:0,vx:0,vy:0,on:false,face:1,coyote:0,buf:0,inv:0,ride:null,anim:0,carry:0};
+const P={storedPowers:freshPowers(),powers:freshPowers(),x:0,y:0,w:10,h:14,duck:false,jumps:0,vx:0,vy:0,on:false,face:1,coyote:0,buf:0,inv:0,ride:null,anim:0,carry:0};
 
 function startLevel(i){
   levelIdx=i;lvl=buildLevel(i);timeLeft=lvl.L.time;cam=0;parts=[];honked=false;levelScore=0;sibs=[];
-  P.powers=freshPowers();P.rescueCarry=null;P.rescueThanks=0;
+  P.powers=freshPowers();P.storedPowers=freshPowers();P.rescueCarry=null;P.rescueThanks=0;
   P.h=14;P.duck=false;P.jumps=0;
   P.x=2*T;P.y=(ROWS-lvl.ground[2])*T-P.h;P.vx=P.vy=0;P.inv=0;P.ride=null;P.carry=0;P.face=1;
   lastSafe={x:P.x,y:P.y};
@@ -1622,9 +1623,23 @@ const overlap=(a,b)=>a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y;
 function puff(x,y,col,n=8,sp=80){for(let i=0;i<n;i++)parts.push({x,y,vx:(Math.random()-.5)*sp*2,vy:(Math.random()-.8)*sp*1.5,life:0.6+Math.random()*0.4,col});}
 function popText(x,y,txt,col='#fff'){parts.push({x,y,vx:0,vy:-40,life:1,txt,col});}
 
+function ownedPlayerPowers(){return Object.keys(POWER_DEFS).filter(k=>P.powers[k]>0||P.storedPowers[k]>0);}
+function togglePlayerPower(kind){
+ if(!['play','pause'].includes(state)||!POWER_DEFS[kind])return false;
+ if(P.powers[kind]>0){P.storedPowers[kind]=P.powers[kind];P.powers[kind]=0;}
+ else if(P.storedPowers[kind]>0){P.powers[kind]=P.storedPowers[kind];P.storedPowers[kind]=0;}
+ else return false;
+ return true;
+}
+function powerToggleRect(slot){return {x:4+(slot%4)*118,y:31+Math.floor(slot/4)*26,w:114,h:24};}
+function tapPlayerPower(x,y){
+ if(!['play','pause'].includes(state))return false;
+ return ownedPlayerPowers().some((kind,i)=>inBox(x,y,powerToggleRect(i))&&togglePlayerPower(kind));
+}
 function grantPower(kind,collector=P){
  const def=POWER_DEFS[kind];if(!def)return;
- (collector.powers||(collector.powers=freshPowers()))[kind]=def.duration;if(collector.d)helperSays(collector,'FOUND '+def.name+'!',1.8);else say(def.name+' ON!',1.8);puff(collector.x+5,collector.y+5,def.color,14,75);
+ const saved=collector===P&&P.storedPowers[kind]>0;
+ (saved?P.storedPowers:(collector.powers||(collector.powers=freshPowers())))[kind]=def.duration;if(collector.d)helperSays(collector,'FOUND '+def.name+'!',1.8);else say(def.name+(saved?' SAVED!':' ON!'),1.8);puff(collector.x+5,collector.y+5,def.color,14,75);
  if(AC)[76,80,83].forEach((note,i)=>tone(mtof(note),.12,'sine',.08,null,AC.currentTime+i*.07));
 }
 function collectPowerups(){
@@ -3188,11 +3203,14 @@ function drawPowerIcon(kind,x,y){
  else if(kind==='compass'){R(x+4,y+1,8,2,color);R(x+1,y+4,14,8,color);R(x+4,y+13,8,2,color);R(x+3,y+3,10,10,'#254855');R(x+7,y+3,2,6,'#ffcfb0');R(x+6,y+9,4,3,'#fff');}
 
 }
-function powerHudRows(){return Math.ceil(Object.keys(POWER_DEFS).filter(k=>P.powers[k]>0).length/4);}
+function powerHudRows(){return Math.ceil(ownedPlayerPowers().length/4);}
 function drawPowerHUD(){
- let slot=0;for(const [kind,def] of Object.entries(POWER_DEFS))if(P.powers[kind]>0){const x=4+(slot%4)*118,y=31+Math.floor(slot++/4)*12;
-  R(x,y,114,11,'#1a203bee');R(x,y,2,11,def.color);text(def.name+' '+Math.ceil(P.powers[kind])+'s',x+5,y+2,8,def.color,'left',false);R(x,y+11,114*P.powers[kind]/def.duration,1,def.color);
- }
+ ownedPlayerPowers().forEach((kind,slot)=>{const def=POWER_DEFS[kind],b=powerToggleRect(slot),active=P.powers[kind]>0,remaining=active?P.powers[kind]:P.storedPowers[kind],color=active?def.color:'#aab4c8';
+  R(b.x,b.y,b.w,b.h,active?'#1a203bee':'#303344ee');R(b.x,b.y,2,b.h,color);
+  text(def.name==='GHOST BRIDGE'?'BRIDGE':def.name,b.x+5,b.y+3,8,color,'left',false);
+  text((active?'ON ':'OFF ')+Math.ceil(remaining)+'s - TAP',b.x+5,b.y+15,6,color,'left',false);
+  R(b.x,b.y+b.h-1,b.w*remaining/def.duration,1,color);
+ });
 }
 function drawPowerEffects(t,actor=P){
  const powers=actor.powers;if(!powers)return;
@@ -3343,7 +3361,7 @@ function drawPlay(t){
     const tip=c<18?'A/D OR ARROWS: MOVE':c<29?'SPACE OR JUMP: TAP TWICE TO DOUBLE JUMP':c<40?'DOWN / S OR DUCK: CROUCH':c<49?'TOUCH A POWER-UP TO TRY ITS POWER':c<61?'GHOST BRIDGE CROSSES GAPS. ANDREW CAN SAVE YOU!':c<84?'PRACTICE YOUR DOUBLE JUMP OVER THE GAP':P.carry<lvl.total?'COLLECT ALL 6 TOYS, THEN FIND THE CHEST':'BRING YOUR TOYS TO THE CHEST >>>';
     R(4,60,W-8,18,'#162c48');text(tip,W/2,65,6,'#b6fff1','center',false);}
 
-  if(msgT>0){const my=44+Math.max(0,powerHudRows()-1)*12;g.font='8px '+FONT;const mw=Math.min(W-20,Math.ceil(g.measureText(msg).width)+16);g.globalAlpha=0.55;R(W/2-mw/2,my-3,mw,14,"#120a24");g.globalAlpha=1;text(msg,W/2,my,8,"#fff","center");}
+  if(msgT>0){const my=Math.max(44,33+powerHudRows()*26);g.font='8px '+FONT;const mw=Math.min(W-20,Math.ceil(g.measureText(msg).width)+16);g.globalAlpha=0.55;R(W/2-mw/2,my-3,mw,14,"#120a24");g.globalAlpha=1;text(msg,W/2,my,8,"#fff","center");}
   // arrow to drop when done
   if(P.carry>=lvl.total&&lvl.drop.x-cam>W){text(">>>",W-30,H/2,10,Math.floor(t*4)%2?"#ffeb3b":"#fff");}
 }

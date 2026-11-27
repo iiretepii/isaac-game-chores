@@ -504,3 +504,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-27 — Ghost Bridge ramps
 
 - Added personal invisible slopes up and down ground steps and shelf edges while Ghost Bridge is active. Player and grounded helpers can ride the slopes in either direction, with ceiling checks and normal one-way landing.
+
+## 2026-11-27 — Toggle owned power-ups
+
+- Player HUD timers are now tappable ON/OFF controls. Disabling stores the remaining duration and stops all effects; enabling restores the same time and resumes use. Added clear status labels, saved-duration refreshes and room reset behavior.

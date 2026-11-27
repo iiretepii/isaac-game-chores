@@ -338,3 +338,5 @@ Tidy the house balcony after an afternoon of reading: collect 11 newspapers and 
 Rooms with narrow pits (up to three tiles wide) or skinny stepping-stone landings (one or two tiles) get extra Ghost Bridge bonuses on safe flat ground before those sections. Nearby hazards share a pickup, and existing bonuses are kept. Bridges still belong to their collector.
 
 Ghost Bridge also provides invisible ramps **up and down** steep ground steps and shelf-platform edges. The powered character can ride the slopes in either direction; ramps disappear with the timer, remain personal, and do not alter room tiles. Solid ceilings still block a rider.
+
+Tap or click one of your collected power-up timers to toggle that power **OFF / ON**. OFF stops its effect and freezes its remaining seconds; ON resumes both the effect and countdown. Each power toggles separately during play or pause. Collecting the same disabled power refreshes its saved duration without switching it on. Helpers keep their own independent powers, and starting a room clears saved powers too.
