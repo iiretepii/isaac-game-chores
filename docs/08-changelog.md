@@ -540,3 +540,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-27 — Rescue Balloon lab gap
 
 - Selecting Rescue Balloon opens a gap directly under the player, with a solid return spot beside it. Reset repeats the demonstration and changing powers restores the floor.
+
+## 2026-11-27 — Fire Aura burn-up
+
+- Fire Aura now burns critters up in cartoon flames and smoke instead of the generic defeat effect. Works for the player and helpers, including lab tests.

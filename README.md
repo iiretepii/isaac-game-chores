@@ -361,3 +361,5 @@ Open **Power-Up Lab (B)** on the title screen or choose it in Level Select. Pick
 The lab now opens its dedicated **Choose a Power-Up to Test** screen immediately after the about-to-start screen; testing begins only after a selection. Andrew built the lab and watches from beside the practice area. He does not attack the test critter or interrupt experiments with rescues.
 
 Choosing **Rescue Balloon** in the Power-Up Lab opens a gap directly under the player. The balloon catches the fall and returns the player to solid ground beside it. **Test Again** repeats the experiment; selecting another power restores the practice floor.
+
+Fire Aura now visibly burns defeated critters up in flickering orange/yellow flames, fading into smoke and a small ash puff. The 1.5-second animation awards points once and pauses with gameplay, just like other aura defeats.
