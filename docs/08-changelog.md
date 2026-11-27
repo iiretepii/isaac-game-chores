@@ -512,3 +512,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-27 — Electric Aura
 
 - Added a 10-second Electric Aura that zaps nearby critters through clear paths, with cyan/yellow lightning effects. All five helpers can collect it; player toggles pause and resume its timer. Added it to rotating bonuses and an extra pickup in Charging Room Chaos.
+
+## 2026-11-27 — Water, Air, Earth and Strength Auras
+
+- Added four 10-second auras, all defeating nearby critters through clear paths. Air also boosts jumps/slows falling; Earth blocks hits; Strength earns extra aura-defeat points. Each has its own icon/effects, works for all collectors, rotates through room bonuses and supports player timer toggles.

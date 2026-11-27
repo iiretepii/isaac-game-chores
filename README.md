@@ -63,7 +63,7 @@ The bar at the top of the screen shows the parents' car driving toward the house
 
 ### Power-ups
 
-Each 2D room has five optional bonus pickups: shield, speed and magnet plus two rotating powers from the twelve extra types. Whole House also has three extra Ghost Bridge pickups spread through the room. You, Isaac, Annie, Daniel, Colin or Andrew can collect the unframed icons to power themselves up:
+Each 2D room has five optional bonus pickups: shield, speed and magnet plus two rotating powers from the sixteen extra types. Whole House also has three extra Ghost Bridge pickups spread through the room. You, Isaac, Annie, Daniel, Colin or Andrew can collect the unframed icons to power themselves up:
 
 | Power-up | Effect | Lasts |
 |---|---|---|
@@ -76,6 +76,10 @@ Each 2D room has five optional bonus pickups: shield, speed and magnet plus two 
 | Star | Defeats critters on contact and protects against LEGO hits | 8 seconds |
 | Fire Aura | Defeats nearby critters with a clear path | 8 seconds |
 | Electric Aura | Zaps nearby critters within 64 pixels, with a clear path | 10 seconds |
+| Water Aura | Defeats nearby critters with swirling water | 10 seconds |
+| Air Aura | Defeats nearby critters, boosts jumps and slows falling | 10 seconds |
+| Earth Aura | Defeats nearby critters and blocks critter/LEGO hits | 10 seconds |
+| Strength Aura | Defeats close critters for twice the normal critter points | 10 seconds |
 | Ice Aura | Freezes nearby critters with a clear path | 8 seconds |
 | Slow Aura | Slows nearby critters with a clear path | 10 seconds |
 | Double Points | Doubles the collector’s chore and critter points | 10 seconds |
