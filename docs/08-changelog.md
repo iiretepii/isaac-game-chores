@@ -488,3 +488,6 @@ Grouped by milestone. See `git log` for every commit.
   - **Smaller:** bubbles are compact cream boxes with 6 px text (up to 124 px wide, down from 176 px with 8 px text), a thin outline, a tail and a stripe in the speaker's color. The player's greeting uses the same style.
   - **Less floating text:** a helper pickup floats a small "+1" in their color instead of "NAME! 49 LEFT". Power-ups no longer float a duplicate "SHIELD!" label, and rush lines no longer float "GO GO GO!".
   - **Readable banner:** the center message sits on a dark translucent strip.
+
+### Whole House sampler
+- The Whole House no longer layers three songs at once; it had gotten too big. It now samples the game one song at a time: four bars of each of the 43 level songs in room order, each at its own tempo and volume, with a record scratch and cymbal crash between songs. About 5½ minutes, then it loops. The mashup code (`playMashupTick`, `MASHUP_BPM`, `MASHUP_TICKS`) was removed and replaced by `SAMPLER_BARS`. Re-recorded `music/44-whole-house-medley.mp3`.

@@ -63,15 +63,13 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 
 ## Volume Leveling
 
-Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays at about −35 dB RMS. The gentle pieces are set a little quieter: title and basement −38, music room and attic −37, library −37, fail screen −38. Money Room uses a 0.82 trim (about −35 dB RMS). The pet room song (about −32) and the ending fanfare (about −31) are set a little louder so the victory song stands out. For individual songs, the scheduler sets the music volume to `MUSIC_BASE × gain`. The mashup applies each trim inside its isolated layer bus, divided by three. After writing or changing a song, re-measure its loudness and update its trim.
+Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays at about −35 dB RMS. The gentle pieces are set a little quieter: title and basement −38, music room and attic −37, library −37, fail screen −38. Money Room uses a 0.82 trim (about −35 dB RMS). The pet room song (about −32) and the ending fanfare (about −31) are set a little louder so the victory song stands out. The scheduler sets the music volume to `MUSIC_BASE × gain`, both for individual songs and for each song in the Whole House sampler. After writing or changing a song, re-measure its loudness and update its trim.
 
 ## The Medley
 
-`MIX` includes all 43 level songs in room order, including Race Track Rumble’s `racerock` arrangement. The Whole House music is a simultaneous mashup: three level tracks play together at a shared 128 BPM, with a new group every four 4/4 bars (7.5 seconds). Fifteen groups cover every level song before the groups repeat (the last group wraps around to the first songs). Each track appears once per group rotation.
+`MIX` includes all 43 level songs in room order, including Race Track Rumble’s `racerock` arrangement. The Whole House music is a **sampler**: one song at a time, the first `SAMPLER_BARS = 4` bars of each `MIX` song at its own tempo, time signature, rubato and gain trim, with a record scratch and cymbal crash at each change. One pass through all 43 songs takes about 5½ minutes, then it loops. Individual rooms keep their full songs. Title, victory and fail-screen songs are not level tracks and stay separate. The last-15-seconds speedup still applies.
 
-Each layer keeps its instrument arrangement and per-song gain trim, scaled to one third. Independent guitar/reverb buses prevent one layer’s instruments from taking another layer’s volume. Notes align to the shared beat; the original time signatures and rubato are adapted for the mashup. Individual rooms keep their original songs and tempos. Title, victory and fail-screen songs are not level tracks and remain separate. The last-15-seconds speedup still applies.
-
-**Rule:** add every new level song to `MIX`, including alternate arrangements, and re-record the mashup. The 3D fork retains its separate audio snapshot unless explicitly updated.
+**Rule:** add every new level song to `MIX`, including alternate arrangements, and re-record the Whole House sampler. The 3D fork retains its separate audio snapshot unless explicitly updated.
 
 ## Instruments
 
@@ -103,7 +101,7 @@ Shared reverb comes from a convolver with a generated noise impulse (`reverb()`)
 
 The recordings are made by running the game's code in headless Chromium:
 1. **Swap the audio context:** replace `AC` with an `OfflineAudioContext`, and reset `revIn`, `gtrBus`, `leadBus`, `noiseBuf`, `master`, `musicGain` and `sfxGain` to nodes on that context.
-2. **Schedule the song:** call each style's `play()` across one loop. Short loops repeat until the file is at least about 40 s long. For the mashup, call `playMashupTick` for `Math.ceil(MIX.length / 3) * MASHUP_TICKS` ticks at `60 / MASHUP_BPM / 4` seconds per tick. This records all simultaneous layers through one full group rotation.
+2. **Schedule the song:** call each style's `play()` across one loop. Short loops repeat until the file is at least about 40 s long. For the Whole House sampler, play `SAMPLER_BARS` bars of each `MIX` style in order, setting that style's gain and adding `scratch()` + `crash()` at each change, to record one full pass.
 3. **Render:** render to WAV and normalize the peak to 90%. Gentle songs (title, basement, attic, music room, library) therefore sound louder than they do in the game.
 4. **Convert:** encode as a 96 kbps MP3 with `ffmpeg`.
 
@@ -126,13 +124,13 @@ GTA V + VI Toy Room uses an original synth/funk radio groove with electric piano
 
 Charging Room Chaos uses Fully Charged, an original electronic dance track with plucked arpeggios, synth lead, pads and a steady beat. Its 1.0 volume trim measures about −35.9 dB RMS over the rendered loop.
 
-The seven holiday songs use 8.0 gain trims: measured in-game RMS is about −35.4 to −33.7 dB, with April Fools slightly louder for its prank accents. They are original synth arrangements. The 2D mashup now covers 43 songs in fifteen groups (112.5 seconds per group rotation).
+The seven holiday songs use 8.0 gain trims: measured in-game RMS is about −35.4 to −33.7 dB, with April Fools slightly louder for its prank accents. They are original synth arrangements. The Whole House sampler includes all of them.
 
 Mother’s Day and Father’s Day use original synth arrangements with 8.0 gain trims, measured at about −34.9 and −35.9 dB RMS respectively.
 
-Daniel’s room uses an original stadium-rock synth arrangement; Colin’s uses an original bright surf-rock-inspired synth groove. Both have independent 8.0 gain trims and appear in the 2D mashup.
+Daniel’s room uses an original stadium-rock synth arrangement; Colin’s uses an original bright surf-rock-inspired synth groove. Both have independent 8.0 gain trims and appear in the Whole House sampler.
 
-Mom’s room uses a gentle original 3/4 synth waltz; Uncle Pete’s room uses an original stadium-style synth groove. Both have independent 8.0 gain trims and are included in the Whole House mashup.
+Mom’s room uses a gentle original 3/4 synth waltz; Uncle Pete’s room uses an original stadium-style synth groove. Both have independent 8.0 gain trims and are included in the Whole House sampler.
 
 The new Mom’s Room and Uncle Pete’s Room recordings measured approximately −35.8 and −35.6 dB RMS in-game before listening-file normalization.
 
