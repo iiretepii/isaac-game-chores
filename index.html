@@ -1527,12 +1527,28 @@ function makePowerups(level){
   types.push('bridge','bridge','bridge');
   desired.push(...[.16,.5,.8].map(f=>Math.round(level.cols*f)));
  }
- return types.map((kind,i)=>{
+ const bonuses=types.map((kind,i)=>{
   const options=candidates.filter(q=>used.every(c=>Math.abs(c-q.c)>=4));
   options.sort((a,b)=>Math.abs(a.c-desired[i])-Math.abs(b.c-desired[i]));
   const safe=options.find(q=>!level.enemies.some(e=>Math.abs(e.x-q.x)<32)&&!level.items.some(it=>Math.abs(it.x-q.x)<20&&Math.abs(it.y-q.y)<20))||options[0];
   if(!safe)return null;used.push(safe.c);return {kind,x:safe.x,y:safe.y,w:16,h:16,got:false};
  }).filter(Boolean);
+ // Offer bridges before narrow pits and runs of skinny stepping-stone landings.
+ let lastCluster=-100;
+ for(let c=1;c<level.cols-1;c++){
+  if(level.ground[c]||!level.ground[c-1])continue;
+  let end=c;while(end<level.cols&&!level.ground[end])end++;
+  let bank=end;while(bank<level.cols&&level.ground[bank])bank++;
+  const narrow=end-c<=3||bank-end<=2;
+  if(!narrow||c-lastCluster<12)continue;
+  const options=candidates.filter(q=>q.c<c&&c-q.c<=24&&bonuses.every(b=>Math.abs(b.x-q.x)>=T*2));
+  options.sort((a,b)=>b.c-a.c);
+  const safe=options.find(q=>!level.enemies.some(e=>Math.abs(e.x-q.x)<24)&&!level.items.some(it=>Math.abs(it.x-q.x)<16&&Math.abs(it.y-q.y)<20))||options[0];
+  if(!safe)continue;
+  if(!bonuses.some(b=>b.kind==='bridge'&&b.x<c*T&&c*T-b.x<=12*T))bonuses.push({kind:'bridge',x:safe.x,y:safe.y,w:16,h:16,got:false});
+  lastCluster=c;
+ }
+ return bonuses;
 }
 
 // ================= GAME STATE =================

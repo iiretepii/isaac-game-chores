@@ -132,3 +132,5 @@ LEGO Builders Room uses theme `legoroom`, collectible `legobrick` and full-size 
 During play, touch-friendly **Pause / Resume** and **Mute / Unmute** buttons appear in the upper-right corner. They also work with a mouse; P/Escape and M remain available. Pausing clears held movement, and tapping these controls does not trigger a jump or advance a screen. Labels and accessibility state follow keyboard changes too.
 
 Balcony Reading Break uses `balcony` theme and aggregate `reading` chore type. Generation alternates actual `newspaper` and `magazine` items, with distinct sprites and shared completion tally. Drop `readingbasket` is 70 pixels wide at scale 1. It reuses the gentle `blockgarden` music and standard helper, power-up, terrain and rescue logic.
+
+Rooms with narrow pits (up to three tiles wide) or skinny stepping-stone landings (one or two tiles) get extra Ghost Bridge bonuses on safe flat ground before those sections. Nearby hazards share a pickup, and existing bonuses are kept. Bridges still belong to their collector.

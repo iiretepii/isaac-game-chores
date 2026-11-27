@@ -496,3 +496,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-27 — Balcony Reading Break
 
 - Added a house balcony level before Whole House with 11 newspapers and 11 magazines to return to a reading basket. Added railings, chairs, table, plants and neighborhood scenery, plus player intro dialogue. Uses the existing relaxing Lanterns in the Block Garden music. There are now 45 chores plus optional Training.
+
+## 2026-11-27 — Extra bridges for skinny gaps
+
+- Added extra Ghost Bridge pickups before narrow pits and skinny stepping-stone sections, using safe flat ground and spacing them from existing bonuses. Kept all standard and Whole House bonuses.
