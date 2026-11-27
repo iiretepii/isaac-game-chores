@@ -30,8 +30,8 @@ The original **2D game** is a single file, `index.html`. Open it in any modern w
 | Duck | Down arrow or S | DUCK button |
 | Start / continue | Enter or Space, or click | Tap the screen |
 | Level select (title screen or after finishing a level) | L, then arrows + Enter | Tap LEVEL SELECT, then tap a level |
-| Pause | P or Esc | — |
-| Mute | M | — |
+| Pause | P or Esc | Pause / Resume button |
+| Mute | M | Mute / Unmute button |
 
 On phones and tablets, the touch buttons support repeated Jump taps and holding movement while jumping. The game scales to fit portrait and landscape screens.
 
