@@ -158,7 +158,7 @@ Daniel’s Monster Jam Room is level 3, and Colin’s Surf Shack is level 4, And
 | 31 | **Roblox Avatar Roundup** | Toy Roblox avatars → display shelf | 35 | 169s | Robot vacuums, pixel space invaders, arcade ghosts | Original upbeat electronic obby-style music |
 | 32 | **GTA V + VI Toy Room** | Toy sports cars and bikes → city garage | 36 | 172s | Robot vacuums, dogs, rats | Original sunset-city synth/funk radio groove |
 | 33 | **Charging Room Chaos** | Charging cables → cable organizer | 37 | 175s | Lightning bolts, robot vacuums, ants | Original electronic dance music |
-| 34 | **LEGO Builders Room** | LEGO bricks → LEGO storage bin | 20 | 180s | Roombas, slimes | Press Start to Clean! |
+| 34 | **LEGO Builders Room** | LEGO bricks → LEGO storage bin | 20 | 180s | Roombas, slimes | Snap Together Stomp |
 | 35 | **Halloween Haunt** | Put the carved pumpkins in the pumpkin bucket | 38 | 178s | bat, spider, ghosty | Original Spooky Sugar Shuffle |
 | 36 | **Thanksgiving Feast** | Return the pie slices to the feast table | 39 | 181s | turkey | Original Harvest Home Hop |
 | 37 | **Christmas Cheer** | Put the presents under the Christmas tree | 40 | 184s | roomba, cat, hamster | Festive Christmas carol medley |
@@ -212,7 +212,8 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Pet Room | [*Wag Wag Woof Woof!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/25-pet-room.mp3) | A super-silly, bouncy video-game song: a pulse-wave lead with a kazoo joining in, boing bass, oom-pah chord stabs and 8-bit drums, while pixel dogs woof, cats meow, birds tweet, a squeaky toy squeaks and a hamster wheel spins |
 | Race Track | [*Radical Race Rock*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/26-race-track.mp3) | Isaac's Room rock song at racing speed (240 BPM instead of 144), stretched to about a minute: the riff, a key change up, an engine-revving breakdown and a final lap a fourth higher |
 | Game Room | [*Press Start to Clean!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/27-game-room.mp3) | The most video-game video-game music possible: NES-style pulse-wave lead with vibrato and echo, lightning-fast chord arpeggios, a bouncing triangle bass, noise drums, coin blings, a power-up sweep and a 1-UP jingle |
-| LEGO Builders Room and Training Room | [*Press Start to Clean!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/27-game-room.mp3) | Same song as the Game Room |
+| LEGO Builders Room | [*Snap Together Stomp*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/34-lego-room.mp3) | An original, bouncy building-block song: a bright xylophone melody, a funky bass and clicky "brick snap" percussion. In the middle the music builds like a tower, stacking one more note each bar, then the tune returns with a toy-piano sparkle and a final click-clack |
+| Training Room | [*Press Start to Clean!*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/27-game-room.mp3) | Same song as the Game Room |
 | Money Room | [*Winter (8-Bit) – Vivaldi*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/28-money-room.mp3) | Antonio Vivaldi's "Winter" from *The Four Seasons* (1725, public domain), first movement, arranged from memory as NES-style video game music. It opens on the famous solo-violin arpeggios, then the repeated-note storm theme, the solo again, the shivering stacked chords with an icy trill building into a storm burst, and a plunging scale, played on pulse waves with a triangle bass and 8-bit drums |
 | MarioKart Toy Room | [*Castle Cup Celebration*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/29-kart-toy-room.mp3) | An original cheerful grand-prix fanfare with horns, dancing strings, harp, celesta and snare; not a recording or recreation of Royal Raceway |
 | Minecraft Block Room | [*Lanterns in the Block Garden*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/30-minecraft-room.mp3) | Original spacious piano, soft ambient tones and little harp lights, with no drums; not a Minecraft soundtrack recording |
@@ -313,7 +314,7 @@ Choose **Training Room (T)** on the title screen, press **T**, or pick it in Lev
 
 Whoever Andrew rescues says **“W Andrew!”** in a speech bubble attached to that character during the carry and briefly after landing.
 
-Sibling and cousin greetings, cleanup lines, power-up announcements and Andrew’s rescue calls appear in speech bubbles attached to their speaker. Family room introductions show a speech bubble beside the speaking character; parent phone messages stay in the intro panel.
+Sibling and cousin greetings, cleanup lines, power-up announcements and Andrew’s rescue calls appear in small speech bubbles attached to their speaker. Helpers **take turns**: only one helper bubble shows at a time, other lines wait in a short queue (stale lines are dropped), and each line shows for at most about 2 seconds. Bubbles are compact cream boxes in a small font with a thin outline, a tail, and a stripe in the speaker's color. A helper's pickup floats a small "+1" in their color. Family room introductions show a speech bubble beside the speaking character; parent phone messages stay in the intro panel.
 
 After the rescued character says “W Andrew!”, Andrew replies **“Happy to help!”** in his own speech bubble. The reply follows after a short pause and pauses with the game.
 

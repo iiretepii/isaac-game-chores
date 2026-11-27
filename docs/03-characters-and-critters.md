@@ -190,7 +190,7 @@ During a rescue the passenger stays visible below Andrew, follows his slow retur
 
 Whoever Andrew rescues says **“W Andrew!”** in a speech bubble attached to that character during the carry and briefly after landing.
 
-Sibling and cousin greetings, cleanup lines, power-up announcements and Andrew’s rescue calls appear in speech bubbles attached to their speaker. Family room introductions show a speech bubble beside the speaking character; parent phone messages stay in the intro panel.
+Sibling and cousin greetings, cleanup lines, power-up announcements and Andrew’s rescue calls appear in small speech bubbles attached to their speaker. Helpers **take turns**: only one helper bubble shows at a time, other lines wait in a short queue (stale lines are dropped), and each line shows for at most about 2 seconds. Bubbles are compact cream boxes in a small font with a thin outline, a tail, and a stripe in the speaker's color. A helper's pickup floats a small "+1" in their color. Code: `helperSays` queues lines in `talkQ` (at most 3, each shown up to 2.2 s, dropped after 3 s), `updateTalk` starts the next one when nobody is talking (0.35 s pause between speakers), and `drawSpeechBubble` draws the bubble (6 px text, up to 124 px wide). Family room introductions show a speech bubble beside the speaking character; parent phone messages stay in the intro panel.
 
 After the rescued character says “W Andrew!”, Andrew replies **“Happy to help!”** in his own speech bubble. The reply follows after a short pause and pauses with the game.
 

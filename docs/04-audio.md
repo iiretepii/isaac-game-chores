@@ -40,7 +40,8 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `baroque` | *Little Fugue in the Attic* | 84 | 4 | 16 | 20 | Attic of Antiques | `music/24-attic.mp3` |
 | `pets` | *Wag Wag Woof Woof!* | 168 | 4 | 16 | 16 | Pet Room Pandemonium | `music/25-pet-room.mp3` |
 | `racerock` | *Radical Race Rock* | 240 | 2 | 8 | 32 | Race Track Rumble | `music/26-race-track.mp3` |
-| `chiptune` | *Press Start to Clean!* | 150 | 4 | 16 | 16 | Game Room Glitch, LEGO Builders Room, Training Room | `music/27-game-room.mp3` |
+| `chiptune` | *Press Start to Clean!* | 150 | 4 | 16 | 16 | Game Room Glitch, Training Room | `music/27-game-room.mp3` |
+| `legosnap` | *Snap Together Stomp* (original) | 132 | 4 | 16 | 16 | LEGO Builders Room | `music/34-lego-room.mp3` |
 | `money` | *Winter (8-Bit) – Vivaldi* | 116 | 4 | 16 | 16 | Money Room Millions | `music/28-money-room.mp3` |
 | `grandprix` | *Castle Cup Celebration* (original) | 144 | 2 | 8 | 16 | MarioKart Toy Room | `music/29-kart-toy-room.mp3` |
 | `blockgarden` | *Lanterns in the Block Garden* (original) | 72 | 2 | 8 | 8 | Minecraft Block Room | `music/30-minecraft-room.mp3` |
@@ -66,7 +67,7 @@ Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays a
 
 ## The Medley
 
-`MIX` includes all 42 level songs in room order, including Race Track Rumble’s `racerock` arrangement. The Whole House music is a simultaneous mashup: three level tracks play together at a shared 128 BPM, with a new group every four 4/4 bars (7.5 seconds). Fourteen groups cover every level song before the groups repeat. Each track appears once per group rotation.
+`MIX` includes all 43 level songs in room order, including Race Track Rumble’s `racerock` arrangement. The Whole House music is a simultaneous mashup: three level tracks play together at a shared 128 BPM, with a new group every four 4/4 bars (7.5 seconds). Fifteen groups cover every level song before the groups repeat (the last group wraps around to the first songs). Each track appears once per group rotation.
 
 Each layer keeps its instrument arrangement and per-song gain trim, scaled to one third. Independent guitar/reverb buses prevent one layer’s instruments from taking another layer’s volume. Notes align to the shared beat; the original time signatures and rubato are adapted for the mashup. Individual rooms keep their original songs and tempos. Title, victory and fail-screen songs are not level tracks and remain separate. The last-15-seconds speedup still applies.
 
@@ -125,7 +126,7 @@ GTA V + VI Toy Room uses an original synth/funk radio groove with electric piano
 
 Charging Room Chaos uses Fully Charged, an original electronic dance track with plucked arpeggios, synth lead, pads and a steady beat. Its 1.0 volume trim measures about −35.9 dB RMS over the rendered loop.
 
-The seven holiday songs use 8.0 gain trims: measured in-game RMS is about −35.4 to −33.7 dB, with April Fools slightly louder for its prank accents. They are original synth arrangements. The 2D mashup now covers 42 songs in fourteen groups (105 seconds per group rotation).
+The seven holiday songs use 8.0 gain trims: measured in-game RMS is about −35.4 to −33.7 dB, with April Fools slightly louder for its prank accents. They are original synth arrangements. The 2D mashup now covers 43 songs in fifteen groups (112.5 seconds per group rotation).
 
 Mother’s Day and Father’s Day use original synth arrangements with 8.0 gain trims, measured at about −34.9 and −35.9 dB RMS respectively.
 

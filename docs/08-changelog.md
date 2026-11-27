@@ -480,3 +480,11 @@ Grouped by milestone. See `git log` for every commit.
 - The LEGO Builders Room (Level 34) now follows the difficulty climb (8-tile gaps) like its neighbors; every room's `difficultyIndex` and `gap` were recomputed for 44 levels. Checks: every pit and climb is clearable, every level has its full item count, and every drop-off sits on solid ground.
 - MP3s from Halloween onward were renumbered to match their level numbers after the LEGO room was inserted (`35-halloween.mp3` … `44-whole-house-medley.mp3`, `45-ending-jubilee.mp3`, `46-fail-screen.mp3`), and every link was updated.
 - Docs: critter level lists regenerated; LEGO Builders Room and Training Room added to the items and drop-offs table; the LEGO and Training rooms noted as sharing *Press Start to Clean!*; level counts updated to 44.
+
+### LEGO room song and calmer speech bubbles
+- The LEGO Builders Room has its own original song, *Snap Together Stomp* (`legosnap`, 132 BPM, D major): a xylophone melody, funky bass, clicky brick-snap percussion, a tower-building middle section that stacks one more note each bar, and a toy-piano sparkle at the end. Checked so every melody note on a beat fits its chord. Trim 1.4 (about −35 dB RMS). Recorded as `music/34-lego-room.mp3` and added to `MIX` after the Charging Room, so the Whole House mashup now has 43 songs in fifteen groups. The mashup was re-recorded.
+- Speech bubbles were redesigned to be less distracting:
+  - **One at a time:** helpers take turns, so only one helper bubble shows at once (`talkQ`/`updateTalk`). Lines show for up to 2.2 s, and stale ones are dropped.
+  - **Smaller:** bubbles are compact cream boxes with 6 px text (up to 124 px wide, down from 176 px with 8 px text), a thin outline, a tail and a stripe in the speaker's color. The player's greeting uses the same style.
+  - **Less floating text:** a helper pickup floats a small "+1" in their color instead of "NAME! 49 LEFT". Power-ups no longer float a duplicate "SHIELD!" label, and rush lines no longer float "GO GO GO!".
+  - **Readable banner:** the center message sits on a dark translucent strip.

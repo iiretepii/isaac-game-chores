@@ -86,7 +86,7 @@ See [02 – Levels](02-levels.md) for the rules.
 
 ### Whole House mashup
 
-`playMashupTick` layers three level songs at a shared 128 BPM. `MASHUP_TICKS=64` sets each group to four 4/4 bars; fourteen groups cover all 42 songs. Each layer has its own gain, guitar and reverb buses, with the song’s trim divided by three. Individual room playback is unchanged. See [04](04-audio.md) for recording details.
+`playMashupTick` layers three level songs at a shared 128 BPM. `MASHUP_TICKS=64` sets each group to four 4/4 bars; fifteen groups cover all 43 songs. Each layer has its own gain, guitar and reverb buses, with the song’s trim divided by three. Individual room playback is unchanged. See [04](04-audio.md) for recording details.
 
 Holiday rooms share `drawHolidayItem` for collectible art and `drawHolidayDrop` for decorated return spots. Their nine theme branches add banners, garlands and holiday props. Level Select computes its row height from `LEVELS.length`, fitting all 43 choices.
 
@@ -127,6 +127,6 @@ During a rescue the passenger stays visible below Andrew, follows his slow retur
 
 `TRAINING_IDX` identifies the appended optional room. `buildTrainingLevel` supplies deterministic practice terrain without changing the original room generator. `training` disables timer depletion and helper rush collection, uses position-based tips, and returns to title after clear; the adventure ends at the original Whole House finale.
 
-LEGO Builders Room uses theme `legoroom`, collectible `legobrick` and full-size drop `legobin` (70 px, scale 1). Its backdrop renders brick shelves, castle and baseplate studs. It reuses `chiptune` audio and the existing procedural terrain and team physics. It follows Charging Room Chaos; `TRAINING_IDX` still points to optional training.
+LEGO Builders Room uses theme `legoroom`, collectible `legobrick` and full-size drop `legobin` (70 px, scale 1). Its backdrop renders brick shelves, castle and baseplate studs. It has its own song, `legosnap`, and uses the existing procedural terrain and team physics. It follows Charging Room Chaos; `TRAINING_IDX` still points to optional training.
 
 During play, touch-friendly **Pause / Resume** and **Mute / Unmute** buttons appear in the upper-right corner. They also work with a mouse; P/Escape and M remain available. Pausing clears held movement, and tapping these controls does not trigger a jump or advance a screen. Labels and accessibility state follow keyboard changes too.

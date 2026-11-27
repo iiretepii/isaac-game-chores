@@ -1219,7 +1219,34 @@ STYLES.skyhop={name:"WINGS ABOVE THE HOUSE",bpm:120,spb:4,bar:16,bars:16,gain:8,
 const STYLE_GAIN={"charging":1.0,"cityradio":1.6,"obby":0.85,"blockgarden":3.0,"grandprix":0.9,"sad":1.62,"money":0.82,"punkska":0.39,"chiptune":0.76,"racerock":0.35,"pets":1.0,"garden":1.109,"library":1.175,"science":0.668,"rock":0.398,"jazz":1.161,"pop":0.776,"hiphop":0.427,"techno":1.035,"princess":1.718,"french2":1.905,"workout":0.794,"pool":0.676,"silly":0.575,"practice":1.641,"muzak":1.758,"crooner":1.549,"polka":0.631,"romantic":1.698,"baroque":1.679,"french":2.065,"finale":0.88};
 for(const k in STYLE_GAIN)if(STYLES[k])STYLES[k].gain=STYLE_GAIN[k];
 const MUSIC_BASE=0.38;
-const MIX=["rock","princess","monsterjam","surfrock","skyhop","momwaltz","bearsgroove","jazz","pop","hiphop","garden","pool","techno","polka","crooner","muzak","library","practice","punkska","silly","science","workout","romantic","baroque","pets","racerock","chiptune","money","grandprix","blockgarden","obby","cityradio","charging","halloween","thanksgiving","christmas","valentine","stpatrick","aprilfools","easter","mothersday","fathersday"];
+// LEGO BUILDERS ROOM: "Snap Together Stomp", an original, bouncy building-block song in D major. A bright xylophone
+//  melody over a funky bass and clicky "brick snap" percussion; in the middle the music builds like a tower, each bar
+//  stacking a rising arpeggio one brick higher, then the tune returns with a toy-piano sparkle and a final click-clack.
+const LEGO_CH={D:[62,66,69],G:[67,71,74],A:[64,69,73],Bm:[62,66,71]},LEGO_RT={D:38,G:43,A:45,Bm:47};
+const LEGO_CHORDS=['D','G','Bm','A','D','G','A','D','G','A','Bm','A','D','G','A','D'];
+const LEGO_MEL=[[74,0,78,81,78,0,74,0],[79,0,83,86,83,0,79,0],[78,0,83,86,86,-1,78,0],[76,0,81,85,88,-1,85,0],
+ [86,0,81,83,78,0,74,0],[79,0,83,81,79,0,74,0],[76,0,73,76,81,0,85,0],[86,-1,-1,-1,0,0,0,0],
+ [79,0,83,0,86,0,91,0],[81,0,85,0,88,0,93,0],[83,0,86,0,90,0,95,0],[88,-1,85,-1,81,-1,76,-1],
+ [74,0,78,81,78,0,74,0],[79,0,83,86,83,0,79,0],[76,0,73,76,81,0,85,0],[86,-1,-1,-1,0,0,0,0]];
+const brickSnap=(t,v=1)=>{nz(0.018,0.06*v,'bandpass',3400,t,6);tone(2200,0.012,'square',0.02*v,null,t,musicGain);};
+STYLES.legosnap={name:"SNAP TOGETHER STOMP",bpm:132,spb:4,bar:16,bars:16,gain:1.4,
+  play(i,t,d){const li=i%256,s16=li%16,bar=li>>4,cn=LEGO_CHORDS[bar],ch=LEGO_CH[cn],r=LEGO_RT[cn],build=bar>=8&&bar<12,last=bar===15;
+   // xylophone melody (eighths); a toy-piano sparkle doubles it in the last section
+   if(s16%2===0){const e=s16>>1,m=LEGO_MEL[bar][e];if(m>0){let n=1;while(e+n<8&&LEGO_MEL[bar][e+n]===-1)n++;
+     pluck(m,d*2*n*0.9,t,0.045,0.2,5200);if(bar>=12)celesta(m+12,d*2*n,t,0.02);if(build)vibes(m-12,d*2*n,t,0.025);}}
+   // funky bass: root, octave pop, fifth
+   if(!last||s16<4){if(s16===0)synthBass(r,d*3,t,0.16);if(s16===6)synthBass(r+12,d*1.5,t,0.12);if(s16===10)synthBass(r+7,d*2,t,0.13);if(s16===14&&!build)synthBass(r+12,d,t,0.1);}
+   // off-beat chord stabs, and in the build section a rising stack that adds one more note each bar
+   if(s16===2||s16===10)ch.forEach(x=>pluck(x,d*1.2,t,0.016,0.2,3000));
+   if(build&&s16%4===0){const stack=[...ch,...ch.map(x=>x+12)].slice(0,3+(bar-8));stack.forEach((x,k)=>pluck(x+12,d*3,t+k*0.012,0.012,0.3,4200));}
+   // drums: kick, claps, light hats and clicky brick snaps on the off-beat sixteenths
+   if(s16===0||s16===8||(bar>=12&&s16===11))kick(t,0.32);
+   if(s16===4||s16===12)clap(t,0.09);
+   if(s16%2===1)hat(t,false,0.025);
+   if(s16%4===2)brickSnap(t,build?1.3:1);
+   if(bar===11&&s16>=8)brickSnap(t,0.8+0.1*(s16-8));                      // snapping faster into the return of the tune
+   if(last&&s16===4){for(let k=0;k<6;k++)brickSnap(t+k*d*0.5,1.4);ch.forEach(x=>pluck(x+12,d*6,t+d*3,0.03,0.3,5200));}}};
+const MIX=["rock","princess","monsterjam","surfrock","skyhop","momwaltz","bearsgroove","jazz","pop","hiphop","garden","pool","techno","polka","crooner","muzak","library","practice","punkska","silly","science","workout","romantic","baroque","pets","racerock","chiptune","money","grandprix","blockgarden","obby","cityradio","charging","legosnap","halloween","thanksgiving","christmas","valentine","stpatrick","aprilfools","easter","mothersday","fathersday"];
 let music={on:false,style:'pop',step:0,next:0,seg:0,segStep:0,cycle:0};
 function startMusic(style){music.style=style;music.step=0;music.seg=0;music.segStep=0;music.cycle=0;music.on=true;if(AC)music.next=AC.currentTime+0.05;}
 // Three simultaneous tracks, synchronized to a common beat. Each group lasts four 4/4 bars.
@@ -1293,7 +1320,7 @@ const LEVELS=[
  {"name":"ROBLOX AVATAR ROUNDUP","chore":"Put the toy Roblox avatars back on the display shelf","drop":"avatarshelf","item":"avatar","seed":31181,"count":35,"time":169,"len":290,"gap":8,"enemies":["roomba","invader","ghosty"],"density":0.7,"lego":0.2,"movers":1,"theme":"obbyroom","music":"obby","text":"MOM: You, Isaac and Annie left Roblox avatar toys all over the room! Return every little builder to the shelf. Checkpoint: tidy!","difficultyIndex":16},
  {"name":"GTA V + VI TOY ROOM","chore":"Put the toy sports cars and bikes back in the city garage","drop":"citygarage","item":"citytoys","seed":33223,"count":36,"time":172,"len":300,"gap":8,"enemies":["roomba","dog","rat"],"density":0.7,"lego":0.2,"movers":1,"theme":"cityroom","music":"cityradio","text":"UNCLE PETE: You, Isaac and Annie left toy supercars and bikes from your two cities everywhere! Park them in the garage. Sunset tidy-up!","difficultyIndex":17},
  {"name":"CHARGING ROOM CHAOS","chore":"Put the charging cables back on the cable organizer","drop":"cabledock","item":"chargecable","seed":35267,"count":37,"time":175,"len":310,"gap":8,"enemies":["zap","roomba","ant"],"density":0.7,"lego":0.2,"movers":1,"theme":"chargingroom","music":"charging","text":"MOM: You, Isaac and Annie left charging cables EVERYWHERE! Coil them up and put them on the organizer. Let's get this room fully charged!","difficultyIndex":17},
- {"name":"LEGO BUILDERS ROOM","chore":"Put the loose LEGO bricks in the storage bin","drop":"legobin","item":"legobrick","seed":11262026,"count":20,"time":180,"len":230,"gap":8,"enemies":["roomba","slime"],"density":0.5,"lego":0.15,"movers":1,"theme":"legoroom","music":"chiptune","text":"ISAAC: Our LEGO builds are everywhere! Pick up the colorful bricks and put them in the LEGO bin. We will help!","difficultyIndex":18,"playerIntro":"YOU: Let's build a clean room! Every brick goes in the LEGO bin."},
+ {"name":"LEGO BUILDERS ROOM","chore":"Put the loose LEGO bricks in the storage bin","drop":"legobin","item":"legobrick","seed":11262026,"count":20,"time":180,"len":230,"gap":8,"enemies":["roomba","slime"],"density":0.5,"lego":0.15,"movers":1,"theme":"legoroom","music":"legosnap","text":"ISAAC: Our LEGO builds are everywhere! Pick up the colorful bricks and put them in the LEGO bin. We will help!","difficultyIndex":18,"playerIntro":"YOU: Let's build a clean room! Every brick goes in the LEGO bin."},
  {"name":"HALLOWEEN HAUNT","chore":"Put the carved pumpkins in the pumpkin bucket","drop":"pumpkinbucket","item":"carvedpumpkin","seed":40001,"count":38,"time":178,"len":320,"gap":8,"enemies":["bat","spider","ghosty"],"density":0.7,"lego":0.2,"movers":1,"theme":"halloween","music":"halloween","text":"MOM: You, Isaac and Annie: put the carved pumpkins in the pumpkin bucket. Holiday cleanup time!","difficultyIndex":18},
  {"name":"THANKSGIVING FEAST","chore":"Return the pie slices to the feast table","drop":"pietable","item":"pieslice","seed":41014,"count":39,"time":181,"len":330,"gap":9,"enemies":["turkey"],"density":0.7,"lego":0.2,"movers":1,"theme":"thanksgiving","music":"thanksgiving","text":"MOM: You, Isaac and Annie: return the pie slices to the feast table. Holiday cleanup time!","difficultyIndex":19},
  {"name":"CHRISTMAS CHEER","chore":"Put the presents under the Christmas tree","drop":"gifttree","item":"gift","seed":42027,"count":40,"time":184,"len":340,"gap":9,"enemies":["roomba","cat","hamster"],"density":0.7,"lego":0.2,"movers":1,"theme":"christmas","music":"christmas","text":"MOM: You, Isaac and Annie: put the presents under the christmas tree. Holiday cleanup time!","difficultyIndex":19},
@@ -1530,7 +1557,19 @@ function startLevel(i){
   state='intro';stateT=0;stopMusic();
   say(SIBS.find(d=>d.name==='COLIN').line,2.5);
 }
-function helperSays(actor,line,d=2){actor.dialogue=line;actor.dialogueT=d;}
+// Speech: helpers take turns, so only one helper bubble shows at a time. New lines wait in a short queue (the oldest
+//  are dropped if it backs up), each line shows for at most 2.2 s, and there is a short pause between speakers.
+let talkQ=[],talkGap=0;
+function helperSays(actor,line,d=2){
+ if(actor.dialogueT>0&&actor.dialogue===line)return;
+ if(talkQ.some(q=>q.actor===actor&&q.line===line))return;
+ talkQ.push({actor,line,d:Math.min(d,2.2),age:0});if(talkQ.length>3)talkQ.splice(0,talkQ.length-3);
+}
+function updateTalk(dt){
+ talkGap=Math.max(0,talkGap-dt);for(const q of talkQ)q.age+=dt;talkQ=talkQ.filter(q=>q.age<3);
+ const busy=[P,...sibs].some(a=>a.dialogueT>0);
+ if(!busy&&talkGap<=0&&talkQ.length){const q=talkQ.shift();q.actor.dialogue=q.line;q.actor.dialogueT=q.d;talkGap=0.35;}
+}
 function say(t,d=2){
  const speaker=SIBS.find(s=>t.startsWith(s.name+':'));
  if(speaker){const actor=sibs.find(s=>s.d===speaker);if(actor)helperSays(actor,t.slice(t.indexOf(':')+1).trim(),d);return;}
@@ -1546,7 +1585,7 @@ function popText(x,y,txt,col='#fff'){parts.push({x,y,vx:0,vy:-40,life:1,txt,col}
 
 function grantPower(kind,collector=P){
  const def=POWER_DEFS[kind];if(!def)return;
- (collector.powers||(collector.powers=freshPowers()))[kind]=def.duration;if(collector.d)helperSays(collector,'FOUND '+def.name+'!',1.8);else say(def.name+' ON!',1.8);popText(collector.x-6,collector.y-16,def.name+'!',def.color);puff(collector.x+5,collector.y+5,def.color,14,75);
+ (collector.powers||(collector.powers=freshPowers()))[kind]=def.duration;if(collector.d)helperSays(collector,'FOUND '+def.name+'!',1.8);else say(def.name+' ON!',1.8);puff(collector.x+5,collector.y+5,def.color,14,75);
  if(AC)[76,80,83].forEach((note,i)=>tone(mtof(note),.12,'sine',.08,null,AC.currentTime+i*.07));
 }
 function collectPowerups(){
@@ -1556,7 +1595,7 @@ function collectPowerups(){
   if(collector){bonus.got=true;grantPower(bonus.kind,collector);}
  }
 }
-function tickPowers(dt){for(const actor of [P,...sibs]){
+function tickPowers(dt){updateTalk(dt);for(const actor of [P,...sibs]){
  actor.dialogueT=Math.max(0,(actor.dialogueT||0)-dt);
  if(actor.rescueReplyDelay>0){actor.rescueReplyDelay=Math.max(0,actor.rescueReplyDelay-dt);if(actor.rescueReplyDelay===0)helperSays(actor,'Happy to help!',2.7);}
  actor.rescueThanks=Math.max(0,(actor.rescueThanks||0)-dt);
@@ -1579,7 +1618,7 @@ function pullWithMagnets(it,dt){
 }
 function collectHelperItem(s,it){
  if(it.got)return;it.got=true;s.rest=0;P.carry++;score+=25*pointMultiplier(s);levelScore+=25*pointMultiplier(s);SFX.collect();puff(it.x+8,it.y+8,s.d.color,8);
- const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?s.d.name+"! "+left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);
+ const left=lvl.total-P.carry;popText(it.x+2,it.y-4,left?"+1":"ALL DONE!",left?(s.d.color||"#fff"):"#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);
 }
 
 // Andrew reacts in the same update, before a falling teammate leaves the screen.
@@ -1865,7 +1904,7 @@ function updateSibs(dt){
     const ownRoom=s.d.ownTheme===lvl.L.theme;
     const fullTime=wholeHouse||ownRoom;
     const rush=!lvl.L.training&&(fullTime||frac<=s.d.rush);
-    if(rush&&!s.rushing){say(s.d.name+": "+(ownRoom?"MY ROOM, MY CHORES!":wholeHouse?"WHOLE HOUSE CLEANUP CREW!":"TURBO MODE! I'LL GRAB SOME!"),2);popText(s.x-10,s.y-12,fullTime?"TEAM CLEAN!":"GO GO GO!",s.d.color);}
+    if(rush&&!s.rushing){say(s.d.name+": "+(ownRoom?"MY ROOM, MY CHORES!":wholeHouse?"WHOLE HOUSE CLEANUP CREW!":"TURBO MODE! I'LL GRAB SOME!"),2);}
     s.rushing=rush;
     let tx,moving;
     const prey=s.d.ace&&!fullTime&&!s.d.fly?lvl.enemies.find(e=>e.alive&&Math.abs(e.x-P.x)<280&&Math.abs(e.x-s.x)<320&&Math.abs(e.y-s.y)<90):null;
@@ -3195,16 +3234,19 @@ function drawSibling(s,t){
     const status=active.slice(0,3).join(' ')+(active.length>3?' +'+(active.length-3):'');
     if(status)text(status,s.x+5,by+24,8,s.d.color,'center');}
 
-function drawSpeechBubble(actor,line,world=true,width=176,size=8){
+function drawSpeechBubble(actor,line,world=true,width=124,size=6,accent){
  if(world&&(actor.x+10<cam||actor.x>cam+W))return;
  g.font=size+'px '+FONT;
- const words=line.split(' '),lines=[];let row='';
- for(const word of words){const test=row?row+' '+word:word;if(row&&g.measureText(test).width>width-12){lines.push(row);row=word;}else row=test;}if(row)lines.push(row);
- const w=Math.min(width,Math.max(54,...lines.map(l=>g.measureText(l).width+12))),h=lines.length*(size+4)+8,left=world?cam:0;
- const x=Math.max(left+2,Math.min(left+W-w-2,actor.x+5-w/2)),y=Math.max(3,actor.y-h-16);
- R(x-1,y-1,w+2,h+2,'#182b42');R(x,y,w,h,'#fff');
- R(Math.max(x+4,Math.min(x+w-8,actor.x+3)),y+h,4,5,'#fff');
- lines.forEach((l,i)=>text(l,x+w/2,y+4+i*(size+4),size,'#20354c','center',false));
+ const words=String(line).split(' '),lines=[];let row='';
+ for(const word of words){const test=row?row+' '+word:word;if(row&&g.measureText(test).width>width-10){lines.push(row);row=word;}else row=test;}if(row)lines.push(row);
+ const w=Math.round(Math.min(width,Math.max(30,...lines.map(l=>g.measureText(l).width+10)))),h=lines.length*(size+3)+5,left=world?cam:0;
+ const x=Math.round(Math.max(left+2,Math.min(left+W-w-2,actor.x+5-w/2))),y=Math.round(Math.max(3,actor.y-h-12));
+ const col=accent||(actor.d&&actor.d.color)||'#ef5350',tx=Math.round(Math.max(x+4,Math.min(x+w-8,actor.x+3)));
+ R(x+1,y-1,w-2,h+2,'#2b2140');R(x-1,y+1,w+2,h-2,'#2b2140');                       // outline with clipped corners
+ R(x+1,y,w-2,h,'#fffbef');R(x,y+1,w,h-2,'#fffbef');R(x+1,y+h-2,w-2,1,'#efe3c8');     // cream body with a soft shadow line
+ R(x+1,y+1,2,h-2,col);                                                              // speaker's color on the left edge
+ R(tx,y+h,4,2,'#fffbef');R(tx+1,y+h+2,2,2,'#fffbef');R(tx-1,y+h,1,2,'#2b2140');R(tx+4,y+h,1,2,'#2b2140');R(tx,y+h+2,1,2,'#2b2140');R(tx+3,y+h+2,1,2,'#2b2140');R(tx+1,y+h+4,2,1,'#2b2140');
+ lines.forEach((l,i)=>text(l,x+w/2+1,y+3+i*(size+3),size,'#2b2140','center',false));
 }
 function drawRescueThanks(actor){
  if(!(actor.rescueThanks>0))return;
@@ -3228,9 +3270,7 @@ function drawPlay(t){
   const st=P.sq||0,sx=1+st*0.35,sy=1-st*0.3+(!P.on&&P.vy<-100?0.12:0);
   drawPowerEffects(t);
   drawKid(P.x,P.y+P.h-14,P.face,P.anim/2,!P.on,!P.rescueCarry&&P.inv>0?P.inv:0,sx,sy,P.duck);
-  if(P.speechT>0){g.font='8px '+FONT;const tw=Math.ceil(g.measureText(P.speech).width)+8,bx=Math.round(Math.max(cam+3,Math.min(cam+W-tw-3,P.x+P.w/2-tw/2))),byy=Math.round(P.y-24-Math.max(0,P.speechT-2)*20);
-    R(bx-1,byy-1,tw+2,16,"#000");R(bx,byy,tw,14,"#fff");{const px=Math.round(P.x+P.w/2);R(px-3,byy+14,6,2,"#fff");R(px-2,byy+16,4,2,"#fff");R(px-1,byy+18,2,1,"#000");}
-    text(P.speech,bx+tw/2,byy+3,8,"#e53935","center",false);}
+  if(P.speechT>0&&!(P.dialogueT>0))drawSpeechBubble({x:P.x,y:P.y-Math.max(0,P.speechT-2)*20},P.speech,true,124,6,'#ef5350');
   for(const actor of [P,...sibs]){drawRescueThanks(actor);if(actor.dialogueT>0)drawSpeechBubble(actor,actor.dialogue);}
   for(const p of parts){g.globalAlpha=Math.min(1,p.life*2);if(p.txt)text(p.txt,p.x,p.y,8,p.col);else{const z=p.life>0.5?3:2;R(p.x,p.y,z,z,p.col);}}
   g.globalAlpha=1;g.restore();
@@ -3242,7 +3282,7 @@ function drawPlay(t){
     const tip=c<18?'A/D OR ARROWS: MOVE':c<29?'SPACE OR JUMP: TAP TWICE TO DOUBLE JUMP':c<40?'DOWN / S OR DUCK: CROUCH':c<49?'TOUCH A POWER-UP TO TRY ITS POWER':c<61?'GHOST BRIDGE CROSSES GAPS. ANDREW CAN SAVE YOU!':c<84?'PRACTICE YOUR DOUBLE JUMP OVER THE GAP':P.carry<lvl.total?'COLLECT ALL 6 TOYS, THEN FIND THE CHEST':'BRING YOUR TOYS TO THE CHEST >>>';
     R(4,60,W-8,18,'#162c48');text(tip,W/2,65,6,'#b6fff1','center',false);}
 
-  if(msgT>0)text(msg,W/2,44+Math.max(0,powerHudRows()-1)*12,8,"#fff","center");
+  if(msgT>0){const my=44+Math.max(0,powerHudRows()-1)*12;g.font='8px '+FONT;const mw=Math.min(W-20,Math.ceil(g.measureText(msg).width)+16);g.globalAlpha=0.55;R(W/2-mw/2,my-3,mw,14,"#120a24");g.globalAlpha=1;text(msg,W/2,my,8,"#fff","center");}
   // arrow to drop when done
   if(P.carry>=lvl.total&&lvl.drop.x-cam>W){text(">>>",W-30,H/2,10,Math.floor(t*4)%2?"#ffeb3b":"#fff");}
 }
