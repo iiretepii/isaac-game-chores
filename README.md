@@ -349,3 +349,5 @@ Tap or click one of your collected power-up timers to toggle that power **OFF / 
 Electric Aura appears in the rotating bonus selection, with an extra pickup in Charging Room Chaos. Blue-and-yellow lightning sparks surround its collector. It belongs to the player or helper who finds it; the player can switch it off to save its remaining time, then switch it on again.
 
 Aura defeats now have 1.5-second animations: **Earth** drops a grass-topped hard dirt block and squashes the critter flat; **Water** surrounds it in water and rising bubbles until it sinks away; **Air** lifts it up, then slams it down with an impact puff. Defeated critters immediately stop causing damage and score only once. Animations pause with gameplay and do not change terrain.
+
+Electric Aura now visibly electrocutes nearby critters with jittering, flashing cyan/yellow lightning and sparks during their defeat animation.

@@ -1498,7 +1498,7 @@ function auraNear(a,e,r){return Math.hypot(a.x+5-(e.x+e.w/2),a.y+(a.h||20)/2-(e.
 function enemyPowerScale(e){const actors=[P,...sibs];if(actors.some(a=>a.powers?.ice>0&&auraNear(a,e,96)))return 0;return actors.some(a=>a.powers?.slow>0&&auraNear(a,e,96))?0.35:1;}
 function defeatWithPower(e,a,effect=null){if(!e.alive)return;e.alive=false;e.dead=effect?1.5:.5;if(effect)e.auraDefeat={kind:effect,duration:1.5,floor:Math.min(H-4,groundBelow(e.x+e.w/2,e.y+e.h-2)??e.y+e.h)};const points=100*pointMultiplier(a)*(a.powers?.strength>0?2:1);score+=points;levelScore+=points;SFX.boing();puff(e.x+7,e.y+6,a.powers?.electric>0?'#7ff3ff':a.powers?.fire>0?'#ff985d':'#fff19a',10,65);popText(e.x,e.y-8,'+'+points,'#fff19a');}
 function auraRange(a){const p=a.powers||{};return Math.max(p.fire>0?44:0,p.electric>0?64:0,p.water>0?56:0,p.air>0?72:0,p.earth>0?40:0,p.strength>0?32:0);}
-function updatePowerAuras(){for(const a of [P,...sibs]){const range=auraRange(a);if(range)for(const e of lvl.enemies)if(e.alive&&auraNear(a,e,range)){const effect=['earth','water','air'].find(k=>a.powers[k]>0&&auraNear(a,e,{earth:40,water:56,air:72}[k]));defeatWithPower(e,a,effect);}}}
+function updatePowerAuras(){for(const a of [P,...sibs]){const range=auraRange(a);if(range)for(const e of lvl.enemies)if(e.alive&&auraNear(a,e,range)){const effect=['earth','water','air','electric'].find(k=>a.powers[k]>0&&auraNear(a,e,{earth:40,water:56,air:72,electric:64}[k]));defeatWithPower(e,a,effect);}}}
 
 
 // Personal one-way surfaces span only actual pits; the room map stays unchanged.
@@ -2691,7 +2691,13 @@ function drawAuraDefeat(e,t){
  const fx=e.auraDefeat,u=Math.max(0,Math.min(1,(fx.duration-e.dead)/fx.duration)),x=e.x,y=e.y,bottom=y+e.h;
  const sprite=(yy,scale=1)=>{g.save();g.translate(x,yy);g.scale(1,scale);outlined(0,0,(ox,oy)=>drawEnemyRaw(e,t,ox,oy));g.restore();};
  g.save();g.globalAlpha=u>.82?(1-u)/.18:1;
- if(fx.kind==='earth'){
+ if(fx.kind==='electric'){
+  const jitter=Math.sin(u*130)*2;sprite(y+jitter);
+  if(Math.floor(u*24)%2===0){g.globalAlpha*=.7;R(x-1,y+1,e.w+2,e.h,'#c4fbff');g.globalAlpha=u>.82?(1-u)/.18:1;}
+  for(let n=0;n<4;n++){const angle=u*12+n*Math.PI/2,bx=x+7+Math.cos(angle)*17,by=y+6+Math.sin(angle)*15;
+   R(bx-2,by-6,3,5,'#7ff3ff');R(bx-4,by-2,6,2,'#fff7a5');R(bx,by,3,6,'#7ff3ff');}
+  if(u>.65){const spread=(u-.65)*38;for(let n=0;n<6;n++)R(x+7+Math.cos(n)*spread,y+6+Math.sin(n)*spread,2,2,'#fff7a5');}
+ }else if(fx.kind==='earth'){
   const impact=.32;
   if(u<impact)sprite(y);else sprite(bottom-3,.22);
   const blockY=y-54+Math.min(1,u/impact)*49;

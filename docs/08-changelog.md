@@ -520,3 +520,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-27 — Elemental defeat animations
 
 - Earth crushes critters with a grass-topped dirt block, Water submerges them in water and bubbles, and Air lifts and drops them into a flattened impact. These are visible 1.5-second defeats, safe from repeat hits and scoring.
+
+## 2026-11-27 — Electric defeat animation
+
+- Electric Aura now shows nearby critters getting electrocuted with flashing lightning, jitter and sparks before disappearing.
