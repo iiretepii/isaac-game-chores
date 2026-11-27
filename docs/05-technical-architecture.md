@@ -82,9 +82,9 @@ See [02 – Levels](02-levels.md) for the rules.
 
 - **Startup:** `initAudio()` creates the `AudioContext` (on page load if the browser allows it, otherwise on first input), the master, music and SFX gain nodes and a noise buffer, and starts the `scheduler` on a 25 ms interval.
 - **Scheduling:** the scheduler stays 0.15 s ahead of the audio clock, calling the current style's `play(step, time, stepDuration)`, which schedules oscillators at exact times.
-- **Medley and tempo:** in the Whole House, the scheduler plays `SAMPLER_BARS` (4) bars of one `MIX` song at a time, at that song's tempo and gain, then moves to the next with a scratch and crash. During `play` with under 15 s left, the tempo rises 8%.
+- **Medley and tempo:** in the Whole House, the scheduler plays `SAMPLER_BARS` (4) bars of one `MIX` song at a time (nine iconic songs, about a 54 s loop), at that song's tempo and gain, then moves to the next with a scratch and crash. During `play` with under 15 s left, the tempo rises 8%.
 
-### Whole House sampler
+### Whole House medley
 
 When `music.style === 'mix'`, `scheduler` tracks the current song (`music.seg`) and its step (`music.segStep`). It plays the first `SAMPLER_BARS` bars of `STYLES[MIX[seg]]` with that style's own step length, `rub` and gain, and at each change it calls `scratch()` and `crash()`. Only one song sounds at a time. See [04](04-audio.md) for recording details.
 

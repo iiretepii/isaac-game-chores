@@ -168,7 +168,7 @@ Daniel’s Monster Jam Room is level 3, and Colin’s Surf Shack is level 4, And
 | 41 | **Easter Egg Hunt** | Return the painted eggs to the Easter basket | 44 | 196s | hamster, squirrel, bee | Original Springtime Hop |
 | 42 | **Mother'S Day Blooms** | Put the flower bouquets in Mom's vase | 45 | 199s | bee, hamster, squirrel | Bouquets for Mom |
 | 43 | **Father'S Day Surprise** | Put the colorful ties on Dad's gift rack | 46 | 202s | roomba, dog, hamster | Dads Day Groove |
-| 44 | **The Whole House!!** | Everything → dive on the living room’s cream couch with matching colorful pillows | 52 | 220s | All of them | Sampler of every level song, one at a time |
+| 44 | **The Whole House!!** | Everything → dive on the living room’s cream couch with matching colorful pillows | 52 | 220s | All of them | Greatest-hits medley of iconic songs |
 
 The basement is dark, with a pool of light that follows you around. At the pool, the floating platforms are striped lounge chairs and the gaps are the pool itself. In the music room, the floating platforms are piano keys. The arts & crafts room is covered in funny kid drawings: Uncle Pete's giant mustache, an eight-legged cat, a sun in sunglasses, a dinosaur eating a house, a potato "self portrait" and a cool dog on a skateboard.
 
@@ -229,7 +229,7 @@ Inside the game itself, all the music is generated live in the browser with the 
 | Easter Egg Hunt | [*Springtime Hop*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/41-easter.mp3) | Original holiday tune |
 | Mother'S Day Blooms | [*Bouquets for Mom*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/42-mothersday.mp3) | Original gentle flower-day melody |
 | Father'S Day Surprise | [*Dads Day Groove*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/43-fathersday.mp3) | Original upbeat family groove |
-| Whole House | [*Medley of Every Style*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/44-whole-house-medley.mp3) | A sampler of the whole game: four bars of every level song, one at a time in room order, each at its own tempo, with a record scratch between songs (about 5½ minutes before it loops) |
+| Whole House | [*Greatest Hits Medley*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/44-whole-house-medley.mp3) | A short "greatest hits" of the game: four bars each of *Radical Rock* (Isaac's Room), *Once Upon a Tidy Room* (Annie's Room), *Paint the Town (Tie-Dye)!* (Arts & Crafts), *Wag Wag Woof Woof!* (Pet Room), *Radical Race Rock* (Race Track), *Press Start to Clean!* (Game Room), *Winter (8-Bit) – Vivaldi* (Money Room), *Snap Together Stomp* (LEGO Room) and *A Very Merry Medley* (Christmas), one at a time at each song's own tempo, with a record scratch between songs. The loop is about 54 seconds |
 | Ending | [*Jubilee for a Job Well Done*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/45-ending-jubilee.mp3) | An upbeat, triumphant celebration of a job well done: big horn fanfare calls with tuba and bells, a marching jubilee tune on strings and horns with handclaps, tambourine and bell runs, a crowd cheer as the key lifts, and a huge final chord with one more cheer |
 | Fail screen | [*Grounded Until Forever*](https://raw.githubusercontent.com/iiretepii/isaac-game-chores/main/music/46-fail-screen.mp3) | A slow, sad piano lament in A minor that plays when the parents beat you home: a lonely melody that keeps sighing downward, soft strings and a few celesta "teardrops" |
 
@@ -292,7 +292,7 @@ The **2D game** (code, graphics, levels and synthesized music) lives in a single
 - **All music and sound effects are synthesized live** in the browser with the Web Audio API. Every instrument (rock guitar, organ, piano, steel drums, kazoo, accordion, the crooner's "ohhh" voice and so on) is built from basic sound waves shaped by filters and volume envelopes.
 - The rock guitars get their crunch from a **distortion** effect, and the echo on the piano, organ and strings comes from a **reverb** built from generated noise.
 - A small **music sequencer** plans notes a fraction of a second ahead, so the timing stays steady even when the game is busy. Each song is a "style" with its own tempo, chords, melody and instruments. Some songs speed up and slow down slightly for a more human feel.
-- The **Whole House sampler** plays one level song at a time: four bars of each song in room order, at that song's own tempo and volume, with a record scratch and cymbal crash between songs. It covers every level's music, including the race-track arrangement, then loops.
+- The **Whole House medley** plays a short "greatest hits" of nine iconic songs from the game, one at a time: four bars of each, at that song's own tempo and volume, with a record scratch and cymbal crash between songs. The loop is about 54 seconds.
 - The **attic fugue** was planned with a small helper script that picked chord notes for the inner voices and checked that no two voices move in parallel fifths or octaves. The finished notes are stored in the game as data.
 - Browsers don't allow sound until the player interacts with the page, so the first click, tap or key press turns the sound on.
 

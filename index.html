@@ -1246,11 +1246,12 @@ STYLES.legosnap={name:"SNAP TOGETHER STOMP",bpm:132,spb:4,bar:16,bars:16,gain:1.
    if(s16%4===2)brickSnap(t,build?1.3:1);
    if(bar===11&&s16>=8)brickSnap(t,0.8+0.1*(s16-8));                      // snapping faster into the return of the tune
    if(last&&s16===4){for(let k=0;k<6;k++)brickSnap(t+k*d*0.5,1.4);ch.forEach(x=>pluck(x+12,d*6,t+d*3,0.03,0.3,5200));}}};
-const MIX=["rock","princess","monsterjam","surfrock","skyhop","momwaltz","bearsgroove","jazz","pop","hiphop","garden","pool","techno","polka","crooner","muzak","library","practice","punkska","silly","science","workout","romantic","baroque","pets","racerock","chiptune","money","grandprix","blockgarden","obby","cityradio","charging","legosnap","halloween","thanksgiving","christmas","valentine","stpatrick","aprilfools","easter","mothersday","fathersday"];
+// Whole House medley: a short "greatest hits" of iconic songs from the game, 4 bars each, about 54 s per loop.
+const MIX=["rock","princess","punkska","pets","racerock","chiptune","money","legosnap","christmas"];
 let music={on:false,style:'pop',step:0,next:0,seg:0,segStep:0,cycle:0};
 function startMusic(style){music.style=style;music.step=0;music.seg=0;music.segStep=0;music.cycle=0;music.on=true;if(AC)music.next=AC.currentTime+0.05;}
-// WHOLE HOUSE SAMPLER: one song at a time. Each level song in MIX plays its first four bars at its own tempo and
-//  volume, then a record scratch and cymbal crash hand over to the next song, in room order; after the last it loops.
+// WHOLE HOUSE MEDLEY: one song at a time. Each song in MIX (a short list of iconic songs) plays its first four bars at
+//  its own tempo and volume, then a record scratch and cymbal crash hand over to the next song; after the last it loops.
 const SAMPLER_BARS=4;
 function scheduler(){
   if(!AC||!music.on)return;

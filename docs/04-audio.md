@@ -57,19 +57,19 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `easter` | *Springtime Hop* (original) | 120 | 4 | 16 | 16 | Easter Egg Hunt | `music/41-easter.mp3` |
 | `mothersday` | *Bouquets for Mom* (original) | 96 | 4 | 16 | 16 | Mother'S Day Blooms | `music/42-mothersday.mp3` |
 | `fathersday` | *Dads Day Groove* (original) | 124 | 4 | 16 | 16 | Father'S Day Surprise | `music/43-fathersday.mp3` |
-| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/44-whole-house-medley.mp3` |
+| `mix` | *Greatest Hits Medley* | — | — | — | — | The Whole House!! | `music/44-whole-house-medley.mp3` |
 | `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/45-ending-jubilee.mp3` |
 | `sad` | *Grounded Until Forever* | 66 | 2 | 8 | 8 | "Parents are home!" fail screen (starts about 3 s after the honk and the lose jingle) | `music/46-fail-screen.mp3` |
 
 ## Volume Leveling
 
-Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays at about −35 dB RMS. The gentle pieces are set a little quieter: title and basement −38, music room and attic −37, library −37, fail screen −38. Money Room uses a 0.82 trim (about −35 dB RMS). The pet room song (about −32) and the ending fanfare (about −31) are set a little louder so the victory song stands out. The scheduler sets the music volume to `MUSIC_BASE × gain`, both for individual songs and for each song in the Whole House sampler. After writing or changing a song, re-measure its loudness and update its trim.
+Each style has a `gain` trim (the `STYLE_GAIN` table) so that every song plays at about −35 dB RMS. The gentle pieces are set a little quieter: title and basement −38, music room and attic −37, library −37, fail screen −38. Money Room uses a 0.82 trim (about −35 dB RMS). The pet room song (about −32) and the ending fanfare (about −31) are set a little louder so the victory song stands out. The scheduler sets the music volume to `MUSIC_BASE × gain`, both for individual songs and for each song in the Whole House medley. After writing or changing a song, re-measure its loudness and update its trim.
 
 ## The Medley
 
-`MIX` includes all 43 level songs in room order, including Race Track Rumble’s `racerock` arrangement. The Whole House music is a **sampler**: one song at a time, the first `SAMPLER_BARS = 4` bars of each `MIX` song at its own tempo, time signature, rubato and gain trim, with a record scratch and cymbal crash at each change. One pass through all 43 songs takes about 5½ minutes, then it loops. Individual rooms keep their full songs. Title, victory and fail-screen songs are not level tracks and stay separate. The last-15-seconds speedup still applies.
+`MIX` is the Whole House medley: a short "greatest hits" list of nine iconic songs, *Radical Rock* (Isaac's Room), *Once Upon a Tidy Room* (Annie's Room), *Paint the Town (Tie-Dye)!* (Arts & Crafts), *Wag Wag Woof Woof!* (Pet Room), *Radical Race Rock* (Race Track), *Press Start to Clean!* (Game Room), *Winter (8-Bit) – Vivaldi* (Money Room), *Snap Together Stomp* (LEGO Room) and *A Very Merry Medley* (Christmas). The scheduler plays one song at a time: the first `SAMPLER_BARS = 4` bars of each, at that song's own tempo, time signature, rubato and gain trim, with a record scratch and cymbal crash at each change. The loop is about 54 seconds and must stay under 1 minute. Individual rooms keep their full songs. Title, victory and fail-screen songs are not part of it. The last-15-seconds speedup still applies.
 
-**Rule:** add every new level song to `MIX`, including alternate arrangements, and re-record the Whole House sampler. The 3D fork retains its separate audio snapshot unless explicitly updated.
+**Rule:** keep `MIX` short. The medley loop (the sum of 4 bars of each song) must stay under 60 seconds; check it before adding a song, and re-record `music/44-whole-house-medley.mp3` after any change. The 3D fork retains its separate audio snapshot unless explicitly updated.
 
 ## Instruments
 
@@ -101,7 +101,7 @@ Shared reverb comes from a convolver with a generated noise impulse (`reverb()`)
 
 The recordings are made by running the game's code in headless Chromium:
 1. **Swap the audio context:** replace `AC` with an `OfflineAudioContext`, and reset `revIn`, `gtrBus`, `leadBus`, `noiseBuf`, `master`, `musicGain` and `sfxGain` to nodes on that context.
-2. **Schedule the song:** call each style's `play()` across one loop. Short loops repeat until the file is at least about 40 s long. For the Whole House sampler, play `SAMPLER_BARS` bars of each `MIX` style in order, setting that style's gain and adding `scratch()` + `crash()` at each change, to record one full pass.
+2. **Schedule the song:** call each style's `play()` across one loop. Short loops repeat until the file is at least about 40 s long. For the Whole House medley, play `SAMPLER_BARS` bars of each `MIX` style in order, setting that style's gain and adding `scratch()` + `crash()` at each change, to record one full pass.
 3. **Render:** render to WAV and normalize the peak to 90%. Gentle songs (title, basement, attic, music room, library) therefore sound louder than they do in the game.
 4. **Convert:** encode as a 96 kbps MP3 with `ffmpeg`.
 
@@ -124,13 +124,13 @@ GTA V + VI Toy Room uses an original synth/funk radio groove with electric piano
 
 Charging Room Chaos uses Fully Charged, an original electronic dance track with plucked arpeggios, synth lead, pads and a steady beat. Its 1.0 volume trim measures about −35.9 dB RMS over the rendered loop.
 
-The seven holiday songs use 8.0 gain trims: measured in-game RMS is about −35.4 to −33.7 dB, with April Fools slightly louder for its prank accents. They are original synth arrangements. The Whole House sampler includes all of them.
+The seven holiday songs use 8.0 gain trims: measured in-game RMS is about −35.4 to −33.7 dB, with April Fools slightly louder for its prank accents. They are original synth arrangements. 
 
 Mother’s Day and Father’s Day use original synth arrangements with 8.0 gain trims, measured at about −34.9 and −35.9 dB RMS respectively.
 
-Daniel’s room uses an original stadium-rock synth arrangement; Colin’s uses an original bright surf-rock-inspired synth groove. Both have independent 8.0 gain trims and appear in the Whole House sampler.
+Daniel’s room uses an original stadium-rock synth arrangement; Colin’s uses an original bright surf-rock-inspired synth groove. Both have independent 8.0 gain trims.
 
-Mom’s room uses a gentle original 3/4 synth waltz; Uncle Pete’s room uses an original stadium-style synth groove. Both have independent 8.0 gain trims and are included in the Whole House sampler.
+Mom’s room uses a gentle original 3/4 synth waltz; Uncle Pete’s room uses an original stadium-style synth groove. Both have independent 8.0 gain trims.
 
 The new Mom’s Room and Uncle Pete’s Room recordings measured approximately −35.8 and −35.6 dB RMS in-game before listening-file normalization.
 
