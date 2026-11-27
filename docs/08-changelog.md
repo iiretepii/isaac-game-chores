@@ -500,3 +500,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-27 — Extra bridges for skinny gaps
 
 - Added extra Ghost Bridge pickups before narrow pits and skinny stepping-stone sections, using safe flat ground and spacing them from existing bonuses. Kept all standard and Whole House bonuses.
+
+## 2026-11-27 — Ghost Bridge ramps
+
+- Added personal invisible slopes up and down ground steps and shelf edges while Ghost Bridge is active. Player and grounded helpers can ride the slopes in either direction, with ceiling checks and normal one-way landing.

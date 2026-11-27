@@ -336,3 +336,5 @@ During play, touch-friendly **Pause / Resume** and **Mute / Unmute** buttons app
 Tidy the house balcony after an afternoon of reading: collect 11 newspapers and 11 colorful magazines, then put all 22 in the reading basket. Balcony railings, chairs, a little table and potted plants overlook the neighborhood. The relaxing existing *Lanterns in the Block Garden* track plays during cleanup. This room comes just before Whole House, and the family and power-ups use their normal rules.
 
 Rooms with narrow pits (up to three tiles wide) or skinny stepping-stone landings (one or two tiles) get extra Ghost Bridge bonuses on safe flat ground before those sections. Nearby hazards share a pickup, and existing bonuses are kept. Bridges still belong to their collector.
+
+Ghost Bridge also provides invisible ramps **up and down** steep ground steps and shelf-platform edges. The powered character can ride the slopes in either direction; ramps disappear with the timer, remain personal, and do not alter room tiles. Solid ceilings still block a rider.

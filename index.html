@@ -1508,8 +1508,40 @@ function ghostBridgeY(actor,x){
  if(left<0||right>=lvl.cols)return null;
  return (ROWS-Math.max(lvl.ground[left],lvl.ground[right]))*T;
 }
+// Personal slopes let a powered rider approach vertical steps or shelf ends from either side.
+function ghostRampY(actor,x){
+ if(!(actor.powers?.bridge>0))return null;
+ let surface=null;const center=Math.floor(x/T),margin=(actor.w||10)/2+1;
+ for(let c=Math.max(1,center-13);c<Math.min(lvl.cols-1,center+14);c++){
+  const high=lvl.ground[c];
+  for(const dir of [-1,1]){
+   const low=lvl.ground[c-dir];
+   if(high>low&&low>0){
+    const top=(ROWS-high)*T,base=(ROWS-low)*T,edge=(dir>0?c:c+1)*T-dir*margin;
+    const distance=(edge-x)*dir,run=(base-top)*2;
+    if(distance>=-T&&distance<=run){const y=top+Math.max(0,distance)/2;if(surface===null||y<surface)surface=y;}
+   }
+   for(let r=2;r<ROWS-2;r++){
+    if(lvl.map[r][c]!=='='||lvl.map[r][c-dir]==='='||!low)continue;
+    const top=r*T,base=(ROWS-low)*T;if(base<=top||base-top>7*T)continue;
+    const edge=(dir>0?c:c+1)*T-dir*margin,distance=(edge-x)*dir;
+    if(distance>=-T&&distance<=(base-top)*2){const y=top+Math.max(0,distance)/2;if(surface===null||y<surface)surface=y;}
+   }
+  }
+ }
+ return surface;
+}
+function followGhostRamp(actor,oldX,width){
+ if(actor.vy<0||!actor.on||actor.ride)return;
+ const old=ghostRampY(actor,oldX+width/2),next=ghostRampY(actor,actor.x+width/2),feet=actor.y+actor.h;
+ if(next===null||Math.abs(feet-(old??next))>Math.abs(actor.x-oldX)/2+2)return;
+ const y=next-actor.h;
+ for(let r=Math.max(0,Math.floor(y/T));r<=Math.floor((next-.01)/T);r++)for(let c=Math.floor(actor.x/T);c<=Math.floor((actor.x+width-.01)/T);c++)if(solid(c,r))return;
+ actor.y=y;actor.vy=0;actor.ride=null;
+}
 function landOnGhostBridge(actor,prevB,width){
- const y=ghostBridgeY(actor,actor.x+width/2),bottom=actor.y+actor.h;
+ const bridge=ghostBridgeY(actor,actor.x+width/2),ramp=ghostRampY(actor,actor.x+width/2);
+ const y=bridge===null?ramp:ramp===null?bridge:Math.min(bridge,ramp),bottom=actor.y+actor.h;
  if(y===null||prevB>y+.5||bottom<y)return false;
  actor.y=y-actor.h;actor.vy=0;actor.on=true;actor.ride=null;return true;
 }
@@ -1701,7 +1733,7 @@ function updatePlayer(dt){
   if(!keys.jump&&P.vy<-160)P.vy=-160;
   const feather=P.powers.feather>0&&P.vy>0;P.vy=Math.min(P.vy+(feather?420:1300)*dt,feather?200:600);
   // X
-  P.x+=P.vx*dt;
+  const oldRampX=P.x;P.x+=P.vx*dt;followGhostRamp(P,oldRampX,P.w);
   let r0=Math.floor(P.y/T),r1=Math.floor((P.y+P.h-0.01)/T);
   if(P.vx>0){const c=Math.floor((P.x+P.w)/T);for(let r=r0;r<=r1;r++)if(solid(c,r)){P.x=c*T-P.w;P.vx=0;break;}}
   else if(P.vx<0){const c=Math.floor(P.x/T);for(let r=r0;r<=r1;r++)if(solid(c,r)){P.x=(c+1)*T;P.vx=0;break;}}
@@ -1829,9 +1861,10 @@ function moveSibling(s,dt,tx,moving){
     s.h=desiredH;s.y=feet-s.h;s.duck=s.h<20;const h=s.h;
     if(s.on)s.jumps=0;else s.jumps=Math.max(1,s.jumps);
     const reach=s.d.ace?12:4,front=Math.floor((s.x+(dir>0?w+reach:-reach))/T),foot=Math.floor((s.y+h+2)/T); // ace siblings look further ahead
-    const wall=solid(front,foot-1)||solid(front,foot-2);
+    const rampAhead=ghostRampY(s,s.x+w/2)!==null;
+    const wall=!rampAhead&&(solid(front,foot-1)||solid(front,foot-2));
     const gap=tileAt(front,foot)==='.'&&tileAt(front,foot+1)==='.'&&ghostBridgeY(s,front*T+T/2)===null;
-    const above=s.target&&s.target.y+16<s.y&&Math.abs(dx)<64;
+    const above=!rampAhead&&s.target&&s.target.y+16<s.y&&Math.abs(dx)<64;
     const critter=lvl.enemies.some(e=>e.alive&&(e.x+e.w/2-(s.x+w/2))*dir>0&&Math.abs(e.x-s.x)<(s.d.ace?70:44)&&Math.abs(e.y-(s.y+h))<24);
     const legoCol=Math.floor((s.x+w/2+dir*(sp*0.14+8))/T);
     const lego=dir&&(tileAt(legoCol,foot-1)==='x'||tileAt(legoCol,foot-2)==='x');
@@ -1842,7 +1875,7 @@ function moveSibling(s,dt,tx,moving){
       s.jumps=first?1:s.jumps+1;s.vy=jumpVelocity(s);s.on=false;s.ride=null;
       puff(s.x+w/2,s.y+h,second?"#80deea":"#fff",second?8:4,55);
     }
-    const oldX=s.x;s.x+=dir*sp*step;
+    const oldX=s.x;s.x+=dir*sp*step;followGhostRamp(s,oldX,w);
     const col=Math.floor((s.x+(dir>0?w:0))/T);
     for(let r=Math.max(0,Math.floor(s.y/T));r<=Math.floor((s.y+h-0.01)/T);r++){
       if(dir&&solid(col,r)){s.x=dir>0?col*T-w:(col+1)*T;break;}}
