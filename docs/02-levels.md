@@ -49,7 +49,8 @@ Generated from the `LEVELS` array in `index.html`.
 | 41 | Easter Egg Hunt | `easter` | easteregg → eggbasket | 44 | 196s | 380 | 9 | 0.7 | 0.2 | yes | hamster, squirrel, bee | `easter` |
 | 42 | Mother'S Day Blooms | `mothersday` | bouquet → momvase | 45 | 199s | 390 | 10 | 0.7 | 0.2 | yes | bee, hamster, squirrel | `mothersday` |
 | 43 | Father'S Day Surprise | `fathersday` | necktie → dadrack | 46 | 202s | 400 | 10 | 0.7 | 0.2 | yes | roomba, dog, hamster | `fathersday` |
-| 44 | The Whole House!! | `house` | mix → couch | 52 | 220s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
+| 44 | Balcony Reading Break | `balcony` | reading (newspaper + magazine) → readingbasket | 22 | 185s | 235 | 5 | 0.4 | 0 | yes | bee, squirrel | `blockgarden` |
+| 45 | The Whole House!! | `house` | mix → couch | 52 | 220s | 250 | 10 | 0.75 | 0.5 | yes | all critters | `mix` |
 
 ## Level Data Format
 
@@ -127,8 +128,12 @@ Daniel’s Monster Jam Room and Colin’s Surf Shack are levels 3 and 4. Each ro
 
 ## Optional Training Room
 
-Level Select entry 45 is an optional practice room outside the 44-room adventure. It has 6 toys, a toy chest, 110 tiles, two fixed gaps (4 and 6 tiles), a raised one-way platform, no critters, no LEGO hazards, no moving platforms and no time limit. It uses the `living` theme and existing `chiptune` music. Five ordinary bonuses plus an extra Ghost Bridge allow practice; position-based tips explain controls and delivery. Title button / T opens training directly. Completion returns to the title screen.
+Level Select entry 46 is an optional practice room outside the 45-room adventure. It has 6 toys, a toy chest, 110 tiles, two fixed gaps (4 and 6 tiles), a raised one-way platform, no critters, no LEGO hazards, no moving platforms and no time limit. It uses the `living` theme and existing `chiptune` music. Five ordinary bonuses plus an extra Ghost Bridge allow practice; position-based tips explain controls and delivery. Title button / T opens training directly. Completion returns to the title screen.
 
 ## LEGO Builders Room
 
 A colorful building room with collectible studded bricks, a LEGO storage bin, green baseplate floor, shelves and a castle display. It uses the existing `chiptune` music and the normal team collection, power-up and Andrew rescue mechanics.
+
+## Balcony Reading Break
+
+Collect 11 newspapers and 11 magazines left from earlier reading and put them in a wicker reading basket. New `balcony` scenery shows railings, chairs, table, plants and neighborhood views. Uses existing relaxing `blockgarden` music; room precedes Whole House.

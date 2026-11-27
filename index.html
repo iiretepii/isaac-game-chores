@@ -1319,6 +1319,7 @@ const LEVELS=[
  {"name":"EASTER EGG HUNT","chore":"Return the painted eggs to the Easter basket","drop":"eggbasket","item":"easteregg","seed":46079,"count":44,"time":196,"len":380,"gap":9,"enemies":["hamster","squirrel","bee"],"density":0.7,"lego":0.2,"movers":1,"theme":"easter","music":"easter","text":"MOM: You, Isaac and Annie: return the painted eggs to the easter basket. Holiday cleanup time!","difficultyIndex":21},
  {"name":"MOTHER'S DAY BLOOMS","chore":"Put the flower bouquets in Mom's vase","drop":"momvase","item":"bouquet","seed":48107,"count":45,"time":199,"len":390,"gap":10,"enemies":["bee","hamster","squirrel"],"density":0.7,"lego":0.2,"movers":1,"theme":"mothersday","music":"mothersday","text":"MOM: What lovely flowers! You, Isaac and Annie: gather the bouquets into my vase!","difficultyIndex":22},
  {"name":"FATHER'S DAY SURPRISE","chore":"Put the colorful ties on Dad's gift rack","drop":"dadrack","item":"necktie","seed":50147,"count":46,"time":202,"len":400,"gap":10,"enemies":["roomba","dog","hamster"],"density":0.7,"lego":0.2,"movers":1,"theme":"fathersday","music":"fathersday","text":"UNCLE PETE: So many ties! You, Isaac and Annie: put them on Dad's gift rack for Father's Day!","difficultyIndex":22},
+ {"name":"BALCONY READING BREAK","chore":"Put the newspapers and magazines in the reading basket","drop":"readingbasket","item":"reading","seed":11272026,"count":22,"time":185,"len":235,"gap":5,"enemies":["bee","squirrel"],"density":0.4,"lego":0,"movers":1,"theme":"balcony","music":"blockgarden","difficultyIndex":9,"text":"MOM: We read on the balcony earlier! Put the newspapers and magazines in the basket before the breeze takes them away.","playerIntro":"YOU: Fresh air, a relaxing tune, and a little cleanup. Let's tidy the balcony!"},
  {"name":"THE WHOLE HOUSE!!","chore":"Grab everything & dive on the couch","drop":"couch","item":"mix","seed":20024,"count":52,"time":220,"len":250,"gap":10,"enemies":["dust","roach","roomba","cat","dog","bee","rat","spider","bat","bubble","ant","hamster","zap","bzombie","bskel","bspider","tabby","husky","pom","mite","duck","goose","squirrel","weed","slime","hisser","swan","invader","chomper","ghosty","turkey"],"density":0.75,"lego":0.5,"movers":1,"theme":"house","music":"mix","text":"BOTH: We're turning onto our street RIGHT NOW.","difficultyIndex":23,"playerIntro":"YOU: Whole crew, one last cleanup! We've got this!"},
 ];
 // Optional practice room: appended so all existing room numbers stay unchanged.
@@ -1326,6 +1327,7 @@ LEVELS.push({name:'TRAINING ROOM',training:true,chore:'Collect 6 toys and put th
 const TRAINING_IDX=LEVELS.length-1;
 
 const THEMES={
+ balcony:{sky:"#b7dcf2",wall2:"#91bad8",ground:"#a87953",top:"#e8bd87",plat:"#8f714f",ptop:"#f0d4aa"},
  legoroom:{sky:"#bce6f7",wall2:"#91c8df",ground:"#348148",top:"#72bc50",plat:"#d64b39",ptop:"#ffce54"},
  andrewroom:{sky:"#89c9e8",wall2:"#70b3dc",ground:"#b5906e",top:"#f1dfb6",plat:"#7d9fc1",ptop:"#d6eff9"},
  momroom:{sky:"#c5a5cc",wall2:"#b08ab9",ground:"#806174",top:"#f2d4e7",plat:"#b79066",ptop:"#f3d4a3"},
@@ -1371,7 +1373,7 @@ const THEMES={
  gameroom:{sky:"#1a1033",wall2:"#140c29",ground:"#311b92",top:"#00e5ff",plat:"#ff4081",ptop:"#ff80ab"},
  house:{sky:"#2b2d6e",wall2:"#25275e",ground:"#5d3a8a",top:"#b388ff",plat:"#00897b",ptop:"#4db6ac"},
 };
-const ITEM_NAMES={legobrick:"LEGO bricks",flyingtoy:"flying toys",jewelry:"jewelry pieces",bearsgear:"Bears gear",monstertrucktoy:"toy monster trucks",surfboardtoy:"toy surfboards",bouquet:"flower bouquets",necktie:"colorful ties","carvedpumpkin":"carved pumpkins","pieslice":"pie slices","gift":"presents","valentinecard":"valentines","shamrock":"shamrocks","pranktoy":"prank toys","easteregg":"painted Easter eggs",chargecable:"charging cables",citytoys:"toy sports cars and bikes",sportscar:"toy sports cars",cruiserbike:"toy bikes",avatar:"toy Roblox avatars",diamondblock:"toy diamond blocks",kartbike:"toy karts and bikes",toykart:"toy karts",toybike:"toy bikes",coin:"coins",pillow:"pillows",videogame:"game controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
+const ITEM_NAMES={reading:"newspapers and magazines",newspaper:"newspapers",magazine:"magazines",legobrick:"LEGO bricks",flyingtoy:"flying toys",jewelry:"jewelry pieces",bearsgear:"Bears gear",monstertrucktoy:"toy monster trucks",surfboardtoy:"toy surfboards",bouquet:"flower bouquets",necktie:"colorful ties","carvedpumpkin":"carved pumpkins","pieslice":"pie slices","gift":"presents","valentinecard":"valentines","shamrock":"shamrocks","pranktoy":"prank toys","easteregg":"painted Easter eggs",chargecable:"charging cables",citytoys:"toy sports cars and bikes",sportscar:"toy sports cars",cruiserbike:"toy bikes",avatar:"toy Roblox avatars",diamondblock:"toy diamond blocks",kartbike:"toy karts and bikes",toykart:"toy karts",toybike:"toy bikes",coin:"coins",pillow:"pillows",videogame:"game controllers",tire:"tires",chewtoy:"pet toys",book:"books",testtube:"test tubes",oldflower:"weeds",paint:"paint buckets",robot:"robot parts",weight:"weights",towel:"towels",dragon:"dragons",doll:"dolls",sock:"socks",dish:"dishes",toy:"toys",leaf:"leaves",trash:"trash",shirt:"shirts",undies:"undies",poop:"poops",paper:"papers",score:"scores",ornament:"ornaments",mix:"things"};
 
 function rngf(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
@@ -1463,7 +1465,7 @@ function buildLevel(idx){
   const used=new Set();
   for(let i=0;i<n;i++){let k=Math.round(i*(cand.length-1)/Math.max(1,n-1));while(used.has(k))k++;used.add(k);const s=cand[k];
     const kinds=["dragon","doll","dish","toy","leaf","trash","shirt","ornament","undies","poop","paper","score","paint","robot","weight","towel","oldflower","testtube","book","chewtoy","tire","videogame","pillow","coin","toykart","toybike","diamondblock","avatar","sportscar","cruiserbike","chargecable","carvedpumpkin","pieslice","gift","valentinecard","shamrock","pranktoy","easteregg","bouquet","necktie","monstertrucktoy","surfboardtoy","jewelry","bearsgear","flyingtoy"];
-    items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='mix'?kinds[i%kinds.length]:L.item==='kartbike'?(i%2?'toybike':'toykart'):L.item==='citytoys'?(i%2?'cruiserbike':'sportscar'):L.item,got:false,bob:rng()*6});}
+    items.push({x:s.x*T,y:s.row*T-1,w:16,h:16,kind:L.item==='reading'?(i%2?'magazine':'newspaper'):L.item==='mix'?kinds[i%kinds.length]:L.item==='kartbike'?(i%2?'toybike':'toykart'):L.item==='citytoys'?(i%2?'cruiserbike':'sportscar'):L.item,got:false,bob:rng()*6});}
   const enemies=[];
   eSpots.filter(s=>s.x>14&&s.x<cols-10).forEach(s=>{
     const type=L.enemies[ri(0,L.enemies.length-1)];
@@ -2236,6 +2238,11 @@ function drawFlyingToy(x,y){
  else{for(let n=0;n<6;n++)R(x+7-n,y+1+n,1+n*2,1,c);for(let n=0;n<5;n++)R(x+3+n,y+7+n,9-n*2,1,c);R(x+7,y+2,1,9,"#fff2cd");R(x+4,y+6,7,1,"#fff2cd");R(x+7,y+12,1,3,"#f5ebcb");R(x+8,y+14,4,1,"#f5ebcb");}
 }
 function drawItemRaw(k,x,y,animated=true){
+  if(k==='reading'||k==='newspaper'||k==='magazine'){
+    const mag=k==='magazine',c=mag?'#dc6b8e':'#eee7d5';R(x+1,y+2,14,13,c);R(x+1,y+14,14,1,mag?'#a84267':'#b4b0a6');
+    R(x+3,y+4,10,2,mag?'#fff1b2':'#4c5665');R(x+3,y+8,5,4,mag?'#79c7dd':'#9cabb4');
+    for(let yy=8;yy<13;yy+=2)R(x+9,y+yy,4,1,mag?'#fff0da':'#7c8390');R(x+3,y+13,9,1,mag?'#fff0da':'#7c8390');return;
+  }
   if(k==='legobrick'){
     const color=['#e64739','#247dd3','#ffd34f','#49a65a','#a76cc6'][Math.abs(Math.round(itemSeed/16))%5];
     R(x+1,y+6,14,8,color);R(x+1,y+12,14,2,shade(color,-45));R(x+1,y+6,14,1,shade(color,35));
@@ -2375,10 +2382,10 @@ function drawItemRaw(k,x,y,animated=true){
 }
 
 // Drop-off size: most sprites are drawn at 28 px and scaled up 2x; a few are drawn full-size already.
-const DROP_SCALE={legobin:1,toyhangar:1,jewelrybox:1,bearslocker:1,monsterarena:1,surfrack:1,momvase:1,dadrack:1,pumpkinbucket:1,pietable:1,gifttree:1,heartbox:1,luckypot:1,prankbox:1,eggbasket:1,cabledock:1,citygarage:1,avatarshelf:1,blockchest:1,kartgarage:1,coinchest:1,creamcouch:1,gameshelf:1,tirerack:1,petbasket:1,dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1};
+const DROP_SCALE={readingbasket:1,legobin:1,toyhangar:1,jewelrybox:1,bearslocker:1,monsterarena:1,surfrack:1,momvase:1,dadrack:1,pumpkinbucket:1,pietable:1,gifttree:1,heartbox:1,luckypot:1,prankbox:1,eggbasket:1,cabledock:1,citygarage:1,avatarshelf:1,blockchest:1,kartgarage:1,coinchest:1,creamcouch:1,gameshelf:1,tirerack:1,petbasket:1,dollhouse:1,toychest:1,dishwasher:1,bag:1,compost:1,towelbasket:1,recycle:1,libraryshelf:1,bookshelf:1,paintshelf:1,labrack:1,weightrack:1,trunk:1,couch:1,toybox:1,washer:1,dryer:1,workbench:1,can:1};
 // Normal height, much wider: these sprites are stretched sideways only.
 const DROP_WIDE={}; // (no longer used: wide drop-offs are drawn at full width)
-const DROP_W={legobin:70,toyhangar:70,jewelrybox:70,bearslocker:70,monsterarena:70,surfrack:70,momvase:70,dadrack:70,pumpkinbucket:70,pietable:70,gifttree:70,heartbox:70,luckypot:70,prankbox:70,eggbasket:70,cabledock:70,citygarage:70,avatarshelf:70,blockchest:70,kartgarage:70,coinchest:70,creamcouch:56,gameshelf:70,tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
+const DROP_W={readingbasket:70,legobin:70,toyhangar:70,jewelrybox:70,bearslocker:70,monsterarena:70,surfrack:70,momvase:70,dadrack:70,pumpkinbucket:70,pietable:70,gifttree:70,heartbox:70,luckypot:70,prankbox:70,eggbasket:70,cabledock:70,citygarage:70,avatarshelf:70,blockchest:70,kartgarage:70,coinchest:70,creamcouch:56,gameshelf:70,tirerack:70,petbasket:70,dollhouse:70,weightrack:70,toychest:70,dishwasher:70,bag:70,compost:70,towelbasket:70,can:70,recycle:70,libraryshelf:70,bookshelf:70,paintshelf:70,labrack:70,trunk:70,couch:56,toybox:48,washer:70,dryer:70,workbench:56};
 const DROP_TOP={toyhangar:24,jewelrybox:24,bearslocker:24,monsterarena:24,surfrack:24,momvase:30,dadrack:30,pumpkinbucket:24,pietable:24,gifttree:24,heartbox:24,luckypot:24,prankbox:24,eggbasket:24,cabledock:14,citygarage:18,avatarshelf:18,blockchest:11,kartgarage:18,coinchest:10,creamcouch:0,gameshelf:22,tirerack:16,petbasket:8,dollhouse:32,weightrack:0,toychest:14,dishwasher:0,bag:0,compost:0,towelbasket:0,can:6,recycle:0,labrack:0,trunk:0,bookshelf:28,paintshelf:26,libraryshelf:24,workbench:44,washer:0,dryer:0,couch:0,toybox:2}; // extra height above the box, for the HERE! label
 function drawDrop(d,ready,t){
   const x=Math.round(d.x),y=Math.round(d.y),k=d.kind;
@@ -2409,6 +2416,12 @@ function drawHolidayDrop(k,x,y,item){
  const seed=itemSeed;for(let n=0;n<3;n++){itemSeed=n*16;drawHolidayItem(item,x+10+n*18,y+(k==='gifttree'?8:-6));}itemSeed=seed;
 }
 function drawDropRaw(k,x,y){
+  if(k==='readingbasket'){
+    R(x+2,y+6,66,18,'#b5804c');R(x,y+4,70,4,'#e2b57a');
+    for(let yy=10;yy<24;yy+=5)R(x+3,y+yy,64,1,'#e2b57a');for(let xx=7;xx<68;xx+=9)R(x+xx,y+8,1,15,'#805b3c');
+    R(x+9,y-6,20,11,'#eee7d5');R(x+12,y-3,14,2,'#647281');R(x+38,y-8,20,13,'#dc6b8e');R(x+41,y-5,14,2,'#fff1b2');
+    R(x+23,y+11,24,9,'#fff1d0');text('READ',x+35,y+13,6,'#5a4b44','center',false);return;
+  }
   if(k==='legobin'){
     R(x,y+4,70,20,'#247dd3');R(x,y+21,70,3,'#174c91');R(x-2,y+1,74,5,'#ffd34f');
     for(let n=0;n<6;n++){R(x+4+n*11,y-2,7,4,'#ffd34f');R(x+4+n*11,y-2,7,1,'#fff0a1');}
@@ -2719,6 +2732,16 @@ function drawCityPoster(x,y,edition){
  else{text("VICE CITY",x+62,y+107,7,"#ffe7fa","center");}
 }
 function drawBackground(th,t){
+  if(lvl.L.theme==='balcony'){
+    R(0,0,W,H,'#b7dcf2');R(0,95,W,50,'#b1c9bc');R(0,145,W,H-145,'#d4b08a');
+    g.fillStyle='#fff0b8';g.beginPath();g.arc(W-65,46,22,0,Math.PI*2);g.fill();
+    for(let j=-1;j<6;j++){const x=j*120-(cam*.12%120);R(x,67,57,29,'#e2e4dc');R(x+7,62,43,7,'#e2e4dc');}
+    for(let j=-1;j<9;j++){const x=j*70-(cam*.3%70);R(x,115,5,55,'#f4eee2');R(x+32,122,3,42,'#f4eee2');}R(0,112,W,7,'#fff9ee');R(0,164,W,5,'#a88969');
+    for(let j=-1;j<5;j++){const x=j*160-(cam*.35%160);R(x+14,131,43,5,'#765b48');R(x+18,135,4,33,'#765b48');R(x+50,135,4,33,'#765b48');R(x+29,119,13,12,'#fff1cf');R(x+42,122,4,5,'#fff1cf');
+      R(x+73,118,28,24,'#769e9a');R(x+70,141,34,6,'#769e9a');R(x+74,146,4,22,'#5b7774');R(x+97,146,4,22,'#5b7774');
+      R(x+120,149,21,19,'#b86e52');R(x+116,145,29,5,'#e6a47d');for(let q=0;q<4;q++){R(x+122+q*5,133-q%2*7,3,13+q%2*7,'#5b975c');R(x+119+q*5,130-q%2*7,8,4,'#79b876');}}
+    return;
+  }
   if(lvl.L.theme==='legoroom'){
     R(0,0,W,H,'#bce6f7');R(0,158,W,H-158,'#7cb96b');
     const colors=['#e64739','#247dd3','#ffd34f','#49a65a'];

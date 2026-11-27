@@ -492,3 +492,7 @@ Grouped by milestone. See `git log` for every commit.
 ### Whole House sampler
 - The Whole House no longer layers three songs at once; it had gotten too big. It now samples the game one song at a time: four bars of each of the 43 level songs in room order, each at its own tempo and volume, with a record scratch and cymbal crash between songs. About 5½ minutes, then it loops. The mashup code (`playMashupTick`, `MASHUP_BPM`, `MASHUP_TICKS`) was removed and replaced by `SAMPLER_BARS`. Re-recorded `music/44-whole-house-medley.mp3`.
 - Changed again on request: 5½ minutes was far longer than anyone plays the final level. `MIX` is now a short greatest-hits list of nine iconic songs (Radical Rock, Once Upon a Tidy Room, Paint the Town, Wag Wag Woof Woof!, Radical Race Rock, Press Start to Clean!, Winter (8-Bit), Snap Together Stomp, A Very Merry Medley), 4 bars each, about a 54 s loop. Re-recorded `music/44-whole-house-medley.mp3`.
+
+## 2026-11-27 — Balcony Reading Break
+
+- Added a house balcony level before Whole House with 11 newspapers and 11 magazines to return to a reading basket. Added railings, chairs, table, plants and neighborhood scenery, plus player intro dialogue. Uses the existing relaxing Lanterns in the Block Garden music. There are now 45 chores plus optional Training.
