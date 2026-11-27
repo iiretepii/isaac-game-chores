@@ -516,3 +516,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-27 — Water, Air, Earth and Strength Auras
 
 - Added four 10-second auras, all defeating nearby critters through clear paths. Air also boosts jumps/slows falling; Earth blocks hits; Strength earns extra aura-defeat points. Each has its own icon/effects, works for all collectors, rotates through room bonuses and supports player timer toggles.
+
+## 2026-11-27 — Elemental defeat animations
+
+- Earth crushes critters with a grass-topped dirt block, Water submerges them in water and bubbles, and Air lifts and drops them into a flattened impact. These are visible 1.5-second defeats, safe from repeat hits and scoring.

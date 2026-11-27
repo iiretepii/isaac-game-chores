@@ -347,3 +347,5 @@ Ghost Bridge also provides invisible ramps **up and down** steep ground steps an
 Tap or click one of your collected power-up timers to toggle that power **OFF / ON**. OFF stops its effect and freezes its remaining seconds; ON resumes both the effect and countdown. Each power toggles separately during play or pause. Collecting the same disabled power refreshes its saved duration without switching it on. Helpers keep their own independent powers, and starting a room clears saved powers too.
 
 Electric Aura appears in the rotating bonus selection, with an extra pickup in Charging Room Chaos. Blue-and-yellow lightning sparks surround its collector. It belongs to the player or helper who finds it; the player can switch it off to save its remaining time, then switch it on again.
+
+Aura defeats now have 1.5-second animations: **Earth** drops a grass-topped hard dirt block and squashes the critter flat; **Water** surrounds it in water and rising bubbles until it sinks away; **Air** lifts it up, then slams it down with an impact puff. Defeated critters immediately stop causing damage and score only once. Animations pause with gameplay and do not change terrain.
