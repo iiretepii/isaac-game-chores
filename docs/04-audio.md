@@ -40,25 +40,25 @@ Each entry in `STYLES` is `{name, bpm, spb, bar, bars, play(step, time, stepDura
 | `baroque` | *Little Fugue in the Attic* | 84 | 4 | 16 | 20 | Attic of Antiques | `music/24-attic.mp3` |
 | `pets` | *Wag Wag Woof Woof!* | 168 | 4 | 16 | 16 | Pet Room Pandemonium | `music/25-pet-room.mp3` |
 | `racerock` | *Radical Race Rock* | 240 | 2 | 8 | 32 | Race Track Rumble | `music/26-race-track.mp3` |
-| `chiptune` | *Press Start to Clean!* | 150 | 4 | 16 | 16 | Game Room Glitch | `music/27-game-room.mp3` |
+| `chiptune` | *Press Start to Clean!* | 150 | 4 | 16 | 16 | Game Room Glitch, LEGO Builders Room, Training Room | `music/27-game-room.mp3` |
 | `money` | *Winter (8-Bit) – Vivaldi* | 116 | 4 | 16 | 16 | Money Room Millions | `music/28-money-room.mp3` |
 | `grandprix` | *Castle Cup Celebration* (original) | 144 | 2 | 8 | 16 | MarioKart Toy Room | `music/29-kart-toy-room.mp3` |
 | `blockgarden` | *Lanterns in the Block Garden* (original) | 72 | 2 | 8 | 8 | Minecraft Block Room | `music/30-minecraft-room.mp3` |
 | `obby` | *Checkpoint Champions* (original) | 132 | 4 | 16 | 16 | Roblox Avatar Roundup | `music/31-roblox-room.mp3` |
 | `cityradio` | *Two Cities, One Sunset* (original) | 108 | 4 | 16 | 16 | GTA V + VI Toy Room | `music/32-gta-room.mp3` |
 | `charging` | *Fully Charged* (original) | 128 | 4 | 16 | 16 | Charging Room Chaos | `music/33-charging-room.mp3` |
-| `halloween` | *Spooky Sugar Shuffle* (original) | 112 | 4 | 16 | 16 | Halloween Haunt | `music/34-halloween.mp3` |
-| `thanksgiving` | *Harvest Home Hop* (original) | 106 | 4 | 16 | 16 | Thanksgiving Feast | `music/35-thanksgiving.mp3` |
-| `christmas` | *A Very Merry Medley* (public-domain carols) | 160 | 4 | 16 | 41 | Christmas Cheer | `music/36-christmas.mp3` |
-| `valentine` | *Hearts Together* (original) | 96 | 4 | 16 | 16 | Valentines Day Love | `music/37-valentine.mp3` |
-| `stpatrick` | *Lucky Clover Jig* (original) | 144 | 4 | 16 | 16 | St Patricks Day Luck | `music/38-stpatrick.mp3` |
-| `aprilfools` | *Whoops-a-Daisy* (original) | 138 | 4 | 16 | 16 | April Fools Day Pranks | `music/39-aprilfools.mp3` |
-| `easter` | *Springtime Hop* (original) | 120 | 4 | 16 | 16 | Easter Egg Hunt | `music/40-easter.mp3` |
-| `mothersday` | *Bouquets for Mom* (original) | 96 | 4 | 16 | 16 | Mother'S Day Blooms | `music/41-mothersday.mp3` |
-| `fathersday` | *Dads Day Groove* (original) | 124 | 4 | 16 | 16 | Father'S Day Surprise | `music/42-fathersday.mp3` |
-| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/43-whole-house-medley.mp3` |
-| `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/44-ending-jubilee.mp3` |
-| `sad` | *Grounded Until Forever* | 66 | 2 | 8 | 8 | "Parents are home!" fail screen (starts about 3 s after the honk and the lose jingle) | `music/45-fail-screen.mp3` |
+| `halloween` | *Spooky Sugar Shuffle* (original) | 112 | 4 | 16 | 16 | Halloween Haunt | `music/35-halloween.mp3` |
+| `thanksgiving` | *Harvest Home Hop* (original) | 106 | 4 | 16 | 16 | Thanksgiving Feast | `music/36-thanksgiving.mp3` |
+| `christmas` | *A Very Merry Medley* (public-domain carols) | 160 | 4 | 16 | 41 | Christmas Cheer | `music/37-christmas.mp3` |
+| `valentine` | *Hearts Together* (original) | 96 | 4 | 16 | 16 | Valentines Day Love | `music/38-valentine.mp3` |
+| `stpatrick` | *Lucky Clover Jig* (original) | 144 | 4 | 16 | 16 | St Patricks Day Luck | `music/39-stpatrick.mp3` |
+| `aprilfools` | *Whoops-a-Daisy* (original) | 138 | 4 | 16 | 16 | April Fools Day Pranks | `music/40-aprilfools.mp3` |
+| `easter` | *Springtime Hop* (original) | 120 | 4 | 16 | 16 | Easter Egg Hunt | `music/41-easter.mp3` |
+| `mothersday` | *Bouquets for Mom* (original) | 96 | 4 | 16 | 16 | Mother'S Day Blooms | `music/42-mothersday.mp3` |
+| `fathersday` | *Dads Day Groove* (original) | 124 | 4 | 16 | 16 | Father'S Day Surprise | `music/43-fathersday.mp3` |
+| `mix` | *Medley of Every Style* | — | — | — | — | The Whole House!! | `music/44-whole-house-medley.mp3` |
+| `finale` | *Jubilee for a Job Well Done* | 148 | 2 | 8 | 24 | Ending screen | `music/45-ending-jubilee.mp3` |
+| `sad` | *Grounded Until Forever* | 66 | 2 | 8 | 8 | "Parents are home!" fail screen (starts about 3 s after the honk and the lose jingle) | `music/46-fail-screen.mp3` |
 
 ## Volume Leveling
 

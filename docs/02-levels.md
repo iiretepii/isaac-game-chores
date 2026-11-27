@@ -27,19 +27,19 @@ Generated from the `LEVELS` array in `index.html`.
 | 19 | Arts & Crafts Chaos | `arts` | paint → paintshelf | 23 | 134s | 199 | 6 | 0.7 | 0.35 | yes | ant, cat, bubble | `punkska` |
 | 20 | Tech Room Trouble | `tech` | robot → workbench | 24 | 137s | 202 | 6 | 0.75 | 0.35 | yes | zap | `silly` |
 | 21 | Science Lab Scramble | `science` | testtube → labrack | 25 | 140s | 204 | 6 | 0.7 | 0.2 | yes | slime, bubble, zap | `science` |
-| 22 | Workout Room Workout | `gym` | weight → weightrack | 26 | 143s | 205 | 7 | 0.76 | 0.35 | yes | rat, cat, dog, mite | `workout` |
+| 22 | Workout Room Workout | `gym` | weight → weightrack | 26 | 143s | 205 | 6 | 0.76 | 0.35 | yes | rat, cat, dog, mite | `workout` |
 | 23 | The Spooky Basement | `basement` | shirt → dryer | 27 | 146s | 207 | 7 | 0.66 | 0.3 | yes | spider, rat, dust | `romantic` |
 | 24 | Attic of Antiques | `attic` | ornament → trunk | 28 | 149s | 210 | 7 | 0.7 | 0.35 | yes | bat, spider, rat | `baroque` |
 | 25 | Pet Room Pandemonium | `pets` | chewtoy → petbasket | 29 | 152s | 212 | 7 | 0.66 | 0.3 | yes | hamster, tabby, pom | `pets` |
 | 26 | Race Track Rumble | `race` | tire → tirerack | 30 | 154s | 214 | 7 | 0.7 | 0.3 | yes | roomba, squirrel, goose | `racerock` |
 | 27 | Game Room Glitch | `gameroom` | videogame → gameshelf | 31 | 157s | 216 | 7 | 0.72 | 0.3 | yes | invader, chomper, ghosty | `chiptune` |
-| 28 | Money Room Millions | `money` | coin → coinchest | 32 | 160s | 260 | 8 | 0.7 | 0.25 | yes | hamster, roomba, slime | `money` |
+| 28 | Money Room Millions | `money` | coin → coinchest | 32 | 160s | 260 | 7 | 0.7 | 0.25 | yes | hamster, roomba, slime | `money` |
 | 29 | MarioKart Toy Room | `kartroom` | kartbike (alternating toykart / toybike) → kartgarage | 33 | 163s | 270 | 8 | 0.7 | 0.25 | yes | roomba, squirrel, ghosty | `grandprix` |
 | 30 | Minecraft Block Room | `blockroom` | diamondblock → blockchest | 34 | 166s | 280 | 8 | 0.7 | 0.2 | yes | bzombie, bskel, bspider, hisser | `blockgarden` |
 | 31 | Roblox Avatar Roundup | `obbyroom` | avatar → avatarshelf | 35 | 169s | 290 | 8 | 0.7 | 0.2 | yes | roomba, invader, ghosty | `obby` |
 | 32 | GTA V + VI Toy Room | `cityroom` | citytoys (alternating sportscar / cruiserbike) → citygarage | 36 | 172s | 300 | 8 | 0.7 | 0.2 | yes | roomba, dog, rat | `cityradio` |
 | 33 | Charging Room Chaos | `chargingroom` | chargecable → cabledock | 37 | 175s | 310 | 8 | 0.7 | 0.2 | yes | zap, roomba, ant | `charging` |
-| 34 | Lego Builders Room | `legoroom` | legobrick → legobin | 20 | 180s | 230 | 5 | 0.5 | 0.15 | yes | roomba, slime | `chiptune` |
+| 34 | Lego Builders Room | `legoroom` | legobrick → legobin | 20 | 180s | 230 | 8 | 0.5 | 0.15 | yes | roomba, slime | `chiptune` |
 | 35 | Halloween Haunt | `halloween` | carvedpumpkin → pumpkinbucket | 38 | 178s | 320 | 8 | 0.7 | 0.2 | yes | bat, spider, ghosty | `halloween` |
 | 36 | Thanksgiving Feast | `thanksgiving` | pieslice → pietable | 39 | 181s | 330 | 9 | 0.7 | 0.2 | yes | turkey | `thanksgiving` |
 | 37 | Christmas Cheer | `christmas` | gift → gifttree | 40 | 184s | 340 | 9 | 0.7 | 0.2 | yes | roomba, cat, hamster | `christmas` |
@@ -123,7 +123,7 @@ GTA V + VI Toy Room uses `item: "citytoys"`; generation alternates `sportscar` a
 
 ## Room order and stable difficulty
 
-Daniel’s Monster Jam Room and Colin’s Surf Shack are levels 3 and 4. Each room's `difficultyIndex` and `gap` follow its position, so the challenge climbs steadily through all 43 levels; seeds, timers and music are per room; Daniel and Colin now have 12/13 pickups. `buildLevel` uses `difficultyIndex` for its capped ramp, and `updateEnemies` uses it for speed. New levels without this field fall back to their current index. Counts and timers are now room-specific rather than increasing at every menu position.
+Daniel’s Monster Jam Room and Colin’s Surf Shack are levels 3 and 4. Each room's `difficultyIndex` and `gap` follow its position, so the challenge climbs steadily through all 44 levels (the optional Training Room is outside the climb); seeds, timers and music are per room; Daniel and Colin now have 12/13 pickups. `buildLevel` uses `difficultyIndex` for its capped ramp, and `updateEnemies` uses it for speed. New levels without this field fall back to their current index. Counts and timers are now room-specific rather than increasing at every menu position.
 
 ## Optional Training Room
 

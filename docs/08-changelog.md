@@ -475,3 +475,8 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-27 — Touch pause and mute
 
 - Added 44-pixel-minimum Pause/Resume and Mute/Unmute buttons during gameplay and pause, with current-state labels and accessible pressed states. Kept keyboard controls and prevented control taps from triggering gameplay actions.
+
+### Consistency pass after the LEGO room and Training Room
+- The LEGO Builders Room (Level 34) now follows the difficulty climb (8-tile gaps) like its neighbors; every room's `difficultyIndex` and `gap` were recomputed for 44 levels. Checks: every pit and climb is clearable, every level has its full item count, and every drop-off sits on solid ground.
+- MP3s from Halloween onward were renumbered to match their level numbers after the LEGO room was inserted (`35-halloween.mp3` … `44-whole-house-medley.mp3`, `45-ending-jubilee.mp3`, `46-fail-screen.mp3`), and every link was updated.
+- Docs: critter level lists regenerated; LEGO Builders Room and Training Room added to the items and drop-offs table; the LEGO and Training rooms noted as sharing *Press Start to Clean!*; level counts updated to 44.
