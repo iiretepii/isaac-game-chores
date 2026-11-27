@@ -536,3 +536,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-27 — Andrew’s lab chooser and observation
 
 - Added a dedicated power-selection screen after the lab intro. Andrew introduces himself as its creator and watches tests without defeating practice critters or interrupting rescue-power experiments.
+
+## 2026-11-27 — Rescue Balloon lab gap
+
+- Selecting Rescue Balloon opens a gap directly under the player, with a solid return spot beside it. Reset repeats the demonstration and changing powers restores the floor.

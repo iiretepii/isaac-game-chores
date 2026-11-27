@@ -1662,6 +1662,13 @@ function testPower(kind){
  lastSafe={x:P.x,y:P.y};cam=0;score=levelScore=0;timeLeft=lvl.L.time;
  for(const k in keys)keys[k]=false;jumpPressed=false;anyPress=false;
  grantPower(kind);
+ if(kind==='rescue'){
+  // The test opens beneath the rider; keep a solid return spot beside it.
+  lastSafe={x:8*T,y:(ROWS-lvl.ground[8])*T-P.h};
+  for(let c=10;c<=12;c++){lvl.ground[c]=0;for(let r=0;r<ROWS;r++)lvl.map[r][c]='.';}
+  P.on=false;P.coyote=0;P.ride=null;
+  say('GAP TEST! THE BALLOON WILL CATCH YOU.',2.5);
+ }
  if(['star','fire','electric','water','air','earth','strength','ice','slow'].includes(kind)){
   const range=auraRange(P)||44;
   lvl.enemies=[{type:'roach',x:P.x+Math.min(22,range-8),y:P.y+P.h-12,w:14,h:12,vx:-1,vy:0,alive:true,t:0,dead:0}];
