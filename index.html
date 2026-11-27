@@ -1486,7 +1486,7 @@ const POWER_DEFS={
  shield:{name:'SHIELD',duration:10,color:'#73d8f1',code:'SH'},boost:{name:'SPEED',duration:8,color:'#ffd75d',code:'SP'},magnet:{name:'MAGNET',duration:10,color:'#d1a0ff',code:'MG'},
  spring:{name:'JUMP',duration:10,color:'#8be896',code:'JB'},feather:{name:'FLOAT',duration:10,color:'#d9f6ff',code:'FL'},triple:{name:'TRIPLE',duration:10,color:'#8ebcff',code:'TJ'},
  star:{name:'STAR',duration:8,color:'#fff19a',code:'ST'},fire:{name:'FIRE',duration:8,color:'#ff985d',code:'FR'},ice:{name:'ICE',duration:8,color:'#86e9ef',code:'IC'},
- slow:{name:'SLOW',duration:10,color:'#bd9aea',code:'SL'},double:{name:'2X',duration:10,color:'#ffc3e5',code:'2X'},rescue:{name:'RESCUE',duration:12,color:'#ffb5aa',code:'RS'},compass:{name:'COMPASS',duration:12,color:'#b0e8c6',code:'CP'},bridge:{name:'GHOST BRIDGE',duration:12,color:'#c6dcff',code:'GB'}
+ slow:{name:'SLOW',duration:10,color:'#bd9aea',code:'SL'},double:{name:'2X',duration:10,color:'#ffc3e5',code:'2X'},rescue:{name:'RESCUE',duration:12,color:'#ffb5aa',code:'RS'},compass:{name:'COMPASS',duration:12,color:'#b0e8c6',code:'CP'},bridge:{name:'GHOST BRIDGE',duration:12,color:'#c6dcff',code:'GB'},electric:{name:'ELECTRIC',duration:10,color:'#7ff3ff',code:'EL'}
 };
 function freshPowers(){return Object.fromEntries(Object.keys(POWER_DEFS).map(k=>[k,0]));}
 function maxJumps(a){return a.powers?.triple>0?3:2;}
@@ -1496,8 +1496,8 @@ function nearestChore(a){return lvl.items.filter(it=>!it.got).sort((u,v)=>Math.h
 function powerLineClear(x,y,tx,ty){const n=Math.max(1,Math.ceil(Math.hypot(tx-x,ty-y)/4));for(let i=0;i<=n;i++)if(solid(Math.floor((x+(tx-x)*i/n)/T),Math.floor((y+(ty-y)*i/n)/T)))return false;return true;}
 function auraNear(a,e,r){return Math.hypot(a.x+5-(e.x+e.w/2),a.y+(a.h||20)/2-(e.y+e.h/2))<=r&&powerLineClear(a.x+5,a.y+(a.h||20)/2,e.x+e.w/2,e.y+e.h/2);}
 function enemyPowerScale(e){const actors=[P,...sibs];if(actors.some(a=>a.powers?.ice>0&&auraNear(a,e,96)))return 0;return actors.some(a=>a.powers?.slow>0&&auraNear(a,e,96))?0.35:1;}
-function defeatWithPower(e,a){if(!e.alive)return;e.alive=false;e.dead=.5;const points=100*pointMultiplier(a);score+=points;levelScore+=points;SFX.boing();puff(e.x+7,e.y+6,a.powers?.fire>0?'#ff985d':'#fff19a',10,65);popText(e.x,e.y-8,'+'+points,'#fff19a');}
-function updatePowerAuras(){for(const a of [P,...sibs])if(a.powers?.fire>0)for(const e of lvl.enemies)if(e.alive&&auraNear(a,e,44))defeatWithPower(e,a);}
+function defeatWithPower(e,a){if(!e.alive)return;e.alive=false;e.dead=.5;const points=100*pointMultiplier(a);score+=points;levelScore+=points;SFX.boing();puff(e.x+7,e.y+6,a.powers?.electric>0?'#7ff3ff':a.powers?.fire>0?'#ff985d':'#fff19a',10,65);popText(e.x,e.y-8,'+'+points,'#fff19a');}
+function updatePowerAuras(){for(const a of [P,...sibs]){const range=a.powers?.electric>0?64:a.powers?.fire>0?44:0;if(range)for(const e of lvl.enemies)if(e.alive&&auraNear(a,e,range))defeatWithPower(e,a);}}
 
 // Personal one-way surfaces span only actual pits; the room map stays unchanged.
 function ghostBridgeY(actor,x){
@@ -1555,6 +1555,7 @@ function makePowerups(level){
  }
  const used=[],desired=[7,Math.round(level.cols*.4),Math.round(level.cols*.72),Math.round(level.cols*.23),Math.round(level.cols*.87)];
  const extras=Object.keys(POWER_DEFS).slice(3),types=['shield','boost','magnet',extras[(level.idx*2)%extras.length],extras[(level.idx*2+1)%extras.length]];
+ if(level.L.theme==='chargingroom'){types.push('electric');desired.push(Math.round(level.cols*.12));}
  // Extra personal bridges are spread throughout the Whole House finale.
  if(level.L.theme==='house'&&level.L.item==='mix'){
   types.push('bridge','bridge','bridge');
@@ -3187,7 +3188,8 @@ function drawTiles(th,t){
 
 function drawPowerIcon(kind,x,y){
  const color=POWER_DEFS[kind].color;
- if(kind==='shield'){R(x+3,y+2,10,7,color);R(x+4,y+9,8,3,color);R(x+6,y+12,4,2,color);R(x+7,y+3,2,8,'#e7fbff');}
+ if(kind==='electric'){R(x+2,y+3,4,3,'#7ff3ff');R(x+5,y+6,4,3,'#7ff3ff');R(x+8,y+9,5,3,'#7ff3ff');R(x+10,y+2,3,3,'#fff7a5');R(x+8,y+5,4,2,'#fff7a5');R(x+1,y+12,3,2,'#fff7a5');}
+ else if(kind==='shield'){R(x+3,y+2,10,7,color);R(x+4,y+9,8,3,color);R(x+6,y+12,4,2,color);R(x+7,y+3,2,8,'#e7fbff');}
  else if(kind==='boost'){R(x+7,y+1,6,3,color);R(x+5,y+4,6,3,color);R(x+3,y+7,9,3,color);R(x+7,y+10,4,2,color);R(x+6,y+12,3,2,color);}
  else if(kind==='magnet'){R(x+2,y+3,4,9,color);R(x+10,y+3,4,9,color);R(x+4,y+10,8,4,color);R(x+2,y+2,4,3,'#ffffff');R(x+10,y+2,4,3,'#ffcfda');}
  else if(kind==='spring'){R(x+3,y+2,5,8,color);R(x+3,y+10,10,4,color);for(let n=0;n<3;n++)R(x+1+n*3,y+14,3,1,'#f5ffcf');}
@@ -3219,6 +3221,8 @@ function drawPowerEffects(t,actor=P){
  if(powers.boost>0)for(let n=0;n<3;n++)R(actor.x-actor.face*(6+n*5),actor.y+(actor.h||20)-4,3,2,['#ffe78b','#ffd05b','#ef9c43'][n]);
  if(powers.magnet>0)for(let n=0;n<4;n++){const a=t*3+n*Math.PI/2;R(cx+Math.cos(a)*20,cy+Math.sin(a)*16,2,2,'#d8afff');}
  for(const key of ['spring','feather','triple','star','fire','ice','slow','double','rescue'])if(powers[key]>0){const c=POWER_DEFS[key].color;for(let n=0;n<3;n++){const a=t*(key==='slow'?1:3)+n*Math.PI*2/3;R(cx+Math.cos(a)*24,cy+Math.sin(a)*19,2,2,c);}}
+ if(powers.electric>0){for(let n=0;n<4;n++){const angle=t*5+n*Math.PI/2,bx=cx+Math.cos(angle)*24,by=cy+Math.sin(angle)*21;
+  R(bx-3,by-5,4,3,'#7ff3ff');R(bx-1,by-2,5,3,'#fff7a5');R(bx+1,by+1,3,4,'#7ff3ff');}}
  if(powers.compass>0){const target=nearestChore(actor);if(target){const dx=target.x-actor.x,dy=target.y-actor.y,vertical=Math.abs(dy)>Math.abs(dx);text(vertical?(dy<0?'^':'v'):(dx<0?'<':'>'),cx+(vertical?0:Math.sign(dx)*24),cy+(vertical?Math.sign(dy)*24:-4),8,POWER_DEFS.compass.color,'center');}}
 
 }

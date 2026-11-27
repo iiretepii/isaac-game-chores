@@ -63,7 +63,7 @@ The bar at the top of the screen shows the parents' car driving toward the house
 
 ### Power-ups
 
-Each 2D room has five optional bonus pickups: shield, speed and magnet plus two rotating powers from the eleven new types. Whole House also has three extra Ghost Bridge pickups spread through the room. You, Isaac, Annie, Daniel, Colin or Andrew can collect the unframed icons to power themselves up:
+Each 2D room has five optional bonus pickups: shield, speed and magnet plus two rotating powers from the twelve extra types. Whole House also has three extra Ghost Bridge pickups spread through the room. You, Isaac, Annie, Daniel, Colin or Andrew can collect the unframed icons to power themselves up:
 
 | Power-up | Effect | Lasts |
 |---|---|---|
@@ -75,6 +75,7 @@ Each 2D room has five optional bonus pickups: shield, speed and magnet plus two 
 | Triple Jump | A third jump in midair | 10 seconds |
 | Star | Defeats critters on contact and protects against LEGO hits | 8 seconds |
 | Fire Aura | Defeats nearby critters with a clear path | 8 seconds |
+| Electric Aura | Zaps nearby critters within 64 pixels, with a clear path | 10 seconds |
 | Ice Aura | Freezes nearby critters with a clear path | 8 seconds |
 | Slow Aura | Slows nearby critters with a clear path | 10 seconds |
 | Double Points | Doubles the collector’s chore and critter points | 10 seconds |
@@ -340,3 +341,5 @@ Rooms with narrow pits (up to three tiles wide) or skinny stepping-stone landing
 Ghost Bridge also provides invisible ramps **up and down** steep ground steps and shelf-platform edges. The powered character can ride the slopes in either direction; ramps disappear with the timer, remain personal, and do not alter room tiles. Solid ceilings still block a rider.
 
 Tap or click one of your collected power-up timers to toggle that power **OFF / ON**. OFF stops its effect and freezes its remaining seconds; ON resumes both the effect and countdown. Each power toggles separately during play or pause. Collecting the same disabled power refreshes its saved duration without switching it on. Helpers keep their own independent powers, and starting a room clears saved powers too.
+
+Electric Aura appears in the rotating bonus selection, with an extra pickup in Charging Room Chaos. Blue-and-yellow lightning sparks surround its collector. It belongs to the player or helper who finds it; the player can switch it off to save its remaining time, then switch it on again.

@@ -508,3 +508,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-27 — Toggle owned power-ups
 
 - Player HUD timers are now tappable ON/OFF controls. Disabling stores the remaining duration and stops all effects; enabling restores the same time and resumes use. Added clear status labels, saved-duration refreshes and room reset behavior.
+
+## 2026-11-27 — Electric Aura
+
+- Added a 10-second Electric Aura that zaps nearby critters through clear paths, with cyan/yellow lightning effects. All five helpers can collect it; player toggles pause and resume its timer. Added it to rotating bonuses and an extra pickup in Charging Room Chaos.
