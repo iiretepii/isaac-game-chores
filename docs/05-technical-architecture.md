@@ -147,8 +147,10 @@ Aura defeats now have 1.5-second animations: **Earth** drops a grass-topped hard
 
 ## Power-Up Testing Room
 
-Open **Power-Up Lab (B)** on the title screen or choose it in Level Select. Pick any of the 19 powers from the selector; **Test Again** resets the practice area and refreshes it, and **Exit Lab** returns to the title. Combat auras, Star, Ice and Slow spawn a practice roach. Other powers can be tried on the room’s chores, shelves and gaps. The timer is unlimited, helpers stay outside the lab, and collecting chores does not end testing. Your normal power ON/OFF controls still work. The 45-room adventure and optional Training Room keep their existing order.
+Open **Power-Up Lab (B)** on the title screen or choose it in Level Select. Pick any of the 19 powers from the selector; **Test Again** resets the practice area and refreshes it, and **Exit Lab** returns to the title. Combat auras, Star, Ice and Slow spawn a practice roach. Other powers can be tried on the room’s chores, shelves and gaps. The timer is unlimited, helpers stay outside the lab, and collecting all six toys and touching the chest completes the optional lab session. Your normal power ON/OFF controls still work. The 45-room adventure and optional Training Room keep their existing order.
 
 The lab now opens its dedicated **Choose a Power-Up to Test** screen immediately after the about-to-start screen; testing begins only after a selection. Andrew built the lab and watches from beside the practice area. He does not attack the test critter or interrupt experiments with rescues.
 
 Fire Aura now visibly burns defeated critters up in flickering orange/yellow flames, fading into smoke and a small ash puff. The 1.5-second animation awards points once and pauses with gameplay, just like other aura defeats.
+
+The toy chest accepts delivery on contact with its visible lid or body once all items are collected. This also works in the Power-Up Lab: delivering all six toys completes the session and lets you return to the title. Test Again still resets experiments while playing.

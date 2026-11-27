@@ -544,3 +544,7 @@ Grouped by milestone. See `git log` for every commit.
 ## 2026-11-27 — Fire Aura burn-up
 
 - Fire Aura now burns critters up in cartoon flames and smoke instead of the generic defeat effect. Works for the player and helpers, including lab tests.
+
+## 2026-11-27 — Toy chest delivery fix
+
+- Removed the lab-only delivery block so its chest accepts all six toys. Included the toy chest’s visible raised lid in delivery contact, with a small touch margin. Normal item-count requirements remain.

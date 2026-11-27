@@ -2024,6 +2024,12 @@ function updateSibs(dt){
   }
   if(colinArrived)say(SIBS.find(d=>d.name==='COLIN').line,2.5);
 }
+function touchingDrop(actor,drop){
+ // The toy chest's visible raised lid extends above its original delivery box.
+ if(drop.kind!=='toychest')return overlap(actor,drop);
+ const top=DROP_TOP.toychest||0;
+ return overlap(actor,{x:drop.x-3,y:drop.y-top-3,w:drop.w+6,h:drop.h+top+6});
+}
 function updatePlay(dt){
   timeLeft=lvl.L.training?lvl.L.time:timeLeft-dt;tickPowers(dt);updateAndrewCarries(dt);collectPowerups();updateSibs(dt);
   if(timeLeft<=10&&!honked){honked=true;SFX.honk();say("HONK HONK! THEY'RE CLOSE!",2);}
@@ -2032,7 +2038,7 @@ function updatePlay(dt){
     const left=lvl.total-P.carry;popText(it.x-6,it.y-4,left?left+" LEFT":"ALL DONE!","#fff");if(!left)say("NOW GET TO THE "+lvl.drop.kind.toUpperCase()+"! >>>",2.5);}
     else if(!it.got){const finder=sibs.find(s=>s.powers?.magnet>0&&overlap({x:s.x,y:s.y,w:10,h:s.h||20},it));if(finder)collectHelperItem(finder,it);}
   }
-  if(!lvl.L.testLab&&!P.rescueCarry&&overlap(P,lvl.drop)){
+  if(!P.rescueCarry&&touchingDrop(P,lvl.drop)){
     if(P.carry>=lvl.total){
       const bonus=Math.ceil(timeLeft)*10;score+=bonus;levelScore+=bonus;state='clear';stateT=0;stopMusic();SFX.win();puff(lvl.drop.x+14,lvl.drop.y,"#ffeb3b",30,150);
     }else if(msgT<=0){SFX.nope();say("STILL "+(lvl.total-P.carry)+" "+ITEM_NAMES[lvl.L.item].toUpperCase()+" LEFT!",1.5);}
